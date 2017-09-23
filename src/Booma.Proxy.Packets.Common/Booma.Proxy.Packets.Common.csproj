@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSOBBPacketHeader.cs" />
+    <Compile Include="PSOBBPacketPayload.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
