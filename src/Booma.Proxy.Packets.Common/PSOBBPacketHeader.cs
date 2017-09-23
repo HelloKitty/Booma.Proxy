@@ -20,7 +20,9 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(1)]
 		public short PacketSize { get; }
-
+		
+		//The PacketSize contains the whole size of the packet
+		//So the payload is just the size minus the size of the packetsize field.
 		/// <summary>
 		/// Indicates the size of the payload.
 		/// </summary>
