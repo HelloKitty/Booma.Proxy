@@ -22,12 +22,5 @@ namespace Booma.Proxy
 		[KnownSize(4)] //always 4 bytes
 		[WireMember(1)]
 		public byte[] Flags { get; }
-
-		[WireDataContract]
-		[DefaultChild(typeof(PSOBBPatchPacketPayload))]
-		public class Default
-		{
-			
-		}
 	}
 }

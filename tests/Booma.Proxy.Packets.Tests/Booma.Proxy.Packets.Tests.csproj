@@ -42,13 +42,13 @@
       <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.2.0.36\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.2.0.38\lib\net46\FreecraftCore.Serializer.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.2.0.36\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.2.0.38\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.2.0.36\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.2.0.38\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
     </Reference>
     <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="AutomatedReflectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionTests\LoginPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\PatchPayloadAutomatedReflectionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -82,6 +84,10 @@
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
       <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
+      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
+      <Name>Booma.Proxy.Packets.LoginServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj">
       <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
