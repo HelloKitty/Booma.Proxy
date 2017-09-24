@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PatchingDoneCommandPayload.cs" />
-    <Compile Include="PatchingInformationPayload.cs" />
-    <Compile Include="PatchingUpOneDirectoryCommandPayload.cs" />
+    <Compile Include="Payloads\PatchingDoneCommandPayload.cs" />
+    <Compile Include="Payloads\PatchingInformationPayload.cs" />
+    <Compile Include="Payloads\PatchingUpOneDirectoryCommandPayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
