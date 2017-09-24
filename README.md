@@ -2,6 +2,8 @@
 
 Yet another PSOBB proxy but this time with time in C#/.NET!
 
+Built on top of 17 years of the reverse engineering work done by many in the community, Sodaboy's proxy, [Sylverant's opensource C++ DC/BB/GC server implementation](https://github.com/Sylverant/) and one of the [most recent public Tethella releases](https://github.com/justnoxx/psobb-tethealla/).
+
 ## How and Why
 
 Booma.Proxy relies on the extendable and flexible metadata based serializer that I build for the World of Warcraft protocol, [FreecraftCore.Serializer](https://github.com/FreecraftCore/FreecraftCore.Serializer). FreecraftCore.Serializer was chosen because of the productivity, readable and usability it provides. Rewriting the same manual serialization that has been written 1,000 times since the Dreamcast isn't helpful or useful to anyone anymore.
