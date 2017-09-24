@@ -14,9 +14,10 @@ namespace Booma.Proxy
 	};*/
 
 	//Tethella implementation: https://github.com/justnoxx/psobb-tethealla/blob/master/patch_server/patch_server.c#L578
+	//Sylverant implementation: https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.c#L237 and structure https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.h#L106
 	[WireDataContract]
 	[WireDataContractBaseTypeRuntimeLink(0x11)] //TODO: Make an operations code enum.
-	public sealed class PatchingInformationPayload : PSOBBPacketPayload
+	public sealed class PatchingInformationPayload : PSOBBPatchPacketPayload
 	{
 		//0x0C 0x00 Size
 		//0x11 0x00 Type
