@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		//Syl: "If t1 is non-NULL, we need to go up the tree as many times as we have
 		//path components left to be parsed."
 
-		private PatchingUpOneDirectoryCommandPayload()
+		public PatchingUpOneDirectoryCommandPayload()
 		{
 
 		}

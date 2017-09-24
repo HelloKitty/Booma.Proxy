@@ -15,7 +15,9 @@ namespace Booma.Proxy
 	[WireDataContractBaseTypeRuntimeLink(0x12)] //TODO: Enumeration of opcodes
 	public sealed class PatchingDoneCommandPayload : PSOBBPatchPacketPayload
 	{
-		private PatchingDoneCommandPayload()
+		//Empty command packet that indicates patching is finished
+
+		public PatchingDoneCommandPayload()
 		{
 			
 		}
