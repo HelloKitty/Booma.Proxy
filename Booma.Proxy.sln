@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Common"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Tests", "tests\Booma.Proxy.Packets.Tests\Booma.Proxy.Packets.Tests.csproj", "{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.LoginServer", "src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj", "{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{1A775854-1484-45FB-B465-1967A971646C} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7} = {FCFAE99C-C28A-44B7-A7BE-F9D5481C35B9}
+		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}

@@ -31,5 +31,26 @@ namespace Booma.Proxy.Packets.Tests
 			Assert.True(serializer.isTypeRegistered(t), $"Failed to register Type: {t.Name}");
 			Assert.True(serializer.isTypeRegistered(typeof(PSOBBPatchPacketPayload)), $"Base packet type wasn't registered.");
 		}
+
+		[Test]
+		[TestCaseSource(nameof(PatchPayloadTypes))]
+		public static void Test_Can_Serialize_All_Concrete_Patch_Payloads(Type t)
+		{
+			//arrange
+			SerializerService serializer = new SerializerService();
+			MethodInfo linkMethodInfo = serializer.GetType().GetMethod(nameof(serializer.Link));
+			MethodInfo linkMethod = linkMethodInfo.MakeGenericMethod(t, typeof(PSOBBPatchPacketPayload));
+			linkMethod.Invoke(serializer, new object[0]);
+			serializer.Compile();
+
+			object payload = Activator.CreateInstance(t);
+
+			//act
+			byte[] bytes = serializer.Serialize(payload);
+
+			//assert
+			Assert.NotNull(bytes);
+			Assert.True(bytes.Length != 0);
+		}
 	}
 }
