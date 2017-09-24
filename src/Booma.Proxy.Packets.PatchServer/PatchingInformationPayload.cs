@@ -7,12 +7,8 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
-	//Empty from Sodaboy's proxy
-	/*unsigned char patch_pkt[] = { 
-	0x0C, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00,
-	0x0A, 0x00, 0x04, 0x00, 0x12, 0x00
-	};*/
-
+	//0x0C 0x00 0x11 0x00
+	//PatchingByteLength{4} PatchFileCount{4}
 	//Tethella implementation: https://github.com/justnoxx/psobb-tethealla/blob/master/patch_server/patch_server.c#L578
 	//Sylverant implementation: https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.c#L237 and structure https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.h#L106
 	[WireDataContract]

@@ -46,9 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PayloadTypes\PSOBBPatchPacketPayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSOBBPacketHeader.cs" />
-    <Compile Include="PSOBBPacketPayload.cs" />
+    <Compile Include="PayloadTypes\PSOBBShipPacketPayload.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

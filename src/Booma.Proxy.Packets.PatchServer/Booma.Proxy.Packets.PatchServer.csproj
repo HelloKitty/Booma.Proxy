@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PatchingInformationPayload.cs" />
+    <Compile Include="PatchingUpOneDirectoryCommandPayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
