@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientVerrificationData.cs" />
-    <Compile Include="LoginRequest93Payload.cs" />
+    <Compile Include="Payloads\ClientVerrificationData.cs" />
+    <Compile Include="Payloads\LoginRequest93Payload.cs" />
+    <Compile Include="ResponseCodes\LoginResponseCode.cs" />
+    <Compile Include="Payloads\LoginResponsePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
