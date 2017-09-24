@@ -15,5 +15,10 @@ namespace Booma.Proxy
 	public abstract class PSOBBPatchPacketPayload
 	{
 		//Nothing, only the 2 byte Type is relevant for this base packet.
+
+		protected PSOBBPatchPacketPayload()
+		{
+			
+		}
 	}
 }

@@ -34,6 +34,14 @@ namespace Booma.Proxy.Packets.Tests
 
 		[Test]
 		[TestCaseSource(nameof(PatchPayloadTypes))]
+		public static void Test_Payload_Has_Parameterless_Ctor(Type t)
+		{
+			//assert
+			Assert.NotNull(t.GetConstructor(Enumerable.Empty<Type>().ToArray()), $"Type: {t.Name} does not have a required parameterless ctor.");
+		}
+
+		[Test]
+		[TestCaseSource(nameof(PatchPayloadTypes))]
 		public static void Test_Can_Serialize_All_Concrete_Patch_Payloads(Type t)
 		{
 			//arrange
@@ -46,7 +54,9 @@ namespace Booma.Proxy.Packets.Tests
 			object payload = Activator.CreateInstance(t);
 
 			//act
-			byte[] bytes = serializer.Serialize(payload);
+			byte[] bytes = null;
+
+			Assert.DoesNotThrow(() => bytes = serializer.Serialize(payload));
 
 			//assert
 			Assert.NotNull(bytes);
