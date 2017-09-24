@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
+using Reinterpret.Net;
 
 namespace Booma.Proxy
 {
@@ -24,38 +25,35 @@ namespace Booma.Proxy
 	//Syl struct: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L321
 	[WireDataContract]
 	[WireDataContractBaseTypeRuntimeLink(0x19)]
-	public sealed class ConnectionRedirectPayload : PSOBBShipPacketPayload
+	public sealed class ConnectionRedirectPayload : PSOBBShipPacketPayload, ISerializationEventListener
 	{
-		//For some reason the IPAddress is sent big endian
+		//The IP is not always sent. Some servers send it some down.
+		//Since it's not possible to deduce Type from differences in packet length we
+		//just put it all in a buffer and manually deserialize like it's the early 2000s.
 		/// <summary>
-		/// The IPAddress that should be reidrected to.
+		/// The byte buffer of the payload.
 		/// </summary>
-		[ReverseData]
-		[KnownSize(4)]
 		[WireMember(1)]
-		public byte[] IpAddressBytes { get; }
+		public byte[] PayloadBytes { get; private set; } //this could be 4 byte IP + 2 byte Port or just 2 byte port. May contain 2 byte padding aswell.
+
+		//We don't need to add the padding because the packet will just stop reading.
+
+		/// <summary>
+		/// The <see cref="IPAddress"/> for the endpoint to redirect to.
+		/// Will be null if the server didn't want to change the IPAddress for the connected
+		/// endpoint connection.
+		/// </summary>
+		public IPAddress EndpointAddress { get; private set; }
 
 		/// <summary>
 		/// The port for the endpoint to redirect to.
 		/// </summary>
-		[WireMember(2)]
-		public short EndpointerPort { get; }
-
-		//TODO: What and why?
-		/// <summary>
-		/// ?
-		/// </summary>
-		[KnownSize(2)]
-		[WireMember(3)]
-		private byte[] padding { get; } = new byte[2];
-
-		//Lazy cache of the computed ipaddr
-		private Lazy<IPAddress> _EndpointAddress { get; }
+		public short EndpointPort { get; private set; }
 
 		/// <summary>
-		/// The <see cref="IPAddress"/> for the endpoint to redirect to.
+		/// Indicates if the redirect points to a new IPAddress.
 		/// </summary>
-		public IPAddress EndpointAddress => _EndpointAddress.Value;
+		public bool isNewIpAddressRedirect => EndpointAddress != null;
 
 		/// <summary>
 		/// Creates a new redirect to the specified endpoint address and port.
@@ -63,7 +61,6 @@ namespace Booma.Proxy
 		/// <param name="ipAddress">The IP to redirect to.</param>
 		/// <param name="port">The port to redirect to.</param>
 		public ConnectionRedirectPayload([NotNull] string ipAddress, short port)
-			: this()
 		{
 			if(string.IsNullOrWhiteSpace(ipAddress)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(ipAddress));
 
@@ -71,9 +68,8 @@ namespace Booma.Proxy
 			if(!IPAddress.TryParse(ipAddress, out addr))
 				throw new ArgumentException($"Address {nameof(ipAddress)} was in an invalid format.");
 
-			//We have to reverse for endianness
-			IpAddressBytes = addr.GetAddressBytes().Reverse().ToArray();
-			EndpointerPort = port;
+			EndpointAddress = addr;
+			EndpointPort = port;
 		}
 
 		/// <summary>
@@ -82,18 +78,58 @@ namespace Booma.Proxy
 		/// <param name="ipAddress">The IP to redirect to.</param>
 		/// <param name="port">The port to redirect to.</param>
 		public ConnectionRedirectPayload([NotNull] IPAddress ipAddress, short port)
-			: this()
 		{
 			if(ipAddress == null) throw new ArgumentNullException(nameof(ipAddress));
 
 			//We have to reverse for endianness
-			IpAddressBytes = ipAddress.GetAddressBytes().Reverse().ToArray();
-			EndpointerPort = port;
+			EndpointAddress = ipAddress;
+			EndpointPort = port;
 		}
 
-		public ConnectionRedirectPayload()
+		/// <summary>
+		/// Creates a new redirect to the port only.
+		/// </summary>
+		/// <param name="ipAddress">The IP to redirect to.</param>
+		/// <param name="port">The port to redirect to.</param>
+		public ConnectionRedirectPayload(short port)
 		{
-			_EndpointAddress = new Lazy<IPAddress>(() => new IPAddress(IpAddressBytes), true);
+			EndpointPort = port;
+		}
+
+		//serializer ctor
+		private ConnectionRedirectPayload()
+		{
+			
+		}
+
+		public void OnBeforeSerialization()
+		{
+			//TODO: Cache the empty byte array
+
+			//Sometimes we don't need or want the IPAddress to be sent
+			if(isNewIpAddressRedirect)
+				//We have to reverse for endianness
+				PayloadBytes = EndpointAddress.GetAddressBytes().Reverse().ToArray();
+			else
+				PayloadBytes = Enumerable.Empty<byte>().ToArray();
+
+			//we always add the port though
+			PayloadBytes = PayloadBytes.Concat(EndpointPort.Reinterpret()).ToArray();
+		}
+
+		public void OnAfterDeserialization()
+		{
+			int position = 0;
+
+			//If it's greater than 4 they sent the IP
+			if(PayloadBytes.Length > 4)
+			{
+				EndpointAddress = new IPAddress(PayloadBytes.Take(4).Reverse().ToArray());
+				position = 4;
+			}
+
+			//We should ALWAYS have port at least.
+			EndpointPort = PayloadBytes.Reinterpret<short>(position);
 		}
 	}
 }
