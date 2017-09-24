@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Payloads\ClientVerrificationData.cs" />
+    <Compile Include="Payloads\ConnectionRedirectPayload.cs" />
     <Compile Include="Payloads\LoginRequest93Payload.cs" />
     <Compile Include="ResponseCodes\LoginResponseCode.cs" />
     <Compile Include="Payloads\LoginResponsePayload.cs" />
