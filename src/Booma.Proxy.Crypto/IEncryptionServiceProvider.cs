@@ -9,19 +9,11 @@ namespace Booma.Proxy
 	public interface IEncryptionServiceProvider
 	{
 		/// <summary>
-		/// Encryptions the provided bytes inplace.
+		/// Passes the bytes inplace through the cipher.
 		/// Also returns them.
 		/// </summary>
-		/// <param name="bytes">The bytes to encrypt.</param>
+		/// <param name="bytes">The bytes to crypt.</param>
 		/// <returns>The bytes.</returns>
-		byte[] Encrypt(byte[] bytes);
-
-		/// <summary>
-		/// Decrypts the provided bytes inplace.
-		/// Also returns them.
-		/// </summary>
-		/// <param name="bytes">The bytes to decrypt.</param>
-		/// <returns>The bytes.</returns>
-		byte[] Decrypt(byte[] bytes);
+		byte[] Crypt(byte[] bytes);
 	}
 }

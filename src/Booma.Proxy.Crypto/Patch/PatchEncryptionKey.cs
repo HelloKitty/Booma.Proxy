@@ -10,13 +10,13 @@ namespace Booma.Proxy
 	public class PatchEncryptionKey
 	{
 		// Encryption data struct 
-		public ulong[] Keys { get; set; }
+		public uint[] Keys { get; set; }
 
-		public ulong Position { get; set; }
+		public uint Position { get; set; }
 
 		internal PatchEncryptionKey()
 		{
-			Keys = new ulong[1024];
+			Keys = new uint[1024];
 		}
 
 		public void CRYPT_PC_MixKeys()
@@ -31,9 +31,9 @@ namespace Booma.Proxy
 			}
 		}
 
-		public ulong CRYPT_PC_GetNextKey()
+		public uint CRYPT_PC_GetNextKey()
 		{
-			ulong re;
+			uint re;
 
 			if(Position == 56)
 			{
