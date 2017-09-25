@@ -31,6 +31,7 @@ namespace Booma.Proxy.Packets
 			//assert
 			Assert.NotNull(bytes);
 			Assert.IsNotEmpty(bytes);
+			Assert.True(bytes.Length == 8, $"Size was {bytes.Length}");
 			Assert.AreEqual(port, payload.EndpointPort);
 		}
 
@@ -97,6 +98,7 @@ namespace Booma.Proxy.Packets
 			//act
 			byte[] bytes = serializer.Serialize(payload);
 			ConnectionRedirectPayload deserializedPayload = serializer.Deserialize<ConnectionRedirectPayload>(bytes);
+			byte[] bytesTwo = serializer.Serialize(deserializedPayload);
 
 			//assert
 			Assert.AreEqual(port, deserializedPayload.EndpointPort);
@@ -107,6 +109,9 @@ namespace Booma.Proxy.Packets
 			Assert.NotNull(deserializedPayload.EndpointAddress);
 			Assert.AreEqual(ip, deserializedPayload.EndpointAddress.ToString());
 			Assert.AreEqual(ip, payload.EndpointAddress.ToString());
+
+			for(int i = 0; i < bytes.Length || i < bytesTwo.Length; i++)
+				Assert.AreEqual(bytes[i], bytesTwo[i]);
 		}
 	}
 }

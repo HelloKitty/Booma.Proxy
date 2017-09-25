@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Booma.Proxy.Packets.LoginServer</RootNamespace>
-    <AssemblyName>Booma.Proxy.Packets.LoginServer</AssemblyName>
+    <ProjectGuid>{091367E6-43AD-4274-B534-85B2970B750E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Booma.Proxy.TestClient</RootNamespace>
+    <AssemblyName>Booma.Proxy.TestClient</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,11 +32,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="FreecraftCore.Serializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.2.0.39\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+    </Reference>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.2.0.39\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
+    <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.2.0.39\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+    </Reference>
+    <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Reflect.Extent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Reflect.Extent.1.0.7\lib\net46\Reflect.Extent.dll</HintPath>
     </Reference>
     <Reference Include="Reinterpret.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reinterpret.Net.2.0.2\lib\net46\Reinterpret.Net.dll</HintPath>
@@ -52,20 +69,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Payloads\ClientVerrificationData.cs" />
-    <Compile Include="Payloads\ConnectionRedirectPayload.cs" />
-    <Compile Include="Payloads\LoginRequest93Payload.cs" />
-    <Compile Include="ResponseCodes\LoginResponseCode.cs" />
-    <Compile Include="Payloads\LoginResponsePayload.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
       <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
+      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
+      <Name>Booma.Proxy.Packets.LoginServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj">
+      <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
+      <Name>Booma.Proxy.Packets.PatchServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

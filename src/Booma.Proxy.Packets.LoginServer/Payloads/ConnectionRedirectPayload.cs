@@ -119,6 +119,8 @@ namespace Booma.Proxy
 
 		public void OnAfterDeserialization()
 		{
+			//throw new Exception(PayloadBytes.Length.ToString());
+
 			int position = 0;
 
 			//If it's greater than 4 they sent the IP

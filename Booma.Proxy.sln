@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.LoginServer", "src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj", "{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.TestClient", "tests\Booma.Proxy.TestClient\Booma.Proxy.TestClient.csproj", "{091367E6-43AD-4274-B534-85B2970B750E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Crypto", "src\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj", "{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091367E6-43AD-4274-B534-85B2970B750E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091367E6-43AD-4274-B534-85B2970B750E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091367E6-43AD-4274-B534-85B2970B750E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091367E6-43AD-4274-B534-85B2970B750E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +58,8 @@ Global
 		{1A775854-1484-45FB-B465-1967A971646C} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7} = {FCFAE99C-C28A-44B7-A7BE-F9D5481C35B9}
 		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
+		{091367E6-43AD-4274-B534-85B2970B750E} = {FCFAE99C-C28A-44B7-A7BE-F9D5481C35B9}
+		{9AEE67E4-F228-4201-B921-24D8BE2ACAB2} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}
