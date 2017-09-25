@@ -25,23 +25,18 @@ namespace Booma.Proxy
 
 		private static void InitializeKey(PatchEncryptionKey key, uint val)
 		{
-			ulong esi, ebx, edi, eax, edx, var1;
-			esi = 1;
-			ebx = val;
-			edi = 0x15;
-			key.Keys[56] = ebx;
-			key.Keys[55] = ebx;
+			uint index, tmp;
 
-			while(edi <= 0x46E)
+			tmp = 1;
+			key.Keys[55] = val;
+
+			for (int i1 = 0x15; i1 <= 0x46E; i1 += 0x15)
 			{
-				eax = edi;
-				var1 = eax / 55;
-				edx = eax - (var1 * 55);
-				ebx = ebx - esi;
-				edi = edi + 0x15;
-				key.Keys[edx] = esi;
-				esi = ebx;
-				ebx = key.Keys[edx];
+				index = (uint)(i1 % 55);
+				val -= tmp;
+				key.Keys[index] = tmp;
+				tmp = val;
+				val = (uint)key.Keys[index];
 			}
 
 			for(int i = 0; i < 4; i++)
