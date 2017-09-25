@@ -21,30 +21,13 @@ namespace Booma.Proxy
 
 		public void CRYPT_PC_MixKeys()
 		{
-			ulong esi, edi, eax, ebp, edx;
-			edi = 1;
-			edx = 0x18;
-			eax = edi;
-			while(edx > 0)
+			for (int i1 = 0x18, i2 = 0x01; i1 > 0; i1--, i2++)
 			{
-				esi = Keys[eax + 0x1F];
-				ebp = Keys[eax];
-				ebp = ebp - esi;
-				Keys[eax] = ebp;
-				eax++;
-				edx--;
+				Keys[i2] -= Keys[i2 + 0x1F];
 			}
-			edi = 0x19;
-			edx = 0x1F;
-			eax = edi;
-			while(edx > 0)
+			for (int i1 = 0x1F, i2 = 0x19; i1 > 0; i1--, i2++)
 			{
-				esi = Keys[eax - 0x18];
-				ebp = Keys[eax];
-				ebp = ebp - esi;
-				Keys[eax] = ebp;
-				eax++;
-				edx--;
+				Keys[i2] -= Keys[i2 - 0x18];
 			}
 		}
 
