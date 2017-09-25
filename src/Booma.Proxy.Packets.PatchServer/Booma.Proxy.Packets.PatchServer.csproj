@@ -48,8 +48,9 @@
   <ItemGroup>
     <Compile Include="Payloads\PatchingDoneCommandPayload.cs" />
     <Compile Include="Payloads\PatchingInformationPayload.cs" />
+    <Compile Include="Payloads\PatchingLoginRequestPayload.cs" />
     <Compile Include="Payloads\PatchingUpOneDirectoryCommandPayload.cs" />
-    <Compile Include="Payloads\PatchingWelcomePacket.cs" />
+    <Compile Include="Payloads\PatchingWelcomePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

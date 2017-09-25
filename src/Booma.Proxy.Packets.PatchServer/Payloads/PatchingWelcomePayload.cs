@@ -27,7 +27,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[WireDataContractBaseTypeRuntimeLink(0x02)]
-	public sealed class PatchingWelcomePacket : PSOBBPatchPacketPayload
+	public sealed class PatchingWelcomePayload : PSOBBPatchPacketPayload
 	{
 		/// <summary>
 		/// Copyright message sent down from the patch server.
@@ -47,15 +47,15 @@ namespace Booma.Proxy
 		/// Server IV (?)
 		/// </summary>
 		[WireMember(3)]
-		public int ServerVector { get; }
+		public uint ServerVector { get; }
 
 		/// <summary>
 		/// Client IV (?)
 		/// </summary>
 		[WireMember(4)]
-		public int ClientVector { get; }
+		public uint ClientVector { get; }
 
-		public PatchingWelcomePacket([NotNull] string patchCopyrightMessage, int serverVector, int clientVector)
+		public PatchingWelcomePayload([NotNull] string patchCopyrightMessage, uint serverVector, uint clientVector)
 		{
 			if(string.IsNullOrWhiteSpace(patchCopyrightMessage)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(patchCopyrightMessage));
 
@@ -65,7 +65,7 @@ namespace Booma.Proxy
 		}
 
 		//serializer ctor
-		private PatchingWelcomePacket()
+		private PatchingWelcomePayload()
 		{
 			
 		}

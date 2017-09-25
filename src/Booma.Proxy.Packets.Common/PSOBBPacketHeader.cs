@@ -27,5 +27,29 @@ namespace Booma.Proxy
 		/// Indicates the size of the payload.
 		/// </summary>
 		public int PayloadSize => PacketSize - sizeof(short);
+
+		/// <summary>
+		/// Creates a new packet header with the specified size.
+		/// </summary>
+		/// <param name="packetSize">The packet size</param>
+		public PSOBBPacketHeader(short packetSize)
+		{
+			PacketSize = packetSize;
+		}
+
+		/// <summary>
+		/// Creates a new packet header with the specified size.
+		/// </summary>
+		/// <param name="packetSize">The packet size</param>
+		public PSOBBPacketHeader(int packetSize)
+		{
+			PacketSize = (short)packetSize;
+		}
+
+		//serializer ctor
+		private PSOBBPacketHeader()
+		{
+			
+		}
 	}
 }
