@@ -18,6 +18,27 @@ namespace Booma.Proxy.Packets.Tests
 			.Where(t => typeof(TPayloadBaseType).IsAssignableFrom(t));
 
 		[Test]
+		public void Test_SpecialLinkAttributes_Are_Marked_On_Correct_Types()
+		{
+			//arrange
+			//Find the attribute that should be annoting these payloads
+			WireDataContractBaseLinkAttribute linkAttri = typeof(LoginClientPacketPayloadAttribute)
+				.Assembly
+				.GetTypes()
+				.Where(t => t.BaseType == typeof(WireDataContractBaseLinkAttribute))
+				.Select(t => Activator.CreateInstance(t, BindingFlags.CreateInstance | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] {5}, null) as WireDataContractBaseLinkAttribute)
+				.FirstOrDefault(c => c.BaseType == typeof(TPayloadBaseType));
+
+			//check that all payloads in the assembly with this attribute derive from the basepayload type
+			foreach(Type t in typeof(TTypeToReflectForAssembly).Assembly
+				.GetTypes()
+				.Where(t => t.GetCustomAttribute(linkAttri.GetType()) != null))
+			{
+				Assert.True(typeof(TPayloadBaseType).IsAssignableFrom(t), $"Type: {t.Name} is marked with Attribute: {linkAttri.GetType().Name} but doesn't derive from Type: {linkAttri.BaseType.Name}. In derives from incorrect Type: {t.BaseType}");
+			}
+		}
+
+		[Test]
 		[TestCaseSource(nameof(PayloadTypes))]
 		public void Test_Can_Register_All_Concrete_Payloads(Type t)
 		{

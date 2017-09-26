@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchClientPacketPayload(PatchNetworkOperationCodes.PATCH_WELCOME_TYPE)]
-	public sealed class PatchingWelcomeAckPayload : PSOBBLoginPacketPayloadClient
+	public sealed class PatchingWelcomeAckPayload : PSOBBPatchPacketPayloadClient
 	{
 		//Nothing is in the ack payload, it's basically just the header
 
