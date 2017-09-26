@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Payloads\Client\PatchingWelcomeAckPayload.cs" />
     <Compile Include="Payloads\Server\PatchingDoneCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingInformationPayload.cs" />
     <Compile Include="Payloads\Client\PatchingLoginRequestPayload.cs" />
