@@ -17,7 +17,6 @@ namespace Booma.Proxy
 	{
 		//0x0C 0x00 Size
 		//0x11 0x00 Type
-		//0x00 0x00 0x00 0x00 Optional Flags
 
 		//If there is patching information it will send
 		/// <summary>

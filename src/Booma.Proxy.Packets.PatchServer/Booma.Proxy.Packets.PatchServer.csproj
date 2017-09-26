@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.2.0.41\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.1\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
@@ -50,6 +50,7 @@
     <Compile Include="Payloads\Server\PatchingDoneCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingInformationPayload.cs" />
     <Compile Include="Payloads\Client\PatchingLoginRequestPayload.cs" />
+    <Compile Include="Payloads\Server\PatchingReadyForLoginRequestPayload.cs" />
     <Compile Include="Payloads\Server\PatchingUpOneDirectoryCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingWelcomePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -17,6 +17,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The entire unknown deserialized bytes for login packets.
 		/// </summary>
+		[ReadToEnd]
 		[WireMember(1)]
 		public byte[] UnknownBytes { get; }
 
