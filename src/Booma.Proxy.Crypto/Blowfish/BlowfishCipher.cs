@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booma.Proxy.Crypto.Blowfish
+namespace Booma.Proxy
 {
     /// <summary>
     /// Blowfish cipher library modified for PSOBB

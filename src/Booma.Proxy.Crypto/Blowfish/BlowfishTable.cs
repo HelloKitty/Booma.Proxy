@@ -1,4 +1,4 @@
-﻿namespace Booma.Proxy.Crypto.Blowfish
+﻿namespace Booma.Proxy
 {
     /// <summary>
     /// 
