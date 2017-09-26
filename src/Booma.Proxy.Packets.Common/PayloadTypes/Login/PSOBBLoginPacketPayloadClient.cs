@@ -8,7 +8,7 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The base type for PSOBB login payloads that the client sends. This isn't for patch/ship.
+	/// The base type for PSOBB login payloads that the client sends. This isn't for login/ship.
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
