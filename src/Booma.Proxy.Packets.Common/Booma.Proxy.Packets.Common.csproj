@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.2.0.39\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.2.0.41\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
@@ -46,10 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PayloadTypes\PSOBBPatchPacketPayload.cs" />
+    <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadClient.cs" />
+    <Compile Include="PayloadTypes\Ship\PSOBBShipPacketPayloadServer.cs" />
+    <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSOBBPacketHeader.cs" />
-    <Compile Include="PayloadTypes\PSOBBShipPacketPayload.cs" />
+    <Compile Include="PayloadTypes\Ship\PSOBBShipPacketPayloadClient.cs" />
     <Compile Include="Response\IResponseCodePayload.cs" />
     <Compile Include="Response\IResponseSucceedable.cs" />
   </ItemGroup>

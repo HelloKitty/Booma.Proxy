@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using NUnit.Framework;
+using Reflect.Extent;
 
 namespace Booma.Proxy.Packets.Tests
 {
@@ -39,6 +40,18 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//assert
 			Assert.NotNull(t.GetConstructor(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance, null, CallingConventions.Any, Enumerable.Empty<Type>().ToArray(), null), $"Type: {t.Name} does not have a required parameterless ctor.");
+		}
+
+		[Test]
+		[TestCaseSource(nameof(PayloadTypes))]
+		public void Test_Payload_With_Link_Has_Correct_BaseType(Type t)
+		{
+			//assert
+			if(t.HasAttribute<WireDataContractBaseLinkAttribute>())
+			{
+				Assert.NotNull(t.GetCustomAttribute<WireDataContractBaseLinkAttribute>().BaseType, $"Type: {t.Name} did not have a statically linked base type.");
+				Assert.True(t.GetCustomAttribute<WireDataContractBaseLinkAttribute>().BaseType.IsAssignableFrom(t), $"Type: {t.Name} linked to Type: {t.GetCustomAttribute<WireDataContractBaseLinkAttribute>().BaseType} but was not a basetype of Type: {t.Name}.");
+			}
 		}
 
 		[Test]

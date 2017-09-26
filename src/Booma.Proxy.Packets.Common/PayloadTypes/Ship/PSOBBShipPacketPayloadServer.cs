@@ -8,12 +8,12 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The base type for PSOBB ship packet payloads. This isn't for patch/login.
+	/// The base type for PSOBB ship packet payloads that the server sends. This isn't for patch/login.
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
 	[WireDataContract(WireDataContractAttribute.KeyType.UShort, true)]
-	public abstract class PSOBBShipPacketPayload
+	public abstract class PSOBBShipPacketPayloadServer
 	{
 		/// <summary>
 		/// The optional flags field.

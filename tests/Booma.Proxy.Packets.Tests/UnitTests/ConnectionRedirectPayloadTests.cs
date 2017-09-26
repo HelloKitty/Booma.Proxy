@@ -21,7 +21,7 @@ namespace Booma.Proxy.Packets
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.Link<ConnectionRedirectPayload, PSOBBShipPacketPayload>();
+			serializer.RegisterType<ConnectionRedirectPayload>();
 			serializer.Compile();
 			ConnectionRedirectPayload payload = new ConnectionRedirectPayload(port);
 
@@ -44,7 +44,7 @@ namespace Booma.Proxy.Packets
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.Link<ConnectionRedirectPayload, PSOBBShipPacketPayload>();
+			serializer.RegisterType<ConnectionRedirectPayload>();
 			serializer.Compile();
 			ConnectionRedirectPayload payload = new ConnectionRedirectPayload(port);
 
@@ -68,7 +68,7 @@ namespace Booma.Proxy.Packets
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.Link<ConnectionRedirectPayload, PSOBBShipPacketPayload>();
+			serializer.RegisterType<ConnectionRedirectPayload>();
 			serializer.Compile();
 			ConnectionRedirectPayload payload = new ConnectionRedirectPayload(ip, port);
 
@@ -91,7 +91,7 @@ namespace Booma.Proxy.Packets
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.Link<ConnectionRedirectPayload, PSOBBShipPacketPayload>();
+			serializer.RegisterType<ConnectionRedirectPayload>();
 			serializer.Compile();
 			ConnectionRedirectPayload payload = new ConnectionRedirectPayload(ip, port);
 

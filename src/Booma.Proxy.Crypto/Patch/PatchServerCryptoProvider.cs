@@ -28,9 +28,7 @@ namespace Booma.Proxy
 
 		public unsafe void CRYPT_PC_CryptData(PatchEncryptionKey key, byte[] data)
 		{
-			uint x;
-
-			for(x = 0; x < data.Length; x += 4)
+			for(uint x = 0; x < data.Length; x += 4)
 			{
 				fixed(void* p = &data[x])
 				{
