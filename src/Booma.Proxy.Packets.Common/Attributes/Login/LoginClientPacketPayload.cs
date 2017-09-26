@@ -13,10 +13,10 @@ namespace Booma.Proxy
 	/// associate with in a typesafe fashion with their network operationcode enumeration value.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public sealed class LoginClientPacketPayload : WireDataContractBaseLinkAttribute
+	public sealed class LoginClientPacketPayloadAttribute : WireDataContractBaseLinkAttribute
 	{
-		public LoginClientPacketPayload(int index) 
-			: base(index, typeof(LoginClientPacketPayload))
+		public LoginClientPacketPayloadAttribute(int index) 
+			: base(index, typeof(PSOBBLoginPacketPayloadClient))
 		{
 
 		}

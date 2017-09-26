@@ -12,7 +12,8 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Patching command that indicates that the patching is done.
 	/// </summary>
-	[WireDataContractBaseLink(0x12, typeof(PSOBBPatchPacketPayloadServer))] //TODO: Enumeration of opcodes
+	[WireDataContract]
+	[PatchServerPacketPayload(0x12)]
 	public sealed class PatchingDoneCommandPayload : PSOBBPatchPacketPayloadServer
 	{
 		//Empty command packet that indicates patching is finished

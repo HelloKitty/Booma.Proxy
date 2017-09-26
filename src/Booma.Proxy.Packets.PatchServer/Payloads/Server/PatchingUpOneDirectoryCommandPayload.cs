@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// during the patching process.
 	/// </summary>
 	[WireDataContract]
-	[WireDataContractBaseLink(0x0A, typeof(PSOBBPatchPacketPayloadServer))] //TODO: Enumerate opcodes
+	[PatchServerPacketPayload(0x0A)]
 	public sealed class PatchingUpOneDirectoryCommandPayload : PSOBBPatchPacketPayloadServer
 	{
 		//Empty command packet that:

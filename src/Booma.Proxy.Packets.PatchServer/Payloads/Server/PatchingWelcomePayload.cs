@@ -26,7 +26,7 @@ namespace Booma.Proxy
 	/// initially.
 	/// </summary>
 	[WireDataContract]
-	[WireDataContractBaseLink(0x02, typeof(PSOBBPatchPacketPayloadServer))]
+	[PatchServerPacketPayload(0x02)]
 	public sealed class PatchingWelcomePayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>

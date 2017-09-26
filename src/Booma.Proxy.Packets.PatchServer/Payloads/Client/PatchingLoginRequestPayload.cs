@@ -25,7 +25,7 @@ namespace Booma.Proxy
 	/// The login request packet for the patching server.
 	/// </summary>
 	[WireDataContract]
-	[WireDataContractBaseLink(0x04, typeof(PSOBBPatchPacketPayloadClient))] //TODO: Enumerate opcodes
+	[PatchClientPacketPayload(0x04)]
 	public sealed class PatchingLoginRequestPayload : PSOBBPatchPacketPayloadClient
 	{
 		/// <summary>
