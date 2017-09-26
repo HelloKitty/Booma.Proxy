@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// based on the provided <see cref="opCode"/> value.
 		/// </summary>
 		/// <param name="opCode">The operationcode.</param>
-		public PatchClientPacketPayloadAttribute(PatchNetworkOperationCode opCode) 
+		public PatchClientPacketPayloadAttribute(PatchNetworkOperationCodes opCode) 
 			: base((int)opCode, typeof(PSOBBPatchPacketPayloadClient))
 		{
 

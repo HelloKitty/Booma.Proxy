@@ -52,7 +52,8 @@
     <Compile Include="Attributes\Patch\PatchServerPacketPayload.cs" />
     <Compile Include="Attributes\Ship\ShipClientPacketPayload.cs" />
     <Compile Include="Attributes\Ship\LoginServerPacketPayload.cs" />
-    <Compile Include="OperationCodes\PatchNetworkOperationCode.cs" />
+    <Compile Include="OperationCodes\LoginNetworkOperationCode.cs" />
+    <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />
     <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadClient.cs" />
     <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadServer.cs" />
     <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadClient.cs" />
