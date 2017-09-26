@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Login\LoginServerPacketPayload.cs" />
+    <Compile Include="Attributes\Login\LoginClientPacketPayload.cs" />
+    <Compile Include="Attributes\Patch\PatchClientPacketPayload.cs" />
+    <Compile Include="Attributes\Patch\PatchServerPacketPayload.cs" />
+    <Compile Include="Attributes\Ship\ShipClientPacketPayload.cs" />
+    <Compile Include="Attributes\Ship\LoginServerPacketPayload.cs" />
     <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadClient.cs" />
     <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadServer.cs" />
     <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadClient.cs" />
@@ -59,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OperationCodes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
