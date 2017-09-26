@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	//Tethella implementation: https://github.com/justnoxx/psobb-tethealla/blob/master/patch_server/patch_server.c#L578
 	//Sylverant implementation: https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.c#L237 and structure https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.h#L106
 	[WireDataContract]
-	[PatchServerPacketPayload(0x11)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_SEND_INFO)]
 	public sealed class PatchingInformationPayload : PSOBBPatchPacketPayloadServer
 	{
 		//0x0C 0x00 Size

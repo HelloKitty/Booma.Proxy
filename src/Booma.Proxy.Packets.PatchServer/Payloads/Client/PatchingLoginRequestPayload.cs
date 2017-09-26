@@ -25,7 +25,7 @@ namespace Booma.Proxy
 	/// The login request packet for the patching server.
 	/// </summary>
 	[WireDataContract]
-	[PatchClientPacketPayload(0x04)]
+	[PatchClientPacketPayload(PatchNetworkOperationCode.PATCH_LOGIN_TYPE)]
 	public sealed class PatchingLoginRequestPayload : PSOBBPatchPacketPayloadClient
 	{
 		/// <summary>

@@ -15,8 +15,13 @@ namespace Booma.Proxy
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 	public sealed class PatchServerPacketPayloadAttribute : WireDataContractBaseLinkAttribute
 	{
-		public PatchServerPacketPayloadAttribute(int index)
-			: base(index, typeof(PSOBBPatchPacketPayloadServer))
+		/// <summary>
+		/// Annotates a Type with the metadata required to link its child with a base type
+		/// based on the provided <see cref="opCode"/> value.
+		/// </summary>
+		/// <param name="opCode">The operationcode.</param>
+		public PatchServerPacketPayloadAttribute(PatchNetworkOperationCode opCode) 
+			: base((int)opCode, typeof(PSOBBPatchPacketPayloadServer))
 		{
 
 		}
