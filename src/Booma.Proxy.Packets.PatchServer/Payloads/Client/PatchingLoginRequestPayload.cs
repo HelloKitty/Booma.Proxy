@@ -69,6 +69,7 @@ namespace Booma.Proxy
 			Password = password;
 		}
 
+		//serializer ctor
 		private PatchingLoginRequestPayload()
 		{
 			
