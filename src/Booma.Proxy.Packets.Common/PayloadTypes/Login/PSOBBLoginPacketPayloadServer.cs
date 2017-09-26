@@ -12,9 +12,17 @@ namespace Booma.Proxy
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
-	[WireDataContract(WireDataContractAttribute.KeyType.UShort, true)]
+	[DefaultChild(typeof(UnknownLoginPacket))] //this will be the default deserialized packet when we don't know what it is.
+	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
 	public abstract class PSOBBLoginPacketPayloadServer
 	{
+		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
+		/// <summary>
+		/// The operation code of the packet.
+		/// </summary>
+		[WireMember(1)]
+		protected short OperationCode { get; }
+
 		/// <summary>
 		/// The optional flags field.
 		/// This value is different for some packets than others.

@@ -54,9 +54,11 @@
     <Compile Include="Attributes\Ship\LoginServerPacketPayload.cs" />
     <Compile Include="OperationCodes\LoginNetworkOperationCode.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />
+    <Compile Include="PayloadTypes\Login\UnknownLoginPacket.cs" />
     <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadClient.cs" />
     <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadServer.cs" />
     <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadClient.cs" />
+    <Compile Include="PayloadTypes\Patch\UnknownPatchPacket.cs" />
     <Compile Include="PayloadTypes\Ship\PSOBBShipPacketPayloadServer.cs" />
     <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// This value is different for some packets than others.
 		/// </summary>
 		[KnownSize(4)] //always 4 bytes
-		[WireMember(1)]
+		[WireMember(2)]
 		public byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
 	}
 }
