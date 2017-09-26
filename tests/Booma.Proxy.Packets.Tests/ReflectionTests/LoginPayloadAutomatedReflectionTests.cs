@@ -8,12 +8,12 @@ using Booma.Proxy.Packets.Tests;
 
 namespace Booma.Proxy
 {
-	public class LoginPayloadAutomatedReflectionTestsClient : AutomatedReflectionTests<PSOBBShipPacketPayloadClient, LoginRequest93Payload>
+	public class LoginPayloadAutomatedReflectionTestsClient : AutomatedReflectionTests<PSOBBLoginPacketPayloadClient, LoginRequest93Payload>
 	{
 
 	}
 
-	public class LoginPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBShipPacketPayloadServer, LoginResponsePayload>
+	public class LoginPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBLoginPacketPayloadServer, LoginResponsePayload>
 	{
 
 	}

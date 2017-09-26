@@ -23,8 +23,8 @@ namespace Booma.Proxy
 	//Syl sent: REDIRECT_TYPE https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/login_packets.c#L351
 	//Syl struct: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L321
 	[WireDataContract]
-	[WireDataContractBaseLink(0x19, typeof(PSOBBShipPacketPayloadServer))]
-	public sealed class ConnectionRedirectPayload : PSOBBShipPacketPayloadServer
+	[WireDataContractBaseLink(0x19, typeof(PSOBBLoginPacketPayloadServer))]
+	public sealed class ConnectionRedirectPayload : PSOBBLoginPacketPayloadServer
 	{
 		//For some reason the IPAddress is sent big endian
 		/// <summary>

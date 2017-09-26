@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	//Syl: LOGIN_93_TYPE https://github.com/Sylverant/login_server/blob/master/src/bblogin.c#L121
 	//Teth: https://github.com/justnoxx/psobb-tethealla/blob/master/login_server/login_server.c#L4537 I think?
 	[WireDataContract]
-	[WireDataContractBaseLink(0x93, typeof(PSOBBShipPacketPayloadClient))] //TODO: Enumeration of op codes
-	public sealed class LoginRequest93Payload : PSOBBShipPacketPayloadClient
+	[WireDataContractBaseLink(0x93, typeof(PSOBBLoginPacketPayloadClient))] //TODO: Enumeration of op codes
+	public sealed class LoginRequest93Payload : PSOBBLoginPacketPayloadClient
 	{
 		/// <summary>
 		/// Client version moniker.

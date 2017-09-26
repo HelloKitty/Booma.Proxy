@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadClient.cs" />
+    <Compile Include="PayloadTypes\Login\PSOBBLoginPacketPayloadServer.cs" />
     <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadClient.cs" />
     <Compile Include="PayloadTypes\Ship\PSOBBShipPacketPayloadServer.cs" />
     <Compile Include="PayloadTypes\Patch\PSOBBPatchPacketPayloadServer.cs" />
