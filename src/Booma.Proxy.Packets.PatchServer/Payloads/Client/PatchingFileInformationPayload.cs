@@ -13,7 +13,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_SEND_INFO)]
-	public sealed class PatchFileInformationPayload : PSOBBPatchPacketPayloadClient
+	public sealed class PatchingFileInformationPayload : PSOBBPatchPacketPayloadClient
 	{
 		// index
 		// checksum
@@ -37,7 +37,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
 		[WireMember(3)]
 		public int PatchFileSize { get; }
 
-		public PatchFileInformationPayload(int patchFileIndex, uint patchFileChecksum, int patchFileSize)
+		public PatchingFileInformationPayload(int patchFileIndex, uint patchFileChecksum, int patchFileSize)
 		{
 			if (patchFileIndex < 0) throw new ArgumentOutOfRangeException(nameof(patchFileIndex));
 			if (patchFileSize < 0) throw new ArgumentOutOfRangeException(nameof(patchFileSize));
@@ -48,7 +48,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
 		}
 
 		//Serializer ctor
-		protected PatchFileInformationPayload()
+		protected PatchingFileInformationPayload()
 			: base()
 		{
 

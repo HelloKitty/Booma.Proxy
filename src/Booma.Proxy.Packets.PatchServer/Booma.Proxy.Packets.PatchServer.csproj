@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PacketPatchServerMetadataMarker.cs" />
-    <Compile Include="Payloads\Client\PatchFileInformationPayload.cs" />
+    <Compile Include="Payloads\Client\PatchingFileInformationPayload.cs" />
     <Compile Include="Payloads\Client\PatchingWelcomeAckPayload.cs" />
     <Compile Include="Payloads\Server\PatchingDoneCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingInformationPayload.cs" />
