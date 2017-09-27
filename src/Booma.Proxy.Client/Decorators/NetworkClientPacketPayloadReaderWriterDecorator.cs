@@ -103,5 +103,12 @@ namespace Booma.Proxy
 
 			return new PSOBBNetworkIncomdingMessage<TPayloadBaseType>(header, payload);
 		}
+
+		/// <inheritdoc />
+		protected override void Dispose(bool disposing)
+		{
+			PacketPayloadBuffer.Dispose();
+			base.Dispose(disposing);
+		}
 	}
 }
