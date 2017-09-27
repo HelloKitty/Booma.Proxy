@@ -44,9 +44,16 @@
     <Compile Include="API\IBytesWrittable.cs" />
     <Compile Include="API\IDisconnectable.cs" />
     <Compile Include="API\IConnectable.cs" />
+    <Compile Include="Decorators\NetworkClientCryptoDecorator.cs" />
     <Compile Include="NetworkClientBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSOBBNetworkClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
+      <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
+      <Name>Booma.Proxy.Crypto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
