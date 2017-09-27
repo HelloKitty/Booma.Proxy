@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Blowfish\BlowfishCipher.cs" />
     <Compile Include="Blowfish\BlowfishTable.cs" />
-    <Compile Include="IEncryptionServiceProvider.cs" />
+    <Compile Include="ICryptoServiceProvider.cs" />
     <Compile Include="Patch\PatchEncryptionKey.cs" />
     <Compile Include="Patch\PatchEncryptionKeyFactory.cs" />
     <Compile Include="Patch\PatchServerCryptoProvider.cs" />
