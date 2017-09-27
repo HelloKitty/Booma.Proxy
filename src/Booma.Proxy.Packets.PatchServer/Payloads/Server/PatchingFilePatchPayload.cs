@@ -46,8 +46,7 @@ namespace Booma.Proxy
 		}
 
 		//Serializer ctor
-		protected PatchingFilePatchPayload()
-			: base()
+		private PatchingFilePatchPayload()
 		{
 
 		}

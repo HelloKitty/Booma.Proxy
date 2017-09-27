@@ -30,8 +30,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Server
 		}
 
 		//Serializer ctor
-		protected PatchingSetDirectoryPayload()
-			: base()
+		private PatchingSetDirectoryPayload()
 		{
 
 		}
