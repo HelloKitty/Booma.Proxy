@@ -26,7 +26,7 @@ namespace Booma.Proxy
 		public int PatchingByteLength { get; }
 
 		/// <summary>
-		/// Not 100% sure but looks like the number of files that need to be patched.
+		/// Number of files that need to be patched.
 		/// </summary>
 		[WireMember(2)]
 		public int PatchFileCount { get; }
