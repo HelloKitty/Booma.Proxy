@@ -54,6 +54,7 @@
     <Compile Include="Payloads\Server\PatchingInformationPayload.cs" />
     <Compile Include="Payloads\Client\PatchingLoginRequestPayload.cs" />
     <Compile Include="Payloads\Server\PatchingReadyForLoginRequestPayload.cs" />
+    <Compile Include="Payloads\Server\PatchingUpdateFileInformationPayload.cs" />
     <Compile Include="Payloads\Server\PatchingUpOneDirectoryCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingWelcomePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
