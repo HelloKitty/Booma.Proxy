@@ -53,7 +53,7 @@
     <Compile Include="Attributes\Ship\ShipClientPacketPayload.cs" />
     <Compile Include="Attributes\Ship\LoginServerPacketPayload.cs" />
     <Compile Include="Message\IPacketHeader.cs" />
-    <Compile Include="Message\PSOBBNetworkIncomdingMessage.cs" />
+    <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
     <Compile Include="OperationCodes\LoginNetworkOperationCode.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />

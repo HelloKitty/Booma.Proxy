@@ -85,13 +85,13 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public PSOBBNetworkIncomdingMessage<TPayloadBaseType> Read()
+		public PSOBBNetworkIncomingMessage<TPayloadBaseType> Read()
 		{
 			return ReadAsync().Result;
 		}
 
 		/// <inheritdoc />
-		public async Task<PSOBBNetworkIncomdingMessage<TPayloadBaseType>> ReadAsync()
+		public async Task<PSOBBNetworkIncomingMessage<TPayloadBaseType>> ReadAsync()
 		{
 			//Read the header first
 			IPacketHeader header = DecoratedClient.ReadHeader();
@@ -101,7 +101,7 @@ namespace Booma.Proxy
 
 			TPayloadBaseType payload = Serializer.Deserialize<TPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer.Value, header.PayloadSize));
 
-			return new PSOBBNetworkIncomdingMessage<TPayloadBaseType>(header, payload);
+			return new PSOBBNetworkIncomingMessage<TPayloadBaseType>(header, payload);
 		}
 
 		/// <inheritdoc />

@@ -16,13 +16,13 @@ namespace Booma.Proxy
 		/// Reads an incoming message syncronously and blocks until it recieves one.
 		/// </summary>
 		/// <returns>The resulting incoming message.</returns>
-		PSOBBNetworkIncomdingMessage<TPayloadBaseType> Read();
+		PSOBBNetworkIncomingMessage<TPayloadBaseType> Read();
 
 		/// <summary>
 		/// Reads an incoming message asyncronously.
 		/// The task will complete when an incomding message can be built.
 		/// </summary>
 		/// <returns>A future for the resulting incoming message.</returns>
-		Task<PSOBBNetworkIncomdingMessage<TPayloadBaseType>> ReadAsync();
+		Task<PSOBBNetworkIncomingMessage<TPayloadBaseType>> ReadAsync();
 	}
 }
