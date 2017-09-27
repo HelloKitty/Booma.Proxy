@@ -30,11 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FreecraftCore.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.4\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
+    </Reference>
+    <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.4\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
@@ -44,7 +55,9 @@
     <Compile Include="API\IBytesWrittable.cs" />
     <Compile Include="API\IDisconnectable.cs" />
     <Compile Include="API\IConnectable.cs" />
+    <Compile Include="API\IPacketHeaderReadable.cs" />
     <Compile Include="Decorators\NetworkClientCryptoDecorator.cs" />
+    <Compile Include="Decorators\NetworkClientPacketReaderDecorator.cs" />
     <Compile Include="NetworkClientBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSOBBNetworkClient.cs" />
@@ -54,6 +67,13 @@
       <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
       <Name>Booma.Proxy.Crypto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
+      <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
+      <Name>Booma.Proxy.Packets.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

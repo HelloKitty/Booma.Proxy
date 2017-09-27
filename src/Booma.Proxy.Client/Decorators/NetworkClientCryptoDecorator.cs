@@ -38,7 +38,7 @@ namespace Booma.Proxy
 		/// <param name="decoratedClient">The client to decorate.</param>
 		/// <param name="encryptionServiceProvider">The encryption service.</param>
 		/// <param name="decryptionServiceProvider">The decryption service.</param>
-		public NetworkClientCryptoDecorator(PSOBBNetworkClient decoratedClient, ICryptoServiceProvider encryptionServiceProvider, ICryptoServiceProvider decryptionServiceProvider)
+		public NetworkClientCryptoDecorator(NetworkClientBase decoratedClient, ICryptoServiceProvider encryptionServiceProvider, ICryptoServiceProvider decryptionServiceProvider)
 		{
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
 			if(encryptionServiceProvider == null) throw new ArgumentNullException(nameof(encryptionServiceProvider));
