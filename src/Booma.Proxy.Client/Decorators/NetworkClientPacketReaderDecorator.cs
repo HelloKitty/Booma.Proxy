@@ -76,7 +76,7 @@ namespace Booma.Proxy
 			//The header we know is two bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer.Value, 0, 2, 100);
+			await ReadAsync(PacketHeaderBuffer.Value, 0, 2, 0); //TODO: How long should the timeout be if any?
 
 			return Serializer.Deserialize<PSOBBPacketHeader>(PacketHeaderBuffer.Value);
 		}
