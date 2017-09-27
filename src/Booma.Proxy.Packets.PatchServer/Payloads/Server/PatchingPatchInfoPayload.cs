@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	//Sylverant implementation: https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.c#L237 and structure https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.h#L106
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_SEND_INFO)]
-	public sealed class PatchingInformationPayload : PSOBBPatchPacketPayloadServer
+	public sealed class PatchingPatchInfoPayload : PSOBBPatchPacketPayloadServer
 	{
 		//0x0C 0x00 Size
 		//0x11 0x00 Type
@@ -31,7 +31,7 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public int PatchFileCount { get; }
 
-		public PatchingInformationPayload(int patchingByteLength, int patchFileCount)
+		public PatchingPatchInfoPayload(int patchingByteLength, int patchFileCount)
 		{
 			if(patchingByteLength < 0) throw new ArgumentOutOfRangeException(nameof(patchingByteLength));
 			if(patchFileCount < 0) throw new ArgumentOutOfRangeException(nameof(patchFileCount));
@@ -41,7 +41,7 @@ namespace Booma.Proxy
 		}
 
 		//Serializer ctor
-		protected PatchingInformationPayload()
+		protected PatchingPatchInfoPayload()
 			: base()
 		{
 			

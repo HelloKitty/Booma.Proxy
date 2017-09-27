@@ -12,7 +12,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
 	/// The server decides to patch a file based on this data
 	/// </summary>
 	[WireDataContract]
-	[PatchClientPacketPayload(PatchNetworkOperationCodes.PATCH_SEND_INFO)]
+	[PatchClientPacketPayload(PatchNetworkOperationCodes.PATCH_FILE_INFO_REPLY)]
 	public sealed class PatchingFileInformationPayload : PSOBBPatchPacketPayloadClient
 	{
 		// index
@@ -20,7 +20,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
 		// size
 
 		/// <summary>
-		/// Patch file index (or id, however you want to see it)
+		/// Patch file index
 		/// </summary>
 		[WireMember(1)]
 		public int PatchFileIndex { get; }
