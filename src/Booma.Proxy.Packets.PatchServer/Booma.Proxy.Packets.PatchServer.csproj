@@ -52,6 +52,7 @@
     <Compile Include="Payloads\Client\PatchingWelcomeAckPayload.cs" />
     <Compile Include="Payloads\Server\PatchingDoneCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingFileChunkPayload.cs" />
+    <Compile Include="Payloads\Server\PatchingFileDonePayload.cs" />
     <Compile Include="Payloads\Server\PatchingInformationPayload.cs" />
     <Compile Include="Payloads\Client\PatchingLoginRequestPayload.cs" />
     <Compile Include="Payloads\Server\PatchingReadyForLoginRequestPayload.cs" />
