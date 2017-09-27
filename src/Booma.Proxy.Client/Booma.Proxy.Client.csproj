@@ -56,8 +56,12 @@
     <Compile Include="API\IDisconnectable.cs" />
     <Compile Include="API\IConnectable.cs" />
     <Compile Include="API\IPacketHeaderReadable.cs" />
+    <Compile Include="API\IPacketPayloadReadable.cs" />
+    <Compile Include="API\IPacketPayloadWritable.cs" />
+    <Compile Include="Decorators\FixedBufferWireReaderStrategy.cs" />
     <Compile Include="Decorators\NetworkClientCryptoDecorator.cs" />
     <Compile Include="Decorators\NetworkClientPacketHeaderReaderDecorator.cs" />
+    <Compile Include="Decorators\NetworkClientPacketPayloadReaderWriterDecorator.cs" />
     <Compile Include="NetworkClientBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSOBBNetworkClient.cs" />

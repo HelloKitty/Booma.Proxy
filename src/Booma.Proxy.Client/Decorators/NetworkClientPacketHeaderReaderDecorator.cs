@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using System.Threading;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
@@ -32,12 +33,14 @@ namespace Booma.Proxy
 		/// <summary>
 		/// </summary>
 		/// <param name="decoratedClient">The client to decorate.</param>
-		public NetworkClientPacketHeaderReaderDecorator(NetworkClientBase decoratedClient)
+		public NetworkClientPacketHeaderReaderDecorator(NetworkClientBase decoratedClient, [NotNull] ISerializerService serializer)
 		{
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
+			if(serializer == null) throw new ArgumentNullException(nameof(serializer));
 
 			PacketHeaderBuffer = new ThreadLocal<byte[]>(() => new byte[2]);
 			DecoratedClient = decoratedClient;
+			Serializer = serializer;
 		}
 
 		/// <inheritdoc />
