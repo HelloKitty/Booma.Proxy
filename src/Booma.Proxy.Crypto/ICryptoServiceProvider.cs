@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public interface IEncryptionServiceProvider
+	public interface ICryptoServiceProvider
 	{
 		/// <summary>
 		/// Passes the bytes inplace through the cipher.

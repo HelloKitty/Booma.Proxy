@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// It is built around the <see cref="TcpClient"/> provided in .NET and manages, destroys
 	/// and creates them depending on the externally provided API.
 	/// </summary>
-	public abstract class PSOBBNetworkClient : IConnectable, IDisconnectable, IDisposable, 
+	public sealed class PSOBBNetworkClient : NetworkClientBase, IConnectable, IDisconnectable, IDisposable, 
 		IBytesWrittable, IBytesReadable
 	{
 		//Can't be readonly because clients may want to reconnect
@@ -27,25 +27,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public bool Connect(string ip, int port)
-		{
-			return ConnectAsync(IPAddress.Parse(ip), port).Result;
-		}
-
-		/// <inheritdoc />
-		public bool Connect(IPAddress address, int port)
-		{
-			return ConnectAsync(address, port).Result;
-		}
-
-		/// <inheritdoc />
-		public async Task<bool> ConnectAsync(string ip, int port)
-		{
-			return await ConnectAsync(IPAddress.Parse(ip), port);
-		}
-
-		/// <inheritdoc />
-		public async Task<bool> ConnectAsync(IPAddress address, int port)
+		public async override Task<bool> ConnectAsync(IPAddress address, int port)
 		{
 			if(address == null) throw new ArgumentNullException(nameof(address));
 			if(port <= 0) throw new ArgumentOutOfRangeException(nameof(port));
@@ -65,13 +47,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public void Disconnect()
-		{
-			DisconnectAsync(0);
-		}
-
-		/// <inheritdoc />
-		public Task DisconnectAsync(int delay)
+		public override Task DisconnectAsync(int delay)
 		{
 			if(InternalTcpClient == null)
 				return Task.CompletedTask;
@@ -85,15 +61,8 @@ namespace Booma.Proxy
 			return Task.CompletedTask;
 		}
 
-
 		/// <inheritdoc />
-		public void Write(byte[] bytes)
-		{
-			WriteAsync(bytes).Wait();
-		}
-
-		/// <inheritdoc />
-		public async Task WriteAsync(byte[] bytes)
+		public async override Task WriteAsync(byte[] bytes)
 		{
 			if(!InternalTcpClient.Connected)
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before writing any bytes.");
@@ -103,21 +72,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public byte[] Read(int count)
-		{
-			return ReadAsync(count, 0).Result;
-		}
-
-		/// <inheritdoc />
-		public async Task<byte[]> ReadAsync(int count, int timeoutInMilliseconds)
-		{
-			byte[] buffer = new byte[count];
-
-			return await ReadAsync(buffer, 0, count, timeoutInMilliseconds);
-		}
-
-		/// <inheritdoc />
-		public async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
+		public async override Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
 			if(!InternalTcpClient.Connected)
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before reading any bytes.");
@@ -139,7 +94,7 @@ namespace Booma.Proxy
 
 		private bool disposedValue = false; // To detect redundant calls
 
-		protected virtual void Dispose(bool disposing)
+		protected override void Dispose(bool disposing)
 		{
 			if(!disposedValue)
 			{

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public sealed class PatchServerCryptoProvider : IEncryptionServiceProvider
+	public sealed class PatchServerCryptoProvider : ICryptoServiceProvider
 	{
 		/// <summary>
 		/// The encryption key for encryption.
