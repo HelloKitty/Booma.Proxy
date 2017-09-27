@@ -20,7 +20,7 @@ TODO
 
 ## Tests
 
-TODO
+AppVeyor: [![Build status](https://ci.appveyor.com/api/projects/status/fo39keq6deuwrerm/branch/master?svg=true)](https://ci.appveyor.com/project/HelloKitty/booma-proxy/branch/master)
 
 ## License
 
