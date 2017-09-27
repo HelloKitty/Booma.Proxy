@@ -29,6 +29,13 @@ namespace Booma.Proxy
 	public sealed class PatchingLoginRequestPayload : PSOBBPatchPacketPayloadClient
 	{
 		/// <summary>
+		/// Padding (?)
+		/// </summary>
+		[KnownSize(12)]
+		[WireMember(1)]
+		private byte[] Padding { get; } = new byte[12];
+
+		/// <summary>
 		/// Username to authenticate with the patchserver.
 		/// </summary>
 		[KnownSize(16)]
@@ -46,15 +53,8 @@ namespace Booma.Proxy
 		/// Padding (?)
 		/// </summary>
 		[KnownSize(64)]
-		[WireMember(1)]
-		private byte[] Padding2 { get; } = new byte[64];
-
-		/// <summary>
-		/// Padding (?)
-		/// </summary>
-		[KnownSize(12)]
 		[WireMember(4)]
-		private byte[] Padding { get; } = new byte[12];
+		private byte[] Padding2 { get; } = new byte[64];
 
 		//serializer ctor
 
