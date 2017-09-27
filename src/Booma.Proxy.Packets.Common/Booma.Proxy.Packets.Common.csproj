@@ -46,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\Login\LoginServerPacketPayload.cs" />
-    <Compile Include="Attributes\Login\LoginClientPacketPayload.cs" />
-    <Compile Include="Attributes\Patch\PatchClientPacketPayload.cs" />
-    <Compile Include="Attributes\Patch\PatchServerPacketPayload.cs" />
-    <Compile Include="Attributes\Ship\ShipClientPacketPayload.cs" />
-    <Compile Include="Attributes\Ship\LoginServerPacketPayload.cs" />
+    <Compile Include="Attributes\Login\LoginClientPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Login\LoginServerPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Patch\PatchClientPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Patch\PatchServerPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Ship\ShipClientPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Ship\ShipServerPacketPayloadAttribute.cs" />
     <Compile Include="Message\IPacketHeader.cs" />
     <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
