@@ -12,7 +12,7 @@ namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
 	/// The server decides to patch a file based on this data
 	/// </summary>
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_SEND_INFO)]
+	[PatchClientPacketPayload(PatchNetworkOperationCodes.PATCH_SEND_INFO)]
 	public sealed class PatchingFileInformationPayload : PSOBBPatchPacketPayloadClient
 	{
 		// index
