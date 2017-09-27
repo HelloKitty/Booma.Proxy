@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Decorator that adds header reading functionality to the <see cref="NetworkClientBase"/>.
 	/// </summary>
-	public sealed class NetworkClientPacketReaderDecorator : NetworkClientBase, IPacketHeaderReadable
+	public sealed class NetworkClientPacketHeaderReaderDecorator : NetworkClientBase, IPacketHeaderReadable
 	{
 		/// <summary>
 		/// The decorated <see cref="NetworkClientBase"/>.
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// </summary>
 		/// <param name="decoratedClient">The client to decorate.</param>
-		public NetworkClientPacketReaderDecorator(NetworkClientBase decoratedClient)
+		public NetworkClientPacketHeaderReaderDecorator(NetworkClientBase decoratedClient)
 		{
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
 
