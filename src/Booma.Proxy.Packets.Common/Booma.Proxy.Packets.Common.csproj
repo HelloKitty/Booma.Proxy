@@ -52,6 +52,7 @@
     <Compile Include="Attributes\Patch\PatchServerPacketPayload.cs" />
     <Compile Include="Attributes\Ship\ShipClientPacketPayload.cs" />
     <Compile Include="Attributes\Ship\LoginServerPacketPayload.cs" />
+    <Compile Include="Message\IPacketHeader.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
     <Compile Include="OperationCodes\LoginNetworkOperationCode.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />
@@ -64,7 +65,7 @@
     <Compile Include="Message\Patch\PSOBBPatchPacketPayloadServer.cs" />
     <Compile Include="PacketCommonServerMetadataMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PSOBBPacketHeader.cs" />
+    <Compile Include="Message\PSOBBPacketHeader.cs" />
     <Compile Include="Message\Ship\PSOBBShipPacketPayloadClient.cs" />
     <Compile Include="Response\IResponseCodePayload.cs" />
     <Compile Include="Response\IResponseSucceedable.cs" />

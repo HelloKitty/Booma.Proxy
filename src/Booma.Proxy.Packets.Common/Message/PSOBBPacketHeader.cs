@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// write 
 	/// </summary>
 	[WireDataContract]
-	public class PSOBBPacketHeader
+	public class PSOBBPacketHeader : IPacketHeader
 	{
 		/// <summary>
 		/// The size of the packet.
