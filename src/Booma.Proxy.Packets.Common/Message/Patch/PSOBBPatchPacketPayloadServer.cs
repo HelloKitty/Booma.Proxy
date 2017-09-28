@@ -19,6 +19,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The operation code of the packet.
 		/// </summary>
+		[DontWrite] //we don't want to write this since the type key already handlers opcodes
 		[WireMember(1)]
 		protected short OperationCode { get; }
 
