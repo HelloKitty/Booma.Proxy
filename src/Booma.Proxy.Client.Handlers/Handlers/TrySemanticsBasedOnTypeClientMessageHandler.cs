@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// It can indicate if the message is consumed/consumable.
 	/// </summary>
 	/// <typeparam name="TPayloadBaseType"></typeparam>
-	public abstract class TrySemanticsClientMessageHandler<TPayloadType, TPayloadBaseType> : IClientMessageHandler<TPayloadBaseType>
+	public sealed class TrySemanticsBasedOnTypeClientMessageHandler<TPayloadType, TPayloadBaseType> : IClientMessageHandler<TPayloadBaseType>
 		where TPayloadBaseType : class
 		where TPayloadType : class, TPayloadBaseType
 	{
@@ -22,13 +22,21 @@ namespace Booma.Proxy
 		private IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType> DecoratedPayloadHandler { get; }
 
 		/// <inheritdoc />
-		protected TrySemanticsClientMessageHandler(IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType> decoratedPayloadHandler)
+		public TrySemanticsBasedOnTypeClientMessageHandler(IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType> decoratedPayloadHandler)
 		{
 			if(decoratedPayloadHandler == null) throw new ArgumentNullException(nameof(decoratedPayloadHandler));
 
 			DecoratedPayloadHandler = decoratedPayloadHandler;
 		}
 
+		/// <summary>
+		/// Attempts to handle the provided <see cref="message"/> and will succeed if the
+		/// payload is of type <typeparamref name="TPayloadType"/>.
+		/// Otherwise will return false and not consume the message.
+		/// </summary>
+		/// <param name="context">The context of the message.</param>
+		/// <param name="message">The message.</param>
+		/// <returns>True if the message has been consumed.</returns>
 		public async Task<bool> TryHandleMessage(IClientMessageContext<TPayloadBaseType> context, PSOBBNetworkIncomingMessage<TPayloadBaseType> message)
 		{
 			if(context == null) throw new ArgumentNullException(nameof(context));
