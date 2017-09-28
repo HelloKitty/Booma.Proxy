@@ -56,13 +56,13 @@ namespace Booma.Proxy.TestClient
 
 		private static async Task HandlePayload(PatchingWelcomePayload welcome, IPacketPayloadWritable<PSOBBPatchPacketPayloadClient> client)
 		{
-			Console.WriteLine($"Server IV: {welcome.ClientVector}");
-			Console.WriteLine($"Client IV: {welcome.ServerVector}");
+			Console.WriteLine($"Server IV: {welcome.ServerVector}");
+			Console.WriteLine($"Client IV: {welcome.ClientVector}");
 			Console.WriteLine(welcome.PatchCopyrightMessage);
 
 			//Init the crypto
-			EncryptionKeyInitializer.SetKey(welcome.ServerVector);
-			DecryptionKeyInitializer.SetKey(welcome.ClientVector);
+			EncryptionKeyInitializer.SetKey(welcome.ClientVector);
+			DecryptionKeyInitializer.SetKey(welcome.ServerVector);
 
 			//Send the ack to the server
 			await client.WriteAsync(new PatchingWelcomeAckPayload());
