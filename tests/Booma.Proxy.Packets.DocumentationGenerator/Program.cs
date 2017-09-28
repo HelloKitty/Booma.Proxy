@@ -40,6 +40,10 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 				InsertLineBreak(builder);
 			}
 
+			InsertLineBreak(builder);
+			InsertLineBreak(builder);
+			builder.Append("This documentation was automatically generated using the documentation tools.");
+
 			File.WriteAllText(@"docs\PatchPacketDocumentation.md", builder.ToString());
 		}
 
@@ -51,7 +55,7 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 		private static object BuildUrlLinkFromName(string name, string subdirName)
 		{
 			//TODO: add URL linking to the files
-			return string.IsNullOrWhiteSpace(name) ? @"**n/a**" : $"[{name}](\"{@"https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads"}{subdirName}/{name}.cs\")";
+			return string.IsNullOrWhiteSpace(name) ? @"**n/a**" : $"[{name}](\"{@"https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads"}/{subdirName}/{name}.cs\")";
 		}
 
 		private static bool HasOpCodeAttribute<TWireLinkBaseAttributeType>(Type t, PatchNetworkOperationCodes opcode)
