@@ -50,7 +50,10 @@
     <Compile Include="Patch\PatchEncryptionKeyFactory.cs" />
     <Compile Include="Patch\PatchServerCryptoProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\PatchEncryptionPassthroughWithoutKeyDecorator.cs" />
+    <Compile Include="Services\PatchEncryptionLazyWithoutKeyDecorator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

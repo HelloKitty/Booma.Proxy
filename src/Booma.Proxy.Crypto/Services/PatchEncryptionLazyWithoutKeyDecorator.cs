@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// Decorator for a cryptoservice that provides lazy
 	/// functionality for it. Doesn't crypt until a key is set.
 	/// </summary>
-	public sealed class PatchEncryptionPassthroughWithoutKeyDecorator : ICryptoServiceProvider, ICryptoKeyInitializable<uint>
+	public sealed class PatchEncryptionLazyWithoutKeyDecorator : ICryptoServiceProvider, ICryptoKeyInitializable<uint>
 	{
 		/// <summary>
 		/// The decorated crypto-provider.
@@ -25,7 +25,7 @@ namespace Booma.Proxy
 		private uint InitializationVector { get; }
 
 		/// <inheritdoc />
-		public PatchEncryptionPassthroughWithoutKeyDecorator()
+		public PatchEncryptionLazyWithoutKeyDecorator()
 		{
 			CryptoProvider = new Lazy<ICryptoServiceProvider>(InitializeCryptoProvider, true);
 		}
