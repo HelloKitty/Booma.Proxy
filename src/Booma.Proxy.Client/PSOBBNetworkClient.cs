@@ -100,20 +100,16 @@ namespace Booma.Proxy
 			{
 				if(disposing)
 				{
-					// TODO: dispose managed state (managed objects).
 					InternalTcpClient.GetStream().Close();
 					InternalTcpClient.Close();
 					InternalTcpClient.Dispose();
 				}
 
-				// TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-				// TODO: set large fields to null.
 
 				disposedValue = true;
 			}
 		}
 
-		// TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
 		// ~PSOBBNetworkClient() {
 		//   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
 		//   Dispose(false);
@@ -124,7 +120,6 @@ namespace Booma.Proxy
 		{
 			// Do not change this code. Put cleanup code in Dispose(bool disposing) above.
 			Dispose(true);
-			// TODO: uncomment the following line if the finalizer is overridden above.
 			// GC.SuppressFinalize(this);
 		}
 	}

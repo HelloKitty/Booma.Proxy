@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
@@ -11,18 +12,20 @@ namespace Booma.Proxy
 	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_MESSAGE_TYPE)]
 	public sealed class PatchingMessagePayload : PSOBBPatchPacketPayloadServer
 	{
-		// TODO implement WCHAR serialization
 		/// <summary>
 		/// News, MOTD, whatever
 		/// WCHAR string
 		/// Requires null terminator
 		/// Max length is 2046 including null terminator
 		/// </summary>
+		[Encoding(EncodingType.UTF16)] //wchar 16bit
 		[WireMember(1)]
 		public string Message { get; }
 
-		public PatchingMessagePayload(string message)
+		public PatchingMessagePayload([NotNull] string message)
 		{
+			if(message == null) throw new ArgumentNullException(nameof(message));
+
 			Message = message;
 		}
 
