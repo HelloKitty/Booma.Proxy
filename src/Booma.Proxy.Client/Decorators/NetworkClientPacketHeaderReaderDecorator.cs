@@ -25,10 +25,11 @@ namespace Booma.Proxy
 		/// </summary>
 		private ISerializerService Serializer { get; }
 
+		//TODO: Thread safety
 		/// <summary>
 		/// Thread specific buffer used to deserialize the packet header bytes into.
 		/// </summary>
-		private ThreadLocal<byte[]> PacketHeaderBuffer { get; }
+		private byte[] PacketHeaderBuffer { get; }
 
 		//TODO: Thread safety
 		/// <summary>
@@ -48,7 +49,7 @@ namespace Booma.Proxy
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
 			if(serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-			PacketHeaderBuffer = new ThreadLocal<byte[]>(() => new byte[4]);
+			PacketHeaderBuffer = new byte[4];
 			DecoratedClient = decoratedClient;
 			Serializer = serializer;
 		}
@@ -78,9 +79,13 @@ namespace Booma.Proxy
 			if(isHeaderFullyRead)
 				return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
 
-			buffer[start] = PacketHeaderBuffer.Value[2];
-			buffer[start + 1] = PacketHeaderBuffer.Value[3];
+			buffer[start] = PacketHeaderBuffer[2];
+			buffer[start + 1] = PacketHeaderBuffer[3];
 			isHeaderFullyRead = true;
+			
+			//If we only wanted 2 bytes then we need to get out now
+			if(count == 2)
+				return buffer;
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
@@ -102,7 +107,7 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer.Value, 0, 4, 0); //TODO: How long should the timeout be if any?
+			await ReadAsync(PacketHeaderBuffer, 0, 4, 0); //TODO: How long should the timeout be if any?
 
 			//Since we only deserialize with 2 bytes the header is not fully read
 			//meaning 2 bytes including the opcode will be left in the buffer
@@ -110,14 +115,7 @@ namespace Booma.Proxy
 			isHeaderFullyRead = false;
 
 			//This will deserialize
-			return Serializer.Deserialize<PSOBBPacketHeader>(PacketHeaderBuffer.Value);
-		}
-
-		/// <inheritdoc />
-		protected override void Dispose(bool disposing)
-		{
-			PacketHeaderBuffer.Dispose();
-			base.Dispose(disposing);
+			return Serializer.Deserialize<PSOBBPacketHeader>(PacketHeaderBuffer);
 		}
 	}
 }

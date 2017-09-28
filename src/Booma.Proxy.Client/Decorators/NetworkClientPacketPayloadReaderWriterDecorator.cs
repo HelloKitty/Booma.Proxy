@@ -18,8 +18,8 @@ namespace Booma.Proxy
 	/// </summary>
 	/// <typeparam name="TClientType">The type of decorated client.</typeparam>
 	/// <typeparam name="TPayloadBaseType">The payload base type.</typeparam>
-	public sealed class NetworkClientPacketPayloadReaderWriterDecorator<TClientType, TReadPayloadBaseType, TWritePayloadBaseType> : NetworkClientBase, 
-		IPacketPayloadWritable<TWritePayloadBaseType>, IPacketPayloadReadable<TReadPayloadBaseType>
+	public sealed class NetworkClientPacketPayloadReaderWriterDecorator<TClientType, TReadPayloadBaseType, TWritePayloadBaseType> : NetworkClientBase,
+		INetworkMessageClient<TReadPayloadBaseType, TWritePayloadBaseType>
 		where TClientType : NetworkClientBase, IPacketHeaderReadable
 		where TReadPayloadBaseType : class
 		where TWritePayloadBaseType : class
@@ -34,19 +34,20 @@ namespace Booma.Proxy
 		/// </summary>
 		private ISerializerService Serializer { get; }
 
+		//TODO: Thread safety
 		/// <summary>
 		/// Thread specific buffer used to deserialize the packet header bytes into.
 		/// </summary>
-		private ThreadLocal<byte[]> PacketPayloadBuffer { get; }
+		private byte[] PacketPayloadBuffer { get; }
 
 		public NetworkClientPacketPayloadReaderWriterDecorator([NotNull] TClientType decoratedClient, [NotNull] ISerializerService serializer)
 		{
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
-			if(Serializer == null) throw new ArgumentNullException(nameof(Serializer));
+			if(serializer == null) throw new ArgumentNullException(nameof(serializer));
 
 			DecoratedClient = decoratedClient;
 			Serializer = serializer;
-			PacketPayloadBuffer = new ThreadLocal<byte[]>(() => new byte[500]); //TODO: Do we need a larger buffer for any packets?
+			PacketPayloadBuffer = new byte[2000]; //TODO: Do we need a larger buffer for any packets?
 		}
 
 		/// <inheritdoc />
@@ -100,18 +101,11 @@ namespace Booma.Proxy
 			IPacketHeader header = DecoratedClient.ReadHeader();
 
 			//We need to read enough bytes to deserialize the payload
-			await ReadAsync(PacketPayloadBuffer.Value, 0, header.PayloadSize, 0); //TODO: Should we timeout?
+			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, 0); //TODO: Should we timeout?
 
-			TReadPayloadBaseType payload = Serializer.Deserialize<TReadPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer.Value, header.PayloadSize));
+			TReadPayloadBaseType payload = Serializer.Deserialize<TReadPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer, header.PayloadSize));
 
 			return new PSOBBNetworkIncomingMessage<TReadPayloadBaseType>(header, payload);
-		}
-
-		/// <inheritdoc />
-		protected override void Dispose(bool disposing)
-		{
-			PacketPayloadBuffer.Dispose();
-			base.Dispose(disposing);
 		}
 	}
 }

@@ -36,7 +36,8 @@ namespace Booma.Proxy
 		/// </summary>
 		private int BlockSize { get; }
 
-		private ThreadLocal<byte[]> CryptoBuffer = new ThreadLocal<byte[]>();
+		//TODO: Threadsafety
+		private byte[] CryptoBuffer { get; }
 
 		/// <summary>
 		/// Creates a new crypto decorator for the <see cref="PSOBBNetworkClient"/>.
@@ -57,7 +58,7 @@ namespace Booma.Proxy
 			EncryptionServiceProvider = encryptionServiceProvider;
 			DecryptionServiceProvider = decryptionServiceProvider;
 			BlockSize = blockSize;
-			CryptoBuffer = new ThreadLocal<byte[]>(() => new byte[2000]); //TODO: Is this size good? Bigger? Smaller?
+			CryptoBuffer = new byte[2000]; //TODO: Is this size good? Bigger? Smaller?
 		}
 
 		/// <inheritdoc />
@@ -76,7 +77,7 @@ namespace Booma.Proxy
 		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
 			if(start < 0) throw new ArgumentOutOfRangeException(nameof(start));
-			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count), $"Cannot read less than 0 bytes. Can't read: {count} many bytes");
 
 			//If the above caller requested an invalid count of bytes to read
 			//We should try to correct for it and read afew more bytes.
@@ -101,20 +102,13 @@ namespace Booma.Proxy
 			{
 				//We copy to the thread local buffer so we can use it as an extended buffer by "neededBytes" many more bytes.
 				//So the buffer is very large but we'll tell it to write bytes.length + neededBytes.
-				Buffer.BlockCopy(bytes, 0, CryptoBuffer.Value, 0, bytes.Length);
+				Buffer.BlockCopy(bytes, 0, CryptoBuffer, 0, bytes.Length);
 
-				byte[] decryptedBytes = EncryptionServiceProvider.Crypt(CryptoBuffer.Value, 0, bytes.Length + neededBytes);
+				byte[] decryptedBytes = EncryptionServiceProvider.Crypt(CryptoBuffer, 0, bytes.Length + neededBytes);
 
 				//recurr to write the bytes with the now properly sized buffer.
-				await WriteAsync(CryptoBuffer.Value, 0, bytes.Length + neededBytes);
+				await WriteAsync(CryptoBuffer, 0, bytes.Length + neededBytes);
 			}
-		}
-
-		/// <inheritdoc />
-		protected override void Dispose(bool disposing)
-		{
-			CryptoBuffer.Dispose();
-			base.Dispose(disposing);
 		}
 	}
 }
