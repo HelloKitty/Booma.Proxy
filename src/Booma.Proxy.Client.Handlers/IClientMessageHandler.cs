@@ -18,10 +18,11 @@ namespace Booma.Proxy
 		/// and indicates if the message has been consumed.
 		/// </summary>
 		/// <param name="message">The message to try to handle.</param>
+		/// <param name="context">The context for the message.</param>
 		/// <returns>
 		/// True indicates that the message was handled and consumed. 
 		/// False indicates that the handler couldn't handle the message.
 		/// </returns>
-		bool TryHandleMessage(PSOBBNetworkIncomingMessage<TPayloadBaseType> message);
+		bool TryHandleMessage(IClientMessageContext<TPayloadBaseType> context, PSOBBNetworkIncomingMessage<TPayloadBaseType> message);
 	}
 }

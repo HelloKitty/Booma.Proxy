@@ -40,16 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IBytesReadable.cs" />
-    <Compile Include="API\IBytesWrittable.cs" />
-    <Compile Include="API\IConnectable.cs" />
-    <Compile Include="API\IDisconnectable.cs" />
-    <Compile Include="API\INetworkMessageClient.cs" />
-    <Compile Include="API\IPacketHeaderReadable.cs" />
-    <Compile Include="API\IPacketPayloadReadable.cs" />
-    <Compile Include="API\IPacketPayloadWritable.cs" />
+    <Compile Include="API\NetworkClient\IBytesReadable.cs" />
+    <Compile Include="API\NetworkClient\IBytesWrittable.cs" />
+    <Compile Include="API\NetworkClient\IConnectable.cs" />
+    <Compile Include="API\NetworkClient\IDisconnectable.cs" />
+    <Compile Include="API\NetworkClient\INetworkMessageClient.cs" />
+    <Compile Include="API\NetworkClient\IPacketHeaderReadable.cs" />
+    <Compile Include="API\NetworkClient\IPacketPayloadReadable.cs" />
+    <Compile Include="API\NetworkClient\IPacketPayloadWritable.cs" />
     <Compile Include="API\Message\IClientMessageContext.cs" />
+    <Compile Include="API\Services\IClientPayloadSendService.cs" />
     <Compile Include="API\Services\IConnectionService.cs" />
+    <Compile Include="API\Message\SendResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
