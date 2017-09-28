@@ -17,7 +17,7 @@
 | PATCH_SEND_INFO | 0x0011 | [PatchingPatchInfoPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Server/PatchingPatchInfoPayload.cs) | **n/a** |
 | PATCH_SEND_DONE | 0x0012 | [PatchingDoneCommandPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Server/PatchingDoneCommandPayload.cs) | **n/a** |
 | PATCH_MESSAGE_TYPE | 0x0013 | [PatchingMessagePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Server/PatchingMessagePayload.cs) | **n/a** |
-| PATCH_REDIRECT_TYPE | 0x0014 | **n/a** | **n/a** |
+| PATCH_REDIRECT_TYPE | 0x0014 | [PatchingRedirectPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Server/PatchingRedirectPayload.cs) | **n/a** |
 | PATCH_REDIRECT6_TYPE | 0x0614 | **n/a** | **n/a** |
 
 
