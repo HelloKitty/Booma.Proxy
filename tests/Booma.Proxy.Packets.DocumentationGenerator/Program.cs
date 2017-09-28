@@ -45,13 +45,13 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 
 		private static string BuildPacketInformationRow(string opcodeName, string opcodeValueAsString, Type optionalServerPayloadType, Type optionalClientPayloadType)
 		{
-			return $"| {opcodeName} | {opcodeValueAsString} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name)} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name)} |";
+			return $"| {opcodeName} | {opcodeValueAsString} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Server")} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Client")} |";
 		}
 
-		private static object BuildUrlLinkFromName(string name)
+		private static object BuildUrlLinkFromName(string name, string subdirName)
 		{
 			//TODO: add URL linking to the files
-			return string.IsNullOrWhiteSpace(name) ? @"**n/a**" : $"[{name}](\"todo\")";
+			return string.IsNullOrWhiteSpace(name) ? @"**n/a**" : $"[{name}](\"{@"https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads"}{subdirName}/{name}.cs\")";
 		}
 
 		private static bool HasOpCodeAttribute<TWireLinkBaseAttributeType>(Type t, PatchNetworkOperationCodes opcode)
