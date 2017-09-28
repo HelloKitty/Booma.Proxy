@@ -30,6 +30,16 @@ namespace Booma.Proxy
 		/// </summary>
 		private ThreadLocal<byte[]> PacketHeaderBuffer { get; }
 
+		//TODO: Thread safety
+		/// <summary>
+		/// Indicates if we have buffed bytes that were
+		/// originally for the header (the opcode) and if
+		/// we don't need to worry about them.
+		/// If this is false then we do have header bytes and need to handle them
+		/// before reading further.
+		/// </summary>
+		private bool isHeaderFullyRead { get; set; } = true;
+
 		/// <summary>
 		/// </summary>
 		/// <param name="decoratedClient">The client to decorate.</param>
@@ -38,7 +48,7 @@ namespace Booma.Proxy
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
 			if(serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-			PacketHeaderBuffer = new ThreadLocal<byte[]>(() => new byte[2]);
+			PacketHeaderBuffer = new ThreadLocal<byte[]>(() => new byte[4]);
 			DecoratedClient = decoratedClient;
 			Serializer = serializer;
 		}
@@ -64,7 +74,18 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
-			return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
+			//Check if we have leftover header bytes
+			if(isHeaderFullyRead)
+				return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
+
+			//If we had left over header bytes we need to read them into the buffer
+			buffer[start] = PacketHeaderBuffer.Value[2];
+			buffer[start + 1] = PacketHeaderBuffer.Value[3];
+			isHeaderFullyRead = true;
+
+			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
+			//then we should offset by 2 and read 2 less bytes
+			return await DecoratedClient.ReadAsync(buffer, start + 2, count - 2, timeoutInMilliseconds);
 		}
 
 		/// <inheritdoc />
@@ -76,11 +97,20 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public async Task<IPacketHeader> ReadHeaderAsync()
 		{
-			//The header we know is two bytes.
+			if(!isHeaderFullyRead)
+				throw new InvalidOperationException("Cannot read any more headers until the buffered bytes in the header buffer has been read.");
+
+			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer.Value, 0, 2, 0); //TODO: How long should the timeout be if any?
+			await ReadAsync(PacketHeaderBuffer.Value, 0, 4, 0); //TODO: How long should the timeout be if any?
 
+			//Since we only deserialize with 2 bytes the header is not fully read
+			//meaning 2 bytes including the opcode will be left in the buffer
+			//that need to be read before any need data.
+			isHeaderFullyRead = false;
+
+			//This will deserialize
 			return Serializer.Deserialize<PSOBBPacketHeader>(PacketHeaderBuffer.Value);
 		}
 
