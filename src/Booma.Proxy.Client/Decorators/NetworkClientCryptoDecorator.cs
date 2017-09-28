@@ -86,7 +86,7 @@ namespace Booma.Proxy
 
 			//We throw above if we have an invalid size that can't be decrypted once read.
 			//That means callers will need to be careful in what they request to read.
-			return DecryptionServiceProvider.Crypt(await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds));
+			return DecryptionServiceProvider.Crypt(await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds), start, count);
 		}
 
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
