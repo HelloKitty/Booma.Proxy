@@ -107,7 +107,7 @@ namespace Booma.Proxy
 				byte[] decryptedBytes = EncryptionServiceProvider.Crypt(CryptoBuffer, 0, bytes.Length + neededBytes);
 
 				//recurr to write the bytes with the now properly sized buffer.
-				await WriteAsync(CryptoBuffer, 0, bytes.Length + neededBytes);
+				await DecoratedClient.WriteAsync(CryptoBuffer, 0, bytes.Length + neededBytes);
 			}
 		}
 	}
