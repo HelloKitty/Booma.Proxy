@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The initializaiton vector to use for creating the crypto service
 		/// </summary>
-		private uint InitializationVector { get; private set; }
+		private uint InitializationVector { get; set; }
 
 		/// <inheritdoc />
 		public PatchEncryptionLazyWithoutKeyDecorator()
