@@ -18,10 +18,11 @@ namespace Booma.Proxy
 	/// </summary>
 	/// <typeparam name="TClientType">The type of decorated client.</typeparam>
 	/// <typeparam name="TPayloadBaseType">The payload base type.</typeparam>
-	public sealed class NetworkClientPacketPayloadReaderWriterDecorator<TClientType, TPayloadBaseType> : NetworkClientBase, 
-		IPacketPayloadWritable<TPayloadBaseType>, IPacketPayloadReadable<TPayloadBaseType>
+	public sealed class NetworkClientPacketPayloadReaderWriterDecorator<TClientType, TReadPayloadBaseType, TWritePayloadBaseType> : NetworkClientBase, 
+		IPacketPayloadWritable<TWritePayloadBaseType>, IPacketPayloadReadable<TReadPayloadBaseType>
 		where TClientType : NetworkClientBase, IPacketHeaderReadable
-		where TPayloadBaseType : class
+		where TReadPayloadBaseType : class
+		where TWritePayloadBaseType : class
 	{
 		/// <summary>
 		/// The decorated client.
@@ -67,7 +68,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public void Write(TPayloadBaseType payload)
+		public void Write(TWritePayloadBaseType payload)
 		{
 			//Write the outgoing message, it will internally create the header and it will be serialized
 			WriteAsync(payload).Wait();
@@ -80,20 +81,20 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async Task WriteAsync(TPayloadBaseType payload)
+		public async Task WriteAsync(TWritePayloadBaseType payload)
 		{
 			//Write the outgoing message, it will internally create the header and it will be serialized
 			await DecoratedClient.WriteAsync(Serializer.Serialize(new PSOBBNetworkOutgoingMessage(Serializer.Serialize(payload))));
 		}
 
 		/// <inheritdoc />
-		public PSOBBNetworkIncomingMessage<TPayloadBaseType> Read()
+		public PSOBBNetworkIncomingMessage<TReadPayloadBaseType> Read()
 		{
 			return ReadAsync().Result;
 		}
 
 		/// <inheritdoc />
-		public async Task<PSOBBNetworkIncomingMessage<TPayloadBaseType>> ReadAsync()
+		public async Task<PSOBBNetworkIncomingMessage<TReadPayloadBaseType>> ReadAsync()
 		{
 			//Read the header first
 			IPacketHeader header = DecoratedClient.ReadHeader();
@@ -101,9 +102,9 @@ namespace Booma.Proxy
 			//We need to read enough bytes to deserialize the payload
 			await ReadAsync(PacketPayloadBuffer.Value, 0, header.PayloadSize, 0); //TODO: Should we timeout?
 
-			TPayloadBaseType payload = Serializer.Deserialize<TPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer.Value, header.PayloadSize));
+			TReadPayloadBaseType payload = Serializer.Deserialize<TReadPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer.Value, header.PayloadSize));
 
-			return new PSOBBNetworkIncomingMessage<TPayloadBaseType>(header, payload);
+			return new PSOBBNetworkIncomingMessage<TReadPayloadBaseType>(header, payload);
 		}
 
 		/// <inheritdoc />
