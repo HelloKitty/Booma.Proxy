@@ -49,7 +49,7 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 
 		private static string BuildPacketInformationRow(string opcodeName, string opcodeValueAsString, Type optionalServerPayloadType, Type optionalClientPayloadType)
 		{
-			return $"| {opcodeName} | {opcodeValueAsString} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Server")} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Client")} |";
+			return $"| {opcodeName} | {opcodeValueAsString} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Server")} | {BuildUrlLinkFromName(optionalClientPayloadType?.Name, "Client")} |";
 		}
 
 		private static object BuildUrlLinkFromName(string name, string subdirName)
