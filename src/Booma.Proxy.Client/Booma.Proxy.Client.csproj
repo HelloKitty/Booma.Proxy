@@ -54,14 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\IBytesReadable.cs" />
-    <Compile Include="API\IBytesWrittable.cs" />
-    <Compile Include="API\IDisconnectable.cs" />
-    <Compile Include="API\IConnectable.cs" />
-    <Compile Include="API\INetworkMessageClient.cs" />
-    <Compile Include="API\IPacketHeaderReadable.cs" />
-    <Compile Include="API\IPacketPayloadReadable.cs" />
-    <Compile Include="API\IPacketPayloadWritable.cs" />
     <Compile Include="Decorators\FixedBufferWireReaderStrategy.cs" />
     <Compile Include="Decorators\NetworkClientCryptoDecorator.cs" />
     <Compile Include="Decorators\NetworkClientPacketHeaderReaderDecorator.cs" />
@@ -73,6 +65,10 @@
     <Compile Include="PSOBBNetworkClient.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
+      <Project>{e29711cc-3abb-49b4-b010-3a2f72de5491}</Project>
+      <Name>Booma.Proxy.Client.API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
       <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
       <Name>Booma.Proxy.Crypto</Name>
@@ -85,5 +81,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

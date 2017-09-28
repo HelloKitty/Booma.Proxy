@@ -9,7 +9,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Contract for types that can write a packet payload.
 	/// </summary>
-	public interface IPacketPayloadWritable<TPayloadBaseType>
+	public interface IPacketPayloadWritable<in TPayloadBaseType>
 		where TPayloadBaseType : class
 	{
 		/// <summary>

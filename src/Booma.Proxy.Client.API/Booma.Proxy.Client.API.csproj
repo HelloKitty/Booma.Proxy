@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{87BDBA8D-0992-48EF-ACD7-BAD3018C46D7}</ProjectGuid>
+    <ProjectGuid>{E29711CC-3ABB-49B4-B010-3A2F72DE5491}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Booma.Proxy</RootNamespace>
-    <AssemblyName>Booma.Proxy.Client.Handlers</AssemblyName>
+    <AssemblyName>Booma.Proxy.Client.API</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IClientMessageHandler.cs" />
-    <Compile Include="IClientPayloadSpecificMessageHandler.cs" />
+    <Compile Include="API\IBytesReadable.cs" />
+    <Compile Include="API\IBytesWrittable.cs" />
+    <Compile Include="API\IConnectable.cs" />
+    <Compile Include="API\IDisconnectable.cs" />
+    <Compile Include="API\INetworkMessageClient.cs" />
+    <Compile Include="API\IPacketHeaderReadable.cs" />
+    <Compile Include="API\IPacketPayloadReadable.cs" />
+    <Compile Include="API\IPacketPayloadWritable.cs" />
+    <Compile Include="API\Message\IClientMessageContext.cs" />
+    <Compile Include="API\Services\IConnectionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
-      <Project>{e29711cc-3abb-49b4-b010-3a2f72de5491}</Project>
-      <Name>Booma.Proxy.Client.API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
       <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>
