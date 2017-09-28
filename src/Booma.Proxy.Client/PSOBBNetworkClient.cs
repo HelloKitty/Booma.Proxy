@@ -82,11 +82,11 @@ namespace Booma.Proxy
 			if(timeoutInMilliseconds > 0)
 			{
 				CancellationToken token = new CancellationTokenSource(timeoutInMilliseconds).Token;
-				for(int i = 0; i < count;)
+				for(int i = start; i < count;)
 					i += await stream.ReadAsync(buffer, i, count - i, token);
 			}
 			else
-				for(int i = 0; i < count;)
+				for(int i = start; i < count;)
 					i += await stream.ReadAsync(buffer, i, count - i);
 
 			return buffer;
