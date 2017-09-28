@@ -32,12 +32,8 @@ namespace Booma.Proxy
 			if(address == null) throw new ArgumentNullException(nameof(address));
 			if(port <= 0) throw new ArgumentOutOfRangeException(nameof(port));
 
-			//if we're connected we need to disconnect first
-			if(InternalTcpClient.Connected)
-			{
-				Disconnect();
-				InternalTcpClient = new TcpClient();
-			}
+			await DisconnectAsync(10);
+			InternalTcpClient = new TcpClient();
 
 			//TODO: Logging
 			//TODO: Should we allow reconnects?

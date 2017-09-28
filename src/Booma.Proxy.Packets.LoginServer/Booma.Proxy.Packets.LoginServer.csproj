@@ -7,7 +7,7 @@
     <ProjectGuid>{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Booma.Proxy.Packets.LoginServer</RootNamespace>
+    <RootNamespace>Booma.Proxy</RootNamespace>
     <AssemblyName>Booma.Proxy.Packets.LoginServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy.Packets.PatchServer.Payloads.Client
+namespace Booma.Proxy
 {
 	/// <summary>
 	/// Client file information report

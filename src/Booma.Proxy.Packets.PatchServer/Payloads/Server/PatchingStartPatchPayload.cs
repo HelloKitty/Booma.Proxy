@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy.Packets.PatchServer.Payloads.Server
+namespace Booma.Proxy
 {
 	// This packet is sent once when starting file checks 
 	// and again when starting the update process which

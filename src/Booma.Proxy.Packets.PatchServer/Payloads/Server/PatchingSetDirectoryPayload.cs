@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy.Packets.PatchServer.Payloads.Server
+namespace Booma.Proxy
 {
 	/// <summary>
 	/// Sets the directory to move into, creating it if it doesn't exist

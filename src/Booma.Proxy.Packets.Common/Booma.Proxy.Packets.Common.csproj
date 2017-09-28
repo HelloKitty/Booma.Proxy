@@ -7,7 +7,7 @@
     <ProjectGuid>{1A775854-1484-45FB-B465-1967A971646C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Booma.Proxy.Packets.Common</RootNamespace>
+    <RootNamespace>Booma.Proxy</RootNamespace>
     <AssemblyName>Booma.Proxy.Packets.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

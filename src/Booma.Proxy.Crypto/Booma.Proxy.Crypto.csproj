@@ -7,7 +7,7 @@
     <ProjectGuid>{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Booma.Proxy.Crypto</RootNamespace>
+    <RootNamespace>Booma.Proxy</RootNamespace>
     <AssemblyName>Booma.Proxy.Crypto</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
