@@ -22,19 +22,30 @@ namespace Booma.Proxy
 
 		public byte[] Crypt(byte[] bytes)
 		{
-			CRYPT_PC_CryptData(Key, bytes);
-			return bytes;
+			return Crypt(bytes, 0, bytes.Length);
 		}
 
-		public unsafe void CRYPT_PC_CryptData(PatchEncryptionKey key, byte[] data)
+		public unsafe void CRYPT_PC_CryptData(PatchEncryptionKey key, byte[] data, int offset, int count)
 		{
-			for(uint x = 0; x < data.Length; x += 4)
+			for(uint x = (uint)offset; x < count; x += 4)
 			{
 				fixed(void* p = &data[x])
 				{
 					*(uint*)p = (*(uint*)p) ^ key.CRYPT_PC_GetNextKey();
 				}
 			}
+		}
+
+		public byte[] Crypt(byte[] bytes, int offset, int count)
+		{
+			if(count % 4 != 0)
+				throw new InvalidOperationException($"{GetType().Name} cannot crypt N % 4 != 0 bytes. Bytes or count must be a multiple of 4.");
+
+			if(offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
+			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+
+			CRYPT_PC_CryptData(Key, bytes, offset, count);
+			return bytes;
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Booma.Proxy
@@ -35,6 +36,8 @@ namespace Booma.Proxy
 		/// </summary>
 		private int BlockSize { get; }
 
+		private ThreadLocal<byte[]> CryptoBuffer = new ThreadLocal<byte[]>();
+
 		/// <summary>
 		/// Creates a new crypto decorator for the <see cref="PSOBBNetworkClient"/>.
 		/// Extends the <see cref="Read"/> and <see cref="Write"/> implementations to pass
@@ -54,6 +57,7 @@ namespace Booma.Proxy
 			EncryptionServiceProvider = encryptionServiceProvider;
 			DecryptionServiceProvider = decryptionServiceProvider;
 			BlockSize = blockSize;
+			CryptoBuffer = new ThreadLocal<byte[]>(() => new byte[2000]); //TODO: Is this size good? Bigger? Smaller?
 		}
 
 		/// <inheritdoc />
@@ -71,12 +75,43 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
+			if(start < 0) throw new ArgumentOutOfRangeException(nameof(start));
+			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+
+			//If the above caller requested an invalid count of bytes to read
+			//We should try to correct for it and read afew more bytes.
+			int neededBytes = (count - start) % BlockSize;
+			count += neededBytes;
+
+			//We throw above if we have an invalid size that can't be decrypted once read.
+			//That means callers will need to be careful in what they request to read.
 			return DecryptionServiceProvider.Crypt(await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds));
 		}
 
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
-			await DecoratedClient.WriteAsync(EncryptionServiceProvider.Crypt(bytes), offset, count);
+			int neededBytes = bytes.Length % BlockSize;
+
+			if(neededBytes == 0)
+				await DecoratedClient.WriteAsync(EncryptionServiceProvider.Crypt(bytes), offset, count);
+			else
+			{
+				//We copy to the thread local buffer so we can use it as an extended buffer by "neededBytes" many more bytes.
+				//So the buffer is very large but we'll tell it to write bytes.length + neededBytes.
+				Buffer.BlockCopy(bytes, 0, CryptoBuffer.Value, 0, bytes.Length);
+
+				byte[] decryptedBytes = EncryptionServiceProvider.Crypt(CryptoBuffer.Value, 0, bytes.Length + neededBytes);
+
+				//recurr to write the bytes with the now properly sized buffer.
+				await WriteAsync(CryptoBuffer.Value, 0, bytes.Length + neededBytes);
+			}
+		}
+
+		/// <inheritdoc />
+		protected override void Dispose(bool disposing)
+		{
+			CryptoBuffer.Dispose();
+			base.Dispose(disposing);
 		}
 	}
 }
