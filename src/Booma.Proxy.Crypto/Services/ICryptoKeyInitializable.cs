@@ -16,6 +16,13 @@ namespace Booma.Proxy
 		/// Sets the crypto service with the provided key
 		/// </summary>
 		/// <param name="key">The key to set.</param>
-		void SetKey(TKeyType key);
+		void Initialize(TKeyType key);
+
+		/// <summary>
+		/// Uninitializes the crypto service.
+		/// It forgets the current key and will stop passing
+		/// to crypt.
+		/// </summary>
+		void Uninitialize();
 	}
 }

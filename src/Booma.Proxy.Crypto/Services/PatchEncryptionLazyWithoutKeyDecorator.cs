@@ -17,7 +17,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The decorated crypto-provider.
 		/// </summary>
-		public Lazy<ICryptoServiceProvider> CryptoProvider { get; }
+		public Lazy<ICryptoServiceProvider> CryptoProvider { get; private set; }
 
 		/// <summary>
 		/// The initializaiton vector to use for creating the crypto service
@@ -55,13 +55,21 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public void SetKey(uint key)
+		public void Initialize(uint key)
 		{
 			InitializationVector = key;
 
 			//Once the key is initialized we can create the CryptoProvider
 			//by calling value whic creates it
 			ICryptoServiceProvider provider = CryptoProvider.Value;
+		}
+
+		/// <inheritdoc />
+		public void Uninitialize()
+		{
+			//Uninitialization is just creating a new lazy uninit crypto provider
+			InitializationVector = 0;
+			CryptoProvider = new Lazy<ICryptoServiceProvider>(InitializeCryptoProvider, true);
 		}
 	}
 }
