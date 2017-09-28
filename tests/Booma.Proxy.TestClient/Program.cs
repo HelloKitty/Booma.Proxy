@@ -50,18 +50,33 @@ namespace Booma.Proxy.TestClient
 				PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message = await client.ReadAsync();
 				LogMessage(message);
 
-				HandlePayload((dynamic)message.Payload);
+				await HandlePayload((dynamic)message.Payload, client);
 			}
 		}
 
-		private static void HandlePayload(UnknownPatchPacket patchPayload)
+		private static async Task HandlePayload(PatchingWelcomePayload welcome, IPacketPayloadWritable<PSOBBPatchPacketPayloadClient> client)
 		{
-			Console.WriteLine($"Encounted {patchPayload.ToString()}");
+			Console.WriteLine($"Server IV: {welcome.ClientVector}");
+			Console.WriteLine($"Client IV: {welcome.ServerVector}");
+			Console.WriteLine(welcome.PatchCopyrightMessage);
+
+			//Init the crypto
+			EncryptionKeyInitializer.SetKey(welcome.ServerVector);
+			DecryptionKeyInitializer.SetKey(welcome.ClientVector);
+
+			//Send the ack to the server
+			await client.WriteAsync(new PatchingWelcomeAckPayload());
 		}
 
-		private static void HandlePayload(object o)
+		private static Task HandlePayload(UnknownPatchPacket patchPayload, object o)
 		{
+			Console.WriteLine($"Encounted {patchPayload.ToString()}");
+			return Task.CompletedTask;
+		}
 
+		private static Task HandlePayload(object o, object o2)
+		{
+			return Task.CompletedTask;
 		}
 
 		public static void LogMessage(PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message)
