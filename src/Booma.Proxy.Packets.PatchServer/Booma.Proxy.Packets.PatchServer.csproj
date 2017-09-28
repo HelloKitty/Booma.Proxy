@@ -50,7 +50,7 @@
     <Compile Include="Payloads\Client\PatchingFileInformationDoneAckPayload.cs" />
     <Compile Include="Payloads\Client\PatchingFileInformationPayload.cs" />
     <Compile Include="Payloads\Client\PatchingWelcomeAckPayload.cs" />
-    <Compile Include="Payloads\Server\PatchingFileCheckPayload.cs" />
+    <Compile Include="Payloads\Server\PatchingFileCheckRequestPayload.cs" />
     <Compile Include="Payloads\Server\PatchingInfoRequestDonePayload.cs" />
     <Compile Include="Payloads\Server\PatchingMessagePayload.cs" />
     <Compile Include="Payloads\Server\PatchingSetDirectoryPayload.cs" />
