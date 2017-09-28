@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
@@ -14,6 +16,11 @@ namespace Booma.Proxy.TestClient
 
 		public static void Main(string[] args)
 		{
+			RunClient("[redacted]", 11000).Wait();
+		}
+
+		private static async Task RunClient(string ip, int port)
+		{
 			PatchEncryptionLazyWithoutKeyDecorator encrypt = new PatchEncryptionLazyWithoutKeyDecorator();
 			PatchEncryptionLazyWithoutKeyDecorator decrypt = new PatchEncryptionLazyWithoutKeyDecorator();
 			EncryptionKeyInitializer = encrypt;
@@ -21,7 +28,7 @@ namespace Booma.Proxy.TestClient
 
 			//Create the serializer and register all the needed types
 			SerializerService serializer = new SerializerService();
-			
+
 			//Registers all the types.
 			PacketPatchServerMetadataMarker.SerializableTypes
 				.Concat(PacketCommonServerMetadataMarker.SerializableTypes)
@@ -38,12 +45,12 @@ namespace Booma.Proxy.TestClient
 				.AddNetworkMessageReading(serializer)
 				.For<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>();
 
-			Task.Run(() => RunClientAsync(client)).Wait();
+			await Task.Run(() => RunClientAsync(client, ip, port));
 		}
 
-		public static async Task RunClientAsync(INetworkMessageClient<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient> client)
+		public static async Task RunClientAsync(INetworkMessageClient<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient> client, string ip, int port)
 		{
-			await client.ConnectAsync("[redacted]", 11000);
+			await client.ConnectAsync(ip, port);
 
 			while(true)
 			{
@@ -54,6 +61,27 @@ namespace Booma.Proxy.TestClient
 			}
 		}
 
+		private static async Task HandlePayload(PatchingRedirectPayload redirect, IConnectable client)
+		{
+			Console.WriteLine($"Redirect to: {new IPAddress(redirect.IPAddress).ToString()}:{redirect.Port}");
+
+			//uninit the crypto
+			DecryptionKeyInitializer.Uninitialize();
+			EncryptionKeyInitializer.Uninitialize();
+
+			await client.ConnectAsync(new IPAddress(redirect.IPAddress).ToString(), redirect.Port);
+		}
+
+		private static async Task HandlePayload(PatchingMessagePayload message, object client)
+		{
+			Console.WriteLine(message.Message);
+		}
+
+		private static async Task HandlePayload(PatchingReadyForLoginRequestPayload readyForLogin, IPacketPayloadWritable<PSOBBPatchPacketPayloadClient> client)
+		{
+			await client.WriteAsync(new PatchingLoginRequestPayload("glader", "[redacted]"));
+		}
+
 		private static async Task HandlePayload(PatchingWelcomePayload welcome, IPacketPayloadWritable<PSOBBPatchPacketPayloadClient> client)
 		{
 			Console.WriteLine($"Server IV: {welcome.ServerVector}");
@@ -61,8 +89,8 @@ namespace Booma.Proxy.TestClient
 			Console.WriteLine(welcome.PatchCopyrightMessage);
 
 			//Init the crypto
-			EncryptionKeyInitializer.SetKey(welcome.ClientVector);
-			DecryptionKeyInitializer.SetKey(welcome.ServerVector);
+			EncryptionKeyInitializer.Initialize(welcome.ClientVector);
+			DecryptionKeyInitializer.Initialize(welcome.ServerVector);
 
 			//Send the ack to the server
 			await client.WriteAsync(new PatchingWelcomeAckPayload());
@@ -81,7 +109,9 @@ namespace Booma.Proxy.TestClient
 
 		public static void LogMessage(PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message)
 		{
-			Console.WriteLine($"Size: {message.Header.PacketSize} Type: {message.Payload.ToString()}");
+			Console.BackgroundColor = ConsoleColor.DarkBlue;
+			Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{message.Payload.GetType().GetTypeInfo().GetCustomAttribute<WireDataContractBaseLinkAttribute>().Index:X} Type: {message.Payload.GetType().Name}");
+			Console.BackgroundColor = ConsoleColor.Black;
 		}
 	}
 }
