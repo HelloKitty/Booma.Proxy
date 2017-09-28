@@ -8,11 +8,11 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Sets the file we are going to update
+	/// Requests a file check for updating
 	/// </summary>
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_FILE_SEND)]
-	public sealed class PatchingFileCheckPayload : PSOBBPatchPacketPayloadServer
+	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_FILE_INFO)]
+	public sealed class PatchingFileCheckRequestPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// Patch file index
@@ -23,11 +23,11 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Patch file name
 		/// </summary>
-		[KnownSize(48)]
+		[KnownSize(32)]
 		[WireMember(2)]
 		public string PatchFileName { get; }
 
-		public PatchingFileCheckPayload(int patchFileIndex, string patchFileName)
+		public PatchingFileCheckRequestPayload(int patchFileIndex, string patchFileName)
 		{
 			if (patchFileIndex < 0) throw new ArgumentOutOfRangeException(nameof(patchFileIndex));
 			if (string.IsNullOrWhiteSpace(patchFileName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(patchFileName));
@@ -38,8 +38,7 @@ namespace Booma.Proxy
 		}
 
 		//Serializer ctor
-		protected PatchingFileCheckPayload()
-			: base()
+		private PatchingFileCheckRequestPayload()
 		{
 
 		}
