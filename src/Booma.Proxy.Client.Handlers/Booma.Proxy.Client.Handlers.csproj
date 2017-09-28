@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TrySemanticsClientMessageHandler.cs" />
     <Compile Include="IClientMessageHandler.cs" />
     <Compile Include="IClientPayloadSpecificMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

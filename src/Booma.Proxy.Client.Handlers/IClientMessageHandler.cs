@@ -23,6 +23,6 @@ namespace Booma.Proxy
 		/// True indicates that the message was handled and consumed. 
 		/// False indicates that the handler couldn't handle the message.
 		/// </returns>
-		bool TryHandleMessage(IClientMessageContext<TPayloadBaseType> context, PSOBBNetworkIncomingMessage<TPayloadBaseType> message);
+		Task<bool> TryHandleMessage(IClientMessageContext<TPayloadBaseType> context, PSOBBNetworkIncomingMessage<TPayloadBaseType> message);
 	}
 }

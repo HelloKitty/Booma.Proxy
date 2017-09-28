@@ -22,6 +22,6 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="context">The message context.</param>
 		/// <param name="payload">The payload to handle.</param>
-		void HandleMessage(IClientMessageContext<TPayloadBaseType> context, TPayloadType payload);
+		Task HandleMessage(IClientMessageContext<TPayloadBaseType> context, TPayloadType payload);
 	}
 }

@@ -22,11 +22,11 @@ namespace Booma.Proxy
 		/// the client associated with this message conect.
 		/// </summary>
 		IConnectionService ConnectionService { get; }
-		
+
 		/// <summary>
 		/// The sending service that allows clients to send
 		/// a response or request to the client context involved in this particular message.
 		/// </summary>
-		IPacketPayloadWritable<TPayloadBaseType> PayloadSendService { get; }
+		IClientPayloadSendService<TPayloadBaseType> PayloadSendService { get; }
 	}
 }
