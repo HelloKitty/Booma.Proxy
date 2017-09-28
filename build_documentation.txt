@@ -1,0 +1,3 @@
+dotnet restore Booma.Proxy.sln
+dotnet build Booma.Proxy.sln -c Debug
+PAUSE
