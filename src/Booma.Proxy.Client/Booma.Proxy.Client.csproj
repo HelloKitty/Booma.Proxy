@@ -33,6 +33,9 @@
     <Reference Include="FreecraftCore.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.7\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
     </Reference>
+    <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.7\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+    </Reference>
     <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.7\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
     </Reference>
@@ -55,6 +58,7 @@
     <Compile Include="API\IBytesWrittable.cs" />
     <Compile Include="API\IDisconnectable.cs" />
     <Compile Include="API\IConnectable.cs" />
+    <Compile Include="API\INetworkMessageClient.cs" />
     <Compile Include="API\IPacketHeaderReadable.cs" />
     <Compile Include="API\IPacketPayloadReadable.cs" />
     <Compile Include="API\IPacketPayloadWritable.cs" />

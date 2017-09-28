@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override string ToString()
 		{
-			return $"Unknown OpCode: #{OperationCode:X} Type: {base.ToString()} Size: {UnknownBytes.Length + 2}";
+			return $"Unknown OpCode: {OperationCode:X} Type: {base.ToString()} Size: {UnknownBytes.Length + 2}";
 		}
 	}
 }
