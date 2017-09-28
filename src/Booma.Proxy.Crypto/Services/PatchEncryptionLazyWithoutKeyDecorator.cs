@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The initializaiton vector to use for creating the crypto service
 		/// </summary>
-		private uint InitializationVector { get; }
+		private uint InitializationVector { get; private set; }
 
 		/// <inheritdoc />
 		public PatchEncryptionLazyWithoutKeyDecorator()
@@ -57,6 +57,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void SetKey(uint key)
 		{
+			InitializationVector = key;
+
 			//Once the key is initialized we can create the CryptoProvider
 			//by calling value whic creates it
 			ICryptoServiceProvider provider = CryptoProvider.Value;
