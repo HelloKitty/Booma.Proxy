@@ -78,16 +78,16 @@ namespace Booma.Proxy
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before reading any bytes.");
 
 			NetworkStream stream = InternalTcpClient.GetStream();
-
+			int end = count + start;
 			if(timeoutInMilliseconds > 0)
 			{
 				CancellationToken token = new CancellationTokenSource(timeoutInMilliseconds).Token;
-				for(int i = start; i < count;)
-					i += await stream.ReadAsync(buffer, i, count - i, token);
+				for(int i = start; i < end;)
+					i += await stream.ReadAsync(buffer, i, end - i, token);
 			}
 			else
-				for(int i = start; i < count;)
-					i += await stream.ReadAsync(buffer, i, count - i);
+				for(int i = start; i < end;)
+					i += await stream.ReadAsync(buffer, i, end - i);
 
 			return buffer;
 		}

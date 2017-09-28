@@ -87,6 +87,7 @@ namespace Booma.Proxy
 			if(count == 2)
 				return buffer;
 
+
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
 			return await DecoratedClient.ReadAsync(buffer, start + 2, count - 2, timeoutInMilliseconds);

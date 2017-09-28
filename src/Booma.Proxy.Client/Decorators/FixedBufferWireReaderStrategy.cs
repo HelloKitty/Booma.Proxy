@@ -22,8 +22,7 @@ namespace Booma.Proxy
 		public FixedBufferWireReaderStrategy([NotNull] byte[] bytes, int count)
 			: base(new MemoryStream(bytes), true)
 		{
-			if(bytes == null)
-				throw new ArgumentNullException(nameof(bytes), $"Provided argument {nameof(bytes)} must not be null.");
+			if(bytes == null) throw new ArgumentNullException(nameof(bytes), $"Provided argument {nameof(bytes)} must not be null.");
 			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
 
 			Count = count;
@@ -32,8 +31,7 @@ namespace Booma.Proxy
 		public FixedBufferWireReaderStrategy([NotNull] Stream stream, int count)
 			: base(stream, false)
 		{
-			if(stream == null)
-				throw new ArgumentNullException(nameof(stream), $"Provided argument {nameof(stream)} must not be null.");
+			if(stream == null) throw new ArgumentNullException(nameof(stream), $"Provided argument {nameof(stream)} must not be null.");
 			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
 
 			Count = count;
