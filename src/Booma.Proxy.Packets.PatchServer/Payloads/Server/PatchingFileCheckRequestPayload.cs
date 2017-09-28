@@ -8,7 +8,7 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Sets the file we are going to update
+	/// Requests a file check for updating
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_FILE_INFO)]
