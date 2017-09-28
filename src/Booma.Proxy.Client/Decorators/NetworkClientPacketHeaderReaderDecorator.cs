@@ -78,7 +78,6 @@ namespace Booma.Proxy
 			if(isHeaderFullyRead)
 				return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
 
-			//If we had left over header bytes we need to read them into the buffer
 			buffer[start] = PacketHeaderBuffer.Value[2];
 			buffer[start + 1] = PacketHeaderBuffer.Value[3];
 			isHeaderFullyRead = true;

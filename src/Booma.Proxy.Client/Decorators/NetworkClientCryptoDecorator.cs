@@ -80,7 +80,7 @@ namespace Booma.Proxy
 
 			//If the above caller requested an invalid count of bytes to read
 			//We should try to correct for it and read afew more bytes.
-			int neededBytes = (count - start) % BlockSize;
+			int neededBytes = count % BlockSize;
 			count += neededBytes;
 
 			//We throw above if we have an invalid size that can't be decrypted once read.
@@ -90,6 +90,9 @@ namespace Booma.Proxy
 
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
+			if(offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
+			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+
 			int neededBytes = bytes.Length % BlockSize;
 
 			if(neededBytes == 0)

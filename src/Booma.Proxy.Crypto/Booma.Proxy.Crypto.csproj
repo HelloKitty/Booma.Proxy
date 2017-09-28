@@ -44,11 +44,13 @@
   <ItemGroup>
     <Compile Include="Blowfish\BlowfishCipher.cs" />
     <Compile Include="Blowfish\BlowfishTable.cs" />
-    <Compile Include="ICryptoServiceProvider.cs" />
+    <Compile Include="Services\ICryptoKeyInitializable.cs" />
+    <Compile Include="Services\ICryptoServiceProvider.cs" />
     <Compile Include="Patch\PatchEncryptionKey.cs" />
     <Compile Include="Patch\PatchEncryptionKeyFactory.cs" />
     <Compile Include="Patch\PatchServerCryptoProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PatchEncryptionPassthroughWithoutKeyDecorator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
