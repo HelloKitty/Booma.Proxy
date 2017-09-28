@@ -53,6 +53,7 @@
     <Compile Include="Payloads\Server\PatchingFileCheckRequestPayload.cs" />
     <Compile Include="Payloads\Server\PatchingInfoRequestDonePayload.cs" />
     <Compile Include="Payloads\Server\PatchingMessagePayload.cs" />
+    <Compile Include="Payloads\Server\PatchingRedirectPayload.cs" />
     <Compile Include="Payloads\Server\PatchingSetDirectoryPayload.cs" />
     <Compile Include="Payloads\Server\PatchingDoneCommandPayload.cs" />
     <Compile Include="Payloads\Server\PatchingFileChunkPayload.cs" />
