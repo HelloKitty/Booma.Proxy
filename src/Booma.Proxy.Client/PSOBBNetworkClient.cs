@@ -62,13 +62,13 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async override Task WriteAsync(byte[] bytes)
+		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
 			if(!InternalTcpClient.Connected)
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before writing any bytes.");
 
 			//We can just write the bytes to the stream if we're connected.
-			await InternalTcpClient.GetStream().WriteAsync(bytes, 0, bytes.Length);
+			await InternalTcpClient.GetStream().WriteAsync(bytes, offset, count);
 		}
 
 		/// <inheritdoc />

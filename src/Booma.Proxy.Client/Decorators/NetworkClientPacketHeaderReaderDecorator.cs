@@ -56,9 +56,9 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public override async Task WriteAsync(byte[] bytes)
+		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
-			await DecoratedClient.WriteAsync(bytes);
+			await DecoratedClient.WriteAsync(bytes, offset, count);
 		}
 
 		/// <inheritdoc />

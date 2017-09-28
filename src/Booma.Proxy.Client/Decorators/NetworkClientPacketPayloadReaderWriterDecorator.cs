@@ -61,23 +61,25 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public override async Task WriteAsync(byte[] bytes)
-		{
-			await DecoratedClient.WriteAsync(bytes);
-		}
-
-		/// <inheritdoc />
 		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
 			return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
 		}
 
+		/// <inheritdoc />
 		public void Write(TPayloadBaseType payload)
 		{
 			//Write the outgoing message, it will internally create the header and it will be serialized
 			WriteAsync(payload).Wait();
 		}
 
+		/// <inheritdoc />
+		public override async Task WriteAsync(byte[] bytes, int offset, int count)
+		{
+			await DecoratedClient.WriteAsync(bytes, offset, count);
+		}
+
+		/// <inheritdoc />
 		public async Task WriteAsync(TPayloadBaseType payload)
 		{
 			//Write the outgoing message, it will internally create the header and it will be serialized

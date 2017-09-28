@@ -40,7 +40,19 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void Write(byte[] bytes)
 		{
-			WriteAsync(bytes).Wait();
+			WriteAsync(bytes, 0, bytes.Length).Wait();
+		}
+
+		/// <inheritdoc />
+		public async Task WriteAsync(byte[] bytes)
+		{
+			await WriteAsync(bytes, 0, bytes.Length);
+		}
+
+		/// <inheritdoc />
+		public void Write(byte[] bytes, int offset, int count)
+		{
+			WriteAsync(bytes, 0, bytes.Length).Wait();
 		}
 
 		/// <inheritdoc />
@@ -68,7 +80,7 @@ namespace Booma.Proxy
 		public abstract Task DisconnectAsync(int delay);
 
 		/// <inheritdoc />
-		public abstract Task WriteAsync(byte[] bytes);
+		public abstract Task WriteAsync(byte[] bytes, int offset, int count);
 
 		/// <inheritdoc />
 		public abstract Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds);

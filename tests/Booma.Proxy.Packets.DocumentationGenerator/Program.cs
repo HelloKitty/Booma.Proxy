@@ -74,11 +74,6 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 			return @"| Packet OpCode Name | OpCode| Sent by Server | Sent by Client |" + "\r\n" + @"| ------------- | ------------- | ------------- | ------------- |";
 		}
 
-		/*| Packet OpCode Name | OpCode| Sent by Server | Sent by Client |
-| ------------- | ------------- | ------------- | ------------- |
-| [SEND_FILE]("link")  | 0x11 | [SomePayloadType]("")  | N/A |
-| Content Cell  | Content Cell  |*/
-
 		public static void InsertLineBreak(StringBuilder builder)
 		{
 			builder.Append("\r\n");
