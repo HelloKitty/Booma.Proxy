@@ -41,7 +41,7 @@ namespace Booma.Proxy
 
 		public byte[] ReadAllBytes()
 		{
-			return ReadBytes((int)(Count - ManagedStream.Position));
+			return ReadBytes(Math.Max(0, (int)(Count - ManagedStream.Position)));
 		}
 
 		public byte ReadByte()
@@ -61,8 +61,8 @@ namespace Booma.Proxy
 
 		public byte[] ReadBytes(int count)
 		{
-			if(Count <= ManagedStream.Position + count)
-				throw new InvalidOperationException("Failed to read a desired bytes from the stream.");
+			if(Count < ManagedStream.Position + count)
+				throw new InvalidOperationException($"Failed to read a desired bytes from the stream. Count: {Count} Position: {ManagedStream.Position} Requested: {count}");
 
 			byte[] bytes = new byte[count];
 
@@ -86,7 +86,7 @@ namespace Booma.Proxy
 
 		public byte[] PeekBytes(int count)
 		{
-			if(Count <= ManagedStream.Position + count)
+			if(Count < ManagedStream.Position + count)
 				throw new InvalidOperationException("Failed to read a desired bytes from the stream.");
 
 			byte[] bytes = ReadBytes(count);
