@@ -7,5 +7,6 @@ namespace Booma.Proxy
 	public enum SendResult
 	{
 		//TODO: Implement
+		Enqueued = 0,
 	}
 }
