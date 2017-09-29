@@ -12,6 +12,9 @@ namespace Booma.Proxy
 	/// </summary>
 	public interface IConnectionService : IDisconnectable, IConnectable
 	{
-
+		/// <summary>
+		/// Indictates if a connection is established.
+		/// </summary>
+		bool isConnected { get; }
 	}
 }
