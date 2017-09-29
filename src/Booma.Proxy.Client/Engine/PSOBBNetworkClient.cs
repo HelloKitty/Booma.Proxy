@@ -73,17 +73,50 @@ namespace Booma.Proxy
 			if(!InternalTcpClient.Connected)
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before reading any bytes.");
 
-			NetworkStream stream = InternalTcpClient.GetStream();
-			int end = count + start;
 			if(timeoutInMilliseconds > 0)
 			{
-				CancellationToken token = new CancellationTokenSource(timeoutInMilliseconds).Token;
-				for(int i = start; i < end;)
-					i += await stream.ReadAsync(buffer, i, end - i, token);
+				await ReadAsync(buffer, start, count, new CancellationTokenSource(timeoutInMilliseconds).Token);
 			}
 			else
+			{
+				NetworkStream stream = InternalTcpClient.GetStream();
+
+				int end = count + start;
 				for(int i = start; i < end;)
 					i += await stream.ReadAsync(buffer, i, end - i);
+			}
+				
+
+			return buffer;
+		}
+
+		/// <inheritdoc />
+		public async override Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
+		{
+			if(!InternalTcpClient.Connected)
+				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before reading any bytes.");
+
+			NetworkStream stream = InternalTcpClient.GetStream();
+
+			//Sockets nor NetworkStreams allow us to cancel
+			//They will block even if you give them the token and then
+			//throw when disposed or closed
+			//So we do a check on the token in the catch to see if it threw
+			//because of a requested cancellation
+			try
+			{
+				int end = count + start;
+				for(int i = start; i < end && !token.IsCancellationRequested;)
+					i += await stream.ReadAsync(buffer, i, end - i, token);
+			}
+			catch(Exception)
+			{
+				if(token.IsCancellationRequested)
+					return buffer;
+				
+				//If it wasn't because of a cancelled token then we should throw
+				throw;
+			}
 
 			return buffer;
 		}

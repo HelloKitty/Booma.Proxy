@@ -89,6 +89,38 @@ namespace Booma.Proxy
 			return DecryptionServiceProvider.Crypt(await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds), start, count);
 		}
 
+		/// <summary>
+		/// Reads asyncronously <see cref="count"/> many bytes from the reader.
+		/// </summary>
+		/// <param name="buffer">The buffer to store the bytes into.</param>
+		/// <param name="start">The start position in the buffer to start reading into.</param>
+		/// <param name="count">How many bytes to read.</param>
+		/// <param name="token">The cancel token to check during the async operation.</param>
+		/// <returns>A future for the read bytes.</returns>
+		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
+		{
+			if(start < 0) throw new ArgumentOutOfRangeException(nameof(start));
+			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count), $"Cannot read less than 0 bytes. Can't read: {count} many bytes");
+
+			//If the above caller requested an invalid count of bytes to read
+			//We should try to correct for it and read afew more bytes.
+			int neededBytes = count % BlockSize;
+			count += neededBytes;
+
+			if(token.IsCancellationRequested)
+				return Enumerable.Empty<byte>().ToArray();
+
+			byte[] readBytes = await DecoratedClient.ReadAsync(buffer, start, count, token);
+
+			//Check cancel again, we want to fail quick
+			if(token.IsCancellationRequested)
+				return Enumerable.Empty<byte>().ToArray();
+
+			//We throw above if we have an invalid size that can't be decrypted once read.
+			//That means callers will need to be careful in what they request to read.
+			return DecryptionServiceProvider.Crypt(readBytes, start, count);
+		}
+
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
 			if(offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));

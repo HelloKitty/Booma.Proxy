@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Booma.Proxy
@@ -84,6 +85,16 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public abstract Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds);
+
+		/// <summary>
+		/// Reads asyncronously <see cref="count"/> many bytes from the reader.
+		/// </summary>
+		/// <param name="buffer">The buffer to store the bytes into.</param>
+		/// <param name="start">The start position in the buffer to start reading into.</param>
+		/// <param name="count">How many bytes to read.</param>
+		/// <param name="token">The cancel token to check during the async operation.</param>
+		/// <returns>A future for the read bytes.</returns>
+		public abstract Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token);
 
 		#region IDisposable Support
 		private bool disposedValue = false; // To detect redundant calls

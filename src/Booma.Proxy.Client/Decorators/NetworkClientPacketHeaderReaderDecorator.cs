@@ -87,10 +87,29 @@ namespace Booma.Proxy
 			if(count == 2)
 				return buffer;
 
-
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
 			return await DecoratedClient.ReadAsync(buffer, start + 2, count - 2, timeoutInMilliseconds);
+		}
+
+		//TODO: This is copy-pasted from above, to avoid creating tokens when we don't need them. Should we refactor?
+		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
+		{
+			//Check if we have leftover header bytes
+			if(isHeaderFullyRead)
+				return await DecoratedClient.ReadAsync(buffer, start, count, token);
+
+			buffer[start] = PacketHeaderBuffer[2];
+			buffer[start + 1] = PacketHeaderBuffer[3];
+			isHeaderFullyRead = true;
+
+			//If we only wanted 2 bytes then we need to get out now
+			if(count == 2)
+				return buffer;
+
+			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
+			//then we should offset by 2 and read 2 less bytes
+			return await DecoratedClient.ReadAsync(buffer, start + 2, count - 2, token);
 		}
 
 		/// <inheritdoc />
@@ -109,6 +128,33 @@ namespace Booma.Proxy
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
 			await ReadAsync(PacketHeaderBuffer, 0, 4, 0); //TODO: How long should the timeout be if any?
+
+			//Since we only deserialize with 2 bytes the header is not fully read
+			//meaning 2 bytes including the opcode will be left in the buffer
+			//that need to be read before any need data.
+			isHeaderFullyRead = false;
+
+			//This will deserialize
+			return Serializer.Deserialize<PSOBBPacketHeader>(PacketHeaderBuffer);
+		}
+
+		public async Task<IPacketHeader> ReadHeaderAsync(CancellationToken token)
+		{
+			if(!isHeaderFullyRead)
+				throw new InvalidOperationException("Cannot read any more headers until the buffered bytes in the header buffer has been read.");
+
+			//If the token is canceled just return null;
+			if(token.IsCancellationRequested)
+				return null;
+
+			//The header we know is 4 bytes.
+			//If we had access to the stream we could wrap it in a reader and use it
+			//without knowing the size. Since we don't have access we must manually read
+			await ReadAsync(PacketHeaderBuffer, 0, 4, token); //TODO: How long should the timeout be if any?
+
+			//If the token is canceled just return null;
+			if(token.IsCancellationRequested)
+				return null;
 
 			//Since we only deserialize with 2 bytes the header is not fully read
 			//meaning 2 bytes including the opcode will be left in the buffer

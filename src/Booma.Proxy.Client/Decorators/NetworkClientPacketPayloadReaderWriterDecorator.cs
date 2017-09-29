@@ -98,11 +98,39 @@ namespace Booma.Proxy
 		public async Task<PSOBBNetworkIncomingMessage<TReadPayloadBaseType>> ReadAsync()
 		{
 			//Read the header first
-			IPacketHeader header = DecoratedClient.ReadHeader();
+			IPacketHeader header = await DecoratedClient.ReadHeaderAsync();
 
 			//We need to read enough bytes to deserialize the payload
 			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, 0); //TODO: Should we timeout?
 
+			TReadPayloadBaseType payload = Serializer.Deserialize<TReadPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer, header.PayloadSize));
+
+			return new PSOBBNetworkIncomingMessage<TReadPayloadBaseType>(header, payload);
+		}
+
+		/// <inheritdoc />
+		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
+		{
+			return await DecoratedClient.ReadAsync(buffer, start, count, token);
+		}
+
+		public async Task<PSOBBNetworkIncomingMessage<TReadPayloadBaseType>> ReadAsync(CancellationToken token)
+		{
+			//Read the header first
+			IPacketHeader header = await DecoratedClient.ReadHeaderAsync(token);
+
+			//if was canceled the header reading probably returned null anyway
+			if(token.IsCancellationRequested)
+				return null;
+
+			//We need to read enough bytes to deserialize the payload
+			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, token); //TODO: Should we timeout?
+
+			//If the token was canceled then the buffer isn't filled and we can't make a message
+			if(token.IsCancellationRequested)
+				return null;
+
+			//Otherwise we're good
 			TReadPayloadBaseType payload = Serializer.Deserialize<TReadPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer, header.PayloadSize));
 
 			return new PSOBBNetworkIncomingMessage<TReadPayloadBaseType>(header, payload);

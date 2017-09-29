@@ -109,7 +109,15 @@ namespace Booma.Proxy
 			CancellationToken incomingCancellationToken = CreateNewManagedCancellationTokenSource().Token;
 
 			while(!incomingCancellationToken.IsCancellationRequested)
-				await IncomingMessageQueue.EnqueueAsync(await UnmanagedClient.ReadAsync());
+			{
+				PSOBBNetworkIncomingMessage<TPayloadReadType> message = await UnmanagedClient.ReadAsync(incomingCancellationToken);
+
+				//if have to check the token again because the message may be null and may have been canceled mid-read
+				if(incomingCancellationToken.IsCancellationRequested)
+					continue;
+
+				await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken);
+			}
 
 			//TODO: Should we do anything after the dispatch has stopped?
 		}
@@ -132,6 +140,7 @@ namespace Booma.Proxy
 
 		private void StopAllNetworkTasks()
 		{
+			//TODO: Should we remove potential message/payloads left in the buffer?
 			Console.BackgroundColor = ConsoleColor.Red;
 			Console.WriteLine("Stopping network tasks");
 			Console.BackgroundColor = ConsoleColor.Black;
