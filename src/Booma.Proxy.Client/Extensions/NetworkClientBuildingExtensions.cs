@@ -11,6 +11,25 @@ namespace Booma.Proxy
 	public static class NetworkClientBuildingExtensions
 	{
 		/// <summary>
+		/// Creates a managed client adapter around the provided <see cref="client"/> providing a high level API
+		/// for consumption based on this simplified slimed down <see cref="IManagedNetworkClient{TPayloadWriteType,TPayloadReadType}"/>
+		/// interface.
+		/// </summary>
+		/// <typeparam name="TReadPayloadBaseType">The read type payload (inferred)</typeparam>
+		/// <typeparam name="TWritePayloadBaseType">The write type payload (inferred)</typeparam>
+		/// <param name="client">The client to adapt.</param>
+		/// <returns>A new managed client.</returns>
+		public static IManagedNetworkClient<TWritePayloadBaseType, TReadPayloadBaseType> AsManaged<TReadPayloadBaseType, TWritePayloadBaseType>([NotNull] this INetworkMessageClient<TReadPayloadBaseType, TWritePayloadBaseType> client) 
+			where TWritePayloadBaseType : class 
+			where TReadPayloadBaseType : class
+		{
+			if(client == null) throw new ArgumentNullException(nameof(client));
+
+			//Adapt the provided network client to the managed network client interfaces.
+			return new ManagedPSOBBNetworkClient<INetworkMessageClient<TReadPayloadBaseType, TWritePayloadBaseType>, TWritePayloadBaseType, TReadPayloadBaseType>(client);
+		}
+
+		/// <summary>
 		/// Enables crypt handling for the client.
 		/// </summary>
 		/// <typeparam name="TNetworkClientType">The client type.</typeparam>
