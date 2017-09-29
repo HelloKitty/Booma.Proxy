@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// <typeparam name="TReadPayloadType"></typeparam>
 	/// <typeparam name="TWritePayloadType"></typeparam>
 	public interface INetworkMessageClient<TReadPayloadType, TWritePayloadType> : 
-		IPacketPayloadReadable<TReadPayloadType>, IPacketPayloadWritable<TWritePayloadType>, IConnectable
+		IPacketPayloadReadable<TReadPayloadType>, IPacketPayloadWritable<TWritePayloadType>, IConnectable, IDisconnectable
 		where TReadPayloadType : class
 		where TWritePayloadType : class
 	{

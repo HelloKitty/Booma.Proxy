@@ -46,6 +46,7 @@
     <Compile Include="API\NetworkClient\IBytesWrittable.cs" />
     <Compile Include="API\NetworkClient\IConnectable.cs" />
     <Compile Include="API\NetworkClient\IDisconnectable.cs" />
+    <Compile Include="API\NetworkClient\IManagedNetworkClient.cs" />
     <Compile Include="API\NetworkClient\INetworkMessageClient.cs" />
     <Compile Include="API\NetworkClient\IPacketHeaderReadable.cs" />
     <Compile Include="API\NetworkClient\IPacketPayloadReadable.cs" />
