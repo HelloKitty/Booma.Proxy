@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\Message\IClientMessageContextFactory.cs" />
+    <Compile Include="API\Message\INetworkMessageProducer.cs" />
     <Compile Include="API\NetworkClient\IBytesReadable.cs" />
     <Compile Include="API\NetworkClient\IBytesWrittable.cs" />
     <Compile Include="API\NetworkClient\IConnectable.cs" />
