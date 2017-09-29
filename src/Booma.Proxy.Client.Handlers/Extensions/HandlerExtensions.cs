@@ -11,24 +11,23 @@ namespace Booma.Proxy
 	/// </summary>
 	public static class HandlerExtensions
 	{
+
 		/// <summary>
-		/// Creates a new <see cref="IClientMessageHandler{TPayloadBaseType}"/> around the provided <see cref="handler"/>.
-		/// This greatly simplifies the Type, interactions with it and reduces the generic type arguments of the type without
-		/// reducing its usability. Provides a way to check if a particular message can be handled before dispatching it.
+		/// Deocrates the payload handler in a generalized message handler with try semantics.
+		/// This handler will try to consume messages and if not will indicate that the message wasn't consumed.
+		/// This allows callers to try to handle a message that they don't know the payload type of and look for another consumer
+		/// if it fails.
 		/// </summary>
-		/// <typeparam name="TPayloadType">The payload type.</typeparam>
-		/// <typeparam name="TPayloadBaseType">The base payload type.</typeparam>
-		/// <param name="handler">The handler to wrap.</param>
-		/// <returns>A new client message handler with Try semantics.</returns>
-		public static IClientMessageHandler<TPayloadBaseType> AsTryMessageHandler<TPayloadType, TPayloadBaseType>(this IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType> handler)
-			where TPayloadBaseType : class
-			where TPayloadType : class, TPayloadBaseType
+		/// <typeparam name="TPayloadType">The payload type (likely inferred)</typeparam>
+		/// <param name="handler">The non-null handler to decorate.</param>
+		/// <returns>A new generalized message handler with try semantics.</returns>
+		public static IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient> AsTryHandler<TPayloadType>(this IClientPayloadSpecificMessageHandler<TPayloadType, PSOBBPatchPacketPayloadClient> handler)
+			where TPayloadType : PSOBBPatchPacketPayloadServer
 		{
 			if(handler == null) throw new ArgumentNullException(nameof(handler));
 
-			//Just decorate the handler in a simplier more generic handler that indicates
-			//if it can be handled or not.
-			return new TrySemanticsBasedOnTypeClientMessageHandler<TPayloadType, TPayloadBaseType>(handler);
+			//We decorate the handler in try semantics
+			return new TrySemanticsBasedOnTypeClientMessageHandler<PSOBBPatchPacketPayloadServer,PSOBBPatchPacketPayloadClient,TPayloadType>(handler);
 		}
 	}
 }

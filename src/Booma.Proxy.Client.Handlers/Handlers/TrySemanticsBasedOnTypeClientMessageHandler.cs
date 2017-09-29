@@ -11,18 +11,19 @@ namespace Booma.Proxy
 	/// It can indicate if the message is consumed/consumable.
 	/// </summary>
 	/// <typeparam name="TPayloadBaseType"></typeparam>
-	public sealed class TrySemanticsBasedOnTypeClientMessageHandler<TPayloadType, TPayloadBaseType> : IClientMessageHandler<TPayloadBaseType>
-		where TPayloadBaseType : class
-		where TPayloadType : class, TPayloadBaseType
+	public sealed class TrySemanticsBasedOnTypeClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType, TPayloadType> : IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>
+		where TIncomingPayloadType : class
+		where TPayloadType : class, TIncomingPayloadType
+		where TOutgoingPayloadType : class
 	{
 		/// <summary>
 		/// Decorated payload handler that can handle
 		/// payloads of type <typeparamref name="TPayloadType"/>.
 		/// </summary>
-		private IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType> DecoratedPayloadHandler { get; }
+		private IClientPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType> DecoratedPayloadHandler { get; }
 
 		/// <inheritdoc />
-		public TrySemanticsBasedOnTypeClientMessageHandler(IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType> decoratedPayloadHandler)
+		public TrySemanticsBasedOnTypeClientMessageHandler(IClientPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType> decoratedPayloadHandler)
 		{
 			if(decoratedPayloadHandler == null) throw new ArgumentNullException(nameof(decoratedPayloadHandler));
 
@@ -37,7 +38,7 @@ namespace Booma.Proxy
 		/// <param name="context">The context of the message.</param>
 		/// <param name="message">The message.</param>
 		/// <returns>True if the message has been consumed.</returns>
-		public async Task<bool> TryHandleMessage(IClientMessageContext<TPayloadBaseType> context, PSOBBNetworkIncomingMessage<TPayloadBaseType> message)
+		public async Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadType> message)
 		{
 			if(context == null) throw new ArgumentNullException(nameof(context));
 			if(message == null) throw new ArgumentNullException(nameof(message));

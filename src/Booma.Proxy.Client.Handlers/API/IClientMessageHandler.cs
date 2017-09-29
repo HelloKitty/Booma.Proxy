@@ -9,9 +9,10 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Contract for types that provide message handling logic.
 	/// </summary>
-	/// <typeparam name="TPayloadBaseType"></typeparam>
-	public interface IClientMessageHandler<TPayloadBaseType>
-		where TPayloadBaseType : class
+	/// <typeparam name="TIncomingPayloadType"></typeparam>
+	public interface IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>
+		where TIncomingPayloadType : class
+		where TOutgoingPayloadType : class
 	{
 		/// <summary>
 		/// Tries to handle the provided <see cref="message"/>
@@ -23,6 +24,6 @@ namespace Booma.Proxy
 		/// True indicates that the message was handled and consumed. 
 		/// False indicates that the handler couldn't handle the message.
 		/// </returns>
-		Task<bool> TryHandleMessage(IClientMessageContext<TPayloadBaseType> context, PSOBBNetworkIncomingMessage<TPayloadBaseType> message);
+		Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadType> message);
 	}
 }

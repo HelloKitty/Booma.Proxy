@@ -18,7 +18,7 @@ namespace Booma.Proxy
 		/// The task will complete when a network message is available.
 		/// </summary>
 		/// <returns>Returns a future that will complete when a message is available.</returns>
-		Task<PSOBBNetworkIncomingMessage<TPayloadBaseType>> ProduceAsync();
+		Task<PSOBBNetworkIncomingMessage<TPayloadBaseType>> ReadMessageAsync();
 
 		//TODO: Do we need a syncronous version?
 	}

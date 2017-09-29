@@ -12,9 +12,9 @@ namespace Booma.Proxy
 	/// </summary>
 	/// <typeparam name="TPayloadType">The type of payload that is handled.</typeparam>
 	/// <typeparam name="TPayloadBaseType">The base type of the payload.</typeparam>
-	public interface IClientPayloadSpecificMessageHandler<TPayloadType, TPayloadBaseType>
-		where TPayloadBaseType : class
-		where TPayloadType : class, TPayloadBaseType
+	public interface IClientPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType>
+		where TOutgoingPayloadType : class
+		where TPayloadType : class
 	{
 		/// <summary>
 		/// Handles the message with <see cref="context"/> provided and correctly typed
@@ -22,6 +22,6 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="context">The message context.</param>
 		/// <param name="payload">The payload to handle.</param>
-		Task HandleMessage(IClientMessageContext<TPayloadBaseType> context, TPayloadType payload);
+		Task HandleMessage(IClientMessageContext<TOutgoingPayloadType> context, TPayloadType payload);
 	}
 }

@@ -69,7 +69,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async Task<PSOBBNetworkIncomingMessage<TPayloadReadType>> ProduceAsync()
+		public async Task<PSOBBNetworkIncomingMessage<TPayloadReadType>> ReadMessageAsync()
 		{
 			return await IncomingMessageQueue.DequeueAsync();
 		}
