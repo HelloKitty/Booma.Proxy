@@ -4,12 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{091367E6-43AD-4274-B534-85B2970B750E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Booma.Proxy.TestClient</RootNamespace>
-    <AssemblyName>Booma.Proxy.TestClient</AssemblyName>
+    <ProjectGuid>{F3A22529-F7FE-4A9F-87AA-E2F3AAEF1F17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Booma.Proxy</RootNamespace>
+    <AssemblyName>Launcher</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -32,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.6.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
@@ -53,6 +58,9 @@
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="Reflect.Extent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reflect.Extent.1.0.7\lib\net46\Reflect.Extent.dll</HintPath>
     </Reference>
@@ -60,57 +68,108 @@
       <HintPath>..\..\packages\Reinterpret.Net.2.0.2\lib\net46\Reinterpret.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Handlers\PatchingLoginReadyMessageHandler.cs" />
+    <Compile Include="Handlers\PatchMessageMessageHandler.cs" />
+    <Compile Include="Handlers\PatchWelcomeMessageHandler.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
-      <Project>{e29711cc-3abb-49b4-b010-3a2f72de5491}</Project>
+    <Resource Include="Resources\BoomaPSOBB_Title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
+      <Project>{E29711CC-3ABB-49B4-B010-3A2F72DE5491}</Project>
       <Name>Booma.Proxy.Client.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj">
+    <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj">
       <Project>{87bdba8d-0992-48ef-acd7-bad3018c46d7}</Project>
       <Name>Booma.Proxy.Client.Handlers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client\Booma.Proxy.Client.csproj">
+    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj">
       <Project>{5e877c0a-d11c-4683-91f4-b3088d44bc57}</Project>
       <Name>Booma.Proxy.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
-      <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
+    <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
+      <Project>{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}</Project>
       <Name>Booma.Proxy.Crypto</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
-      <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
+    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
+      <Project>{1A775854-1484-45FB-B465-1967A971646C}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
-      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
+    <ProjectReference Include="..\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
+      <Project>{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}</Project>
       <Name>Booma.Proxy.Packets.LoginServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj">
-      <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
+    <ProjectReference Include="..\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj">
+      <Project>{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A}</Project>
       <Name>Booma.Proxy.Packets.PatchServer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
