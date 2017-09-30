@@ -9,8 +9,7 @@ using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
-	public sealed class PatchMessageMessageHandler : IClientPayloadSpecificMessageHandler<PatchingMessagePayload, PSOBBPatchPacketPayloadClient>,
-		INotifyPropertyChanged
+	public sealed class PatchMessageMessageHandler : IClientPayloadSpecificMessageHandler<PatchingMessagePayload, PSOBBPatchPacketPayloadClient>, INotifyPropertyChanged
 	{
 		private string _patchNotesText;
 
@@ -25,7 +24,7 @@ namespace Booma.Proxy
 			set
 			{
 				_patchNotesText = value;
-				OnPropertyChanged(nameof(PatchNotesText));
+				OnPropertyChanged();
 			}
 		}
 

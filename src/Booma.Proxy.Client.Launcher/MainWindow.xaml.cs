@@ -59,9 +59,14 @@ namespace Booma.Proxy.Client.Launcher
 			//Patch welcome message
 			builder.RegisterHandler<PatchWelcomeMessageHandler, PatchingWelcomePayload>();
 			builder.RegisterHandler<PatchingLoginReadyMessageHandler, PatchingReadyForLoginRequestPayload>();
-			builder.RegisterHandler<PatchMessageMessageHandler, PatchingMessagePayload>(h =>
+			builder.RegisterHandler<PatchingRedirectionMessageHandler, PatchingRedirectPayload>();
+			builder.RegisterHandler<PatchingInfoDoneMessageHandler, PatchingInfoRequestDonePayload>(async h =>
 			{
-				Dispatcher.Invoke(() => PatchNotesData.DataContext = h);
+				await Dispatcher.InvokeAsync(() => PlayButton.DataContext = h);
+			});
+			builder.RegisterHandler<PatchMessageMessageHandler, PatchingMessagePayload>(async h =>
+			{
+				await Dispatcher.InvokeAsync(() => PatchNotesData.DataContext = h);
 			});
 
 			IContainer container = builder.Build();
@@ -76,6 +81,8 @@ namespace Booma.Proxy.Client.Launcher
 			while(client.isConnected)
 			{
 				PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message = await client.ReadMessageAsync();
+
+				Console.WriteLine($"Recieved {message.Payload?.GetType().Name}");
 
 				foreach(var h in Handlers)
 				{

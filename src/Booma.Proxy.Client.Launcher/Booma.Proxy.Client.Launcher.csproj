@@ -103,6 +103,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Extensions\HandlerRegisterationExtensions.cs" />
+    <Compile Include="Handlers\PatchingInfoDoneMessageHandler.cs" />
     <Compile Include="Handlers\PatchingLoginReadyMessageHandler.cs" />
     <Compile Include="Handlers\PatchingRedirectionMessageHandler.cs" />
     <Compile Include="Handlers\PatchMessageMessageHandler.cs" />
