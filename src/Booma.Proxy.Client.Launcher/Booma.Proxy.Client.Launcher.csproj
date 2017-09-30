@@ -102,7 +102,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\HandlerRegisterationExtensions.cs" />
     <Compile Include="Handlers\PatchingLoginReadyMessageHandler.cs" />
+    <Compile Include="Handlers\PatchingRedirectionMessageHandler.cs" />
     <Compile Include="Handlers\PatchMessageMessageHandler.cs" />
     <Compile Include="Handlers\PatchWelcomeMessageHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">

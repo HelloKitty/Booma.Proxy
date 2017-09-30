@@ -57,30 +57,12 @@ namespace Booma.Proxy.Client.Launcher
 				.As<IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer>>();
 
 			//Patch welcome message
-			builder.RegisterType<PatchWelcomeMessageHandler>()
-				.SingleInstance();
-
-			builder.Register(i => i.Resolve<PatchWelcomeMessageHandler>().AsTryHandler())
-				.As<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
-			
-			//Patch login ready
-			builder.RegisterType<PatchingLoginReadyMessageHandler>()
-				.SingleInstance();
-
-			builder.Register(i => i.Resolve<PatchingLoginReadyMessageHandler>().AsTryHandler())
-				.As<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
-
-			//patch message
-			builder.RegisterType<PatchMessageMessageHandler>()
-				.SingleInstance();
-
-			builder.Register(i =>
-				{
-					PatchMessageMessageHandler messageHandler = i.Resolve<PatchMessageMessageHandler>();
-					Dispatcher.Invoke(() => PatchNotesData.DataContext = messageHandler);
-					return messageHandler.AsTryHandler();
-				})
-				.As<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
+			builder.RegisterHandler<PatchWelcomeMessageHandler, PatchingWelcomePayload>();
+			builder.RegisterHandler<PatchingLoginReadyMessageHandler, PatchingReadyForLoginRequestPayload>();
+			builder.RegisterHandler<PatchMessageMessageHandler, PatchingMessagePayload>(h =>
+			{
+				Dispatcher.Invoke(() => PatchNotesData.DataContext = h);
+			});
 
 			IContainer container = builder.Build();
 
@@ -88,8 +70,6 @@ namespace Booma.Proxy.Client.Launcher
 				container.Resolve<IEnumerable<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>>();
 
 			IClientMessageContextFactory MessageContextFactory = new DefaultMessageContextFactory();
-
-			
 
 			await client.ConnectAsync("[redacted]", 11000);
 
