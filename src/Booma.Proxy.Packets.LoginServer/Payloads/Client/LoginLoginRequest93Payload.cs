@@ -11,33 +11,70 @@ namespace Booma.Proxy
 	//Syl: LOGIN_93_TYPE https://github.com/Sylverant/login_server/blob/master/src/bblogin.c#L121
 	//Teth: https://github.com/justnoxx/psobb-tethealla/blob/master/login_server/login_server.c#L4537 I think?
 	[WireDataContract]
-	[LoginClientPacketPayload(0x93)]
+	[LoginClientPacketPayload(LoginNetworkOperationCode.LOGIN_93_TYPE)]
 	public sealed class LoginLoginRequest93Payload : PSOBBLoginPacketPayloadClient
 	{
+		//TODO: What is this?
+		[WireMember(1)]
+		private int Tag { get; }
+
+		/// <summary>
+		/// Unused
+		/// </summary>
+		[WireMember(2)]
+		private uint GuildCardId { get; }
+
 		/// <summary>
 		/// Client version moniker.
 		/// </summary>
-		[WireMember(2)]
+		[WireMember(3)]
 		public ushort ClientVersion { get; }
+
+		/// <summary>
+		/// Unknown bytes.
+		/// </summary>
+		[KnownSize(6)]
+		[WireMember(4)]
+		private byte[] unk2 { get; } = new byte[6];
+
+		/// <summary>
+		/// Unused
+		/// </summary>
+		[WireMember(5)]
+		private uint TeamId { get; }
 
 		/// <summary>
 		/// The username to authenticate with.
 		/// </summary>
 		[KnownSize(16)] //username can be 15 char ASCII string with a null terminator
-		[WireMember(5)]
+		[WireMember(6)]
 		public string UserName { get; }
+
+		/// <summary>
+		/// Unused
+		/// </summary>
+		[KnownSize(32)]
+		[WireMember(7)]
+		private byte[] unused1 { get; } = new byte[32];
 
 		/// <summary>
 		/// The password to authenticate with.
 		/// </summary>
 		[KnownSize(16)] //password can be 15 char ASCII string with a null terminator
-		[WireMember(7)]
+		[WireMember(8)]
 		public string Password { get; }
+
+		/// <summary>
+		/// Unusued
+		/// </summary>
+		[KnownSize(40)]
+		[WireMember(9)]
+		private byte[] unused2 { get; } = new byte[40];
 
 		/// <summary>
 		/// Verification/security information the client is using for the session.
 		/// </summary>
-		[WireMember(9)]
+		[WireMember(10)]
 		public ClientVerificationData ClientData { get; }
 
 		public LoginLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
@@ -62,38 +99,8 @@ namespace Booma.Proxy
 		}
 
 		#region UNUSED/UNKNOWN
-		/// <summary>
-		/// Unused
-		/// </summary>
-		[WireMember(1)]
-		private uint GuildCardId { get; }
 
-		/// <summary>
-		/// Unknown bytes.
-		/// </summary>
-		[KnownSize(6)]
-		[WireMember(3)]
-		private byte[] unk2 { get; } = new byte[6];
 
-		/// <summary>
-		/// Unused
-		/// </summary>
-		[WireMember(4)]
-		private uint TeamId { get; }
-
-		/// <summary>
-		/// Unused
-		/// </summary>
-		[KnownSize(32)]
-		[WireMember(6)]
-		private byte[] unused1 { get; } = new byte[32];
-
-		/// <summary>
-		/// Unusued
-		/// </summary>
-		[KnownSize(40)]
-		[WireMember(8)]
-		private byte[] unused2 { get; } = new byte[40];
 		#endregion
 	}
 }
