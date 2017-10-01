@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		/// for the login server crypto.
 		/// </summary>
 		[KnownSize(48)]
-		[WireMember(2)]
+		[WireMember(3)]
 		public byte[] ClientVector { get; }
 
 		//Serializer ctor
