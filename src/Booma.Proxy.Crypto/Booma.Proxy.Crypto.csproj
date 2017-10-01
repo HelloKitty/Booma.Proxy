@@ -42,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blowfish\BlowfishCipher.cs" />
+    <Compile Include="Blowfish\BlowfishEncryptionService.cs" />
+    <Compile Include="Blowfish\BlowfishDecryptionService.cs" />
     <Compile Include="Blowfish\BlowfishTable.cs" />
     <Compile Include="Services\ICryptoKeyInitializable.cs" />
     <Compile Include="Services\ICryptoServiceProvider.cs" />
