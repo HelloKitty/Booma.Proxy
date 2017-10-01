@@ -51,7 +51,7 @@
     <Compile Include="Patch\PatchServerCryptoProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IFullCryptoInitializationService.cs" />
-    <Compile Include="Services\PatchEncryptionLazyWithoutKeyDecorator.cs" />
+    <Compile Include="Services\EncryptionLazyWithoutKeyDecorator.cs" />
     <Compile Include="Services\SeperateAggregateCryptoInitializationService.cs" />
   </ItemGroup>
   <ItemGroup>

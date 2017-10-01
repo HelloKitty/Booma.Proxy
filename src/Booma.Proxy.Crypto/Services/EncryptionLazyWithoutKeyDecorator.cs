@@ -12,8 +12,11 @@ namespace Booma.Proxy
 	/// Decorator for a cryptoservice that provides lazy
 	/// functionality for it. Doesn't crypt until a key is set.
 	/// </summary>
-	public sealed class PatchEncryptionLazyWithoutKeyDecorator : ICryptoServiceProvider, ICryptoKeyInitializable<uint>
+	public sealed class EncryptionLazyWithoutKeyDecorator<TVectorType> : ICryptoServiceProvider, ICryptoKeyInitializable<TVectorType>
 	{
+
+		public Func<TVectorType, ICryptoServiceProvider> CreationFunc { get; }
+
 		/// <summary>
 		/// The decorated crypto-provider.
 		/// </summary>
@@ -22,18 +25,21 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The initializaiton vector to use for creating the crypto service
 		/// </summary>
-		private uint InitializationVector { get; set; }
+		private TVectorType InitializationVector { get; set; }
 
 		/// <inheritdoc />
-		public PatchEncryptionLazyWithoutKeyDecorator()
+		public EncryptionLazyWithoutKeyDecorator(Func<TVectorType, ICryptoServiceProvider> creationFunc)
 		{
+			if(creationFunc == null) throw new ArgumentNullException(nameof(creationFunc));
+
+			CreationFunc = creationFunc;
 			CryptoProvider = new Lazy<ICryptoServiceProvider>(InitializeCryptoProvider, true);
 		}
 
 		private ICryptoServiceProvider InitializeCryptoProvider()
 		{
 			//Create from the init key. We expect this to be set before the lazy calls this
-			return new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(InitializationVector));
+			return CreationFunc(InitializationVector);
 		}
 
 		/// <inheritdoc />
@@ -55,7 +61,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public void Initialize(uint key)
+		public void Initialize(TVectorType key)
 		{
 			InitializationVector = key;
 
@@ -68,7 +74,6 @@ namespace Booma.Proxy
 		public void Uninitialize()
 		{
 			//Uninitialization is just creating a new lazy uninit crypto provider
-			InitializationVector = 0;
 			CryptoProvider = new Lazy<ICryptoServiceProvider>(InitializeCryptoProvider, true);
 		}
 	}
