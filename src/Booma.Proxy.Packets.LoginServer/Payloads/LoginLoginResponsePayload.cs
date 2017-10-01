@@ -32,8 +32,8 @@ namespace Booma.Proxy
 	//Syl sent: BB_SECURITY_TYPE https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/login_packets.c#L319
 	//Syl struct: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L373
 	[WireDataContract]
-	[LoginServerPacketPayload(0xE6)]
-	public sealed class LoginResponsePayload : PSOBBLoginPacketPayloadServer, IResponseCodePayload<LoginResponseCode>, IResponseSucceedable
+	[LoginServerPacketPayload(LoginNetworkOperationCode.BB_SECURITY_TYPE)]
+	public sealed class LoginLoginResponsePayload : PSOBBLoginPacketPayloadServer, IResponseCodePayload<LoginResponseCode>, IResponseSucceedable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -79,7 +79,7 @@ namespace Booma.Proxy
 		/// <param name="guildCard">The guild card of the account.</param>
 		/// <param name="teamId">The team id the account is asscoiated with.</param>
 		/// <param name="securityData">The security data (?)</param>
-		public LoginResponsePayload(uint guildCard, uint teamId, byte[] securityData)
+		public LoginLoginResponsePayload(uint guildCard, uint teamId, byte[] securityData)
 		{
 			if(securityData == null) throw new ArgumentNullException(nameof(securityData));
 			if(securityData.Length != 40) throw new ArgumentException("Security data must be 40 bytes. Use fail ctor if you want to not provide the data.", nameof(securityData));
@@ -94,7 +94,7 @@ namespace Booma.Proxy
 		/// Creates a failed login response with a code other than <see cref="LoginResponseCode"/> OK.
 		/// </summary>
 		/// <param name="responseCode">The response code to send.</param>
-		public LoginResponsePayload(LoginResponseCode responseCode)
+		public LoginLoginResponsePayload(LoginResponseCode responseCode)
 		{
 			if(!Enum.IsDefined(typeof(LoginResponseCode), responseCode)) throw new InvalidEnumArgumentException(nameof(responseCode), (int)responseCode, typeof(LoginResponseCode));
 			if(responseCode == LoginResponseCode.LOGIN_93BB_OK) throw new ArgumentException($"Cannot create failure response with Code: {responseCode}", nameof(responseCode));
@@ -104,7 +104,7 @@ namespace Booma.Proxy
 			ResponseCode = responseCode;
 		}
 
-		private LoginResponsePayload()
+		private LoginLoginResponsePayload()
 		{
 			
 		}

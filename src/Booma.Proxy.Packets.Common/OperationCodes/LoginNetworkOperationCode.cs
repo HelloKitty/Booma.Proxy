@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public enum LoginNetworkOperationCode
+	/// <summary>
+	/// Enumeration of all the login server
+	/// operation codes.
+	/// </summary>
+	public enum LoginNetworkOperationCode : short
 	{
-		BB_SECURITY_TYPE                = 0x00E6
+		//TODO: Format
+		BB_SECURITY_TYPE                = 0x00E6,
+		BB_WELCOME_TYPE                = 0x0003,
+		REDIRECT_TYPE                  = 0x0019,
+		LOGIN_93_TYPE                  = 0x0093
 	}
 }

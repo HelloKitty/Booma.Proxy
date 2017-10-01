@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	//Teth: https://github.com/justnoxx/psobb-tethealla/blob/master/login_server/login_server.c#L4537 I think?
 	[WireDataContract]
 	[LoginClientPacketPayload(0x93)]
-	public sealed class LoginRequest93Payload : PSOBBLoginPacketPayloadClient
+	public sealed class LoginLoginRequest93Payload : PSOBBLoginPacketPayloadClient
 	{
 		/// <summary>
 		/// Client version moniker.
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		[WireMember(9)]
 		public ClientVerificationData ClientData { get; }
 
-		public LoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
+		public LoginLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
@@ -56,7 +56,7 @@ namespace Booma.Proxy
 		}
 
 		//Serializer ctor
-		protected LoginRequest93Payload()
+		protected LoginLoginRequest93Payload()
 		{
 
 		}

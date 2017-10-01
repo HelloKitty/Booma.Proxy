@@ -15,7 +15,13 @@ namespace Booma.Proxy
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 	public sealed class LoginServerPacketPayloadAttribute : WireDataContractBaseLinkAttribute
 	{
-		public LoginServerPacketPayloadAttribute(int index) 
+		public LoginServerPacketPayloadAttribute(LoginNetworkOperationCode opCode) 
+			: base((int)opCode, typeof(PSOBBLoginPacketPayloadServer))
+		{
+
+		}
+
+		internal LoginServerPacketPayloadAttribute(int index)
 			: base(index, typeof(PSOBBLoginPacketPayloadServer))
 		{
 
