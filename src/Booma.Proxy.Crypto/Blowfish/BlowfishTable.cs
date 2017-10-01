@@ -22,7 +22,7 @@
 
 		static BlowfishTable()
 		{
-			for(int i = 0; i < initialS.Length; i++)
+			for(int i = 0; i < s.Length; i++)
 			{
 				s[i] = new uint[256];
 
