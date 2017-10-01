@@ -54,10 +54,11 @@
   <ItemGroup>
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
-    <Compile Include="Payloads\LoginConnectionRedirectPayload.cs" />
-    <Compile Include="Payloads\LoginLoginRequest93Payload.cs" />
+    <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
+    <Compile Include="Payloads\Client\LoginLoginRequest93Payload.cs" />
+    <Compile Include="Payloads\Server\LoginWelcomePayload.cs" />
     <Compile Include="ResponseCodes\LoginResponseCode.cs" />
-    <Compile Include="Payloads\LoginLoginResponsePayload.cs" />
+    <Compile Include="Payloads\Server\LoginLoginResponsePayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
