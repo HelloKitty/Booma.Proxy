@@ -28,8 +28,8 @@ namespace Booma.Proxy
 		/// Copyright message that the server sends to
 		/// the client which it verifies.
 		/// </summary>
-		[KnownSize(60)]
-		[WireMember(1)]
+		[KnownSize(96)]
+		[WireMember(2)]
 		public string CopyrightMessage { get; }
 
 		/// <summary>
@@ -37,7 +37,7 @@ namespace Booma.Proxy
 		/// for the login server crypto.
 		/// </summary>
 		[KnownSize(48)]
-		[WireMember(2)]
+		[WireMember(3)]
 		public byte[] ServerVector { get; }
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		/// for the login server crypto.
 		/// </summary>
 		[KnownSize(48)]
-		[WireMember(3)]
+		[WireMember(4)]
 		public byte[] ClientVector { get; }
 
 		//Serializer ctor
