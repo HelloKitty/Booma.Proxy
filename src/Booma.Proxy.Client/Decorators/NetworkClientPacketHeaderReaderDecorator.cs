@@ -44,12 +44,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// </summary>
 		/// <param name="decoratedClient">The client to decorate.</param>
-		public NetworkClientPacketHeaderReaderDecorator(NetworkClientBase decoratedClient, [NotNull] ISerializerService serializer)
+		public NetworkClientPacketHeaderReaderDecorator(NetworkClientBase decoratedClient, [NotNull] ISerializerService serializer, int blockSize)
 		{
 			if(decoratedClient == null) throw new ArgumentNullException(nameof(decoratedClient));
 			if(serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-			PacketHeaderBuffer = new byte[4];
+			//We need to support up to the maximum block
+			PacketHeaderBuffer = new byte[blockSize];
 			DecoratedClient = decoratedClient;
 			Serializer = serializer;
 		}
@@ -79,17 +80,22 @@ namespace Booma.Proxy
 			if(isHeaderFullyRead)
 				return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
 
-			buffer[start] = PacketHeaderBuffer[2];
-			buffer[start + 1] = PacketHeaderBuffer[3];
+			for(int i = 2; i < PacketHeaderBuffer.Length; i++)
+			{
+				buffer[start + i - 2] = PacketHeaderBuffer[i];
+			}
+
 			isHeaderFullyRead = true;
-			
+
+			int additionalCount = PacketHeaderBuffer.Length - 2;
+
 			//If we only wanted 2 bytes then we need to get out now
-			if(count == 2)
+			if(count == additionalCount)
 				return buffer;
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
-			return await DecoratedClient.ReadAsync(buffer, start + 2, count - 2, timeoutInMilliseconds);
+			return await DecoratedClient.ReadAsync(buffer, start + additionalCount, count - additionalCount, timeoutInMilliseconds);
 		}
 
 		//TODO: This is copy-pasted from above, to avoid creating tokens when we don't need them. Should we refactor?
@@ -99,17 +105,22 @@ namespace Booma.Proxy
 			if(isHeaderFullyRead)
 				return await DecoratedClient.ReadAsync(buffer, start, count, token);
 
-			buffer[start] = PacketHeaderBuffer[2];
-			buffer[start + 1] = PacketHeaderBuffer[3];
+			for(int i = 2; i < PacketHeaderBuffer.Length; i++)
+			{
+				buffer[start + i - 2] = PacketHeaderBuffer[i];
+			}
+
 			isHeaderFullyRead = true;
 
+			int additionalCount = PacketHeaderBuffer.Length - 2;
+
 			//If we only wanted 2 bytes then we need to get out now
-			if(count == 2)
+			if(count == additionalCount)
 				return buffer;
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
-			return await DecoratedClient.ReadAsync(buffer, start + 2, count - 2, token);
+			return await DecoratedClient.ReadAsync(buffer, start + additionalCount, count - additionalCount, token);
 		}
 
 		/// <inheritdoc />
@@ -127,7 +138,7 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer, 0, 4, 0); //TODO: How long should the timeout be if any?
+			await ReadAsync(PacketHeaderBuffer, 0, PacketHeaderBuffer.Length, 0); //TODO: How long should the timeout be if any?
 
 			//Since we only deserialize with 2 bytes the header is not fully read
 			//meaning 2 bytes including the opcode will be left in the buffer
@@ -150,7 +161,7 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer, 0, 4, token); //TODO: How long should the timeout be if any?
+			await ReadAsync(PacketHeaderBuffer, 0, PacketHeaderBuffer.Length, token); //TODO: How long should the timeout be if any?
 
 			//If the token is canceled just return null;
 			if(token.IsCancellationRequested)

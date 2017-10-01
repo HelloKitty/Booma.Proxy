@@ -37,14 +37,14 @@ namespace Booma.Proxy
 		/// <param name="encryptionService">The service used to encrypt.</param>
 		/// <param name="decryptionService">The service used to decrypt.</param>
 		/// <returns>A client with crypto handling functionality.</returns>
-		public static NetworkClientCryptoDecorator AddCryptHandling<TNetworkClientType>([NotNull] this TNetworkClientType client, [NotNull] ICryptoServiceProvider encryptionService, [NotNull] ICryptoServiceProvider decryptionService)
+		public static NetworkClientCryptoDecorator AddCryptHandling<TNetworkClientType>([NotNull] this TNetworkClientType client, [NotNull] ICryptoServiceProvider encryptionService, [NotNull] ICryptoServiceProvider decryptionService, int blockSize = 4)
 			where TNetworkClientType : NetworkClientBase
 		{
 			if(client == null) throw new ArgumentNullException(nameof(client));
 			if(encryptionService == null) throw new ArgumentNullException(nameof(encryptionService));
 			if(decryptionService == null) throw new ArgumentNullException(nameof(decryptionService));
 
-			return new NetworkClientCryptoDecorator(client, encryptionService, decryptionService, 4); //TODO: Should we just hardcode the blocksize?
+			return new NetworkClientCryptoDecorator(client, encryptionService, decryptionService, blockSize); //TODO: Should we just hardcode the blocksize?
 		}
 
 		/// <summary>
@@ -53,13 +53,13 @@ namespace Booma.Proxy
 		/// <typeparam name="TNetworkClientType">The client type.</typeparam>
 		/// <param name="client">The client to add header reading to.</param>
 		/// <returns>A client that can read headers from the network.</returns>
-		public static NetworkClientPacketHeaderReaderDecorator AddHeaderReading<TNetworkClientType>([NotNull] this TNetworkClientType client, [NotNull] ISerializerService serializer)
+		public static NetworkClientPacketHeaderReaderDecorator AddHeaderReading<TNetworkClientType>([NotNull] this TNetworkClientType client, [NotNull] ISerializerService serializer, int blockSize)
 			where TNetworkClientType : NetworkClientBase
 		{
 			if(client == null) throw new ArgumentNullException(nameof(client));
 			if(serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-			return new NetworkClientPacketHeaderReaderDecorator(client, serializer);
+			return new NetworkClientPacketHeaderReaderDecorator(client, serializer, blockSize);
 		}
 
 		/// <summary>

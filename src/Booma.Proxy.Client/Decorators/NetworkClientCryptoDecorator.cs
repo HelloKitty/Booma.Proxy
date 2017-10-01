@@ -132,9 +132,16 @@ namespace Booma.Proxy
 				await DecoratedClient.WriteAsync(EncryptionServiceProvider.Crypt(bytes, offset, count), offset, count);
 			else
 			{
-				//We copy to the thread local buffer so we can use it as an extended buffer by "neededBytes" many more bytes.
-				//So the buffer is very large but we'll tell it to write bytes.length + neededBytes.
-				Buffer.BlockCopy(bytes, offset, CryptoBuffer, 0, bytes.Length + neededBytes);
+				try
+				{
+					//We copy to the thread local buffer so we can use it as an extended buffer by "neededBytes" many more bytes.
+					//So the buffer is very large but we'll tell it to write bytes.length + neededBytes.
+					Buffer.BlockCopy(bytes, offset, CryptoBuffer, 0, bytes.Length); //don't copy more than byte's length
+				}
+				catch(Exception e)
+				{
+					throw new InvalidOperationException($"Failed to copy bytes to crypto buffer. Bytes Length: {bytes.Length} Offset: {offset} Count: {bytes.Length + neededBytes}", e);
+				}
 
 				byte[] decryptedBytes = EncryptionServiceProvider.Crypt(CryptoBuffer, 0, bytes.Length + neededBytes);
 

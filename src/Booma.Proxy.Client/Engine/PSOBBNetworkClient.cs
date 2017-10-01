@@ -109,13 +109,13 @@ namespace Booma.Proxy
 				for(int i = start; i < end && !token.IsCancellationRequested;)
 					i += await stream.ReadAsync(buffer, i, end - i, token);
 			}
-			catch(Exception)
+			catch(Exception e)
 			{
 				if(token.IsCancellationRequested)
 					return buffer;
 				
 				//If it wasn't because of a cancelled token then we should throw
-				throw;
+				throw new InvalidOperationException($"Failed to read from network. Offset: {start} Count: {count}", e);
 			}
 
 			return buffer;
