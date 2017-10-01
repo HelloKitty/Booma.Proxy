@@ -35,8 +35,8 @@ namespace Booma.Proxy.Client.Launcher
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 
-			PatchEncryptionLazyWithoutKeyDecorator encrypt = new PatchEncryptionLazyWithoutKeyDecorator();
-			PatchEncryptionLazyWithoutKeyDecorator decrypt = new PatchEncryptionLazyWithoutKeyDecorator();
+			EncryptionLazyWithoutKeyDecorator<uint> encrypt = new EncryptionLazyWithoutKeyDecorator<uint>(val => new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(val)));
+			EncryptionLazyWithoutKeyDecorator<uint> decrypt = new EncryptionLazyWithoutKeyDecorator<uint>(val => new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(val)));
 			IFullCryptoInitializationService<uint> intializers = new SeperateAggregateCryptoInitializationService<uint>(encrypt, decrypt);
 
 			builder.RegisterInstance(intializers)
