@@ -124,9 +124,9 @@ namespace Booma.Proxy
 			if(offset < 0) throw new ArgumentOutOfRangeException(nameof(offset));
 			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
 
-			int neededBytes = bytes.Length % BlockSize;
+			int blocksizeAdjustedCount = ConvertToBlocksizeCount(count);
 
-			if(neededBytes == 0)
+			if(count == blocksizeAdjustedCount)
 				await DecoratedClient.WriteAsync(EncryptionServiceProvider.Crypt(bytes, offset, count), offset, count);
 			else
 			{
@@ -134,17 +134,17 @@ namespace Booma.Proxy
 				{
 					//We copy to the thread local buffer so we can use it as an extended buffer by "neededBytes" many more bytes.
 					//So the buffer is very large but we'll tell it to write bytes.length + neededBytes.
-					Buffer.BlockCopy(bytes, offset, CryptoBuffer, 0, bytes.Length); //don't copy more than byte's length
+					Buffer.BlockCopy(bytes, offset, CryptoBuffer, 0, count); //dont copy full array, might only need less with count
 				}
 				catch(Exception e)
 				{
-					throw new InvalidOperationException($"Failed to copy bytes to crypto buffer. Bytes Length: {bytes.Length} Offset: {offset} Count: {bytes.Length + neededBytes}", e);
+					throw new InvalidOperationException($"Failed to copy bytes to crypto buffer. Bytes Length: {bytes.Length} Offset: {offset} Count: {count} BlocksizeAdjustedCount: {blocksizeAdjustedCount}", e);
 				}
 
-				byte[] decryptedBytes = EncryptionServiceProvider.Crypt(CryptoBuffer, 0, bytes.Length + neededBytes);
+				EncryptionServiceProvider.Crypt(CryptoBuffer, 0, blocksizeAdjustedCount);
 
 				//recurr to write the bytes with the now properly sized buffer.
-				await DecoratedClient.WriteAsync(CryptoBuffer, 0, bytes.Length + neededBytes);
+				await DecoratedClient.WriteAsync(CryptoBuffer, 0, blocksizeAdjustedCount);
 			}
 		}
 
