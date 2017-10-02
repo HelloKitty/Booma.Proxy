@@ -140,11 +140,6 @@ namespace Booma.Proxy
 
 		private void StopAllNetworkTasks()
 		{
-			//TODO: Should we remove potential message/payloads left in the buffer?
-			Console.BackgroundColor = ConsoleColor.Red;
-			Console.WriteLine("Stopping network tasks");
-			Console.BackgroundColor = ConsoleColor.Black;
-
 			//Before disconnecting the managed client we should cancel all the tokens used for
 			//running the tasks
 			TaskTokenSources.ForEach(t =>
@@ -173,10 +168,6 @@ namespace Booma.Proxy
 
 		private void StartNetworkIncomingOutgoingTasks()
 		{
-			Console.BackgroundColor = ConsoleColor.Red;
-			Console.WriteLine("Starting network tasks");
-			Console.BackgroundColor = ConsoleColor.Black;
-
 			//Create both a read and write thread
 			Task.Factory.StartNew(DispatchOutgoingMessages, TaskCreationOptions.LongRunning);
 			Task.Factory.StartNew(EnqueueIncomingMessages, TaskCreationOptions.LongRunning);
