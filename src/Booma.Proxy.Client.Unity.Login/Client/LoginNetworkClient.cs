@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// The component that manages the login network client.
 	/// </summary>
+	[Injectee]
 	public sealed class LoginNetworkClient : SerializedMonoBehaviour
 	{
 		//TODO: Get external domain name or ip instead of defining it in editor/engine
@@ -33,6 +35,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The login client.
 		/// </summary>
+		[Inject]
 		public IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> Client { get; }
 
 		//TODO: Is it safe or ok to await in start without ever completing?
