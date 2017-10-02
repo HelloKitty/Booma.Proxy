@@ -93,14 +93,9 @@ namespace Booma.Proxy
 		}
 
 		//Serializer ctor
-		protected LoginLoginRequest93Payload()
+		private LoginLoginRequest93Payload()
 		{
 
 		}
-
-		#region UNUSED/UNKNOWN
-
-
-		#endregion
 	}
 }
