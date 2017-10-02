@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
+using Reinterpret.Net;
 
 namespace Booma.Proxy
 {
@@ -14,6 +15,12 @@ namespace Booma.Proxy
 	[WireDataContract]
 	public sealed class ClientVerificationData
 	{
+		public static ClientVerificationData FromVersionString(string versionString)
+		{
+			byte[] bytes = versionString.Reinterpret(Encoding.ASCII);
+			return new ClientVerificationData(0x41, bytes.Concat(Enumerable.Repeat((byte)0, 40 - bytes.Length)).ToArray());
+		}
+
 		//TODO: How is this determined
 		/// <summary>
 		/// Hardware information (?)
