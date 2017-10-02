@@ -1,4 +1,6 @@
-﻿namespace Booma.Proxy
+﻿using System.Linq;
+
+namespace Booma.Proxy
 {
 	/// <summary>
 	/// 
@@ -24,10 +26,7 @@
 		{
 			for(int i = 0; i < s.Length; i++)
 			{
-				s[i] = new uint[256];
-
-				for(int j = 0; j < s[i].Length; j++)
-					s[i][j] = initialS[i * j];
+				s[i] = initialS.Skip(i * 256).Take(256).ToArray();
 			}
 		}
 
