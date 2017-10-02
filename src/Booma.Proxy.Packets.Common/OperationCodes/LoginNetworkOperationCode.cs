@@ -13,9 +13,10 @@ namespace Booma.Proxy
 	public enum LoginNetworkOperationCode : short
 	{
 		//TODO: Format
-		BB_SECURITY_TYPE                = 0x00E6,
-		BB_WELCOME_TYPE                = 0x0003,
-		REDIRECT_TYPE                  = 0x0019,
-		LOGIN_93_TYPE                  = 0x0093
+		BB_SECURITY_TYPE = 0x00E6,
+		BB_WELCOME_TYPE = 0x0003,
+		REDIRECT_TYPE = 0x0019,
+		LOGIN_93_TYPE = 0x0093,
+		MESSAGE_BOX_TYPE = 0x001A
 	}
 }

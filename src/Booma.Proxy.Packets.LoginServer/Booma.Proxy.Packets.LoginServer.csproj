@@ -57,6 +57,7 @@
     <Compile Include="Payloads\ClientVerrificationData.cs" />
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
     <Compile Include="Payloads\Client\LoginLoginRequest93Payload.cs" />
+    <Compile Include="Payloads\Server\LoginCreateMessageBoxEventPayload.cs" />
     <Compile Include="Payloads\Server\LoginWelcomePayload.cs" />
     <Compile Include="ResponseCodes\LoginResponseCode.cs" />
     <Compile Include="Payloads\Server\LoginLoginResponsePayload.cs" />
