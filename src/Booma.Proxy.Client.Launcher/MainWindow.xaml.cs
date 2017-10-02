@@ -47,8 +47,8 @@ namespace Booma.Proxy.Client.Launcher
 			//Configurs and builds the clients without all the
 			//relevant decorators
 			IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client = new PSOBBNetworkClient()
-				.AddCryptHandling(encrypt, decrypt)
-				.AddHeaderReading(serializerService)
+				.AddCryptHandling(encrypt, decrypt, 4)
+				.AddHeaderReading(serializerService, 4)
 				.AddNetworkMessageReading(serializerService)
 				.For<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>()
 				.AsManaged();
@@ -76,7 +76,7 @@ namespace Booma.Proxy.Client.Launcher
 
 			IClientMessageContextFactory MessageContextFactory = new DefaultMessageContextFactory();
 
-			await client.ConnectAsync("[redacted]", 11000);
+			await client.ConnectAsync("158.69.215.131", 11000);
 
 			while(client.isConnected)
 			{

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -8,15 +9,17 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy.TestClient
 {
-	class Program
+	/*class Program
 	{
 		public static ICryptoKeyInitializable<uint> EncryptionKeyInitializer { get; private set; }
 
 		public static ICryptoKeyInitializable<uint> DecryptionKeyInitializer { get; private set; }
 
+		public static IClientMessageContextFactory MessageContextFactory { get; private set; }
+
 		public static void Main(string[] args)
 		{
-			RunClient("[redacted]", 11000).Wait();
+			RunClient("158.69.215.131", 12000).Wait();
 		}
 
 		private static async Task RunClient(string ip, int port)
@@ -39,25 +42,42 @@ namespace Booma.Proxy.TestClient
 
 			//Configurs and builds the clients without all the
 			//relevant decorators
-			INetworkMessageClient<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient> client = new PSOBBNetworkClient()
+			IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client = new PSOBBNetworkClient()
 				.AddCryptHandling(encrypt, decrypt)
 				.AddHeaderReading(serializer)
 				.AddNetworkMessageReading(serializer)
-				.For<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>();
+				.For<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>()
+				.AsManaged();
+
+			MessageContextFactory = new DefaultMessageContextFactory();
 
 			await Task.Run(() => RunClientAsync(client, ip, port));
 		}
 
-		public static async Task RunClientAsync(INetworkMessageClient<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient> client, string ip, int port)
+		public static async Task RunClientAsync(IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client, string ip, int port)
 		{
 			await client.ConnectAsync(ip, port);
 
 			while(true)
 			{
-				PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message = await client.ReadAsync();
+				PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message = await client.ReadMessageAsync();
 				LogMessage(message);
 
-				await HandlePayload((dynamic)message.Payload, client);
+				try
+				{
+					//IClientMessageContext<PSOBBPatchPacketPayloadClient> context = MessageContextFactory.Create(client, client);
+
+					await HandlePayload((dynamic)message.Payload, client);
+
+
+					//await p.TryHandleMessage(context, message);
+
+				}
+				catch(Exception e)
+				{
+					Console.WriteLine(e);
+					throw;
+				}
 			}
 		}
 
@@ -77,12 +97,12 @@ namespace Booma.Proxy.TestClient
 			Console.WriteLine(message.Message);
 		}
 
-		private static async Task HandlePayload(PatchingReadyForLoginRequestPayload readyForLogin, IPacketPayloadWritable<PSOBBPatchPacketPayloadClient> client)
+		private static async Task HandlePayload(PatchingReadyForLoginRequestPayload readyForLogin, IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client)
 		{
-			await client.WriteAsync(new PatchingLoginRequestPayload("glader", "[redacted]"));
+			await client.SendMessage(new PatchingLoginRequestPayload("glader", "derp"));
 		}
 
-		private static async Task HandlePayload(PatchingWelcomePayload welcome, IPacketPayloadWritable<PSOBBPatchPacketPayloadClient> client)
+		private static async Task HandlePayload(PatchingWelcomePayload welcome, IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client)
 		{
 			Console.WriteLine($"Server IV: {welcome.ServerVector}");
 			Console.WriteLine($"Client IV: {welcome.ClientVector}");
@@ -93,7 +113,7 @@ namespace Booma.Proxy.TestClient
 			DecryptionKeyInitializer.Initialize(welcome.ServerVector);
 
 			//Send the ack to the server
-			await client.WriteAsync(new PatchingWelcomeAckPayload());
+			await client.SendMessage(new PatchingWelcomeAckPayload());
 		}
 
 		private static Task HandlePayload(UnknownPatchPacket patchPayload, object o)
@@ -109,9 +129,18 @@ namespace Booma.Proxy.TestClient
 
 		public static void LogMessage(PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message)
 		{
-			Console.BackgroundColor = ConsoleColor.DarkBlue;
-			Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{message.Payload.GetType().GetTypeInfo().GetCustomAttribute<WireDataContractBaseLinkAttribute>().Index:X} Type: {message.Payload.GetType().Name}");
-			Console.BackgroundColor = ConsoleColor.Black;
+			if(message.Payload is IUnknownPayloadType unk)
+			{
+				Console.BackgroundColor = ConsoleColor.DarkBlue;
+				Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{unk.OperationCode:X} Type: {message.Payload.GetType().Name}");
+				Console.BackgroundColor = ConsoleColor.Black;
+			}
+			else
+			{
+				Console.BackgroundColor = ConsoleColor.DarkBlue;
+				Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{message.Payload.GetType().GetTypeInfo().GetCustomAttribute<WireDataContractBaseLinkAttribute>().Index:X} Type: {message.Payload.GetType().Name}");
+				Console.BackgroundColor = ConsoleColor.Black;
+			}
 		}
-	}
+	}*/
 }
