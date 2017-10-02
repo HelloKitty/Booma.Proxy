@@ -90,7 +90,7 @@ namespace Booma.Proxy
 			int additionalCount = PacketHeaderBuffer.Length - 2;
 
 			//If we only wanted 2 bytes then we need to get out now
-			if(count == additionalCount)
+			if(count <= additionalCount)
 				return buffer;
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
@@ -115,7 +115,7 @@ namespace Booma.Proxy
 			int additionalCount = PacketHeaderBuffer.Length - 2;
 
 			//If we only wanted 2 bytes then we need to get out now
-			if(count == additionalCount)
+			if(count <= additionalCount)
 				return buffer;
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
@@ -138,7 +138,7 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer, 0, PacketHeaderBuffer.Length, 0); //TODO: How long should the timeout be if any?
+			await DecoratedClient.ReadAsync(PacketHeaderBuffer, 0, 2, 0); //TODO: How long should the timeout be if any?
 
 			//Since we only deserialize with 2 bytes the header is not fully read
 			//meaning 2 bytes including the opcode will be left in the buffer
@@ -161,7 +161,7 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await ReadAsync(PacketHeaderBuffer, 0, PacketHeaderBuffer.Length, token); //TODO: How long should the timeout be if any?
+			await DecoratedClient.ReadAsync(PacketHeaderBuffer, 0, 2, token); //TODO: How long should the timeout be if any?
 
 			//If the token is canceled just return null;
 			if(token.IsCancellationRequested)

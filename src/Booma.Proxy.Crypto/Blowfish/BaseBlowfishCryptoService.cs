@@ -99,6 +99,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void Initialize(byte[] key)
 		{
+			Clear();
+
 			if(key == null)
 			{
 				throw new ArgumentNullException(nameof(key));

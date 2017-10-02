@@ -37,7 +37,7 @@ namespace Booma.Proxy
 		/// <param name="encryptionService">The service used to encrypt.</param>
 		/// <param name="decryptionService">The service used to decrypt.</param>
 		/// <returns>A client with crypto handling functionality.</returns>
-		public static NetworkClientCryptoDecorator AddCryptHandling<TNetworkClientType>([NotNull] this TNetworkClientType client, [NotNull] ICryptoServiceProvider encryptionService, [NotNull] ICryptoServiceProvider decryptionService, int blockSize = 4)
+		public static NetworkClientCryptoDecorator AddCryptHandling<TNetworkClientType>([NotNull] this TNetworkClientType client, [NotNull] ICryptoServiceProvider encryptionService, [NotNull] ICryptoServiceProvider decryptionService, int blockSize)
 			where TNetworkClientType : NetworkClientBase
 		{
 			if(client == null) throw new ArgumentNullException(nameof(client));

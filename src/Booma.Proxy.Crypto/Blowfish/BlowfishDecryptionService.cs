@@ -49,6 +49,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override byte[] Crypt(byte[] bytes)
 		{
+			if(bytes.Length % 8 != 0)
+				throw new InvalidOperationException("Cannot handle blocks of length % 8 != 0.");
+
 			Decrypt(bytes, 0, bytes.Length);
 			return bytes;
 		}
@@ -56,6 +59,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override byte[] Crypt(byte[] bytes, int offset, int count)
 		{
+			if(bytes.Length < count || count % 8 != 0)
+				throw new InvalidOperationException("Cannot handle blocks of length % 8 != 0.");
+
 			Decrypt(bytes, offset, count);
 			return bytes;
 		}

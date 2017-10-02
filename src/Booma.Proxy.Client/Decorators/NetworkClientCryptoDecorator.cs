@@ -81,8 +81,7 @@ namespace Booma.Proxy
 
 			//If the above caller requested an invalid count of bytes to read
 			//We should try to correct for it and read afew more bytes.
-			int neededBytes = count % BlockSize;
-			count += neededBytes;
+			count = ConvertToBlocksizeCount(count);
 
 			//We throw above if we have an invalid size that can't be decrypted once read.
 			//That means callers will need to be careful in what they request to read.
@@ -104,13 +103,12 @@ namespace Booma.Proxy
 
 			//If the above caller requested an invalid count of bytes to read
 			//We should try to correct for it and read afew more bytes.
-			int neededBytes = count % BlockSize;
-			count += neededBytes;
+			count = ConvertToBlocksizeCount(count);
 
 			if(token.IsCancellationRequested)
 				return Enumerable.Empty<byte>().ToArray();
 
-			byte[] readBytes = await DecoratedClient.ReadAsync(buffer, start, count, token);
+			await DecoratedClient.ReadAsync(buffer, start, count, token);
 
 			//Check cancel again, we want to fail quick
 			if(token.IsCancellationRequested)
@@ -118,7 +116,7 @@ namespace Booma.Proxy
 
 			//We throw above if we have an invalid size that can't be decrypted once read.
 			//That means callers will need to be careful in what they request to read.
-			return DecryptionServiceProvider.Crypt(readBytes, start, count);
+			return DecryptionServiceProvider.Crypt(buffer, start, count);
 		}
 
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
@@ -148,6 +146,18 @@ namespace Booma.Proxy
 				//recurr to write the bytes with the now properly sized buffer.
 				await DecoratedClient.WriteAsync(CryptoBuffer, 0, bytes.Length + neededBytes);
 			}
+		}
+
+		private int ConvertToBlocksizeCount(int count)
+		{
+			int remainder = count % BlockSize;
+
+			//Important to check if it's already perfectly size
+			//otherwise below code will return count + blocksize
+			if(remainder == 0)
+				return count;
+
+			return count + (BlockSize - (count % BlockSize));
 		}
 	}
 }
