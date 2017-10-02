@@ -110,6 +110,14 @@ namespace Booma.Proxy
 				throw new ArgumentException("Invalid key length, key length must be higher than 0 and less than 56");
 			}
 
+			//Init the key with the XORing mentioned in the original Blowfish commit's CTOR
+			for(int i1 = 0; i1 < 48; i1 += 3)
+			{
+				key[i1] ^= 0x19;
+				key[i1 + 1] ^= 0x16;
+				key[i1 + 2] ^= 0x18;
+			}
+
 			Array.Copy(BlowfishTable.p, this._p, 18);
 			Array.Copy(BlowfishTable.s[0], this._s[0], 256);
 			Array.Copy(BlowfishTable.s[1], this._s[1], 256);
@@ -141,6 +149,7 @@ namespace Booma.Proxy
 				this._p[i1] = v1;
 				this._p[i1 + 1] = v2;
 			}
+
 			for(int i1 = 0; i1 < 4; i1++)
 			{
 				for(int i2 = 0; i2 < 256; i2 += 2)

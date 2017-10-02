@@ -23,7 +23,7 @@ namespace Booma.Proxy
 			: base(new MemoryStream(bytes), true)
 		{
 			if(bytes == null) throw new ArgumentNullException(nameof(bytes), $"Provided argument {nameof(bytes)} must not be null.");
-			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
+			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count), $"Requested negative Count: {count}.");
 
 			Count = count;
 		}
