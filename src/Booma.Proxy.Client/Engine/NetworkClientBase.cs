@@ -29,7 +29,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public async Task<bool> ConnectAsync(string ip, int port)
 		{
-			return await ConnectAsync(IPAddress.Parse(ip), port);
+			return await ConnectAsync(IPAddress.Parse(ip), port)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -47,7 +48,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public async Task WriteAsync(byte[] bytes)
 		{
-			await WriteAsync(bytes, 0, bytes.Length);
+			await WriteAsync(bytes, 0, bytes.Length)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -67,7 +69,8 @@ namespace Booma.Proxy
 		{
 			byte[] buffer = new byte[count];
 
-			return await ReadAsync(buffer, 0, count, timeoutInMilliseconds);
+			return await ReadAsync(buffer, 0, count, timeoutInMilliseconds)
+				.ConfigureAwait(false);
 		}
 
 		//Clients need only to implement the async subset methods

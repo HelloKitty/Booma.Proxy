@@ -63,7 +63,8 @@ namespace Booma.Proxy
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
 
 			//we just add the message to the queue and let the other threads/tasks deal with everything else.
-			await OutgoingMessageQueue.EnqueueAsync(payload);
+			await OutgoingMessageQueue.EnqueueAsync(payload)
+				.ConfigureAwait(false);
 
 			return SendResult.Enqueued;
 		}
@@ -71,7 +72,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public async Task<PSOBBNetworkIncomingMessage<TPayloadReadType>> ReadMessageAsync()
 		{
-			return await IncomingMessageQueue.DequeueAsync();
+			return await IncomingMessageQueue.DequeueAsync()
+				.ConfigureAwait(false);
 		}
 
 		private CancellationTokenSource CreateNewManagedCancellationTokenSource()
@@ -93,7 +95,8 @@ namespace Booma.Proxy
 			CancellationToken dispatchCancelation = CreateNewManagedCancellationTokenSource().Token;
 
 			while(!dispatchCancelation.IsCancellationRequested)
-				await UnmanagedClient.WriteAsync(await OutgoingMessageQueue.DequeueAsync());
+				await UnmanagedClient.WriteAsync(await OutgoingMessageQueue.DequeueAsync(dispatchCancelation).ConfigureAwait(false))
+					.ConfigureAwait(false);
 
 			//TODO: Should we do anything after the dispatch has stopped?
 		}
@@ -110,13 +113,15 @@ namespace Booma.Proxy
 
 			while(!incomingCancellationToken.IsCancellationRequested)
 			{
-				PSOBBNetworkIncomingMessage<TPayloadReadType> message = await UnmanagedClient.ReadAsync(incomingCancellationToken);
+				PSOBBNetworkIncomingMessage<TPayloadReadType> message = await UnmanagedClient.ReadAsync(incomingCancellationToken)
+					.ConfigureAwait(false);
 
 				//if have to check the token again because the message may be null and may have been canceled mid-read
 				if(incomingCancellationToken.IsCancellationRequested)
 					continue;
 
-				await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken);
+				await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken)
+					.ConfigureAwait(false);
 			}
 
 			//TODO: Should we do anything after the dispatch has stopped?
@@ -127,10 +132,12 @@ namespace Booma.Proxy
 		{
 			//Disconnect if we're already connected
 			if(isConnected)
-				await DisconnectAsync(0);
+				await DisconnectAsync(0)
+					.ConfigureAwait(false);
 
 			//This COULD return false, so we need to handle that
-			isConnected = await UnmanagedClient.ConnectAsync(address, port);
+			isConnected = await UnmanagedClient.ConnectAsync(address, port)
+				.ConfigureAwait(false);
 
 			if(isConnected)
 				StartNetworkIncomingOutgoingTasks();
@@ -161,7 +168,8 @@ namespace Booma.Proxy
 			//running the tasks
 			StopAllNetworkTasks();
 
-			await UnmanagedClient.DisconnectAsync(delay);
+			await UnmanagedClient.DisconnectAsync(delay)
+				.ConfigureAwait(false);
 
 			isConnected = false;
 		}
@@ -180,7 +188,8 @@ namespace Booma.Proxy
 		public bool Connect(IPAddress address, int port) => ConnectAsync(address, port).Result;
 
 		/// <inheritdoc />
-		public async Task<bool> ConnectAsync(string ip, int port) => await ConnectAsync(IPAddress.Parse(ip), port);
+		public async Task<bool> ConnectAsync(string ip, int port) => await ConnectAsync(IPAddress.Parse(ip), port)
+			.ConfigureAwait(false);
 
 		#region IDisposable Support
 		private bool disposedValue = false; // To detect redundant calls

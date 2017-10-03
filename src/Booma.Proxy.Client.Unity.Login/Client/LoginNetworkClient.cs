@@ -41,21 +41,31 @@ namespace Booma.Proxy
 		//TODO: Is it safe or ok to await in start without ever completing?
 		private async Task Start()
 		{
-			Debug.Log("Starting login client");
-
-			//As soon as we start we should attempt to connect to the login server.
-			bool result = await Client.ConnectAsync(IpAddress, Port);
-
-			if(!result)
-				throw new InvalidOperationException($"Failed to connect to Login: {IpAddress} Port: {Port}");
-
-			Debug.Log("Connected client.");
-
-			while(Client.isConnected)
+			try
 			{
-				PSOBBNetworkIncomingMessage<PSOBBLoginPacketPayloadServer> message = await Client.ReadMessageAsync();
+				Debug.Log("Starting login client");
 
-				Debug.Log(message.Payload.GetType().Name);
+				//As soon as we start we should attempt to connect to the login server.
+				bool result = await Client.ConnectAsync(IpAddress, Port);
+
+				if(!result)
+					throw new InvalidOperationException($"Failed to connect to Login: {IpAddress} Port: {Port}");
+
+				Debug.Log($"Connected client. isConnected: {Client.isConnected}");
+
+				while(Client.isConnected)
+				{
+					Debug.Log("Reading message.");
+
+					PSOBBNetworkIncomingMessage<PSOBBLoginPacketPayloadServer> message = await Client.ReadMessageAsync();
+
+					Debug.Log(message.Payload.GetType().Name);
+				}
+			}
+			catch(Exception e)
+			{
+				Debug.LogError($"Error: {e.Message}\n\n Stack Trace: {e.StackTrace}");
+				throw;
 			}
 		}
 	}

@@ -64,13 +64,15 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task<bool> ConnectAsync(IPAddress address, int port)
 		{
-			return await DecoratedClient.ConnectAsync(address, port);
+			return await DecoratedClient.ConnectAsync(address, port)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public override async Task DisconnectAsync(int delay)
 		{
-			await DecoratedClient.DisconnectAsync(delay);
+			await DecoratedClient.DisconnectAsync(delay)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -85,7 +87,7 @@ namespace Booma.Proxy
 
 			//We throw above if we have an invalid size that can't be decrypted once read.
 			//That means callers will need to be careful in what they request to read.
-			return DecryptionServiceProvider.Crypt(await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds), start, count);
+			return DecryptionServiceProvider.Crypt(await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds).ConfigureAwait(false), start, count);
 		}
 
 		/// <summary>
@@ -108,7 +110,8 @@ namespace Booma.Proxy
 			if(token.IsCancellationRequested)
 				return Enumerable.Empty<byte>().ToArray();
 
-			await DecoratedClient.ReadAsync(buffer, start, count, token);
+			await DecoratedClient.ReadAsync(buffer, start, count, token)
+				.ConfigureAwait(false);
 
 			//Check cancel again, we want to fail quick
 			if(token.IsCancellationRequested)
@@ -127,7 +130,8 @@ namespace Booma.Proxy
 			int blocksizeAdjustedCount = ConvertToBlocksizeCount(count);
 
 			if(count == blocksizeAdjustedCount)
-				await DecoratedClient.WriteAsync(EncryptionServiceProvider.Crypt(bytes, offset, count), offset, count);
+				await DecoratedClient.WriteAsync(EncryptionServiceProvider.Crypt(bytes, offset, count), offset, count)
+					.ConfigureAwait(false);
 			else
 			{
 				try
@@ -144,7 +148,8 @@ namespace Booma.Proxy
 				EncryptionServiceProvider.Crypt(CryptoBuffer, 0, blocksizeAdjustedCount);
 
 				//recurr to write the bytes with the now properly sized buffer.
-				await DecoratedClient.WriteAsync(CryptoBuffer, 0, blocksizeAdjustedCount);
+				await DecoratedClient.WriteAsync(CryptoBuffer, 0, blocksizeAdjustedCount)
+					.ConfigureAwait(false);
 			}
 		}
 

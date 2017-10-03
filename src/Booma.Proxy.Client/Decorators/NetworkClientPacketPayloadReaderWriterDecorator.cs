@@ -53,19 +53,22 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task<bool> ConnectAsync(IPAddress address, int port)
 		{
-			return await DecoratedClient.ConnectAsync(address, port);
+			return await DecoratedClient.ConnectAsync(address, port)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public override async Task DisconnectAsync(int delay)
 		{
-			await DecoratedClient.DisconnectAsync(delay);
+			await DecoratedClient.DisconnectAsync(delay)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
-			return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
+			return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -78,14 +81,16 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
-			await DecoratedClient.WriteAsync(bytes, offset, count);
+			await DecoratedClient.WriteAsync(bytes, offset, count)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public async Task WriteAsync(TWritePayloadBaseType payload)
 		{
 			//Write the outgoing message, it will internally create the header and it will be serialized
-			await DecoratedClient.WriteAsync(Serializer.Serialize(new PSOBBNetworkOutgoingMessage(Serializer.Serialize(payload))));
+			await DecoratedClient.WriteAsync(Serializer.Serialize(new PSOBBNetworkOutgoingMessage(Serializer.Serialize(payload))))
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -98,10 +103,12 @@ namespace Booma.Proxy
 		public async Task<PSOBBNetworkIncomingMessage<TReadPayloadBaseType>> ReadAsync()
 		{
 			//Read the header first
-			IPacketHeader header = await DecoratedClient.ReadHeaderAsync();
+			IPacketHeader header = await DecoratedClient.ReadHeaderAsync()
+				.ConfigureAwait(false);
 
 			//We need to read enough bytes to deserialize the payload
-			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, 0); //TODO: Should we timeout?
+			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, 0)
+				.ConfigureAwait(false);//TODO: Should we timeout?
 
 			TReadPayloadBaseType payload = Serializer.Deserialize<TReadPayloadBaseType>(new FixedBufferWireReaderStrategy(PacketPayloadBuffer, header.PayloadSize));
 
@@ -111,20 +118,23 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
 		{
-			return await DecoratedClient.ReadAsync(buffer, start, count, token);
+			return await DecoratedClient.ReadAsync(buffer, start, count, token)
+				.ConfigureAwait(false);
 		}
 
 		public async Task<PSOBBNetworkIncomingMessage<TReadPayloadBaseType>> ReadAsync(CancellationToken token)
 		{
 			//Read the header first
-			IPacketHeader header = await DecoratedClient.ReadHeaderAsync(token);
+			IPacketHeader header = await DecoratedClient.ReadHeaderAsync(token)
+				.ConfigureAwait(false);
 
 			//if was canceled the header reading probably returned null anyway
 			if(token.IsCancellationRequested)
 				return null;
 
 			//We need to read enough bytes to deserialize the payload
-			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, token); //TODO: Should we timeout?
+			await ReadAsync(PacketPayloadBuffer, 0, header.PayloadSize, token)
+				.ConfigureAwait(false);//TODO: Should we timeout?
 
 			//If the token was canceled then the buffer isn't filled and we can't make a message
 			if(token.IsCancellationRequested)

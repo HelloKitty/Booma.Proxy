@@ -58,19 +58,22 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task<bool> ConnectAsync(IPAddress address, int port)
 		{
-			return await DecoratedClient.ConnectAsync(address, port);
+			return await DecoratedClient.ConnectAsync(address, port)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public override async Task DisconnectAsync(int delay)
 		{
-			await DecoratedClient.DisconnectAsync(delay);
+			await DecoratedClient.DisconnectAsync(delay)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
 		public override async Task WriteAsync(byte[] bytes, int offset, int count)
 		{
-			await DecoratedClient.WriteAsync(bytes, offset, count);
+			await DecoratedClient.WriteAsync(bytes, offset, count)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -78,7 +81,8 @@ namespace Booma.Proxy
 		{
 			//Check if we have leftover header bytes
 			if(isHeaderFullyRead)
-				return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds);
+				return await DecoratedClient.ReadAsync(buffer, start, count, timeoutInMilliseconds)
+					.ConfigureAwait(false);
 
 			for(int i = 2; i < PacketHeaderBuffer.Length; i++)
 			{
@@ -95,7 +99,8 @@ namespace Booma.Proxy
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
-			return await DecoratedClient.ReadAsync(buffer, start + additionalCount, count - additionalCount, timeoutInMilliseconds);
+			return await DecoratedClient.ReadAsync(buffer, start + additionalCount, count - additionalCount, timeoutInMilliseconds)
+				.ConfigureAwait(false);
 		}
 
 		//TODO: This is copy-pasted from above, to avoid creating tokens when we don't need them. Should we refactor?
@@ -103,7 +108,8 @@ namespace Booma.Proxy
 		{
 			//Check if we have leftover header bytes
 			if(isHeaderFullyRead)
-				return await DecoratedClient.ReadAsync(buffer, start, count, token);
+				return await DecoratedClient.ReadAsync(buffer, start, count, token)
+					.ConfigureAwait(false);
 
 			for(int i = 2; i < PacketHeaderBuffer.Length; i++)
 			{
@@ -120,7 +126,8 @@ namespace Booma.Proxy
 
 			//Since we inserted the remaining buffered header bytes into the buffer the caller wants to read into
 			//then we should offset by 2 and read 2 less bytes
-			return await DecoratedClient.ReadAsync(buffer, start + additionalCount, count - additionalCount, token);
+			return await DecoratedClient.ReadAsync(buffer, start + additionalCount, count - additionalCount, token)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -138,7 +145,8 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await DecoratedClient.ReadAsync(PacketHeaderBuffer, 0, 2, 0); //TODO: How long should the timeout be if any?
+			await DecoratedClient.ReadAsync(PacketHeaderBuffer, 0, 2, 0)
+				.ConfigureAwait(false);//TODO: How long should the timeout be if any?
 
 			//Since we only deserialize with 2 bytes the header is not fully read
 			//meaning 2 bytes including the opcode will be left in the buffer
@@ -161,7 +169,8 @@ namespace Booma.Proxy
 			//The header we know is 4 bytes.
 			//If we had access to the stream we could wrap it in a reader and use it
 			//without knowing the size. Since we don't have access we must manually read
-			await DecoratedClient.ReadAsync(PacketHeaderBuffer, 0, 2, token); //TODO: How long should the timeout be if any?
+			await DecoratedClient.ReadAsync(PacketHeaderBuffer, 0, 2, token)
+				.ConfigureAwait(false);//TODO: How long should the timeout be if any?
 
 			//If the token is canceled just return null;
 			if(token.IsCancellationRequested)

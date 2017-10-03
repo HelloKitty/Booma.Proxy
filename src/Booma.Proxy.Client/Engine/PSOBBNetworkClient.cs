@@ -32,12 +32,15 @@ namespace Booma.Proxy
 			if(address == null) throw new ArgumentNullException(nameof(address));
 			if(port <= 0) throw new ArgumentOutOfRangeException(nameof(port));
 
-			await DisconnectAsync(10);
+			await DisconnectAsync(10)
+				.ConfigureAwait(false);
+
 			InternalTcpClient = new TcpClient();
 
 			//TODO: Logging
 			//TODO: Should we allow reconnects?
-			await InternalTcpClient.ConnectAsync(address, port);
+			await InternalTcpClient.ConnectAsync(address, port)
+				.ConfigureAwait(false);
 
 			return true;
 		}
@@ -64,7 +67,8 @@ namespace Booma.Proxy
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before writing any bytes.");
 
 			//We can just write the bytes to the stream if we're connected.
-			await InternalTcpClient.GetStream().WriteAsync(bytes, offset, count);
+			await InternalTcpClient.GetStream().WriteAsync(bytes, offset, count)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -75,7 +79,8 @@ namespace Booma.Proxy
 
 			if(timeoutInMilliseconds > 0)
 			{
-				await ReadAsync(buffer, start, count, new CancellationTokenSource(timeoutInMilliseconds).Token);
+				await ReadAsync(buffer, start, count, new CancellationTokenSource(timeoutInMilliseconds).Token)
+					.ConfigureAwait(false);
 			}
 			else
 			{
@@ -83,7 +88,8 @@ namespace Booma.Proxy
 
 				int end = count + start;
 				for(int i = start; i < end;)
-					i += await stream.ReadAsync(buffer, i, end - i);
+					i += await stream.ReadAsync(buffer, i, end - i)
+						.ConfigureAwait(false);
 			}
 				
 
@@ -107,7 +113,8 @@ namespace Booma.Proxy
 			{
 				int end = count + start;
 				for(int i = start; i < end && !token.IsCancellationRequested;)
-					i += await stream.ReadAsync(buffer, i, end - i, token);
+					i += await stream.ReadAsync(buffer, i, end - i, token)
+						.ConfigureAwait(false);
 			}
 			catch(Exception e)
 			{
