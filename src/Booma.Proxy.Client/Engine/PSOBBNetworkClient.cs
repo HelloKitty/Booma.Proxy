@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async override Task<bool> ConnectAsync(IPAddress address, int port)
+		public override async Task<bool> ConnectAsync(IPAddress address, int port)
 		{
 			if(address == null) throw new ArgumentNullException(nameof(address));
 			if(port <= 0) throw new ArgumentOutOfRangeException(nameof(port));
@@ -72,7 +72,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async override Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
+		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, int timeoutInMilliseconds)
 		{
 			if(!InternalTcpClient.Connected)
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before reading any bytes.");
@@ -97,7 +97,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async override Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
+		public override async Task<byte[]> ReadAsync(byte[] buffer, int start, int count, CancellationToken token)
 		{
 			if(!InternalTcpClient.Connected)
 				throw new InvalidOperationException($"The internal {nameof(TcpClient)}: {nameof(InternalTcpClient)} is not connected to an endpoint. You must call {nameof(Connect)} before reading any bytes.");

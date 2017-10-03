@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
@@ -27,6 +28,27 @@ namespace Booma.Proxy
 
 			//Adapt the provided network client to the managed network client interfaces.
 			return new ManagedPSOBBNetworkClient<INetworkMessageClient<TReadPayloadBaseType, TWritePayloadBaseType>, TWritePayloadBaseType, TReadPayloadBaseType>(client);
+		}
+
+		/// <summary>
+		/// Creates a managed client adapter around the provided <see cref="client"/> providing a high level API
+		/// for consumption based on this simplified slimed down <see cref="IManagedNetworkClient{TPayloadWriteType,TPayloadReadType}"/>
+		/// interface.
+		/// </summary>
+		/// <typeparam name="TReadPayloadBaseType">The read type payload (inferred)</typeparam>
+		/// <typeparam name="TWritePayloadBaseType">The write type payload (inferred)</typeparam>
+		/// <param name="client">The client to adapt.</param>
+		/// <param name="logger"></param>
+		/// <returns>A new managed client.</returns>
+		public static IManagedNetworkClient<TWritePayloadBaseType, TReadPayloadBaseType> AsManaged<TReadPayloadBaseType, TWritePayloadBaseType>([NotNull] this INetworkMessageClient<TReadPayloadBaseType, TWritePayloadBaseType> client, [NotNull] ILog logger)
+			where TWritePayloadBaseType : class
+			where TReadPayloadBaseType : class
+		{
+			if(client == null) throw new ArgumentNullException(nameof(client));
+			if(logger == null) throw new ArgumentNullException(nameof(logger));
+
+			//Adapt the provided network client to the managed network client interfaces.
+			return new ManagedPSOBBNetworkClient<INetworkMessageClient<TReadPayloadBaseType, TWritePayloadBaseType>, TWritePayloadBaseType, TReadPayloadBaseType>(client, logger);
 		}
 
 		/// <summary>

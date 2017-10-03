@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using System.Net;
 using System.Threading;
+using Common.Logging;
+using Common.Logging.Simple;
 
 namespace Booma.Proxy
 {
@@ -41,15 +43,29 @@ namespace Booma.Proxy
 		/// </summary>
 		private TClientType UnmanagedClient { get; }
 
+		//TODO: Add indepth client logging.
+		/// <summary>
+		/// The client logger.
+		/// </summary>
+		private ILog Logger { get; }
+
 		//TODO: Do we need to syncronize these?
 		private List<CancellationTokenSource> TaskTokenSources { get; }
 
 		/// <inheritdoc />
 		public ManagedPSOBBNetworkClient([NotNull] TClientType unmanagedClient)
+			: this(unmanagedClient, new NoOpLogger())
+		{
+
+		}
+
+		public ManagedPSOBBNetworkClient([NotNull] TClientType unmanagedClient, [NotNull] ILog logger)
 		{
 			if(unmanagedClient == null) throw new ArgumentNullException(nameof(unmanagedClient));
+			if(logger == null) throw new ArgumentNullException(nameof(logger));
 
 			UnmanagedClient = unmanagedClient;
+			Logger = logger;
 			isConnected = false;
 			TaskTokenSources = new List<CancellationTokenSource>(2);
 			OutgoingMessageQueue = new AsyncProducerConsumerQueue<TPayloadWriteType>(); //TODO: Should we constrain max count?
@@ -91,12 +107,28 @@ namespace Booma.Proxy
 		/// <returns>A future which will complete when the client disconnects.</returns>
 		private async Task DispatchOutgoingMessages()
 		{
-			//We need a token for canceling this task when a user disconnects
-			CancellationToken dispatchCancelation = CreateNewManagedCancellationTokenSource().Token;
+			try
+			{
+				//We need a token for canceling this task when a user disconnects
+				CancellationToken dispatchCancelation = CreateNewManagedCancellationTokenSource().Token;
 
-			while(!dispatchCancelation.IsCancellationRequested)
-				await UnmanagedClient.WriteAsync(await OutgoingMessageQueue.DequeueAsync(dispatchCancelation).ConfigureAwait(false))
-					.ConfigureAwait(false);
+				while(!dispatchCancelation.IsCancellationRequested)
+					await UnmanagedClient.WriteAsync(await OutgoingMessageQueue.DequeueAsync(dispatchCancelation).ConfigureAwait(false))
+						.ConfigureAwait(false);
+			}
+			catch(TaskCanceledException e)
+			{
+				//This is an expected exception that happens when the token is canceled
+				if(Logger.IsDebugEnabled)
+					Logger.Debug($"Expected Task Canceled Exception: {e.Message}\n\n Stack: {e.StackTrace}");
+				throw;
+			}
+			catch(Exception e)
+			{
+				if(Logger.IsErrorEnabled)
+					Logger.Error($"Error: {e.Message}\n\n Stack: {e.StackTrace}");
+				throw;
+			}
 
 			//TODO: Should we do anything after the dispatch has stopped?
 		}
@@ -111,17 +143,33 @@ namespace Booma.Proxy
 			//We need a token for canceling this task when a user disconnects
 			CancellationToken incomingCancellationToken = CreateNewManagedCancellationTokenSource().Token;
 
-			while(!incomingCancellationToken.IsCancellationRequested)
+			try
 			{
-				PSOBBNetworkIncomingMessage<TPayloadReadType> message = await UnmanagedClient.ReadAsync(incomingCancellationToken)
-					.ConfigureAwait(false);
+				while(!incomingCancellationToken.IsCancellationRequested)
+				{
+					PSOBBNetworkIncomingMessage<TPayloadReadType> message = await UnmanagedClient.ReadAsync(incomingCancellationToken)
+						.ConfigureAwait(false);
 
-				//if have to check the token again because the message may be null and may have been canceled mid-read
-				if(incomingCancellationToken.IsCancellationRequested)
-					continue;
+					//if have to check the token again because the message may be null and may have been canceled mid-read
+					if(incomingCancellationToken.IsCancellationRequested)
+						continue;
 
-				await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken)
-					.ConfigureAwait(false);
+					await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken)
+						.ConfigureAwait(false);
+				}
+			}
+			catch(TaskCanceledException e)
+			{
+				//This is an expected exception that happens when the token is canceled
+				if(Logger.IsDebugEnabled)
+					Logger.Debug($"Expected Task Canceled Exception: {e.Message}\n\n Stack: {e.StackTrace}");
+				throw;
+			}
+			catch(Exception e)
+			{
+				if(Logger.IsErrorEnabled)
+					Logger.Error($"Error: {e.Message}\n\n Stack: {e.StackTrace}");
+				throw;
 			}
 
 			//TODO: Should we do anything after the dispatch has stopped?
@@ -152,7 +200,8 @@ namespace Booma.Proxy
 			TaskTokenSources.ForEach(t =>
 			{
 				t.Cancel();
-				t.Dispose();
+
+				//TODO: Is it safe not to dipose?
 			});
 
 			TaskTokenSources.Clear();
@@ -202,8 +251,8 @@ namespace Booma.Proxy
 				{
 					// TODO: dispose managed state (managed objects).
 					StopAllNetworkTasks();
-					IncomingMessageQueue.Dispose();
-					OutgoingMessageQueue.Dispose();
+					//IncomingMessageQueue.Dispose();
+					//OutgoingMessageQueue.Dispose();
 				}
 
 				// TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
