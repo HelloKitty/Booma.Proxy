@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using FreecraftCore.Serializer;
 using SceneJect.Common;
+using Sirenix.Serialization;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
@@ -13,6 +16,9 @@ namespace Booma.Proxy
 	/// </summary>
 	public sealed class LoginClientDependencyRegisterModule : NonBehaviourDependency
 	{
+		[SerializeField]
+		private LogLevel LoggingLevel;
+
 		/// <inheritdoc />
 		public override void Register(IServiceRegister register)
 		{
@@ -37,12 +43,14 @@ namespace Booma.Proxy
 				.Concat(PacketLoginServerMetadataMarker.SerializableTypes)
 				.ToList().ForEach(t => Serializer.RegisterType(t));
 
+			Serializer.Compile();
+
 			IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client = new PSOBBNetworkClient()
 				.AddCryptHandling(encrypt, decrypt, 8)
 				.AddHeaderReading(Serializer, 8)
 				.AddNetworkMessageReading(Serializer)
 				.For<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>()
-				.AsManaged();
+				.AsManaged(new UnityLoggingService(LoggingLevel));
 
 			register.RegisterInstance<IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>,
 				IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>>(client);
