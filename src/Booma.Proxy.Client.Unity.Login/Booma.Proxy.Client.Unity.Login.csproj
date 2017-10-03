@@ -1,35 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{422EDED5-2620-4C7F-8819-3165EF0FD80E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net46</TargetFramework>
     <RootNamespace>Booma.Proxy</RootNamespace>
-    <AssemblyName>Booma.Proxy.Client.Unity.Login</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.7" />
+    <PackageReference Include="SceneJect.Common" Version="2.0.5" />
+    <PackageReference Include="SceneJect.Metadata" Version="2.0.5" />
+  </ItemGroup>
+
   <ItemGroup>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
@@ -37,55 +18,20 @@
     <Reference Include="Sirenix.Serialization">
       <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Client\LoginNetworkClient.cs" />
-    <Compile Include="IoC\LoginClientDependencyRegisterModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Folder Include="Properties\" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
-      <Project>{e29711cc-3abb-49b4-b010-3a2f72de5491}</Project>
-      <Name>Booma.Proxy.Client.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj">
-      <Project>{5e877c0a-d11c-4683-91f4-b3088d44bc57}</Project>
-      <Name>Booma.Proxy.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
-      <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
-      <Name>Booma.Proxy.Crypto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
-      <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
-      <Name>Booma.Proxy.Packets.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
-      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
-      <Name>Booma.Proxy.Packets.LoginServer</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer">
-      <Version>3.0.7</Version>
-    </PackageReference>
-    <PackageReference Include="SceneJect.Common">
-      <Version>2.0.5</Version>
-    </PackageReference>
-    <PackageReference Include="SceneJect.Metadata">
-      <Version>2.0.5</Version>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

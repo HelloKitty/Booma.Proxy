@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SceneJect.Autofac" Version="2.0.5" />
+    <PackageReference Include="SceneJect.Editor" Version="2.0.5" />
+  </ItemGroup>
+
+</Project>

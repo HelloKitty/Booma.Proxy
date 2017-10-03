@@ -48,6 +48,15 @@ namespace Booma.Proxy
 
 			if(!result)
 				throw new InvalidOperationException($"Failed to connect to Login: {IpAddress} Port: {Port}");
+
+			Debug.Log("Connected client.");
+
+			while(Client.isConnected)
+			{
+				PSOBBNetworkIncomingMessage<PSOBBLoginPacketPayloadServer> message = await Client.ReadMessageAsync();
+
+				Debug.Log(message.Payload.GetType().Name);
+			}
 		}
 	}
 }
