@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SceneJect.Autofac" Version="2.0.5" />
-    <PackageReference Include="SceneJect.Editor" Version="2.0.5" />
+    <PackageReference Include="SceneJect.Autofac" Version="2.0.6" />
+    <PackageReference Include="SceneJect.Editor" Version="2.0.6" />
   </ItemGroup>
 
 </Project>
