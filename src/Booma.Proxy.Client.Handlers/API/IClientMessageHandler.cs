@@ -10,7 +10,8 @@ namespace Booma.Proxy
 	/// Contract for types that provide message handling logic.
 	/// </summary>
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
-	public interface IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>
+	/// <typeparam name="TOutgoingPayloadType"></typeparam>
+	public interface IClientMessageHandler<TIncomingPayloadType, out TOutgoingPayloadType>
 		where TIncomingPayloadType : class
 		where TOutgoingPayloadType : class
 	{
