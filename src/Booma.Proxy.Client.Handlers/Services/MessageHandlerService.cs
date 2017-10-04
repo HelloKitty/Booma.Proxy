@@ -14,8 +14,8 @@ namespace Booma.Proxy
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
 	/// <typeparam name="TOutgoingPayloadType"></typeparam>
 	public sealed class MessageHandlerService<TIncomingPayloadType, TOutgoingPayloadType> : IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> 
-		where TIncomingPayloadType : 
-		class where TOutgoingPayloadType : class
+		where TIncomingPayloadType : class 
+		where TOutgoingPayloadType : class
 	{
 		/// <summary>
 		/// The handlers this service will try to dispatch to.
@@ -26,10 +26,10 @@ namespace Booma.Proxy
 		/// The optional default message handler to fall back on
 		/// if no handler accepts the incoming message.
 		/// </summary>
-		private IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> DefaultMessageHandler { get; }
+		private IClientPayloadSpecificMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> DefaultMessageHandler { get; }
 
 		/// <inheritdoc />
-		public MessageHandlerService(IEnumerable<IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>> managedHandlers, IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> defaultMessageHandler)
+		public MessageHandlerService(IEnumerable<IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>> managedHandlers, IClientPayloadSpecificMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> defaultMessageHandler)
 		{
 			if(managedHandlers == null) throw new ArgumentNullException(nameof(managedHandlers));
 
@@ -51,8 +51,7 @@ namespace Booma.Proxy
 					return true;
 			}
 
-			if(DefaultMessageHandler != null)
-				return await DefaultMessageHandler.TryHandleMessage(context, message);
+			DefaultMessageHandler?.HandleMessage(context, message.Payload);
 
 			return false;
 		}
