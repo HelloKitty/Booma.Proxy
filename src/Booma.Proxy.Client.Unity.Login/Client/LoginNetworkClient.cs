@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -38,12 +39,16 @@ namespace Booma.Proxy
 		[Inject]
 		public IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> Client { get; }
 
+		[Inject]
+		public ILog Logger { get; }
+
 		//TODO: Is it safe or ok to await in start without ever completing?
 		private async Task Start()
 		{
 			try
 			{
-				Debug.Log("Starting login client");
+				if(Logger.IsDebugEnabled)
+					Logger.Debug("Starting login client");
 
 				//As soon as we start we should attempt to connect to the login server.
 				bool result = await Client.ConnectAsync(IpAddress, Port);
@@ -51,11 +56,13 @@ namespace Booma.Proxy
 				if(!result)
 					throw new InvalidOperationException($"Failed to connect to Login: {IpAddress} Port: {Port}");
 
-				Debug.Log($"Connected client. isConnected: {Client.isConnected}");
+				if(Logger.IsDebugEnabled)
+					Logger.Debug($"Connected client. isConnected: {Client.isConnected}");
 
 				while(Client.isConnected)
 				{
-					Debug.Log("Reading message.");
+					if(Logger.IsDebugEnabled)
+						Logger.Debug("Reading message.");
 
 					PSOBBNetworkIncomingMessage<PSOBBLoginPacketPayloadServer> message = await Client.ReadMessageAsync();
 
@@ -64,7 +71,9 @@ namespace Booma.Proxy
 			}
 			catch(Exception e)
 			{
-				Debug.LogError($"Error: {e.Message}\n\n Stack Trace: {e.StackTrace}");
+				if(Logger.IsDebugEnabled)
+					Logger.Debug($"Error: {e.Message}\n\n Stack Trace: {e.StackTrace}");
+
 				throw;
 			}
 		}
