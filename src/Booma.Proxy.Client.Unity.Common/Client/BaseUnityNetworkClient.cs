@@ -61,10 +61,9 @@ namespace Booma.Proxy
 					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync()
 						.ConfigureAwait(true);
 
+					//We don't do anything with the result. We should hope someone registered
+					//a default handler to deal with this situation
 					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client), message);
-
-					if(!result && Logger.IsInfoEnabled)
-						Logger.Info($"Handlers failed to handle message of Type: {message.Payload.GetType().Name}");
 				}
 			}
 			catch(Exception e)
