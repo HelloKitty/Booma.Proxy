@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// that derives from <see cref="TPayloadBaseType"/>.
 	/// </summary>
 	/// <typeparam name="TPayloadType">The type of payload that is handled.</typeparam>
-	/// <typeparam name="TPayloadBaseType">The base type of the payload.</typeparam>
+	/// <typeparam name="TOutgoingPayloadType"></typeparam>
 	public interface IClientPayloadSpecificMessageHandler<in TPayloadType, out TOutgoingPayloadType>
 		where TOutgoingPayloadType : class
 		where TPayloadType : class

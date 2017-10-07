@@ -58,7 +58,8 @@ namespace Booma.Proxy
 					if(Logger.IsDebugEnabled)
 						Logger.Debug("Reading message.");
 
-					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync();
+					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync()
+						.ConfigureAwait(true);
 
 					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client), message);
 
