@@ -75,5 +75,10 @@ namespace Booma.Proxy
 				throw;
 			}
 		}
+
+		protected virtual void OnApplicationQuit()
+		{
+			Client?.Disconnect();
+		}
 	}
 }

@@ -16,8 +16,10 @@ namespace Booma.Proxy
 			//Foreach handler in the scene we need to register it
 			//so that the IoC container can provide the collection of handlers as a potential
 			//dependency to other objects.
-			IEnumerable<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>> handlers = FindObjectsOfType(typeof(IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>))
-				.Cast<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>()
+			IEnumerable<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>> handlers = FindObjectsOfType<GameObject>()
+				.SelectMany(go => go.GetComponents<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>())
+				.Where(c => c != null)
+				.Distinct()
 				.ToList();
 
 			//Register this as the default payload handler

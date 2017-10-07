@@ -52,6 +52,8 @@ namespace Booma.Proxy
 				.For<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>()
 				.AsManaged(new UnityLoggingService(LoggingLevel));
 
+			register.RegisterTransient<DefaultMessageContextFactory, IClientMessageContextFactory>();
+
 			register.RegisterInstance<IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>,
 				IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>>(client);
 
