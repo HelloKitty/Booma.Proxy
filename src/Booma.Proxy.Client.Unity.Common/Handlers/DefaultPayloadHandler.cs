@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using JetBrains.Annotations;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -23,12 +24,23 @@ namespace Booma.Proxy
 		private ILog Logger { get; }
 
 		/// <inheritdoc />
-		public Task HandleMessage(IClientMessageContext<TOutgoingPayloadType> context, TPayloadType payload)
+		public DefaultPayloadHandler([NotNull] ILog logger)
 		{
+			if(logger == null) throw new ArgumentNullException(nameof(logger));
+
+			Logger = logger;
+		}
+
+		/// <inheritdoc />
+		public Task HandleMessage([NotNull] IClientMessageContext<TOutgoingPayloadType> context, [NotNull] TPayloadType payload)
+		{
+			if(context == null) throw new ArgumentNullException(nameof(context));
+			if(payload == null) throw new ArgumentNullException(nameof(payload));
+
 			//TODO: We can disconnect if we encounter unknowns or do more indepth logging/decisions
 			if(Logger.IsInfoEnabled)
 				if(payload is IUnknownPayloadType unk)
-					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name} OpCode: {unk}");
+					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name} OpCode: {unk.OperationCode}");
 				else
 					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name}");
 
