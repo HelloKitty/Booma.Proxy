@@ -22,6 +22,11 @@ namespace Booma.Proxy
 				.Distinct()
 				.ToList();
 
+			Debug.Log($"Found Handler Count: {handlers.Count()}");
+
+			foreach(var h in handlers)
+				register.RegisterInstance<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>, IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>(h);
+
 			//Register this as the default payload handler
 			register.RegisterSingleton<DefaultPayloadHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>, IClientPayloadSpecificMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>();
 

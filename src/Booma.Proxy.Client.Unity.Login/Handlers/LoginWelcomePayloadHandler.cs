@@ -22,6 +22,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginWelcomePayload payload)
 		{
+			if(Logger.IsInfoEnabled)
+				Logger.Info("Initializing crypto.");
+
 			//the crypto needs to init after the welcome message
 			CryptoInitializer.EncryptionInitializable.Initialize(payload.ClientVector);
 			CryptoInitializer.DecryptionInitializable.Initialize(payload.ServerVector);
