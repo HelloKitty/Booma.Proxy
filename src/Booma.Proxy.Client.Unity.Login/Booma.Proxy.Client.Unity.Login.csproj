@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
