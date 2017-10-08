@@ -30,7 +30,6 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The IPAddress that should be reidrected to.
 		/// </summary>
-		[ReverseData]
 		[KnownSize(4)]
 		[WireMember(1)]
 		public byte[] IpAddressBytes { get; }
@@ -72,7 +71,7 @@ namespace Booma.Proxy
 				throw new ArgumentException($"Address {nameof(ipAddress)} was in an invalid format.");
 
 			//We have to reverse for endianness
-			IpAddressBytes = addr.GetAddressBytes().Reverse().ToArray();
+			IpAddressBytes = addr.GetAddressBytes();
 			EndpointerPort = port;
 		}
 
@@ -87,7 +86,7 @@ namespace Booma.Proxy
 			if(ipAddress == null) throw new ArgumentNullException(nameof(ipAddress));
 
 			//We have to reverse for endianness
-			IpAddressBytes = ipAddress.GetAddressBytes().Reverse().ToArray();
+			IpAddressBytes = ipAddress.GetAddressBytes();
 			EndpointerPort = port;
 		}
 

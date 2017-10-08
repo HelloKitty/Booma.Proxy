@@ -10,11 +10,18 @@ namespace Booma.Proxy.Handlers
 	[Injectee]
 	public sealed class LoginConnectionRedirectionPayloadHandler : LoginMessageHandler<LoginConnectionRedirectPayload>
 	{
+		[Inject]
+		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
+
 		/// <inheritdoc />
 		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginConnectionRedirectPayload payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Redirecting Login to {BuildLoginDebugString(payload)}");
+
+			//Have to clear crypto since we're connecting to a new endpoint
+			CryptoInitializer.DecryptionInitializable.Uninitialize();
+			CryptoInitializer.EncryptionInitializable.Uninitialize();
 
 			bool result = await context.ConnectionService.ConnectAsync(payload.EndpointAddress, payload.EndpointerPort);
 
@@ -24,7 +31,7 @@ namespace Booma.Proxy.Handlers
 
 		private string BuildLoginDebugString(LoginConnectionRedirectPayload payload)
 		{
-			return $"Ip: {payload.EndpointAddress.ToString()} Port: {payload.EndpointerPort}";
+			return $"Ip: {payload.EndpointAddress} Port: {payload.EndpointerPort}";
 		}
 	}
 }
