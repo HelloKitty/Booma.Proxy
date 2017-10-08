@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
 	/// <summary>
 	/// Controller for the login panel UI.
 	/// </summary>
-	public sealed class LoginPanelUIController : MonoBehaviour
+	public sealed class LoginPanelUIController : SerializedMonoBehaviour
 	{
 		//TODO: Extract into a model
 		/// <summary>
@@ -42,6 +46,7 @@ namespace Booma.Proxy
 			TrackedPassword = password;
 		}
 
+		//TODO: Maybe have the model save the details once it's written
 		//This will occur when the next scene is about to be loaded
 		//We want to init the prefs so that they contain the login details
 		private void OnDestroy()

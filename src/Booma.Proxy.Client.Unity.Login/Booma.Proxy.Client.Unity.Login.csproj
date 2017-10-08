@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="SceneJect.Common" Version="2.0.6" />
     <PackageReference Include="SceneJect.Metadata" Version="2.0.6" />
+    <PackageReference Include="Unitysync.Async" Version="1.0.6" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +22,9 @@
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\..\lib\Unity\UnityEngine.Timeline.dll</HintPath>
     </Reference>
   </ItemGroup>
 
