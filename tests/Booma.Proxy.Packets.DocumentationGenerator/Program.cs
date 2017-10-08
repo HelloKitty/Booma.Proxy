@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Generic.Math;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy.Packets.DocumentationGenerator
 {
@@ -16,25 +18,41 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 			//Overwrite the original file
 			Directory.CreateDirectory(@"docs");
 			File.Create(@"docs\PatchPacketDocumentation.md").Close();
+			File.Create(@"docs\LoginPacketDocumentation.md").Close();
+
+			string patchDocString = 
+				BuildPacketDocumentation<PatchClientPacketPayloadAttribute, PatchServerPacketPayloadAttribute, PatchNetworkOperationCodes>(PacketPatchServerMetadataMarker.SerializableTypes, "Patch");
+
+			string loginDocString =
+				BuildPacketDocumentation<LoginClientPacketPayloadAttribute, LoginServerPacketPayloadAttribute, LoginNetworkOperationCodes>(PacketLoginServerMetadataMarker.SerializableTypes, "Login");
+
+			File.WriteAllText(@"docs\PatchPacketDocumentation.md", patchDocString);
+			File.WriteAllText(@"docs\LoginPacketDocumentation.md", loginDocString);
+		}
+
+		public static string BuildPacketDocumentation<TOutgoingPayloadAttributeType, TIncomingPayloadAttributeType, TOpcodeType>([NotNull] IEnumerable<Type> packets, string packetType)
+			where TOpcodeType : struct
+			where TOutgoingPayloadAttributeType : WireDataContractBaseLinkAttribute
+			where TIncomingPayloadAttributeType : WireDataContractBaseLinkAttribute
+		{
+			if(packets == null) throw new ArgumentNullException(nameof(packets));
+			packets = packets.ToList();
 
 			StringBuilder builder = new StringBuilder();
 
 			//Generate the patch packet documentation
-			builder.Append(BuildHeader(1, "Patch Packets"));
+			builder.Append(BuildHeader(1, $"{packetType} Packets"));
 			InsertLineBreak(builder);
 			InsertLineBreak(builder);
 
 			builder.Append(BuildPacketHeaderRow());
 			InsertLineBreak(builder);
 
-			//TODO: Cache or sort for perf
-			IEnumerable<Type> PatchPacketTypes = PacketPatchServerMetadataMarker.SerializableTypes;
-
-			foreach(PatchNetworkOperationCodes opcode in Enum.GetValues(typeof(PatchNetworkOperationCodes)))
+			foreach(TOpcodeType opcode in Enum.GetValues(typeof(TOpcodeType)))
 			{
-				string row = BuildPacketInformationRow(opcode.ToString(), $"0x{String.Format("{0:X4}",(int)opcode)}",
-					PatchPacketTypes.FirstOrDefault(p => HasOpCodeAttribute<PatchServerPacketPayloadAttribute>(p, opcode)),
-					PatchPacketTypes.FirstOrDefault(p => HasOpCodeAttribute<PatchClientPacketPayloadAttribute>(p, opcode)));
+				string row = BuildPacketInformationRow(opcode.ToString(), $"0x{String.Format("{0:X4}", GenericMath.Convert<TOpcodeType, int>(opcode))}",
+					packets.FirstOrDefault(p => HasOpCodeAttribute<TIncomingPayloadAttributeType, TOpcodeType>(p, opcode)),
+					packets.FirstOrDefault(p => HasOpCodeAttribute<TOutgoingPayloadAttributeType, TOpcodeType>(p, opcode)), packetType);
 
 				builder.Append(row);
 				InsertLineBreak(builder);
@@ -44,21 +62,21 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 			InsertLineBreak(builder);
 			builder.Append("This documentation was automatically generated using the documentation tools.");
 
-			File.WriteAllText(@"docs\PatchPacketDocumentation.md", builder.ToString());
+			return builder.ToString();
 		}
 
-		private static string BuildPacketInformationRow(string opcodeName, string opcodeValueAsString, Type optionalServerPayloadType, Type optionalClientPayloadType)
+		private static string BuildPacketInformationRow(string opcodeName, string opcodeValueAsString, Type optionalServerPayloadType, Type optionalClientPayloadType, string packetType)
 		{
-			return $"| {opcodeName} | {opcodeValueAsString} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Server")} | {BuildUrlLinkFromName(optionalClientPayloadType?.Name, "Client")} |";
+			return $"| {opcodeName} | {opcodeValueAsString} | {BuildUrlLinkFromName(optionalServerPayloadType?.Name, "Server", packetType)} | {BuildUrlLinkFromName(optionalClientPayloadType?.Name, "Client", packetType)} |";
 		}
 
-		private static object BuildUrlLinkFromName(string name, string subdirName)
+		private static object BuildUrlLinkFromName(string name, string subdirName, string packetType)
 		{
 			//TODO: add URL linking to the files
-			return string.IsNullOrWhiteSpace(name) ? @"**n/a**" : $"[{name}]({@"https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads"}/{subdirName}/{name}.cs)";
+			return string.IsNullOrWhiteSpace(name) ? @"**n/a**" : $"[{name}]({@"https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets."}{packetType}{@"Server/Payloads"}/{subdirName}/{name}.cs)";
 		}
 
-		private static bool HasOpCodeAttribute<TWireLinkBaseAttributeType>(Type t, PatchNetworkOperationCodes opcode)
+		private static bool HasOpCodeAttribute<TWireLinkBaseAttributeType, TOpcodeType>(Type t, TOpcodeType opcode)
 			where TWireLinkBaseAttributeType : WireDataContractBaseLinkAttribute
 		{
 			TWireLinkBaseAttributeType attri = t.GetCustomAttribute<TWireLinkBaseAttributeType>();
@@ -66,12 +84,12 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 			if(attri == null)
 				return false;
 
-			return attri.Index == (int)opcode;
+			return attri.Index == GenericMath.Convert<TOpcodeType, int>(opcode);
 		}
 
 		private static string BuildPacketHeaderRow()
 		{
-			return @"| Packet OpCode Name | OpCode| Sent by Server | Sent by Client |" + "\r\n" + @"| ------------- | ------------- | ------------- | ------------- |";
+			return @"| Packet OpCode Name | OpCode | Sent by Server | Sent by Client |" + "\r\n" + @"| ------------- | ------------- | ------------- | ------------- |";
 		}
 
 		public static void InsertLineBreak(StringBuilder builder)

@@ -21,7 +21,7 @@ namespace Booma.Proxy
 	/// blowfish encryption.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCode.BB_WELCOME_TYPE)]
+	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_WELCOME_TYPE)]
 	public sealed class LoginWelcomePayload : PSOBBLoginPacketPayloadServer
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 nuget.exe restore Booma.Proxy.sln
-dotnet build Booma.Proxy.sln -c Debug
+dotnet restore Booma.Proxy.sln
+dotnet publish tests/Booma.Proxy.Packets.DocumentationGenerator/Booma.Proxy.Packets.DocumentationGenerator.csproj -c release
 
-start tests\Booma.Proxy.Packets.DocumentationGenerator\bin\Debug\Booma.Proxy.Packets.DocumentationGenerator.exe \WAIT
+start tests\Booma.Proxy.Packets.DocumentationGenerator\bin\Release\net46\Booma.Proxy.Packets.DocumentationGenerator.exe \WAIT

@@ -8,7 +8,7 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCode.MESSAGE_BOX_TYPE)]
+	[LoginServerPacketPayload(LoginNetworkOperationCodes.MESSAGE_BOX_TYPE)]
 	public sealed class LoginCreateMessageBoxEventPayload : PSOBBLoginPacketPayloadServer
 	{
 		/// <summary>

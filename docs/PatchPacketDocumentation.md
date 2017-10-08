@@ -1,6 +1,6 @@
 # Patch Packets
 
-| Packet OpCode Name | OpCode| Sent by Server | Sent by Client |
+| Packet OpCode Name | OpCode | Sent by Server | Sent by Client |
 | ------------- | ------------- | ------------- | ------------- |
 | PATCH_WELCOME_TYPE | 0x0002 | [PatchingWelcomePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Server/PatchingWelcomePayload.cs) | [PatchingWelcomeAckPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Client/PatchingWelcomeAckPayload.cs) |
 | PATCH_LOGIN_TYPE | 0x0004 | [PatchingReadyForLoginRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Server/PatchingReadyForLoginRequestPayload.cs) | [PatchingLoginRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.PatchServer/Payloads/Client/PatchingLoginRequestPayload.cs) |

@@ -57,7 +57,7 @@
     <Compile Include="Message\IUnknownPayloadType.cs" />
     <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
-    <Compile Include="OperationCodes\LoginNetworkOperationCode.cs" />
+    <Compile Include="OperationCodes\LoginNetworkOperationCodes.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />
     <Compile Include="Message\Login\UnknownLoginPacket.cs" />
     <Compile Include="Message\Login\PSOBBLoginPacketPayloadClient.cs" />

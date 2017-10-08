@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	//Syl: LOGIN_93_TYPE https://github.com/Sylverant/login_server/blob/master/src/bblogin.c#L121
 	//Teth: https://github.com/justnoxx/psobb-tethealla/blob/master/login_server/login_server.c#L4537 I think?
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCode.LOGIN_93_TYPE)]
+	[LoginClientPacketPayload(LoginNetworkOperationCodes.LOGIN_93_TYPE)]
 	public sealed class LoginLoginRequest93Payload : PSOBBLoginPacketPayloadClient
 	{
 		//TODO: What is this?
