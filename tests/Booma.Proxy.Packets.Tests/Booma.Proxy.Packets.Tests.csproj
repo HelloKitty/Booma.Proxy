@@ -42,16 +42,16 @@
       <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.7\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.8\lib\net46\FreecraftCore.Serializer.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.7\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.8\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.7\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.8\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.7\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.8\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
     </Reference>
     <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
