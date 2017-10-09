@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
 
-namespace Booma.Proxy.Handlers
+namespace Booma.Proxy
 {
 	[Injectee]
 	public sealed class LoginConnectionRedirectionPayloadHandler : LoginMessageHandler<LoginConnectionRedirectPayload>

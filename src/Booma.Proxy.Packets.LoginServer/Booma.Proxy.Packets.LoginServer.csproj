@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.8\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.9\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
@@ -55,10 +55,10 @@
   <ItemGroup>
     <Compile Include="Models\AccountTeamInformation.cs" />
     <Compile Include="Models\BindingsConfig.cs" />
-    <Compile Include="Models\CharacterSelectionType.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
+    <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
     <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Character.Common\Booma.Proxy.Character.Common.csproj">
+      <Project>{421990d4-ba7f-40df-a99c-63ad2a26ec24}</Project>
+      <Name>Booma.Proxy.Character.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
       <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>

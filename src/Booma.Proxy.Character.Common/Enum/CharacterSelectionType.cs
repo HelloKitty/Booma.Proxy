@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Enumeration of character selection types.
 	/// </summary>
-	public enum CharacterSelectionType : byte
+	public enum CharacterSelectionType : int
 	{
 		/// <summary>
 		/// The selection is for a preview for the character.
