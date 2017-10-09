@@ -62,6 +62,8 @@
     <Compile Include="Payloads\Client\LoginChecksumRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterSelectionAckPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
+    <Compile Include="Payloads\Server\LoginChecksumResponsePayload.cs" />
+    <Compile Include="Models\LoginChecksumResult.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
     <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
