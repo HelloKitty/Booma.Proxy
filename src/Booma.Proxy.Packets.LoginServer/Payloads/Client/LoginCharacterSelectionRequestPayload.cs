@@ -20,23 +20,14 @@ namespace Booma.Proxy
 		/// The slot being selected.
 		/// </summary>
 		[WireMember(1)]
-		public byte SlotSelected { get; }
-
-		//TODO: Why is this here? Is it really padding?
-		[KnownSize(3)]
-		[WireMember(2)]
-		private byte[] padding1 { get; } = new byte[3];
+		public int SlotSelected { get; }
 
 		/// <summary>
 		/// Indicates the type of selection to be done.
 		/// (Ex. Preview or Play)
 		/// </summary>
-		[WireMember(3)]
+		[WireMember(2)]
 		public CharacterSelectionType SelectionType { get; }
-
-		[KnownSize(3)]
-		[WireMember(4)]
-		private byte[] padding2 { get; } = new byte[3];
 
 		/// <inheritdoc />
 		public LoginCharacterSelectionRequestPayload(byte slotSelected, CharacterSelectionType selectionType)
