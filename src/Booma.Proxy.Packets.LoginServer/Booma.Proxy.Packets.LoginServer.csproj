@@ -58,6 +58,8 @@
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
+    <Compile Include="Models\CharacterSelectionAckType.cs" />
+    <Compile Include="Payloads\Server\LoginCharacterSelectionAckPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
     <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
