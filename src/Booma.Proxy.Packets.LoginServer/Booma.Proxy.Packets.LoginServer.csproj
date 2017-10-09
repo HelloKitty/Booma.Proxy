@@ -66,6 +66,7 @@
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginChecksumResponsePayload.cs" />
     <Compile Include="Models\LoginChecksumResult.cs" />
+    <Compile Include="Payloads\Server\LoginGuildCardChunkResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
     <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
