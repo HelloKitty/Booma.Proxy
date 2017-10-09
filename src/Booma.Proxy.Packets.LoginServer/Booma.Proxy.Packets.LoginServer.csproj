@@ -60,6 +60,7 @@
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
     <Compile Include="Models\CharacterSelectionAckType.cs" />
     <Compile Include="Payloads\Client\LoginChecksumRequestPayload.cs" />
+    <Compile Include="Payloads\Client\LoginGuildRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterSelectionAckPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginChecksumResponsePayload.cs" />
