@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
+    <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
     <Compile Include="Payloads\Client\LoginLoginRequest93Payload.cs" />
     <Compile Include="Payloads\Server\LoginCreateMessageBoxEventPayload.cs" />
