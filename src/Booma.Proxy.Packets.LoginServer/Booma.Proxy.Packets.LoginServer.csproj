@@ -55,8 +55,10 @@
   <ItemGroup>
     <Compile Include="Models\AccountTeamInformation.cs" />
     <Compile Include="Models\BindingsConfig.cs" />
+    <Compile Include="Models\CharacterSelectionType.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
+    <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
     <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
