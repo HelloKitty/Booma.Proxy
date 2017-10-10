@@ -61,6 +61,17 @@ namespace Booma.Proxy.Packets.Tests
 
 		[Test]
 		[TestCaseSource(nameof(PayloadTypes))]
+		public void Test_Each_Payload_Has_WireDataContract_Attribute(Type t)
+		{
+			//act
+			bool result = t.GetCustomAttribute<WireDataContractAttribute>(false) != null;
+
+			//assert
+			Assert.True(result, $"Type: {t.Name} does not have required {nameof(WireDataContractAttribute)} annoted on it.");
+		}
+
+		[Test]
+		[TestCaseSource(nameof(PayloadTypes))]
 		public void Test_Can_Register_All_Concrete_Payloads(Type t)
 		{
 			//arrange
