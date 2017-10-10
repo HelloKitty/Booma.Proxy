@@ -54,6 +54,7 @@
     <Compile Include="Attributes\Ship\ShipClientPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Ship\ShipServerPacketPayloadAttribute.cs" />
     <Compile Include="Message\IPacketHeader.cs" />
+    <Compile Include="Message\IPacketPayload.cs" />
     <Compile Include="Message\IUnknownPayloadType.cs" />
     <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />

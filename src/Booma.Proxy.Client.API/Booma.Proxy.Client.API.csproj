@@ -54,8 +54,10 @@
     <Compile Include="API\NetworkClient\IPacketPayloadWritable.cs" />
     <Compile Include="API\Message\IClientMessageContext.cs" />
     <Compile Include="API\Services\IClientPayloadSendService.cs" />
+    <Compile Include="API\Services\IClientRequestSendService.cs" />
     <Compile Include="API\Services\IConnectionService.cs" />
     <Compile Include="API\Message\SendResult.cs" />
+    <Compile Include="API\Services\IPayloadInterceptable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <typeparam name="TPayloadBaseType">The payload basetype.</typeparam>
 		/// <returns>A new message context.</returns>
-		IClientMessageContext<TPayloadBaseType> Create<TPayloadBaseType>(IConnectionService connectionService, IClientPayloadSendService<TPayloadBaseType> sendService)
+		IClientMessageContext<TPayloadBaseType> Create<TPayloadBaseType>(IConnectionService connectionService, IClientPayloadSendService<TPayloadBaseType> sendService, IClientRequestSendService<TPayloadBaseType> requestService)
 			where TPayloadBaseType : class;
 	}
 }

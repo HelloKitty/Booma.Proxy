@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorators\InterceptAsyncRequestClientMessageHandler.cs" />
     <Compile Include="Extensions\HandlerExtensions.cs" />
-    <Compile Include="Handlers\TrySemanticsBasedOnTypeClientMessageHandler.cs" />
+    <Compile Include="Decorators\TrySemanticsBasedOnTypeClientMessageHandler.cs" />
     <Compile Include="API\IClientMessageHandler.cs" />
     <Compile Include="API\IClientPayloadSpecificMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

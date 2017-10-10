@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[DefaultChild(typeof(UnknownLoginPacket))] //this will be the default deserialized packet when we don't know what it is.
 	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class PSOBBLoginPacketPayloadServer
+	public abstract class PSOBBLoginPacketPayloadServer : IPacketPayload
 	{
 		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
 		/// <summary>

@@ -14,7 +14,8 @@ namespace Booma.Proxy
 	public sealed class DefaultMessageContextFactory : IClientMessageContextFactory
 	{
 		/// <inheritdoc />
-		public IClientMessageContext<TPayloadBaseType> Create<TPayloadBaseType>([NotNull] IConnectionService connectionService, [NotNull] IClientPayloadSendService<TPayloadBaseType> sendService) 
+		public IClientMessageContext<TPayloadBaseType> Create<TPayloadBaseType>([NotNull] IConnectionService connectionService, [NotNull] IClientPayloadSendService<TPayloadBaseType> sendService, 
+			IClientRequestSendService<TPayloadBaseType> requestService)
 			where TPayloadBaseType : class
 		{
 			if(connectionService == null) throw new ArgumentNullException(nameof(connectionService));
@@ -22,7 +23,7 @@ namespace Booma.Proxy
 
 			//This doesn't have to work like this, it could be other services/dependencies,
 			//but the only implementation right now is the client itself.
-			return new DefaultClientMessageContext<TPayloadBaseType>(connectionService, sendService);
+			return new DefaultClientMessageContext<TPayloadBaseType>(connectionService, sendService, requestService);
 		}
 	}
 }

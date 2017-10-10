@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>

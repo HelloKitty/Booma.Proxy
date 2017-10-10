@@ -44,6 +44,15 @@ namespace Booma.Proxy
 		[Inject]
 		protected IClientMessageContextFactory MessageContextFactory { get; }
 
+		//TODO: Move to IoC
+		private IClientRequestSendService<TOutgoingPayloadType> RequestService { get; set; }
+
+		protected virtual void Start()
+		{
+			//TODO: Can we avoid having to create this dependency and move it to IoC?
+			RequestService = new PayloadInterceptMessageSendService<TOutgoingPayloadType>(Handlers.WithInterception(), Client);
+		}
+
 		/// <summary>
 		/// Starts dispatching the messages and won't yield until
 		/// the client has stopped or has disconnected.
@@ -63,7 +72,7 @@ namespace Booma.Proxy
 
 					//We don't do anything with the result. We should hope someone registered
 					//a default handler to deal with this situation
-					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client), message);
+					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client, RequestService), message);
 				}
 			}
 			catch(Exception e)

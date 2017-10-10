@@ -28,5 +28,11 @@ namespace Booma.Proxy
 		/// a response or request to the client context involved in this particular message.
 		/// </summary>
 		IClientPayloadSendService<TPayloadBaseType> PayloadSendService { get; }
+
+		/// <summary>
+		/// The request service that registers a response and returns a task
+		/// that can be awaited on for when/if the response is recieved.
+		/// </summary>
+		IClientRequestSendService<TPayloadBaseType> RequestSendService { get; }
 	}
 }

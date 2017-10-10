@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
 	[WireDataContract(WireDataContractAttribute.KeyType.UShort, true)]
-	public abstract class PSOBBShipPacketPayloadServer
+	public abstract class PSOBBShipPacketPayloadServer : IPacketPayload
 	{
 		/// <summary>
 		/// The optional flags field.

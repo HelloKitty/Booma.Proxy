@@ -22,13 +22,18 @@ namespace Booma.Proxy
 		public IClientPayloadSendService<TPayloadBaseType> PayloadSendService { get; }
 
 		/// <inheritdoc />
-		public DefaultClientMessageContext([NotNull] IConnectionService connectionService, [NotNull] IClientPayloadSendService<TPayloadBaseType> payloadSendService)
+		public IClientRequestSendService<TPayloadBaseType> RequestSendService { get; }
+
+		/// <inheritdoc />
+		public DefaultClientMessageContext([NotNull] IConnectionService connectionService, [NotNull] IClientPayloadSendService<TPayloadBaseType> payloadSendService, [NotNull] IClientRequestSendService<TPayloadBaseType> requestSendService)
 		{
 			if(connectionService == null) throw new ArgumentNullException(nameof(connectionService));
 			if(payloadSendService == null) throw new ArgumentNullException(nameof(payloadSendService));
+			if(requestSendService == null) throw new ArgumentNullException(nameof(requestSendService));
 
 			ConnectionService = connectionService;
 			PayloadSendService = payloadSendService;
+			RequestSendService = requestSendService;
 		}
 	}
 }

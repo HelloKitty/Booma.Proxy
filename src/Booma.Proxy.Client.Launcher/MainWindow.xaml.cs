@@ -86,7 +86,8 @@ namespace Booma.Proxy.Client.Launcher
 
 				foreach(var h in Handlers)
 				{
-					if(await h.TryHandleMessage(MessageContextFactory.Create(client, client), message))
+					//TODO: Fix this and enable request service
+					if(await h.TryHandleMessage(MessageContextFactory.Create(client, client, null), message))
 						break;
 				}
 			}
