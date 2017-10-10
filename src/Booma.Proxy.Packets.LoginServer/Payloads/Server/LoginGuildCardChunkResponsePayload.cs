@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_GUILDCARD_CHUNK_TYPE)]
-	public sealed class LoginGuildCardChunkResponsePayload : PSOBBLoginPacketPayloadServer
+	public sealed class LoginGuildCardChunkResponsePayload : PSOBBLoginPacketPayloadServer, IChunkResponse
 	{
 		//TODO: What is this?
 		[WireMember(1)]

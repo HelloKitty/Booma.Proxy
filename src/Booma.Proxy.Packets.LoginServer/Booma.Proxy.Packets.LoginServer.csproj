@@ -56,6 +56,8 @@
     <Compile Include="Models\AccountTeamInformation.cs" />
     <Compile Include="Models\BindingsConfig.cs" />
     <Compile Include="Models\DataParameterFileHeader.cs" />
+    <Compile Include="Models\IChunkRequest.cs" />
+    <Compile Include="Models\IChunkResponse.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />

@@ -23,7 +23,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_PARAM_CHUNK_TYPE)]
-	public sealed class LoginDataParametersChunkResponsePayload : PSOBBLoginPacketPayloadServer
+	public sealed class LoginDataParametersChunkResponsePayload : PSOBBLoginPacketPayloadServer, IChunkResponse
 	{
 		/// <summary>
 		/// The id/number for this chunk.
