@@ -15,7 +15,20 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The regular character will be shown.
 		/// </summary>
-		Regular = 0
+		Regular = 0,
+
+		//TODO: Are these right?
+		Famitsu,
+		Rico,
+		Sonic,
+		Knuckles,
+		Tails,
+		Flowen,
+		Elly,
+		Momoka,
+		Irene,
+		GuildLady,
+		Nurse,
 
 		//TODO: Fill in when other NPC ids are known.
 	}
