@@ -44,9 +44,11 @@ namespace Booma.Proxy
 			//before registering the interception.
 			Task<TResponseType> resulTask = InterceptionService.InterceptPayload<TResponseType>();
 
-			await SendService.SendMessage(request);
+			await SendService.SendMessage(request)
+				.ConfigureAwait(false);
 
-			return await resulTask;
+			return await resulTask
+				.ConfigureAwait(false);
 		}
 	}
 }

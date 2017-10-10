@@ -47,11 +47,11 @@ namespace Booma.Proxy
 			foreach(IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> handler in ManagedHandlers)
 			{
 				//If we found a handler that handled it we should stop trying to handle it and return true
-				if(await handler.TryHandleMessage(context, message))
+				if(await handler.TryHandleMessage(context, message).ConfigureAwait(false))
 					return true;
 			}
 
-			DefaultMessageHandler?.HandleMessage(context, message.Payload);
+			DefaultMessageHandler?.HandleMessage(context, message.Payload)?.ConfigureAwait(false);
 
 			return false;
 		}

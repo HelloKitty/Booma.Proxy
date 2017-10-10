@@ -52,6 +52,8 @@ namespace Booma.Proxy
 		//TODO: Do we need to syncronize these?
 		private List<CancellationTokenSource> TaskTokenSources { get; }
 
+		private PayloadInterceptionManager<TPayloadReadType> InterceptorManager { get; }
+
 		/// <inheritdoc />
 		public ManagedPSOBBNetworkClient([NotNull] TClientType unmanagedClient)
 			: this(unmanagedClient, new NoOpLogger())
@@ -70,6 +72,7 @@ namespace Booma.Proxy
 			TaskTokenSources = new List<CancellationTokenSource>(2);
 			OutgoingMessageQueue = new AsyncProducerConsumerQueue<TPayloadWriteType>(); //TODO: Should we constrain max count?
 			IncomingMessageQueue = new AsyncProducerConsumerQueue<PSOBBNetworkIncomingMessage<TPayloadReadType>>(); //TODO: Should we constrain max count?
+			InterceptorManager = new PayloadInterceptionManager<TPayloadReadType>();
 		}
 
 		/// <inheritdoc />
@@ -154,8 +157,10 @@ namespace Booma.Proxy
 					if(incomingCancellationToken.IsCancellationRequested)
 						continue;
 
-					await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken)
-						.ConfigureAwait(false);
+					//Try to notify interceptors of a payload that has come in. They may want it
+					if(!InterceptorManager.TryNotifyOutstandingInterceptors(message.Payload))
+						await IncomingMessageQueue.EnqueueAsync(message, incomingCancellationToken)
+							.ConfigureAwait(false);
 				}
 			}
 			catch(TaskCanceledException e)
@@ -277,5 +282,13 @@ namespace Booma.Proxy
 			// GC.SuppressFinalize(this);
 		}
 		#endregion
+
+		/// <inheritdoc />
+		public Task<TResponseType> InterceptPayload<TResponseType>() 
+			where TResponseType : IPacketPayload
+		{
+			//Just dispatch to the manager
+			return InterceptorManager.InterceptPayload<TResponseType>();
+		}
 	}
 }

@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		/// The message handler service.
 		/// </summary>
 		[Inject]
-		protected MessageHandlerService<TIncomingPayloadType, TOutgoingPayloadType> Handlers { get; }
+		protected MessageHandlerService<TIncomingPayloadType, TOutgoingPayloadType> Handlers { get; set; }
 
 		/// <summary>
 		/// The logger for the client.
@@ -47,12 +47,6 @@ namespace Booma.Proxy
 		//TODO: Move to IoC
 		private IClientRequestSendService<TOutgoingPayloadType> RequestService { get; set; }
 
-		protected virtual void Start()
-		{
-			//TODO: Can we avoid having to create this dependency and move it to IoC?
-			RequestService = new PayloadInterceptMessageSendService<TOutgoingPayloadType>(Handlers.WithInterception(), Client);
-		}
-
 		/// <summary>
 		/// Starts dispatching the messages and won't yield until
 		/// the client has stopped or has disconnected.
@@ -62,6 +56,8 @@ namespace Booma.Proxy
 		{
 			try
 			{
+				RequestService = new PayloadInterceptMessageSendService<TOutgoingPayloadType>(Client, Client);
+
 				while(Client.isConnected)
 				{
 					if(Logger.IsDebugEnabled)

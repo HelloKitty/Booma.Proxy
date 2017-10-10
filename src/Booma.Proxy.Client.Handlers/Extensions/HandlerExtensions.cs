@@ -51,19 +51,5 @@ namespace Booma.Proxy
 			//We decorate the handler in try semantics
 			return new TrySemanticsBasedOnTypeClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType, TPayloadType>(handler);
 		}
-
-		/// <summary>
-		/// Decorates the handler with payload interception functionality.
-		/// </summary>
-		/// <typeparam name="TIncomingPayloadType"></typeparam>
-		/// <typeparam name="TOutgoingPayloadType"></typeparam>
-		/// <param name="handler"></param>
-		/// <returns></returns>
-		public static InterceptAsyncRequestClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> WithInterception<TIncomingPayloadType, TOutgoingPayloadType>(this IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> handler) 
-			where TIncomingPayloadType : class 
-			where TOutgoingPayloadType : class
-		{
-			return new InterceptAsyncRequestClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>(handler);
-		}
 	}
 }

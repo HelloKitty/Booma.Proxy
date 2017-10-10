@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// <typeparam name="TPayloadWriteType">The type of payload it should write.</typeparam>
 	/// <typeparam name="TPayloadReadType">The type of payload it should read.</typeparam>
 	public interface IManagedNetworkClient<TPayloadWriteType, TPayloadReadType> : IClientPayloadSendService<TPayloadWriteType>, IConnectionService,
-		INetworkMessageProducer<TPayloadReadType>
+		INetworkMessageProducer<TPayloadReadType>, IPayloadInterceptable
 		where TPayloadWriteType : class
 		where TPayloadReadType : class
 	{

@@ -4,23 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Handler that can intercept payloads for completing async awaited tasks.
+	/// Aids in intercepting payloads for completing async awaited tasks.
 	/// </summary>
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
-	/// <typeparam name="TOutgoingPayloadType"></typeparam>
-	public sealed class InterceptAsyncRequestClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> : IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType>, IPayloadInterceptable
+	public sealed class PayloadInterceptionManager<TIncomingPayloadType> : IPayloadInterceptable
 		where TIncomingPayloadType : class
-		where TOutgoingPayloadType : class
 	{
-		/// <summary>
-		/// The handler that is decorated
-		/// </summary>
-		private IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> DecoratedHandler { get; }
-
 		/// <summary>
 		/// Lock object.
 		/// </summary>
@@ -34,41 +28,42 @@ namespace Booma.Proxy
 		private ConcurrentDictionary<Type, Queue<Action<object>>> ShortCircuitCompletionMap { get; }
 
 		/// <inheritdoc />
-		public InterceptAsyncRequestClientMessageHandler(IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> decoratedHandler)
+		public PayloadInterceptionManager()
 		{
-			if(decoratedHandler == null) throw new ArgumentNullException(nameof(decoratedHandler));
-
-			DecoratedHandler = decoratedHandler;
 			ShortCircuitCompletionMap = new ConcurrentDictionary<Type, Queue<Action<object>>>();
 		}
 
-		/// <inheritdoc />
-		public async Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadType> message)
+		/// <summary>
+		/// Indicates if a payload is being intercepted.
+		/// If it's not then handling should be done normally but if it's intercepted
+		/// do not interact with the payload after this call returns.
+		/// </summary>
+		/// <param name="payload"></param>
+		/// <returns></returns>
+		public bool TryNotifyOutstandingInterceptors([NotNull] TIncomingPayloadType payload)
 		{
-			if(context == null) throw new ArgumentNullException(nameof(context));
-			if(message == null) throw new ArgumentNullException(nameof(message));
+			if(payload == null) throw new ArgumentNullException(nameof(payload));
 
 			//Check if it contains the key first
-			if(ShortCircuitCompletionMap.ContainsKey(message?.Payload?.GetType()))
+			if(ShortCircuitCompletionMap.ContainsKey(payload.GetType()))
 			{
 				//It could still be empty
 				Action<object> shortCircuitAction = null;
 				lock(SyncObj)
 				{
-					if(ShortCircuitCompletionMap[message.Payload.GetType()].Count != 0)
-						shortCircuitAction = ShortCircuitCompletionMap[message.Payload.GetType()].Dequeue();
+					if(ShortCircuitCompletionMap[payload.GetType()].Count != 0)
+						shortCircuitAction = ShortCircuitCompletionMap[payload.GetType()].Dequeue();
 				}
-				
+
 				//Could be null; if not we need to shortcircuit the handlers instead
 				if(shortCircuitAction != null)
 				{
-					shortCircuitAction(message.Payload); //send payload to be completed
+					shortCircuitAction(payload); //send payload to be completed
 					return true;
 				}
 			}
 
-			//otherwise default to the decorated handler
-			return await DecoratedHandler.TryHandleMessage(context, message);
+			return false;
 		}
 
 		/// <inheritdoc />

@@ -35,7 +35,7 @@ namespace Booma.Proxy
 		public int Port { get; private set; } = 12000; //default port
 
 		//TODO: Is it safe or ok to await in start without ever completing?
-		private async Task Start()
+		protected async Task Start()
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug("Starting login client");

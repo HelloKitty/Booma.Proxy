@@ -59,6 +59,7 @@ namespace Booma.Proxy
 
 			//Also need to register the crypto service associated with the client.
 			register.RegisterInstance<IFullCryptoInitializationService<byte[]>, IFullCryptoInitializationService<byte[]>>(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt));
+
 		}
 	}
 }
