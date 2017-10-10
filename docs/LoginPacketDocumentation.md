@@ -14,6 +14,7 @@
 | BB_SECURITY_TYPE | 0x00E6 | [LoginLoginResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginLoginResponsePayload.cs) | **n/a** |
 | BB_GUILDCARD_HEADER_TYPE | 0x01DC | [LoginGuildCardDataHeaderResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginGuildCardDataHeaderResponsePayload.cs) | **n/a** |
 | BB_CHECKSUM_TYPE | 0x01E8 | **n/a** | [LoginChecksumRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Client/LoginChecksumRequestPayload.cs) |
+| BB_PARAM_HEADER_TYPE | 0x01EB | [LoginDataParametersResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginDataParametersResponsePayload.cs) | **n/a** |
 | BB_GUILDCARD_CHUNK_TYPE | 0x02DC | [LoginGuildCardChunkResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginGuildCardChunkResponsePayload.cs) | **n/a** |
 | BB_CHECKSUM_ACK_TYPE | 0x02E8 | [LoginChecksumResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginChecksumResponsePayload.cs) | **n/a** |
 | BB_GUILDCARD_CHUNK_REQ_TYPE | 0x03DC | **n/a** | [LoginGuildCardChunkRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Client/LoginGuildCardChunkRequestPayload.cs) |

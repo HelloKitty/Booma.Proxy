@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Models\AccountTeamInformation.cs" />
     <Compile Include="Models\BindingsConfig.cs" />
+    <Compile Include="Models\DataParameterFileHeader.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginChecksumResponsePayload.cs" />
     <Compile Include="Models\LoginChecksumResult.cs" />
+    <Compile Include="Payloads\Server\LoginDataParametersResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildCardChunkResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildCardDataHeaderResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
