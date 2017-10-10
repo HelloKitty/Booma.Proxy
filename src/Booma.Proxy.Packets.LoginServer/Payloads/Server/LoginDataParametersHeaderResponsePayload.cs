@@ -23,13 +23,13 @@ namespace Booma.Proxy
 	PACKED bb_param_hdr_pkt;*/
 
 	/// <summary>
-	/// Response payload for the <see cref="LoginDataParametersRequestPayload"/>
+	/// Response payload for the <see cref="LoginDataParametersHeaderRequestPayload"/>
 	/// which contains the header and information about the parameters we should
 	/// be interested in.
 	/// </summary>
 	[WireDataContract]
 	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_PARAM_HEADER_TYPE)]
-	public sealed class LoginDataParametersResponsePayload : PSOBBLoginPacketPayloadServer
+	public sealed class LoginDataParametersHeaderResponsePayload : PSOBBLoginPacketPayloadServer
 	{
 		/// <summary>
 		/// Serialized file headers.
@@ -44,7 +44,7 @@ namespace Booma.Proxy
 		public IEnumerable<DataParameterFileHeader> Headers => _Headers; 
 
 		//Serializer ctor
-		private LoginDataParametersResponsePayload()
+		private LoginDataParametersHeaderResponsePayload()
 		{
 			
 		}

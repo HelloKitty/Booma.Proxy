@@ -13,11 +13,11 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_PARAM_HEADER_REQ_TYPE)]
-	public sealed class LoginDataParametersRequestPayload : PSOBBLoginPacketPayloadClient
+	public sealed class LoginDataParametersHeaderRequestPayload : PSOBBLoginPacketPayloadClient
 	{
 		//Just a command payload. Nothing to implement
 
-		public LoginDataParametersRequestPayload()
+		public LoginDataParametersHeaderRequestPayload()
 		{
 			
 		}

@@ -61,14 +61,15 @@
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
     <Compile Include="Models\CharacterSelectionAckType.cs" />
     <Compile Include="Payloads\Client\LoginChecksumRequestPayload.cs" />
-    <Compile Include="Payloads\Client\LoginDataParametersRequestPayload.cs" />
+    <Compile Include="Payloads\Client\LoginDataParametersChunkRequestPayload.cs" />
+    <Compile Include="Payloads\Client\LoginDataParametersHeaderRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginGuildCardChunkRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginGuildRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterSelectionAckPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginChecksumResponsePayload.cs" />
     <Compile Include="Models\LoginChecksumResult.cs" />
-    <Compile Include="Payloads\Server\LoginDataParametersResponsePayload.cs" />
+    <Compile Include="Payloads\Server\LoginDataParametersHeaderResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildCardChunkResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildCardDataHeaderResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
