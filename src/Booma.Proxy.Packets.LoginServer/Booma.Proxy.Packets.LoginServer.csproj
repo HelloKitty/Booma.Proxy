@@ -75,6 +75,7 @@
     <Compile Include="Payloads\Server\LoginDataParametersHeaderResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildCardChunkResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginGuildCardDataHeaderResponsePayload.cs" />
+    <Compile Include="Payloads\Server\LoginMarqueeScrollChangeEventPayload.cs" />
     <Compile Include="Payloads\Server\LoginOptionsResponsePayload.cs" />
     <Compile Include="Payloads\Client\LoginOptionsRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
