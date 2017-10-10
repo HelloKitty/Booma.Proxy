@@ -18,6 +18,7 @@
 | BB_CHECKSUM_ACK_TYPE | 0x02E8 | [LoginChecksumResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginChecksumResponsePayload.cs) | **n/a** |
 | BB_GUILDCARD_CHUNK_REQ_TYPE | 0x03DC | **n/a** | [LoginGuildCardChunkRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Client/LoginGuildCardChunkRequestPayload.cs) |
 | BB_GUILD_REQUEST_TYPE | 0x03E8 | **n/a** | [LoginGuildRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Client/LoginGuildRequestPayload.cs) |
+| BB_PARAM_HEADER_REQ_TYPE | 0x04EB | **n/a** | [LoginDataParametersRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Client/LoginDataParametersRequestPayload.cs) |
 
 
 This documentation was automatically generated using the documentation tools.
