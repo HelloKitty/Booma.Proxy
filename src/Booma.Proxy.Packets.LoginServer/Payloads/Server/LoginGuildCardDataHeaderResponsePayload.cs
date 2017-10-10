@@ -25,7 +25,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_GUILDCARD_HEADER_TYPE)]
-	public sealed class LoginGuildResponsePayload : PSOBBLoginPacketPayloadServer
+	public sealed class LoginGuildCardDataHeaderResponsePayload : PSOBBLoginPacketPayloadServer
 	{
 		/// <summary>
 		/// One? Not sure why.
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		public uint CheckSum { get; }
 
 		//Serializer ctor
-		private LoginGuildResponsePayload()
+		private LoginGuildCardDataHeaderResponsePayload()
 		{
 			
 		}

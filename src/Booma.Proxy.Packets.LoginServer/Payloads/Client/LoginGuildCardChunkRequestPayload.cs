@@ -30,16 +30,16 @@ namespace Booma.Proxy
 		/// ?
 		/// </summary>
 		[WireMember(3)]
-		public uint Cont { get; }
+		public bool ShouldContinue { get; }
 
 		/// <inheritdoc />
-		public LoginGuildCardChunkRequestPayload(uint chunkNumber, uint cont)
+		public LoginGuildCardChunkRequestPayload(uint chunkNumber, bool shouldContinue)
 		{
 			ChunkNumber = chunkNumber;
-			Cont = cont;
+			ShouldContinue = shouldContinue;
 		}
 
-		public LoginGuildCardChunkRequestPayload()
+		private LoginGuildCardChunkRequestPayload()
 		{
 			
 		}
