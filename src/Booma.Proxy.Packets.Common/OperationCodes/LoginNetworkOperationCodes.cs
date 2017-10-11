@@ -40,6 +40,12 @@ namespace Booma.Proxy
 
 		SHIP_LIST_TYPE = 0x00A0,
 		INFO_REPLY_TYPE = 0x0011,
-		MENU_SELECT_TYPE = 0x0010
+		MENU_SELECT_TYPE = 0x0010,
+
+		/// <summary>
+		/// This is 05 opcode.
+		/// It's basically a "Hey, disconnect me."
+		/// </summary>
+		TYPE_05 = 0x0005
 	}
 }

@@ -32,5 +32,11 @@ namespace Booma.Proxy
 			MenuId = menuId;
 			ItemId = itemId;
 		}
+
+		//Serializer ctor
+		private MenuItemIdentifier()
+		{
+			
+		}
 	}
 }

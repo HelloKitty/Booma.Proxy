@@ -68,6 +68,7 @@
     <Compile Include="Payloads\Client\LoginChecksumRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginDataParametersChunkRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginDataParametersHeaderRequestPayload.cs" />
+    <Compile Include="Payloads\Client\LoginDisconnectionRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginGuildCardChunkRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginGuildRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginMenuSelectionRequestPayload.cs" />
