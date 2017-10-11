@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// Contract for types that contains the minimum
 	/// information of a menu item.
 	/// </summary>
-	public interface IMenuItem
+	public interface IMenuItemIdentifiable
 	{
 		/// <summary>
 		/// The id of the menu selecting from.

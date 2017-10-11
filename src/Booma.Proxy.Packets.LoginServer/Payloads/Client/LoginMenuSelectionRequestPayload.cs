@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
@@ -12,26 +13,20 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[LoginClientPacketPayload(LoginNetworkOperationCodes.MENU_SELECT_TYPE)]
-	public sealed class LoginMenuSelectionRequestPayload : PSOBBLoginPacketPayloadClient, IMenuItem
+	public sealed class LoginMenuSelectionRequestPayload : PSOBBLoginPacketPayloadClient
 	{
 		/// <summary>
 		/// The id of the menu selecting from.
 		/// </summary>
 		[WireMember(1)]
-		public uint MenuId { get; }
-
-		/// <summary>
-		/// The item id of the item on the menu
-		/// being selected.
-		/// </summary>
-		[WireMember(2)]
-		public uint ItemId { get; }
+		public MenuItemIdentifier Selection { get; }
 
 		/// <inheritdoc />
-		public LoginMenuSelectionRequestPayload(uint menuId, uint itemId)
+		public LoginMenuSelectionRequestPayload([NotNull] MenuItemIdentifier selection)
 		{
-			MenuId = menuId;
-			ItemId = itemId;
+			if(selection == null) throw new ArgumentNullException(nameof(selection));
+
+			Selection = selection;
 		}
 
 		public LoginMenuSelectionRequestPayload()

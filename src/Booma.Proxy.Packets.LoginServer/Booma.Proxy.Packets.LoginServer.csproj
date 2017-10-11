@@ -58,7 +58,8 @@
     <Compile Include="Models\DataParameterFileHeader.cs" />
     <Compile Include="Models\IChunkRequest.cs" />
     <Compile Include="Models\IChunkResponse.cs" />
-    <Compile Include="Models\IMenuItem.cs" />
+    <Compile Include="Models\IMenuItemIdentifiable.cs" />
+    <Compile Include="Models\MenuItemIdentifier.cs" />
     <Compile Include="Models\ShipListing.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />

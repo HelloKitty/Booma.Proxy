@@ -11,26 +11,19 @@ namespace Booma.Proxy
 	/// A data model for a ship listing for a menu
 	/// </summary>
 	[WireDataContract]
-	public sealed class ShipListing : IMenuItem
+	public sealed class ShipListing
 	{
 		/// <summary>
-		/// The menu ID for the ship listing
+		/// The id of the menu selecting from.
 		/// </summary>
 		[WireMember(1)]
-		public uint MenuId { get; }
-
-		//TODO: What is this?
-		/// <summary>
-		/// (?)
-		/// </summary>
-		[WireMember(2)]
-		public uint ItemId { get; }
+		public MenuItemIdentifier Selection { get; }
 
 		//TODO: What is this for?
 		/// <summary>
 		/// (?)
 		/// </summary>
-		[WireMember(3)]
+		[WireMember(2)]
 		private ushort Flags { get; }
 
 		/// <summary>
@@ -38,7 +31,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(17)]
-		[WireMember(4)]
+		[WireMember(3)]
 		public string ShipName { get; }
 
 		//Serializer ctor
