@@ -3,6 +3,7 @@
 | Packet OpCode Name | OpCode | Sent by Server | Sent by Client |
 | ------------- | ------------- | ------------- | ------------- |
 | BB_WELCOME_TYPE | 0x0003 | [LoginWelcomePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginWelcomePayload.cs) | **n/a** |
+| INFO_REPLY_TYPE | 0x0011 | [LoginInfoReplyEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginInfoReplyEventPayload.cs) | **n/a** |
 | REDIRECT_TYPE | 0x0019 | [LoginConnectionRedirectPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginConnectionRedirectPayload.cs) | **n/a** |
 | MESSAGE_BOX_TYPE | 0x001A | [LoginCreateMessageBoxEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Server/LoginCreateMessageBoxEventPayload.cs) | **n/a** |
 | LOGIN_93_TYPE | 0x0093 | **n/a** | [LoginLoginRequest93Payload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.LoginServer/Payloads/Client/LoginLoginRequest93Payload.cs) |
