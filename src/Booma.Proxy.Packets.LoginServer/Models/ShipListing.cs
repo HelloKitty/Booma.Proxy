@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// A data model for a ship listing for a menu
 	/// </summary>
 	[WireDataContract]
-	public sealed class ShipListing
+	public sealed class ShipListing : IMenuItem
 	{
 		/// <summary>
 		/// The menu ID for the ship listing

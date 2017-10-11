@@ -58,6 +58,7 @@
     <Compile Include="Models\DataParameterFileHeader.cs" />
     <Compile Include="Models\IChunkRequest.cs" />
     <Compile Include="Models\IChunkResponse.cs" />
+    <Compile Include="Models\IMenuItem.cs" />
     <Compile Include="Models\ShipListing.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
     <Compile Include="Payloads\ClientVerrificationData.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Payloads\Client\LoginDataParametersHeaderRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginGuildCardChunkRequestPayload.cs" />
     <Compile Include="Payloads\Client\LoginGuildRequestPayload.cs" />
+    <Compile Include="Payloads\Client\LoginMenuSelectionRequestPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterSelectionAckPayload.cs" />
     <Compile Include="Payloads\Server\LoginCharacterUpdateResponsePayload.cs" />
     <Compile Include="Payloads\Server\LoginChecksumResponsePayload.cs" />
