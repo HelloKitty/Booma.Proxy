@@ -17,12 +17,22 @@ namespace Booma.Proxy
 	public abstract class PSOBBLoginPacketPayloadClient : IPacketPayload
 	{
 		/// <summary>
+		/// Indicates if the flags is serialized with <see cref="Flags"/>.
+		/// If false then serialization for <see cref="Flags"/> will be skipped
+		/// meaning the 4 bytes can be consumed by an inheriting class instead for
+		/// other data by the serializer.
+		/// Default: True
+		/// </summary>
+		public virtual bool isFlagsSerialized => true;
+
+		/// <summary>
 		/// The optional flags field.
 		/// This value is different for some packets than others.
 		/// </summary>
+		[Optional(nameof(isFlagsSerialized))] //Makes this flags optional; some subpayloads may want to consume the 4 bytes instead
 		[KnownSize(4)] //always 4 bytes
-		[WireMember(2)]
-		public byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
+		[WireMember(1)]
+		private byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
 
 		/// <summary>
 		/// Parameterless ctor.
@@ -31,26 +41,6 @@ namespace Booma.Proxy
 		protected PSOBBLoginPacketPayloadClient()
 		{
 			
-		}
-
-		/// <summary>
-		/// Optional ctor that allows for setting the flags field.
-		/// Will throw if the length is greater than 4 or null.
-		/// </summary>
-		/// <param name="flags">The flags to set.</param>
-		protected PSOBBLoginPacketPayloadClient([NotNull] byte[] flags)
-		{
-			if(flags == null) throw new ArgumentNullException(nameof(flags));
-
-			//Limit size
-			if(flags.Length > 4) throw new ArgumentException("Value cannot be a collection with size  greater than 4.", nameof(flags));
-
-			//If it's 4 then we should just set it
-			//Otherwise we need to extend the array to size of 4
-			if(flags.Length == 4)
-				Flags = flags;
-			else
-				Flags = flags.Concat(Enumerable.Repeat((byte)0, 4 - flags.Length)).ToArray();
 		}
 	}
 }

@@ -17,18 +17,22 @@ namespace Booma.Proxy
 	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_PARAM_CHUNK_REQ_TYPE)]
 	public sealed class LoginDataParametersChunkRequestPayload : PSOBBLoginPacketPayloadClient, IChunkRequest
 	{
+		//We don't want the flags to get the 4 byte ChunkNumber.
+		/// <inheritdoc />
+		public override bool isFlagsSerialized { get; } = false;
+
 		//Do not add WireMember to this field. It is stored in flags
 		//This value is stored in flags for some reason
 		//Empty command packet. Contains no data just tells the server to send the next file.
 		/// <summary>
 		/// The file number to request
 		/// </summary>
-		public uint ChunkNumber => Flags.Reinterpret<uint>(); //the chunk number is stored in flags so reinterpret
+		[WireMember(1)]
+		public uint ChunkNumber { get; }
 
 		public LoginDataParametersChunkRequestPayload(uint chunkNumber)
-			: base(chunkNumber.Reinterpret()) //cast to bytes
 		{
-
+			ChunkNumber = chunkNumber;
 		}
 
 		//Serializer ctor

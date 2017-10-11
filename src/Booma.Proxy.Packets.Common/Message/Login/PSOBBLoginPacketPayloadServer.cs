@@ -25,11 +25,26 @@ namespace Booma.Proxy
 		protected short OperationCode { get; }
 
 		/// <summary>
+		/// Indicates if the flags is serialized with <see cref="Flags"/>.
+		/// If false then serialization for <see cref="Flags"/> will be skipped
+		/// meaning the 4 bytes can be consumed by an inheriting class instead for
+		/// other data by the serializer.
+		/// Default: True
+		/// </summary>
+		public virtual bool isFlagsSerialized => true;
+
+		/// <summary>
 		/// The optional flags field.
 		/// This value is different for some packets than others.
 		/// </summary>
+		[Optional(nameof(isFlagsSerialized))] //Makes this flags optional; some subpayloads may want to consume the 4 bytes instead
 		[KnownSize(4)] //always 4 bytes
 		[WireMember(2)]
-		public byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
+		private byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
+
+		protected PSOBBLoginPacketPayloadServer()
+		{
+			
+		}
 	}
 }

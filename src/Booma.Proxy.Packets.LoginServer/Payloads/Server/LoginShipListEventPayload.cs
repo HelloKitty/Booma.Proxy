@@ -7,18 +7,6 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
-	/*typedef struct bb_ship_list {
-    bb_pkt_hdr_t hdr;           The flags field says how many entries
-	struct {
-
-		uint32_t menu_id;
-		uint32_t item_id;
-		uint16_t flags;
-		uint16_t name[0x11];
-		}
-		entries[0];
-	} PACKED bb_ship_list_pkt;*/
-
 	/// <summary>
 	/// Contains the ship list for menu rendering.
 	/// </summary>
@@ -26,6 +14,13 @@ namespace Booma.Proxy
 	[LoginServerPacketPayload(LoginNetworkOperationCodes.SHIP_LIST_TYPE)]
 	public sealed class LoginShipListEventPayload : PSOBBLoginPacketPayloadServer
 	{
+		//Disable flags serialization so that the ship can get the 4 byte length and
+		//handle writing the 4 bytes length
+		/// <inheritdoc />
+		public override bool isFlagsSerialized { get; } = false;
+
+		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
+		[SendSize(SendSizeAttribute.SizeType.Int32)] 
 		[WireMember(1)]
 		private ShipListing[] _Ships { get; }
 
