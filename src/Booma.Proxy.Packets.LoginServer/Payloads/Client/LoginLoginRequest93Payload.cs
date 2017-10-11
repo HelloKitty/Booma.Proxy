@@ -35,7 +35,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(6)]
 		[WireMember(4)]
-		private byte[] unk2 { get; } = new byte[6];
+		private byte[] unk2 { get; } = new byte[6] {4, 4, 4, 4, 4, 4}; //Tethella will expect a 4 at 0x18 at some point. So always send it for ease.
 
 		/// <summary>
 		/// Unused
@@ -78,6 +78,12 @@ namespace Booma.Proxy
 		public ClientVerificationData ClientData { get; }
 
 		public LoginLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
+			: this(clientVersion, 0, userName, password, clientData)
+		{
+
+		}
+
+		public LoginLoginRequest93Payload(ushort clientVersion, uint teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
@@ -87,6 +93,7 @@ namespace Booma.Proxy
 			if(clientData == null) throw new ArgumentNullException(nameof(clientData));
 
 			ClientVersion = clientVersion;
+			TeamId = teamId;
 			UserName = userName;
 			Password = password;
 			ClientData = clientData;

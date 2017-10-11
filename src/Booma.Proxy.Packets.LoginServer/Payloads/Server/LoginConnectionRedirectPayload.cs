@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(4)]
 		[WireMember(1)]
-		public byte[] IpAddressBytes { get; }
+		private byte[] IpAddressBytes { get; }
 
 		/// <summary>
 		/// The port for the endpoint to redirect to.

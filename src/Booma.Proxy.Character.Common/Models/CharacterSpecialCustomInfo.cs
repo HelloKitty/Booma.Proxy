@@ -23,6 +23,7 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public CharacterModelType ModelType { get; }
 
+		//TODO: Why? What?
 		[KnownSize(15)]
 		[WireMember(3)]
 		private byte[] unused { get; } = new byte[15];
@@ -31,9 +32,8 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The checksum for the name color.
 		/// </summary>
-		[KnownSize(4)]
 		[WireMember(4)]
-		public byte[] ColoredNameChecksum { get; }
+		public uint ColoredNameChecksum { get; }
 
 		//Serializer ctor
 		private CharacterSpecialCustomInfo()

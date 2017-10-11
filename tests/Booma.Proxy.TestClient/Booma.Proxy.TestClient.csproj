@@ -81,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Character.Common\Booma.Proxy.Character.Common.csproj">
+      <Project>{421990D4-BA7F-40DF-A99C-63AD2A26EC24}</Project>
+      <Name>Booma.Proxy.Character.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
       <Project>{e29711cc-3abb-49b4-b010-3a2f72de5491}</Project>
       <Name>Booma.Proxy.Client.API</Name>
