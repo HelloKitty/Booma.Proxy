@@ -169,7 +169,7 @@ namespace Booma.Proxy.TestClient
 		public static bool hasSecurityData = false;
 
 		public static ClientVerificationData ClientVerification = null;
-		public static uint teamId;
+		public static int teamId;
 
 		private static async Task HandlePayload(LoginWelcomePayload payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
 		{

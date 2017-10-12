@@ -37,11 +37,12 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		private byte[] unk2 { get; } = new byte[6] {4, 4, 4, 4, 4, 4}; //Tethella will expect a 4 at 0x18 at some point. So always send it for ease.
 
+		//easier to work with this as an int in .NET/Unity3D
 		/// <summary>
 		/// Unused
 		/// </summary>
 		[WireMember(5)]
-		private uint TeamId { get; }
+		private int TeamId { get; }
 
 		/// <summary>
 		/// The username to authenticate with.
@@ -83,7 +84,7 @@ namespace Booma.Proxy
 
 		}
 
-		public LoginLoginRequest93Payload(ushort clientVersion, uint teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
+		public LoginLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));

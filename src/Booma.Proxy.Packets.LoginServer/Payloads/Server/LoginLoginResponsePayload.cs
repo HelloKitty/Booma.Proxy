@@ -55,11 +55,12 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public uint GuildCard { get; }
 
+		//it is easier to work with his as an int in .NET
 		/// <summary>
 		/// The account-wide team id.
 		/// </summary>
 		[WireMember(4)]
-		public uint TeamId { get; }
+		public int TeamId { get; } 
 
 		//TODO: What is this really?
 		/// <summary>
@@ -79,7 +80,7 @@ namespace Booma.Proxy
 		/// <param name="guildCard">The guild card of the account.</param>
 		/// <param name="teamId">The team id the account is asscoiated with.</param>
 		/// <param name="securityData">The security data (?)</param>
-		public LoginLoginResponsePayload(uint guildCard, uint teamId, byte[] securityData)
+		public LoginLoginResponsePayload(uint guildCard, int teamId, byte[] securityData)
 		{
 			if(securityData == null) throw new ArgumentNullException(nameof(securityData));
 			if(securityData.Length != 40) throw new ArgumentException("Security data must be 40 bytes. Use fail ctor if you want to not provide the data.", nameof(securityData));
