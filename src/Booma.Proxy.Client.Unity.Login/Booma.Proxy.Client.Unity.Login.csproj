@@ -27,6 +27,9 @@
     <Reference Include="UnityEngine.Timeline">
       <HintPath>..\..\lib\Unity\UnityEngine.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Unity\UnityEngine.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

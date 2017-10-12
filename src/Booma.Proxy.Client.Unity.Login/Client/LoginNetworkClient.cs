@@ -24,11 +24,21 @@ namespace Booma.Proxy
 		[Inject]
 		private ILoginConnectionEndpointDetails ConnectionEndpoint { get; }
 
+		[Tooltip("Indicates if the client should connect on Start.")]
+		[SerializeField]
+		private bool ConnectOnStart = false;
+
+		private void Start()
+		{
+			if(ConnectOnStart)
+				StartConnection();
+		}
+
 		//TODO: Is it safe or ok to await in start without ever completing?
 		public void StartConnection()
 		{
 			//Just start the startup task.
-			Task.Factory.StartNew(StartNetworkClient)
+			Task.Factory.StartNew(StartNetworkClient, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext())
 				.ConfigureAwait(true);
 		}
 
@@ -40,7 +50,8 @@ namespace Booma.Proxy
 				Logger.Debug("Starting login client");
 
 			//As soon as we start we should attempt to connect to the login server.
-			bool result = await Client.ConnectAsync(ConnectionEndpoint.IpAddress, ConnectionEndpoint.Port);
+			bool result = await Client.ConnectAsync(ConnectionEndpoint.IpAddress, ConnectionEndpoint.Port)
+				.ConfigureAwait(true);
 
 			if(!result)
 				throw new InvalidOperationException($"Failed to connect to Login: {ConnectionEndpoint.IpAddress} Port: {ConnectionEndpoint.Port}");

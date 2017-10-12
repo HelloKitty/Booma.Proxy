@@ -1,5 +1,7 @@
 UnityEngine.dll
 UnityEngine.xml
+UnityEngine.UI.dll
+UnityEngine.UI.xml
 UnityEditor.dll
 UnityEditor.xml
 System.IO.Compression.dll

@@ -57,6 +57,9 @@ namespace Booma.Proxy
 			register.RegisterInstance<IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>,
 				IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>>(client);
 
+			register.RegisterInstance<IClientPayloadSendService<PSOBBLoginPacketPayloadClient>,
+				IClientPayloadSendService<PSOBBLoginPacketPayloadClient>>(client);
+
 			//Also need to register the crypto service associated with the client.
 			register.RegisterInstance<IFullCryptoInitializationService<byte[]>, IFullCryptoInitializationService<byte[]>>(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt));
 

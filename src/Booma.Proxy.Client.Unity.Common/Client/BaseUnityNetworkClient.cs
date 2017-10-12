@@ -78,6 +78,9 @@ namespace Booma.Proxy
 
 				throw;
 			}
+
+			if(Logger.IsDebugEnabled)
+				Logger.Debug("Dispatching task has finished.");
 		}
 
 		protected virtual void OnApplicationQuit()

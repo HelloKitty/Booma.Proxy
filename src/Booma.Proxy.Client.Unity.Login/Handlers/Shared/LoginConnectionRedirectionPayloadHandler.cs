@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
+using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
@@ -18,7 +20,7 @@ namespace Booma.Proxy
 		/// Broadcasts when a connection redirection is recieved.
 		/// </summary>
 		[SerializeField]
-		private Action OnConnectionRedirected;
+		private UnityEvent OnConnectionRedirected;
 
 		/// <summary>
 		/// Data model for connection details.
