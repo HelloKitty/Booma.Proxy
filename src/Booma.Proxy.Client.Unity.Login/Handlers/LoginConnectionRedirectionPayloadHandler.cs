@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
@@ -12,6 +13,18 @@ namespace Booma.Proxy
 	{
 		[Inject]
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
+
+		/// <summary>
+		/// Broadcasts when a connection redirection is recieved.
+		/// </summary>
+		[SerializeField]
+		private Action OnConnectionRedirected;
+
+		/// <summary>
+		/// Data model for connection details.
+		/// </summary>
+		[Inject]
+		private ILoginConnectionEndpointDetails ConnectionEndpoint { get; }
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginConnectionRedirectPayload payload)
@@ -23,10 +36,13 @@ namespace Booma.Proxy
 			CryptoInitializer.DecryptionInitializable.Uninitialize();
 			CryptoInitializer.EncryptionInitializable.Uninitialize();
 
-			bool result = await context.ConnectionService.ConnectAsync(payload.EndpointAddress, payload.EndpointerPort);
+			//We don't immediately redirect in the handler anymore. We initialize the new connection endpoint
+			//to a data model and then broadcast that we recieved a redirection request. This way scene loading
+			//can happen inbetween.
+			ConnectionEndpoint.IpAddress = payload.EndpointAddress.ToString();
+			ConnectionEndpoint.Port = payload.EndpointerPort;
 
-			if(!result)
-				throw new InvalidOperationException($"Failed to connect to redirected endpoint. {BuildLoginDebugString(payload)}");
+			OnConnectionRedirected?.Invoke();
 		}
 
 		private string BuildLoginDebugString(LoginConnectionRedirectPayload payload)

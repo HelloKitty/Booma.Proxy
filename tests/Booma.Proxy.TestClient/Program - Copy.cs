@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
@@ -17,8 +19,22 @@ namespace Booma.Proxy.TestClient
 
 		public static IClientMessageContextFactory MessageContextFactory { get; private set; }
 
+		private static SerializerService Serializer { get; set; }
+
 		public static void Main(string[] args)
 		{
+
+			//Create the serializer and register all the needed types
+			Serializer = new SerializerService();
+
+			//Registers all the types.
+			PacketPatchServerMetadataMarker.SerializableTypes
+				.Concat(PacketCommonServerMetadataMarker.SerializableTypes)
+				.Concat(PacketLoginServerMetadataMarker.SerializableTypes)
+				.ToList().ForEach(t => Serializer.RegisterType(t));
+
+			Serializer.Compile();
+
 			RunClient("158.69.215.131", 12000).Wait();
 		}
 
@@ -40,23 +56,13 @@ namespace Booma.Proxy.TestClient
 			EncryptionKeyInitializer = encrypt;
 			DecryptionKeyInitializer = decrypt;
 
-			//Create the serializer and register all the needed types
-			SerializerService serializer = new SerializerService();
-
-			//Registers all the types.
-			PacketPatchServerMetadataMarker.SerializableTypes
-				.Concat(PacketCommonServerMetadataMarker.SerializableTypes)
-				.Concat(PacketLoginServerMetadataMarker.SerializableTypes)
-				.ToList().ForEach(t => serializer.RegisterType(t));
-
-			serializer.Compile();
 
 			//Configurs and builds the clients without all the
 			//relevant decorators
 			IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client = new PSOBBNetworkClient()
 				.AddCryptHandling(encrypt, decrypt, 8)
-				.AddHeaderReading(serializer, 8)
-				.AddNetworkMessageReading(serializer)
+				.AddHeaderReading(Serializer, 8)
+				.AddNetworkMessageReading(Serializer)
 				.For<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>()
 				.AsManaged();
 
@@ -77,12 +83,7 @@ namespace Booma.Proxy.TestClient
 
 				try
 				{
-					//IClientMessageContext<PSOBBPatchPacketPayloadClient> context = MessageContextFactory.Create(client, client);
-
 					await HandlePayload((dynamic)message.Payload, client);
-
-
-					//await p.TryHandleMessage(context, message);
 
 				}
 				catch(Exception e)
@@ -92,6 +93,83 @@ namespace Booma.Proxy.TestClient
 				}
 			}
 		}
+
+		private static bool hasAskedForChars = false;
+		private static bool hasSelectedCharacter = false;
+
+		private static async Task HandlePayload(LoginLoginResponsePayload payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
+		{
+			Console.WriteLine($"Login Response: {payload.ResponseCode}");
+
+			if(hasSecurityData && hasAskedForChars && !hasSelectedCharacter)
+			{
+				hasSelectedCharacter = true;
+				await client.SendMessage(new LoginCharacterSelectionRequestPayload(0, CharacterSelectionType.PlaySelection));
+
+				Task.Factory.StartNew(async () =>
+				{
+					await Task.Delay(3000);
+					DecryptionKeyInitializer.Uninitialize();
+					EncryptionKeyInitializer.Uninitialize();
+					await client.ConnectAsync("158.69.215.131", 12001);
+				});
+
+				return;
+			}
+
+			if(hasSecurityData && !hasAskedForChars)
+			{
+				hasAskedForChars = true;
+				for(int i = 0; i < 4; i++)
+					await client.SendMessage(new LoginCharacterSelectionRequestPayload((byte)i, CharacterSelectionType.Preview));
+
+				Task.Factory.StartNew(async () =>
+				{
+					await Task.Delay(6000);
+					await client.ConnectAsync("158.69.215.131", 12001);
+					DecryptionKeyInitializer.Uninitialize();
+					EncryptionKeyInitializer.Uninitialize();
+				});
+			}
+
+			//We should recieve a 19 redirect after this
+			//We should use the bytes from the response for future sessions
+			ClientVerification = new ClientVerificationData(0x41, payload.SecurityData);//.Take(32).Reverse().Concat(payload.SecurityData.Skip(32)).ToArray());
+			hasSecurityData = true;
+			teamId = payload.TeamId;
+			Console.WriteLine($"Set 32bit key: {payload.TeamId}");
+		}
+
+		private static async Task HandlePayload(LoginCharacterUpdateResponsePayload payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
+		{
+			Console.WriteLine($"Character: {payload.CharacterData.CharacterName} Class: {payload.CharacterData.ClassRace} SecId: {payload.CharacterData.SectionId} Level: {payload.CharacterData.Progress.Level} PlayedTime: {payload.CharacterData.PlayedTime}");
+			Console.WriteLine($"Character: {Encoding.Unicode.GetBytes(payload.CharacterData.CharacterName).Aggregate("", (s, b) => $"{s} {b}")}");
+			//Console.WriteLine($"Leftover Bytes: {payload.CharacterData.LeftoverBytes.Aggregate("", (s, b) => $"{s} {b}")}");
+		}
+
+
+		private static async Task HandlePayload(LoginCreateMessageBoxEventPayload payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
+		{
+			Console.WriteLine($"MessageBox Message: {payload.Message}");
+
+			//We should recieve a 19 redirect after this
+		}
+
+		private static async Task HandlePayload(LoginConnectionRedirectPayload payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
+		{
+			Console.WriteLine($"Redirect: {payload.EndpointAddress}:{payload.EndpointerPort}");
+
+			EncryptionKeyInitializer.Uninitialize();
+			DecryptionKeyInitializer.Uninitialize();
+
+			//Redirects to character the first time
+			await client.ConnectAsync(payload.EndpointAddress, payload.EndpointerPort);
+		}
+
+		public static bool hasSecurityData = false;
+
+		public static ClientVerificationData ClientVerification = null;
+		public static uint teamId;
 
 		private static async Task HandlePayload(LoginWelcomePayload payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
 		{
@@ -103,8 +181,17 @@ namespace Booma.Proxy.TestClient
 
 			Console.WriteLine(payload.CopyrightMessage);
 
-			//await client.SendMessage(new LoginWelcomeAckPayload());
-			await client.SendMessage(new LoginLoginRequest93Payload(0x41, "glader", "playpso69", new ClientVerificationData(0x41, new byte[40])));
+			if(hasSecurityData)
+			{
+				await client.SendMessage(new LoginLoginRequest93Payload(0x41, teamId, "glader", "playpso69", ClientVerification));
+			}
+			else
+				await client.SendMessage(new LoginLoginRequest93Payload(0x41, "glader", "playpso69", ClientVerificationData.FromVersionString("Destiny v0.6")));
+		}
+
+		private static async Task HandlePayload(object payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
+		{
+
 		}
 
 		public static void LogMessage(PSOBBNetworkIncomingMessage<PSOBBLoginPacketPayloadServer> message)

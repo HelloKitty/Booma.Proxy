@@ -18,9 +18,18 @@ namespace Booma.Proxy
 		/// </summary>
 		[Inject]
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
-
+		
+		/// <summary>
+		/// The login details model.
+		/// </summary>
 		[Inject]
 		private ILoginDetailsModel LoginDetails { get; }
+
+		/// <summary>
+		/// The session details model.
+		/// </summary>
+		[Inject]
+		private ILoginSessionDetails SessionDetails { get; }
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginWelcomePayload payload)
@@ -32,9 +41,8 @@ namespace Booma.Proxy
 			CryptoInitializer.EncryptionInitializable.Initialize(payload.ClientVector);
 			CryptoInitializer.DecryptionInitializable.Initialize(payload.ServerVector);
 
-			//TODO: Abstract the username/pass and version string stuff out
 			//After the welcome message is recieved we need to send the login.
-			await context.PayloadSendService.SendMessage(new LoginLoginRequest93Payload(0x41, LoginDetails.Username, LoginDetails.Password, ClientVerificationData.FromVersionString("Destiny v0.6")));
+			await context.PayloadSendService.SendMessage(new LoginLoginRequest93Payload(0x41, SessionDetails.SessionId, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData)));
 		}
 	}
 }
