@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// Handler for the <see cref="LoginWelcomePayload"/>.
 	/// </summary>
 	[Injectee]
-	public sealed class LoginWelcomePayloadHandler : LoginMessageHandler<LoginWelcomePayload>
+	public class LoginWelcomePayloadHandler : LoginMessageHandler<LoginWelcomePayload>
 	{
 		/// <summary>
 		/// Crypto initialization service that can be init from the welcome message.
@@ -23,13 +23,13 @@ namespace Booma.Proxy
 		/// The login details model.
 		/// </summary>
 		[Inject]
-		private ILoginDetailsModel LoginDetails { get; }
+		protected ILoginDetailsModel LoginDetails { get; }
 
 		/// <summary>
 		/// The session details model.
 		/// </summary>
 		[Inject]
-		private ILoginSessionDetails SessionDetails { get; }
+		protected ILoginSessionDetails SessionDetails { get; }
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginWelcomePayload payload)
@@ -42,7 +42,17 @@ namespace Booma.Proxy
 			CryptoInitializer.DecryptionInitializable.Initialize(payload.ServerVector);
 
 			//After the welcome message is recieved we need to send the login.
-			await context.PayloadSendService.SendMessage(new LoginLoginRequest93Payload(0x41, SessionDetails.SessionId, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData)));
+			await context.PayloadSendService.SendMessage(BuildLoginPacket());
+		}
+
+		/// <summary>
+		/// Builds the login packet.
+		/// Overridable by child handlers to allow for mutating the default login packet.
+		/// </summary>
+		/// <returns></returns>
+		protected virtual PSOBBLoginPacketPayloadClient BuildLoginPacket()
+		{
+			return new LoginLoginRequest93Payload(0x41, SessionDetails.SessionId, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData));
 		}
 	}
 }
