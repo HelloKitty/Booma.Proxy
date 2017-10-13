@@ -46,7 +46,9 @@ namespace Booma.Proxy
 			if(model == null) throw new ArgumentNullException(nameof(model));
 
 			//Create the prefab at the required offset
-			GameObject shipEntry = GameObject.Instantiate(ShipEntryPrefab, new Vector3(0, InitialYOffset + (OffsetPerListing * model.Selection.ItemId), 0), Quaternion.identity);
+			GameObject shipEntry = GameObject.Instantiate(ShipEntryPrefab);
+			shipEntry.transform.parent = ShipMenuPanelObject.transform;
+			shipEntry.transform.localPosition = new Vector3(0, InitialYOffset + (OffsetPerListing * model.Selection.ItemId), 0);
 
 			//Rig up the button to dispatch to this controller's press handler.
 			Button button = shipEntry.GetComponent<UnityEngine.UI.Button>();
