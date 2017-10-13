@@ -19,7 +19,7 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private int unusued { get; }
+		private long unusued { get; } //this could be 2 fields, treating it as 1 for effiecency
 
 		//We don't know the size of this. It's dynamic.
 		/// <summary>
