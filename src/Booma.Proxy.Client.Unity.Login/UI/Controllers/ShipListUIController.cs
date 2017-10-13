@@ -41,6 +41,8 @@ namespace Booma.Proxy
 		[Inject]
 		private IClientPayloadSendService<PSOBBLoginPacketPayloadClient> SendService { get; }
 
+		private int ServerCount = 0;
+
 		public void RegisterShip(ShipListing model)
 		{
 			if(model == null) throw new ArgumentNullException(nameof(model));
@@ -48,7 +50,7 @@ namespace Booma.Proxy
 			//Create the prefab at the required offset
 			GameObject shipEntry = GameObject.Instantiate(ShipEntryPrefab);
 			shipEntry.transform.parent = ShipMenuPanelObject.transform;
-			shipEntry.transform.localPosition = new Vector3(0, InitialYOffset + (OffsetPerListing * model.Selection.ItemId), 0);
+			shipEntry.GetComponent<RectTransform>().localPosition = new Vector3(0, InitialYOffset + (OffsetPerListing * ServerCount++), 0);
 
 			//Rig up the button to dispatch to this controller's press handler.
 			Button button = shipEntry.GetComponent<UnityEngine.UI.Button>();
@@ -57,7 +59,7 @@ namespace Booma.Proxy
 			if(button == null)
 				throw new InvalidOperationException($"The {shipEntry.name} {nameof(ShipEntryPrefab)} contains no button.");
 
-			text.text = shipEntry.name.Replace("Destiny", "[redacted]");
+			text.text = model.ShipName.Replace("Destiny", "[redacted]");
 
 			button.onClick.AddListener(() =>
 			{

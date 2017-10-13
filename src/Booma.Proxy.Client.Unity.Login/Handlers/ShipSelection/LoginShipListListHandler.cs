@@ -20,6 +20,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginShipListEventPayload payload)
 		{
+			if(Logger.IsDebugEnabled)
+				Logger.Debug($"Recieved ShipCount: {payload.Ships.Count()}");
+
 			//Register every ship
 			foreach(ShipListing s in payload.Ships)
 			{

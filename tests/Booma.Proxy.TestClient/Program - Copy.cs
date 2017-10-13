@@ -35,7 +35,7 @@ namespace Booma.Proxy.TestClient
 
 			Serializer.Compile();
 
-			RunClient("158.69.215.131", 12000).Wait();
+			RunClient("127.0.0.1", 12000).Wait();
 		}
 
 		private static async Task RunClient(string ip, int port)
@@ -186,7 +186,7 @@ namespace Booma.Proxy.TestClient
 				await client.SendMessage(new LoginLoginRequest93Payload(0x41, teamId, "glader", "playpso69", ClientVerification));
 			}
 			else
-				await client.SendMessage(new LoginLoginRequest93Payload(0x41, "glader", "playpso69", ClientVerificationData.FromVersionString("Destiny v0.6")));
+				await client.SendMessage(new LoginLoginRequest93Payload(0x41, "glader", "playpso69", ClientVerificationData.FromVersionString("TethVer12510")));
 		}
 
 		private static async Task HandlePayload(object payload, IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client)
