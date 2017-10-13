@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Reinterpret.Net;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -13,6 +14,7 @@ namespace Booma.Proxy
 		private byte[] _sessionVerificationData;
 
 		private int _sessionId = 0;
+		private uint _guildCardNumber;
 
 		/// <inheritdoc />
 		public int SessionId
@@ -34,6 +36,23 @@ namespace Booma.Proxy
 				_sessionVerificationData = value;
 				SaveVerificationData();
 			}
+		}
+
+		/// <inheritdoc />
+		public uint GuildCardNumber
+		{
+			get => _guildCardNumber;
+			set
+			{
+				_guildCardNumber = value;
+				SaveGuildCardNumber();
+			}
+		}
+
+		private void SaveGuildCardNumber()
+		{
+			//Just save the id
+			PlayerPrefs.SetInt(nameof(GuildCardNumber), GuildCardNumber.Reinterpret().Reinterpret<int>());
 		}
 
 		/// <summary>
@@ -59,6 +78,10 @@ namespace Booma.Proxy
 		/// </summary>
 		protected void InitializeFromPrefs()
 		{
+			_guildCardNumber = PlayerPrefs.GetInt(nameof(GuildCardNumber), 0)
+				.Reinterpret()
+				.Reinterpret<uint>();
+
 			_sessionId = PlayerPrefs.GetInt(nameof(SessionId), 0);
 			_sessionVerificationData = JsonConvert.DeserializeObject<byte[]>(PlayerPrefs.GetString(nameof(SessionVerificationData), null));
 		}

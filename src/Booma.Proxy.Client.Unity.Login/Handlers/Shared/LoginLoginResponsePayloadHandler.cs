@@ -57,6 +57,7 @@ namespace Booma.Proxy
 			//Set the data required to flow through the login process
 			SessionDetails.SessionId = payload.TeamId;
 			SessionDetails.SessionVerificationData = payload.SecurityData;
+			SessionDetails.GuildCardNumber = payload.GuildCard;
 
 			//Invoke login success if it's succesful at this point.
 			OnLoginSuccess?.Invoke();

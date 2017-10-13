@@ -27,6 +27,11 @@ namespace Booma.Proxy
 			Ship = 5,
 		}
 
+		/*public static LoginLoginRequest93Payload CreateForShip(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
+		{
+			return new LoginLoginRequest93Payload(clientVersion, teamId);
+		}*/
+
 		//TODO: What is this?
 		[WireMember(1)]
 		private int Tag { get; }
@@ -35,7 +40,7 @@ namespace Booma.Proxy
 		/// Unused
 		/// </summary>
 		[WireMember(2)]
-		private uint GuildCardId { get; }
+		public uint GuildCardId { get; }
 
 		/// <summary>
 		/// Client version moniker.
@@ -98,6 +103,12 @@ namespace Booma.Proxy
 		}
 
 		public LoginLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
+			: this(clientVersion, teamId, 0, userName, password, clientData, serverType)
+		{
+
+		}
+
+		public LoginLoginRequest93Payload(ushort clientVersion, int teamId, uint guildCard, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
@@ -111,7 +122,8 @@ namespace Booma.Proxy
 			UserName = userName;
 			Password = password;
 			ClientData = clientData;
-			
+			GuildCardId = guildCard;
+
 			//This is odd, not sure what this is or why we have to do it but Teth checks this sometimes
 			unk2 = Enumerable.Repeat((byte)serverType, 6).ToArray();
 		}

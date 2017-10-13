@@ -22,5 +22,7 @@ namespace Booma.Proxy
 		/// used to validate a login session.
 		/// </summary>
 		byte[] SessionVerificationData { get; set; }
+
+		uint GuildCardNumber { get; set; }
 	}
 }

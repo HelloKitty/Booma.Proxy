@@ -17,7 +17,7 @@ namespace Booma.Proxy
 			//If we've done this already then we're talking to the block now
 			LoginLoginRequest93Payload.ServerType serverType = welcomeCount == 0 ? LoginLoginRequest93Payload.ServerType.Login : LoginLoginRequest93Payload.ServerType.Ship;
 
-			var payload = new LoginLoginRequest93Payload(0x41, SessionDetails.SessionId, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData), serverType);
+			var payload = new LoginLoginRequest93Payload(0x41, SessionDetails.SessionId, SessionDetails.GuildCardNumber, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData), serverType);
 
 			welcomeCount++;
 			return payload;
