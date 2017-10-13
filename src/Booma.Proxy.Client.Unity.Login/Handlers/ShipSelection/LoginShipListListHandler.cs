@@ -24,10 +24,10 @@ namespace Booma.Proxy
 				Logger.Debug($"Recieved ShipCount: {payload.Ships.Count()}");
 
 			//Register every ship
-			foreach(ShipListing s in payload.Ships)
+			foreach(MenuListing s in payload.Ships)
 			{
 				if(Logger.IsDebugEnabled)
-					Logger.Debug($"Menu: {s.Selection.MenuId} Item: {s.Selection.ItemId} Content: {s.ShipName.Replace("Desinty", "[redacted]")}");
+					Logger.Debug($"Menu: {s.Selection.MenuId} Item: {s.Selection.ItemId} Content: {s.ItemName.Replace("Desinty", "[redacted]")}");
 
 				ShipRegisterationService.RegisterShip(s);
 			}

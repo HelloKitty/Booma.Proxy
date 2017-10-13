@@ -22,12 +22,12 @@ namespace Booma.Proxy
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
-		private ShipListing[] _Ships { get; set; } //settable for removing the garbage entry
+		private MenuListing[] _Ships { get; set; } //settable for removing the garbage entry
 
 		/// <summary>
 		/// The ship menu models.
 		/// </summary>
-		public IEnumerable<ShipListing> Ships => _Ships;
+		public IEnumerable<MenuListing> Ships => _Ships;
 
 		//Serializer ctor
 		private LoginShipListEventPayload()

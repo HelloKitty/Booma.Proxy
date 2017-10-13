@@ -8,10 +8,10 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// A data model for a ship listing for a menu
+	/// A data model for a menu listing
 	/// </summary>
 	[WireDataContract]
-	public sealed class ShipListing
+	public sealed class MenuListing
 	{
 		/// <summary>
 		/// The id of the menu selecting from.
@@ -32,10 +32,10 @@ namespace Booma.Proxy
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(17)]
 		[WireMember(3)]
-		public string ShipName { get; }
+		public string ItemName { get; }
 
 		//Serializer ctor
-		private ShipListing()
+		private MenuListing()
 		{
 			
 		}

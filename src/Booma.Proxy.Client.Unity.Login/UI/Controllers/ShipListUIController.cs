@@ -43,7 +43,7 @@ namespace Booma.Proxy
 
 		private int ServerCount = 0;
 
-		public void RegisterShip(ShipListing model)
+		public void RegisterShip(MenuListing model)
 		{
 			if(model == null) throw new ArgumentNullException(nameof(model));
 
@@ -59,7 +59,7 @@ namespace Booma.Proxy
 			if(button == null)
 				throw new InvalidOperationException($"The {shipEntry.name} {nameof(ShipEntryPrefab)} contains no button.");
 
-			text.text = model.ShipName.Replace("Destiny", "[redacted]");
+			text.text = model.ItemName.Replace("Destiny", "[redacted]");
 
 			button.onClick.AddListener(() =>
 			{

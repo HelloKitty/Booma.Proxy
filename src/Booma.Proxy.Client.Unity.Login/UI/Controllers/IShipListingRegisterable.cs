@@ -13,9 +13,9 @@ namespace Booma.Proxy
 	{
 		/// <summary>
 		/// Registers a ship listing based on the provided
-		/// <see cref="ShipListing"/> <see cref="model"/>.
+		/// <see cref="MenuListing"/> <see cref="model"/>.
 		/// </summary>
 		/// <param name="model">The ship listing model.</param>
-		void RegisterShip(ShipListing model);
+		void RegisterShip(MenuListing model);
 	}
 }
