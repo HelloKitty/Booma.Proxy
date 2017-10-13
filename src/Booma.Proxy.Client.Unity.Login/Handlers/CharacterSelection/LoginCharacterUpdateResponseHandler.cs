@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
 using Button = UnityEngine.UI.Button;
@@ -31,11 +32,11 @@ namespace Booma.Proxy
 		[SerializeField]
 		public List<CharacterTabUIElement> Elements;
 
-		[SerializeField]
-		public int ShipGateEnteranceScene;
-
 		[Inject]
 		private ICharacterSlotSelectedModel SelectedSlotModel;
+
+		[SerializeField]
+		private UnityEvent OnCharacterSelected;
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginCharacterUpdateResponsePayload payload)
@@ -48,7 +49,7 @@ namespace Booma.Proxy
 			{
 				//Save the character we picked
 				SelectedSlotModel.SlotSelected = payload.SlotSelected;
-				SceneManager.LoadSceneAsync(ShipGateEnteranceScene).allowSceneActivation = true;
+				OnCharacterSelected?.Invoke();
 			});
 
 			return Task.CompletedTask;
