@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
+using Sirenix.Serialization;
 
 namespace Booma.Proxy
 {
@@ -14,8 +15,8 @@ namespace Booma.Proxy
 	public sealed class LoginShipListListHandler : LoginMessageHandler<LoginShipListEventPayload>
 	{
 		//TODO: This is a temp handler until we implement the UI.
-		[Inject]
-		private IShipListingRegisterable ShipRegisterationService { get; }
+		[OdinSerialize]
+		private IMenuListingRegisterable ShipRegisterationService { get; set; }
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginShipListEventPayload payload)
@@ -29,7 +30,7 @@ namespace Booma.Proxy
 				if(Logger.IsDebugEnabled)
 					Logger.Debug($"Menu: {s.Selection.MenuId} Item: {s.Selection.ItemId} Content: {s.ItemName.Replace("Desinty", "[redacted]")}");
 
-				ShipRegisterationService.RegisterShip(s);
+				ShipRegisterationService.RegisterMenuItem(s);
 			}
 
 			return Task.CompletedTask;

@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Contract for Types that allow for ship registerations.
+	/// Contract for Types that allow for menu registerations.
 	/// </summary>
-	public interface IShipListingRegisterable
+	public interface IMenuListingRegisterable
 	{
 		/// <summary>
-		/// Registers a ship listing based on the provided
+		/// Registers a menu item listing based on the provided
 		/// <see cref="MenuListing"/> <see cref="model"/>.
 		/// </summary>
-		/// <param name="model">The ship listing model.</param>
-		void RegisterShip(MenuListing model);
+		/// <param name="model">The menu listing model.</param>
+		void RegisterMenuItem(MenuListing model);
 	}
 }
