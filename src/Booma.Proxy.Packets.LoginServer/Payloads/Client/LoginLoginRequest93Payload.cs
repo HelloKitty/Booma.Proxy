@@ -14,6 +14,19 @@ namespace Booma.Proxy
 	[LoginClientPacketPayload(LoginNetworkOperationCodes.LOGIN_93_TYPE)]
 	public sealed class LoginLoginRequest93Payload : PSOBBLoginPacketPayloadClient
 	{
+		public enum ServerType : byte
+		{
+			/// <summary>
+			/// The ID for the login flow for <see cref="LoginLoginRequest93Payload.unk2"/>.
+			/// </summary>
+			Login = 4,
+
+			/// <summary>
+			/// The ID for the ship flow <see cref="LoginLoginRequest93Payload.unk2"/>
+			/// </summary>
+			Ship = 5,
+		}
+
 		//TODO: What is this?
 		[WireMember(1)]
 		private int Tag { get; }
@@ -35,7 +48,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(6)]
 		[WireMember(4)]
-		private byte[] unk2 { get; } = new byte[6] {4, 4, 4, 4, 4, 4}; //Tethella will expect a 4 at 0x18 at some point. So always send it for ease.
+		private byte[] unk2 { get; } //Tethella will expect a 4 at 0x16 during Character and 5 during Ship.
 
 		//easier to work with this as an int in .NET/Unity3D
 		/// <summary>
@@ -78,13 +91,13 @@ namespace Booma.Proxy
 		[WireMember(10)]
 		public ClientVerificationData ClientData { get; }
 
-		public LoginLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
-			: this(clientVersion, 0, userName, password, clientData)
+		public LoginLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
+			: this(clientVersion, 0, userName, password, clientData, serverType)
 		{
 
 		}
 
-		public LoginLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
+		public LoginLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
@@ -98,6 +111,9 @@ namespace Booma.Proxy
 			UserName = userName;
 			Password = password;
 			ClientData = clientData;
+			
+			//This is odd, not sure what this is or why we have to do it but Teth checks this sometimes
+			unk2 = Enumerable.Repeat((byte)serverType, 6).ToArray();
 		}
 
 		//Serializer ctor

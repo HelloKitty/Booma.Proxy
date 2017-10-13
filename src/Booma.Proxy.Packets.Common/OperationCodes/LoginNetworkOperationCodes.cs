@@ -39,7 +39,7 @@ namespace Booma.Proxy
 		BB_SCROLL_MSG_TYPE = 0x00EE,
 
 		SHIP_LIST_TYPE = 0x00A0,
-		BLOCK_LIST_TYPE = 0x00A1,
+		BLOCK_LIST_TYPE = 0x0007, //Tethella seems to send 07. not a A1 like Soly's ump
 		INFO_REPLY_TYPE = 0x0011,
 		MENU_SELECT_TYPE = 0x0010,
 
