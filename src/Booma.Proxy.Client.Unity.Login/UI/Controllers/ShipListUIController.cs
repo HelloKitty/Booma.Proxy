@@ -50,9 +50,12 @@ namespace Booma.Proxy
 
 			//Rig up the button to dispatch to this controller's press handler.
 			Button button = shipEntry.GetComponent<UnityEngine.UI.Button>();
+			Text text = shipEntry.GetComponent<UnityEngine.UI.Text>();
 
 			if(button == null)
 				throw new InvalidOperationException($"The {shipEntry.name} {nameof(ShipEntryPrefab)} contains no button.");
+
+			text.text = shipEntry.name.Replace("Destiny", "[redacted]");
 
 			button.onClick.AddListener(() =>
 			{
@@ -62,6 +65,9 @@ namespace Booma.Proxy
 
 		public void ClickMenuItem(uint menuId, uint itemId)
 		{
+			//Disable the ship panel
+			ShipMenuPanelObject.SetActive(false);
+
 			//Send the menu selection request. The server will redirect us if it's success.
 			SendService.SendMessage(new LoginMenuSelectionRequestPayload(new MenuItemIdentifier(menuId, itemId)));
 		}

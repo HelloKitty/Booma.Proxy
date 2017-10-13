@@ -22,11 +22,13 @@ namespace Booma.Proxy
 			if(payload.Message == null)
 				Logger.Warn($"Encountered empty Marquee message.");
 
+			string message = payload.Message.Replace("Destiny", @"[redacted]").Replace("playpso", "[redacted]");
+
 			if(Logger.IsDebugEnabled)
-				Logger.Debug(payload.Message.Replace("Destiny", @"[redacted]").Replace("playpso", "[redacted]"));
+				Logger.Debug(message);
 
 			//TODO: This is the scrolling marquee at the top of the ship. When the UI is implemented we should handle it
-			TempMarqueeText.text = payload.Message;
+			TempMarqueeText.text = message;
 
 			return Task.CompletedTask;
 		}
