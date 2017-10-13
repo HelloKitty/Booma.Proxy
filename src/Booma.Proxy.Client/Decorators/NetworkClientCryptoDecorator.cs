@@ -58,7 +58,9 @@ namespace Booma.Proxy
 			EncryptionServiceProvider = encryptionServiceProvider;
 			DecryptionServiceProvider = decryptionServiceProvider;
 			BlockSize = blockSize;
-			CryptoBuffer = new byte[2000]; //TODO: Is this size good? Bigger? Smaller?
+
+			//One of the lobby packets is 14,000 bytes. We may even need bigger.
+			CryptoBuffer = new byte[30000]; //TODO: Is this size good? Bigger? Smaller?
 		}
 
 		/// <inheritdoc />

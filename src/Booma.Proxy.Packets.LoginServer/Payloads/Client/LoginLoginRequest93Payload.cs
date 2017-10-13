@@ -27,11 +27,6 @@ namespace Booma.Proxy
 			Ship = 5,
 		}
 
-		/*public static LoginLoginRequest93Payload CreateForShip(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData)
-		{
-			return new LoginLoginRequest93Payload(clientVersion, teamId);
-		}*/
-
 		//TODO: What is this?
 		[WireMember(1)]
 		private int Tag { get; }

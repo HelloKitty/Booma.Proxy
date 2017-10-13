@@ -47,7 +47,9 @@ namespace Booma.Proxy
 
 			DecoratedClient = decoratedClient;
 			Serializer = serializer;
-			PacketPayloadBuffer = new byte[2000]; //TODO: Do we need a larger buffer for any packets?
+
+			//One of the lobby packets is 14,000 bytes. We may even need bigger.
+			PacketPayloadBuffer = new byte[30000]; //TODO: Do we need a larger buffer for any packets?
 		}
 
 		/// <inheritdoc />
