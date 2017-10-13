@@ -8,11 +8,11 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Contains the ship list for menu rendering.
+	/// Contains the block list for menu rendering.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.SHIP_LIST_TYPE)]
-	public sealed class LoginShipListEventPayload : PSOBBLoginPacketPayloadServer, ISerializationEventListener
+	[LoginServerPacketPayload(LoginNetworkOperationCodes.BLOCK_LIST_TYPE)]
+	public sealed class LoginBlockListEventPayload : PSOBBLoginPacketPayloadServer, ISerializationEventListener
 	{
 		//Disable flags serialization so that the ship can get the 4 byte length and
 		//handle writing the 4 bytes length
@@ -22,15 +22,15 @@ namespace Booma.Proxy
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
-		private MenuListing[] _Ships { get; set; } //settable for removing the garbage entry
+		private MenuListing[] _Blocks { get; set; } //settable for removing the garbage entry
 
 		/// <summary>
 		/// The ship menu models.
 		/// </summary>
-		public IEnumerable<MenuListing> Ships => _Ships;
+		public IEnumerable<MenuListing> Blocks => _Blocks;
 
 		//Serializer ctor
-		private LoginShipListEventPayload()
+		private LoginBlockListEventPayload()
 		{
 			
 		}
@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		public void OnAfterDeserialization()
 		{
 			//Remove the first entry, it's garbage
-			_Ships = _Ships.Skip(1).ToArray();
+			_Blocks = _Blocks.Skip(1).ToArray();
 		}
 	}
 }

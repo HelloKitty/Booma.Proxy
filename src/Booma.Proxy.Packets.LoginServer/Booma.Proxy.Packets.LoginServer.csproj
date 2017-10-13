@@ -87,8 +87,8 @@
     <Compile Include="Payloads\Server\LoginConnectionRedirectPayload.cs" />
     <Compile Include="Payloads\Client\LoginLoginRequest93Payload.cs" />
     <Compile Include="Payloads\Server\LoginCreateMessageBoxEventPayload.cs" />
-    <Compile Include="Payloads\Server\LoginBlockListEventPayload.cs" />
     <Compile Include="Payloads\Server\LoginShipListEventPayload.cs" />
+    <Compile Include="Payloads\Server\LoginBlockListEventPayload.cs" />
     <Compile Include="Payloads\Server\LoginTimestampEventPayload.cs" />
     <Compile Include="Payloads\Server\LoginWelcomePayload.cs" />
     <Compile Include="ResponseCodes\LoginResponseCode.cs" />
