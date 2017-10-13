@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using SceneJect.Common;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
 	[Injectee]
-	public sealed class SelectCharacterRequestSender
+	public sealed class SelectCharacterRequestSender : MonoBehaviour
 	{
 		/// <summary>
 		/// The sending service.
@@ -22,8 +24,14 @@ namespace Booma.Proxy
 		[Inject]
 		private ICharacterSlotSelectedModel SelectedModel { get; }
 
+		[Inject]
+		private ILog Logger { get; }
+
 		public void SendCharacterSelection()
 		{
+			if(Logger.IsDebugEnabled)
+				Logger.Debug($"Sending CharSelection: {SelectedModel.SlotSelected}");
+
 			//Just send the request
 			SendService.SendMessage(new LoginCharacterSelectionRequestPayload((byte)SelectedModel.SlotSelected, CharacterSelectionType.PlaySelection));
 		}

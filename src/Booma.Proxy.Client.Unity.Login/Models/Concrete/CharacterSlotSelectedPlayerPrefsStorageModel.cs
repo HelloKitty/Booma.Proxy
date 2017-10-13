@@ -19,7 +19,12 @@ namespace Booma.Proxy
 		public int SlotSelected
 		{
 			get => _slotSelected;
-			set { _slotSelected = value; }
+			set
+			{
+				_slotSelected = value; 
+				SaveSlotSelected();
+				
+			}
 		}
 
 		private void Awake()
