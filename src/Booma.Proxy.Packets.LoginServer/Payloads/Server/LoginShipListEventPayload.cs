@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[LoginServerPacketPayload(LoginNetworkOperationCodes.SHIP_LIST_TYPE)]
-	public sealed class LoginShipListEventPayload : PSOBBLoginPacketPayloadServer
+	public sealed class LoginShipListEventPayload : PSOBBLoginPacketPayloadServer, ISerializationEventListener
 	{
 		//Disable flags serialization so that the ship can get the 4 byte length and
 		//handle writing the 4 bytes length
@@ -20,9 +20,9 @@ namespace Booma.Proxy
 		public override bool isFlagsSerialized { get; } = false;
 
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
-		[SendSize(SendSizeAttribute.SizeType.Int32)] 
+		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
-		private ShipListing[] _Ships { get; }
+		private ShipListing[] _Ships { get; set; } //settable for removing the garbage entry
 
 		/// <summary>
 		/// The ship menu models.
@@ -33,6 +33,19 @@ namespace Booma.Proxy
 		private LoginShipListEventPayload()
 		{
 			
+		}
+
+		/// <inheritdoc />
+		public void OnBeforeSerialization()
+		{
+			//TODO: Deal with the bullshit the server adds for some reason
+		}
+
+		/// <inheritdoc />
+		public void OnAfterDeserialization()
+		{
+			//Remove the first entry, it's garbage
+			_Ships = _Ships.Skip(1).ToArray();
 		}
 	}
 }
