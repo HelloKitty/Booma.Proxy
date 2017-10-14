@@ -65,9 +65,15 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 
 			foreach(TOpcodeType opcode in Enum.GetValues(typeof(TOpcodeType)))
 			{
+				Type serverPayloadType = packets.FirstOrDefault(p => HasOpCodeAttribute<TIncomingPayloadAttributeType, TOpcodeType>(p, opcode));
+				Type clientPayloadType = packets.FirstOrDefault(p => HasOpCodeAttribute<TOutgoingPayloadAttributeType, TOpcodeType>(p, opcode));
+
+				//Skip if there are no payloads for this OpCode
+				if(serverPayloadType == null && clientPayloadType == null)
+					continue;
+
 				string row = BuildPacketInformationRow(opcode.ToString(), $"0x{String.Format("{0:X4}", GenericMath.Convert<TOpcodeType, int>(opcode))}",
-					packets.FirstOrDefault(p => HasOpCodeAttribute<TIncomingPayloadAttributeType, TOpcodeType>(p, opcode)),
-					packets.FirstOrDefault(p => HasOpCodeAttribute<TOutgoingPayloadAttributeType, TOpcodeType>(p, opcode)), packetType);
+						serverPayloadType, clientPayloadType, packetType);
 
 				builder.Append(row);
 				InsertLineBreak(builder);
