@@ -47,7 +47,7 @@ namespace Booma.Proxy
 		public Vector3<float> Position { get; }
 
 		/// <inheritdoc />
-		public Sub60TeleportToPositionPayload(short clientId, [NotNull] Vector4<float> position)
+		public Sub60TeleportToPositionPayload(short clientId, [NotNull] Vector3<float> position)
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 
