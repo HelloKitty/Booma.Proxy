@@ -27,7 +27,7 @@ namespace Booma.Proxy
 			//Registers all the types.
 			PacketCommonServerMetadataMarker.SerializableTypes
 				.Concat(PacketLoginServerMetadataMarker.SerializableTypes)
-				.Concat(PacketSharedMetadataMarker.SerializableTypes)
+				.Concat(PacketSharedServerMetadataMarker.SerializableTypes)
 				.Concat(PacketBlockServerMetadataMarker.SerializableTypes)
 				.Concat(PacketShipServerMetadataMarker.SerializableTypes)
 				.Concat(PacketCharacterServerMetadataMarker.SerializableTypes)

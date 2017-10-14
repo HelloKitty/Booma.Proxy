@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
-    <ProjectReference Include="..\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

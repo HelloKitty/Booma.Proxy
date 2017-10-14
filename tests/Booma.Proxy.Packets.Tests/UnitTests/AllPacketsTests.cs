@@ -14,7 +14,7 @@ namespace Booma.Proxy.Packets.Tests.UnitTests
 	{
 		public static IEnumerable<Type> PayloadTypes { get; } = PacketLoginServerMetadataMarker.SerializableTypes
 			.Concat(PacketPatchServerMetadataMarker.SerializableTypes)
-			.Concat(PacketSharedMetadataMarker.SerializableTypes)
+			.Concat(PacketSharedServerMetadataMarker.SerializableTypes)
 			.Concat(PacketBlockServerMetadataMarker.SerializableTypes)
 			.Concat(PacketShipServerMetadataMarker.SerializableTypes)
 			.Concat(PacketCharacterServerMetadataMarker.SerializableTypes);

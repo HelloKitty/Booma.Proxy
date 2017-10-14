@@ -14,7 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj" />
-    <ProjectReference Include="..\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

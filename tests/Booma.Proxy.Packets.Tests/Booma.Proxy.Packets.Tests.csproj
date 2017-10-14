@@ -109,9 +109,9 @@
       <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
       <Name>Booma.Proxy.Packets.PatchServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj">
-      <Project>{6c0fdd4c-e8b5-41b3-a3d1-ad87dd0cb1f0}</Project>
-      <Name>Booma.Proxy.Packets.Shared</Name>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj">
+      <Project>{a29319a3-6771-42a4-a910-39e69603a867}</Project>
+      <Name>Booma.Proxy.Packets.SharedServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj">
       <Project>{7b08404b-8aea-450f-a886-047e5e16bf4b}</Project>
