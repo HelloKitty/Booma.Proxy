@@ -17,6 +17,9 @@ namespace Booma.Proxy
 	public sealed class Sub60FinishedWarpingBurstingPayload : BlockNetworkCommandEventClientPayload
 	{
 		//Packet is empty. Just tells the server we bursted/warped finished.
+		//TODO: Is this client id?
+		[WireMember(1)]
+		private short unk { get; }
 
 		public Sub60FinishedWarpingBurstingPayload()
 		{
