@@ -11,3 +11,5 @@ Sirenix.OdinInspector.Attributes.dll
 Sirenix.Serialization.dll
 UnityEngine.Timeline.dll
 UnityEngine.Timeline.xml
+Booma.Proxy.Client.Unity.BuildAll.dll
+Booma.Proxy.Client.Unity.BuildAll.xml
