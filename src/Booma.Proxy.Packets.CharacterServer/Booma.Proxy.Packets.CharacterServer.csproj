@@ -9,4 +9,14 @@
     <Folder Include="Payloads\Server\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.12" />
+    <PackageReference Include="Reinterpret.Net" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Character.Common\Booma.Proxy.Character.Common.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
+  </ItemGroup>
+
 </Project>

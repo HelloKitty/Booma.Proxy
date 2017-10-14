@@ -58,6 +58,11 @@
     <Compile Include="Message\IUnknownPayloadType.cs" />
     <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
+    <Compile Include="Models\IChunkRequest.cs" />
+    <Compile Include="Models\IChunkResponse.cs" />
+    <Compile Include="Models\IMenuItemIdentifiable.cs" />
+    <Compile Include="Models\MenuItemIdentifier.cs" />
+    <Compile Include="Models\MenuListing.cs" />
     <Compile Include="OperationCodes\LoginNetworkOperationCodes.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />
     <Compile Include="Message\Login\UnknownLoginPacket.cs" />
