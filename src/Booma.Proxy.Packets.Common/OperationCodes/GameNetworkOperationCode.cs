@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Enumeration of all the login server
+	/// Enumeration of all the game servers
 	/// operation codes.
 	/// </summary>
 	public enum GameNetworkOperationCode : short
