@@ -47,6 +47,24 @@ namespace Booma.Proxy
 		/// This is 05 opcode.
 		/// It's basically a "Hey, disconnect me."
 		/// </summary>
-		TYPE_05 = 0x0005
+		TYPE_05 = 0x0005,
+
+		/// <summary>
+		/// Message sent by the client to init its character data
+		/// on the block server.
+		/// </summary>
+		BLOCK_SET_CHAR_DATA_TYPE = 0x0061,
+
+		//List of the lobby?
+		LOBBY_LIST_TYPE = 0x0083,
+
+		//Big 14,000 byte chunk of character data including inventory and everything
+		BB_FULL_CHARACTER_TYPE = 0x00E7,
+
+		//Simple message that asks the client for some character data
+		CHAR_DATA_REQUEST_TYPE = 0x0095,
+
+		//Sent to the client to tell it to join a lobby
+		LOBBY_JOIN_TYPE = 0x0067
 	}
 }
