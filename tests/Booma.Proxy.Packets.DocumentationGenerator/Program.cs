@@ -33,10 +33,10 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketCharacterServerMetadataMarker.SerializableTypes, "Character");
 
 			string blockDocString =
-				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketCharacterServerMetadataMarker.SerializableTypes, "Block");
+				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketBlockServerMetadataMarker.SerializableTypes, "Block");
 
 			string shipDocString =
-				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketCharacterServerMetadataMarker.SerializableTypes, "Ship");
+				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketShipServerMetadataMarker.SerializableTypes, "Ship");
 
 			File.WriteAllText(@"docs\PatchPacketDocumentation.md", patchDocString);
 			File.WriteAllText(@"docs\LoginPacketDocumentation.md", loginDocString);
