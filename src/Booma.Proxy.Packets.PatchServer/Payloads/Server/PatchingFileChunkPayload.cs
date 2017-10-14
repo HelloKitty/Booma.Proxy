@@ -8,7 +8,7 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_DATA_SEND)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_DATA_SEND)]
 	public sealed class PatchingFileChunkPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>

@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Enumeration of the patching network operation codes.
 	/// </summary>
-	public enum PatchNetworkOperationCodes : short
+	public enum PatchNetworkOperationCode : short
 	{
 		//TODO: Adjust formatting
 		PATCH_WELCOME_TYPE              = 0x0002,

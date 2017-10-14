@@ -13,7 +13,7 @@ namespace Booma.Proxy
 
 	}
 
-	public class CharacterPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBGamePacketPayloadServer, LoginCharacterUpdateResponsePayload>
+	public class CharacterPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBGamePacketPayloadServer, CharacterCharacterUpdateResponsePayload>
 	{
 
 	}

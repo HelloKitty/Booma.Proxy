@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 namespace Booma.Proxy
 {
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_MESSAGE_TYPE)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_MESSAGE_TYPE)]
 	public sealed class PatchingMessagePayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>

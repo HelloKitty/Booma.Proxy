@@ -6,14 +6,15 @@
 
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="SceneJect.Common" Version="2.0.6" />
     <PackageReference Include="SceneJect.Metadata" Version="2.0.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
-    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,12 @@
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>..\..\lib\Unity\UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Unity\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

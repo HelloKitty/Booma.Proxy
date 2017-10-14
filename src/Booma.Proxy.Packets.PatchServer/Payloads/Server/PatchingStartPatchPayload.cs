@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	// leads me to think this is a "go to root" packet.
 	// Will confirm or deny later after in the game.
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_START_LIST)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_START_LIST)]
 	public sealed class PatchingStartPatchPayload : PSOBBPatchPacketPayloadServer
 	{
 		public PatchingStartPatchPayload()

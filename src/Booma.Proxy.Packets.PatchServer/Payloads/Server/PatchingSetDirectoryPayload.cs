@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// Sets the directory to move into, creating it if it doesn't exist
 	/// </summary>
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_SET_DIRECTORY)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_SET_DIRECTORY)]
 	public sealed class PatchingSetDirectoryPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>

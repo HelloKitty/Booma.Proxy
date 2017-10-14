@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// Redirects the client to a new IPAddress:Port
 	/// </summary>
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_REDIRECT_TYPE)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_REDIRECT_TYPE)]
 	public sealed class PatchingRedirectPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>

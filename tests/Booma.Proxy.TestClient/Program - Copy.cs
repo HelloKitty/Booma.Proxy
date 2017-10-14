@@ -97,7 +97,7 @@ namespace Booma.Proxy.TestClient
 		private static bool hasAskedForChars = false;
 		private static bool hasSelectedCharacter = false;
 
-		private static async Task HandlePayload(LoginLoginResponsePayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
+		private static async Task HandlePayload(SharedLoginResponsePayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
 		{
 			Console.WriteLine($"Login Response: {payload.ResponseCode}");
 
@@ -140,7 +140,7 @@ namespace Booma.Proxy.TestClient
 			Console.WriteLine($"Set 32bit key: {payload.TeamId}");
 		}
 
-		private static async Task HandlePayload(LoginCharacterUpdateResponsePayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
+		private static async Task HandlePayload(CharacterCharacterUpdateResponsePayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
 		{
 			Console.WriteLine($"Character: {payload.CharacterData.CharacterName} Class: {payload.CharacterData.ClassRace} SecId: {payload.CharacterData.SectionId} Level: {payload.CharacterData.Progress.Level} PlayedTime: {payload.CharacterData.PlayedTime}");
 			Console.WriteLine($"Character: {Encoding.Unicode.GetBytes(payload.CharacterData.CharacterName).Aggregate("", (s, b) => $"{s} {b}")}");
@@ -171,7 +171,7 @@ namespace Booma.Proxy.TestClient
 		public static ClientVerificationData ClientVerification = null;
 		public static int teamId;
 
-		private static async Task HandlePayload(LoginWelcomePayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
+		private static async Task HandlePayload(SharedWelcomePayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
 		{
 			Console.WriteLine($"Server Vector: {payload.ServerVector.Aggregate("", (s, b) => $"{s} {b.ToString()}")}");
 			Console.WriteLine($"Client Vector: {payload.ClientVector.Aggregate("", (s, b) => $"{s} {b.ToString()}")}");
@@ -183,10 +183,10 @@ namespace Booma.Proxy.TestClient
 
 			if(hasSecurityData)
 			{
-				await client.SendMessage(new LoginLoginRequest93Payload(0x41, teamId, "glader", "playpso69", ClientVerification));
+				await client.SendMessage(new SharedLoginRequest93Payload(0x41, teamId, "glader", "playpso69", ClientVerification));
 			}
 			else
-				await client.SendMessage(new LoginLoginRequest93Payload(0x41, "glader", "playpso69", ClientVerificationData.FromVersionString("TethVer12510")));
+				await client.SendMessage(new SharedLoginRequest93Payload(0x41, "glader", "playpso69", ClientVerificationData.FromVersionString("TethVer12510")));
 		}
 
 		private static async Task HandlePayload(object payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)

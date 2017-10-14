@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// Sets the file we are going to update
 	/// </summary>
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_FILE_SEND)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_FILE_SEND)]
 	public sealed class PatchingFilePatchPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>

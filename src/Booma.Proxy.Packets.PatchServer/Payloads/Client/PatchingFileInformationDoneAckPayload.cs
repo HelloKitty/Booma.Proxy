@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	//TODO: Document this please, idk what it is
 	[WireDataContract]
-	[PatchClientPacketPayload(PatchNetworkOperationCodes.PATCH_FILE_LIST_DONE)]
+	[PatchClientPacketPayload(PatchNetworkOperationCode.PATCH_FILE_LIST_DONE)]
 	public sealed class PatchingFileInformationDoneAckPayload : PSOBBPatchPacketPayloadClient
 	{
 		public PatchingFileInformationDoneAckPayload()

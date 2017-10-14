@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// <see cref="PSOBBGamePacketPayloadClient"/> to be sent.
 	/// </summary>
 	[WireDataContract]
-	[PatchServerPacketPayload(PatchNetworkOperationCodes.PATCH_LOGIN_TYPE)]
+	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_LOGIN_TYPE)]
 	public sealed class PatchingReadyForLoginRequestPayload : PSOBBPatchPacketPayloadServer
 	{
 		//This is empty, just the server telling the client it's ready for the login

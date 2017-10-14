@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Common.Logging" Version="3.4.1" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.12" />
+    <PackageReference Include="SceneJect.Common" Version="2.0.6" />
+    <PackageReference Include="SceneJect.Metadata" Version="2.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Sirenix.OdinInspector.Attributes">
+      <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

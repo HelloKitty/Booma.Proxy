@@ -24,7 +24,7 @@ namespace Booma.Proxy
 		private ILog Logger { get; }
 
 		/// <inheritdoc />
-		public DefaultPayloadHandler([NotNull] ILog logger)
+		public DefaultPayloadHandler(ILog logger)
 		{
 			if(logger == null) throw new ArgumentNullException(nameof(logger));
 
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public Task HandleMessage([NotNull] IClientMessageContext<TOutgoingPayloadType> context, [NotNull] TPayloadType payload)
+		public Task HandleMessage(IClientMessageContext<TOutgoingPayloadType> context, TPayloadType payload)
 		{
 			if(context == null) throw new ArgumentNullException(nameof(context));
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
