@@ -1,4 +1,4 @@
-# Login Packets
+# Block Packets
 
 | Packet OpCode Name | OpCode | Sent by Server | Sent by Client |
 | ------------- | ------------- | ------------- | ------------- |
