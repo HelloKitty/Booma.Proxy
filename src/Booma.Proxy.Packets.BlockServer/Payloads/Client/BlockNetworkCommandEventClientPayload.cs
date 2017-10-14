@@ -21,7 +21,7 @@ namespace Booma.Proxy
 	/// Sent by the client.
 	/// </summary>
 	[WireDataContract(WireDataContractAttribute.KeyType.Byte, true)] //sent as a byte. Runtime linking SHOULD work since it'll find subtypes in its search for payloads
-	[DefaultChild(typeof(UnknownSubCommandClient60))] //if we encounter ones we don't know then we should produce this payload.
+	[DefaultChild(typeof(UnknownSubCommand60ClientPayload))] //if we encounter ones we don't know then we should produce this payload.
 	[GameClientPacketPayload(GameNetworkOperationCode.GAME_COMMAND0_TYPE)]
 	public abstract class BlockNetworkCommandEventClientPayload : PSOBBGamePacketPayloadClient
 	{

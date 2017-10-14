@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// Marks the 0x60 command client payload with the associated operation code.
 	/// Should be marked on <see cref="BlockNetworkCommandEventClientPayload"/>.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
 	public sealed class SubCommand60ClientAttribute : WireDataContractBaseLinkAttribute
 	{
 		/// <inheritdoc />
