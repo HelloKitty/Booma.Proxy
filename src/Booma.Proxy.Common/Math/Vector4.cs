@@ -7,33 +7,23 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
-	/// <summary>
-	/// Generic 2-dimensional vector.
-	/// </summary>
-	/// <typeparam name="T"></typeparam>
 	[WireDataContract]
-	public class Vector2<T>
+	public sealed class Vector4<T> : Vector3<T>
 	{
 		/// <summary>
 		/// X value.
 		/// </summary>
 		[WireMember(1)]
-		public T X { get; }
-
-		/// <summary>
-		/// Y value.
-		/// </summary>
-		[WireMember(2)]
-		public T Y { get; }
+		public T W { get; }
 
 		/// <inheritdoc />
-		public Vector2(T x, T y)
+		public Vector4(T x, T y, T z, T w) 
+			: base(x, y, z)
 		{
-			X = x;
-			Y = y;
+			W = w;
 		}
 
-		protected Vector2()
+		private Vector4()
 		{
 			
 		}
