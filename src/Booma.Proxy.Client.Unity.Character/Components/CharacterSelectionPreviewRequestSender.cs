@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		{
 			//Send the request for all
 			for(int i = 0; i < CharacterCount; i++)
-				SendService.SendMessage(new LoginCharacterSelectionRequestPayload((byte)i, CharacterSelectionType.Preview));
+				SendService.SendMessage(new CharacterCharacterSelectionRequestPayload((byte)i, CharacterSelectionType.Preview));
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_CHUNK_TYPE)]
-	public sealed class LoginGuildCardChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
+	public sealed class CharacterGuildCardChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
 	{
 		//TODO: What is this?
 		[WireMember(1)]
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		public byte[] PartialData { get; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
 
 		//Serializer ctor
-		private LoginGuildCardChunkResponsePayload()
+		private CharacterGuildCardChunkResponsePayload()
 		{
 			
 		}

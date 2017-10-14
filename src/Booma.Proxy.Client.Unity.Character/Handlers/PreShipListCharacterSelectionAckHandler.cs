@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Handle that recieves the E4 ack with the character selection result.
 	/// </summary>
-	public sealed class PreShipListCharacterSelectionAckHandler : GameMessageHandler<LoginCharacterSelectionAckPayload>
+	public sealed class PreShipListCharacterSelectionAckHandler : GameMessageHandler<CharacterCharacterSelectionAckPayload>
 	{
 		//TODO: Broadcast code with it.
 		/// <summary>
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		private UnityEvent OnSelectionSuccess;
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginCharacterSelectionAckPayload payload)
+		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterSelectionAckPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Recieved Selection Response: {payload.AckType}");

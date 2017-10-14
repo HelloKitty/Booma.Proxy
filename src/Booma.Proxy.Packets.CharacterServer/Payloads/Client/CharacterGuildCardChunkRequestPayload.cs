@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_CHUNK_REQ_TYPE)]
-	public sealed class LoginGuildCardChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
+	public sealed class CharacterGuildCardChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
 	{
 		//TODO: What is this?
 		[WireMember(1)]
@@ -33,13 +33,13 @@ namespace Booma.Proxy
 		public bool ShouldContinue { get; }
 
 		/// <inheritdoc />
-		public LoginGuildCardChunkRequestPayload(uint chunkNumber, bool shouldContinue)
+		public CharacterGuildCardChunkRequestPayload(uint chunkNumber, bool shouldContinue)
 		{
 			ChunkNumber = chunkNumber;
 			ShouldContinue = shouldContinue;
 		}
 
-		private LoginGuildCardChunkRequestPayload()
+		private CharacterGuildCardChunkRequestPayload()
 		{
 			
 		}

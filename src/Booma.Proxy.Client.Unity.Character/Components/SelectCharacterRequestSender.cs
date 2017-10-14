@@ -33,7 +33,7 @@ namespace Booma.Proxy
 				Logger.Debug($"Sending CharSelection: {SelectedModel.SlotSelected}");
 
 			//Just send the request
-			SendService.SendMessage(new LoginCharacterSelectionRequestPayload((byte)SelectedModel.SlotSelected, CharacterSelectionType.PlaySelection));
+			SendService.SendMessage(new CharacterCharacterSelectionRequestPayload((byte)SelectedModel.SlotSelected, CharacterSelectionType.PlaySelection));
 		}
 	}
 }

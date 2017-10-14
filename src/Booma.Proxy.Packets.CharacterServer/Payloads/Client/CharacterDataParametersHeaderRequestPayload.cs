@@ -13,11 +13,11 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_PARAM_HEADER_REQ_TYPE)]
-	public sealed class LoginDataParametersHeaderRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed class CharacterDataParametersHeaderRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Just a command payload. Nothing to implement
 
-		public LoginDataParametersHeaderRequestPayload()
+		public CharacterDataParametersHeaderRequestPayload()
 		{
 			
 		}

@@ -8,18 +8,18 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Response to the <see cref="LoginChecksumRequestPayload"/>.
+	/// Response to the <see cref="CharacterChecksumRequestPayload"/>.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_CHECKSUM_ACK_TYPE)]
-	public sealed class LoginChecksumResponsePayload : PSOBBGamePacketPayloadServer, IResponseCodePayload<LoginChecksumResult>
+	public sealed class CharacterChecksumResponsePayload : PSOBBGamePacketPayloadServer, IResponseCodePayload<LoginChecksumResult>
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
 		public LoginChecksumResult ResponseCode { get; }
 
 		//Serializer ctor
-		private LoginChecksumResponsePayload()
+		private CharacterChecksumResponsePayload()
 		{
 			
 		}

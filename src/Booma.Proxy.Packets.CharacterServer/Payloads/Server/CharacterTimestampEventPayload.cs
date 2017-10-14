@@ -19,7 +19,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.TIMESTAMP_TYPE)]
-	public sealed class LoginTimestampEventPayload : PSOBBGamePacketPayloadServer
+	public sealed class CharacterTimestampEventPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The time stamp.
@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		public string Timestamp { get; }
 
 		//Serializer ctor
-		private LoginTimestampEventPayload()
+		private CharacterTimestampEventPayload()
 		{
 			
 		}

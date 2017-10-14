@@ -44,7 +44,7 @@ namespace Booma.Proxy
 		private async Task DoChecksumProcess()
 		{
 			//Syl doesn't check value, so I don't know what to send.
-			LoginChecksumResponsePayload payload = await SendService.SendRequestAsync<LoginChecksumResponsePayload>(new LoginChecksumRequestPayload(0));
+			CharacterChecksumResponsePayload payload = await SendService.SendRequestAsync<CharacterChecksumResponsePayload>(new CharacterChecksumRequestPayload(0));
 		}
 
 		private async Task ReadGuildCardDataFromServer()
@@ -52,7 +52,7 @@ namespace Booma.Proxy
 			if(Logger.IsDebugEnabled)
 				Logger.Debug("Sending GuildData request.");
 
-			LoginGuildCardDataHeaderResponsePayload payload = await SendService.SendRequestAsync<LoginGuildCardDataHeaderResponsePayload>(new LoginGuildRequestPayload());
+			CharacterGuildCardDataHeaderResponsePayload payload = await SendService.SendRequestAsync<CharacterGuildCardDataHeaderResponsePayload>(new CharacterGuildHeaderRequestPayload());
 
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Guild Data Size: {payload.Length}.");
@@ -66,7 +66,7 @@ namespace Booma.Proxy
 			for(uint chunkNumber = 0, byteReadCount = 0; byteReadCount < payload.Length; chunkNumber++)
 			{
 				//TODO: Should continue ever be false?
-				LoginGuildCardChunkResponsePayload response = await SendService.SendRequestAsync<LoginGuildCardChunkResponsePayload>(new LoginGuildCardChunkRequestPayload(chunkNumber, true));
+				CharacterGuildCardChunkResponsePayload response = await SendService.SendRequestAsync<CharacterGuildCardChunkResponsePayload>(new CharacterGuildCardChunkRequestPayload(chunkNumber, true));
 
 				if(Logger.IsDebugEnabled)
 					Logger.Debug($"Recieved Chunk: {response.ChunkNumber} Size: {response.PartialData.Length}.");
@@ -81,7 +81,7 @@ namespace Booma.Proxy
 
 			//At this point we've read all bytes async from the server for guild card data.
 			//However the client also sends a final chunk request with a cont of 0
-			await PayloadSendService.SendMessage(new LoginGuildCardChunkRequestPayload(0, false));
+			await PayloadSendService.SendMessage(new CharacterGuildCardChunkRequestPayload(0, false));
 
 			await Task.Delay(500); //enough time for server to see.
 		}

@@ -20,12 +20,12 @@ namespace Booma.Proxy
 	PACKED bb_guildcard_hdr_pkt;*/
 
 	/// <summary>
-	/// Payload sent as a response to <see cref="LoginGuildRequestPayload"/>.
+	/// Payload sent as a response to <see cref="CharacterGuildHeaderRequestPayload"/>.
 	/// Contains initial information about the guild info.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_HEADER_TYPE)]
-	public sealed class LoginGuildCardDataHeaderResponsePayload : PSOBBGamePacketPayloadServer
+	public sealed class CharacterGuildCardDataHeaderResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// One? Not sure why.
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		public uint CheckSum { get; }
 
 		//Serializer ctor
-		private LoginGuildCardDataHeaderResponsePayload()
+		private CharacterGuildCardDataHeaderResponsePayload()
 		{
 			
 		}

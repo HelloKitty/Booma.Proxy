@@ -18,12 +18,12 @@ namespace Booma.Proxy
 
 	//Syl: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L1409
 	/// <summary>
-	/// Chunk response sent in response to <see cref="LoginDataParametersChunkRequestPayload"/>.
+	/// Chunk response sent in response to <see cref="CharacterDataParametersChunkRequestPayload"/>.
 	/// Contains partial byte chunk of the parameter data files.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_PARAM_CHUNK_TYPE)]
-	public sealed class LoginDataParametersChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
+	public sealed class CharacterDataParametersChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
 	{
 		/// <summary>
 		/// The id/number for this chunk.
@@ -39,7 +39,7 @@ namespace Booma.Proxy
 		public byte[] PartialData { get; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
 
 		//Serializer ctor
-		private LoginDataParametersChunkResponsePayload()
+		private CharacterDataParametersChunkResponsePayload()
 		{
 			
 		}

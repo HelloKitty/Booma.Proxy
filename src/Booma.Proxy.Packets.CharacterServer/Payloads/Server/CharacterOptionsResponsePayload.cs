@@ -9,12 +9,12 @@ using JetBrains.Annotations;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Payload that responds to <see cref="LoginOptionsRequestPayload"/> with options saved on the
+	/// Payload that responds to <see cref="CharacterOptionsRequestPayload"/> with options saved on the
 	/// server for the specified client.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_OPTION_CONFIG_TYPE)]
-	public sealed class LoginOptionsResponsePayload : PSOBBGamePacketPayloadServer
+	public sealed class CharacterOptionsResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Unknown bytes.
@@ -41,7 +41,7 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public AccountTeamInformation TeamInfo { get; }
 
-		public LoginOptionsResponsePayload()
+		public CharacterOptionsResponsePayload()
 		{
 			
 		}

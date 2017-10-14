@@ -104,7 +104,7 @@ namespace Booma.Proxy.TestClient
 			if(hasSecurityData && hasAskedForChars && !hasSelectedCharacter)
 			{
 				hasSelectedCharacter = true;
-				await client.SendMessage(new LoginCharacterSelectionRequestPayload(0, CharacterSelectionType.PlaySelection));
+				await client.SendMessage(new CharacterCharacterSelectionRequestPayload(0, CharacterSelectionType.PlaySelection));
 
 				Task.Factory.StartNew(async () =>
 				{
@@ -121,7 +121,7 @@ namespace Booma.Proxy.TestClient
 			{
 				hasAskedForChars = true;
 				for(int i = 0; i < 4; i++)
-					await client.SendMessage(new LoginCharacterSelectionRequestPayload((byte)i, CharacterSelectionType.Preview));
+					await client.SendMessage(new CharacterCharacterSelectionRequestPayload((byte)i, CharacterSelectionType.Preview));
 
 				Task.Factory.StartNew(async () =>
 				{

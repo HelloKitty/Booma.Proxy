@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_CHARACTER_SELECT_TYPE)]
-	public sealed class LoginCharacterSelectionRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed class CharacterCharacterSelectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The slot being selected.
@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		public CharacterSelectionType SelectionType { get; }
 
 		/// <inheritdoc />
-		public LoginCharacterSelectionRequestPayload(byte slotSelected, CharacterSelectionType selectionType)
+		public CharacterCharacterSelectionRequestPayload(byte slotSelected, CharacterSelectionType selectionType)
 		{
 			if(!Enum.IsDefined(typeof(CharacterSelectionType), selectionType)) throw new InvalidEnumArgumentException(nameof(selectionType), (int)selectionType, typeof(CharacterSelectionType));
 
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		}
 
 		//serializer ctor
-		private LoginCharacterSelectionRequestPayload()
+		private CharacterCharacterSelectionRequestPayload()
 		{
 			
 		}
