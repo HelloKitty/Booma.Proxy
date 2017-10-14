@@ -9,10 +9,10 @@ using Sirenix.Serialization;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Handles <see cref="LoginBlockListEventPayload"/> and dispatches to the
+	/// Handles <see cref="ShipBlockListEventPayload"/> and dispatches to the
 	/// UI controller service.
 	/// </summary>
-	public sealed class ShipBlockListListHandler : GameMessageHandler<LoginBlockListEventPayload>
+	public sealed class ShipBlockListListHandler : GameMessageHandler<ShipBlockListEventPayload>
 	{
 		/// <summary>
 		/// The menu registeration service.
@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		private IMenuListingRegisterable BlockListingRegisterService { get; set; }
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginBlockListEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, ShipBlockListEventPayload payload)
 		{
 			foreach(MenuListing m in payload.Blocks)
 			{

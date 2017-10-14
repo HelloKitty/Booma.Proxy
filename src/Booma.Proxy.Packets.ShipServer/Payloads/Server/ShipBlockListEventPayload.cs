@@ -7,12 +7,13 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	//TODO: Sometimes A0 is used and sometimes 07 is used. We should create a DTO for both.
 	/// <summary>
 	/// Contains the block list for menu rendering.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BLOCK_LIST_TYPE)]
-	public sealed class LoginBlockListEventPayload : PSOBBGamePacketPayloadServer, ISerializationEventListener
+	public sealed class ShipBlockListEventPayload : PSOBBGamePacketPayloadServer, ISerializationEventListener
 	{
 		//Disable flags serialization so that the ship can get the 4 byte length and
 		//handle writing the 4 bytes length
@@ -30,7 +31,7 @@ namespace Booma.Proxy
 		public IEnumerable<MenuListing> Blocks => _Blocks;
 
 		//Serializer ctor
-		private LoginBlockListEventPayload()
+		private ShipBlockListEventPayload()
 		{
 			
 		}

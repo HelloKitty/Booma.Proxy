@@ -14,7 +14,7 @@ namespace Booma.Proxy
 
 	}*/
 
-	public class ShipPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBGamePacketPayloadServer, LoginBlockListEventPayload>
+	public class ShipPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBGamePacketPayloadServer, ShipBlockListEventPayload>
 	{
 
 	}
