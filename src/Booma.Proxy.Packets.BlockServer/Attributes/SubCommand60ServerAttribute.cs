@@ -18,7 +18,7 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		public SubCommand60ServerAttribute(SubCommand60OperationCode opCode)
-			: base((int)opCode, typeof(BlockNetworkCommandEventClientPayload))
+			: base((int)opCode, typeof(BlockNetworkCommandEventServerPayload))
 		{
 			if(!Enum.IsDefined(typeof(SubCommand60OperationCode), opCode)) throw new InvalidEnumArgumentException(nameof(opCode), (int)opCode, typeof(SubCommand60OperationCode));
 		}
