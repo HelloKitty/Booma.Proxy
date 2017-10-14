@@ -18,7 +18,7 @@ Some of these projects are empty, such as Login, or nearly empty. This is either
 
 Each packet has a 2 byte operation code. For the Patch service that operation code is called [PatchNetworkOperationCode](https://github.com/HelloKitty/Booma.Proxy/blob/master/src/Booma.Proxy.Packets.Common/OperationCodes/PatchNetworkOperationCode.cs) and for the Game services that operation code is called [GameNetworkOperationCode](https://github.com/HelloKitty/Booma.Proxy/blob/master/src/Booma.Proxy.Packets.Common/OperationCodes/GameNetworkOperationCode.cs).
 
-Packets, or payloads as their data is referred to in the project, are usuallt dispatched to handlers that can handle them. There can be many handlers per-payload. Depending on the situation you may want to use one or the other. See an example of a typical handler here that's called [SharedWelcomePayloadHandler](https://github.com/HelloKitty/Booma.Proxy/blob/master/src/Booma.Proxy.Client.Unity.Authentication/Handlers/SharedWelcomePayloadHandler.cs). It handles a welcome message and initializes the provided encryption IVs.
+Packets, or payloads as their data is referred to in the project, are usually dispatched to handlers that can handle them. There can be more than one handler per-payload defined. Depending on the situation you may want to use one or the other. See an example of a handler here that's called [SharedWelcomePayloadHandler](https://github.com/HelloKitty/Booma.Proxy/blob/master/src/Booma.Proxy.Client.Unity.Authentication/Handlers/SharedWelcomePayloadHandler.cs). It handles a welcome message and initializes the provided encryption IVs.
 
 TODO continue doc
 
