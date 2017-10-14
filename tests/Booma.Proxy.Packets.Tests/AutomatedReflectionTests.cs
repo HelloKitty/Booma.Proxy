@@ -55,11 +55,9 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			MethodInfo method = serializer.GetType().GetMethod(nameof(serializer.Link));
-			MethodInfo genericMethod = method.MakeGenericMethod(t, typeof(TPayloadBaseType));
 
 			//assert
-			Assert.DoesNotThrow(() => genericMethod.Invoke(serializer, new object[0]));
+			Assert.DoesNotThrow(() => serializer.RegisterType(t));
 			serializer.Compile();
 
 			Assert.True(serializer.isTypeRegistered(t), $"Failed to register Type: {t.Name}");
@@ -92,10 +90,12 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			MethodInfo linkMethodInfo = serializer.GetType().GetMethod(nameof(serializer.Link));
-			MethodInfo linkMethod = linkMethodInfo.MakeGenericMethod(t, typeof(TPayloadBaseType));
-			linkMethod.Invoke(serializer, new object[0]);
+			serializer.RegisterType(t);
 			serializer.Compile();
+
+			//Abstracts can't be created
+			if(t.IsAbstract || typeof(IUnknownPayloadType).IsAssignableFrom(t)) //if it's unknown then it's probably default and thus unwritable
+				return;
 
 			object payload = Activator.CreateInstance(t, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.CreateInstance, null, new object[0], null);
 

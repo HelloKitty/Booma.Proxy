@@ -8,14 +8,13 @@ using Booma.Proxy.Packets.Tests;
 
 namespace Booma.Proxy
 {
-	//TODO: Enable block when we have payloads from block
-	/*public class BlockPayloadAutomatedReflectionTestsClient : AutomatedReflectionTests<PSOBBLoginPacketPayloadClient, LoginLoginRequest93Payload>
+	public class BlockPayloadAutomatedReflectionTestsClient : AutomatedReflectionTests<PSOBBGamePacketPayloadClient, BlockNetworkCommandEventClientPayload>
 	{
 
 	}
 
-	public class BlockPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBLoginPacketPayloadServer, LoginLoginResponsePayload>
+	public class BlockPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBGamePacketPayloadServer, BlockCharacterDataInitializationServerRequestPayload>
 	{
 
-	}*/
+	}
 }
