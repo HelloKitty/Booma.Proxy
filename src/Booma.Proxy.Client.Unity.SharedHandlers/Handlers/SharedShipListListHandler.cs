@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
 using Sirenix.Serialization;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
@@ -17,6 +19,9 @@ namespace Booma.Proxy
 		//TODO: This is a temp handler until we implement the UI.
 		[OdinSerialize]
 		private IMenuListingRegisterable ShipRegisterationService { get; set; }
+
+		[SerializeField]
+		private UnityEvent OnRecievedShipList;
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedShipListEventPayload payload)
@@ -32,6 +37,9 @@ namespace Booma.Proxy
 
 				ShipRegisterationService.RegisterMenuItem(s);
 			}
+
+			//Once it's completely registered invoke OnRecieved.
+			OnRecievedShipList?.Invoke();
 
 			return Task.CompletedTask;
 		}

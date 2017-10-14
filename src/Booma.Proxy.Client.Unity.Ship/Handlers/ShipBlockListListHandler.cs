@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
@@ -21,6 +23,9 @@ namespace Booma.Proxy
 		[OdinSerialize]
 		private IMenuListingRegisterable BlockListingRegisterService { get; set; }
 
+		[SerializeField]
+		private UnityEvent OnRecievedBlockList;
+
 		/// <inheritdoc />
 		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, ShipBlockListEventPayload payload)
 		{
@@ -31,6 +36,9 @@ namespace Booma.Proxy
 
 				BlockListingRegisterService.RegisterMenuItem(m);
 			}
+
+			//Once it's completely registered invoke OnRecieved.
+			OnRecievedBlockList?.Invoke();
 
 			return Task.CompletedTask;
 		}

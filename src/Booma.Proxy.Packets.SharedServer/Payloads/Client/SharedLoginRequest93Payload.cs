@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	[GameClientPacketPayload(GameNetworkOperationCode.LOGIN_93_TYPE)]
 	public sealed class SharedLoginRequest93Payload : PSOBBGamePacketPayloadClient
 	{
+		[Serializable]
 		public enum ServerType : byte
 		{
 			/// <summary>
