@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Payloads\Client\" />
+    <Folder Include="Payloads\Server\" />
+  </ItemGroup>
+
+</Project>

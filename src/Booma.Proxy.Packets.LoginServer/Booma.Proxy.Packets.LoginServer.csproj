@@ -62,7 +62,7 @@
     <Compile Include="Models\MenuItemIdentifier.cs" />
     <Compile Include="Models\MenuListing.cs" />
     <Compile Include="PacketLoginServerMetadataMarker.cs" />
-    <Compile Include="Payloads\ClientVerrificationData.cs" />
+    <Compile Include="Models\ClientVerrificationData.cs" />
     <Compile Include="Payloads\Client\LoginCharacterSelectionRequestPayload.cs" />
     <Compile Include="Models\CharacterSelectionAckType.cs" />
     <Compile Include="Payloads\Client\LoginChecksumRequestPayload.cs" />

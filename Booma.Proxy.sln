@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Crypto", "src\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Client", "src\Booma.Proxy.Client\Booma.Proxy.Client.csproj", "{5E877C0A-D11C-4683-91F4-B3088D44BC57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.DocumentationGenerator", "tests\Booma.Proxy.Packets.DocumentationGenerator\Booma.Proxy.Packets.DocumentationGenerator.csproj", "{8CB555EA-7E70-48DD-801B-20AE572FE748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.DocumentationGenerator", "tests\Booma.Proxy.Packets.DocumentationGenerator\Booma.Proxy.Packets.DocumentationGenerator.csproj", "{8CB555EA-7E70-48DD-801B-20AE572FE748}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Client.Handlers", "src\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj", "{87BDBA8D-0992-48EF-ACD7-BAD3018C46D7}"
 EndProject
@@ -41,9 +41,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unity", "Unity", "{3872F557
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Client.Unity.Common", "src\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj", "{89754683-F9D3-4DAF-ABC3-66AEF761C7E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Character.Common", "src\Booma.Proxy.Character.Common\Booma.Proxy.Character.Common.csproj", "{421990D4-BA7F-40DF-A99C-63AD2A26EC24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Character.Common", "src\Booma.Proxy.Character.Common\Booma.Proxy.Character.Common.csproj", "{421990D4-BA7F-40DF-A99C-63AD2A26EC24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Common", "src\Booma.Proxy.Common\Booma.Proxy.Common.csproj", "{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Common", "src\Booma.Proxy.Common\Booma.Proxy.Common.csproj", "{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.CharacterServer", "src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj", "{9459D6E6-9795-4449-9C5E-31AF348F51E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Shared", "src\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj", "{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.BlockServer", "src\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj", "{467024D6-4CE5-458F-8BD5-2E811930A154}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.ShipServer", "src\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj", "{7B08404B-8AEA-450F-A886-047E5E16BF4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +123,22 @@ Global
 		{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9459D6E6-9795-4449-9C5E-31AF348F51E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9459D6E6-9795-4449-9C5E-31AF348F51E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9459D6E6-9795-4449-9C5E-31AF348F51E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9459D6E6-9795-4449-9C5E-31AF348F51E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467024D6-4CE5-458F-8BD5-2E811930A154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467024D6-4CE5-458F-8BD5-2E811930A154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467024D6-4CE5-458F-8BD5-2E811930A154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467024D6-4CE5-458F-8BD5-2E811930A154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B08404B-8AEA-450F-A886-047E5E16BF4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B08404B-8AEA-450F-A886-047E5E16BF4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B08404B-8AEA-450F-A886-047E5E16BF4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B08404B-8AEA-450F-A886-047E5E16BF4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +163,10 @@ Global
 		{89754683-F9D3-4DAF-ABC3-66AEF761C7E7} = {3872F557-EF3F-432F-8363-9C92109F01D3}
 		{421990D4-BA7F-40DF-A99C-63AD2A26EC24} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
+		{9459D6E6-9795-4449-9C5E-31AF348F51E6} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
+		{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
+		{467024D6-4CE5-458F-8BD5-2E811930A154} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
+		{7B08404B-8AEA-450F-A886-047E5E16BF4B} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}
