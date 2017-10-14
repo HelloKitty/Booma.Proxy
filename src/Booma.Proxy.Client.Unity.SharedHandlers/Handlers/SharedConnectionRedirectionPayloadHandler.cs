@@ -11,7 +11,7 @@ using UnityEngine.Events;
 namespace Booma.Proxy
 {
 	[Injectee]
-	public sealed class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<LoginConnectionRedirectPayload>
+	public sealed class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<SharedConnectionRedirectPayload>
 	{
 		[Inject]
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		private IGameConnectionEndpointDetails ConnectionEndpoint { get; }
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginConnectionRedirectPayload payload)
+		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedConnectionRedirectPayload payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Redirecting Login to {BuildLoginDebugString(payload)}");
@@ -47,7 +47,7 @@ namespace Booma.Proxy
 			OnConnectionRedirected?.Invoke();
 		}
 
-		private string BuildLoginDebugString(LoginConnectionRedirectPayload payload)
+		private string BuildLoginDebugString(SharedConnectionRedirectPayload payload)
 		{
 			return $"Ip: {payload.EndpointAddress} Port: {payload.EndpointerPort}";
 		}

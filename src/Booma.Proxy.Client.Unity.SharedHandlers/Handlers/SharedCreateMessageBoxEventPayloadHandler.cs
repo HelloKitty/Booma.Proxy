@@ -8,10 +8,10 @@ using SceneJect.Common;
 namespace Booma.Proxy
 {
 	[Injectee]
-	public sealed class SharedCreateMessageBoxEventPayloadHandler : GameMessageHandler<LoginCreateMessageBoxEventPayload>
+	public sealed class SharedCreateMessageBoxEventPayloadHandler : GameMessageHandler<SharedCreateMessageBoxEventPayload>
 	{
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginCreateMessageBoxEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedCreateMessageBoxEventPayload payload)
 		{
 			//We don't yet handle the UI for this so we just log it
 			if(Logger.IsInfoEnabled)

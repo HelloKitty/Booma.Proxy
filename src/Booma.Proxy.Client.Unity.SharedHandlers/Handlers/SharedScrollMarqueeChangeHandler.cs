@@ -11,14 +11,14 @@ namespace Booma.Proxy
 	//TODO: This marquee change handler should be able to handle all marquees for all servers
 	//TODO: This is a temporary handler, we really need a fully featured version.
 	[Injectee]
-	public sealed class SharedScrollMarqueeChangeHandler : GameMessageHandler<LoginMarqueeScrollChangeEventPayload>
+	public sealed class SharedScrollMarqueeChangeHandler : GameMessageHandler<SharedMarqueeScrollChangeEventPayload>
 	{
 		//TODO: This is just for testing purposes
 		[SerializeField]
 		public UnityEngine.UI.Text TempMarqueeText;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginMarqueeScrollChangeEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedMarqueeScrollChangeEventPayload payload)
 		{
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
 			if(payload.Message == null)

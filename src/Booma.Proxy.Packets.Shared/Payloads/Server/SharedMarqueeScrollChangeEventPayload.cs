@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_SCROLL_MSG_TYPE)]
-	public sealed class LoginMarqueeScrollChangeEventPayload : PSOBBGamePacketPayloadServer
+	public sealed class SharedMarqueeScrollChangeEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: What is this?
 		[WireMember(1)]
@@ -31,7 +31,7 @@ namespace Booma.Proxy
 		public string Message { get; }
 
 		//Serializer ctor
-		private LoginMarqueeScrollChangeEventPayload()
+		private SharedMarqueeScrollChangeEventPayload()
 		{
 			
 		}

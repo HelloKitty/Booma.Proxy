@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.INFO_REPLY_TYPE)]
-	public sealed class LoginInfoReplyEventPayload : PSOBBGamePacketPayloadServer
+	public sealed class SharedInfoReplyEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: What is this?
 		[KnownSize(2)]
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		public string Message { get; }
 
 		//Serializer ctor
-		private LoginInfoReplyEventPayload()
+		private SharedInfoReplyEventPayload()
 		{
 			
 		}

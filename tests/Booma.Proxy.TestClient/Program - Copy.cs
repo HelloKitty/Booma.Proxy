@@ -148,14 +148,14 @@ namespace Booma.Proxy.TestClient
 		}
 
 
-		private static async Task HandlePayload(LoginCreateMessageBoxEventPayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
+		private static async Task HandlePayload(SharedCreateMessageBoxEventPayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
 		{
 			Console.WriteLine($"MessageBox Message: {payload.Message}");
 
 			//We should recieve a 19 redirect after this
 		}
 
-		private static async Task HandlePayload(LoginConnectionRedirectPayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
+		private static async Task HandlePayload(SharedConnectionRedirectPayload payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
 		{
 			Console.WriteLine($"Redirect: {payload.EndpointAddress}:{payload.EndpointerPort}");
 

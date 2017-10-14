@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.MENU_SELECT_TYPE)]
-	public sealed class LoginMenuSelectionRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed class SharedMenuSelectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The id of the menu selecting from.
@@ -22,14 +22,14 @@ namespace Booma.Proxy
 		public MenuItemIdentifier Selection { get; }
 
 		/// <inheritdoc />
-		public LoginMenuSelectionRequestPayload([NotNull] MenuItemIdentifier selection)
+		public SharedMenuSelectionRequestPayload([NotNull] MenuItemIdentifier selection)
 		{
 			if(selection == null) throw new ArgumentNullException(nameof(selection));
 
 			Selection = selection;
 		}
 
-		public LoginMenuSelectionRequestPayload()
+		public SharedMenuSelectionRequestPayload()
 		{
 			
 		}

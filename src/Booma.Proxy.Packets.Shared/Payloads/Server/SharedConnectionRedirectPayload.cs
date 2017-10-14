@@ -24,9 +24,8 @@ namespace Booma.Proxy
 	//Syl struct: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L321
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.REDIRECT_TYPE)]
-	public sealed class LoginConnectionRedirectPayload : PSOBBGamePacketPayloadServer
+	public sealed class SharedConnectionRedirectPayload : PSOBBGamePacketPayloadServer
 	{
-		//For some reason the IPAddress is sent big endian
 		/// <summary>
 		/// The IPAddress that should be reidrected to.
 		/// </summary>
@@ -61,7 +60,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="ipAddress">The IP to redirect to.</param>
 		/// <param name="port">The port to redirect to.</param>
-		public LoginConnectionRedirectPayload([NotNull] string ipAddress, short port)
+		public SharedConnectionRedirectPayload([NotNull] string ipAddress, short port)
 			: this()
 		{
 			if(string.IsNullOrWhiteSpace(ipAddress)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(ipAddress));
@@ -80,7 +79,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="ipAddress">The IP to redirect to.</param>
 		/// <param name="port">The port to redirect to.</param>
-		public LoginConnectionRedirectPayload([NotNull] IPAddress ipAddress, short port)
+		public SharedConnectionRedirectPayload([NotNull] IPAddress ipAddress, short port)
 			: this()
 		{
 			if(ipAddress == null) throw new ArgumentNullException(nameof(ipAddress));
@@ -90,7 +89,7 @@ namespace Booma.Proxy
 			EndpointerPort = port;
 		}
 
-		public LoginConnectionRedirectPayload()
+		public SharedConnectionRedirectPayload()
 		{
 			_EndpointAddress = new Lazy<IPAddress>(() => new IPAddress(IpAddressBytes), true);
 		}

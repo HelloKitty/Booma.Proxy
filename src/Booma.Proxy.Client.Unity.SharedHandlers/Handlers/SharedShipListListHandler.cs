@@ -9,17 +9,17 @@ using Sirenix.Serialization;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Handler for recieveing the ship list payload, <see cref="LoginShipListEventPayload"/>.
+	/// Handler for recieveing the ship list payload, <see cref="SharedShipListEventPayload"/>.
 	/// </summary>
 	[Injectee]
-	public sealed class SharedShipListListHandler : GameMessageHandler<LoginShipListEventPayload>
+	public sealed class SharedShipListListHandler : GameMessageHandler<SharedShipListEventPayload>
 	{
 		//TODO: This is a temp handler until we implement the UI.
 		[OdinSerialize]
 		private IMenuListingRegisterable ShipRegisterationService { get; set; }
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginShipListEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedShipListEventPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Recieved ShipCount: {payload.Ships.Count()}");

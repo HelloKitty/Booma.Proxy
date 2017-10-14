@@ -56,7 +56,7 @@ namespace Booma.Proxy
 			MenuPanelObject.SetActive(false);
 
 			//Send the menu selection request. The server will redirect us if it's success.
-			SendService.SendMessage(new LoginMenuSelectionRequestPayload(new MenuItemIdentifier(menuId, itemId)));
+			SendService.SendMessage(new SharedMenuSelectionRequestPayload(new MenuItemIdentifier(menuId, itemId)));
 		}
 
 		/// <summary>
