@@ -16,8 +16,8 @@ namespace Booma.Proxy
 			//Foreach handler in the scene we need to register it
 			//so that the IoC container can provide the collection of handlers as a potential
 			//dependency to other objects.
-			IEnumerable<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>> handlers = FindObjectsOfType<GameObject>()
-				.SelectMany(go => go.GetComponents<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>())
+			IEnumerable<IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>> handlers = FindObjectsOfType<GameObject>()
+				.SelectMany(go => go.GetComponents<IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>())
 				.Where(c => c != null)
 				.Distinct()
 				.ToList();
@@ -25,12 +25,12 @@ namespace Booma.Proxy
 			Debug.Log($"Found Handler Count: {handlers.Count()}");
 
 			foreach(var h in handlers)
-				register.RegisterInstance<IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>, IClientMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>(h);
+				register.RegisterInstance<IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>, IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>(h);
 
 			//Register this as the default payload handler
-			register.RegisterSingleton<DefaultPayloadHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>, IClientPayloadSpecificMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>();
+			register.RegisterSingleton<DefaultPayloadHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>, IClientPayloadSpecificMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
 
-			register.RegisterTransient<MessageHandlerService<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>, MessageHandlerService<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>>();
+			register.RegisterTransient<MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>, MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
 		}
 	}
 }

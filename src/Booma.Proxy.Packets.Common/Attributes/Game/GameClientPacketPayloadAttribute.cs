@@ -13,16 +13,16 @@ namespace Booma.Proxy
 	/// associate with in a typesafe fashion with their network operationcode enumeration value.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public sealed class LoginClientPacketPayloadAttribute : WireDataContractBaseLinkAttribute
+	public sealed class GameClientPacketPayloadAttribute : WireDataContractBaseLinkAttribute
 	{
-		public LoginClientPacketPayloadAttribute(LoginNetworkOperationCodes opCode) 
-			: base((int)opCode, typeof(PSOBBLoginPacketPayloadClient))
+		public GameClientPacketPayloadAttribute(GameNetworkOperationCode opCode) 
+			: base((int)opCode, typeof(PSOBBGamePacketPayloadClient))
 		{
 
 		}
 
-		internal LoginClientPacketPayloadAttribute(int index)
-			: base(index, typeof(PSOBBLoginPacketPayloadClient))
+		internal GameClientPacketPayloadAttribute(int index)
+			: base(index, typeof(PSOBBGamePacketPayloadClient))
 		{
 
 		}

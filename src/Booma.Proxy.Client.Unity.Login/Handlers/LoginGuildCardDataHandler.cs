@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	public sealed class LoginGuildCardDataHandler : LoginMessageHandler<LoginGuildCardDataHeaderResponsePayload>
 	{
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginGuildCardDataHeaderResponsePayload payload)
+		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginGuildCardDataHeaderResponsePayload payload)
 		{
 			//TODO: Validate length
 			//At this point we have recieved a guildcard data header.

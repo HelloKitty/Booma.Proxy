@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		private UnityEvent OnSelectionSuccess;
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginCharacterSelectionAckPayload payload)
+		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginCharacterSelectionAckPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Recieved Selection Response: {payload.AckType}");

@@ -13,8 +13,8 @@ namespace Booma.Proxy
 	/// server for the specified client.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_OPTION_CONFIG_TYPE)]
-	public sealed class LoginOptionsResponsePayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_OPTION_CONFIG_TYPE)]
+	public sealed class LoginOptionsResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Unknown bytes.

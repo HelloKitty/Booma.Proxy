@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		public UnityEngine.UI.Text TempMarqueeText;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginMarqueeScrollChangeEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginMarqueeScrollChangeEventPayload payload)
 		{
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
 			if(payload.Message == null)

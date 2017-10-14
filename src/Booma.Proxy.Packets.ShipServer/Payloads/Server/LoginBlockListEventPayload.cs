@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	/// Contains the block list for menu rendering.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BLOCK_LIST_TYPE)]
-	public sealed class LoginBlockListEventPayload : PSOBBLoginPacketPayloadServer, ISerializationEventListener
+	[GameServerPacketPayload(GameNetworkOperationCode.BLOCK_LIST_TYPE)]
+	public sealed class LoginBlockListEventPayload : PSOBBGamePacketPayloadServer, ISerializationEventListener
 	{
 		//Disable flags serialization so that the ship can get the 4 byte length and
 		//handle writing the 4 bytes length

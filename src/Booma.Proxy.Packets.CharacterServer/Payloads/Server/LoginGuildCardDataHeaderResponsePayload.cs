@@ -24,8 +24,8 @@ namespace Booma.Proxy
 	/// Contains initial information about the guild info.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_GUILDCARD_HEADER_TYPE)]
-	public sealed class LoginGuildCardDataHeaderResponsePayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_HEADER_TYPE)]
+	public sealed class LoginGuildCardDataHeaderResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// One? Not sure why.

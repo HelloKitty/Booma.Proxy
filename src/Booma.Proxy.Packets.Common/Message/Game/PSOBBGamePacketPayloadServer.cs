@@ -4,18 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
-using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The base type for PSOBB login payloads that the client sends. This isn't for login/ship.
+	/// The base type for PSOBB Game payloads that the client sends. This isn't for patch server.
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
-	[WireDataContract(WireDataContractAttribute.KeyType.UShort, true)]
-	public abstract class PSOBBLoginPacketPayloadClient : IPacketPayload
+	[DefaultChild(typeof(UnknownGamePayload))] //this will be the default deserialized packet when we don't know what it is.
+	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
+	public abstract class PSOBBGamePacketPayloadServer : IPacketPayload
 	{
+		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
+		/// <summary>
+		/// The operation code of the packet.
+		/// </summary>
+		[DontWrite] //we don't want to write this since the type key already handlers opcodes
+		[WireMember(1)]
+		protected short OperationCode { get; }
+
 		/// <summary>
 		/// Indicates if the flags is serialized with <see cref="Flags"/>.
 		/// If false then serialization for <see cref="Flags"/> will be skipped
@@ -31,14 +39,10 @@ namespace Booma.Proxy
 		/// </summary>
 		[Optional(nameof(isFlagsSerialized))] //Makes this flags optional; some subpayloads may want to consume the 4 bytes instead
 		[KnownSize(4)] //always 4 bytes
-		[WireMember(1)]
+		[WireMember(2)]
 		private byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
 
-		/// <summary>
-		/// Parameterless ctor.
-		/// Flags will be 0.
-		/// </summary>
-		protected PSOBBLoginPacketPayloadClient()
+		protected PSOBBGamePacketPayloadServer()
 		{
 			
 		}

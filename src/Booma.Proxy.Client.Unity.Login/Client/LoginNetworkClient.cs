@@ -16,7 +16,7 @@ namespace Booma.Proxy
 	/// The component that manages the login network client.
 	/// </summary>
 	[Injectee]
-	public sealed class LoginNetworkClient : BaseUnityNetworkClient<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>
+	public sealed class LoginNetworkClient : BaseUnityNetworkClient<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>
 	{
 		/// <summary>
 		/// Data model for connection details.

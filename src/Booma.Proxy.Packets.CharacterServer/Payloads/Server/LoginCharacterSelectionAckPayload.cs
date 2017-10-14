@@ -13,8 +13,8 @@ namespace Booma.Proxy
 	/// or if it has been selected for play.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_CHARACTER_ACK_TYPE)]
-	public sealed class LoginCharacterSelectionAckPayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_CHARACTER_ACK_TYPE)]
+	public sealed class LoginCharacterSelectionAckPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The slot this character ack is for.

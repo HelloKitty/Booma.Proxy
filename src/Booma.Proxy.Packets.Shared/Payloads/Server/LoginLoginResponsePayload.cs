@@ -32,8 +32,8 @@ namespace Booma.Proxy
 	//Syl sent: BB_SECURITY_TYPE https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/login_packets.c#L319
 	//Syl struct: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L373
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_SECURITY_TYPE)]
-	public sealed class LoginLoginResponsePayload : PSOBBLoginPacketPayloadServer, IResponseCodePayload<LoginResponseCode>, IResponseSucceedable
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_SECURITY_TYPE)]
+	public sealed class LoginLoginResponsePayload : PSOBBGamePacketPayloadServer, IResponseCodePayload<LoginResponseCode>, IResponseSucceedable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

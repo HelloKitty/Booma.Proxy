@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		private ILoginConnectionEndpointDetails ConnectionEndpoint { get; }
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginConnectionRedirectPayload payload)
+		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginConnectionRedirectPayload payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Redirecting Login to {BuildLoginDebugString(payload)}");

@@ -39,7 +39,7 @@ namespace Booma.Proxy
 		private UnityEvent OnLoginSuccess;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginLoginResponsePayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginLoginResponsePayload payload)
 		{
 			//We don't yet handle the UI for this so we just log it
 			if(Logger.IsInfoEnabled)

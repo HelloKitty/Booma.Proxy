@@ -14,8 +14,8 @@ namespace Booma.Proxy
 	/// This is the scrolling message seen at the top of the ship list.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_SCROLL_MSG_TYPE)]
-	public sealed class LoginMarqueeScrollChangeEventPayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_SCROLL_MSG_TYPE)]
+	public sealed class LoginMarqueeScrollChangeEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: What is this?
 		[WireMember(1)]

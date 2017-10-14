@@ -39,7 +39,7 @@ namespace Booma.Proxy
 		private UnityEvent OnCharacterSelected;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginCharacterUpdateResponsePayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginCharacterUpdateResponsePayload payload)
 		{
 			if(Elements == null || Elements.Count < payload.SlotSelected)
 				throw new InvalidOperationException($"Character slot unavailable for Slot: {payload.SlotSelected}");

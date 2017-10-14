@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		private IMenuListingRegisterable BlockListingRegisterService { get; set; }
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginBlockListEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginBlockListEventPayload payload)
 		{
 			foreach(MenuListing m in payload.Blocks)
 			{

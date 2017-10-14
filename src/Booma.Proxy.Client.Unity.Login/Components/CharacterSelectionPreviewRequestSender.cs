@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		private int CharacterCount;
 
 		[Inject]
-		private IClientPayloadSendService<PSOBBLoginPacketPayloadClient> SendService { get; }
+		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		public void SendCharacterPreviewRequests()
 		{

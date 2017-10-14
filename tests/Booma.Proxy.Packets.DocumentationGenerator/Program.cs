@@ -24,7 +24,7 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 				BuildPacketDocumentation<PatchClientPacketPayloadAttribute, PatchServerPacketPayloadAttribute, PatchNetworkOperationCodes>(PacketPatchServerMetadataMarker.SerializableTypes, "Patch");
 
 			string loginDocString =
-				BuildPacketDocumentation<LoginClientPacketPayloadAttribute, LoginServerPacketPayloadAttribute, LoginNetworkOperationCodes>(PacketLoginServerMetadataMarker.SerializableTypes, "Login");
+				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketLoginServerMetadataMarker.SerializableTypes, "Login");
 
 			File.WriteAllText(@"docs\PatchPacketDocumentation.md", patchDocString);
 			File.WriteAllText(@"docs\LoginPacketDocumentation.md", loginDocString);

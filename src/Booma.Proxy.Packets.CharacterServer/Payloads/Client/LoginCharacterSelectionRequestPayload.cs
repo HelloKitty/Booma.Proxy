@@ -13,8 +13,8 @@ namespace Booma.Proxy
 	/// character in the specified <see cref="SlotSelected"/>.
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_CHARACTER_SELECT_TYPE)]
-	public sealed class LoginCharacterSelectionRequestPayload : PSOBBLoginPacketPayloadClient
+	[GameClientPacketPayload(GameNetworkOperationCode.BB_CHARACTER_SELECT_TYPE)]
+	public sealed class LoginCharacterSelectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The slot being selected.

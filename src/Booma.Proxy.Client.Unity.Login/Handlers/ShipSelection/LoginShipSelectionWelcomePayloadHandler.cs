@@ -12,7 +12,7 @@ namespace Booma.Proxy
 		public int welcomeCount = 0;
 
 		/// <inheritdoc />
-		protected override PSOBBLoginPacketPayloadClient BuildLoginPacket()
+		protected override PSOBBGamePacketPayloadClient BuildLoginPacket()
 		{
 			//If we've done this already then we're talking to the block now
 			LoginLoginRequest93Payload.ServerType serverType = welcomeCount == 0 ? LoginLoginRequest93Payload.ServerType.Login : LoginLoginRequest93Payload.ServerType.Ship;

@@ -24,8 +24,8 @@ namespace Booma.Proxy
 	/// character data.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_CHARACTER_UPDATE_TYPE)]
-	public sealed class LoginCharacterUpdateResponsePayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_CHARACTER_UPDATE_TYPE)]
+	public sealed class LoginCharacterUpdateResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The slot being selected.

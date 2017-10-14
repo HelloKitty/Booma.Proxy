@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	/// Payload that contains an info message.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.INFO_REPLY_TYPE)]
-	public sealed class LoginInfoReplyEventPayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.INFO_REPLY_TYPE)]
+	public sealed class LoginInfoReplyEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: What is this?
 		[KnownSize(2)]

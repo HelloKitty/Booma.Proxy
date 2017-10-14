@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	/// for login message handlers.
 	/// </summary>
 	/// <typeparam name="TPayloadType"></typeparam>
-	public abstract class LoginMessageHandler<TPayloadType> : BaseUnityMessageHandler<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient, TPayloadType> 
-		where TPayloadType : PSOBBLoginPacketPayloadServer
+	public abstract class LoginMessageHandler<TPayloadType> : BaseUnityMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, TPayloadType> 
+		where TPayloadType : PSOBBGamePacketPayloadServer
 	{
 
 	}

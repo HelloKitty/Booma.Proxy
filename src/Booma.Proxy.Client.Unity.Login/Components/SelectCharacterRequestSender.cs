@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		/// The sending service.
 		/// </summary>
 		[Inject]
-		private IClientPayloadSendService<PSOBBLoginPacketPayloadClient> SendService { get; }
+		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		/// <summary>
 		/// Data model that contains the data about the selected character.

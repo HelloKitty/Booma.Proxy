@@ -15,10 +15,10 @@ namespace Booma.Proxy
 	public sealed class GuildcardDataRequestSender : MonoBehaviour
 	{
 		[Inject]
-		private IClientRequestSendService<PSOBBLoginPacketPayloadClient> SendService { get; }
+		private IClientRequestSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		[Inject]
-		private IClientPayloadSendService<PSOBBLoginPacketPayloadClient> PayloadSendService { get; }
+		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> PayloadSendService { get; }
 
 		[Inject]
 		private ILog Logger { get; }

@@ -8,8 +8,8 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_GUILDCARD_CHUNK_TYPE)]
-	public sealed class LoginGuildCardChunkResponsePayload : PSOBBLoginPacketPayloadServer, IChunkResponse
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_CHUNK_TYPE)]
+	public sealed class LoginGuildCardChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
 	{
 		//TODO: What is this?
 		[WireMember(1)]

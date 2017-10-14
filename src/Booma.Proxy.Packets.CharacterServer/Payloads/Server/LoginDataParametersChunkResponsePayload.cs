@@ -22,8 +22,8 @@ namespace Booma.Proxy
 	/// Contains partial byte chunk of the parameter data files.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_PARAM_CHUNK_TYPE)]
-	public sealed class LoginDataParametersChunkResponsePayload : PSOBBLoginPacketPayloadServer, IChunkResponse
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_PARAM_CHUNK_TYPE)]
+	public sealed class LoginDataParametersChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
 	{
 		/// <summary>
 		/// The id/number for this chunk.

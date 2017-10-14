@@ -47,8 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\Login\LoginClientPacketPayloadAttribute.cs" />
-    <Compile Include="Attributes\Login\LoginServerPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Game\GameClientPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Game\GameServerPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Patch\PatchClientPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Patch\PatchServerPacketPayloadAttribute.cs" />
     <Compile Include="Message\IPacketHeader.cs" />
@@ -61,13 +61,13 @@
     <Compile Include="Models\IMenuItemIdentifiable.cs" />
     <Compile Include="Models\MenuItemIdentifier.cs" />
     <Compile Include="Models\MenuListing.cs" />
-    <Compile Include="OperationCodes\LoginNetworkOperationCodes.cs" />
+    <Compile Include="OperationCodes\GameNetworkOperationCode.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCodes.cs" />
-    <Compile Include="Message\Login\UnknownLoginPacket.cs" />
-    <Compile Include="Message\Login\PSOBBLoginPacketPayloadClient.cs" />
-    <Compile Include="Message\Login\PSOBBLoginPacketPayloadServer.cs" />
+    <Compile Include="Message\Game\UnknownGamePayload.cs" />
+    <Compile Include="Message\Game\PSOBBGamePacketPayloadClient.cs" />
+    <Compile Include="Message\Game\PSOBBGamePacketPayloadServer.cs" />
     <Compile Include="Message\Patch\PSOBBPatchPacketPayloadClient.cs" />
-    <Compile Include="Message\Patch\UnknownPatchPacket.cs" />
+    <Compile Include="Message\Patch\UnknownPatchPayload.cs" />
     <Compile Include="Message\Patch\PSOBBPatchPacketPayloadServer.cs" />
     <Compile Include="PacketCommonServerMetadataMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

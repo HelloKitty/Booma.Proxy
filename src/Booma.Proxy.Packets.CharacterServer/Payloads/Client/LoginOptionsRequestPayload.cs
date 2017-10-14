@@ -13,8 +13,8 @@ namespace Booma.Proxy
 	/// that are saved on the server.
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_OPTION_REQUEST_TYPE)]
-	public sealed class LoginOptionsRequestPayload : PSOBBLoginPacketPayloadClient
+	[GameClientPacketPayload(GameNetworkOperationCode.BB_OPTION_REQUEST_TYPE)]
+	public sealed class LoginOptionsRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Empty, just a payload that alerts the server to the desire of options
 

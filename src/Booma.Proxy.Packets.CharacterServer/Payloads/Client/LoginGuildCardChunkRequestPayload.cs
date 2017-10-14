@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	/// Payload sent to request a chunk of the guild card data.
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_GUILDCARD_CHUNK_REQ_TYPE)]
-	public sealed class LoginGuildCardChunkRequestPayload : PSOBBLoginPacketPayloadClient, IChunkRequest
+	[GameClientPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_CHUNK_REQ_TYPE)]
+	public sealed class LoginGuildCardChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
 	{
 		//TODO: What is this?
 		[WireMember(1)]

@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		protected ILoginSessionDetails SessionDetails { get; }
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginWelcomePayload payload)
+		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginWelcomePayload payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info("Initializing crypto.");
@@ -50,7 +50,7 @@ namespace Booma.Proxy
 		/// Overridable by child handlers to allow for mutating the default login packet.
 		/// </summary>
 		/// <returns></returns>
-		protected virtual PSOBBLoginPacketPayloadClient BuildLoginPacket()
+		protected virtual PSOBBGamePacketPayloadClient BuildLoginPacket()
 		{
 			return new LoginLoginRequest93Payload(0x41, SessionDetails.SessionId, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData));
 		}

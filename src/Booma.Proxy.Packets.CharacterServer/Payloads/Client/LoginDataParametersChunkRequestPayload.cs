@@ -14,8 +14,8 @@ namespace Booma.Proxy
 	/// with <see cref="LoginDataParametersHeaderRequestPayload"/>.
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_PARAM_CHUNK_REQ_TYPE)]
-	public sealed class LoginDataParametersChunkRequestPayload : PSOBBLoginPacketPayloadClient, IChunkRequest
+	[GameClientPacketPayload(GameNetworkOperationCode.BB_PARAM_CHUNK_REQ_TYPE)]
+	public sealed class LoginDataParametersChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
 	{
 		//We don't want the flags to get the 4 byte ChunkNumber.
 		/// <inheritdoc />

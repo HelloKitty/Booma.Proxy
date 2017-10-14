@@ -22,7 +22,7 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//arrange
 			//Find the attribute that should be annoting these payloads
-			WireDataContractBaseLinkAttribute linkAttri = typeof(LoginClientPacketPayloadAttribute)
+			WireDataContractBaseLinkAttribute linkAttri = typeof(GameClientPacketPayloadAttribute)
 				.Assembly
 				.GetTypes()
 				.Where(t => t.BaseType == typeof(WireDataContractBaseLinkAttribute))

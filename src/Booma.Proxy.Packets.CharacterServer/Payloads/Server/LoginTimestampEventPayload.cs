@@ -18,8 +18,8 @@ namespace Booma.Proxy
 	/// a timestamp string.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.TIMESTAMP_TYPE)]
-	public sealed class LoginTimestampEventPayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.TIMESTAMP_TYPE)]
+	public sealed class LoginTimestampEventPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The time stamp.

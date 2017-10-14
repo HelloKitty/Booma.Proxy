@@ -12,8 +12,8 @@ namespace Booma.Proxy
 	/// Payload for selecting a menu option.
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.MENU_SELECT_TYPE)]
-	public sealed class LoginMenuSelectionRequestPayload : PSOBBLoginPacketPayloadClient
+	[GameClientPacketPayload(GameNetworkOperationCode.MENU_SELECT_TYPE)]
+	public sealed class LoginMenuSelectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The id of the menu selecting from.

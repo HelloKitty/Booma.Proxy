@@ -28,8 +28,8 @@ namespace Booma.Proxy
 	/// be interested in.
 	/// </summary>
 	[WireDataContract]
-	[LoginServerPacketPayload(LoginNetworkOperationCodes.BB_PARAM_HEADER_TYPE)]
-	public sealed class LoginDataParametersHeaderResponsePayload : PSOBBLoginPacketPayloadServer
+	[GameServerPacketPayload(GameNetworkOperationCode.BB_PARAM_HEADER_TYPE)]
+	public sealed class LoginDataParametersHeaderResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Serialized file headers.

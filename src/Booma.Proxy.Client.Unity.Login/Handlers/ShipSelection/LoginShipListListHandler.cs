@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		private IMenuListingRegisterable ShipRegisterationService { get; set; }
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBLoginPacketPayloadClient> context, LoginShipListEventPayload payload)
+		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, LoginShipListEventPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Recieved ShipCount: {payload.Ships.Count()}");

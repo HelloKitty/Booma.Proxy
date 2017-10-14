@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		protected int OffsetPerListing => _OffsetPerListing;
 
 		[Inject]
-		protected IClientPayloadSendService<PSOBBLoginPacketPayloadClient> SendService { get; }
+		protected IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		[Inject]
 		protected ILog Logger { get; }

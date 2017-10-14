@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// Enumeration of all the login server
 	/// operation codes.
 	/// </summary>
-	public enum LoginNetworkOperationCodes : short
+	public enum GameNetworkOperationCode : short
 	{
 		//TODO: Format
 		BB_SECURITY_TYPE = 0x00E6,

@@ -12,8 +12,8 @@ namespace Booma.Proxy
 	/// Such as: PMT, battle parameters, etc
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.BB_PARAM_HEADER_REQ_TYPE)]
-	public sealed class LoginDataParametersHeaderRequestPayload : PSOBBLoginPacketPayloadClient
+	[GameClientPacketPayload(GameNetworkOperationCode.BB_PARAM_HEADER_REQ_TYPE)]
+	public sealed class LoginDataParametersHeaderRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Just a command payload. Nothing to implement
 

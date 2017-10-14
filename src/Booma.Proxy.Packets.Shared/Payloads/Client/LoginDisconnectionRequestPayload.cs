@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	/// A request to disconnect from the server.
 	/// </summary>
 	[WireDataContract]
-	[LoginClientPacketPayload(LoginNetworkOperationCodes.TYPE_05)]
-	public sealed class LoginDisconnectionRequestPayload : PSOBBLoginPacketPayloadClient
+	[GameClientPacketPayload(GameNetworkOperationCode.TYPE_05)]
+	public sealed class LoginDisconnectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Empty command payload. Doesn't send any data.
 

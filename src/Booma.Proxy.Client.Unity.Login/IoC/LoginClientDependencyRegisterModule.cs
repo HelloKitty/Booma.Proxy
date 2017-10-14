@@ -45,26 +45,26 @@ namespace Booma.Proxy
 
 			Serializer.Compile();
 
-			IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer> client = new PSOBBNetworkClient()
+			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new PSOBBNetworkClient()
 				.AddCryptHandling(encrypt, decrypt, 8)
 				.AddHeaderReading(Serializer, 8)
 				.AddNetworkMessageReading(Serializer)
-				.For<PSOBBLoginPacketPayloadServer, PSOBBLoginPacketPayloadClient>()
+				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>()
 				.AsManaged(new UnityLoggingService(LoggingLevel));
 
 			register.RegisterTransient<DefaultMessageContextFactory, IClientMessageContextFactory>();
 
-			register.RegisterInstance<IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>,
-				IManagedNetworkClient<PSOBBLoginPacketPayloadClient, PSOBBLoginPacketPayloadServer>>(client);
+			register.RegisterInstance<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>,
+				IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>(client);
 
-			register.RegisterInstance<IClientPayloadSendService<PSOBBLoginPacketPayloadClient>,
-				IClientPayloadSendService<PSOBBLoginPacketPayloadClient>>(client);
+			register.RegisterInstance<IClientPayloadSendService<PSOBBGamePacketPayloadClient>,
+				IClientPayloadSendService<PSOBBGamePacketPayloadClient>>(client);
 
 			register.RegisterInstance<IConnectionService, IConnectionService>(client);
 
 			//TODO: We can just trgister type
-			register.RegisterInstance<IClientRequestSendService<PSOBBLoginPacketPayloadClient>,
-				IClientRequestSendService<PSOBBLoginPacketPayloadClient>>(new PayloadInterceptMessageSendService<PSOBBLoginPacketPayloadClient>(client, client));
+			register.RegisterInstance<IClientRequestSendService<PSOBBGamePacketPayloadClient>,
+				IClientRequestSendService<PSOBBGamePacketPayloadClient>>(new PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>(client, client));
 
 			//Also need to register the crypto service associated with the client.
 			register.RegisterInstance<IFullCryptoInitializationService<byte[]>, IFullCryptoInitializationService<byte[]>>(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt));
