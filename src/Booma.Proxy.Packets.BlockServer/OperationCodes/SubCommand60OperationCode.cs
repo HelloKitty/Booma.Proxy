@@ -38,7 +38,12 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Some sort of burst command/event.
 		/// </summary>
-		BurstType5 = 0x6F
+		BurstType5 = 0x6F,
+
+		/// <summary>
+		/// Subcommand that sets the player's X and Y position while running.
+		/// </summary>
+		SetPositionRunning = 0x40
 
 		//l->clientx[client->clientID] = *(unsigned *) &client->decryptbuf[0x14];
 		//l->clienty[client->clientID] = *(unsigned*)&client->decryptbuf[0x1C];
