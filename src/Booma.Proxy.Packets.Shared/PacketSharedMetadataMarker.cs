@@ -11,9 +11,9 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Just a simple referenceable Type for reflection purposes.
 	/// </summary>
-	public static class PacketSharedServerMetadataMarker
+	public static class PacketSharedMetadataMarker
 	{
-		public static IEnumerable<Type> SerializableTypes { get; } = typeof(PacketSharedServerMetadataMarker)
+		public static IEnumerable<Type> SerializableTypes { get; } = typeof(PacketSharedMetadataMarker)
 			.Assembly
 			.GetTypes()
 			.Where(t => t.GetCustomAttribute(typeof(WireDataContractBaseLinkAttribute)) != null)

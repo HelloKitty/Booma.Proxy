@@ -9,4 +9,8 @@
     <Folder Include="Payloads\Server\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.12" />
+  </ItemGroup>
+
 </Project>
