@@ -78,12 +78,25 @@
     <Compile Include="AutomatedReflectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionTests\LoginPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\ShipPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\CharacterPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\BlockPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\SharedPayloadAutomatedReflectionTests.cs" />
     <Compile Include="ReflectionTests\PatchPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="UnitTests\AllPacketsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj">
+      <Project>{467024d6-4ce5-458f-8bd5-2e811930a154}</Project>
+      <Name>Booma.Proxy.Packets.BlockServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj">
+      <Project>{9459d6e6-9795-4449-9c5e-31af348f51e6}</Project>
+      <Name>Booma.Proxy.Packets.CharacterServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
       <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>
@@ -96,10 +109,16 @@
       <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
       <Name>Booma.Proxy.Packets.PatchServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj">
+      <Project>{6c0fdd4c-e8b5-41b3-a3d1-ad87dd0cb1f0}</Project>
+      <Name>Booma.Proxy.Packets.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj">
+      <Project>{7b08404b-8aea-450f-a886-047e5e16bf4b}</Project>
+      <Name>Booma.Proxy.Packets.ShipServer</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UnitTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

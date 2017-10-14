@@ -101,6 +101,10 @@
       <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
       <Name>Booma.Proxy.Crypto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj">
+      <Project>{9459D6E6-9795-4449-9C5E-31AF348F51E6}</Project>
+      <Name>Booma.Proxy.Packets.CharacterServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
       <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
       <Name>Booma.Proxy.Packets.Common</Name>
@@ -112,6 +116,10 @@
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj">
       <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
       <Name>Booma.Proxy.Packets.PatchServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj">
+      <Project>{6C0FDD4C-E8B5-41B3-A3D1-AD87DD0CB1F0}</Project>
+      <Name>Booma.Proxy.Packets.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

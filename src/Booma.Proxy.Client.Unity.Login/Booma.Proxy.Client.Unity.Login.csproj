@@ -40,8 +40,11 @@
     <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.Shared\Booma.Proxy.Packets.Shared.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj" />
   </ItemGroup>
 
 </Project>
