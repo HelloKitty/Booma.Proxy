@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
@@ -31,6 +34,10 @@ namespace Booma.Proxy
 		[Inject]
 		protected IClientSessionDetails SessionDetails { get; }
 
+		[PropertyTooltip("Optional auth type that can be changed. If you're connected to a ship/block you should use the ship auth type.")]
+		[OdinSerialize]
+		public SharedLoginRequest93Payload.ServerType AuthType { get; protected set; } = SharedLoginRequest93Payload.ServerType.PreShip;
+
 		/// <inheritdoc />
 		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedWelcomePayload payload)
 		{
@@ -52,7 +59,7 @@ namespace Booma.Proxy
 		/// <returns></returns>
 		protected virtual PSOBBGamePacketPayloadClient BuildLoginPacket()
 		{
-			return new SharedLoginRequest93Payload(0x41, SessionDetails.SessionId, SessionDetails.GuildCardNumber, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData));
+			return new SharedLoginRequest93Payload(0x41, SessionDetails.SessionId, SessionDetails.GuildCardNumber, LoginDetails.Username, LoginDetails.Password, new ClientVerificationData(0x41, SessionDetails.SessionVerificationData), AuthType);
 		}
 	}
 }

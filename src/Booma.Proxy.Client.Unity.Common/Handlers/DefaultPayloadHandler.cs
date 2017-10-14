@@ -40,7 +40,7 @@ namespace Booma.Proxy
 			//TODO: We can disconnect if we encounter unknowns or do more indepth logging/decisions
 			if(Logger.IsInfoEnabled)
 				if(payload is IUnknownPayloadType unk)
-					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name} OpCode: {unk.OperationCode}");
+					Logger.Info(unk.ToString());
 				else
 					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name}");
 

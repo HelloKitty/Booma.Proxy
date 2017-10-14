@@ -34,7 +34,10 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override string ToString()
 		{
-			return $"Unknown OpCode: #{OperationCode:X} Type: {base.ToString()} Size: {4 + UnknownBytes.Length + 2}";
+			if(Enum.IsDefined(typeof(GameNetworkOperationCode), OperationCode))
+				return $"Unknown OpCode: {OperationCode:X} Name: {((GameNetworkOperationCode)OperationCode).ToString()} Type: {base.ToString()} Size: {4 + UnknownBytes.Length + 2}";
+			else
+				return $"Unknown OpCode: {OperationCode:X} Type: {base.ToString()} Size: {4 + UnknownBytes.Length + 2}";
 		}
 	}
 }

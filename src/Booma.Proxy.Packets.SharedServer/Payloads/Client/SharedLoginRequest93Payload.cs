@@ -18,9 +18,9 @@ namespace Booma.Proxy
 		public enum ServerType : byte
 		{
 			/// <summary>
-			/// The ID for the login flow for <see cref="SharedLoginRequest93Payload.unk2"/>.
+			/// The ID for the pre-ship auth for <see cref="SharedLoginRequest93Payload.unk2"/>.
 			/// </summary>
-			Login = 4,
+			PreShip = 4,
 
 			/// <summary>
 			/// The ID for the ship flow <see cref="SharedLoginRequest93Payload.unk2"/>
@@ -92,19 +92,19 @@ namespace Booma.Proxy
 		[WireMember(10)]
 		public ClientVerificationData ClientData { get; }
 
-		public SharedLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
+		public SharedLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
 			: this(clientVersion, 0, userName, password, clientData, serverType)
 		{
 
 		}
 
-		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
+		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
 			: this(clientVersion, teamId, 0, userName, password, clientData, serverType)
 		{
 
 		}
 
-		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, uint guildCard, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.Login)
+		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, uint guildCard, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));

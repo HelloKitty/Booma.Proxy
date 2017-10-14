@@ -87,5 +87,10 @@ namespace Booma.Proxy
 		{
 			Client?.Disconnect();
 		}
+
+		protected virtual void OnDestroy()
+		{
+			Client?.Disconnect();
+		}
 	}
 }
