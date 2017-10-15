@@ -6,7 +6,21 @@
 	/// </summary>
 	public enum CharacterClassRace : byte
 	{
-		HUmar = 0,
+		HUmar,
+		HUnewearl,
+		HUcast,
+		RAmar,
+		RAcast,
+		RAcaseal,
+		FOmarl,
+		FOnewm,
+		FOnewearl,
+		HUcaseal,
+		FOmar,
+		RAmarl,
+
+		//TODO: move these somewhere for use in sectionID calculation
+		/*HUmar = 0,
 
 		HUnewearl = 1,
 
@@ -28,6 +42,6 @@
 
 		FOnewm = 10,
 
-		FOnewearl = 11
+		FOnewearl = 11*/
 	}
 }
