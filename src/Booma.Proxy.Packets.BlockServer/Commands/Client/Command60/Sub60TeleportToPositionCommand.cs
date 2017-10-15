@@ -24,7 +24,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60Client(SubCommand60OperationCode.TeleportToPosition)]
-	public sealed class Sub60TeleportToPositionPayload : BlockNetworkCommandEventClientPayload
+	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60Client
 	{
 		//TODO: Refactor this into an interface or something
 		//This is a short to absorb the unused byte
@@ -47,7 +47,7 @@ namespace Booma.Proxy
 		public Vector3<float> Position { get; }
 
 		/// <inheritdoc />
-		public Sub60TeleportToPositionPayload(short clientId, [NotNull] Vector3<float> position)
+		public Sub60TeleportToPositionCommand(short clientId, [NotNull] Vector3<float> position)
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 
@@ -55,7 +55,7 @@ namespace Booma.Proxy
 			Position = position;
 		}
 
-		public Sub60TeleportToPositionPayload()
+		public Sub60TeleportToPositionCommand()
 		{
 			
 		}

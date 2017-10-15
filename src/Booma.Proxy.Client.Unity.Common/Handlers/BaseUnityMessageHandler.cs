@@ -98,7 +98,7 @@ namespace Booma.Proxy
 
 		//Just dispatches to the decorated handler.
 		/// <inheritdoc />
-		public async Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadBaseType> message)
+		public virtual async Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadBaseType> message)
 		{
 			if(context == null) throw new ArgumentNullException(nameof(context));
 			if(message == null) throw new ArgumentNullException(nameof(message));

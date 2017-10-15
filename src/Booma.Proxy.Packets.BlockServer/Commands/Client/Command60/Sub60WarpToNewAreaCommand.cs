@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	//Syl: https://github.com/Sylverant/ship_server/blob/master/src/subcmd.h#L412
 	[WireDataContract]
 	[SubCommand60Client(SubCommand60OperationCode.WrapToNewArea)]
-	public sealed class Sub60WarpToNewAreaPayload : BlockNetworkCommandEventClientPayload
+	public sealed class Sub60WarpToNewAreaCommand : BaseSubCommand60Client
 	{
 		/// <summary>
 		/// The ID associated with this client.
@@ -26,7 +26,7 @@ namespace Booma.Proxy
 		public int Zone { get; }
 
 		/// <inheritdoc />
-		public Sub60WarpToNewAreaPayload(short clientId, int zone)
+		public Sub60WarpToNewAreaCommand(short clientId, int zone)
 		{
 			if(zone < 0) throw new ArgumentOutOfRangeException(nameof(zone));
 			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
@@ -35,7 +35,7 @@ namespace Booma.Proxy
 			Zone = zone;
 		}
 
-		private Sub60WarpToNewAreaPayload()
+		private Sub60WarpToNewAreaCommand()
 		{
 			
 		}

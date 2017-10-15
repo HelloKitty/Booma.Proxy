@@ -84,11 +84,16 @@
     <Compile Include="ReflectionTests\SharedPayloadAutomatedReflectionTests.cs" />
     <Compile Include="ReflectionTests\PatchPayloadAutomatedReflectionTests.cs" />
     <Compile Include="UnitTests\AllPacketsTests.cs" />
+    <Compile Include="UnitTests\Subcommand60Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Booma.Proxy.Common\Booma.Proxy.Common.csproj">
+      <Project>{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}</Project>
+      <Name>Booma.Proxy.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj">
       <Project>{467024d6-4ce5-458f-8bd5-2e811930a154}</Project>
       <Name>Booma.Proxy.Packets.BlockServer</Name>

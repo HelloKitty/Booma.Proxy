@@ -116,6 +116,10 @@ namespace Booma.Proxy.Packets.Tests
 			{
 
 			}
+			catch(Exception e)
+			{
+				Assert.Warn($"Type: {t.Name} may not be serializable. It's not determinable. This can happen if it has class/complex fields and should be ignored. \n\nException: {e.Message}");
+			}
 		}
 	}
 }

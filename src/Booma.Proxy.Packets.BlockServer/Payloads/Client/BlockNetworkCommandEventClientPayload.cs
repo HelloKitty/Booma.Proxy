@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
@@ -20,28 +21,25 @@ namespace Booma.Proxy
 	/// Payload that is a container for opcode based network commands.
 	/// Sent by the client.
 	/// </summary>
-	[WireDataContract(WireDataContractAttribute.KeyType.Byte, true)] //sent as a byte. Runtime linking SHOULD work since it'll find subtypes in its search for payloads
-	[DefaultChild(typeof(UnknownSubCommand60ClientPayload))] //if we encounter ones we don't know then we should produce this payload.
+	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.GAME_COMMAND0_TYPE)]
-	public abstract class BlockNetworkCommandEventClientPayload : PSOBBGamePacketPayloadClient
+	public class BlockNetworkCommandEventClientPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
-		/// Indicates if the <see cref="Size"/> property is serialized and
-		/// deserialized.
-		/// Child Types can override this to gain access to the single Byte size if needed.
+		/// The subcommand.
 		/// </summary>
-		public virtual bool isSizeSerialized { get; } = true;
-
-		//Since the Type byte is eaten by the polymorphic deserialization process
-		//We just read t he size to discard it
-		/// <summary>
-		/// The size of the subcommand (subpayload).
-		/// Not needed for deserialization of subcommand.
-		/// </summary>
-		[Optional(nameof(isSizeSerialized))]
 		[WireMember(1)]
-		private byte Size { get; }
+		public BaseSubCommand60Client Command { get; }
 
+		/// <inheritdoc />
+		public BlockNetworkCommandEventClientPayload([NotNull] BaseSubCommand60Client command)
+		{
+			if(command == null) throw new ArgumentNullException(nameof(command));
+
+			Command = command;
+		}
+
+		//Serializer ctor
 		protected BlockNetworkCommandEventClientPayload()
 		{
 			

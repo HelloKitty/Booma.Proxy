@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\Shared\" />
+  </ItemGroup>
+
 </Project>

@@ -11,14 +11,14 @@ namespace Booma.Proxy
 {
 	/// <summary>
 	/// Marks the 0x60 command server payload with the associated operation code.
-	/// Should be marked on <see cref="BlockNetworkCommandEventServerPayload"/>.
+	/// Should be marked on <see cref="BaseSubCommand60Server"/>.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
 	public sealed class SubCommand60ServerAttribute : WireDataContractBaseLinkAttribute
 	{
 		/// <inheritdoc />
 		public SubCommand60ServerAttribute(SubCommand60OperationCode opCode)
-			: base((int)opCode, typeof(BlockNetworkCommandEventServerPayload))
+			: base((int)opCode, typeof(BaseSubCommand60Server))
 		{
 			if(!Enum.IsDefined(typeof(SubCommand60OperationCode), opCode)) throw new InvalidEnumArgumentException(nameof(opCode), (int)opCode, typeof(SubCommand60OperationCode));
 		}

@@ -20,34 +20,15 @@ namespace Booma.Proxy
 	/// Payload that is a container for opcode based network commands.
 	/// Sent by the server.
 	/// </summary>
-	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)] //sent as a byte. Runtime linking SHOULD work since it'll find subtypes in its search for payloads
-	[DefaultChild(typeof(UnknownSubCommand60ServerPayload))] //if we encounter ones we don't know then we should produce this payload.
+	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_COMMAND0_TYPE)]
-	public abstract class BlockNetworkCommandEventServerPayload : PSOBBGamePacketPayloadServer
+	public class BlockNetworkCommandEventServerPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
-		/// Indicates if the <see cref="Size"/> property is serialized and
-		/// deserialized.
-		/// Child Types can override this to gain access to the single Byte size if needed.
-		/// </summary>
-		public virtual bool isSizeSerialized { get; } = true;
-
-		/// <summary>
-		/// The operation code for the subcommand.
-		/// This is only read for logging of unknown subcommands.
+		/// The 0x60 command sent by the server.
 		/// </summary>
 		[WireMember(1)]
-		protected SubCommand60OperationCode SubcommandOperationCode { get; }
-
-		//Since the Type byte is eaten by the polymorphic deserialization process
-		//We just read t he size to discard it
-		/// <summary>
-		/// The size of the subcommand (subpayload).
-		/// Not needed for deserialization of subcommand.
-		/// </summary>
-		[Optional(nameof(isSizeSerialized))]
-		[WireMember(2)]
-		private byte Size { get; }
+		public BaseSubCommand60Server Command { get; }
 
 		protected BlockNetworkCommandEventServerPayload()
 		{
