@@ -17,6 +17,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, BlockLobbyJoinEventPayload payload)
 		{
+			if(Logger.IsDebugEnabled)
+				Logger.Debug($"**Handling**: {nameof(BlockLobbyJoinEventPayload)}");
+
 			//Just set the old char slot to the clientid
 			//It's basically like a slot, like a lobby or party slot.
 			SlotModel.SlotSelected = payload.ClientId;

@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	[Injectee]
-	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60BeginWarpEvent>
+	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>
 	{
 		[Inject]
 		private ICharacterSlotSelectedModel SlotModel { get; }
@@ -20,9 +20,16 @@ namespace Booma.Proxy
 		[SerializeField]
 		private byte ZoneId;
 
+		private int Count = 0;
+
 		/// <inheritdoc />
-		protected override async Task HandleCommand(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60BeginWarpEvent payload)
+		protected override async Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientWarpBeginEventCommand payload)
 		{
+			if(Logger.IsDebugEnabled)
+				Logger.Debug($"**Recieved**: {nameof(Sub60ClientWarpBeginEventCommand)} Count: {Count}");
+
+			Count++;
+
 			//TODO: What should the W coord be? How sould we handle this poition?
 			//We can't do anything with the data right now
 			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand((short)SlotModel.SlotSelected,

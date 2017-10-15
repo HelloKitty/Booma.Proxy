@@ -15,7 +15,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="command">The command to initialize the payload with.</param>
 		/// <returns>A new <see cref="BlockNetworkCommandEventClientPayload"/> with the <see cref="command"/></returns>
-		public static BlockNetworkCommandEventClientPayload ToPayload([NotNull] this BaseSubCommand60Client command)
+		public static BlockNetworkCommandEventClientPayload ToPayload([NotNull] this BaseSubCommand60 command)
 		{
 			if(command == null) throw new ArgumentNullException(nameof(command));
 			

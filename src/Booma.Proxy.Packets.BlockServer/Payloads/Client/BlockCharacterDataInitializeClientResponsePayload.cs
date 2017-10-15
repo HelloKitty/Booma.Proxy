@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using JetBrains.Annotations;
+using Reinterpret.Net;
 
 namespace Booma.Proxy
 {
@@ -17,11 +19,14 @@ namespace Booma.Proxy
 	{
 		[WireMember(1)]
 		[KnownSize(2096 - 8)]
-		private byte[] Bytes { get; } = new byte[2096];
+		public byte[] Bytes { get; } = new byte[2096];
 
 		public BlockCharacterDataInitializeClientResponsePayload()
 		{
-			
+			//TODO: We should figure out what thisi s all about.
+			//Client sends some data, not sure what it is
+			0x418851ec.Reinterpret(Bytes, 0x364 - 8);
+			0x41200000.Reinterpret(Bytes, 0x368 - 8);
 		}
 	}
 }

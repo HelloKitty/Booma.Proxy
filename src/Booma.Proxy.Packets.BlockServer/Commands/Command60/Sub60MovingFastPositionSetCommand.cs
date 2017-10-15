@@ -12,8 +12,8 @@ namespace Booma.Proxy
 	/// Command request sent by the client when a client changes its position while running/movingfast.
 	/// </summary>
 	[WireDataContract]
-	[SubCommand60Client(SubCommand60OperationCode.MovingFastPositionChanged)]
-	public sealed class Sub60MovingFastPositionSetCommand : BaseSubCommand60Client
+	[SubCommand60(SubCommand60OperationCode.MovingFastPositionChanged)]
+	public sealed class Sub60MovingFastPositionSetCommand : BaseSubCommand60
 	{
 		/// <summary>
 		/// The client that is moving.

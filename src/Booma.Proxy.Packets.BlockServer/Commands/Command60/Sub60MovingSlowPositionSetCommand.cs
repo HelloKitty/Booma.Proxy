@@ -11,8 +11,8 @@ namespace Booma.Proxy
 	/// The payload that is sent when a client is running to update their position.
 	/// </summary>
 	[WireDataContract]
-	[SubCommand60Client(SubCommand60OperationCode.MovingSlowPositionChanged)]
-	public sealed class Sub60MovingSlowPositionSetCommand : BaseSubCommand60Client
+	[SubCommand60(SubCommand60OperationCode.MovingSlowPositionChanged)]
+	public sealed class Sub60MovingSlowPositionSetCommand : BaseSubCommand60
 	{
 		/// <summary>
 		/// The ID of the client moving.

@@ -9,11 +9,10 @@ namespace Booma.Proxy
 {
 	/// <summary>
 	/// The base type for the subcommand sent in the 0x60 packets.
-	/// Sent by the server.
 	/// </summary>
-	[DefaultChild(typeof(UnknownSubCommand60ServerEvent))]
+	[DefaultChild(typeof(UnknownSubCommand60Command))]
 	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class BaseSubCommand60Server : ISubCommand60
+	public abstract class BaseSubCommand60 : ISubCommand60
 	{
 		/// <summary>
 		/// The operation code for the subcommand.
@@ -41,9 +40,9 @@ namespace Booma.Proxy
 		public byte CommandSize { get; }
 
 		//Serializer ctor
-		protected BaseSubCommand60Server()
+		protected BaseSubCommand60()
 		{
-			
+
 		}
 
 		/// <inheritdoc />

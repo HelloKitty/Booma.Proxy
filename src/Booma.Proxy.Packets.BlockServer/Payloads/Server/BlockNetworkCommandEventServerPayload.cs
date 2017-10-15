@@ -25,10 +25,10 @@ namespace Booma.Proxy
 	public class BlockNetworkCommandEventServerPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
-		/// The 0x60 command sent by the server.
+		/// The subcommand.
 		/// </summary>
 		[WireMember(1)]
-		public BaseSubCommand60Server Command { get; }
+		public BaseSubCommand60 Command { get; }
 
 		protected BlockNetworkCommandEventServerPayload()
 		{

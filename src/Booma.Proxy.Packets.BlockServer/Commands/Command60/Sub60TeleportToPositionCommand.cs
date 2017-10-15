@@ -23,8 +23,8 @@ namespace Booma.Proxy
 	/// Subcommand payload that will teleport a client to the specified location.
 	/// </summary>
 	[WireDataContract]
-	[SubCommand60Client(SubCommand60OperationCode.TeleportToPosition)]
-	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60Client
+	[SubCommand60(SubCommand60OperationCode.TeleportToPosition)]
+	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60
 	{
 		//TODO: Refactor this into an interface or something
 		//This is a short to absorb the unused byte

@@ -16,11 +16,11 @@ namespace Booma.Proxy
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.RegisterType<Sub60RunningPositionChangedEvent>();
+			serializer.RegisterType<Sub60MovingFastPositionSetCommand>();
 			serializer.Compile();
 			
 			//act
-			byte[] bytes = serializer.Serialize(new Sub60RunningPositionChangedEvent(5, new Vector2<float>(2, 5)));
+			byte[] bytes = serializer.Serialize(new Sub60MovingFastPositionSetCommand(5, new Vector2<float>(2, 5)));
 
 			//assert
 			Assert.NotNull(bytes);
@@ -32,13 +32,13 @@ namespace Booma.Proxy
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.RegisterType<Sub60RunningPositionChangedEvent>();
+			serializer.RegisterType<Sub60MovingFastPositionSetCommand>();
 			serializer.Compile();
 
 			//act
-			byte[] bytes = serializer.Serialize(new Sub60RunningPositionChangedEvent(5, new Vector2<float>(2, 5)));
-			Sub60RunningPositionChangedEvent desserialized = serializer.Deserialize<BaseSubCommand60Server>(bytes)
-				as Sub60RunningPositionChangedEvent;
+			byte[] bytes = serializer.Serialize(new Sub60MovingFastPositionSetCommand(5, new Vector2<float>(2, 5)));
+			Sub60MovingFastPositionSetCommand desserialized = serializer.Deserialize<BaseSubCommand60>(bytes)
+				as Sub60MovingFastPositionSetCommand;
 
 			//assert
 			Assert.NotNull(desserialized, "Object was null.");

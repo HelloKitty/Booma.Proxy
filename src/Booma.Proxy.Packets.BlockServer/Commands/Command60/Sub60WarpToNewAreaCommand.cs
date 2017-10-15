@@ -9,8 +9,8 @@ namespace Booma.Proxy
 {
 	//Syl: https://github.com/Sylverant/ship_server/blob/master/src/subcmd.h#L412
 	[WireDataContract]
-	[SubCommand60Client(SubCommand60OperationCode.WrapToNewArea)]
-	public sealed class Sub60WarpToNewAreaCommand : BaseSubCommand60Client
+	[SubCommand60(SubCommand60OperationCode.WrapToNewArea)]
+	public sealed class Sub60WarpToNewAreaCommand : BaseSubCommand60
 	{
 		/// <summary>
 		/// The ID associated with this client.

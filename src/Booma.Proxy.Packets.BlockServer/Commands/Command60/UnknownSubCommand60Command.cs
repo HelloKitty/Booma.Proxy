@@ -8,10 +8,10 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// An unimplemented or unknown subcommand for the <see cref="BlockNetworkCommandEventServerPayload"/>.
+	/// An unimplemented or unknown subcommand for the <see cref="BlockNetworkCommandEventClientPayload"/>.
 	/// </summary>
 	[WireDataContract]
-	public sealed class UnknownSubCommand60ServerEvent : BaseSubCommand60Server, IUnknownPayloadType
+	public sealed class UnknownSubCommand60Command : BaseSubCommand60, IUnknownPayloadType
 	{
 		/// <inheritdoc />
 		public short OperationCode => (short)base.CommandOperationCode;
@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte[] UnknownBytes { get; } = new byte[0]; //readtoend requires at least an empty array init
 
-		private UnknownSubCommand60ServerEvent()
+		private UnknownSubCommand60Command()
 		{
 			
 		}

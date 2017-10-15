@@ -29,10 +29,10 @@ namespace Booma.Proxy
 		/// The subcommand.
 		/// </summary>
 		[WireMember(1)]
-		public BaseSubCommand60Client Command { get; }
+		public BaseSubCommand60 Command { get; }
 
 		/// <inheritdoc />
-		public BlockNetworkCommandEventClientPayload([NotNull] BaseSubCommand60Client command)
+		public BlockNetworkCommandEventClientPayload([NotNull] BaseSubCommand60 command)
 		{
 			if(command == null) throw new ArgumentNullException(nameof(command));
 
