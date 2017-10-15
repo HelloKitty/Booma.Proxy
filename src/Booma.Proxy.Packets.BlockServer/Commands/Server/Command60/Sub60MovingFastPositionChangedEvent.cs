@@ -8,26 +8,28 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The payload that is sent when a client is running to update their position.
+	/// Command event sent by the server when a client changes its position.
 	/// </summary>
 	[WireDataContract]
-	[SubCommand60Client(SubCommand60OperationCode.MovingSlowPositionChanged)]
-	public sealed class Sub60SetPositionRunningRequestCommand : BaseSubCommand60Client
+	[SubCommand60Server(SubCommand60OperationCode.MovingFastPositionChanged)]
+	public sealed class Sub60MovingFastPositionChangedEvent : BaseSubCommand60Server
 	{
 		/// <summary>
-		/// The ID of the client moving.
+		/// The client that is moving.
 		/// </summary>
 		[WireMember(1)]
 		public short ClientId { get; }
 
 		/// <summary>
-		/// The new position of the client.
+		/// The position the client has moved to.
 		/// </summary>
 		[WireMember(2)]
 		public Vector2<float> Position { get; }
 
+		//TODO: This is a 3rd unknown int
+
 		//Serializer ctor
-		private Sub60SetPositionRunningRequestCommand()
+		private Sub60MovingFastPositionChangedEvent()
 		{
 			
 		}

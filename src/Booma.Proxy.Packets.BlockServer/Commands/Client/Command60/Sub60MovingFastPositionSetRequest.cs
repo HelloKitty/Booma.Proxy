@@ -9,35 +9,38 @@ using JetBrains.Annotations;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Payload sent by the server when a position changes
-	/// for a particular client.
+	/// Command request sent by the client when a client changes its position while running/movingfast.
 	/// </summary>
 	[WireDataContract]
-	[SubCommand60Server(SubCommand60OperationCode.MovingSlowPositionChanged)]
-	public sealed class Sub60RunningPositionChangedEvent : BaseSubCommand60Server
+	[SubCommand60Client(SubCommand60OperationCode.MovingFastPositionChanged)]
+	public sealed class Sub60MovingFastPositionSetRequest : BaseSubCommand60Client
 	{
 		/// <summary>
-		/// The ID of the client moving.
+		/// The client that is moving.
 		/// </summary>
 		[WireMember(1)]
 		public short ClientId { get; }
 
 		/// <summary>
-		/// The new position of the client.
+		/// The position the client has moved to.
 		/// </summary>
 		[WireMember(2)]
 		public Vector2<float> Position { get; }
 
+		//TODO: This is a 3rd unknown int
+
 		/// <inheritdoc />
-		public Sub60RunningPositionChangedEvent(short clientId, [NotNull] Vector2<float> position)
+		public Sub60MovingFastPositionSetRequest(short clientId, [NotNull] Vector2<float> position)
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
+			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
 
 			ClientId = clientId;
 			Position = position;
 		}
 
-		private Sub60RunningPositionChangedEvent()
+		//Serializer ctor
+		private Sub60MovingFastPositionSetRequest()
 		{
 			
 		}

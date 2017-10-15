@@ -43,7 +43,12 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Subcommand that sets the player's X and Y position while running.
 		/// </summary>
-		SetPositionRunning = 0x40
+		MovingSlowPositionChanged = 0x40,
+
+		/// <summary>
+		/// Subcommand that 
+		/// </summary>
+		MovingFastPositionChanged = 0x42,
 
 		//l->clientx[client->clientID] = *(unsigned *) &client->decryptbuf[0x14];
 		//l->clienty[client->clientID] = *(unsigned*)&client->decryptbuf[0x1C];
