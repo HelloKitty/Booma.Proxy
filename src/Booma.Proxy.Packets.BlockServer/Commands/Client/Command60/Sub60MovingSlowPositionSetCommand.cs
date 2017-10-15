@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60Client(SubCommand60OperationCode.MovingSlowPositionChanged)]
-	public sealed class Sub60SetPositionRunningRequestCommand : BaseSubCommand60Client
+	public sealed class Sub60MovingSlowPositionSetCommand : BaseSubCommand60Client
 	{
 		/// <summary>
 		/// The ID of the client moving.
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		public Vector2<float> Position { get; }
 
 		//Serializer ctor
-		private Sub60SetPositionRunningRequestCommand()
+		private Sub60MovingSlowPositionSetCommand()
 		{
 			
 		}

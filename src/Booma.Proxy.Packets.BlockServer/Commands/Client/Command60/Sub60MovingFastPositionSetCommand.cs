@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60Client(SubCommand60OperationCode.MovingFastPositionChanged)]
-	public sealed class Sub60MovingFastPositionSetRequest : BaseSubCommand60Client
+	public sealed class Sub60MovingFastPositionSetCommand : BaseSubCommand60Client
 	{
 		/// <summary>
 		/// The client that is moving.
@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		//TODO: This is a 3rd unknown int
 
 		/// <inheritdoc />
-		public Sub60MovingFastPositionSetRequest(short clientId, [NotNull] Vector2<float> position)
+		public Sub60MovingFastPositionSetCommand(short clientId, [NotNull] Vector2<float> position)
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		}
 
 		//Serializer ctor
-		private Sub60MovingFastPositionSetRequest()
+		private Sub60MovingFastPositionSetCommand()
 		{
 			
 		}

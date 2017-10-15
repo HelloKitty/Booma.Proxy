@@ -9,11 +9,11 @@ namespace Booma.Proxy
 {
 	/// <summary>
 	/// Command event sent by the server when a client changes its position.
-	/// This is sent when their movement is fast/running.
+	/// This is sent when their movement is slow/walking.
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60Server(SubCommand60OperationCode.MovingFastPositionChanged)]
-	public sealed class Sub60MovingFastPositionChangedEvent : BaseSubCommand60Server
+	public sealed class Sub60MovingSlowPositionChangedEvent : BaseSubCommand60Server
 	{
 		/// <summary>
 		/// The client that is moving.
@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		//TODO: This is a 3rd unknown int
 
 		//Serializer ctor
-		private Sub60MovingFastPositionChangedEvent()
+		private Sub60MovingSlowPositionChangedEvent()
 		{
 			
 		}
