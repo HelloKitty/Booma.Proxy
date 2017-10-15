@@ -44,5 +44,14 @@ namespace Booma.Proxy
 		{
 			
 		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			if(Command != null)
+				return Command.ToString();
+
+			return base.ToString();
+		}
 	}
 }

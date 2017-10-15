@@ -42,7 +42,7 @@ namespace Booma.Proxy
 				if(payload is IUnknownPayloadType unk)
 					Logger.Info(unk.ToString());
 				else
-					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name}");
+					Logger.Info($"Recieved unhandled payload of Type: {payload.GetType().Name} Info: {payload}");
 
 			return Task.CompletedTask;
 		}

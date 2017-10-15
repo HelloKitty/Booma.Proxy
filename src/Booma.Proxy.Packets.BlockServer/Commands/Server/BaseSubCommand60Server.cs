@@ -45,5 +45,11 @@ namespace Booma.Proxy
 		{
 			
 		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"Type: {GetType().Name} OpCode: {CommandOperationCode} CommandSize: {CommandSize * 4} (byte size)";
+		}
 	}
 }
