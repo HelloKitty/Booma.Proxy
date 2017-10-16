@@ -12,9 +12,19 @@ namespace Booma.Proxy
 	public interface INetworkPlayerCollection : IEnumerable<INetworkPlayer>
 	{
 		/// <summary>
+		/// The local player.
+		/// </summary>
+		INetworkPlayer Local { get; }
+
+		/// <summary>
 		/// The networked players.
 		/// </summary>
 		IEnumerable<INetworkPlayer> Players { get; }
+
+		/// <summary>
+		/// The networked player's excluding the <see cref="Local"/> player.
+		/// </summary>
+		IEnumerable<INetworkPlayer> ExcludingLocal { get; }
 
 		/// <summary>
 		/// Returns the <see cref="INetworkPlayer"/> with the id.
