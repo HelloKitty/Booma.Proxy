@@ -33,5 +33,12 @@ namespace Booma.Proxy
 		/// <param name="id">The id to check for.</param>
 		/// <returns>The <see cref="INetworkPlayer"/> with the id or null.</returns>
 		INetworkPlayer this[int id] { get; }
+
+		/// <summary>
+		/// Indicates if it contains the <see cref="id"/> key value.
+		/// </summary>
+		/// <param name="id">The id to check for.</param>
+		/// <returns>True if the collection contains the ID.</returns>
+		bool ContainsId(int id);
 	}
 }
