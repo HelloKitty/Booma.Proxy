@@ -13,5 +13,11 @@ namespace Booma.Proxy
 		/// The network transform associated with the player.
 		/// </summary>
 		INetworkEntityTransform Transform { get; }
+
+		/// <summary>
+		/// The identifier (client id)
+		/// associated with the player.
+		/// </summary>
+		byte Identifier { get; }
 	}
 }

@@ -43,6 +43,17 @@ namespace Booma.Proxy
 		}
 
 		/// <summary>
+		/// Creates a new <see cref="Vector3{T}"/> with the original <see cref="Vector3"/>'s
+		/// X, Y and Z components mapped to the new <see cref="Vector3{T}"/>'s X, Y and Z.
+		/// </summary>
+		/// <param name="vector">The vector to convert.</param>
+		/// <returns>A network <see cref="Vector3{T}"/> represetnation of the <see cref="Vector3"/>.</returns>
+		public static Vector3<float> ToNetworkVector3(this Vector3 vector)
+		{
+			return new Vector3<float>(vector.x, vector.y, vector.z);
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="Vector3"/> with the original <see cref="Vector2{T}"/>'s
 		/// X and Y components mapped to the new <see cref="Vector3"/>'s X and Z.
 		/// With an optional Y value parameter to initialize to the Y.

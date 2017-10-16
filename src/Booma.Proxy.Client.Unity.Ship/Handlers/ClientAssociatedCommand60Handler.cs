@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		/// The indextable collection of <see cref="INetworkPlayer"/>s.
 		/// </summary>
 		[Inject]
-		private INetworkPlayerCollection PlayerCollection { get; }
+		protected INetworkPlayerCollection PlayerCollection { get; }
 
 		//This handler will exit if the model (the command) doesn't contain a valid client id.
 		/// <inheritdoc />

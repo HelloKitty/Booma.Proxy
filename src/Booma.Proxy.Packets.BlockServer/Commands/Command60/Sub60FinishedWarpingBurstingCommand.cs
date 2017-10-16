@@ -14,12 +14,16 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.EnterFreshlyWrappedZoneCommand)]
-	public sealed class Sub60FinishedWarpingBurstingCommand : BaseSubCommand60
+	public sealed class Sub60FinishedWarpingBurstingCommand : BaseSubCommand60, ICommandClientIdentifiable
 	{
 		//Packet is empty. Just tells the server we bursted/warped finished.
 		//TODO: Is this client id?
 		[WireMember(1)]
-		private short unk { get; }
+		public byte ClientId { get; }
+
+		//Is this really unused?
+		[WireMember(2)]
+		private byte unused { get; }
 
 		public Sub60FinishedWarpingBurstingCommand()
 		{
