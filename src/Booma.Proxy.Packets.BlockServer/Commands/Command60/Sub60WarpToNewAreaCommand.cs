@@ -27,6 +27,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60WarpToNewAreaCommand(short clientId, int zone)
+			: this()
 		{
 			if(zone < 0) throw new ArgumentOutOfRangeException(nameof(zone));
 			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
@@ -37,7 +38,8 @@ namespace Booma.Proxy
 
 		private Sub60WarpToNewAreaCommand()
 		{
-			
+			//Calc static 32bit size
+			CommandSize = 8 / 4;
 		}
 	}
 }

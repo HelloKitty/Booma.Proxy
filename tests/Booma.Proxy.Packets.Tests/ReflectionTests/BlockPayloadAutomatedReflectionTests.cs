@@ -8,7 +8,7 @@ using Booma.Proxy.Packets.Tests;
 
 namespace Booma.Proxy
 {
-	public class BlockPayloadAutomatedReflectionTestsClient : AutomatedReflectionTests<PSOBBGamePacketPayloadClient, BlockNetworkCommandEventClientPayload>
+	public class BlockPayloadAutomatedReflectionTestsClient : AutomatedReflectionTests<PSOBBGamePacketPayloadClient, BlockNetworkCommand60EventClientPayload>
 	{
 
 	}

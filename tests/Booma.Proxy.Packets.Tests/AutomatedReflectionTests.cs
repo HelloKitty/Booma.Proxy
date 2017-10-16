@@ -66,14 +66,6 @@ namespace Booma.Proxy.Packets.Tests
 
 		[Test]
 		[TestCaseSource(nameof(PayloadTypes))]
-		public void Test_Payload_Has_Parameterless_Ctor(Type t)
-		{
-			//assert
-			Assert.NotNull(t.GetConstructor(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance, null, CallingConventions.Any, Enumerable.Empty<Type>().ToArray(), null), $"Type: {t.Name} does not have a required parameterless ctor.");
-		}
-
-		[Test]
-		[TestCaseSource(nameof(PayloadTypes))]
 		public void Test_Payload_With_Link_Has_Correct_BaseType(Type t)
 		{
 			//assert

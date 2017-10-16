@@ -8,7 +8,7 @@ namespace Booma.Proxy
 {
 	/// <summary>
 	/// Enumeration of sub-operation codes for 0x60 packet
-	/// <see cref="BlockNetworkCommandEventClientPayload"/> and ... TODO server
+	/// <see cref="BlockNetworkCommand60EventClientPayload"/> and ... TODO server
 	/// </summary>
 	public enum SubCommand60OperationCode : byte //it's sent as byte from server
 	{
@@ -25,12 +25,21 @@ namespace Booma.Proxy
 		/// </summary>
 		EnterFreshlyWrappedZoneCommand = 0x23,
 
+		//TODO: Is any of this true?
+		/// <summary>
+		/// Sent the server when we encounter a player we haven't seen
+		/// who has just finished warping. 
+		/// </summary>
+		AlertFreshlyWarpedClients = 0x20,
+
 		//Syl: https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x3F
 		//Tethella: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L8356
 		/// <summary>
 		/// Seems to set a position and used for teleporting/wraping without scene changes(?)?
 		/// </summary>
 		TeleportToPosition = 0x3F,
+
+		SetFinalMovingPosition = 0x3E,
 
 		//Syl: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/subcmd.h#L847
 		//Tethella: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L10215

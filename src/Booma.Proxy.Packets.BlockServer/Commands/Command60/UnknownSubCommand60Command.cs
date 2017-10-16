@@ -8,7 +8,7 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// An unimplemented or unknown subcommand for the <see cref="BlockNetworkCommandEventClientPayload"/>.
+	/// An unimplemented or unknown subcommand for the <see cref="BlockNetworkCommand60EventClientPayload"/>.
 	/// </summary>
 	[WireDataContract]
 	public sealed class UnknownSubCommand60Command : BaseSubCommand60, IUnknownPayloadType
@@ -30,9 +30,9 @@ namespace Booma.Proxy
 		public override string ToString()
 		{
 			if(Enum.IsDefined(typeof(SubCommand60OperationCode), (byte)OperationCode))
-				return $"Unknown Subcommand60 OpCode: {OperationCode:X} Name: {((SubCommand60OperationCode)OperationCode).ToString()} Type: {GetType().Name} CommandSize: {CommandSize * 4} (bytes size)";
+				return $"Unknown Subcommand60 OpCode: {OperationCode:X} Name: {((SubCommand60OperationCode)OperationCode).ToString()} Type: {GetType().Name} CommandSize: {CommandSize * 4 - 2} (bytes size)";
 			else
-				return $"Unknown Subcommand60 OpCode: {OperationCode:X} Type: {GetType().Name} CommandSize: {CommandSize * 4} (bytes size)";
+				return $"Unknown Subcommand60 OpCode: {OperationCode:X} Type: {GetType().Name} CommandSize: {CommandSize * 4 - 2} (bytes size)";
 		}
 	}
 }

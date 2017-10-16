@@ -48,6 +48,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60TeleportToPositionCommand(short clientId, [NotNull] Vector3<float> position)
+			: this()
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 
@@ -57,7 +58,8 @@ namespace Booma.Proxy
 
 		public Sub60TeleportToPositionCommand()
 		{
-			
+			//Calc static 32bit size
+			CommandSize = 24 / 4;
 		}
 	}
 }

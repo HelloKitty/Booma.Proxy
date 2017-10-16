@@ -31,6 +31,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60MovingFastPositionSetCommand(short clientId, [NotNull] Vector2<float> position)
+			: this()
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
@@ -42,7 +43,7 @@ namespace Booma.Proxy
 		//Serializer ctor
 		private Sub60MovingFastPositionSetCommand()
 		{
-			
+			CommandSize = 12 / 4;
 		}
 	}
 }

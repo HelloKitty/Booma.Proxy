@@ -10,9 +10,9 @@ namespace Booma.Proxy
 	/// <summary>
 	/// The base type for the subcommand sent in the 0x60 packets.
 	/// </summary>
-	[DefaultChild(typeof(UnknownSubCommand60Command))]
+	[DefaultChild(typeof(UnknownSubCommand62Command))]
 	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class BaseSubCommand60
+	public abstract class BaseSubCommand62 : ISubCommand60
 	{
 		/// <summary>
 		/// The operation code for the subcommand.
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite]
 		[WireMember(1)]
-		public byte CommandOperationCode { get; }
+		public SubCommand60OperationCode CommandOperationCode { get; }
 
 		/// <summary>
 		/// Indicates if the <see cref="CommandSize"/> property is serialized and
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		public byte CommandSize { get; protected set; }
 
 		//Serializer ctor
-		protected BaseSubCommand60()
+		protected BaseSubCommand62()
 		{
 
 		}
@@ -48,10 +48,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override string ToString()
 		{
-			if(Enum.IsDefined(typeof(SubCommand60OperationCode), CommandOperationCode))
-				return $"Type: {GetType().Name} OpCode: {(SubCommand60OperationCode)CommandOperationCode}:{CommandOperationCode:X} CommandSize: {CommandSize * 4} (byte size)";
-			else
-				return $"Type: {GetType().Name} OpCode: {CommandOperationCode:X} CommandSize: {CommandSize * 4} (byte size)";
+			return $"Type: {GetType().Name} OpCode: {CommandOperationCode} CommandSize: {CommandSize * 4} (byte size)";
 		}
 	}
 }

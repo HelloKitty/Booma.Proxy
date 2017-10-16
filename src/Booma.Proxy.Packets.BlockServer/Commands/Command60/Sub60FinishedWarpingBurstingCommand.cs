@@ -23,7 +23,8 @@ namespace Booma.Proxy
 
 		public Sub60FinishedWarpingBurstingCommand()
 		{
-			
+			//Calc static 32bit size
+			CommandSize = 4 / 4;
 		}
 	}
 }
