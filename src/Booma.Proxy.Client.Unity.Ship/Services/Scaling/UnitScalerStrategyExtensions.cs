@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -129,6 +130,30 @@ namespace Booma.Proxy
 			float z = ignoreFlags.QuickFlagsCheck(UnitScaleFlags.Z) ? vector.z : scaler.UnScaleZ(vector.z); ;
 
 			return new Vector3(x, y, z);
+		}
+
+		/// <summary>
+		/// Scales the Y rotation based on the unit scale.
+		/// </summary>
+		/// <param name="scaler">The scaler.</param>
+		/// <param name="rotation">The rotation to scale.</param>
+		/// <returns></returns>
+		public static float ScaleYRotation(this IUnitScalerStrategy scaler, float rotation)
+		{
+			//This is odd but if we have both Z and X flipped then the Y will be the same.
+			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) < 0.0f ? rotation + 180f : rotation;
+		}
+
+		/// <summary>
+		/// Unscales the Y rotation based on the unit scale.
+		/// </summary>
+		/// <param name="scaler">The scaler.</param>
+		/// <param name="rotation">The rotation to scale.</param>
+		/// <returns></returns>
+		public static float UnScaleYRotation(this IUnitScalerStrategy scaler, float rotation)
+		{
+			//This is odd but if we have both Z and X flipped then the Y will be the same.
+			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) < 0.0f ? rotation - 180f : rotation;
 		}
 
 		public static bool QuickFlagsCheck(this UnitScaleFlags flags, UnitScaleFlags flag)

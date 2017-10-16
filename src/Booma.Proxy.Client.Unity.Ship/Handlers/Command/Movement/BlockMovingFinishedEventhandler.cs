@@ -27,7 +27,7 @@ namespace Booma.Proxy
 			player.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3());
 
 			//Also set the rotation; PSO only appears to use Y axis rotation
-			player.Transform.Rotation = Quaternion.AngleAxis(command.YAxisRotation, Vector3.up);
+			player.Transform.Rotation = Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up);
 
 			return Task.CompletedTask;
 		}
