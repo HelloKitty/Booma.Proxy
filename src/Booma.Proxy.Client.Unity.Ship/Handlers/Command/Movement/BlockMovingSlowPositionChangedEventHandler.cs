@@ -36,7 +36,7 @@ namespace Booma.Proxy
 			TestObject.transform.position = Scaler.Scale(new Vector3(command.Position.X, TestObject.transform.position.y, command.Position.Y));
 
 			//Broadcast
-			OnPositionChanged?.Invoke(Scaler.Scale(new Vector2(command.Position.X, command.Position.Y)));
+			OnPositionChanged?.Invoke(Scaler.ScaleYasZ(new Vector2(command.Position.X, command.Position.Y)));
 
 			return Task.CompletedTask;
 		}

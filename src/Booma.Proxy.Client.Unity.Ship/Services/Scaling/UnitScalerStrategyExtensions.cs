@@ -27,6 +27,17 @@ namespace Booma.Proxy
 		}
 
 		/// <summary>
+		/// Fully scales the <see cref="Vector2"/> by the scaling.
+		/// </summary>
+		/// <param name="scaler">The scaling service.</param>
+		/// <param name="vector">The vector to scale.</param>
+		/// <returns>A new scaled vector.</returns>
+		public static Vector2 ScaleYasZ(this IUnitScalerStrategy scaler, Vector2 vector)
+		{
+			return new Vector3(scaler.ScaleX(vector.x), scaler.ScaleZ(vector.y));
+		}
+
+		/// <summary>
 		/// Scales the <see cref="Vector3"/> by the scaling with the option to ignore some dimensions flags.
 		/// </summary>
 		/// <param name="scaler">The scaling service.</param>

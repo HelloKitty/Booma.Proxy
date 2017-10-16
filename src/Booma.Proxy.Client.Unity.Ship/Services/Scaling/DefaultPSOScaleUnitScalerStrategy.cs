@@ -10,12 +10,14 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Uses the default project-wide scale for Unity->PSOBB
 	/// </summary>
+	[Serializable]
 	public sealed class DefaultPSOScaleUnitScalerStrategy : IUnitScalerStrategy
 	{
 		//Right now things are build the scale of 0.2f, 0.2f, -0.2f
 		//PSOBB appears to have an inverted z compared to PSOBB
-		private IUnitScalerStrategy DecoratedScaler { get; } 
-			= new EditorExposedScaleUnitScalerStrategy(new Vector3(0.2f, 0.2f, -0.2f));
+		[HideInInspector]
+		[SerializeField]
+		private EditorExposedScaleUnitScalerStrategy DecoratedScaler = new EditorExposedScaleUnitScalerStrategy(new Vector3(0.2f, 0.2f, -0.2f));
 
 		/// <inheritdoc />
 		public float ScaleX(float x)

@@ -9,7 +9,8 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Strategy that doesn't scale or unscale the provided components at all.
 	/// </summary>
-	public sealed class NoScalingUnitScalerStrategy : IUnitScalerStrategy
+	[Serializable]
+	public class NoScalingUnitScalerStrategy : IUnitScalerStrategy
 	{
 		/// <inheritdoc />
 		public float ScaleX(float x)
