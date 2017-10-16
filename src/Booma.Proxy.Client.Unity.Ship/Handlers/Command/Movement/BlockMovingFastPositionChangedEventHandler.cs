@@ -14,14 +14,8 @@ namespace Booma.Proxy
 	/// event that is raised by the server when a client is moving fast/running.
 	/// </summary>
 	[Injectee]
-	public sealed class BlockMovingFastPositionChangedEventHandler : Command60Handler<Sub60MovingFastPositionSetCommand>
+	public sealed class BlockMovingFastPositionChangedEventHandler : ClientAssociatedCommand60Handler<Sub60MovingFastPositionSetCommand>
 	{
-		/// <summary>
-		/// The indextable collection of <see cref="INetworkPlayer"/>s.
-		/// </summary>
-		[Inject]
-		private INetworkPlayerCollection PlayerCollection { get; }
-
 		/// <summary>
 		/// Service that translates the incoming position to the correct unit scale that
 		/// Unity3D expects.
@@ -31,20 +25,8 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy Scaler { get; set; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command)
+		protected override Task HandleClientMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayer player)
 		{
-			//Try to get the player from the collection
-			INetworkPlayer player = PlayerCollection[command.ClientId];
-
-			//Not sure if it's possible to encounter this but we should check to be sure
-			if(player == null)
-			{
-				if(Logger.IsWarnEnabled)
-					Logger.Warn($"Recieved {this.MessageName()} 0x60 {command.CommandOperationCode:X} from unregistered ClientId: {command.ClientId}");
-
-				return Task.CompletedTask;
-			}
-
 			//Set the position of the network transform
 			player.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3XZ(player.Transform.Position.y));
 
