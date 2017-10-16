@@ -36,5 +36,27 @@ namespace Booma.Proxy
 			//Just create a new command container (the 0x60 payload) around the command.
 			return new BlockNetworkCommand62EventClientPayload(command);
 		}
+
+		//TODO: We can probably cache this string for performance in the future
+		/// <summary>
+		/// Computes the hex string opcode for the provided <see cref="BaseSubCommand60"/>.
+		/// </summary>
+		/// <param name="command"></param>
+		/// <returns></returns>
+		public static string OpCodeHexString(this BaseSubCommand60 command)
+		{
+			return $"0x60 {command.CommandOperationCode:X}";
+		}
+
+		//TODO: We can probably cache this string for performance in the future
+		/// <summary>
+		/// Computes the hex string opcode for the provided <see cref="BaseSubCommand62"/>.
+		/// </summary>
+		/// <param name="command"></param>
+		/// <returns></returns>
+		public static string OpCodeHexString(this BaseSubCommand62 command)
+		{
+			return $"0x62 {command.CommandOperationCode:X}";
+		}
 	}
 }
