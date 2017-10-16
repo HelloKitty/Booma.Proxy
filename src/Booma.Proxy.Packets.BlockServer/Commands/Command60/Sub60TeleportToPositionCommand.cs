@@ -31,7 +31,7 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public short ClientId { get; }
 
-		//TODO: What is this?
+		//TODO: What is this? I think it's a position checksum.
 		[WireMember(2)]
 		private uint unused { get; }
 

@@ -38,11 +38,7 @@ namespace Booma.Proxy
 			switch(level)
 			{
 				case LogLevel.Trace:
-					UnityEngine.Debug.Log(message);
-					break;
 				case LogLevel.Debug:
-					UnityEngine.Debug.Log(message);
-					break;
 				case LogLevel.Info:
 					UnityEngine.Debug.Log(message);
 					break;

@@ -55,6 +55,9 @@ namespace Booma.Proxy
 		/// </summary>
 		BLOCK_SET_CHAR_DATA_TYPE = 0x0061,
 
+		//Sent when a player joins the lobby
+		LOBBY_ADD_PLAYER_TYPE = 0x0068,
+
 		//List of the lobby?
 		LOBBY_LIST_TYPE = 0x0083,
 
