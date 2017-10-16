@@ -15,33 +15,36 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.AlertFreshlyWarpedClients)]
-	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60
+	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60, ICommandClientIdentifiable
 	{
+		/// <inheritdoc />
 		[WireMember(1)]
-		public short ClientId { get; }
+		public byte ClientId { get; }
+
+		[WireMember(2)]
+		private byte unusued { get; }
 
 		/// <summary>
 		/// The client that is moving.
 		/// </summary>
-		[WireMember(2)]
+		[WireMember(3)]
 		public int ZoneId { get; }
 
 		/// <summary>
 		/// The position the client has moved to.
 		/// </summary>
-		[WireMember(3)]
+		[WireMember(4)]
 		public Vector3<float> Position { get; } //server should set X and Z, ignoring y.
 
 		//TODO: Soly said this is rotation so we should handle it 65536f / 360f
-		[WireMember(4)]
+		[WireMember(5)]
 		public int Rotation { get; }
 
 		//Serializer ctor
-		public Sub60FinishedWarpAckCommand(short clientId, int zoneId, [NotNull] Vector3<float> position)
+		public Sub60FinishedWarpAckCommand(byte clientId, int zoneId, [NotNull] Vector3<float> position)
 			: this()
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
-			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
 			if(zoneId < 0) throw new ArgumentOutOfRangeException(nameof(zoneId));
 
 			ClientId = clientId;

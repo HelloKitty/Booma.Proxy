@@ -21,6 +21,6 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The euler angles rotation of the transform.
 		/// </summary>
-		Vector3 EulerRotation { get; set; }
+		Quaternion Rotation { get; set; }
 	}
 }

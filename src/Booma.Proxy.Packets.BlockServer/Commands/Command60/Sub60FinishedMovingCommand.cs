@@ -14,21 +14,24 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SetFinalMovingPosition)]
-	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener
+	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener, ICommandClientIdentifiable
 	{
-		//TODO: Refactor this into an interface or something
-		//This is a short to absorb the unused byte
+		/// <inheritdoc />
 		[WireMember(1)]
-		public short ClientId { get; }
+		public byte ClientId { get; }
 
+		//Unusued in most commands, some commands have this as leaderid though?
 		[WireMember(2)]
+		private byte unused { get; }
+
+		[WireMember(3)]
 		private short unk { get; }
 
 		/// <summary>
 		/// The raw rotation value
 		/// that is sent over the network.
 		/// </summary>
-		[WireMember(3)]
+		[WireMember(4)]
 		private ushort RawNetworkRotation { get; set; }
 
 		/// <summary>
@@ -36,17 +39,17 @@ namespace Booma.Proxy
 		/// </summary>
 		public float YAxisRotation { get; private set; }
 
-		[WireMember(4)]
+		[WireMember(5)]
 		public int W { get; } = 65551;
 
 		/// <summary>
 		/// The position to teleport to.
 		/// </summary>
-		[WireMember(5)]
+		[WireMember(6)]
 		public Vector3<float> Position { get; }
 
 		/// <inheritdoc />
-		public Sub60FinishedMovingCommand(short clientId, float yAxisRotation, [NotNull] Vector3<float> position)
+		public Sub60FinishedMovingCommand(byte clientId, float yAxisRotation, [NotNull] Vector3<float> position)
 			: this()
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));

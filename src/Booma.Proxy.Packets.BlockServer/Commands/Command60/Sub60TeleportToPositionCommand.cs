@@ -24,30 +24,33 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.TeleportToPosition)]
-	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60
+	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60, ICommandClientIdentifiable
 	{
 		//TODO: Refactor this into an interface or something
 		//This is a short to absorb the unused byte
 		[WireMember(1)]
-		public short ClientId { get; }
+		public byte ClientId { get; }
+
+		[WireMember(2)]
+		private byte unused { get; }
 
 		//TODO: What is this? I think it's a position checksum.
-		[WireMember(2)]
-		private uint unused { get; }
+		[WireMember(3)]
+		private uint unused2 { get; }
 
 		//TODO: When we figure out what this is maybe add it back to Vector4
-		[WireMember(3)]
+		[WireMember(4)]
 		private float w { get; }
 
 		//TODO: The Vector3 may be misordered. Is xyzw but we may need wxyz
 		/// <summary>
 		/// The position to teleport to.
 		/// </summary>
-		[WireMember(4)]
+		[WireMember(5)]
 		public Vector3<float> Position { get; }
 
 		/// <inheritdoc />
-		public Sub60TeleportToPositionCommand(short clientId, [NotNull] Vector3<float> position)
+		public Sub60TeleportToPositionCommand(byte clientId, [NotNull] Vector3<float> position)
 			: this()
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));

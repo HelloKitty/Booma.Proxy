@@ -31,9 +31,13 @@ namespace Booma.Proxy
 		/// The slot being selected.
 		/// </summary>
 		[WireMember(1)]
-		public int SlotSelected { get; }
+		public byte SlotSelected { get; }
 
+		[KnownSize(3)]
 		[WireMember(2)]
+		private byte[] unused { get; }
+
+		[WireMember(3)]
 		public PlayerCharacterDataModel CharacterData { get; }
 
 		//serializer ctor

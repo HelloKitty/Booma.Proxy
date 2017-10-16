@@ -32,12 +32,12 @@ namespace Booma.Proxy
 
 			//TODO: What should the W coord be? How sould we handle this poition?
 			//We can't do anything with the data right now
-			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand((short)SlotModel.SlotSelected,
+			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand(SlotModel.SlotSelected,
 				new Vector3<float>(LobbyStartPositon.x, LobbyStartPositon.x, LobbyStartPositon.z)).ToPayload());
 
 			//Now we have to send a 1F to start the warp
 			//Tell the server we're warping now
-			await context.PayloadSendService.SendMessage(new Sub60WarpToNewAreaCommand((short)SlotModel.SlotSelected, ZoneId).ToPayload());
+			await context.PayloadSendService.SendMessage(new Sub60WarpToNewAreaCommand(SlotModel.SlotSelected, ZoneId).ToPayload());
 
 			//We can just send a finished right away, we have nothing to load really
 			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpingBurstingCommand().ToPayload());

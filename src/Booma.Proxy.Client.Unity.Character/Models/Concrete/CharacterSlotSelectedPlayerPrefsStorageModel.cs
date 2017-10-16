@@ -13,10 +13,10 @@ namespace Booma.Proxy
 	/// </summary>
 	public sealed class CharacterSlotSelectedPlayerPrefsStorageModel : MonoBehaviour, ICharacterSlotSelectedModel
 	{
-		private int _slotSelected;
+		private byte _slotSelected;
 
 		/// <inheritdoc />
-		public int SlotSelected
+		public byte SlotSelected
 		{
 			get => _slotSelected;
 			set
@@ -29,7 +29,8 @@ namespace Booma.Proxy
 
 		private void Awake()
 		{
-			_slotSelected = PlayerPrefs.GetInt(nameof(SlotSelected), -1);
+			//TODO: Validate
+			_slotSelected = (byte)PlayerPrefs.GetInt(nameof(SlotSelected), -1);
 		}
 
 		private void SaveSlotSelected()

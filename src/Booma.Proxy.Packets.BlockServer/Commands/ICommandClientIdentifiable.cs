@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Contract for a data model that contains the slot selected.
+	/// Contract for commands that contain a client id.
 	/// </summary>
-	public interface ICharacterSlotSelectedModel
+	public interface ICommandClientIdentifiable
 	{
 		/// <summary>
-		/// The character slot selected.
+		/// The ID associated with the client.
 		/// </summary>
-		byte SlotSelected { get; set; }
+		byte ClientId { get; }
 	}
 }
