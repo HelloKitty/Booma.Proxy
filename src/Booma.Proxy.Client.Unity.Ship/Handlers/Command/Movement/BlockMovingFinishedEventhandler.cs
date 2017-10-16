@@ -35,7 +35,7 @@ namespace Booma.Proxy
 			TestObject.transform.position = Scaler.Scale(new Vector3(command.Position.X, command.Position.Y, command.Position.Z));
 
 			//Also set the rotation
-			TestObject.transform.rotation = Quaternion.AngleAxis(command.YAxisRotation / 180f, Vector3.up);
+			TestObject.transform.rotation = Quaternion.AngleAxis(command.YAxisRotation, Vector3.up);
 
 			return Task.CompletedTask;
 		}
