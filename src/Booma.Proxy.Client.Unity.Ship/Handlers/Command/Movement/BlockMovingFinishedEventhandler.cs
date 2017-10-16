@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -13,7 +14,13 @@ namespace Booma.Proxy
 		[Required]
 		public GameObject TestObject;
 
-		public Vector3 TestScale = new Vector3(1, 1, 1);
+		/// <summary>
+		/// Service that translates the incoming position to the correct unit scale that
+		/// Unity3D expects.
+		/// </summary>
+		[Required]
+		[OdinSerialize]
+		private IUnitScalerStrategy Scaler { get; set; }
 
 		public int RotationScale = 180;
 
@@ -21,11 +28,11 @@ namespace Booma.Proxy
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command)
 		{
 			if(Logger.IsDebugEnabled)
-				Logger.Debug($"Recieved EndPosition With Y: {command.Position.Y} and W: {command.W} Unusued: {command.YAxisRotation}");
+				Logger.Debug($"Recieved EndPosition With Y: {command.Position.Y} and W: {command.W} RawRot: {command.YAxisRotation}");
 
 			//This is for visuallizing the result
 			//Try using the Y for this one
-			TestObject.transform.position = Vector3.Scale(TestScale, new Vector3(command.Position.X, command.Position.Y, command.Position.Z));
+			TestObject.transform.position = Scaler.Scale(new Vector3(command.Position.X, command.Position.Y, command.Position.Z));
 
 			//Also set the rotation
 			TestObject.transform.rotation = Quaternion.AngleAxis(command.YAxisRotation / 180f, Vector3.up);

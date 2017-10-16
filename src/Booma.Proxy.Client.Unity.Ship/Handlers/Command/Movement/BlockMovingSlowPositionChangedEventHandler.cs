@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -17,7 +18,13 @@ namespace Booma.Proxy
 		[Required]
 		public GameObject TestObject;
 
-		public Vector3 TestScale = new Vector3(1, 1, 1);
+		/// <summary>
+		/// Service that translates the incoming position to the correct unit scale that
+		/// Unity3D expects.
+		/// </summary>
+		[Required]
+		[OdinSerialize]
+		private IUnitScalerStrategy Scaler { get; set; }
 
 		[SerializeField]
 		public OnPositionChangedEvent OnPositionChanged;
@@ -26,10 +33,10 @@ namespace Booma.Proxy
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingSlowPositionSetCommand command)
 		{
 			//This is for visuallizing the result
-			TestObject.transform.position = Vector3.Scale(TestScale, new Vector3(command.Position.X, TestObject.transform.position.y, command.Position.Y));
+			TestObject.transform.position = Scaler.Scale(new Vector3(command.Position.X, TestObject.transform.position.y, command.Position.Y));
 
 			//Broadcast
-			OnPositionChanged?.Invoke(Vector2.Scale(new Vector2(TestScale.x, TestScale.z), new Vector2(command.Position.X, command.Position.Y)));
+			OnPositionChanged?.Invoke(Scaler.Scale(new Vector2(command.Position.X, command.Position.Y)));
 
 			return Task.CompletedTask;
 		}
