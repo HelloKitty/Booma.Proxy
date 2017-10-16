@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -14,8 +16,9 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The scaling service.
 		/// </summary>
-		[Inject]
-		private IUnitScalerStrategy ScalingService { get; }
+		[Required]
+		[OdinSerialize]
+		private IUnitScalerStrategy ScalingService { get; set; }
 
 		//TODO: How should this be designed?
 		[SerializeField]
