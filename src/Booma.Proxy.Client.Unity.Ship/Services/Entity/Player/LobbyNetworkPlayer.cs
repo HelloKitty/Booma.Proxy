@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// The <see cref="INetworkPlayer"/> components for the network players in the lobby.
 	/// </summary>
 	[Injectee]
-	public sealed class LobbyNetworkPlayer : SerializedMonoBehaviour, INetworkPlayer
+	public class LobbyNetworkPlayer : SerializedMonoBehaviour, INetworkPlayer
 	{
 		[Required]
 		[Tooltip("The network transform.")]
@@ -27,5 +27,12 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		[Inject]
 		public IEntityIdentity Identity { get; }
+
+		/// <inheritdoc />
+		public void Despawn()
+		{
+			//TODO: We should probably broadcast and do some other stuff. Right now we should just delete
+			Destroy(gameObject);
+		}
 	}
 }

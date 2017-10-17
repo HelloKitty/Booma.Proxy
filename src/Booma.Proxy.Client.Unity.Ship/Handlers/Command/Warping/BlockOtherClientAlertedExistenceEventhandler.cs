@@ -15,11 +15,19 @@ namespace Booma.Proxy
 		private INetworkPlayerFactory PlayerFactory { get; }
 
 		[Inject]
+		private INetworkPlayerCollection PlayerCollection { get; }
+
+		[Inject]
 		private IUnitScalerStrategy UnitScaler { get; }
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpAckCommand command)
 		{
+			//Clients do a full broadcast and we already know about this client
+			//so we should just return
+			if(PlayerCollection.ContainsId(command.ClientId))
+				return Task.CompletedTask;
+
 			float rotation = UnitScaler.ScaleYRotation(command.Rotation);
 			Vector3 position = UnitScaler.Scale(command.Position);
 

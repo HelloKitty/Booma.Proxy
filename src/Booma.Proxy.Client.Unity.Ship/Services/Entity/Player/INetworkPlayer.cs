@@ -19,5 +19,10 @@ namespace Booma.Proxy
 		/// associated with the player.
 		/// </summary>
 		IEntityIdentity Identity { get; }
+
+		/// <summary>
+		/// Despawn the player.
+		/// </summary>
+		void Despawn();
 	}
 }

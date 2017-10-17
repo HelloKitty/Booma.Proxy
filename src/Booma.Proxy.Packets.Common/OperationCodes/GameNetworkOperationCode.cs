@@ -58,6 +58,8 @@ namespace Booma.Proxy
 		//Sent when a player joins the lobby
 		LOBBY_ADD_PLAYER_TYPE = 0x0068,
 
+		LOBBY_LEAVE_TYPE = 0x0069,
+
 		//List of the lobby?
 		LOBBY_LIST_TYPE = 0x0083,
 

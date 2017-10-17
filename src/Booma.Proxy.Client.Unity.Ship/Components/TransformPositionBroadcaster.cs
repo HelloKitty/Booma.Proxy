@@ -31,16 +31,15 @@ namespace Booma.Proxy
 		[Inject]
 		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
-		[SerializeField]
-		[OdinSerialize]
-		private IUnitScalerStrategy UnitScaler { get; set; }
+		[Inject]
+		private IUnitScalerStrategy UnitScaler { get; }
 
 		//Cached last position
 		private Vector3 lastPosition;
 
 		private bool isFinishedMoving = true;
 
-		public void StartBroadcasting()
+		public void Start()
 		{
 			lastPosition = transform.position;
 			StartCoroutine(BroadcastTransformPosition());

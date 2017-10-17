@@ -38,11 +38,11 @@ namespace Booma.Proxy
 			StartCoroutine(LerpTowards());
 		}
 
-		public void OnRecievedNewPosition(Vector2 positionXZ)
+		public void OnRecievedNewPosition(Vector3 positionXZ)
 		{
 			//Init new lerp data
 			StartPosition = transform.position;
-			TargetPosition = positionXZ;
+			TargetPosition = new Vector2(positionXZ.x, positionXZ.z);
 
 			//Reset the lerp duration
 			CurrentStep = 0;
