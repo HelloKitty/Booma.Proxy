@@ -15,6 +15,6 @@ namespace Booma.Proxy
 		/// The <see cref="INetworkPlayer"/> that the message is about
 		/// or is the source of.
 		/// </summary>
-		INetworkPlayer Player { get; }
+		INetworkPlayer Remote { get; }
 	}
 }

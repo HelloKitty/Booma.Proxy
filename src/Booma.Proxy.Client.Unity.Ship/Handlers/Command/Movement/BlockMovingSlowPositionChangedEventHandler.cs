@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Handler that deals with the <see cref="Sub60MovingSlowPositionChangedEvent"/>
+	/// Handler that deals with the <see cref="Sub60MovingSlowPositionSetCommand"/>
 	/// event that is raised by the server when a client is moving slow/walking.
 	/// </summary>
 	public sealed class BlockMovingSlowPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingSlowPositionSetCommand, ICommandMessageNetworkPlayerContext>
@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingSlowPositionSetCommand command, ICommandMessageNetworkPlayerContext commandContext)
 		{
 			//This is for visuallizing the result
-			commandContext.Player.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3XZ(commandContext.Player.Transform.Position.y));
+			commandContext.Remote.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3XZ(commandContext.Remote.Transform.Position.y));
 
 			return Task.CompletedTask;
 		}
