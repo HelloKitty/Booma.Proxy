@@ -164,8 +164,9 @@ namespace Booma.Proxy
 		/// <returns></returns>
 		public static float ScaleYRotation(this IUnitScalerStrategy scaler, float rotation)
 		{
+			//TODO: IS this right?
 			//This is odd but if we have both Z and X flipped then the Y will be the same.
-			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) <= 0.0f ? rotation + 180f : rotation;
+			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) <= 0.0f ? -rotation + 180f : rotation;
 		}
 
 		/// <summary>
@@ -176,8 +177,9 @@ namespace Booma.Proxy
 		/// <returns></returns>
 		public static float UnScaleYRotation(this IUnitScalerStrategy scaler, float rotation)
 		{
+			//TODO: IS this right?
 			//This is odd but if we have both Z and X flipped then the Y will be the same.
-			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) < 0.0f ? rotation - 180f : rotation;
+			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) <= 0.0f ? -rotation : rotation;
 		}
 
 		public static bool QuickFlagsCheck(this UnitScaleFlags flags, UnitScaleFlags flag)
