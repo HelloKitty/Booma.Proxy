@@ -39,6 +39,17 @@ namespace Booma.Proxy
 		}
 
 		/// <summary>
+		/// Fully scales the <see cref="Vector2"/> by the scaling.
+		/// </summary>
+		/// <param name="scaler">The scaling service.</param>
+		/// <param name="vector">The vector to scale.</param>
+		/// <returns>A new scaled vector.</returns>
+		public static Vector2 ScaleYasZ(this IUnitScalerStrategy scaler, Vector2<float> vector)
+		{
+			return new Vector3(scaler.ScaleX(vector.X), scaler.ScaleZ(vector.Y));
+		}
+
+		/// <summary>
 		/// Scales the <see cref="Vector3"/> by the scaling with the option to ignore some dimensions flags.
 		/// </summary>
 		/// <param name="scaler">The scaling service.</param>
@@ -154,7 +165,7 @@ namespace Booma.Proxy
 		public static float ScaleYRotation(this IUnitScalerStrategy scaler, float rotation)
 		{
 			//This is odd but if we have both Z and X flipped then the Y will be the same.
-			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) < 0.0f ? rotation + 180f : rotation;
+			return (Math.Sign(scaler.ScaleZ(1)) + Math.Sign(scaler.ScaleX(1))) <= 0.0f ? rotation + 180f : rotation;
 		}
 
 		/// <summary>
