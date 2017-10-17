@@ -96,9 +96,8 @@ namespace Booma.Proxy
 
 		public abstract Task HandleMessage(IClientMessageContext<TOutgoingPayloadType> context, TPayloadType payload);
 
-		
 		/// <inheritdoc />
-		public bool CanHandle(PSOBBNetworkIncomingMessage<TIncomingPayloadBaseType> message)
+		public virtual bool CanHandle(PSOBBNetworkIncomingMessage<TIncomingPayloadBaseType> message)
 		{
 			//We can't handle it if the payload type
 			return message.Payload is TPayloadType;
@@ -111,7 +110,15 @@ namespace Booma.Proxy
 			if(context == null) throw new ArgumentNullException(nameof(context));
 			if(message == null) throw new ArgumentNullException(nameof(message));
 
-			return await Handler.Value.TryHandleMessage(context, message);
+			try
+			{
+				return await Handler.Value.TryHandleMessage(context, message);
+			}
+			catch(Exception e)
+			{
+				Logger.Error($"Encounter error in Handle: {Handler.Value} Exception: {e.Message} \n\n StackTrace: {e.StackTrace}");
+				throw;
+			}
 		}
 	}
 }

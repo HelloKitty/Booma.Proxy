@@ -54,8 +54,7 @@ namespace Booma.Proxy
 			{
 				//TODO: Should we not configureawait false here? Should we want to rejoin the context?
 				//No matter what happens in the handler we should indicate that it's consumed
-				await DecoratedPayloadHandler.HandleMessage(context, payload)
-					.ConfigureAwait(false);
+				await DecoratedPayloadHandler.HandleMessage(context, payload);
 
 				return true;
 			}
@@ -64,6 +63,12 @@ namespace Booma.Proxy
 			//So we just indicate that we can't handle the message and the caller
 			//will hopefully find someone else to handle it.
 			return false;
+		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return this.DecoratedPayloadHandler.ToString();
 		}
 	}
 }

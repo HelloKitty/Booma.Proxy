@@ -66,10 +66,21 @@ namespace Booma.Proxy
 					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync()
 						.ConfigureAwait(true);
 
-					//We don't do anything with the result. We should hope someone registered
-					//a default handler to deal with this situation
-					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client, RequestService), message)
-						.ConfigureAwait(true);
+
+					//Supress and continue reading
+					try
+					{
+						//We don't do anything with the result. We should hope someone registered
+						//a default handler to deal with this situation
+						bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client, RequestService), message)
+							.ConfigureAwait(true);
+					}
+					catch(Exception e)
+					{
+						if(Logger.IsDebugEnabled)
+							Logger.Debug($"Error: {e.Message}\n\n Stack Trace: {e.StackTrace}");
+					}
+					
 				}
 			}
 			catch(Exception e)

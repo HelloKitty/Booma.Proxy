@@ -36,7 +36,7 @@ namespace Booma.Proxy
 
 		//TODO: What is this? I think it's a position checksum.
 		[WireMember(3)]
-		private uint unused2 { get; }
+		private int unused2 { get; } = 1;
 
 		//TODO: When we figure out what this is maybe add it back to Vector4
 		[WireMember(4)]

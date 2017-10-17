@@ -21,11 +21,20 @@ namespace Booma.Proxy
 		{
 			//Odd design but we override so we can check that this is the payload
 			//and then check if we have the right command type
-			if(message.Payload is TPayloadType payload)
-				if(CheckIsHandlable(payload))
-					return await base.TryHandleMessage(context, message);
+			if(CanHandle(message))
+				return await base.TryHandleMessage(context, message);
 
 			//If it's not then we don't want to consume it
+			return false;
+		}
+
+		/// <inheritdoc />
+		public override bool CanHandle(PSOBBNetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		{
+			//We have to overide this because base doesn't implement what we want
+			if(message.Payload is TPayloadType p)
+				return CheckIsHandlable(p);
+
 			return false;
 		}
 
@@ -48,7 +57,8 @@ namespace Booma.Proxy
 		{
 			//We want to grab the subtype, but we don't know how. Let the implementers do it.
 			//then we can dispatch it.
-			await HandleSubMessage(context, RetrieveSubMessage(payload));
+			await HandleSubMessage(context, RetrieveSubMessage(payload))
+				.ConfigureAwait(true);
 		}
 
 		/// <summary>
@@ -58,5 +68,11 @@ namespace Booma.Proxy
 		/// <param name="command">The submessage sent.</param>
 		/// <returns>An awaitable that completes when the command handling is finished.</returns>
 		protected abstract Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, TSubMessageType command);
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"SubmessageHandler: {GetType().Name} for SubMessage: {typeof(TSubMessageType).Name} Payload: {typeof(TPayloadType).Name}";
+		}
 	}
 }

@@ -25,7 +25,7 @@ namespace Booma.Proxy
 		private byte unusued { get; }
 
 		/// <summary>
-		/// The client that is moving.
+		/// The id for the zone that the client is in.
 		/// </summary>
 		[WireMember(3)]
 		public int ZoneId { get; }

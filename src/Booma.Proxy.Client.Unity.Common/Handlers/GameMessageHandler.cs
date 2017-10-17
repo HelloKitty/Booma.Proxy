@@ -14,6 +14,10 @@ namespace Booma.Proxy
 	public abstract class GameMessageHandler<TPayloadType> : BaseUnityMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, TPayloadType> 
 		where TPayloadType : PSOBBGamePacketPayloadServer
 	{
-
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"GameHandler: {GetType().Name} for Payload: {typeof(TPayloadType).Name}";
+		}
 	}
 }

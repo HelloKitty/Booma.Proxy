@@ -55,8 +55,7 @@ namespace Booma.Proxy
 			{
 				//If we found a handler that handled it we should stop trying to handle it and return true
 				if(handler.CanHandle(message))
-					return await handler.TryHandleMessage(context, message)
-						.ConfigureAwait(true);
+					return await handler.TryHandleMessage(context, message);
 			}
 
 			DefaultMessageHandler?.HandleMessage(context, message.Payload)?
