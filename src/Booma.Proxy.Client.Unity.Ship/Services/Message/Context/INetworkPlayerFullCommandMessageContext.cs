@@ -15,6 +15,6 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The local player reference.
 		/// </summary>
-		INetworkPlayer Local { get; }
+		INetworkPlayer LocalPlayer { get; }
 	}
 }

@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingSlowPositionSetCommand command, INetworkPlayerCommandMessageContext commandContext)
 		{
 			//This is for visuallizing the result
-			commandContext.Remote.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3XZ(commandContext.Remote.Transform.Position.y));
+			commandContext.RemotePlayer.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3XZ(commandContext.RemotePlayer.Transform.Position.y));
 
 			return Task.CompletedTask;
 		}

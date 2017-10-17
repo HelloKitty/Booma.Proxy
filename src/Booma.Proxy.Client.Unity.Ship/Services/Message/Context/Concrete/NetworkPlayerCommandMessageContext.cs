@@ -12,10 +12,10 @@ namespace Booma.Proxy
 		public bool isValid { get; } = true;
 
 		/// <inheritdoc />
-		public INetworkPlayer Remote { get; }
+		public INetworkPlayer RemotePlayer { get; }
 
 		/// <inheritdoc />
-		public INetworkPlayer Local { get; }
+		public INetworkPlayer LocalPlayer { get; }
 
 		/// <inheritdoc />
 		public NetworkPlayerCommandMessageContext(INetworkPlayer remote, INetworkPlayer local)
@@ -23,8 +23,8 @@ namespace Booma.Proxy
 			if(remote == null) throw new ArgumentNullException(nameof(remote));
 			if(local == null) throw new ArgumentNullException(nameof(local));
 
-			Remote = remote;
-			Local = local;
+			RemotePlayer = remote;
+			LocalPlayer = local;
 		}
 	}
 }

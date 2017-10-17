@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// Creates a new <see cref="IEntityIdentity"/> for a player
 	/// entity.
 	/// </summary>
-	public sealed class PlayerEntityIdentity : EntityIdentity
+	public class PlayerEntityIdentity : EntityIdentity
 	{
 		/// <inheritdoc />
 		public PlayerEntityIdentity(byte entityId) 

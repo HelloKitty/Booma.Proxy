@@ -24,10 +24,10 @@ namespace Booma.Proxy
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command, INetworkPlayerCommandMessageContext commandContext)
 		{
 			//This one sends a Y position, for some reason.
-			commandContext.Remote.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3());
+			commandContext.RemotePlayer.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3());
 
 			//Also set the rotation; PSO only appears to use Y axis rotation
-			commandContext.Remote.Transform.Rotation = Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up);
+			commandContext.RemotePlayer.Transform.Rotation = Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up);
 
 			return Task.CompletedTask;
 		}
