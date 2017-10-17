@@ -42,6 +42,12 @@ namespace Booma.Proxy
 			Position = position;
 		}
 
+		public Sub60MovingFastPositionSetCommand(int clientId, [NotNull] Vector2<float> position)
+			: this((byte)clientId, position)
+		{
+			
+		}
+
 		//Serializer ctor
 		private Sub60MovingFastPositionSetCommand()
 		{

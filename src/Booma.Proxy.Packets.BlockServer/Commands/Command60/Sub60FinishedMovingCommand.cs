@@ -60,6 +60,13 @@ namespace Booma.Proxy
 			Position = position;
 		}
 
+		/// <inheritdoc />
+		public Sub60FinishedMovingCommand(int clientId, float yAxisRotation, [NotNull] Vector3<float> position)
+			: this((byte)clientId, yAxisRotation, position)
+		{
+
+		}
+
 		private Sub60FinishedMovingCommand()
 		{
 			CommandSize = 24 / 4;
