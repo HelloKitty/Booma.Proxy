@@ -63,6 +63,8 @@ namespace Booma.Proxy
 		//List of the lobby?
 		LOBBY_LIST_TYPE = 0x0083,
 
+		LOBBY_CHANGE_TYPE = 0x0084,
+
 		//Big 14,000 byte chunk of character data including inventory and everything
 		BB_FULL_CHARACTER_TYPE = 0x00E7,
 
