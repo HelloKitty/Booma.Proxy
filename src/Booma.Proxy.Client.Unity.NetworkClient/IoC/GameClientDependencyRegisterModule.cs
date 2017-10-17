@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using Common.Logging;
 using FreecraftCore.Serializer;
 using SceneJect.Common;
@@ -42,7 +43,7 @@ namespace Booma.Proxy
 		private LogLevel LoggingLevel;
 
 		/// <inheritdoc />
-		public override void Register(IServiceRegister register)
+		public override void Register(ContainerBuilder register)
 		{
 			EncryptionLazyWithoutKeyDecorator<byte[]> encrypt = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
@@ -57,8 +58,6 @@ namespace Booma.Proxy
 				return decryptionService;
 			});
 
-			
-
 			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new PSOBBNetworkClient()
 				.AddCryptHandling(encrypt, decrypt, 8)
 				.AddHeaderReading(Serializer.Value, 8)
@@ -66,23 +65,23 @@ namespace Booma.Proxy
 				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>()
 				.AsManaged(new UnityLoggingService(LoggingLevel));
 
-			register.RegisterTransient<DefaultMessageContextFactory, IClientMessageContextFactory>();
+			register.RegisterType<DefaultMessageContextFactory>()
+				.As<IClientMessageContextFactory>()
+				.SingleInstance();
 
-			register.RegisterInstance<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>,
-				IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>(client);
+			register.RegisterInstance(client)
+				.As<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>()
+				.As<IClientPayloadSendService<PSOBBGamePacketPayloadClient>>()
+				.As<IPayloadInterceptable>()
+				.As<IConnectionService>();
 
-			register.RegisterInstance<IClientPayloadSendService<PSOBBGamePacketPayloadClient>,
-				IClientPayloadSendService<PSOBBGamePacketPayloadClient>>(client);
+			register.RegisterType<PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>>()
+				.As<IClientRequestSendService<PSOBBGamePacketPayloadClient>>()
+				.SingleInstance();
 
-			register.RegisterInstance<IConnectionService, IConnectionService>(client);
-
-			//TODO: We can just trgister type
-			register.RegisterInstance<IClientRequestSendService<PSOBBGamePacketPayloadClient>,
-				IClientRequestSendService<PSOBBGamePacketPayloadClient>>(new PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>(client, client));
-
-			//Also need to register the crypto service associated with the client.
-			register.RegisterInstance<IFullCryptoInitializationService<byte[]>, IFullCryptoInitializationService<byte[]>>(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt));
-
+			register.RegisterInstance(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt))
+				.As<IFullCryptoInitializationService<byte[]>>()
+				.SingleInstance();
 		}
 	}
 }

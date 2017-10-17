@@ -22,9 +22,23 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		protected override async Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientWarpBeginEventCommand payload)
 		{
-			//TODO: Is this where we should do this?
-			//We need to create the player represenation here
-			INetworkPlayer player = PlayerFactory.CreateLocalPlayer();
+			if(Logger.IsInfoEnabled)
+				Logger.Info($"Recieved: {this.MessageName()} about to create local player.");
+
+			INetworkPlayer player = null;
+			try
+			{
+				//TODO: Is this where we should do this?
+				//We need to create the player represenation here
+				player = PlayerFactory.CreateLocalPlayer();
+			}
+			catch(Exception e)
+			{
+				if(Logger.IsErrorEnabled || Logger.IsFatalEnabled)
+					Logger.Fatal($"Failed to create network player. Exception: {e.Message} \n\n Stacktrace: {e.StackTrace}");
+				throw;
+			}
+			
 
 			//TODO: Send rotation
 			//TODO: What should the W coord be? How sould we handle this poition?

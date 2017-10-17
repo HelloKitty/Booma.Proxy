@@ -9,8 +9,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SceneJect.Autofac" Version="2.0.6" />
-    <PackageReference Include="SceneJect.Editor" Version="2.0.6" />
+    <PackageReference Include="SceneJect.Editor" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Ship\Booma.Proxy.Client.Unity.Ship.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UnityEditor">
+      <HintPath>..\..\lib\Unity\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

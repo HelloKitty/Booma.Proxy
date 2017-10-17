@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Autofac;
 using Sirenix.Serialization;
 using UnityEngine;
 
@@ -21,11 +22,13 @@ namespace Booma.Proxy
 		[SerializeField]
 		private LogLevel LoggingLevel;
 
-		public override void Register(IServiceRegister register)
+		public override void Register(ContainerBuilder register)
 		{
 			//Just register the service. Let users define the flags.
 			//Single instance is preferable though.
-			register.RegisterInstance<UnityLoggingService, ILog>(new UnityLoggingService(LoggingLevel));
+			register.RegisterInstance(new UnityLoggingService(LoggingLevel))
+				.As<ILog>()
+				.SingleInstance();
 		}
 	}
 }

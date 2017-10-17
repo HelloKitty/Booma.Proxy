@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -14,20 +15,25 @@ namespace Booma.Proxy
 	/// Component that can broadcast the transform of the object.
 	/// </summary>
 	[Injectee]
-	public sealed class TransformPositionBroadcaster : MonoBehaviour
+	public sealed class TransformPositionBroadcaster : SerializedMonoBehaviour
 	{
 		[MaxValue(200)]
 		[MinValue(1)]
 		[SerializeField]
 		public int BroadcastsPerSecond;
 
+		/// <summary>
+		/// The injected identity for the broadcasted transform.
+		/// </summary>
 		[Inject]
-		private ICharacterSlotSelectedModel SlotModel { get; }
+		private IEntityIdentity Identity { get; }
 
 		[Inject]
 		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
-		public Vector3 TempScale = new Vector3(0.2f, 0.2f, -0.2f);
+		[SerializeField]
+		[OdinSerialize]
+		private IUnitScalerStrategy UnitScaler { get; set; }
 
 		//Cached last position
 		private Vector3 lastPosition;
@@ -48,17 +54,19 @@ namespace Booma.Proxy
 				{
 					lastPosition = transform.position;
 					isFinishedMoving = false;
-					SendService.SendMessage(new Sub60MovingFastPositionSetCommand((byte)SlotModel.SlotSelected, new Vector2<float>(transform.position.x * TempScale.x, transform.position.z * TempScale.z)).ToPayload());
+					SendService.SendMessage(new Sub60MovingFastPositionSetCommand(Identity.EntityId, 
+						UnitScaler.UnScaleYtoZ(transform.position)).ToPayload());
 				}
 				else if(!isFinishedMoving)
 				{
 					lastPosition = transform.position;
 					isFinishedMoving = true;
-					Vector3 pos = Vector3.Scale(transform.position, TempScale);
-	
+
 					//TODO: Handle rotation
 					//Send a stop if we stopped moving
-					SendService.SendMessage(new Sub60FinishedMovingCommand((byte)SlotModel.SlotSelected, (ushort)(transform.rotation.eulerAngles.y * 180f), new Vector3<float>(pos.x, pos.y, pos.z)).ToPayload());
+					SendService.SendMessage(new Sub60FinishedMovingCommand(Identity.EntityId, 
+						UnitScaler.ScaleYRotation(transform.rotation.eulerAngles.y), 
+						UnitScaler.UnScale(transform.position).ToNetworkVector3()).ToPayload());
 				}
 
 				yield return new WaitForSeconds(1.0f / BroadcastsPerSecond);

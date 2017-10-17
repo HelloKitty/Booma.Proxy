@@ -17,7 +17,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Tooltip("Collection of spawnpoints for entities.")]
 		[SerializeField]
-		private Transform[] SpawnPointTransforms;
+		private List<Transform> SpawnPointTransforms;
 
 		/// <summary>
 		/// Used for the simple round-robin strategy.

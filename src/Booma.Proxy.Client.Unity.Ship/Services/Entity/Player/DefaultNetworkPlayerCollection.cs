@@ -64,7 +64,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void AddPlayer(int id, INetworkPlayer player)
 		{
-			if(!ManagedPlayerMap.ContainsKey(id))
+			if(ManagedPlayerMap.ContainsKey(id))
 				throw new InvalidOperationException($"Tried to add player with Id: {id} but that id is already associated. Details: {player}");
 
 			ManagedPlayerMap.Add(id, player);

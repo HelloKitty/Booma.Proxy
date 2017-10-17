@@ -10,14 +10,14 @@ using UnityEngine.Events;
 namespace Booma.Proxy
 {
 	[Serializable]
-	public sealed class EventDispatchNetworkTransform : INetworkEntityTransform
+	public class OnPositionChangedEvent : UnityEvent<Vector3> { }
+
+	[Serializable]
+	public class OnRotationChangedEvent : UnityEvent<Quaternion> { }
+
+	[Serializable]
+	public sealed class EventDispatchNetworkTransform : MonoBehaviour, INetworkEntityTransform
 	{
-		[Serializable]
-		public class OnPositionChangedEvent : UnityEvent<Vector3> { }
-
-		[Serializable]
-		public class OnRotationChangedEvent : UnityEvent<Quaternion> { }
-
 		[ShowInInspector]
 		[ReadOnly]
 		private Vector3 _position;
@@ -26,12 +26,16 @@ namespace Booma.Proxy
 		[ReadOnly]
 		private Quaternion _rotation;
 
-		[Tooltip("Dispatched event when the position is set.")]
+		[Tooltip("Indicates if the transform should set its initial position and rotation to the GameObject's on Awake.")]
 		[SerializeField]
+		public bool ShouldInitializeOnAwake;
+
+		[SerializeField]
+		[Tooltip("Dispatched event when the position is set.")]
 		private OnPositionChangedEvent OnPositionChanged;
 
-		[Tooltip("Dispatcher event when the rotation is changed.")]
 		[SerializeField]
+		[Tooltip("Dispatcher event when the rotation is changed.")]
 		private OnRotationChangedEvent OnRotationChanged;
 
 		/// <inheritdoc />
@@ -56,16 +60,13 @@ namespace Booma.Proxy
 			}
 		}
 
-		/// <inheritdoc />
-		public EventDispatchNetworkTransform(Vector3 position, Quaternion rotation)
+		void Awake()
 		{
-			Position = position;
-			Rotation = rotation;
-		}
-
-		public EventDispatchNetworkTransform()
-		{
-			
+			if(ShouldInitializeOnAwake)
+			{
+				_position = transform.position;
+				_rotation = transform.rotation;
+			}
 		}
 	}
 }

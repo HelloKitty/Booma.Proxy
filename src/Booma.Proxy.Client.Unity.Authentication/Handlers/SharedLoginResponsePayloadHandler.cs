@@ -24,14 +24,12 @@ namespace Booma.Proxy
 		[Inject]
 		private IClientSessionDetails SessionDetails { get; }
 
-		//TODO: Find out why Odin doesn't like private UnityAction
 		/// <summary>
 		/// Event dispatched when the login failed.
 		/// </summary>
 		[SerializeField]
 		private UnityEvent OnLoginFailed;
 
-		//TODO: Find out why Odin doesn't like private UnityAction
 		/// <summary>
 		/// Event dispatched when the login was successful.
 		/// </summary>
