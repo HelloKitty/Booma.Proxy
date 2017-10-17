@@ -16,9 +16,8 @@ namespace Booma.Proxy
 		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
 
-		[PropertyTooltip("The unit scaling service to use for position.")]
-		[OdinSerialize]
-		private IUnitScalerStrategy ScalerService { get; set; }
+		[Inject]
+		private IUnitScalerStrategy ScalerService { get; }
 		
 		//TODO: How should we handle zone id?
 		[SerializeField]

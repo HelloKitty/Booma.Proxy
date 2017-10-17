@@ -28,6 +28,9 @@ namespace Booma.Proxy
 				.As<ICommandMessageContextFactory<ICommandClientIdentifiable, INetworkPlayerFullCommandMessageContext>>()
 				.As<ICommandMessageContextFactory<ICommandClientIdentifiable, INetworkPlayerCommandMessageContext>>()
 				.SingleInstance();
+
+			register.RegisterType<DefaultPSOScaleUnitScalerStrategy>()
+				.As<IUnitScalerStrategy>();
 		}
 	}
 }

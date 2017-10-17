@@ -16,9 +16,8 @@ namespace Booma.Proxy
 		/// Service that translates the incoming position to the correct unit scale that
 		/// Unity3D expects.
 		/// </summary>
-		[Required]
-		[OdinSerialize]
-		private IUnitScalerStrategy Scaler { get; set; }
+		[Inject]
+		private IUnitScalerStrategy Scaler { get; }
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command, INetworkPlayerCommandMessageContext commandContext)

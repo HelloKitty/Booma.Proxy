@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		{
 			//TODO: Create default contexts
 			if(!PlayerCollection.ContainsId(message.ClientId))
-				return null;
+				return InvalidPlayerCommandMessageContext.Instance;
 
 			//Just create the new context.
 			return new NetworkPlayerCommandMessageContext(PlayerCollection[message.ClientId], PlayerCollection.Local);

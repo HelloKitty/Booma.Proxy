@@ -20,15 +20,16 @@ namespace Booma.Proxy
 		/// Service that translates the incoming position to the correct unit scale that
 		/// Unity3D expects.
 		/// </summary>
-		[Required]
-		[OdinSerialize]
-		private IUnitScalerStrategy Scaler { get; set; }
+		[Inject]
+		private IUnitScalerStrategy Scaler { get; }
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayerCommandMessageContext commandContext)
 		{
+			Vector2 position = Scaler.ScaleYasZ(command.Position);
+
 			//Set the position of the network transform
-			commandContext.RemotePlayer.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3XZ(commandContext.RemotePlayer.Transform.Position.y));
+			commandContext.RemotePlayer.Transform.Position = new Vector3(position.x, commandContext.RemotePlayer.Transform.Position.y, position.y);
 
 			return Task.CompletedTask;
 		}
