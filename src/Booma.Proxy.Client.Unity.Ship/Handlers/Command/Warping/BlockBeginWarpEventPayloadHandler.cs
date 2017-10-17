@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SceneJect.Common;
+using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ namespace Booma.Proxy
 	{
 		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
+
+		[PropertyTooltip("The unit scaling service to use for position.")]
+		[OdinSerialize]
+		private IUnitScalerStrategy ScalerService { get; set; }
 		
 		//TODO: How should we handle zone id?
 		[SerializeField]
@@ -44,7 +49,7 @@ namespace Booma.Proxy
 			//TODO: What should the W coord be? How sould we handle this poition?
 			//We can't do anything with the data right now
 			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand((byte)player.Identity.EntityId,
-				player.Transform.Position.ToNetworkVector3()).ToPayload());
+				ScalerService.UnScale(player.Transform.Position).ToNetworkVector3()).ToPayload());
 
 			//Now we have to send a 1F to start the warp
 			//Tell the server we're warping now
