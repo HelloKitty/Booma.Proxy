@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		public IEnumerable<INetworkPlayer> Players => this;
 
 		/// <inheritdoc />
-		public IEnumerable<INetworkPlayer> ExcludingLocal => Players.Where(p => p.Identifier != SlotModel.SlotSelected);
+		public IEnumerable<INetworkPlayer> ExcludingLocal => Players.Where(p => p.Identity.EntityId != SlotModel.SlotSelected);
 
 		/// <inheritdoc />
 		public INetworkPlayer this[int id] => ManagedPlayerMap[id];

@@ -39,8 +39,7 @@ namespace Booma.Proxy
 		//TODO: Soly said this is rotation so we should handle it 65536f / 360f
 		[WireMember(5)]
 		public int Rotation { get; }
-
-		//Serializer ctor
+		
 		public Sub60FinishedWarpAckCommand(byte clientId, int zoneId, [NotNull] Vector3<float> position)
 			: this()
 		{
@@ -52,6 +51,13 @@ namespace Booma.Proxy
 			Position = position;
 		}
 
+		public Sub60FinishedWarpAckCommand(int clientId, int zoneId, [NotNull] Vector3<float> position)
+			: this((byte)clientId, zoneId, position)
+		{
+
+		}
+
+		//Serializer ctor
 		public Sub60FinishedWarpAckCommand()
 		{
 			//Calc static 32bit size

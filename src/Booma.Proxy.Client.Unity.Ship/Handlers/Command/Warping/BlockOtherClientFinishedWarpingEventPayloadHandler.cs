@@ -34,7 +34,7 @@ namespace Booma.Proxy
 
 			//If have to send this message otherwise other client's won't know we're also in the same zone
 			//It's odd, but it's something we have to do.
-			context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(commandContext.Local.Identifier, ZoneId, scaledPosition).ToPayload());
+			context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(commandContext.Local.Identity.EntityId, ZoneId, scaledPosition).ToPayload());
 
 			//Other clients send photon char information but I don't know what is in it yet or if it's required
 			//context.PayloadSendService.SendMessage(new Sub62PhotonChairCommand().ToPayload());

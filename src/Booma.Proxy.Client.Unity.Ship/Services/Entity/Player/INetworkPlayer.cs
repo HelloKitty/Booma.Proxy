@@ -18,6 +18,6 @@ namespace Booma.Proxy
 		/// The identifier (client id)
 		/// associated with the player.
 		/// </summary>
-		byte Identifier { get; }
+		IEntityIdentity Identity { get; }
 	}
 }
