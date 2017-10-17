@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	[Injectee]
-	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : ClientAssociatedCommand60Handler<Sub60FinishedWarpingBurstingCommand>
+	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : ContextExtendedCommand60Handler<Sub60FinishedWarpingBurstingCommand, ICommandMessageNetworkPlayerFullContext>
 	{
 		/// <summary>
 		/// The scaling service.
@@ -25,19 +25,16 @@ namespace Booma.Proxy
 		public int ZoneId;
 
 		/// <inheritdoc />
-		protected override Task HandleClientMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, INetworkPlayer player)
+		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, ICommandMessageNetworkPlayerFullContext commandContext)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved finished warp from Client: {command.ClientId}");
 
-			//TODO: Should we ever need to validate
-			INetworkPlayer self = PlayerCollection.Local;
-
-			Vector3<float> scaledPosition = ScalingService.Scale(self.Transform.Position).ToNetworkVector3();
+			Vector3<float> scaledPosition = ScalingService.Scale(commandContext.Local.Transform.Position).ToNetworkVector3();
 
 			//If have to send this message otherwise other client's won't know we're also in the same zone
 			//It's odd, but it's something we have to do.
-			context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(self.Identifier, ZoneId, scaledPosition).ToPayload());
+			context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(commandContext.Local.Identifier, ZoneId, scaledPosition).ToPayload());
 
 			//Other clients send photon char information but I don't know what is in it yet or if it's required
 			//context.PayloadSendService.SendMessage(new Sub62PhotonChairCommand().ToPayload());

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	public sealed class BlockMovingFinishedEventhandler : ClientAssociatedCommand60Handler<Sub60FinishedMovingCommand>
+	public sealed class BlockMovingFinishedEventhandler : ContextExtendedCommand60Handler<Sub60FinishedMovingCommand, ICommandMessageNetworkPlayerContext>
 	{
 		/// <summary>
 		/// Service that translates the incoming position to the correct unit scale that
@@ -21,13 +21,13 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy Scaler { get; set; }
 
 		/// <inheritdoc />
-		protected override Task HandleClientMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command, INetworkPlayer player)
+		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command, ICommandMessageNetworkPlayerContext commandContext)
 		{
 			//This one sends a Y position, for some reason.
-			player.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3());
+			commandContext.Player.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3());
 
 			//Also set the rotation; PSO only appears to use Y axis rotation
-			player.Transform.Rotation = Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up);
+			commandContext.Player.Transform.Rotation = Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up);
 
 			return Task.CompletedTask;
 		}
