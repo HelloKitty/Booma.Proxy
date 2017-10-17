@@ -68,5 +68,15 @@ namespace Booma.Proxy
 				_rotation = transform.rotation;
 			}
 		}
+
+		/// <summary>
+		/// Sets the position without broadcasting.
+		/// </summary>
+		/// <param name="postion">The positon to set.</param>
+		public void SetPositionNoBroadcast(Vector3 postion)
+		{
+			//Don't use the property to avoid broadcast
+			_position = postion;
+		}
 	}
 }
