@@ -16,6 +16,13 @@ namespace Booma.Proxy
 		where TOutgoingPayloadType : class
 	{
 		/// <summary>
+		/// Indicates if the handler can handle the provided <see cref="message"/>.
+		/// </summary>
+		/// <param name="message">The message.</param>
+		/// <returns>True if the handler can handle that message.</returns>
+		bool CanHandle(PSOBBNetworkIncomingMessage<TIncomingPayloadType> message);
+
+		/// <summary>
 		/// Tries to handle the provided <see cref="message"/>
 		/// and indicates if the message has been consumed.
 		/// </summary>

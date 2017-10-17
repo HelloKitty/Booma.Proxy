@@ -40,6 +40,13 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
+		public bool CanHandle(PSOBBNetworkIncomingMessage<TIncomingPayloadType> message)
+		{
+			//We can always handle messages
+			return true;
+		}
+
+		/// <inheritdoc />
 		public async Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadType> message)
 		{
 			//TODO: What should we do about exceptions?
@@ -47,11 +54,13 @@ namespace Booma.Proxy
 			foreach(IClientMessageHandler<TIncomingPayloadType, TOutgoingPayloadType> handler in ManagedHandlers)
 			{
 				//If we found a handler that handled it we should stop trying to handle it and return true
-				if(await handler.TryHandleMessage(context, message).ConfigureAwait(false))
-					return true;
+				if(handler.CanHandle(message))
+					return await handler.TryHandleMessage(context, message)
+						.ConfigureAwait(true);
 			}
 
-			DefaultMessageHandler?.HandleMessage(context, message.Payload)?.ConfigureAwait(false);
+			DefaultMessageHandler?.HandleMessage(context, message.Payload)?
+				.ConfigureAwait(true);
 
 			return false;
 		}

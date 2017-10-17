@@ -30,6 +30,13 @@ namespace Booma.Proxy
 			DecoratedPayloadHandler = decoratedPayloadHandler;
 		}
 
+		/// <inheritdoc />
+		public bool CanHandle(PSOBBNetworkIncomingMessage<TIncomingPayloadType> message)
+		{
+			//We can handle a message if it's the payload type
+			return message is TPayloadType;
+		}
+
 		/// <summary>
 		/// Attempts to handle the provided <see cref="message"/> and will succeed if the
 		/// payload is of type <typeparamref name="TPayloadType"/>.

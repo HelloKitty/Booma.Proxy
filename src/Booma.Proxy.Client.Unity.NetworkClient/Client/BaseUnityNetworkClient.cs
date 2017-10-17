@@ -68,7 +68,8 @@ namespace Booma.Proxy
 
 					//We don't do anything with the result. We should hope someone registered
 					//a default handler to deal with this situation
-					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client, RequestService), message);
+					bool result = await Handlers.TryHandleMessage(MessageContextFactory.Create(Client, Client, RequestService), message)
+						.ConfigureAwait(true);
 				}
 			}
 			catch(Exception e)
