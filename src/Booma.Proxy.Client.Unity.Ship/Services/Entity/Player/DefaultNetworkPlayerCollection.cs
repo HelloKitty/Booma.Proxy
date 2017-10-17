@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
+	/// <summary>
+	/// Simple implementation of the <see cref="INetworkPlayerCollection"/>.
+	/// </summary>
 	public sealed class DefaultNetworkPlayerCollection : INetworkPlayerCollection, INetworkPlayerRegistery
 	{
 		/// <inheritdoc />
@@ -56,6 +59,28 @@ namespace Booma.Proxy
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return GetEnumerator();
+		}
+
+		/// <inheritdoc />
+		public void AddPlayer(int id, INetworkPlayer player)
+		{
+			if(!ManagedPlayerMap.ContainsKey(id))
+				throw new InvalidOperationException($"Tried to add player with Id: {id} but that id is already associated. Details: {player}");
+
+			ManagedPlayerMap.Add(id, player);
+		}
+
+		/// <inheritdoc />
+		public INetworkPlayer RemovePlayer(int id)
+		{
+			if(!ManagedPlayerMap.ContainsKey(id))
+				return null;
+
+			INetworkPlayer player = ManagedPlayerMap[id];
+
+			ManagedPlayerMap.Remove(id);
+
+			return player;
 		}
 	}
 }
