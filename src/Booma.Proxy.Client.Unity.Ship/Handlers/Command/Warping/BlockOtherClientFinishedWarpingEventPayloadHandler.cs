@@ -11,7 +11,7 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	[Injectee]
-	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : ContextExtendedCommand60Handler<Sub60FinishedWarpingBurstingCommand, ICommandMessageNetworkPlayerFullContext>
+	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : ContextExtendedCommand60Handler<Sub60FinishedWarpingBurstingCommand, INetworkPlayerFullCommandMessageContext>
 	{
 		/// <summary>
 		/// The scaling service.
@@ -25,7 +25,7 @@ namespace Booma.Proxy
 		public int ZoneId;
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, ICommandMessageNetworkPlayerFullContext commandContext)
+		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, INetworkPlayerFullCommandMessageContext commandContext)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved finished warp from Client: {command.ClientId}");

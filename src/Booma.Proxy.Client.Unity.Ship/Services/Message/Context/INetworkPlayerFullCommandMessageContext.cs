@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// Command mesage context that contains both the reference to the <see cref="INetworkPlayer"/> that the message
 	/// is about as well as a reference to the local network player.
 	/// </summary>
-	public interface ICommandMessageNetworkPlayerFullContext : ICommandMessageNetworkPlayerContext
+	public interface INetworkPlayerFullCommandMessageContext : INetworkPlayerCommandMessageContext
 	{
 		/// <summary>
 		/// The local player reference.
