@@ -28,7 +28,7 @@ namespace Booma.Proxy
 			if(PlayerCollection.ContainsId(command.ClientId))
 				return Task.CompletedTask;
 
-			float rotation = UnitScaler.ScaleYRotation(command.Rotation);
+			float rotation = UnitScaler.ScaleYRotation(command.YAxisRotation);
 			Vector3 position = UnitScaler.Scale(command.Position);
 
 			//TODO: We should check the ZoneId being sent AND if we already know the player. We shouldn't but we should still verify

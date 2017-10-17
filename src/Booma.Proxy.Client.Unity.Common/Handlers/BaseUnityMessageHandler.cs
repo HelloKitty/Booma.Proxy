@@ -112,6 +112,7 @@ namespace Booma.Proxy
 
 			try
 			{
+				Logger.Info($"Recieved: {message.Payload}");
 				return await Handler.Value.TryHandleMessage(context, message);
 			}
 			catch(Exception e)

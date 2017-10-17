@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		/// that is sent over the network.
 		/// </summary>
 		[WireMember(4)]
-		private ushort RawNetworkRotation { get; set; }
+		private short RawNetworkRotation { get; set; }
 
 		/// <summary>
 		/// The rotation about the Y-axis.
@@ -77,7 +77,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void OnBeforeSerialization()
 		{
-			RawNetworkRotation = (ushort)(YAxisRotation * 180f);
+			RawNetworkRotation = (short)(YAxisRotation * 180f);
 		}
 
 		/// <inheritdoc />
