@@ -12,15 +12,8 @@ namespace Booma.Proxy
 	[Injectee]
 	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>
 	{
-		/// <summary>
-		/// The slot/clientid model.
-		/// </summary>
 		[Inject]
-		private ICharacterSlotSelectedModel SlotModel { get; }
-
-		//This is reused from an old project. It should work ok though.
-		[OdinSerialize]
-		private ISpawnPointStrategy SpawnPoint { get; set; }
+		private INetworkPlayerFactory PlayerFactory { get; }
 		
 		//TODO: How should we handle zone id?
 		[SerializeField]
@@ -29,15 +22,19 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		protected override async Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientWarpBeginEventCommand payload)
 		{
+			//TODO: Is this where we should do this?
+			//We need to create the player represenation here
+			INetworkPlayer player = PlayerFactory.CreateLocalPlayer();
+
 			//TODO: Send rotation
 			//TODO: What should the W coord be? How sould we handle this poition?
 			//We can't do anything with the data right now
-			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand(SlotModel.SlotSelected, 
-				SpawnPoint.GetSpawnpoint().position.ToNetworkVector3()).ToPayload());
+			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand((byte)player.Identity.EntityId,
+				player.Transform.Position.ToNetworkVector3()).ToPayload());
 
 			//Now we have to send a 1F to start the warp
 			//Tell the server we're warping now
-			await context.PayloadSendService.SendMessage(new Sub60WarpToNewAreaCommand(SlotModel.SlotSelected, ZoneId).ToPayload());
+			await context.PayloadSendService.SendMessage(new Sub60WarpToNewAreaCommand((byte)player.Identity.EntityId, ZoneId).ToPayload());
 
 			//TODO: Should we send ClientId with this one too?
 			//We can just send a finished right away, we have nothing to load really
