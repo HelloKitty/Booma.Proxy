@@ -133,6 +133,19 @@ namespace Booma.Proxy
 		}
 
 		/// <summary>
+		/// Unsclaes the <see cref="Vector3"/> by the scaling.
+		/// Maps the Z component of the <see cref="Vector3"/> to the Y component of the
+		/// <see cref="Vector2{T}"/>.
+		/// </summary>
+		/// <param name="scaler">The scaling service.</param>
+		/// <param name="vector">The vector to scale.</param>
+		/// <returns>A new scaled vector.</returns>
+		public static Vector2<float> UnScaleYtoZ(this IUnitScalerStrategy scaler, Vector3 vector)
+		{
+			return new Vector2<float>(scaler.UnScaleX(vector.x), scaler.UnScaleZ(vector.z));
+		}
+
+		/// <summary>
 		/// Scales the Y rotation based on the unit scale.
 		/// </summary>
 		/// <param name="scaler">The scaler.</param>
