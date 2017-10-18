@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Contract for commands that contain a client id.
+	/// Base contract for network message context objects.
 	/// </summary>
-	public interface ICommandClientIdentifiable
+	public interface INetworkMessageContext
 	{
 		/// <summary>
-		/// The ID associated with the client.
+		/// Indicates if the model/context is in a valid state.
 		/// </summary>
-		byte ClientId { get; }
+		bool isValid { get; }
 	}
 }

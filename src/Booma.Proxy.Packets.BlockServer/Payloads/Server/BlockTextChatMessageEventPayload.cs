@@ -12,20 +12,28 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.CHAT_TYPE)]
-	public sealed class BlockTextChatMessageEventPayload : PSOBBGamePacketPayloadServer
+	public sealed class BlockTextChatMessageEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private int padding { get; } //Syl has this as: 0x00010000
+		private byte unk { get; } //Syl has this as: 0x00010000
+
+		//Tethealla sends a client id byt Sylv sends some nonsense. Not sure why.
+		/// <summary>
+		/// The id for the client source.
+		/// </summary>
+		[WireMember(2)]
+		public byte Identifier { get; }
 
 		/// <summary>
 		/// The guild card number associated with the chat message.
 		/// </summary>
-		[WireMember(2)]
+		[WireMember(3)]
 		public uint GuildCardNumber { get; }
 
+		//Contains the {username}\t\tE{message}
 		[Encoding(EncodingType.UTF16)]
-		[WireMember(3)]
+		[WireMember(4)]
 		public string ChatMessage { get; }
 
 		private BlockTextChatMessageEventPayload()

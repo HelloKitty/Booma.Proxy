@@ -14,11 +14,11 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SetFinalMovingPosition)]
-	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener, ICommandClientIdentifiable
+	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte Identifier { get; }
 
 		//Unusued in most commands, some commands have this as leaderid though?
 		[WireMember(2)]
@@ -55,7 +55,7 @@ namespace Booma.Proxy
 			if(position == null) throw new ArgumentNullException(nameof(position));
 			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
 
-			ClientId = clientId;
+			Identifier = clientId;
 			YAxisRotation = yAxisRotation;
 			Position = position;
 		}

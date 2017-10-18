@@ -9,9 +9,9 @@ namespace Booma.Proxy
 
 	/// <summary>
 	/// Context factory that can build both
-	/// <see cref="INetworkPlayerCommandMessageContext"/> and <see cref="INetworkPlayerFullCommandMessageContext"/>s.
+	/// <see cref="INetworkPlayerNetworkMessageContext"/> and <see cref="INetworkPlayerFullNetworkMessageContext"/>s.
 	/// </summary>
-	public sealed class NetworkPlayerCommandContextFactory : ICommandMessageContextFactory<ICommandClientIdentifiable, INetworkPlayerFullCommandMessageContext>
+	public sealed class NetworkPlayerCommandContextFactory : INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerFullNetworkMessageContext>
 	{
 		/// <summary>
 		/// The network player collection.
@@ -26,14 +26,14 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public INetworkPlayerFullCommandMessageContext Create(ICommandClientIdentifiable message)
+		public INetworkPlayerFullNetworkMessageContext Create(IMessageContextIdentifiable message)
 		{
 			//TODO: Create default contexts
-			if(!PlayerCollection.ContainsId(message.ClientId))
+			if(!PlayerCollection.ContainsId(message.Identifier))
 				return InvalidPlayerCommandMessageContext.Instance;
 
 			//Just create the new context.
-			return new NetworkPlayerCommandMessageContext(PlayerCollection[message.ClientId], PlayerCollection.Local);
+			return new NetworkPlayerCommandMessageContext(PlayerCollection[message.Identifier], PlayerCollection.Local);
 		}
 	}
 }

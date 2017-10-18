@@ -22,5 +22,19 @@ namespace Booma.Proxy
 
 			return typeof(TSubMessageType).Name;
 		}
+
+		/// <summary>
+		/// Gets the loggable message name that the handler handles.
+		/// </summary>
+		/// <typeparam name="TPayloadType">The payload type.</typeparam>
+		/// <param name="handler">The message handler.</param>
+		/// <returns>The string name of the message type.</returns>
+		public static string MessageName<TPayloadType>(this GameMessageHandler<TPayloadType> handler)
+			where TPayloadType : PSOBBGamePacketPayloadServer
+		{
+			if(handler == null) throw new ArgumentNullException(nameof(handler));
+
+			return typeof(TPayloadType).Name;
+		}
 	}
 }

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Command mesage context that contains both the reference to the <see cref="INetworkPlayer"/> that the message
+	/// Network mesage context that contains both the reference to the <see cref="INetworkPlayer"/> that the message
 	/// is about as well as a reference to the local network player.
 	/// </summary>
-	public interface INetworkPlayerFullCommandMessageContext : INetworkPlayerCommandMessageContext
+	public interface INetworkPlayerFullNetworkMessageContext : INetworkPlayerNetworkMessageContext
 	{
 		/// <summary>
 		/// The local player reference.

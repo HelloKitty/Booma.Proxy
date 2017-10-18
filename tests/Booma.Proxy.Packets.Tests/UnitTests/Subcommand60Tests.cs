@@ -43,7 +43,7 @@ namespace Booma.Proxy
 			//assert
 			Assert.NotNull(desserialized, "Object was null.");
 			Assert.NotNull(desserialized.Position);
-			Assert.AreEqual(5, desserialized.ClientId);
+			Assert.AreEqual(5, desserialized.Identifier);
 			Assert.True(Math.Abs(desserialized.Position.X - 2) < float.Epsilon);
 		}
 	}

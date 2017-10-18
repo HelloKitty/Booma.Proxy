@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite] //we don't want to write this since the type key already handlers opcodes
 		[WireMember(1)]
-		protected short OperationCode { get; }
+		public short OperationCode { get; }
 
 		/// <summary>
 		/// Indicates if the flags is serialized with <see cref="Flags"/>.

@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	public sealed class BlockMovingFinishedEventhandler : ContextExtendedCommand60Handler<Sub60FinishedMovingCommand, INetworkPlayerCommandMessageContext>
+	public sealed class BlockMovingFinishedEventhandler : ContextExtendedCommand60Handler<Sub60FinishedMovingCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>
 		/// Service that translates the incoming position to the correct unit scale that
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy Scaler { get; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command, INetworkPlayerCommandMessageContext commandContext)
+		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedMovingCommand command, INetworkPlayerNetworkMessageContext commandContext)
 		{
 			//This one sends a Y position, for some reason.
 			commandContext.RemotePlayer.Transform.Position = Scaler.Scale(command.Position.ToUnityVector3());

@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// event that is raised by the server when a client is moving fast/running.
 	/// </summary>
 	[Injectee]
-	public sealed class BlockMovingFastPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingFastPositionSetCommand, INetworkPlayerCommandMessageContext>
+	public sealed class BlockMovingFastPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingFastPositionSetCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>
 		/// Service that translates the incoming position to the correct unit scale that
@@ -24,7 +24,7 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy Scaler { get; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayerCommandMessageContext commandContext)
+		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayerNetworkMessageContext commandContext)
 		{
 			Vector2 position = Scaler.ScaleYasZ(command.Position);
 

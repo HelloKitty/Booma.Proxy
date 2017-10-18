@@ -9,7 +9,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Context for messages that come from other <see cref="INetworkPlayer"/>s.
 	/// </summary>
-	public interface INetworkPlayerCommandMessageContext : ICommandMessageContext
+	public interface INetworkPlayerNetworkMessageContext : INetworkMessageContext
 	{
 		/// <summary>
 		/// The <see cref="INetworkPlayer"/> that the message is about

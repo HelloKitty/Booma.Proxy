@@ -24,12 +24,12 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.TeleportToPosition)]
-	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60, ICommandClientIdentifiable
+	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//TODO: Refactor this into an interface or something
 		//This is a short to absorb the unused byte
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte Identifier { get; }
 
 		[WireMember(2)]
 		private byte unused { get; }
@@ -55,7 +55,7 @@ namespace Booma.Proxy
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 
-			ClientId = clientId;
+			Identifier = clientId;
 			Position = position;
 		}
 

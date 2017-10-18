@@ -25,14 +25,14 @@ namespace Booma.Proxy
 		{
 			//Clients do a full broadcast and we already know about this client
 			//so we should just return
-			if(PlayerCollection.ContainsId(command.ClientId))
+			if(PlayerCollection.ContainsId(command.Identifier))
 				return Task.CompletedTask;
 
 			float rotation = UnitScaler.ScaleYRotation(command.YAxisRotation);
 			Vector3 position = UnitScaler.Scale(command.Position);
 
 			//TODO: We should check the ZoneId being sent AND if we already know the player. We shouldn't but we should still verify
-			PlayerFactory.CreatePlayer(command.ClientId, position, Quaternion.AngleAxis(rotation, Vector3.up));
+			PlayerFactory.CreatePlayer(command.Identifier, position, Quaternion.AngleAxis(rotation, Vector3.up));
 
 			return Task.CompletedTask;
 		}

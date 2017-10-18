@@ -25,8 +25,8 @@ namespace Booma.Proxy
 
 			//Register the player context factory for both types
 			register.RegisterType<NetworkPlayerCommandContextFactory>()
-				.As<ICommandMessageContextFactory<ICommandClientIdentifiable, INetworkPlayerFullCommandMessageContext>>()
-				.As<ICommandMessageContextFactory<ICommandClientIdentifiable, INetworkPlayerCommandMessageContext>>()
+				.As<INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerFullNetworkMessageContext>>()
+				.As<INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext>>()
 				.SingleInstance();
 
 			register.RegisterType<DefaultPSOScaleUnitScalerStrategy>()

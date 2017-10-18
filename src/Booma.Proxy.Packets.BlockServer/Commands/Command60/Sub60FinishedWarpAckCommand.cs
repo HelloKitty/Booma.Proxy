@@ -15,11 +15,11 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.AlertFreshlyWarpedClients)]
-	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60, ICommandClientIdentifiable, ISerializationEventListener
+	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60, IMessageContextIdentifiable, ISerializationEventListener
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte Identifier { get; }
 
 		[WireMember(2)]
 		private byte unusued { get; }
@@ -54,7 +54,7 @@ namespace Booma.Proxy
 			if(zoneId < 0) throw new ArgumentOutOfRangeException(nameof(zoneId));
 
 			YAxisRotation = yAxisRotation;
-			ClientId = clientId;
+			Identifier = clientId;
 			ZoneId = zoneId;
 			Position = position;
 		}

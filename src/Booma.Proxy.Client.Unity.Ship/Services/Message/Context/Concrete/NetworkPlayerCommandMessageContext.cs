@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public sealed class NetworkPlayerCommandMessageContext : INetworkPlayerFullCommandMessageContext
+	public sealed class NetworkPlayerCommandMessageContext : INetworkPlayerFullNetworkMessageContext
 	{
 		/// <inheritdoc />
 		public bool isValid { get; } = true;

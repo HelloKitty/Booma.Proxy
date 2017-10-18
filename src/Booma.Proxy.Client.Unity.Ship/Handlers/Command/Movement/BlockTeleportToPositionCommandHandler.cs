@@ -7,17 +7,17 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
-	public sealed class BlockTeleportToPositionCommandHandler : ContextExtendedCommand60Handler<Sub60TeleportToPositionCommand, INetworkPlayerCommandMessageContext>
+	public sealed class BlockTeleportToPositionCommandHandler : ContextExtendedCommand60Handler<Sub60TeleportToPositionCommand, INetworkPlayerNetworkMessageContext>
 	{
 		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60TeleportToPositionCommand command, INetworkPlayerCommandMessageContext commandContext)
+		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60TeleportToPositionCommand command, INetworkPlayerNetworkMessageContext commandContext)
 		{
 			//TODO: Don't do anything with this
 			if(Logger.IsInfoEnabled)
-				Logger.Info($"Recieved {nameof(Sub60TeleportToPositionCommand)} ClientId: {command.ClientId} X: {command.Position.X} Y: {command.Position.Y} Z: {command.Position.Z}");
+				Logger.Info($"Recieved {nameof(Sub60TeleportToPositionCommand)} ClientId: {command.Identifier} X: {command.Position.X} Y: {command.Position.Y} Z: {command.Position.Z}");
 
 			//This is a teleport, we should probably handle it differently than we currently do or will treat it like
 			//a normal diff in position

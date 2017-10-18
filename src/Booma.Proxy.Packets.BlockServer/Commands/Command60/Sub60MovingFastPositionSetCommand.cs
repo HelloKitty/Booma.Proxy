@@ -13,13 +13,13 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.MovingFastPositionChanged)]
-	public sealed class Sub60MovingFastPositionSetCommand : BaseSubCommand60, ICommandClientIdentifiable
+	public sealed class Sub60MovingFastPositionSetCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <summary>
 		/// The client that is moving.
 		/// </summary>
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte Identifier { get; }
 
 		[WireMember(2)]
 		private byte unused { get; }
@@ -38,7 +38,7 @@ namespace Booma.Proxy
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
 
-			ClientId = clientId;
+			Identifier = clientId;
 			Position = position;
 		}
 
