@@ -43,7 +43,7 @@ namespace Booma.Proxy
 				.SingleInstance();
 			
 			//Once we're registered we can destroy
-			Destroy(this);
+			Destroy(this.gameObject);
 		}
 	}
 }

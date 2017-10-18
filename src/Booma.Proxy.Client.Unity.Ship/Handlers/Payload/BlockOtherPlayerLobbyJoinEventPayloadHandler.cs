@@ -18,7 +18,8 @@ namespace Booma.Proxy
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Player Lobby Join: {payload.ClientId} LeaderId: {payload.LeaderId} EventId: {payload.EventId} Lobby: {payload.LobbyNumber}");
 
-			//Create the joined player.
+			//Create the joined player
+			//We don't really have a position for them though, it didn't come in this packet
 			PlayerFactory.CreatePlayer(payload.ClientId);
 
 			return Task.CompletedTask;
