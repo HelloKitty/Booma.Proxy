@@ -95,6 +95,13 @@ namespace Booma.Proxy
 				.ConfigureAwait(false);
 		}
 
+		/// <inheritdoc />
+		public async Task<PSOBBNetworkIncomingMessage<TPayloadReadType>> ReadMessageAsync(CancellationToken token)
+		{
+			return await IncomingMessageQueue.DequeueAsync(token)
+				.ConfigureAwait(false);
+		}
+
 		private CancellationTokenSource CreateNewManagedCancellationTokenSource()
 		{
 			//Cretae and add to the token sources.
