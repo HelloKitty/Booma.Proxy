@@ -79,5 +79,7 @@ namespace Booma.Proxy
 		GAME_COMMAND2_TYPE = 0x0062,
 
 		PING_TYPE = 0x001D,
+
+		CHAT_TYPE = 0x0006
 	}
 }
