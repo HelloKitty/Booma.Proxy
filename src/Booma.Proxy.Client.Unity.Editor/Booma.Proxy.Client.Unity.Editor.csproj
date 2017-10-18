@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SceneJect.Editor" Version="3.0.6" />
+    <PackageReference Include="SceneJect.Editor" Version="3.0.7" />
   </ItemGroup>
 
   <ItemGroup>

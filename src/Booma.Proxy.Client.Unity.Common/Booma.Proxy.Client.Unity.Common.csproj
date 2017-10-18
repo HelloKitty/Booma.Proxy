@@ -7,8 +7,8 @@
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="SceneJect.Common" Version="3.0.6" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.6" />
+    <PackageReference Include="SceneJect.Common" Version="3.0.7" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.7" />
     <PackageReference Include="Unitysync.Async" Version="1.0.6" />
   </ItemGroup>
 
