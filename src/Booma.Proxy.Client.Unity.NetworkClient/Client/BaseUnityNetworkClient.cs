@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Common.Logging;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
@@ -44,8 +46,21 @@ namespace Booma.Proxy
 		[Inject]
 		protected IClientMessageContextFactory MessageContextFactory { get; }
 
+		[Inject]
+		private IGameObjectComponentAttachmentFactory AttachmentFactory { get; }
+
 		//TODO: Move to IoC
 		private IClientRequestSendService<TOutgoingPayloadType> RequestService { get; set; }
+
+		/// <summary>
+		/// Indicates if the managed client has been exported from this container.
+		/// </summary>
+		private bool isClientExported = false;
+
+		/// <summary>
+		/// The token source for canceling the read message await.
+		/// </summary>
+		protected CancellationTokenSource CancelTokenSource { get; } = new CancellationTokenSource();
 
 		/// <summary>
 		/// Starts dispatching the messages and won't yield until
@@ -58,14 +73,16 @@ namespace Booma.Proxy
 			{
 				RequestService = new PayloadInterceptMessageSendService<TOutgoingPayloadType>(Client, Client);
 
-				while(Client.isConnected)
+				if(!Client.isConnected && Logger.IsWarnEnabled)
+					Logger.Warn($"The client {name} was not connected before dispatching started.");
+
+				while(Client.isConnected && !isClientExported) //if we exported we should reading messages
 				{
 					if(Logger.IsDebugEnabled)
 						Logger.Debug("Reading message.");
 
-					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync()
+					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync(CancelTokenSource.Token)
 						.ConfigureAwait(true);
-
 
 					//Supress and continue reading
 					try
@@ -92,17 +109,42 @@ namespace Booma.Proxy
 			}
 
 			if(Logger.IsDebugEnabled)
-				Logger.Debug("Dispatching task has finished.");
+				Logger.Debug("Network client stopped reading.");
+		}
+
+		/// <summary>
+		/// Exports a <see cref="NonBehaviourDependency"/> for the network client.
+		/// Enabling it for scene persistence.
+		/// </summary>
+		public void ExportmanagedClient()
+		{
+			GameObject exportClientObject = new GameObject(@"[ExportedNetClient]");
+
+			AttachmentFactory
+				.AddTo<ExportedClientDependencyRegisterModule>(exportClientObject);
+
+			//We don't want this client to be destroyed
+			DontDestroyOnLoad(exportClientObject);
+			isClientExported = true;
 		}
 
 		protected virtual void OnApplicationQuit()
 		{
-			Client?.Disconnect();
+			if(!CancelTokenSource.IsCancellationRequested)
+				CancelTokenSource.Cancel();
+
+			if(!isClientExported)
+				Client?.Disconnect();
+				
 		}
 
 		protected virtual void OnDestroy()
 		{
-			Client?.Disconnect();
+			if(!CancelTokenSource.IsCancellationRequested)
+				CancelTokenSource.Cancel();
+
+			if(!isClientExported)
+				Client?.Disconnect();
 		}
 	}
 }

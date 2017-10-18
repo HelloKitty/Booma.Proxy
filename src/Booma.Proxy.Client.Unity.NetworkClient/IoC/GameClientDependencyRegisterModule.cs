@@ -65,15 +65,15 @@ namespace Booma.Proxy
 				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>()
 				.AsManaged(new UnityLoggingService(LoggingLevel));
 
-			register.RegisterType<DefaultMessageContextFactory>()
-				.As<IClientMessageContextFactory>()
-				.SingleInstance();
-
 			register.RegisterInstance(client)
 				.As<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>()
 				.As<IClientPayloadSendService<PSOBBGamePacketPayloadClient>>()
 				.As<IPayloadInterceptable>()
 				.As<IConnectionService>();
+
+			register.RegisterType<DefaultMessageContextFactory>()
+				.As<IClientMessageContextFactory>()
+				.SingleInstance();
 
 			register.RegisterType<PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>>()
 				.As<IClientRequestSendService<PSOBBGamePacketPayloadClient>>()

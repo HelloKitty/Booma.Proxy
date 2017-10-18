@@ -30,7 +30,13 @@ namespace Booma.Proxy
 
 		private void Start()
 		{
-			if(ConnectOnStart)
+			//If we're already connected then it was probably an exported client
+			//and we should start reading messages now
+			if(Client.isConnected)
+			{
+				CreateDispatchTask();
+			}
+			else if(ConnectOnStart)
 				StartConnection();
 		}
 
@@ -59,8 +65,13 @@ namespace Booma.Proxy
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Connected client. isConnected: {Client.isConnected}");
 
+			CreateDispatchTask();
+		}
+
+		private void CreateDispatchTask()
+		{
 			//Don't await because we want start to end.
-			Task.Factory.StartNew(StartDispatchingAsync, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.FromCurrentSynchronizationContext())
+			Task.Factory.StartNew(StartDispatchingAsync, CancelTokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.FromCurrentSynchronizationContext())
 				.ConfigureAwait(true);
 		}
 	}
