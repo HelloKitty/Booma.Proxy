@@ -16,7 +16,7 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private byte unk { get; } //Syl has this as: 0x00010000
+		private short unk { get; } //Syl has this as: 0x00010000
 
 		//Tethealla sends a client id byt Sylv sends some nonsense. Not sure why.
 		/// <summary>
@@ -25,15 +25,19 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public byte Identifier { get; }
 
+		//TODO: What is this?
+		[WireMember(3)]
+		private byte unk2 { get; }
+
 		/// <summary>
 		/// The guild card number associated with the chat message.
 		/// </summary>
-		[WireMember(3)]
+		[WireMember(4)]
 		public uint GuildCardNumber { get; }
 
 		//Contains the {username}\t\tE{message}
 		[Encoding(EncodingType.UTF16)]
-		[WireMember(4)]
+		[WireMember(5)]
 		public string ChatMessage { get; }
 
 		private BlockTextChatMessageEventPayload()
