@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Booma.Proxy
 {
-	public class IBeatsEventComparer : IComparer<IBeatEvent>
+	public sealed class IBeatsEventComparer : IComparer<IBeatEvent>
 	{
 		/// <summary>
 		/// Compares the scheduled times.

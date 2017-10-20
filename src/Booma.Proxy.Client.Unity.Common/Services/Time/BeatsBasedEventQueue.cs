@@ -59,9 +59,9 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public void RegisterEvent(double registerTime, double scheduledDispatchBeatTime, Action eventToDispatch)
+		public void RegisterEvent(double scheduledDispatchBeatTime, Action eventToDispatch)
 		{
-			IBeatEvent beatsEvent = new ScheduledBeatsEvent(registerTime, scheduledDispatchBeatTime, eventToDispatch);
+			IBeatEvent beatsEvent = new ScheduledBeatsEvent(scheduledDispatchBeatTime, eventToDispatch);
 
 			//Just register the beats event
 			lock(syncObj)
