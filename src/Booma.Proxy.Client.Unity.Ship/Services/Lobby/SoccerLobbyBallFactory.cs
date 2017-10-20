@@ -60,7 +60,7 @@ namespace Booma.Proxy
 				throw new InvalidOperationException($"Cannot spawn a ball from the {nameof(SoccerLobbyBallFactory)} from a null transform. Initialize the {nameof(ISpawnPointStrategy)} field.");
 
 			//Just spawn the ball for now
-			GameObject.Instantiate(SoccerrBallPrefab, trans.position, trans.rotation);
+			CurrentTrackedBall = GameObject.Instantiate(SoccerrBallPrefab, trans.position, trans.rotation);
 		}
 
 		private void DespawnBall()
@@ -69,6 +69,7 @@ namespace Booma.Proxy
 				return;
 
 			Destroy(CurrentTrackedBall);
+			CurrentTrackedBall = null;
 		}
 	}
 }
