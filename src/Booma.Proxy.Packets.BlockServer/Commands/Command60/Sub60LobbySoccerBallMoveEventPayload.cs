@@ -56,7 +56,7 @@ namespace Booma.Proxy
 		private byte[] UnknownBytes { get; } = new byte[4] {0, 0x59, 0x66, 0};
 
 		/// <inheritdoc />
-		public Sub60LobbySoccerBallMoveEventPayload(byte clientId, short timeStamp, short rotation, Vector2<float> kickStartPosition, byte[] unknownBytes2)
+		public Sub60LobbySoccerBallMoveEventPayload(byte clientId, short timeStamp, float rotation, Vector2<float> kickStartPosition)
 			: this()
 		{
 			YAxisRotation = rotation;
