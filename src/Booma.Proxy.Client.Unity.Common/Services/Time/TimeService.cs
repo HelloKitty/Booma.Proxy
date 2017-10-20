@@ -42,6 +42,6 @@ namespace Booma.Proxy
 		/// The current time in Beats.
 		/// (The start time + time since)
 		/// </summary>
-		public static double CurrentBeatsTime => StartBeatsTime + ((UnityEngine.Time.realtimeSinceStartup - unitySecondsStartTime) / 84.6f);
+		public static double CurrentBeatsTime => StartBeatsTime + ((UnityEngine.Time.realtimeSinceStartup - unitySecondsStartTime) / 86.4f);
 	}
 }
