@@ -29,6 +29,9 @@ namespace Booma.Proxy
 		public IEntityIdentity Identity { get; }
 
 		/// <inheritdoc />
+		public virtual bool isLocalPlayer => false;
+
+		/// <inheritdoc />
 		public void Despawn()
 		{
 			//TODO: We should probably broadcast and do some other stuff. Right now we should just delete

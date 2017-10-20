@@ -17,6 +17,9 @@ namespace Booma.Proxy
 		[SerializeField]
 		private Transform CameraPosition;
 
+		/// <inheritdoc />
+		public override bool isLocalPlayer => true;
+
 		void Start()
 		{
 			//Make camera follow us and set it's position to the point

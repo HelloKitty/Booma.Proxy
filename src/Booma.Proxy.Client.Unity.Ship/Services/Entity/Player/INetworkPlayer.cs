@@ -24,5 +24,10 @@ namespace Booma.Proxy
 		/// Despawn the player.
 		/// </summary>
 		void Despawn();
+
+		/// <summary>
+		/// Indicates if the player is the local player.
+		/// </summary>
+		bool isLocalPlayer { get; }
 	}
 }
