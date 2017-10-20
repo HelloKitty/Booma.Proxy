@@ -41,7 +41,7 @@ namespace Booma.Proxy
 					IBeatEvent beatsEvent = EventQueue.FindMin();
 
 					//If the scheduled time exceeds the beats time then one is ready.
-					return beatsEvent.ScheduledBeatTime > CurrentBeatsTimeFunction();
+					return beatsEvent.ScheduledBeatTime <= CurrentBeatsTimeFunction();
 				}
 			}
 		}
@@ -55,7 +55,7 @@ namespace Booma.Proxy
 			if(currentBeatsTimeFunction == null) throw new ArgumentNullException(nameof(currentBeatsTimeFunction));
 
 			CurrentBeatsTimeFunction = currentBeatsTimeFunction;
-			EventQueue = new C5.IntervalHeap<IBeatEvent>(10, new IBeatsEventComparer(), C5.MemoryType.Strict);
+			EventQueue = new C5.IntervalHeap<IBeatEvent>(10, new IBeatsEventComparer());
 		}
 
 		/// <inheritdoc />
