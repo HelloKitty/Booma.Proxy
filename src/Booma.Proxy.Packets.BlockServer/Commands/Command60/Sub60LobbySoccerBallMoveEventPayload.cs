@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.LobbyBallMove)]
-	public sealed class Sub60LobbySoccerBallMoveEventPayload : BaseSubCommand60
+	public sealed class Sub60LobbySoccerBallMoveEventPayload : BaseSubCommand60, ISerializationEventListener
 	{
 		//TODO: Is this right?
 		[WireMember(1)]
@@ -24,10 +24,24 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public byte LeaderId { get; }
 
-		//TODO Is this offset from the start position? Or rotation?
-		[KnownSize(8)]
+		/// <summary>
+		/// The number of frames (30fps) since the ball spawned.
+		/// </summary>
 		[WireMember(3)]
-		public byte[] UnknownBytes { get; } = new byte[0];
+		public short TimeStamp { get; }
+
+		/// <summary>
+		/// Y-axis rotation that determines the direction
+		/// the ball should move in.
+		/// </summary>
+		[WireMember(5)]
+		private short RawRotation { get; set; }
+
+		/// <summary>
+		/// Y-axis rotation that determines the direction
+		/// the ball should move in.
+		/// </summary>
+		public float YAxisRotation { get; private set; }
 
 		/// <summary>
 		/// The starting position of the kick.
@@ -36,13 +50,17 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public Vector2<float> KickStartPosition { get; }
 
-		[ReadToEnd]
+		//TODO: What is this?
+		[KnownSize(4)]
 		[WireMember(5)]
-		public byte[] UnknownBytes2 { get; } = new byte[0];
+		private byte[] UnknownBytes { get; } = new byte[4] {0, 0x59, 0x66, 0};
 
 		/// <inheritdoc />
-		public Sub60LobbySoccerBallMoveEventPayload(byte clientId, Vector2<float> kickStartPosition)
+		public Sub60LobbySoccerBallMoveEventPayload(byte clientId, short timeStamp, short rotation, Vector2<float> kickStartPosition, byte[] unknownBytes2)
+			: this()
 		{
+			YAxisRotation = rotation;
+			TimeStamp = timeStamp;
 			ClientId = clientId;
 			KickStartPosition = kickStartPosition;
 		}
@@ -50,7 +68,18 @@ namespace Booma.Proxy
 		//Serializer ctor
 		private Sub60LobbySoccerBallMoveEventPayload()
 		{
-			
+			CommandSize = 24 / 4;
+		}
+
+		public void OnBeforeSerialization()
+		{
+			RawRotation = (short)(YAxisRotation * 180f);
+		}
+
+		/// <inheritdoc />
+		public void OnAfterDeserialization()
+		{
+			YAxisRotation = RawRotation / 180f;
 		}
 	}
 }
