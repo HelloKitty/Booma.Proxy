@@ -21,7 +21,7 @@ namespace Booma.Proxy
 			if(action == null) throw new ArgumentNullException(nameof(action));
 
 			//Registers the event to happen on the next beat.
-			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + (1d - TimeService.CurrentBeatsTime % 1d), action);
+			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + (1d - (TimeService.CurrentBeatsTime % 1d)), action);
 		}
 
 		/// <summary>
@@ -35,7 +35,7 @@ namespace Booma.Proxy
 
 			//This should basically fire instantly
 			//Registers the event to happen on the next beat.
-			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + (1d - TimeService.CurrentBeatsTime % 0.01d), action);
+			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + ((1d - TimeService.CurrentBeatsTime % 0.01d)), action);
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace Booma.Proxy
 			if(repeatBeatInterval <= 0) throw new ArgumentOutOfRangeException(nameof(repeatBeatInterval), "Cannot request a negative or 0 interval. 0 intervals would cause endless loops during services and negative internvals are nonsense.");
 
 			//Register an event that reschedules itself before being fired
-			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + repeatBeatInterval, () => ReschedulingEvent(action, beatQueue, repeatBeatInterval));
+			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + repeatBeatInterval, ReschedulingEvent(action, beatQueue, repeatBeatInterval));
 		}
 
 		/// <summary>
