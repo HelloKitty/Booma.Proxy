@@ -17,6 +17,7 @@ namespace Booma.Proxy
 	/// </summary>
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
 	/// <typeparam name="TOutgoingPayloadType"></typeparam>
+	[Injectee]
 	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : SerializedMonoBehaviour
 		where TOutgoingPayloadType : class 
 		where TIncomingPayloadType : class
@@ -145,6 +146,13 @@ namespace Booma.Proxy
 
 			if(!isClientExported)
 				Client?.Disconnect();
+		}
+
+		protected void CreateDispatchTask()
+		{
+			//Don't await because we want start to end.
+			Task.Factory.StartNew(StartDispatchingAsync, CancelTokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.FromCurrentSynchronizationContext())
+				.ConfigureAwait(true);
 		}
 	}
 }
