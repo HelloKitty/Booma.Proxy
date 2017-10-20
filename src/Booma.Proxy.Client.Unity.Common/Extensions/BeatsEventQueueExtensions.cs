@@ -21,7 +21,8 @@ namespace Booma.Proxy
 			if(action == null) throw new ArgumentNullException(nameof(action));
 
 			//Registers the event to happen on the next beat.
-			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + (1d - (TimeService.CurrentBeatsTime % 1d)), action);
+			double beatsTimeWhole = (long)TimeService.CurrentBeatsTime;
+			beatQueue.RegisterEvent(beatsTimeWhole + 1d, action);
 		}
 
 		/// <summary>
