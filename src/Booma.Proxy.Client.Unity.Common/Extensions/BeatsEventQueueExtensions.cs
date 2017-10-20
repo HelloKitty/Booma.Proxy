@@ -75,6 +75,8 @@ namespace Booma.Proxy
 		/// <param name="repeatBeatInterval">The beat interval to repeat the event for.</param>
 		public static void RegisterRepeating(this IBeatsEventQueueRegisterable beatQueue, Action action, double repeatBeatInterval)
 		{
+			if(repeatBeatInterval <= 0) throw new ArgumentOutOfRangeException(nameof(repeatBeatInterval), "Cannot request a negative or 0 interval. 0 intervals would cause endless loops during services and negative internvals are nonsense.");
+
 			//Register an event that reschedules itself before being fired
 			beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + repeatBeatInterval, () => ReschedulingEvent(action, beatQueue, repeatBeatInterval));
 		}
