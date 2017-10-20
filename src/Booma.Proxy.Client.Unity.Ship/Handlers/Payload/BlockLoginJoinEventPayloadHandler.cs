@@ -22,11 +22,9 @@ namespace Booma.Proxy
 		[SerializeField]
 		private UnityEvent OnLobbyJoinEvent;
 
-		[PropertyTooltip("Should be a mapping between the lobby number and their scene files.")]
-		[OdinSerialize]
-		private Dictionary<int, string> LobbyNumberToSceneNameMap { get; set; }
+		private IDictionary<int, string> LobbyNumberToSceneNameMap { get; } = new LobbyMapToSceneMappingCollection();
 
-		protected virtual void Start()
+		protected override void Start()
 		{
 			base.Start();
 

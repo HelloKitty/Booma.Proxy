@@ -68,6 +68,9 @@ namespace Booma.Proxy
 		{
 			Transform spawnpoint = SpawnPointStrategy.GetSpawnpoint();
 
+			if(spawnpoint == null)
+				throw new InvalidOperationException($"The {this.GetType().Name} tried to load a spawnpoint from {nameof(SpawnPointStrategy)} but the point was null.");
+
 			return CreatePlayer(id, spawnpoint.position, spawnpoint.rotation);
 		}
 
@@ -75,6 +78,9 @@ namespace Booma.Proxy
 		public INetworkPlayer CreateLocalPlayer()
 		{
 			Transform spawnpoint = SpawnPointStrategy.GetSpawnpoint();
+
+			if(spawnpoint == null)
+				throw new InvalidOperationException($"The {this.GetType().Name} tried to load a spawnpoint from {nameof(SpawnPointStrategy)} but the point was null.");
 
 			IGameObjectContextualBuilder builder = GameObjectFactory.CreateBuilder();
 

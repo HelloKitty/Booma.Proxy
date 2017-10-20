@@ -19,7 +19,9 @@ namespace Booma.Proxy
 
 		void Start()
 		{
+			//Make camera follow us and set it's position to the point
 			Camera.main.transform.parent = CameraPosition;
+			Camera.main.transform.position = CameraPosition.position;
 		}
 	}
 }
