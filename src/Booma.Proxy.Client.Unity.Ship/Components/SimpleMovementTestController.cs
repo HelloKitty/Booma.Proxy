@@ -16,9 +16,17 @@ namespace Booma.Proxy
 
 		public void Update()
 		{
-			transform.position = new Vector3(Input.GetAxis("Horizontal") * Speed * Time.deltaTime + transform.position.x, transform.position.y, Input.GetAxis("Vertical") * Speed * Time.deltaTime + transform.position.z);
+			float hor = Input.GetAxis("Vertical");
+			float ver = Input.GetAxis("Horizontal");
+			transform.position = new Vector3(hor * Speed * Time.deltaTime + transform.position.x, transform.position.y, ver * Speed * Time.deltaTime + transform.position.z);
 
-			OnPositionChanged?.Invoke(transform.position);
+			if(Input.GetKeyDown(KeyCode.E))
+				transform.rotation = Quaternion.AngleAxis(transform.eulerAngles.y + Speed * Time.deltaTime, Vector3.up);
+			else if(Input.GetKeyDown(KeyCode.Q))
+				transform.rotation = Quaternion.AngleAxis(transform.eulerAngles.y + -Speed * Time.deltaTime, Vector3.up);
+
+			if(Math.Abs(hor) > float.Epsilon || Math.Abs(ver) > float.Epsilon || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
+				OnPositionChanged?.Invoke(transform.position);
 		}
 	}
 }
