@@ -19,6 +19,20 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte ClientId { get; }
 
+		[WireMember(2)]
+		public byte LeaderId { get; }
+
+		[WireMember(3)]
+		private byte One { get; } //one for some reason?
+
+		/// <summary>
+		/// The number of the lobby being joined.
+		/// </summary>
+		[WireMember(4)]
+		public byte LobbyNumber { get; }
+
+		//TODO: There is more to the packet here: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/packets.h#L517
+
 		private BlockLobbyJoinEventPayload()
 		{
 			
