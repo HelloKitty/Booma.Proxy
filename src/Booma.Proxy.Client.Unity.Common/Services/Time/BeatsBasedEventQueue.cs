@@ -41,7 +41,7 @@ namespace Booma.Proxy
 					IBeatEvent beatsEvent = EventQueue.FindMin();
 
 					//If the scheduled time exceeds the beats time then one is ready.
-					return beatsEvent.ScheduledBeatTime <= CurrentBeatsTimeFunction();
+					return CurrentBeatsTimeFunction() >= beatsEvent.ScheduledBeatTime;
 				}
 			}
 		}
@@ -61,6 +61,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void RegisterEvent(double scheduledDispatchBeatTime, Action eventToDispatch)
 		{
+			if(scheduledDispatchBeatTime < CurrentBeatsTimeFunction())
+				throw new InvalidOperationException($"Cannot register event with scheduled Time: {scheduledDispatchBeatTime} because that time has already passed.");
+
 			IBeatEvent beatsEvent = new ScheduledBeatsEvent(scheduledDispatchBeatTime, eventToDispatch);
 
 			//Just register the beats event

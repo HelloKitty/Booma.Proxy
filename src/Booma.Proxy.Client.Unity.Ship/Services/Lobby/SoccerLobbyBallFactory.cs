@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -18,6 +19,9 @@ namespace Booma.Proxy
 	{
 		[Inject]
 		private IBeatsEventQueueRegisterable BeatEventQueue { get; }
+
+		[Inject]
+		private ILog Logger { get; }
 
 		[Tooltip("The soccer ball prefab.")]
 		[SerializeField]
@@ -45,7 +49,7 @@ namespace Booma.Proxy
 				SpawnBall();
 
 				//Every 1 beat we should spawn the ball
-				BeatEventQueue.RegisterRepeating(SpawnBall, Beat.Beats(1));
+				BeatEventQueue.RegisterRepeating(SpawnBall, Beat.Beats(1) + Beat.CentiBeats(1));
 
 				//Add a despawn event right before we respawn the ball
 				BeatEventQueue.RegisterRepeating(DespawnBall, Beat.CentiBeats(90));
@@ -54,6 +58,9 @@ namespace Booma.Proxy
 
 		private void SpawnBall()
 		{
+			if(Logger.IsInfoEnabled)
+				Logger.Info("Spawning soccer ball.");
+
 			Transform trans = SpawnStrategy.GetSpawnpoint();
 
 			if(trans == null)
@@ -65,6 +72,9 @@ namespace Booma.Proxy
 
 		private void DespawnBall()
 		{
+			if(Logger.IsInfoEnabled)
+				Logger.Info("Despawning soccer ball.");
+
 			if(CurrentTrackedBall == null)
 				return;
 
