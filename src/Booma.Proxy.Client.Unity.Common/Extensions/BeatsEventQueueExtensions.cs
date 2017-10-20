@@ -92,7 +92,7 @@ namespace Booma.Proxy
 		{
 			return () =>
 			{
-				beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + interval, action);
+				beatQueue.RegisterEvent(TimeService.CurrentBeatsTime + interval, ReschedulingEvent(action, beatQueue, interval));
 				action();
 			};
 		}
