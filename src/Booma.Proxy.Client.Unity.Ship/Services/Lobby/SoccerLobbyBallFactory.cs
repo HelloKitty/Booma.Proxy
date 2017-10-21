@@ -8,6 +8,7 @@ using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
@@ -17,11 +18,17 @@ namespace Booma.Proxy
 	[Injectee]
 	public sealed class SoccerLobbyBallFactory : SerializedMonoBehaviour
 	{
+		[Serializable]
+		public class OnNewBallSpawnedEvent : UnityEvent<GameObject> { }
+
 		[Inject]
 		private IBeatsEventQueueRegisterable BeatEventQueue { get; }
 
 		[Inject]
 		private ILog Logger { get; }
+
+		[Inject]
+		private IGameObjectFactory GameObjectFactory { get; }
 
 		[Tooltip("The soccer ball prefab.")]
 		[SerializeField]
@@ -35,6 +42,9 @@ namespace Booma.Proxy
 		[OdinSerialize]
 		private ISpawnPointStrategy SpawnStrategy { get; set; }
 
+		[SerializeField]
+		private OnNewBallSpawnedEvent OnBallSpawned;
+
 		private void Start()
 		{
 			//In the soccer lobby the client expects that
@@ -43,19 +53,10 @@ namespace Booma.Proxy
 			//15/10 centibeats before a new one spawns
 
 			//On the next beat we want to register a repeating ball spawning
-			BeatEventQueue.RegisterOnNextBeat(() =>
-			{
-				//Spawn the ball
-				SpawnBall();
-
-				//Every 1 beat we should spawn the ball
-				BeatEventQueue.RegisterRepeating(SpawnBall, Beat.Beats(1) + Beat.CentiBeats(1));
-
-				//Add a despawn event right before we respawn the ball
-				BeatEventQueue.RegisterRepeating(DespawnBall, Beat.CentiBeats(90));
-			});
+			BeatEventQueue.RegisterOnNextBeat(SpawnBall);
 		}
 
+		[Button("Force Spawn")]
 		private void SpawnBall()
 		{
 			if(Logger.IsInfoEnabled)
@@ -67,7 +68,15 @@ namespace Booma.Proxy
 				throw new InvalidOperationException($"Cannot spawn a ball from the {nameof(SoccerLobbyBallFactory)} from a null transform. Initialize the {nameof(ISpawnPointStrategy)} field.");
 
 			//Just spawn the ball for now
-			CurrentTrackedBall = GameObject.Instantiate(SoccerrBallPrefab, trans.position, trans.rotation);
+			CurrentTrackedBall = GameObjectFactory.Create(SoccerrBallPrefab, trans.position, trans.rotation);
+
+			OnBallSpawned?.Invoke(CurrentTrackedBall);
+
+			//TODO: Handle this cleaner once we have more accurate beat time scheduling
+			double beatsTime = TimeService.CurrentBeatsTime;
+			//Every 1 beat we should spawn the ball
+			BeatEventQueue.RegisterOnNextBeat(SpawnBall);
+			BeatEventQueue.RegisterEvent(((long)beatsTime) + Beat.CentiBeats(90), DespawnBall);
 		}
 
 		private void DespawnBall()
