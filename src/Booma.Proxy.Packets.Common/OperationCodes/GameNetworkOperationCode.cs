@@ -76,6 +76,8 @@ namespace Booma.Proxy
 		//Sent to the client to tell it to join a lobby
 		LOBBY_JOIN_TYPE = 0x0067,
 
+		GAME_JOIN_TYPE = 0x0064,
+
 		GAME_COMMAND0_TYPE = 0x0060,
 
 		GAME_COMMAND2_TYPE = 0x0062,
