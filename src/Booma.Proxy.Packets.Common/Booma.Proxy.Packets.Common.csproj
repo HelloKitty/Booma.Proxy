@@ -56,6 +56,8 @@
     <Compile Include="Message\IUnknownPayloadType.cs" />
     <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
+    <Compile Include="Models\DifficultyType.cs" />
+    <Compile Include="Models\EpisodeType.cs" />
     <Compile Include="Models\IChunkRequest.cs" />
     <Compile Include="Models\IChunkResponse.cs" />
     <Compile Include="Models\IMenuItemIdentifiable.cs" />
