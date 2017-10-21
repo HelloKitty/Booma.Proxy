@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		/// Listing information.
 		/// </summary>
 		[WireMember(1)]
-		public MenuListing Listing { get; }
+		public MenuItemIdentifier Listing { get; }
 
 		/// <summary>
 		/// The difficulty mode of the game.
