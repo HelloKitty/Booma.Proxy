@@ -16,14 +16,15 @@ namespace Booma.Proxy
 
 		public void Update()
 		{
-			float hor = Input.GetAxis("Vertical");
-			float ver = Input.GetAxis("Horizontal");
-			transform.position = new Vector3(hor * Speed * Time.deltaTime + transform.position.x, transform.position.y, ver * Speed * Time.deltaTime + transform.position.z);
+			float ver = Input.GetAxis("Vertical");
+			float hor = Input.GetAxis("Horizontal");
 
-			if(Input.GetKeyDown(KeyCode.E))
-				transform.rotation = Quaternion.AngleAxis(transform.eulerAngles.y + Speed * Time.deltaTime, Vector3.up);
-			else if(Input.GetKeyDown(KeyCode.Q))
-				transform.rotation = Quaternion.AngleAxis(transform.eulerAngles.y + -Speed * Time.deltaTime, Vector3.up);
+			transform.position += transform.forward * ver * Speed * Time.deltaTime + transform.right * hor * Speed * Time.deltaTime;
+
+			if(Input.GetKey(KeyCode.E))
+				transform.rotation = Quaternion.AngleAxis(transform.eulerAngles.y + Speed * Time.deltaTime * 10.0f, Vector3.up);
+			else if(Input.GetKey(KeyCode.Q))
+				transform.rotation = Quaternion.AngleAxis(transform.eulerAngles.y + -Speed * Time.deltaTime * 10.0f, Vector3.up);
 
 			if(Math.Abs(hor) > float.Epsilon || Math.Abs(ver) > float.Epsilon || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
 				OnPositionChanged?.Invoke(transform.position);
