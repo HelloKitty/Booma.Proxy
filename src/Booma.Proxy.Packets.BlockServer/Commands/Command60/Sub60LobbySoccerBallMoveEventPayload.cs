@@ -28,14 +28,17 @@ namespace Booma.Proxy
 		/// The number of frames (30fps) since the ball spawned.
 		/// </summary>
 		[WireMember(3)]
-		public short TimeStamp { get; }
+		public int TimeStamp { get; }
 
 		/// <summary>
 		/// Y-axis rotation that determines the direction
 		/// the ball should move in.
 		/// </summary>
-		[WireMember(5)]
+		[WireMember(4)]
 		private short RawRotation { get; set; }
+
+		[WireMember(5)]
+		private short unk { get; }
 
 		/// <summary>
 		/// Y-axis rotation that determines the direction
@@ -47,12 +50,12 @@ namespace Booma.Proxy
 		/// The starting position of the kick.
 		/// (Where the ball was on the remote player's screen when he kicked it)
 		/// </summary>
-		[WireMember(4)]
+		[WireMember(6)]
 		public Vector2<float> KickStartPosition { get; }
 
 		//TODO: What is this?
 		[KnownSize(4)]
-		[WireMember(5)]
+		[WireMember(7)]
 		private byte[] UnknownBytes { get; } = new byte[4] {0, 0x59, 0x66, 0};
 
 		/// <inheritdoc />
