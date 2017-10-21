@@ -63,5 +63,11 @@ namespace Booma.Proxy
 		{
 			
 		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"Mode: {Difficulty} Episode: {Episode} Battle: {isBattle} Challenge: {isChallengeMode} Single: {isSinglePlayer} SectionId: {Section}";
+		}
 	}
 }

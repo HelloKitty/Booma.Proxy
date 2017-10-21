@@ -40,6 +40,11 @@ namespace Booma.Proxy
 		internal PlayerInformationHeader[] _Players { get; }
 
 		/// <summary>
+		/// The players currently in the game/room.
+		/// </summary>
+		public IEnumerable<PlayerInformationHeader> Players => _Players;
+
+		/// <summary>
 		/// The identifier for the client.
 		/// (ClientId)
 		/// </summary>
@@ -67,15 +72,4 @@ namespace Booma.Proxy
 			
 		}
 	}
-
-	/*uint8_t difficulty;
-uint8_t battle;
-uint8_t event;
-uint8_t section;
-uint8_t challenge;
-uint32_t rand_seed;
-uint8_t episode;
-uint8_t one2;
-uint8_t single_player;
-uint8_t unused;*/
 }

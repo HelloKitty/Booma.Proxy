@@ -41,5 +41,11 @@ namespace Booma.Proxy
 		{
 			
 		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"Id: {ClientId} Name: {CharacterName} GCN: {GuildCardNumber} Tag: {Tag}";
+		}
 	}
 }
