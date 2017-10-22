@@ -12,6 +12,11 @@ namespace Booma.Proxy
 	/// </summary>
 	public enum SubCommand62OperationCode : byte //it's sent as byte from server
 	{
-		PhotonChairCommand = 0xAE
+		PhotonChairCommand = 0xAE,
+
+		/// <summary>
+		/// Based like the <see cref="SubCommand60OperationCode"/>'s BurstType5.
+		/// </summary>
+		BurstType5 = 0x6F
 	}
 }
