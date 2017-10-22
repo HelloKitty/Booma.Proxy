@@ -34,6 +34,12 @@ namespace Booma.Proxy
 		[Inject]
 		private IUnitScalerStrategy UnitScaler { get; }
 
+		[Inject]
+		private IZoneSettings ZoneData { get; }
+
+		[Inject]
+		private IRoomQueryable RoomQueryService { get; }
+
 		//Cached last position
 		private Vector3 lastPosition;
 
@@ -65,7 +71,7 @@ namespace Booma.Proxy
 					//Send a stop if we stopped moving
 					SendService.SendMessage(new Sub60FinishedMovingCommand(Identity.EntityId, 
 						UnitScaler.ScaleYRotation(transform.rotation.eulerAngles.y), 
-						UnitScaler.UnScale(transform.position).ToNetworkVector3()).ToPayload());
+						UnitScaler.UnScale(transform.position).ToNetworkVector3(), RoomQueryService.RoomIdForPlayerById(Identity.EntityId), ZoneData.ZoneId).ToPayload());
 				}
 
 				yield return new WaitForSeconds(1.0f / BroadcastsPerSecond);
