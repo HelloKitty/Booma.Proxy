@@ -66,7 +66,10 @@ namespace Booma.Proxy
 
 		LobbyBallMove = 0x79,
 
-		SetExperienceRate = 0xDD
+		SetExperienceRate = 0xDD,
+
+		//SUBCMD_BURST_DONE   
+		GameBurstingComplete = 0x72
 
 		//l->clientx[client->clientID] = *(unsigned *) &client->decryptbuf[0x14];
 		//l->clienty[client->clientID] = *(unsigned*)&client->decryptbuf[0x1C];
