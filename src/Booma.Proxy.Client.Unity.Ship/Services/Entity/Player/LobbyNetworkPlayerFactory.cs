@@ -32,6 +32,9 @@ namespace Booma.Proxy
 		[Inject]
 		private INetworkPlayerRegistery PlayerRegistery { get; }
 
+		[Inject]
+		private IRoomCollection Rooms { get; }
+
 		/// <summary>
 		/// Strategy for selecting where to spawn. Some floors
 		/// can have multiple viable spawn points. Such as soccer lobbies.
@@ -59,6 +62,7 @@ namespace Booma.Proxy
 
 			//Now we must register it in the player registry
 			PlayerRegistery.AddPlayer(id, player);
+			Rooms.DefaultRoom.TryEnter(player);
 
 			return player;
 		}
@@ -99,6 +103,7 @@ namespace Booma.Proxy
 
 			//Now we must register it in the player registry
 			PlayerRegistery.AddPlayer(player.Identity.EntityId, player);
+			Rooms.DefaultRoom.TryEnter(player);
 
 			return player;
 		}
