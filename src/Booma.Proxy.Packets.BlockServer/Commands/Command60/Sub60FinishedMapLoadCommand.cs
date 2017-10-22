@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		}
 
 		//Serialzier ctor
-		public Sub60FinishedMapLoadCommand()
+		private Sub60FinishedMapLoadCommand()
 		{
 			
 		}
