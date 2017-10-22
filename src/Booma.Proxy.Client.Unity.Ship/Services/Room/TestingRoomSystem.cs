@@ -6,14 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
 	public sealed class TestingRoomSystem : SerializedMonoBehaviour, IRoomQueryable, IRoomCollection
 	{
-		/// <inheritdoc />
 		[OdinSerialize]
-		public IRoom DefaultRoom { get; private set; }
+		private IRoom _defaultRoom;
+
+		/// <inheritdoc />
+		public IRoom DefaultRoom => _defaultRoom;
 
 		private IDictionary<int, IRoom> PlayerRoomTracker { get; set; } = new Dictionary<int, IRoom>();
 

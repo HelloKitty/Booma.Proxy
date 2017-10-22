@@ -10,9 +10,11 @@ namespace Booma.Proxy
 {
 	public class TestRoom : MonoBehaviour, IRoom
 	{
+		[SerializeField]
+		private short _roomId;
+
 		/// <inheritdoc />
-		[OdinSerialize]
-		public short RoomId { get; private set; }
+		public short RoomId => _roomId;
 
 		private IDictionary<int, INetworkPlayer> Players { get; } = new Dictionary<int, INetworkPlayer>();
 

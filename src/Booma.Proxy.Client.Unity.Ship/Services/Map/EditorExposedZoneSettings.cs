@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
 	public sealed class EditorExposedZoneSettings : SerializedMonoBehaviour, IZoneSettings
 	{
-		/// <inheritdoc />
 		[PropertyTooltip("Should be the ID of the zone. (Ex. 15 for Lobby or 03 for Caves-01)")]
-		[OdinSerialize]
-		public short ZoneId { get; private set; }
+		[SerializeField]
+		private short _zoneId;
+
+		/// <inheritdoc />
+		public short ZoneId => _zoneId;
 	}
 }
