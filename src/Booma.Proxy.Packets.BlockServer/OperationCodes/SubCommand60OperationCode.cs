@@ -64,7 +64,9 @@ namespace Booma.Proxy
 		/// </summary>
 		MovingFastPositionChanged = 0x42,
 
-		LobbyBallMove = 0x79
+		LobbyBallMove = 0x79,
+
+		SetExperienceRate = 0xDD
 
 		//l->clientx[client->clientID] = *(unsigned *) &client->decryptbuf[0x14];
 		//l->clienty[client->clientID] = *(unsigned*)&client->decryptbuf[0x1C];
