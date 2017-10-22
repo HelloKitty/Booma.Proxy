@@ -84,6 +84,8 @@ namespace Booma.Proxy
 
 		PING_TYPE = 0x001D,
 
-		CHAT_TYPE = 0x0006
+		CHAT_TYPE = 0x0006,
+
+		DONE_BURSTING_TYPE = 0x006F
 	}
 }
