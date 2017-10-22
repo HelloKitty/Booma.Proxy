@@ -41,16 +41,16 @@ namespace Booma.Proxy
 		public float YAxisRotation { get; private set; }
 
 		/// <summary>
-		/// The ID for the room the character is currently in.
-		/// </summary>
-		[WireMember(5)]
-		public short RoomId { get; }
-
-		/// <summary>
 		/// ID for the zone the character is in.
 		/// </summary>
-		[WireMember(6)]
+		[WireMember(5)]
 		public short ZoneId { get; }
+
+		/// <summary>
+		/// The ID for the room the character is currently in.
+		/// </summary>
+		[WireMember(6)]
+		public short RoomId { get; }
 
 		/// <summary>
 		/// The position to teleport to.
