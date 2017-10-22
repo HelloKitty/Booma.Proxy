@@ -50,6 +50,11 @@ namespace Booma.Proxy
 		BurstType5 = 0x6F,
 
 		/// <summary>
+		/// Finished loading the map
+		/// </summary>
+		SUBCMD_LOAD_3B = 0x3B,
+
+		/// <summary>
 		/// Subcommand that sets the player's X and Y position while running.
 		/// </summary>
 		MovingSlowPositionChanged = 0x40,
