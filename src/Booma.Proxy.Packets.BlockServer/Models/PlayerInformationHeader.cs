@@ -29,6 +29,7 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public int ClientId { get; }
 
+		[Encoding(EncodingType.UTF16)]
 		[KnownSize(16)]
 		[WireMember(5)]
 		public string CharacterName { get; }
