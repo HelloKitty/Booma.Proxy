@@ -25,6 +25,7 @@ namespace Booma.Proxy
 		private byte unk { get; }
 
 		public Sub60FinishedMapLoadCommand(byte identifier)
+			: this()
 		{
 			Identifier = identifier;
 		}
@@ -32,7 +33,7 @@ namespace Booma.Proxy
 		//Serialzier ctor
 		private Sub60FinishedMapLoadCommand()
 		{
-			
+			CommandSize = 4 / 4;
 		}
 	}
 }
