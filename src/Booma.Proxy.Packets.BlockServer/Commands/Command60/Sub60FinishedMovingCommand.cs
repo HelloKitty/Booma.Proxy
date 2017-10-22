@@ -24,8 +24,9 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		private byte unused { get; }
 
+		//TODO: Handle this
 		[WireMember(3)]
-		private short unk { get; }
+		private short AnimationState { get; }
 
 		/// <summary>
 		/// The raw rotation value
@@ -39,17 +40,26 @@ namespace Booma.Proxy
 		/// </summary>
 		public float YAxisRotation { get; private set; }
 
+		/// <summary>
+		/// The ID for the room the character is currently in.
+		/// </summary>
 		[WireMember(5)]
-		public int W { get; } = 65551;
+		public short RoomId { get; }
+
+		/// <summary>
+		/// ID for the zone the character is in.
+		/// </summary>
+		[WireMember(6)]
+		public short ZoneId { get; }
 
 		/// <summary>
 		/// The position to teleport to.
 		/// </summary>
-		[WireMember(6)]
+		[WireMember(7)]
 		public Vector3<float> Position { get; }
 
 		/// <inheritdoc />
-		public Sub60FinishedMovingCommand(byte clientId, float yAxisRotation, [NotNull] Vector3<float> position)
+		public Sub60FinishedMovingCommand(byte clientId, float yAxisRotation, [NotNull] Vector3<float> position, short roomId, short zoneId)
 			: this()
 		{
 			if(position == null) throw new ArgumentNullException(nameof(position));
@@ -58,11 +68,13 @@ namespace Booma.Proxy
 			Identifier = clientId;
 			YAxisRotation = yAxisRotation;
 			Position = position;
+			RoomId = roomId;
+			ZoneId = zoneId;
 		}
 
 		/// <inheritdoc />
-		public Sub60FinishedMovingCommand(int clientId, float yAxisRotation, [NotNull] Vector3<float> position)
-			: this((byte)clientId, yAxisRotation, position)
+		public Sub60FinishedMovingCommand(int clientId, float yAxisRotation, [NotNull] Vector3<float> position, short roomId, short zoneId)
+			: this((byte)clientId, yAxisRotation, position, roomId, zoneId)
 		{
 
 		}

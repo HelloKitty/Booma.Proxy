@@ -36,9 +36,9 @@ namespace Booma.Proxy
 
 		//TODO: What is this? I think it's a position checksum.
 		[WireMember(3)]
-		private int unused2 { get; } = 1;
+		private int AnimationState { get; } = 0;
 
-		//TODO: When we figure out what this is maybe add it back to Vector4
+		//TODO: Implement this, I think it's ZoneId + RoomId. Though PSOBB doesn't seem to need it
 		[WireMember(4)]
 		private float w { get; }
 
