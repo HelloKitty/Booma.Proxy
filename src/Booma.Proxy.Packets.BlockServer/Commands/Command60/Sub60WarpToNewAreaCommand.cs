@@ -39,6 +39,13 @@ namespace Booma.Proxy
 			Zone = zone;
 		}
 
+		/// <inheritdoc />
+		public Sub60WarpToNewAreaCommand(int clientId, int zone)
+			: this((byte)clientId, zone)
+		{
+
+		}
+
 		private Sub60WarpToNewAreaCommand()
 		{
 			//Calc static 32bit size

@@ -59,6 +59,13 @@ namespace Booma.Proxy
 			Position = position;
 		}
 
+		/// <inheritdoc />
+		public Sub60TeleportToPositionCommand(int clientId, [NotNull] Vector3<float> position)
+			: this((byte)clientId, position)
+		{
+
+		}
+
 		public Sub60TeleportToPositionCommand()
 		{
 			//Calc static 32bit size

@@ -30,6 +30,12 @@ namespace Booma.Proxy
 			Identifier = identifier;
 		}
 
+		public Sub60FinishedMapLoadCommand(int identifier)
+			: this((byte)identifier)
+		{
+
+		}
+
 		//Serialzier ctor
 		private Sub60FinishedMapLoadCommand()
 		{
