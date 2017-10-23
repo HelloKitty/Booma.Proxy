@@ -32,6 +32,12 @@ namespace Booma.Proxy
 		/// </summary>
 		AlertFreshlyWarpedClients = 0x20,
 
+		/// <summary>
+		/// Sent the client to begin teleporting
+		/// to a different zone. Is rebroadcasted to others.
+		/// </summary>
+		BeginZoneTeleporting = 0x22,
+
 		//Syl: https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x3F
 		//Tethella: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L8356
 		/// <summary>
