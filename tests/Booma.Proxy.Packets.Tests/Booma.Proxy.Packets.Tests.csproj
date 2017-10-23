@@ -83,6 +83,8 @@
     <Compile Include="ReflectionTests\BlockPayloadAutomatedReflectionTests.cs" />
     <Compile Include="ReflectionTests\SharedPayloadAutomatedReflectionTests.cs" />
     <Compile Include="ReflectionTests\PatchPayloadAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\Sub62CommandAutomatedReflectionTests.cs" />
+    <Compile Include="ReflectionTests\Sub60CommandAutomatedReflectionTests.cs" />
     <Compile Include="UnitTests\AllPacketsTests.cs" />
     <Compile Include="UnitTests\Subcommand60Tests.cs" />
   </ItemGroup>

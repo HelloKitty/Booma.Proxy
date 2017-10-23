@@ -49,8 +49,15 @@
   <ItemGroup>
     <Compile Include="Attributes\Game\GameClientPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Game\GameServerPacketPayloadAttribute.cs" />
+    <Compile Include="Attributes\Game\SubCommand60Attribute.cs" />
+    <Compile Include="Attributes\Game\SubCommand62Attribute.cs" />
     <Compile Include="Attributes\Patch\PatchClientPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Patch\PatchServerPacketPayloadAttribute.cs" />
+    <Compile Include="Message\Game\BaseSubCommand60.cs" />
+    <Compile Include="Message\Game\BaseSubCommand62.cs" />
+    <Compile Include="Message\Game\ISubCommand60.cs" />
+    <Compile Include="Message\Game\UnknownSubCommand60Command.cs" />
+    <Compile Include="Message\Game\UnknownSubCommand62Command.cs" />
     <Compile Include="Message\IPacketHeader.cs" />
     <Compile Include="Message\IPacketPayload.cs" />
     <Compile Include="Message\IUnknownPayloadType.cs" />
@@ -71,6 +78,8 @@
     <Compile Include="Message\Patch\PSOBBPatchPacketPayloadClient.cs" />
     <Compile Include="Message\Patch\UnknownPatchPayload.cs" />
     <Compile Include="Message\Patch\PSOBBPatchPacketPayloadServer.cs" />
+    <Compile Include="OperationCodes\SubCommand60OperationCode.cs" />
+    <Compile Include="OperationCodes\SubCommand62OperationCode.cs" />
     <Compile Include="PacketCommonServerMetadataMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Message\PSOBBPacketHeader.cs" />

@@ -22,5 +22,12 @@ namespace Booma.Proxy
 		{
 			if(!Enum.IsDefined(typeof(SubCommand62OperationCode), opCode)) throw new InvalidEnumArgumentException(nameof(opCode), (int)opCode, typeof(SubCommand60OperationCode));
 		}
+
+		//Test ctor
+		internal SubCommand62Attribute(int opCode)
+			: base(opCode, typeof(BaseSubCommand62))
+		{
+
+		}
 	}
 }

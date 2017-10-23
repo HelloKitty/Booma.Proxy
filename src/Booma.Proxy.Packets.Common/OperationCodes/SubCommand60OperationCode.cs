@@ -69,7 +69,13 @@ namespace Booma.Proxy
 		SetExperienceRate = 0xDD,
 
 		//SUBCMD_BURST_DONE   
-		GameBurstingComplete = 0x72
+		GameBurstingComplete = 0x72,
+
+		/// <summary>
+		/// Opcode used to packets
+		/// about players leaving a game.
+		/// </summary>
+		GAME_LEAVE_TYPE = 0x0066
 
 		//l->clientx[client->clientID] = *(unsigned *) &client->decryptbuf[0x14];
 		//l->clienty[client->clientID] = *(unsigned*)&client->decryptbuf[0x1C];
