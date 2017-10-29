@@ -28,6 +28,9 @@ namespace Booma.Proxy
 			if(PlayerCollection.ContainsId(command.Identifier))
 				return Task.CompletedTask;
 
+			if(Logger.IsInfoEnabled)
+				Logger.Info($"Client broadcasted existence Id: {command.Identifier} ZoneId: {command.ZoneId}");
+
 			float rotation = UnitScaler.ScaleYRotation(command.YAxisRotation);
 			Vector3 position = UnitScaler.Scale(command.Position);
 
