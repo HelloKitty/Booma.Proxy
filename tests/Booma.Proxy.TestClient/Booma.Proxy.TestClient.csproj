@@ -85,18 +85,6 @@
       <Project>{421990D4-BA7F-40DF-A99C-63AD2A26EC24}</Project>
       <Name>Booma.Proxy.Character.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
-      <Project>{e29711cc-3abb-49b4-b010-3a2f72de5491}</Project>
-      <Name>Booma.Proxy.Client.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj">
-      <Project>{87bdba8d-0992-48ef-acd7-bad3018c46d7}</Project>
-      <Name>Booma.Proxy.Client.Handlers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client\Booma.Proxy.Client.csproj">
-      <Project>{5e877c0a-d11c-4683-91f4-b3088d44bc57}</Project>
-      <Name>Booma.Proxy.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
       <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
       <Name>Booma.Proxy.Crypto</Name>

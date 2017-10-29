@@ -12,10 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj" />
-    <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
-    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj" />

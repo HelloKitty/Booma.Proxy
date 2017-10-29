@@ -148,18 +148,6 @@
     <Resource Include="Resources\BoomaPSOBB_Title.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Client.API\Booma.Proxy.Client.API.csproj">
-      <Project>{E29711CC-3ABB-49B4-B010-3A2F72DE5491}</Project>
-      <Name>Booma.Proxy.Client.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Booma.Proxy.Client.Handlers\Booma.Proxy.Client.Handlers.csproj">
-      <Project>{87bdba8d-0992-48ef-acd7-bad3018c46d7}</Project>
-      <Name>Booma.Proxy.Client.Handlers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Booma.Proxy.Client\Booma.Proxy.Client.csproj">
-      <Project>{5e877c0a-d11c-4683-91f4-b3088d44bc57}</Project>
-      <Name>Booma.Proxy.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
       <Project>{9AEE67E4-F228-4201-B921-24D8BE2ACAB2}</Project>
       <Name>Booma.Proxy.Crypto</Name>
