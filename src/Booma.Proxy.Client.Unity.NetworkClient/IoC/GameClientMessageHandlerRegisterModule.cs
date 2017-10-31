@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 
@@ -17,8 +18,8 @@ namespace Booma.Proxy
 			//Foreach handler in the scene we need to register it
 			//so that the IoC container can provide the collection of handlers as a potential
 			//dependency to other objects.
-			IEnumerable<IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>> handlers = FindObjectsOfType<GameObject>()
-				.SelectMany(go => go.GetComponents<IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>())
+			IEnumerable<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>> handlers = FindObjectsOfType<GameObject>()
+				.SelectMany(go => go.GetComponents<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>())
 				.Where(c => c != null)
 				.Distinct()
 				.ToList();
@@ -27,10 +28,10 @@ namespace Booma.Proxy
 
 			foreach(var h in handlers)
 				register.RegisterInstance(h)
-					.As<IClientMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
+					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
 
 			register.RegisterType<DefaultPayloadHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
-				.As<IClientPayloadSpecificMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
+				.As<IPeerPayloadSpecificMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
 				.SingleInstance();
 
 			register.RegisterType<MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()

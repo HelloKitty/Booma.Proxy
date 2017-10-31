@@ -37,29 +37,68 @@
     <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.16\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.17\lib\net46\FreecraftCore.Serializer.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.16\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.17\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.16\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.17\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.16\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.17\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
     </Reference>
     <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Client.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Client.API.3.0.10\lib\net46\GladNet3.Client.API.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Client.DotNetTcpClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Client.DotNetTcpClient.3.0.10\lib\net46\GladNet3.Client.DotNetTcpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Common.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Common.API.3.0.10\lib\net46\GladNet3.Common.API.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Crypto.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Crypto.API.3.0.10\lib\net46\GladNet3.Crypto.API.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Handler.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Handler.API.3.0.10\lib\net46\GladNet3.Handler.API.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Serializer.API.3.0.10\lib\net46\GladNet3.Serializer.API.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Serializer.FreecraftCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Serializer.FreecraftCore.3.0.10\lib\net46\GladNet3.Serializer.FreecraftCore.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Coordination, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.Coordination.1.0.2\lib\net46\Nito.AsyncEx.Coordination.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Tasks, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.AsyncEx.Tasks.1.1.0\lib\net46\Nito.AsyncEx.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Collections.Deque, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.Collections.Deque.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Collections.Deque.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
     </Reference>
     <Reference Include="Reflect.Extent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Reflect.Extent.1.0.7\lib\net46\Reflect.Extent.dll</HintPath>

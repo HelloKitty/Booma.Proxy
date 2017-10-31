@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -26,7 +27,7 @@ namespace Booma.Proxy
 		private INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> ContextFactory { get; }
 
 		/// <inheritdoc />
-		protected override async Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, TCommandType command)
+		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, TCommandType command)
 		{
 			//Build the context first and check its validity
 			TContextType commandContext = ContextFactory.Create(command);
@@ -50,6 +51,6 @@ namespace Booma.Proxy
 		/// <param name="command">The command to be handled.</param>
 		/// <param name="commandContext">The context for the command.</param>
 		/// <returns>An awaitable that completes when the handling is finished.</returns>
-		protected abstract Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, TCommandType command, TContextType commandContext);
+		protected abstract Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, TCommandType command, TContextType commandContext);
 	}
 }

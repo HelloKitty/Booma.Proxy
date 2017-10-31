@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using Reinterpret.Net;
 using SceneJect.Common;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Booma.Proxy
 		public bool addPotentialOffsets = true;
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60LobbySoccerBallMoveEventPayload command)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60LobbySoccerBallMoveEventPayload command)
 		{
 			//It's possible we joined the lobby after the ball has spawned. If we havw we won't be able to see it.
 			if(CurrentBall == null)

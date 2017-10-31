@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using Common.Logging;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -45,13 +46,13 @@ namespace Booma.Proxy
 		/// for the handlers.
 		/// </summary>
 		[Inject]
-		protected IClientMessageContextFactory MessageContextFactory { get; }
+		protected IPeerMessageContextFactory MessageContextFactory { get; }
 
 		[Inject]
 		private IGameObjectComponentAttachmentFactory AttachmentFactory { get; }
 
 		//TODO: Move to IoC
-		private IClientRequestSendService<TOutgoingPayloadType> RequestService { get; set; }
+		private IPeerRequestSendService<TOutgoingPayloadType> RequestService { get; set; }
 
 		/// <summary>
 		/// Indicates if the managed client has been exported from this container.
@@ -82,7 +83,7 @@ namespace Booma.Proxy
 					if(Logger.IsDebugEnabled)
 						Logger.Debug("Reading message.");
 
-					PSOBBNetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync(CancelTokenSource.Token)
+					NetworkIncomingMessage<TIncomingPayloadType> message = await Client.ReadMessageAsync(CancelTokenSource.Token)
 						.ConfigureAwait(true);
 
 					//Supress and continue reading

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,7 +28,7 @@ namespace Booma.Proxy
 		private UnityEvent OnSelectionSuccess;
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterSelectionAckPayload payload)
+		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterSelectionAckPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Recieved Selection Response: {payload.AckType}");

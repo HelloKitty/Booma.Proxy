@@ -32,7 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.16\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.17\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Common.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Common.API.3.0.10\lib\net46\GladNet3.Common.API.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
@@ -58,10 +61,7 @@
     <Compile Include="Message\Game\ISubCommand60.cs" />
     <Compile Include="Message\Game\UnknownSubCommand60Command.cs" />
     <Compile Include="Message\Game\UnknownSubCommand62Command.cs" />
-    <Compile Include="Message\IPacketHeader.cs" />
-    <Compile Include="Message\IPacketPayload.cs" />
     <Compile Include="Message\IUnknownPayloadType.cs" />
-    <Compile Include="Message\PSOBBNetworkIncomingMessage.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
     <Compile Include="Models\DifficultyType.cs" />
     <Compile Include="Models\EpisodeType.cs" />

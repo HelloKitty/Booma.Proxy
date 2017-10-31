@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using JetBrains.Annotations;
 using SceneJect.Common;
 
@@ -16,7 +17,7 @@ namespace Booma.Proxy
 	/// <typeparam name="TPayloadType"></typeparam>
 	/// <typeparam name="TOutgoingPayloadType"></typeparam>
 	[Injectee]
-	public sealed class DefaultPayloadHandler<TPayloadType, TOutgoingPayloadType> : IClientPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType> 
+	public sealed class DefaultPayloadHandler<TPayloadType, TOutgoingPayloadType> : IPeerPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType> 
 		where TPayloadType : class 
 		where TOutgoingPayloadType : class
 	{
@@ -32,7 +33,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public Task HandleMessage(IClientMessageContext<TOutgoingPayloadType> context, TPayloadType payload)
+		public Task HandleMessage(IPeerMessageContext<TOutgoingPayloadType> context, TPayloadType payload)
 		{
 			if(context == null) throw new ArgumentNullException(nameof(context));
 			if(payload == null) throw new ArgumentNullException(nameof(payload));

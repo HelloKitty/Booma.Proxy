@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Common.Logging;
 using FreecraftCore.Serializer;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -18,9 +19,9 @@ namespace Booma.Proxy
 	public sealed class GameClientDependencyRegisterModule : NonBehaviourDependency
 	{
 		//For performance reasons we only ever build a single serializer
-		private static Lazy<ISerializerService> Serializer { get; } = new Lazy<ISerializerService>(CreateSerializer, true);
+		private static Lazy<INetworkSerializationService> Serializer { get; } = new Lazy<INetworkSerializationService>(CreateSerializer, true);
 
-		private static ISerializerService CreateSerializer()
+		private static INetworkSerializationService CreateSerializer()
 		{
 			//Create the serializer and register all the needed types
 			SerializerService serializer = new SerializerService();
@@ -36,7 +37,7 @@ namespace Booma.Proxy
 
 			serializer.Compile();
 
-			return serializer;
+			return new FreecraftCoreGladNetSerializerAdapter(serializer);
 		}
 
 		[SerializeField]
@@ -50,33 +51,36 @@ namespace Booma.Proxy
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
 				encryptionService.Initialize(val);
 				return encryptionService;
-			});
+			}, 8);
 			EncryptionLazyWithoutKeyDecorator<byte[]> decrypt = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
 				decryptionService.Initialize(val);
 				return decryptionService;
-			});
+			}, 8);
 
-			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new PSOBBNetworkClient()
-				.AddCryptHandling(encrypt, decrypt, 8)
-				.AddHeaderReading(Serializer.Value, 8)
+			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new DotNetTcpClientNetworkClient()
+				.AddCryptHandling(encrypt, decrypt)
+				.AddBufferredWrite(4)
+				.AddHeaderReading<PSOBBPacketHeader>(Serializer.Value, 2)
 				.AddNetworkMessageReading(Serializer.Value)
-				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>()
+				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, IPacketPayload>(new PSOBBPacketHeaderFactory())
+				.AddReadBufferClearing()
+				.Build()
 				.AsManaged(new UnityLoggingService(LoggingLevel));
 
 			register.RegisterInstance(client)
 				.As<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>()
-				.As<IClientPayloadSendService<PSOBBGamePacketPayloadClient>>()
+				.As<IPeerPayloadSendService<PSOBBGamePacketPayloadClient>>()
 				.As<IPayloadInterceptable>()
 				.As<IConnectionService>();
 
 			register.RegisterType<DefaultMessageContextFactory>()
-				.As<IClientMessageContextFactory>()
+				.As<IPeerMessageContextFactory>()
 				.SingleInstance();
 
 			register.RegisterType<PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>>()
-				.As<IClientRequestSendService<PSOBBGamePacketPayloadClient>>()
+				.As<IPeerRequestSendService<PSOBBGamePacketPayloadClient>>()
 				.SingleInstance();
 
 			register.RegisterInstance(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt))

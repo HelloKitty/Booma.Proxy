@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
-	public sealed class PatchWelcomeMessageHandler : IClientPayloadSpecificMessageHandler<PatchingWelcomePayload, PSOBBPatchPacketPayloadClient>
+	public sealed class PatchWelcomeMessageHandler : IPeerPayloadSpecificMessageHandler<PatchingWelcomePayload, PSOBBPatchPacketPayloadClient>
 	{
 		/// <summary>
 		/// The initialization container that contains the crypto initializers
@@ -22,7 +23,7 @@ namespace Booma.Proxy
 			Initializers = initializers;
 		}
 
-		public async Task HandleMessage(IClientMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingWelcomePayload payload)
+		public async Task HandleMessage(IPeerMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingWelcomePayload payload)
 		{
 			//We need to init the crypto before we can even send the following payload
 			Initializers.DecryptionInitializable.Initialize(payload.ServerVector);

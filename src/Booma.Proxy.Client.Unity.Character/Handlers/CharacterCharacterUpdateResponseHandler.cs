@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -39,7 +40,7 @@ namespace Booma.Proxy
 		private UnityEvent OnCharacterSelected;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterUpdateResponsePayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterUpdateResponsePayload payload)
 		{
 			if(Elements == null || Elements.Count < payload.SlotSelected)
 				throw new InvalidOperationException($"Character slot unavailable for Slot: {payload.SlotSelected}");

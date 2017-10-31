@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using GladNet;
 
 namespace Booma.Proxy.TestClient
 {
@@ -17,7 +18,7 @@ namespace Booma.Proxy.TestClient
 
 		public static ICryptoKeyInitializable<byte[]> DecryptionKeyInitializer { get; private set; }
 
-		public static IClientMessageContextFactory MessageContextFactory { get; private set; }
+		public static IPeerMessageContextFactory MessageContextFactory { get; private set; }
 
 		private static SerializerService Serializer { get; set; }
 
@@ -45,13 +46,13 @@ namespace Booma.Proxy.TestClient
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
 				encryptionService.Initialize(val);
 				return encryptionService;
-			});
+			}, 8);
 			EncryptionLazyWithoutKeyDecorator<byte[]> decrypt = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
 				decryptionService.Initialize(val);
 				return decryptionService;
-			});
+			}, 8);
 
 			EncryptionKeyInitializer = encrypt;
 			DecryptionKeyInitializer = decrypt;
@@ -59,11 +60,13 @@ namespace Booma.Proxy.TestClient
 
 			//Configurs and builds the clients without all the
 			//relevant decorators
-			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new PSOBBNetworkClient()
-				.AddCryptHandling(encrypt, decrypt, 8)
-				.AddHeaderReading(Serializer, 8)
-				.AddNetworkMessageReading(Serializer)
-				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>()
+			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new DotNetTcpClientNetworkClient()
+				.AddCryptHandling(encrypt, decrypt)
+				.AddHeaderReading<PSOBBPacketHeader>(new FreecraftCoreGladNetSerializerAdapter(Serializer), 4)
+				.AddNetworkMessageReading(new FreecraftCoreGladNetSerializerAdapter(Serializer))
+				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, IPacketPayload>(new PSOBBPacketHeaderFactory())
+				.AddReadBufferClearing()
+				.Build()
 				.AsManaged();
 
 			MessageContextFactory = new DefaultMessageContextFactory();
@@ -77,7 +80,7 @@ namespace Booma.Proxy.TestClient
 
 			while(true)
 			{
-				PSOBBNetworkIncomingMessage<PSOBBGamePacketPayloadServer> message = await client.ReadMessageAsync();
+				NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message = await client.ReadMessageAsync();
 
 				LogMessage(message);
 
@@ -194,7 +197,7 @@ namespace Booma.Proxy.TestClient
 
 		}
 
-		public static void LogMessage(PSOBBNetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		public static void LogMessage(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			if(message.Payload is IUnknownPayloadType unk)
 			{
@@ -208,6 +211,17 @@ namespace Booma.Proxy.TestClient
 				Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{message.Payload.GetType().GetTypeInfo().GetCustomAttribute<WireDataContractBaseLinkAttribute>().Index:X} Type: {message.Payload.GetType().Name}");
 				Console.BackgroundColor = ConsoleColor.Black;
 			}
+		}
+	}
+
+	public sealed class PSOBBPacketHeaderFactory : IPacketHeaderFactory<IPacketPayload>
+	{
+		/// <inheritdoc />
+		public IPacketHeader Create<TPayloadType>(TPayloadType payload, byte[] serializedPayloadData)
+			where TPayloadType : IPacketPayload
+		{
+			//The packet size is simply the length of the payload plus the header which is 2 bytes
+			return new PSOBBPacketHeader(serializedPayloadData.Length + 2);
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace Booma.Proxy
 		private UnityEvent OnRecievedBlockList;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, ShipBlockListEventPayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, ShipBlockListEventPayload payload)
 		{
 			foreach(MenuListing m in payload.Blocks)
 			{

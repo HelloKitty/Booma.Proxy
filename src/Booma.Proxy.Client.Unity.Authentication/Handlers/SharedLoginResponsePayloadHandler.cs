@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -37,7 +38,7 @@ namespace Booma.Proxy
 		private UnityEvent OnLoginSuccess;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedLoginResponsePayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedLoginResponsePayload payload)
 		{
 			//We don't yet handle the UI for this so we just log it
 			if(Logger.IsInfoEnabled)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 
 namespace Booma.Proxy
 {
@@ -17,7 +18,7 @@ namespace Booma.Proxy
 		where TPayloadType : PSOBBGamePacketPayloadServer
 	{
 		/// <inheritdoc />
-		public override async Task<bool> TryHandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, PSOBBNetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		public override async Task<bool> TryHandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			//Odd design but we override so we can check that this is the payload
 			//and then check if we have the right command type
@@ -29,7 +30,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public override bool CanHandle(PSOBBNetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		public override bool CanHandle(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			//We have to overide this because base doesn't implement what we want
 			if(message.Payload is TPayloadType p)
@@ -53,7 +54,7 @@ namespace Booma.Proxy
 		protected abstract TSubMessageType RetrieveSubMessage(TPayloadType payload);
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, TPayloadType payload)
+		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, TPayloadType payload)
 		{
 			//We want to grab the subtype, but we don't know how. Let the implementers do it.
 			//then we can dispatch it.
@@ -67,7 +68,7 @@ namespace Booma.Proxy
 		/// <param name="context">The context of the submessage.</param>
 		/// <param name="command">The submessage sent.</param>
 		/// <returns>An awaitable that completes when the command handling is finished.</returns>
-		protected abstract Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, TSubMessageType command);
+		protected abstract Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, TSubMessageType command);
 
 		/// <inheritdoc />
 		public override string ToString()

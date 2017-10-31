@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.16" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.17" />
     <PackageReference Include="Reinterpret.Net" Version="2.0.2" />
   </ItemGroup>
 

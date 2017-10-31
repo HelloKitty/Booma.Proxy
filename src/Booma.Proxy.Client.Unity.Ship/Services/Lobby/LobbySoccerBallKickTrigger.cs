@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Booma.Proxy
 	public sealed class LobbySoccerBallKickTrigger : NetworkPlayerTrigger
 	{
 		[Inject]
-		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 		
 		[Inject]
 		private ILog Logger { get; }

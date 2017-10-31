@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Booma.Proxy
 		private UnityEvent OnRecievedShipList;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedShipListEventPayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedShipListEventPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"Recieved ShipCount: {payload.Ships.Count()}");

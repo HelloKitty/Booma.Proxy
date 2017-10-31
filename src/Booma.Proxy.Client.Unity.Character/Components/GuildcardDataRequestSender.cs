@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,10 +17,10 @@ namespace Booma.Proxy
 	public sealed class GuildcardDataRequestSender : MonoBehaviour
 	{
 		[Inject]
-		private IClientRequestSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+		private IPeerRequestSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		[Inject]
-		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> PayloadSendService { get; }
+		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> PayloadSendService { get; }
 
 		[Inject]
 		private ILog Logger { get; }

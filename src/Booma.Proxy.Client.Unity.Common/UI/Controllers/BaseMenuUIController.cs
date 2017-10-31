@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -45,7 +46,7 @@ namespace Booma.Proxy
 		protected int OffsetPerListing => _OffsetPerListing;
 
 		[Inject]
-		protected IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+		protected IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		[Inject]
 		protected ILog Logger { get; }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy

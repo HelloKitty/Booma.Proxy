@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 
 namespace Booma.Proxy
 {
 	public sealed class PatchServerCryptoProvider : ICryptoServiceProvider
 	{
+		//The patching crypto only requires a 4 blocksize
+		/// <inheritdoc />
+		public int BlockSize { get; } = 4;
+
 		/// <summary>
 		/// The encryption key for encryption.
 		/// </summary>

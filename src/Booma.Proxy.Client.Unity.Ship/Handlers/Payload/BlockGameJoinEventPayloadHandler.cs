@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,7 +31,7 @@ namespace Booma.Proxy
 		public int TestGameSceneIndex = 0;
 
 		/// <inheritdoc />
-		public override async Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, BlockGameJoinEventPayload payload)
+		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockGameJoinEventPayload payload)
 		{
 			if(Logger.IsInfoEnabled)
 			{

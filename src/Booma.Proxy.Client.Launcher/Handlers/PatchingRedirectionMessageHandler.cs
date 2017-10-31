@@ -4,11 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
-	public sealed class PatchingRedirectionMessageHandler : IClientPayloadSpecificMessageHandler<PatchingRedirectPayload, PSOBBPatchPacketPayloadClient>
+	public sealed class PatchingRedirectionMessageHandler : IPeerPayloadSpecificMessageHandler<PatchingRedirectPayload, PSOBBPatchPacketPayloadClient>
 	{
 		public IFullCryptoInitializationService<uint> CryptoKeyInitializables { get; }
 
@@ -21,7 +22,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async Task HandleMessage(IClientMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingRedirectPayload payload)
+		public async Task HandleMessage(IPeerMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingRedirectPayload payload)
 		{
 			//We must disable the keys since we no longer need it
 			//and won't understand the server if it responds and we try to decrypt with

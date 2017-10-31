@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -13,7 +14,7 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy ScalerService { get; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60TeleportToPositionCommand command, INetworkPlayerNetworkMessageContext commandContext)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60TeleportToPositionCommand command, INetworkPlayerNetworkMessageContext commandContext)
 		{
 			//TODO: Don't do anything with this
 			if(Logger.IsInfoEnabled)

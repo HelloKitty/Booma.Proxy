@@ -5,11 +5,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
-	public sealed class PatchingInfoDoneMessageHandler : IClientPayloadSpecificMessageHandler<PatchingInfoRequestDonePayload, PSOBBPatchPacketPayloadClient>, INotifyPropertyChanged
+	public sealed class PatchingInfoDoneMessageHandler : IPeerPayloadSpecificMessageHandler<PatchingInfoRequestDonePayload, PSOBBPatchPacketPayloadClient>, INotifyPropertyChanged
 	{
 		private bool _isPatchingDone = false;
 
@@ -24,7 +25,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async Task HandleMessage(IClientMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingInfoRequestDonePayload payload)
+		public async Task HandleMessage(IPeerMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingInfoRequestDonePayload payload)
 		{
 			//This payload means patching is complete
 			isPatchingDone = true;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 
@@ -19,13 +20,13 @@ namespace Booma.Proxy
 		/// in the request sender.
 		/// </summary>
 		[Inject]
-		protected IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+		protected IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		/// <summary>
 		/// The network send service used to send the messages
 		/// in the request sender.
 		/// </summary>
 		[Inject]
-		protected IClientRequestSendService<PSOBBGamePacketPayloadClient> SendServiceAsync { get; }
+		protected IPeerRequestSendService<PSOBBGamePacketPayloadClient> SendServiceAsync { get; }
 	}
 }

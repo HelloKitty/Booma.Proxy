@@ -4,13 +4,14 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 
 namespace Booma.Proxy
 {
 	public sealed class CharacterTimeStampEventHandler : GameMessageHandler<CharacterTimestampEventPayload>
 	{
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, CharacterTimestampEventPayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterTimestampEventPayload payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"TimeStamp: {payload.Timestamp}");

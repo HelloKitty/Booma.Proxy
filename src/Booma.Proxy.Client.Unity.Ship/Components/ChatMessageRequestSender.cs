@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Booma.Proxy
 	public sealed class ChatMessageRequestSender : MonoBehaviour
 	{
 		[Inject]
-		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		/// <summary>
 		/// A settable message string that can be sent by invoking the request

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 
 namespace Booma.Proxy
 {
 	public abstract class BaseBlowfishCryptoService : ICryptoServiceProvider, ICryptoKeyInitializable<byte[]>
 	{
+		//Blowfish requires an 8 blocksize
+		/// <inheritdoc />
+		public int BlockSize { get; } = 8;
+
 		/// <summary>
 		/// Internal P storage
 		/// </summary>

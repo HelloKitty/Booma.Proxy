@@ -15,7 +15,7 @@ namespace Booma.Proxy.TestClient
 
 		public static ICryptoKeyInitializable<uint> DecryptionKeyInitializer { get; private set; }
 
-		public static IClientMessageContextFactory MessageContextFactory { get; private set; }
+		public static IPeerMessageContextFactory MessageContextFactory { get; private set; }
 
 		public static void Main(string[] args)
 		{
@@ -65,7 +65,7 @@ namespace Booma.Proxy.TestClient
 
 				try
 				{
-					//IClientMessageContext<PSOBBPatchPacketPayloadClient> context = MessageContextFactory.Create(client, client);
+					//IPeerMessageContext<PSOBBPatchPacketPayloadClient> context = MessageContextFactory.Create(client, client);
 
 					await HandlePayload((dynamic)message.Payload, client);
 

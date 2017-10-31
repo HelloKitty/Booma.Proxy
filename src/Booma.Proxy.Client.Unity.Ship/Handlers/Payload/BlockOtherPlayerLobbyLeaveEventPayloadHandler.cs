@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -13,7 +14,7 @@ namespace Booma.Proxy
 		private INetworkPlayerRegistery PlayerRegistry { get; }
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, BlockOtherPlayerLeaveLobbyEventPayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockOtherPlayerLeaveLobbyEventPayload payload)
 		{
 			//TODO: We can't check that we have this spawned, so we should address that.
 			INetworkPlayer player = PlayerRegistry.RemovePlayer(payload.ClientId);

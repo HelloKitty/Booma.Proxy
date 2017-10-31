@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -24,7 +25,7 @@ namespace Booma.Proxy
 		public int ZoneId;
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, INetworkPlayerFullNetworkMessageContext commandContext)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, INetworkPlayerFullNetworkMessageContext commandContext)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved finished warp from Client: {command.Identifier}");

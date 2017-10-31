@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using UnityEngine.UI;
 using Unitysync.Async;
 
@@ -27,7 +28,7 @@ namespace Booma.Proxy
 			//TODO: This is just for testing, we try to join the first one list
 			GameListEntry entry = response.GameEntries.First();
 
-			SendService.SendMessage(new SharedMenuSelectionRequestPayload(entry.Listing));
+			SendService.SendMessage(new SharedMenuSelectionRequestPayload(entry.Listing), DeliveryMethod.ReliableOrdered);
 		}
 	}
 }

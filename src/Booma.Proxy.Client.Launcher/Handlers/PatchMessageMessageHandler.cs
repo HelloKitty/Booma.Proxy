@@ -5,11 +5,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
-	public sealed class PatchMessageMessageHandler : IClientPayloadSpecificMessageHandler<PatchingMessagePayload, PSOBBPatchPacketPayloadClient>, INotifyPropertyChanged
+	public sealed class PatchMessageMessageHandler : IPeerPayloadSpecificMessageHandler<PatchingMessagePayload, PSOBBPatchPacketPayloadClient>, INotifyPropertyChanged
 	{
 		private string _patchNotesText;
 
@@ -29,7 +30,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public async Task HandleMessage(IClientMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingMessagePayload payload)
+		public async Task HandleMessage(IPeerMessageContext<PSOBBPatchPacketPayloadClient> context, PatchingMessagePayload payload)
 		{
 			//When we get the payload just initialize the patchnotes text
 			PatchNotesText = payload.Message;

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Autofac;
 using FreecraftCore.Serializer;
+using GladNet;
 using MahApps.Metro.Controls;
 
 namespace Booma.Proxy.Client.Launcher
@@ -35,22 +36,24 @@ namespace Booma.Proxy.Client.Launcher
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 
-			EncryptionLazyWithoutKeyDecorator<uint> encrypt = new EncryptionLazyWithoutKeyDecorator<uint>(val => new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(val)));
-			EncryptionLazyWithoutKeyDecorator<uint> decrypt = new EncryptionLazyWithoutKeyDecorator<uint>(val => new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(val)));
+			EncryptionLazyWithoutKeyDecorator<uint> encrypt = new EncryptionLazyWithoutKeyDecorator<uint>(val => new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(val)), 4);
+			EncryptionLazyWithoutKeyDecorator<uint> decrypt = new EncryptionLazyWithoutKeyDecorator<uint>(val => new PatchServerCryptoProvider(PatchEncryptionKeyFactory.Create(val)), 4);
 			IFullCryptoInitializationService<uint> intializers = new SeperateAggregateCryptoInitializationService<uint>(encrypt, decrypt);
 
 			builder.RegisterInstance(intializers)
 				.As<IFullCryptoInitializationService<uint>>();
 
-			ISerializerService serializerService = CreateSerializerService();
+			INetworkSerializationService serializerService = new FreecraftCoreGladNetSerializerAdapter(CreateSerializerService());
 
 			//Configurs and builds the clients without all the
 			//relevant decorators
-			IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client = new PSOBBNetworkClient()
-				.AddCryptHandling(encrypt, decrypt, 4)
-				.AddHeaderReading(serializerService, 4)
+			IManagedNetworkClient<PSOBBPatchPacketPayloadClient, PSOBBPatchPacketPayloadServer> client = new DotNetTcpClientNetworkClient()
+				.AddCryptHandling(encrypt, decrypt)
+				.AddHeaderReading<PSOBBPacketHeader>(serializerService, 2)
 				.AddNetworkMessageReading(serializerService)
-				.For<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>()
+				.For<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient, IPacketPayload>(null)
+				.AddReadBufferClearing()
+				.Build()
 				.AsManaged();
 
 			builder.RegisterInstance(client)
@@ -71,16 +74,16 @@ namespace Booma.Proxy.Client.Launcher
 
 			IContainer container = builder.Build();
 
-			IEnumerable<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>> Handlers = 
-				container.Resolve<IEnumerable<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>>();
+			IEnumerable<IPeerMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>> Handlers = 
+				container.Resolve<IEnumerable<IPeerMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>>();
 
-			IClientMessageContextFactory MessageContextFactory = new DefaultMessageContextFactory();
+			IPeerMessageContextFactory MessageContextFactory = new DefaultMessageContextFactory();
 
 			await client.ConnectAsync("158.69.215.131", 11000);
 
 			while(client.isConnected)
 			{
-				PSOBBNetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message = await client.ReadMessageAsync();
+				NetworkIncomingMessage<PSOBBPatchPacketPayloadServer> message = await client.ReadMessageAsync();
 
 				Console.WriteLine($"Recieved {message.Payload?.GetType().Name}");
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy
@@ -16,7 +17,7 @@ namespace Booma.Proxy
 		/// <typeparam name="THandlerType">The handler type to register.</typeparam>
 		/// <param name="builder">The builder.</param>
 		public static void RegisterHandler<THandlerType, TPayloadType>([NotNull] this ContainerBuilder builder)
-			where THandlerType : IClientPayloadSpecificMessageHandler<TPayloadType, PSOBBPatchPacketPayloadClient>
+			where THandlerType : IPeerPayloadSpecificMessageHandler<TPayloadType, PSOBBPatchPacketPayloadClient>
 			where TPayloadType : PSOBBPatchPacketPayloadServer
 		{
 			if(builder == null) throw new ArgumentNullException(nameof(builder));
@@ -25,8 +26,8 @@ namespace Booma.Proxy
 			builder.RegisterType<THandlerType>()
 				.SingleInstance();
 
-			builder.Register(i => i.Resolve<THandlerType>().AsTryHandler())
-				.As<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
+			builder.Register(i => i.Resolve<THandlerType>().AsTryHandler<TPayloadType, PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>())
+				.As<IPeerMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
 		}
 
 		/// <summary>
@@ -35,7 +36,7 @@ namespace Booma.Proxy
 		/// <typeparam name="THandlerType">The handler type to register.</typeparam>
 		/// <param name="builder">The builder.</param>
 		public static void RegisterHandler<THandlerType, TPayloadType>([NotNull] this ContainerBuilder builder, Action<THandlerType> onResolve)
-			where THandlerType : IClientPayloadSpecificMessageHandler<TPayloadType, PSOBBPatchPacketPayloadClient>
+			where THandlerType : IPeerPayloadSpecificMessageHandler<TPayloadType, PSOBBPatchPacketPayloadClient>
 			where TPayloadType : PSOBBPatchPacketPayloadServer
 		{
 			if(builder == null) throw new ArgumentNullException(nameof(builder));
@@ -50,9 +51,9 @@ namespace Booma.Proxy
 
 					onResolve(resolve);
 
-					return resolve.AsTryHandler();
+					return resolve.AsTryHandler<TPayloadType, PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>();
 				})
-				.As<IClientMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
+				.As<IPeerMessageHandler<PSOBBPatchPacketPayloadServer, PSOBBPatchPacketPayloadClient>>();
 		}
 	}
 }

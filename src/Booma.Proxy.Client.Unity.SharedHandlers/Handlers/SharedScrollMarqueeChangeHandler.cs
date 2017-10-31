@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Booma.Proxy
 		public UnityEngine.UI.Text TempMarqueeText;
 
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, SharedMarqueeScrollChangeEventPayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedMarqueeScrollChangeEventPayload payload)
 		{
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
 			if(payload.Message == null)

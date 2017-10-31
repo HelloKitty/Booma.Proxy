@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 
 namespace Booma.Proxy
 {
@@ -19,8 +20,11 @@ namespace Booma.Proxy
 		/// The size of the packet.
 		/// </summary>
 		[WireMember(1)]
-		public short PacketSize { get; }
-		
+		private short _PacketSize { get; }
+
+		/// <inheritdoc />
+		public int PacketSize => _PacketSize;
+
 		//The PacketSize contains the whole size of the packet
 		//So the payload is just the size minus the size of the packetsize field.
 		/// <summary>
@@ -34,7 +38,7 @@ namespace Booma.Proxy
 		/// <param name="packetSize">The packet size</param>
 		public PSOBBPacketHeader(short packetSize)
 		{
-			PacketSize = packetSize;
+			_PacketSize = packetSize;
 		}
 
 		/// <summary>
@@ -43,7 +47,7 @@ namespace Booma.Proxy
 		/// <param name="packetSize">The packet size</param>
 		public PSOBBPacketHeader(int packetSize)
 		{
-			PacketSize = (short)packetSize;
+			_PacketSize = (short)packetSize;
 		}
 
 		//serializer ctor

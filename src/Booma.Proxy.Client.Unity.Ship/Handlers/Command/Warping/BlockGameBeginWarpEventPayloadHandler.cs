@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -20,7 +21,7 @@ namespace Booma.Proxy
 		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
 
-		protected override async Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand command)
+		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand command)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved: {this.MessageName()} about to create local player.");

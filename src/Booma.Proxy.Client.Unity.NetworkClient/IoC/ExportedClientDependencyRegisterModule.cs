@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using GladNet;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -30,16 +31,16 @@ namespace Booma.Proxy
 			//We just need to register this and then others can check if it has been registered and avoid registering a new client.
 			register.RegisterInstance(ManagedClient)
 				.As<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>()
-				.As<IClientPayloadSendService<PSOBBGamePacketPayloadClient>>()
+				.As<IPeerPayloadSendService<PSOBBGamePacketPayloadClient>>()
 				.As<IPayloadInterceptable>()
 				.As<IConnectionService>();
 
 			register.RegisterType<DefaultMessageContextFactory>()
-				.As<IClientMessageContextFactory>()
+				.As<IPeerMessageContextFactory>()
 				.SingleInstance();
 
 			register.RegisterType<PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>>()
-				.As<IClientRequestSendService<PSOBBGamePacketPayloadClient>>()
+				.As<IPeerRequestSendService<PSOBBGamePacketPayloadClient>>()
 				.SingleInstance();
 			
 			//Once we're registered we can destroy

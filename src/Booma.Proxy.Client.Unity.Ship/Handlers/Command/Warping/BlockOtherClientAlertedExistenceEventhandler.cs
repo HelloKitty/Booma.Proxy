@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy UnitScaler { get; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpAckCommand command)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpAckCommand command)
 		{
 			//Clients do a full broadcast and we already know about this client
 			//so we should just return

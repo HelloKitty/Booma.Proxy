@@ -6,7 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.1" />
-    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.16" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.17" />
+    <PackageReference Include="GladNet3.Client.DotNetTcpClient" Version="3.0.10" />
+    <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.10" />
     <PackageReference Include="SceneJect.Common" Version="3.0.7" />
     <PackageReference Include="SceneJect.Metadata" Version="3.0.7" />
   </ItemGroup>

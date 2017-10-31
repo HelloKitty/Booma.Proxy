@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 
 namespace Booma.Proxy
 {
 	public sealed class BlockCharacterInitializationRequestHandler : GameMessageHandler<BlockCharacterDataInitializationServerRequestPayload>
 	{
 		/// <inheritdoc />
-		public override Task HandleMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, BlockCharacterDataInitializationServerRequestPayload payload)
+		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockCharacterDataInitializationServerRequestPayload payload)
 		{
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"**Handling**: {nameof(BlockCharacterDataInitializationServerRequestPayload)}");

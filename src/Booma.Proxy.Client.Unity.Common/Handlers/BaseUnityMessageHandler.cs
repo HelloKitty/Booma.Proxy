@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using JetBrains.Annotations;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
@@ -19,8 +20,8 @@ namespace Booma.Proxy
 	/// <typeparam name="TOutgoingPayloadType">The outgoing payload type.</typeparam>
 	/// <typeparam name="TPayloadType">The payload type this handler actually handles.</typeparam>
 	[Injectee]
-	public abstract class BaseUnityMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType, TPayloadType> : SerializedMonoBehaviour, IClientMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>,
-		IClientPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType>
+	public abstract class BaseUnityMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType, TPayloadType> : SerializedMonoBehaviour, IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>,
+		IPeerPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType>
 		where TOutgoingPayloadType : class
 		where TIncomingPayloadBaseType : class
 		where TPayloadType : class, TIncomingPayloadBaseType
@@ -28,7 +29,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The actual message handler implementation.
 		/// </summary>
-		private Lazy<IClientMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>> Handler { get; set; }
+		private Lazy<IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>> Handler { get; set; }
 
 		/// <summary>
 		/// The message handler logger.
@@ -42,7 +43,7 @@ namespace Booma.Proxy
 			//Call to base so the object is fully initialized
 			base.OnAfterDeserialize();
 
-			Handler = new Lazy<IClientMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>>(CreateDecoratedHandler, true);
+			Handler = new Lazy<IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>>(CreateDecoratedHandler, true);
 		}
 
 		protected virtual void Start()
@@ -54,7 +55,7 @@ namespace Booma.Proxy
 				return;
 			}
 
-			IClientMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType> handler = null;
+			IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType> handler = null;
 
 			try
 			{
@@ -89,15 +90,15 @@ namespace Booma.Proxy
 		/// Creates the try decorator.
 		/// </summary>
 		/// <returns>The decorated message handler.</returns>
-		private IClientMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType> CreateDecoratedHandler()
+		private IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType> CreateDecoratedHandler()
 		{
 			return this.AsTryHandler<TPayloadType, TIncomingPayloadBaseType, TOutgoingPayloadType>();
 		}
 
-		public abstract Task HandleMessage(IClientMessageContext<TOutgoingPayloadType> context, TPayloadType payload);
+		public abstract Task HandleMessage(IPeerMessageContext<TOutgoingPayloadType> context, TPayloadType payload);
 
 		/// <inheritdoc />
-		public virtual bool CanHandle(PSOBBNetworkIncomingMessage<TIncomingPayloadBaseType> message)
+		public virtual bool CanHandle(NetworkIncomingMessage<TIncomingPayloadBaseType> message)
 		{
 			//We can't handle it if the payload type
 			return message.Payload is TPayloadType;
@@ -105,7 +106,7 @@ namespace Booma.Proxy
 
 		//Just dispatches to the decorated handler.
 		/// <inheritdoc />
-		public virtual async Task<bool> TryHandleMessage(IClientMessageContext<TOutgoingPayloadType> context, PSOBBNetworkIncomingMessage<TIncomingPayloadBaseType> message)
+		public virtual async Task<bool> TryHandleMessage(IPeerMessageContext<TOutgoingPayloadType> context, NetworkIncomingMessage<TIncomingPayloadBaseType> message)
 		{
 			if(context == null) throw new ArgumentNullException(nameof(context));
 			if(message == null) throw new ArgumentNullException(nameof(message));

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Booma.Proxy
 		/// The sending service.
 		/// </summary>
 		[Inject]
-		private IClientPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		/// <summary>
 		/// Data model that contains the data about the selected character.

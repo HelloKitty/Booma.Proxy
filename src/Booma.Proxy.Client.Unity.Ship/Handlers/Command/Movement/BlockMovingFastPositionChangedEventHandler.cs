@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GladNet;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -24,7 +25,7 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy Scaler { get; }
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IClientMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayerNetworkMessageContext commandContext)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayerNetworkMessageContext commandContext)
 		{
 			Vector2 position = Scaler.ScaleYasZ(command.Position);
 

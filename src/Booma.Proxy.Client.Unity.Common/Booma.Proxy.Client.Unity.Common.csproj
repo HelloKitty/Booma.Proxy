@@ -7,6 +7,8 @@
   <ItemGroup>
     <PackageReference Include="C5" Version="2.5.3" />
     <PackageReference Include="Common.Logging" Version="3.4.1" />
+    <PackageReference Include="GladNet3.Client.API" Version="3.0.10" />
+    <PackageReference Include="GladNet3.Handler.API" Version="3.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="SceneJect.Common" Version="3.0.7" />
     <PackageReference Include="SceneJect.Metadata" Version="3.0.7" />
