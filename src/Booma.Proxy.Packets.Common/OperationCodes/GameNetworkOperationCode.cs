@@ -78,6 +78,9 @@ namespace Booma.Proxy
 
 		GAME_JOIN_TYPE = 0x0064,
 
+		//Sent to the client when another player leaves
+		GAME_LEAVE_TYPE = 0x0066,
+
 		GAME_COMMAND0_TYPE = 0x0060,
 
 		GAME_COMMAND2_TYPE = 0x0062,
