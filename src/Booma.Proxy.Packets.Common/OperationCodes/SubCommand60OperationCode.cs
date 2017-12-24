@@ -74,6 +74,10 @@ namespace Booma.Proxy
 
 		SetExperienceRate = 0xDD,
 
+		//TODO: Is this a good name?
+		//SUBCMD_TALK_NPC
+		FreezePlayer = 0x2C,
+
 		//SUBCMD_BURST_DONE   
 		GameBurstingComplete = 0x72,
 
