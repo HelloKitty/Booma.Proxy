@@ -7,7 +7,6 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
-	//TODO: This maybe should be called Freeze
 	/// <summary>
 	/// Command sent by players to the server when the character is entering an operation
 	/// that requires it to freeze or has a start and end part of the operation.
@@ -44,13 +43,17 @@ namespace Booma.Proxy
 		public byte Unknown1 { get; }
 
 		/// <summary>
-		/// Indicates the type of multi-step operation starting.
+		/// Indicates reason for the reason for the freeze event.
 		/// </summary>
 		[WireMember(3)]
-		public FreezeReason OperationType { get; } //4 bytes, last 2 usually 0x0000 but might not be apart of the enum
+		public FreezeReason Reason { get; } //4 bytes, last 2 usually 0x0000 but might not be apart of the enum
 
 		//TODO: Is this really a vector4?
 
+		/// <summary>
+		/// The position the player with <see cref="Identifier"/> id is at.
+		/// Contains the X and Z component of the position.
+		/// </summary>
 		[WireMember(4)]
 		public Vector2<float> Position { get; }
 
@@ -60,7 +63,6 @@ namespace Booma.Proxy
 		public int Unknown2 { get; }
 
 		//Serializer ctor
-
 		private Sub60PlayerFreezeCommand()
 		{
 			
