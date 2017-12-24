@@ -48,8 +48,6 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public FreezeReason Reason { get; } //4 bytes, last 2 usually 0x0000 but might not be apart of the enum
 
-		//TODO: Is this really a vector4?
-
 		/// <summary>
 		/// The position the player with <see cref="Identifier"/> id is at.
 		/// Contains the X and Z component of the position.
