@@ -47,6 +47,9 @@ namespace Booma.Proxy
 
 		SetFinalMovingPosition = 0x3E,
 
+		//SUBCMD_DEL_MAP_ITEM
+		PickupItem = 0x59,
+
 		//Syl: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/subcmd.h#L847
 		//Tethella: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L10215
 		//TODO: What is this? Sent at lobby join.
