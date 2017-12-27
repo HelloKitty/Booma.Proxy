@@ -78,6 +78,9 @@ namespace Booma.Proxy
 		//SUBCMD_TALK_NPC
 		FreezePlayer = 0x2C,
 
+		//SUBCMD_DROP_ITEM
+		DropInventoryItem = 0x2A,
+
 		//SUBCMD_BURST_DONE   
 		GameBurstingComplete = 0x72,
 
