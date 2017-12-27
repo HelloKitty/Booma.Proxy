@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		public IGameObjectFactory GameObjectFactory { get; }
 
 		[Inject]
-		private INetworkPlayerRegistery PlayerRegistery { get; }
+		private INetworkEntityRegistery<INetworkPlayer> PlayerRegistery { get; }
 
 		[Inject]
 		private IRoomCollection Rooms { get; }
@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		private ISpawnPointStrategy SpawnPointStrategy;
 
 		/// <inheritdoc />
-		public INetworkPlayer CreatePlayer(int id, Vector3 position, Quaternion rotation)
+		public INetworkPlayer CreateEntity(int id, Vector3 position, Quaternion rotation)
 		{
 			if(id < 0 || id > byte.MaxValue) throw new ArgumentOutOfRangeException(nameof(id), $"The {nameof(id)} for the player must not exceed 255 or be below 0.");
 
@@ -61,21 +61,21 @@ namespace Booma.Proxy
 				throw new InvalidOperationException($"Failed to create a {nameof(INetworkPlayer)}. The prefab was missing the component.");
 
 			//Now we must register it in the player registry
-			PlayerRegistery.AddPlayer(id, player);
+			PlayerRegistery.AddEntity(id, player);
 			Rooms.DefaultRoom.TryEnter(player);
 
 			return player;
 		}
 
 		/// <inheritdoc />
-		public INetworkPlayer CreatePlayer(int id)
+		public INetworkPlayer CreateEntity(int id)
 		{
 			Transform spawnpoint = SpawnPointStrategy.GetSpawnpoint();
 
 			if(spawnpoint == null)
 				throw new InvalidOperationException($"The {this.GetType().Name} tried to load a spawnpoint from {nameof(SpawnPointStrategy)} but the point was null.");
 
-			return CreatePlayer(id, spawnpoint.position, spawnpoint.rotation);
+			return CreateEntity(id, spawnpoint.position, spawnpoint.rotation);
 		}
 
 		/// <inheritdoc />
@@ -102,7 +102,7 @@ namespace Booma.Proxy
 				throw new InvalidOperationException($"The identity was null.");
 
 			//Now we must register it in the player registry
-			PlayerRegistery.AddPlayer(player.Identity.EntityId, player);
+			PlayerRegistery.AddEntity(player.Identity.EntityId, player);
 			Rooms.DefaultRoom.TryEnter(player);
 
 			return player;

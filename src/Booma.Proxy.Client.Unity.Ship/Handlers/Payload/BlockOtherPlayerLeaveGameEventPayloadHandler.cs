@@ -11,13 +11,13 @@ namespace Booma.Proxy
 	public sealed class BlockOtherPlayerLeaveGameEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveGameEventPayload>
 	{
 		[Inject]
-		private INetworkPlayerRegistery PlayerRegistry { get; }
+		private INetworkEntityRegistery<INetworkPlayer> PlayerRegistry { get; }
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockOtherPlayerLeaveGameEventPayload payload)
 		{
 			//TODO: We can't check that we have this spawned, so we should address that.
-			INetworkPlayer player = PlayerRegistry.RemovePlayer(payload.Identifier);
+			INetworkPlayer player = PlayerRegistry.RemoveEntity(payload.Identifier);
 
 			if(player == null)
 			{

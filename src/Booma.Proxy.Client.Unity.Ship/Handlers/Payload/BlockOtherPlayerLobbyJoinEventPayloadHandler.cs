@@ -8,6 +8,7 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	[Injectee]
 	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
 	{
 		[Inject]
@@ -21,7 +22,7 @@ namespace Booma.Proxy
 
 			//Create the joined player
 			//We don't really have a position for them though, it didn't come in this packet
-			PlayerFactory.CreatePlayer(payload.ClientId);
+			PlayerFactory.CreateEntity(payload.ClientId);
 
 			return Task.CompletedTask;
 		}

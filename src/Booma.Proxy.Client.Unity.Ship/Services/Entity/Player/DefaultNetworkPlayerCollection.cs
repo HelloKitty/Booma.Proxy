@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Simple implementation of the <see cref="INetworkPlayerCollection"/>.
 	/// </summary>
-	public sealed class DefaultNetworkPlayerCollection : INetworkPlayerCollection, INetworkPlayerRegistery
+	public sealed class DefaultNetworkPlayerCollection : INetworkPlayerCollection, INetworkEntityRegistery<INetworkPlayer>
 	{
 		/// <inheritdoc />
 		public INetworkPlayer Local => ManagedPlayerMap[SlotModel.SlotSelected];
@@ -62,7 +62,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public void AddPlayer(int id, INetworkPlayer player)
+		public void AddEntity(int id, INetworkPlayer player)
 		{
 			if(ManagedPlayerMap.ContainsKey(id))
 				throw new InvalidOperationException($"Tried to add player with Id: {id} but that id is already associated. Details: {player}");
@@ -71,7 +71,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public INetworkPlayer RemovePlayer(int id)
+		public INetworkPlayer RemoveEntity(int id)
 		{
 			if(!ManagedPlayerMap.ContainsKey(id))
 				return null;

@@ -36,7 +36,7 @@ namespace Booma.Proxy
 			Vector3 position = UnitScaler.Scale(command.Position);
 
 			//TODO: We should check the ZoneId being sent AND if we already know the player. We shouldn't but we should still verify
-			PlayerFactory.CreatePlayer(command.Identifier, position, Quaternion.AngleAxis(rotation, Vector3.up));
+			PlayerFactory.CreateEntity(command.Identifier, position, Quaternion.AngleAxis(rotation, Vector3.up));
 
 			return Task.CompletedTask;
 		}

@@ -20,7 +20,13 @@ namespace Booma.Proxy
 			//We need a player collection in the scene for commands
 			register.RegisterType<DefaultNetworkPlayerCollection>()
 				.As<INetworkPlayerCollection>()
-				.As<INetworkPlayerRegistery>()
+				.As<INetworkEntityRegistery<INetworkPlayer>>()
+				.SingleInstance();
+
+			//TODO: Move this to Game command dependency register. Items aren't needed in lo0bby
+			register.RegisterType<DefaultNetworkItemCollection>()
+				.As<INetworkEntityCollection<INetworkItem>>()
+				.As<INetworkEntityRegistery<INetworkItem>>()
 				.SingleInstance();
 
 			//Register the player context factory for both types
