@@ -18,8 +18,13 @@ namespace Booma.Proxy
 		None = 0,
 
 		/// <summary>
-		/// Represents a play entity.
+		/// Represents a player entity.
 		/// </summary>
-		Player = 1
+		Player = 1,
+
+		/// <summary>
+		/// Represents an item entity.
+		/// </summary>
+		Item = 2
 	}
 }

@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	[GameClientPacketPayload(GameNetworkOperationCode.LOGIN_93_TYPE)]
 	public sealed class SharedLoginRequest93Payload : PSOBBGamePacketPayloadClient
 	{
+		//TODO: This may not be serverType. It may have to do with the current operation
 		[Serializable]
 		public enum ServerType : byte
 		{
@@ -44,6 +45,7 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public ushort ClientVersion { get; }
 
+		//Soly said: meet the user will put a 6 here and teth puts the lobby you want to go, in offset 0x7C
 		/// <summary>
 		/// Unknown bytes.
 		/// </summary>

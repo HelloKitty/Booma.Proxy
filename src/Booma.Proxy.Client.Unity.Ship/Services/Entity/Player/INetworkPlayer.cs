@@ -7,24 +7,8 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	//TODO: Implement
-	public interface INetworkPlayer
+	public interface INetworkPlayer : INetworkEntity
 	{
-		/// <summary>
-		/// The network transform associated with the player.
-		/// </summary>
-		INetworkEntityTransform Transform { get; }
-
-		/// <summary>
-		/// The identifier (client id)
-		/// associated with the player.
-		/// </summary>
-		IEntityIdentity Identity { get; }
-
-		/// <summary>
-		/// Despawn the player.
-		/// </summary>
-		void Despawn();
-
 		/// <summary>
 		/// Indicates if the player is the local player.
 		/// </summary>
