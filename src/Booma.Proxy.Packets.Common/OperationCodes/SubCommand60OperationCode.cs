@@ -91,9 +91,13 @@ namespace Booma.Proxy
 		/// Opcode used to packets
 		/// about players leaving a game.
 		/// </summary>
-		GAME_LEAVE_TYPE = 0x0066
+		GAME_LEAVE_TYPE = 0x66,
 
 		//l->clientx[client->clientID] = *(unsigned *) &client->decryptbuf[0x14];
 		//l->clienty[client->clientID] = *(unsigned*)&client->decryptbuf[0x1C];
+		/// <summary>
+		/// Sent when a client leaves a map and begins to warp to a new area.
+		/// </summary>
+		GameStartWarpToArea = 0x21
 	}
 }
