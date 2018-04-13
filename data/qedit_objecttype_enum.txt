@@ -1,0 +1,279 @@
+0	Player Set	-	Rotation Y	-	Slot ID	-	-	Return Flag	-	-	-
+1	Particle	-	Rotation Y	-	1	2	3	4	5	6	-
+2	Teleporter	-	Rotation Y	-	Area Number	Colour Blue	Colour Red	Floor Number	Disp Number	No Disp Number	-
+3	Warp	-	Rotation Y	-	Destination X	Destination Y	Destination Z	Dst Rotation Y	-	-	-
+4	Light Collision	1	Rotation Y	2	3	4	5	6	7	8	9
+5	Item	1	Rotation Y	2	3	4	5	6	7	8	9
+6	Env Sound	1	2	3	4	5	Radius	SE	Volume	6	7
+7	Fog Collision	1	2	3	Radius	4	5	Fog Index Number	7	8	-
+8	Event Collision	-	-	-	Radius	-	-	Event Number	-	-	-
+9	Chara Collision	1	Rotation Y	2	3	4	5	6	7	8	9
+10	Elemental Trap	-	Rotation Y	-	Radius	1	Trap Link	Damage	Subtype	Delay	-
+11	Status Trap	-	Rotation Y	-	Radius	1	Trap Link	-	Subtype	Delay	-
+12	Heal Trap	-	Rotation Y	-	Radius	1	Trap Link	HP	Subtype	Delay	-
+13	Large Elemental Trap	-	Rotation Y	-	Radus	1	Trap Link	Damage	Subtype	Delay	-
+14	Obj Room ID	-	Rotation Y	-	SCL_TAMA	Next Room	Previous Room 	-	-	-	-
+15	Sensor	1	Rotation Y	2	3	4	5	6	7	8	9
+16	Unknown Item (16)	-	Rotation Y	-	1	2	3	4	5	6	-
+17	Lensflare	-	Rotation Y	-	1	2	3	4	5	6	-
+18	Script Collision	-	-	-	Radius	1	2	3	4	5	-
+19	Heal Ring	-	Rotation Y	-	-	-	-	-	-	-	-
+20	Map Collision	1	Rotation Y	2	3	4	5	6	7	8	9
+21	Script Collision A	1	Rotation Y	2	3	4	5	6	7	8	9
+22	Item Light	-	Rotation Y	-	Subtype	4	5	6	7	8	9
+23	Radar Collision	-	Rotation Y	-	Radius	2	3	4	5	6	-
+24	Fog Collision SW	-	-	-	Radius	Status	1	Fog Index Number	2	Switch ID	-
+25	Boss Teleporter	-	Rotation Y	-	1	2	3	4	5	6	-
+26	Image Board	Rotation X	Rotation Y	Rotation Z	Scale X	Scale Y	Scale Z	1	2	3	4
+27	Quest Warp	-	Rotation Y	-	1	2	3	4	5	6	-
+28	Epilogue	-	Rotation Y	-	1	2	3	4	5	6	-
+29	Unknown Item (29)	-	Rotation Y	-	1	2	3	4	5	6	-
+30	Unknown Item (30)	-	Rotation Y	-	-	-	-	-	-	-	-
+31	Unknown Item (31)	-	Rotation Y	-	1	2	3	4	5	6	-
+32	Box Detect Object	-	-	-	Radius	1	2	Plate ID	4	5	-
+33	Symbol Chat Object	-	-	-	Radius	2	3	4	5	6	-
+34	Touch plate Object	-	-	-	Radius	-	-	Switch ID	-	-	-
+35	Targetable Object	-	Rotation Y	-	1	2	Switch ID	HP	5	6	-
+36	Effect object	-	Rotation Y	-	1	2	3	4	5	6	-
+37	Count Down Object	-	Rotation Y	-	1	2	3	4	5	6	-
+38	Unknown Item (38)	-	Rotation Y	-	1	2	3	4	5	6	-
+39	Unknown Item (39)	-	Rotation Y	-	1	2	3	4	5	6	-
+40	Unknown Item (40)	-	Rotation Y	-	1	2	3	4	5	6	-
+41	Unknown Item (41)	-	Rotation Y	-	1	2	3	4	5	6	-
+64	Menu activation	-	Rotation Y	-	-	-	-	Menu ID	-	-	-
+65	Telepipe Location	-	Rotation Y	-	-	-	-	Slot ID	-	-	-
+66	BGM Collision	-	Rotation Y	-	1	2	3	4	5	6	-
+67	Main Ragol Teleporter	-	Rotation Y	-	-	-	-	-	-	-	-
+68	Lobby Teleporter	-	Rotation Y	-	-	-	-	-	-	-	-
+69	Principal warp	-	Rotation Y	-	Destination X	Destination Y	Destination Z	Dst Rotation Y	-	Model	-
+70	Shop Door	-	Rotation Y	-	-	-	-	-	-	-	-
+71	Hunter's Guild Door	-	Rotation Y	-	-	-	-	-	-	-	-
+72	Teleporter Door	-	Rotation Y	-	-	-	-	-	-	-	-
+73	Medical Center Door	-	Rotation Y	-	-	-	-	-	-	-	-
+74	Elevator	-	Rotation Y	-	-	-	-	-	-	-	-
+75	Easter Egg	-	Rotation Y	-	-	-	-	-	-	-	-
+76	Valentines Heart	-	Rotation Y	-	-	-	-	-	-	-	-
+77	Christmas Tree	-	Rotation Y	-	-	-	-	-	-	-	-
+78	Christmas Wreath	-	Rotation Y	-	-	-	-	-	-	-	-
+79	Halloween Pumpkin	-	Rotation Y	-	-	-	-	-	-	-	-
+80	21st Century	-	Rotation Y	-	-	-	-	-	-	-	-
+81	Sonic	-	Rotation Y	-	1	2	3	Model	5	6	-
+82	Welcome Board	-	Rotation Y	-	-	-	-	-	-	-	-
+83	Firework	-	Rotation Y	-	Mdl IDX	Area Width	Rise Height	Area Depth	Freq	-	-
+84	Lobby Screen Door	-	Rotation Y	-	-	-	-	-	-	-	-
+85	Main Ragol Teleporter (Battle in next area?)	-	Rotation Y	-	-	-	-	-	-	-	-
+86	Lab Teleporter Door	-	Rotation Y	-	1	2	3	4	5	6	-
+87	Pioneer 2 Invisible Touchplate	-	-	-	Radius	-	-	-	-	-	-
+128	Forest Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+129	Forest Switch	-	Rotation Y	-	-	-	-	Switch ID	-	Colour	-
+130	Laser Fence	-	Rotation Y	-	Colour	-	-	Switch ID	-	Model	-
+131	Laser Square Fence	-	Rotation Y	-	Colour	-	-	Switch ID	-	Model	-
+132	Forest Laser Fence Switch	-	Rotation Y	-	-	-	-	Switch ID	-	Colour	-
+133	Light rays	-	Rotation Y	-	Scale X	Scale Y	Scale Z	-	-	-	-
+134	Blue Butterfly	-	Rotation Y	-	1	2	3	4	5	6	-
+135	Probe	Rotation X	Rotation Y	Rotation Z	Model	-	-	-	-	-	-
+136	Random Type Box 1	-	Rotation Y	-	-	-	-	-	-	-	-
+137	Forest Weather Station	-	Rotation Y	-	1	2	3	4	5	6	-
+138	Battery	-	Rotation Y	-	1	2	3	4	5	6	-
+139	Forest Console	-	Rotation Y	-	-	-	-	Function	Model	-	-
+140	Black Sliding Door	Rotation X	Rotation Y	Rotation Z	Distance	Speed	Switch ID	Switch Number	Disable Effect	Enable Effect	-
+141	Rico Message Pod	-	Rotation Y	-	1	2	3	4	5	6	-
+142	Energy Barrier	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+143	Forest Rising Bridge	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+144	Switch (none door)	-	Rotation Y	-	-	-	-	Switch ID	-	-	-
+145	Enemy Box (Grey)	-	Rotation Y	-	Event Number	-	-	-	-	-	-
+146	Fixed Type Box	-	Rotation Y	-	Full Random	Random Item	Fixed Item	Item Parameter	-	-	-
+147	Enemy Box (Brown)	-	Rotation Y	-	Event Number	-	-	-	-	-	-
+149	Empty Type Box	-	Rotation Y	-	Event Number	-	-	-	-	-	-
+150	Laser Fense Ex	-	Rotation Y	-	Colour	Collision Width	Collision Depth	Switch ID	-	Model	-
+151	Laser Square Fence Ex	-	Rotation Y	-	Colour	Collision Width	Collision Depth	SWITCH ID	-	Model	-
+192	Floor Panel 1	Rotation X	Rotation Y	Rotation Z	Scale  X	Scale  Y	Scale  Z	Switch ID	Stay Active	-	-
+193	Caves 4 Button door	-	Rotation Y	-	-	-	-	Door ID	Switch total	Stay Active	-
+194	Caves Normal door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+195	Caves Smashing Pillar	-	Rotation Y	-	1	2	3	4	5	6	-
+196	Caves Sign 1	-	Rotation Y	-	1	2	3	4	5	6	-
+197	Caves Sign 2	-	Rotation Y	-	1	2	3	4	5	6	-
+198	Caves Sign 3	-	Rotation Y	-	1	2	3	4	5	6	-
+199	Hexagal Tank	-	Rotation Y	-	1	2	3	4	5	6	-
+200	Brown Platform	-	Rotation Y	-	1	2	3	4	5	6	-
+201	Warning Light Object	-	Rotation Y	-	1	2	3	4	5	6	-
+203	Rainbow	-	Rotation Y	-	Scale  X	Scale  Y	Scale  Z	4	5	6	-
+204	Floating Jelifish	-	Rotation Y	-	1	2	3	4	5	6	-
+205	Floating Dragonfly	-	Rotation Y	-	1	2	3	4	5	6	-
+206	Caves Switch Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+207	Robot Recharge Station	-	Rotation Y	-	1	2	3	4	5	6	-
+208	Caves Cake Shop	-	Rotation Y	-	1	2	3	4	5	6	-
+209	Caves 1 Small Red Rock 	-	Rotation Y	-	-	-	-	-	-	-	-
+210	Caves 1 Medium Red Rock	-	Rotation Y	-	-	-	-	-	-	-	-
+211	Caves 1 Large Red Rock 	-	Rotation Y	-	-	-	-	-	-	-	-
+212	Caves 2 Small Rock 1	-	Rotation Y	-	-	-	-	-	-	-	-
+213	Caves 2 Medium Rock 1	-	Rotation Y	-	-	-	-	-	-	-	-
+214	Caves 2 Large Rock 1	-	Rotation Y	-	-	-	-	-	-	-	-
+215	Caves 2 Small Rock 2	-	Rotation Y	-	-	-	-	-	-	-	-
+216	Caves 2 Medium Rock 2	-	Rotation Y	-	-	-	-	-	-	-	-
+217	Caves 2 Large Rock 2	-	Rotation Y	-	-	-	-	-	-	-	-
+218	Caves 3 Small Rock	-	Rotation Y	-	-	-	-	-	-	-	-
+219	Caves 3 Medium Rock	-	Rotation Y	-	-	-	-	-	-	-	-
+220	Caves 3 Large Rock	-	Rotation Y	-	-	-	-	-	-	-	-
+222	Floor Panel 2	Rotation X	Rotation Y	Rotation Z	Scale X	Scale Y	Scale Z	Switch ID	Stay Active	-	-
+223	Destructable Rock (Caves 1)	-	Rotation Y	-	1	2	3	4	5	6	-
+224	Destructable Rock (Caves 2)	-	Rotation Y	-	1	2	3	4	5	6	-
+225	Destructable Rock (Caves 3)	-	Rotation Y	-	1	2	3	4	5	6	-
+256	Mines Door	-	Rotation Y	-	-	-	-	Door ID	Switch Total	Stay Active	-
+257	Floor Panel 3	Rotation X	Rotation Y	Rotation Z	Scale X	Scale Y	Scale Z	Switch ID	Stay Active	-	-
+258	Mines Switch Door	-	Rotation Y	-	-	-	-	Door ID	Switch Total	Stay Active	-
+259	Large Cryo-Tube 	-	Rotation Y	-	-	-	-	-	-	-	-
+260	Computer (like calus)	-	Rotation Y	-	1	2	3	4	5	6	-
+261	Green Screen opening and closing 	-	Rotation Y	-	1	2	3	4	5	6	-
+262	Floating Robot	-	Rotation Y	-	1	2	3	4	5	6	-
+263	Floating Blue Light	-	Rotation Y	-	1	2	3	4	5	6	-
+264	Self Destructing Object 1	-	Rotation Y	-	1	2	3	4	5	6	-
+265	Self Destructing Object 2	-	Rotation Y	-	1	2	3	4	5	6	-
+266	Self Destructing Object 3	-	Rotation Y	-	1	2	3	4	5	6	-
+267	Spark Machine	-	Rotation Y	-	Scale X	Scale Y	Scale Z	-	-	-	-
+268	Mines Large Flashing Crate	-	Rotation Y	-	1	2	3	4	5	6	-
+304	Ruins Seal	-	Rotation Y	-	-	-	-	-	-	-	-
+320	Ruins Teleporter	-	Rotation Y	-	Area Number	Colour Blue	Colour Red	Floor Number	Disp Number	No Disp Number	-
+321	Ruins Warp (Site to site)	-	Rotation Y	-	Destination X	Destination Y	Destination Z	Dst Rotation Y	-	-	-
+322	Ruins Switch	-	Rotation Y	-	-	-	-	Switch ID	-	-	-
+323	Floor Panel 4	Rotation X	Rotation Y	Rotation Z	Scale X	Scale Y	Scale Z	Plate ID	Stay Active	-	-
+324	Ruins 1 Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+325	Ruins 3 Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+326	Ruins 2 Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+327	Ruins 1-1 Button Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+328	Ruins 2-1 Button Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+329	Ruins 3-1 Button Door	-	Rotation Y	-	-	-	-	Door ID	-	-	-
+330	Ruins 4-Button Door	-	Rotation Y	-	-	-	-	Door ID	5	Stay Active	-
+331	Ruins 2-Button Door	-	Rotation Y	-	-	-	-	Door ID	5	Stay Active	-
+332	Ruins Sensor	-	Rotation Y	-	1	2	3	4	5	6	-
+333	Ruins Fence Switch	-	Rotation Y	-	-	-	-	Switch ID	Colour	-	-
+334	Ruins Laser Fence 4x2	-	Rotation Y	-	-	-	-	Switch ID	Colour	-	-
+335	Ruins Laser Fence 6x2	-	Rotation Y	-	-	-	-	Switch ID	Colour	-	-
+336	Ruins Laser Fence 4x4	-	Rotation Y	-	-	-	-	Switch ID	Colour	-	-
+337	Ruins Laser Fence 6x4	-	Rotation Y	-	-	-	-	Switch ID	Colour	-	-
+338	Ruins poison Blob	-	Rotation Y	-	-	-	-	-	-	-	-
+339	Ruins Pilar Trap	-	Rotation Y	-	1	2	3	4	5	6	-
+340	Popup Trap (No Tech)	-	-	-	Radius	1	2	3	4	5	-
+341	Ruins Crystal	-	Rotation Y	-	1	2	3	4	5	6	-
+342	Monument	-	Rotation Y	-	1	2	3	4	5	6	-
+345	Ruins Rock 1	-	Rotation Y	-	-	-	-	-	-	-	-
+346	Ruins Rock 2	-	Rotation Y	-	-	-	-	-	-	-	-
+347	Ruins Rock 3	-	Rotation Y	-	-	-	-	-	-	-	-
+348	Ruins Rock 4	-	Rotation Y	-	-	-	-	-	-	-	-
+349	Ruins Rock 5	-	Rotation Y	-	-	-	-	-	-	-	-
+350	Ruins Rock 6	-	Rotation Y	-	-	-	-	-	-	-	-
+351	Ruins Rock 7	-	Rotation Y	-	-	-	-	-	-	-	-
+352	Poison	-	-	-	Radius	Power	Link	Switch Mode	Fog Index Number	Swich ID	-
+353	Fixed Box Type (Ruins)	-	Rotation Y	-	Full random	Random Item	Fixed Item	Item parameter	-	-	-
+354	Random Box Type (Ruins)	-	Rotation Y	-	1	2	3	4	5	6	-
+355	Enemy Type Box (Yellow)	-	Rotation Y	-	1	2	3	4	5	-	-
+356	Enemy Type Box (Blue)	-	Rotation Y	-	1	2	3	4	5	-	-
+357	Empty Type Box (Blue)	-	Rotation Y	-	1	2	3	4	5	-	-
+358	Destructable Rock	-	Rotation Y	-	-	-	-	-	-	-	-
+359	Popup Traps (techs)	-	-	-	Radius	HP	-	-	Action	Tech	-
+368	Flying White Bird	-	Rotation Y	-	1	2	3	4	5	6	-
+369	Tower	-	Rotation Y	-	1	2	3	4	5	6	-
+370	Floating Rocks	-	Rotation Y	-	1	2	3	4	5	6	-
+371	Floating Soul	-	Rotation Y	-	1	2	3	4	5	6	-
+372	Butterfly	-	Rotation Y	-	1	2	3	4	5	6	-
+384	Lobby Game menu	-	Rotation Y	-	1	2	3	4	5	6	-
+385	Lobby Warp Object	-	Rotation Y	-	1	2	3	4	5	6	-
+386	Lobby 1 Event Object (Default Tree)	- 	Rotation Y	-	1	2	3	4	5	6	-
+387	Unknown Item (387)	-	Rotation Y	-	1	2	3	4	5	6	-
+388	Unknown Item (388)	-	Rotation Y	-	1	2	3	4	5	6	-
+389	Unknown Item (389)	-	Rotation Y	-	1	2	3	4	5	6	-
+390	Lobby Event Object (Static Pumpkin)	-	Rotation Y	-	1	2	3	4	5	6	-
+391	Lobby Event Object (3 Christmas Windows)	-	Rotation Y	-	1	2	3	4	5	6	-
+392	Lobby Event Object (Red and White Curtain)	-	Rotation Y	-	1	2	3	4	5	6	-
+393	Unknown Item (393)	-	Rotation Y	-	1	2	3	4	5	6	-
+394	Unknown Item (394)	-	Rotation Y	-	1	2	3	4	5	6	-
+395	Lobby Fish Tank	-	Rotation Y	-	1	2	3	4	5	6	-
+396	Lobby Event Object (Butterflies)	-	Rotation Y	-	1	2	3	4	5	6	-
+400	Unknown Item (400)	-	Rotation Y	-	1	2	3	4	5	6	-
+401	grey wall low	-	Rotation Y	-	1	2	3	4	5	6	-
+402	Spaceship Door	-	Rotation Y	-	1	2	3	Switch ID	5	6	-
+403	grey wall high	-	Rotation Y	-	1	2	3	4	5	6	-
+416	Temple Normal Door	-	Rotation Y	-	1	2	3	Switch ID	5	6	-
+417	"breakable wall wall, but unbreakable "	-	Rotation Y	-	1	2	3	4	5	6	-
+418	Broken cilinder and rubble 	-	Rotation Y	-	1	2	3	4	5	6	-
+419	3 broken wall pieces on floor 	-	Rotation Y	-	1	2	3	4	5	6	-
+420	high brick cilinder	-	Rotation Y	-	1	2	3	4	5	6	-
+421	lying cilinder 	-	Rotation Y	-	1	2	3	4	5	6	-
+422	brick cone with flat top 	-	Rotation Y	-	1	2	3	4	5	6	-
+423	breakable temple wall 	-	Rotation Y	-	1	2	3	4	5	6	-
+424	Temple Map Detect	-	Rotation Y	-	1	2	3	4	5	6	-
+425	small brown brick rising bridge 	-	Rotation Y	-	1	2	3	4	5	6	-
+426	long rising bridge (with pink high edges)	-	Rotation Y	-	1	2	3	4	5	6	-
+427	4 switch temple door	-	Rotation Y	-	1	2	3	4	5	6	-
+448	4 button spaceship door	-	Rotation Y	-	1	2	3	4	5	6	-
+512	item box cca 	-	Rotation Y	-	1	2	3	4	5	6	-
+513	Teleporter (Ep 2)	-	Rotation Y	-	1	2	3	4	5	6	-
+514	CCA Door	-	Rotation Y	-	Scale X	Scale Y	Scale Z	Switch ID	Switch Amount	Stay Active	-
+515	Special Box CCA	-	Rotation Y	-	1	2	3	4	5	6	-
+516	Big CCA Door	-	Rotation Y	-	1	2	3	4	5	6	-
+517	Big CCA Door Switch	-	Rotation Y	-	1	2	3	4	5	6	-
+518	Little Rock	-	Rotation Y	-	1	2	3	4	5	6	-
+519	Little 3 Stone Wall 	-	Rotation Y	-	-	-	-	Switch ID	5	6	-
+520	Medium 3 stone wall	-	Rotation Y	-	1	2	3	4	5	6	-
+521	Spider Plant	-	Rotation	-	1	2	3	4	5	6	-
+522	CCA Area Teleporter	-	Rotation Y	-	1	2	3	4	5	6	-
+523	Unknown Item (523)	-	Rotation Y	-	1	2	3	4	5	6	-
+524	White Bird	-	Rotation Y	-	1	2	3	4	5	6	-
+525	Orange Bird	-	Rotation Y	-	1	2	3	4	5	6	-
+527	Saw	-	Rotation Y	-	1	Speed	Model	Switch ID	Arc	Switch Flag	-
+528	Laser Detect	-	Rotation Y	-	1	2	Model	Switch ID	Arc	5	-
+529	Unknown Item (529)	-	Rotation Y	-	1	2	3	4	5	6	-
+530	Unknown Item (530)	-	Rotation Y	-	1	2	3	4	5	6	-
+531	Seagull	-	Rotation	-	1	2	3	4	5	6	-
+544	Fish	-	Rotation Y	-	1	2	3	4	5	6	-
+545	Seabed Door (with blue edges) 	-	Rotation Y	-	Scale X	Scale Y	Scale Z	Switch ID	Switch Amount	Stay Active	-
+546	"Seabed Door (always open, non-triggerable)"	-	Rotation Y	-	1	2	3	4	5	6	-
+547	Little Cryotube 	-	Rotation Y	-	1	2	3	Model	4	5	-
+548	Wide Glass Wall (breakable) 	-	Rotation Y	-	1	2	3	4	5	6	-
+549	Blue floating robot	-	Rotation Y	-	1	2	3	4	5	6	-
+550	Red floating robot	-	Rotation Y	-	1	2	3	4	5	6	-
+551	Dolphin	-	Rotation Y	-	1	2	3	4	5	6	-
+552	Capture Trap	-	Rotation Y	-	1	2	3	4	5	6	-
+553	VR link	-	Rotation Y	-	1	2	3	4	5	6	-
+576	Unknown Item (576)	-	Rotation Y	1	2	3	4	5	6	-	-
+640	Warp in Barba Ray Room	-	Rotation Y	-	1	2	3	4	5	6	-
+672	Unknown Item (672)	-	Rotation Y	-	1	2	3	4	5	6	-
+688	Gee Nest	-	Rotation Y	-	1	2	3	4	5	6	-
+689	Lab Computer Console	-	Rotation Y	-	1	2	3	4	5	6	-
+690	Lab Computer Console (Green Screen)	-	Rotation Y	-	1	2	3	4	5	6	-
+691	Chair, Yelllow Pillow	-	Rotation Y	-	1	2	3	4	5	6	-
+692	orange wall with hole in middle 	-	Rotation Y	-	1	2	3	4	5	6	-
+693	grey wall with hole in middle	-	Rotation Y	-	1	2	3	4	5	6	-
+694	long table 	-	Rotation Y	-	1	2	3	4	5	6	-
+695	GBA Station	-	Rotation Y	-	1	2	3	4	5	6	-
+696	Talk (link to support)	-	Rotation Y	-	1	2	3	4	5	6	-
+697	insta-warp 	-	Rotation Y	-	1	2	3	4	5	6	-
+698	Lab Invisible Object	-	Rotation Y	-	1	2	3	4	5	6	-
+699	Lab Glass window Door	-	Rotation Y	-	1	2	3	4	5	6	-
+700	Unknown Item (700)	-	Rotation Y	-	1	2	3	4	5	6	-
+701	Lab Celing Warp	-	Rotation Y	-	1	2	3	4	5	6	-
+768	Ep4 Light Source	-	Rotation Y	-	1	2	3	4	5	6	-
+769	cacti	-	Rotation Y	-	Scale X	Scale Y	Scale Z	Model	-	-	-
+770	Big Brown Rock	-	Rotation Y	-	-	-	-	Model	-	-	-
+771	Breakable Brown Rock	-	Rotation Y	-	1	2	3	4	5	6	-
+832	Unknown Item (832)	-	Rotation Y	-	1	2	3	4	5	6	-
+833	Unknown Item (833)	-	Rotation Y	-	1	2	3	4	5	6	-
+896	Poison Plant	-	Rotation Y	-	1	2	3	4	5	6	-
+897	Unknown Item (897)	-	Rotation Y	-	1	2	3	4	5	6	-
+898	Unknown Item (898)	-	Rotation Y	-	1	2	3	4	5	6	-
+899	Oozing Desert Plant	-	Rotation Y	-	1	2	3	4	5	6	-
+901	Unknown Item (901)	-	Rotation Y	-	1	2	3	4	5	6	-
+902	big black rocks	-	Rotation Y	-	1	2	3	Model	4	5	-
+903	Unknown Item (903)	-	Rotation Y	-	1	2	3	4	5	6	-
+904	Unknown Item (904)	-	Rotation Y	-	1	2	3	4	5	6	-
+905	Unknown Item (905)	-	Rotation Y	-	1	2	3	4	5	6	-
+906	Unknown Item (906)	-	Rotation Y	-	1	2	3	4	5	6	-
+907	Falling Rock	-	Rotation Y	-	1	2	3	4	5	6	-
+908	Desert Plant (has collision)	-	Rotation Y	-	1	2	3	4	5	6	-
+909	Desert Fixed Type Box (Breakable Crystals)	-	Rotation Y	-	1	2	3	4	5	6	-
+910	Unknown Item (910)	-	Rotation Y	-	1	2	3	4	5	6	-
+911	Bee Hive	-	Rotation Y	-	-	-	-	Model	-	-	-
+912	Unknown Item (912)	-	Rotation Y	-	1	2	3	4	5	6	-
+913	Heat	-	-	-	Radius	1	2	Fog Index Number	4	5	-
+960	Top of saint million egg	-	Rotation Y	-	1	2	3	4	5	6	-
+961	Unknown Item (961)	-	Rotation Y	-	1	2	3	4	5	6	-
