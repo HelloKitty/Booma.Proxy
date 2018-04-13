@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		
 		//TODO: What is this?
 		[WireMember(4)]
-		public byte Unused2 { get; }
+		public short Unused2 { get; }
 
 		public Sub60StartNewWarpCommand()
 		{
