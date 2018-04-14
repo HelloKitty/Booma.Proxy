@@ -98,6 +98,11 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Sent when a client leaves a map and begins to warp to a new area.
 		/// </summary>
-		GameStartWarpToArea = 0x21
+		GameStartWarpToArea = 0x21,
+
+		/// <summary>
+		/// Opcode for event that lets clients know a box has been hit.
+		/// </summary>
+		GameBoxHit = 0x0B
 	}
 }

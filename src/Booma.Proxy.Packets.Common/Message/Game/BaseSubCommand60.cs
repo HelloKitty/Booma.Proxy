@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		public virtual bool isSizeSerialized { get; } = true;
 
 		//Since the Type byte is eaten by the polymorphic deserialization process
-		//We just read t he size to discard it
+		//We just read the size to discard it
 		/// <summary>
 		/// The size of the subcommand (subpayload).
 		/// Not needed for deserialization of subcommand.

@@ -26,7 +26,7 @@ namespace Booma
 		/// The identifier for this object.
 		/// </summary>
 		[WireMember(3)]
-		public short Identifier { get; }
+		public ushort Identifier { get; }
 
 		//TODO: What is this?
 
@@ -47,7 +47,7 @@ namespace Booma
 		//TODO: What is this?
 
 		[WireMember(6)]
-		private short unk2 { get; }
+		public short unk2 { get; }
 
 		/// <summary>
 		/// Position of the object.
@@ -86,7 +86,7 @@ namespace Booma
 		/// <inheritdoc />
 		public override string ToString()
 		{
-			return $"Id: {Identifier} ObjectType: {ObjectType} Position: {Position}";
+			return $"Id: {Identifier} Group: {Group} Section: {Section} Unk2: {unk2} ObjectType: {ObjectType} Position: {Position}";
 		}
 	}
 }

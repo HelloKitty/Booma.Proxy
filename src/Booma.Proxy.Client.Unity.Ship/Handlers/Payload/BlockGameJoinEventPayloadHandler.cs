@@ -43,6 +43,18 @@ namespace Booma.Proxy
 				Logger.Info($"{payload.Settings}");
 			}
 
+			//TODO: Remove this info logging.
+			if(Logger.IsInfoEnabled)
+			{
+				StringBuilder builder = new StringBuilder();
+				builder.Append("Variations: ");
+
+				for(int i = 0; i < payload.Maps.Length; i++)
+					builder.Append($"{i}: {payload.Maps[i]} ");
+
+				Logger.Info(builder.ToString());
+			}
+
 			//We should init the slot model with our new identifer
 			SlotModel.SlotSelected = payload.Identifier;
 

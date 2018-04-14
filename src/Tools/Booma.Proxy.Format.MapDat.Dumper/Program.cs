@@ -37,12 +37,15 @@ namespace Booma
 
 			List<string> linesToWrite = new List<string>(count);
 
+			int index = 0;
 			foreach(var m in model)
 			{
-				string log = m.ToString();
+				string log = $"Index: {index} {m.ToString()}";
 
 				Console.WriteLine(log);
 				linesToWrite.Add(log);
+
+				index++;
 			}
 
 			File.WriteAllLines($"{Path.GetFileNameWithoutExtension(fileName)}_out.txt", linesToWrite);
