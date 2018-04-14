@@ -4,8 +4,12 @@ using FreecraftCore.Serializer;
 namespace Booma
 {
 	[WireDataContract]
-	public sealed class MapDataFormatObjectEntry
+	public sealed class MapDataFormatObjectEntry : IBodySizable
 	{
+		//DO NOT SERIALIZE
+		/// <inheritdoc />
+		public int BodySize { get; } = 68;
+
 		/// <summary>
 		/// The Entity's object type.
 		/// </summary>
@@ -17,6 +21,7 @@ namespace Booma
 		public byte[] unk1 { get; }
 
 		//TODO: Is this globally unique? Unique to zone? Unique to area?
+
 		/// <summary>
 		/// The identifier for this object.
 		/// </summary>
@@ -24,13 +29,15 @@ namespace Booma
 		public short Identifier { get; }
 
 		//TODO: What is this?
+
 		/// <summary>
 		/// TODO: ?
 		/// </summary>
 		[WireMember(4)]
 		public ushort Group { get; }
-		
+
 		//TODO: What is this?
+
 		/// <summary>
 		/// TODO: ?
 		/// </summary>
@@ -38,6 +45,7 @@ namespace Booma
 		public ushort Section { get; }
 
 		//TODO: What is this?
+
 		[WireMember(6)]
 		private short unk2 { get; }
 
@@ -65,9 +73,10 @@ namespace Booma
 		public int Action { get; }
 
 		//TODO: What is this?
+
 		[KnownSize(14)]
 		[WireMember(12)]
-		private byte[] unk4 { get; } 
+		private byte[] unk4 { get; }
 
 		protected MapDataFormatObjectEntry()
 		{

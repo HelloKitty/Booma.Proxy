@@ -65,6 +65,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Format.MapDat",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qedit.Convert.Enum", "src\Tools\Qedit.Convert.Enum\Qedit.Convert.Enum.csproj", "{ED0E279C-93CD-4414-9C1B-60926F75BE76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Format.MapDat.Dumper", "src\Tools\Booma.Proxy.Format.MapDat.Dumper\Booma.Proxy.Format.MapDat.Dumper.csproj", "{3D7F46EA-9425-4819-96B6-619B0B9C808C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,10 @@ Global
 		{ED0E279C-93CD-4414-9C1B-60926F75BE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED0E279C-93CD-4414-9C1B-60926F75BE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED0E279C-93CD-4414-9C1B-60926F75BE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D7F46EA-9425-4819-96B6-619B0B9C808C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D7F46EA-9425-4819-96B6-619B0B9C808C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D7F46EA-9425-4819-96B6-619B0B9C808C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D7F46EA-9425-4819-96B6-619B0B9C808C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -201,6 +207,7 @@ Global
 		{9CEE8B27-3209-4F5A-BCEF-9E05D97C9AF0} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{EBF2C142-042C-45A2-9358-1CFC3CB12668} = {9CEE8B27-3209-4F5A-BCEF-9E05D97C9AF0}
 		{ED0E279C-93CD-4414-9C1B-60926F75BE76} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
+		{3D7F46EA-9425-4819-96B6-619B0B9C808C} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}
