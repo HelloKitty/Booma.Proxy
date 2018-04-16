@@ -69,6 +69,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Format.MapDat.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Client.Unity.Map", "src\Booma.Proxy.Client.Unity.Map\Booma.Proxy.Client.Unity.Map.csproj", "{16836101-8B23-4EEB-B1BA-2D6C9B57A554}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Format.MapNRel.Dumper", "src\Tools\Booma.Proxy.Format.MapNRel.Dumper\Booma.Proxy.Format.MapNRel.Dumper.csproj", "{8F551CC8-5E8A-48F7-A52D-BF90C83DE148}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,10 @@ Global
 		{16836101-8B23-4EEB-B1BA-2D6C9B57A554}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16836101-8B23-4EEB-B1BA-2D6C9B57A554}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16836101-8B23-4EEB-B1BA-2D6C9B57A554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -215,6 +221,7 @@ Global
 		{ED0E279C-93CD-4414-9C1B-60926F75BE76} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{3D7F46EA-9425-4819-96B6-619B0B9C808C} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{16836101-8B23-4EEB-B1BA-2D6C9B57A554} = {3872F557-EF3F-432F-8363-9C92109F01D3}
+		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}

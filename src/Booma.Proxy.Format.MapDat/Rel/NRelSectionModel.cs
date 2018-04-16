@@ -18,7 +18,7 @@ namespace Booma
 		public uint SecionId { get; }
 
 		[WireMember(2)]
-		public Vector3<int> Position { get; }
+		public Vector3<float> Position { get; }
 
 		[WireMember(3)]
 		private int unk1 { get; }
@@ -50,6 +50,12 @@ namespace Booma
 		public NRelSectionModel()
 		{
 			
+		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"SectionId: {SecionId} Position: {Position}";
 		}
 	}
 }
