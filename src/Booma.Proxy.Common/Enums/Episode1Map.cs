@@ -15,22 +15,12 @@ namespace Booma
 		/// Pioneer2 for episode 1.
 		/// map_city00_00
 		/// </summary>
-		City00 = 0,
-
-		/// <summary>
-		/// TODO: ?
-		/// </summary>
-		Unknown1 = 1,
-
-		/// <summary>
-		/// TODO: ?
-		/// </summary>
-		Unknown2 = 2,
+		City = 0,
 
 		/// <summary>
 		/// Forest 01.
 		/// map_forest01_00
 		/// </summary>
-		Forest01 = 3,
+		Forest01 = 1,
 	}
 }

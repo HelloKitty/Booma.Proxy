@@ -5,11 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.27" />
     <PackageReference Include="SceneJect.Metadata" Version="3.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Ship\Booma.Proxy.Client.Unity.Ship.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Format.MapDat\Booma.Proxy.Format.MapDat.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,9 +24,6 @@
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\lib\Unity\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

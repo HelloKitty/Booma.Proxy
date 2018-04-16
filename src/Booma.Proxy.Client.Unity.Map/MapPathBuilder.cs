@@ -21,7 +21,7 @@ namespace Booma
 		/// </summary>
 		public string Extension { get; }
 
-		public MapPathBuilder(string rootPath = @"/maps/", string extension = ".dat")
+		public MapPathBuilder(string extension = ".dat", string rootPath = @"maps/")
 		{
 			if(string.IsNullOrWhiteSpace(extension)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(extension));
 			if(string.IsNullOrWhiteSpace(rootPath)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(rootPath));
@@ -31,14 +31,14 @@ namespace Booma
 		}
 
 		//TODO: Should we make generic? Should we add overloads?
-		public string GenerateFileName(Episode1Map map, int variation)
+		public string GenerateFileName(Episode1Map map, int basemap, int variation)
 		{
-			return $"map_{map.ToString().ToLower()}_{variation:00}";
+			return $"map_{map.ToString().ToLower()}_{basemap:00}_{variation:00}";
 		}
 
-		public string GeneratePath(Episode1Map map, int variation)
+		public string GeneratePath(Episode1Map map, int basemap, int variation)
 		{
-			return Path.Combine(RootPath, $"{GenerateFileName(map, variation)}{Extension}");
+			return Path.Combine(RootPath, $"{GenerateFileName(map, basemap, variation)}{Extension}");
 		}
 	}
 }

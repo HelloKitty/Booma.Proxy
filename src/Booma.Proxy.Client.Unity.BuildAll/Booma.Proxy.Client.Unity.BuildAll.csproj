@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Character\Booma.Proxy.Client.Unity.Character.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Editor\Booma.Proxy.Client.Unity.Editor.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Map\Booma.Proxy.Client.Unity.Map.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.NetworkClient\Booma.Proxy.Client.Unity.NetworkClient.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.SharedHandlers\Booma.Proxy.Client.Unity.SharedHandlers.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Ship\Booma.Proxy.Client.Unity.Ship.csproj" />
