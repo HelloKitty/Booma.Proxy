@@ -57,7 +57,6 @@ namespace Booma.Proxy.TestClient
 			EncryptionKeyInitializer = encrypt;
 			DecryptionKeyInitializer = decrypt;
 
-
 			//Configurs and builds the clients without all the
 			//relevant decorators
 			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new DotNetTcpClientNetworkClient()

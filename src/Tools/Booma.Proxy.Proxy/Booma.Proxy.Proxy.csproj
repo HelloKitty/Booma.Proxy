@@ -15,11 +15,12 @@
 
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer" Version="3.0.35" />
-    <PackageReference Include="GladNet3.Proxy.Common" Version="3.0.43" />
+    <PackageReference Include="GladNet3.Proxy.Common" Version="3.0.44" />
     <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.43" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj" />
     <ProjectReference Include="..\..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
     <ProjectReference Include="..\..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
   </ItemGroup>
