@@ -49,6 +49,7 @@ namespace Booma.Proxy.Format.MapNRel.Dumper
 			}
 
 			File.WriteAllLines($"{Path.GetFileNameWithoutExtension(fileName)}_out.txt", linesToWrite);
+			File.WriteAllBytes($"{Path.GetFileNameWithoutExtension(fileName)}.bytes", serializer.Serialize(sections));
 
 			Console.WriteLine("Press any key to close...");
 			Console.ReadKey();

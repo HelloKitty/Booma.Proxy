@@ -42,37 +42,37 @@
       <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.17\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.35\lib\net46\FreecraftCore.Serializer.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.17\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.35\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.17\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.35\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.17\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.35\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
     </Reference>
     <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Client.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Client.API.3.0.10\lib\net46\GladNet3.Client.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Client.API.3.0.38\lib\net46\GladNet3.Client.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Client.DotNetTcpClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Client.DotNetTcpClient.3.0.10\lib\net46\GladNet3.Client.DotNetTcpClient.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Client.DotNetTcpClient.3.0.38\lib\net46\GladNet3.Client.DotNetTcpClient.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Common.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Common.API.3.0.10\lib\net46\GladNet3.Common.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Common.API.3.0.38\lib\net46\GladNet3.Common.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Crypto.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Crypto.API.3.0.10\lib\net46\GladNet3.Crypto.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Crypto.API.3.0.38\lib\net46\GladNet3.Crypto.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Serializer.API.3.0.10\lib\net46\GladNet3.Serializer.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Serializer.API.3.0.38\lib\net46\GladNet3.Serializer.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Serializer.FreecraftCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Serializer.FreecraftCore.3.0.10\lib\net46\GladNet3.Serializer.FreecraftCore.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Serializer.FreecraftCore.3.0.38\lib\net46\GladNet3.Serializer.FreecraftCore.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
@@ -83,8 +83,8 @@
     <Reference Include="Nito.AsyncEx.Tasks, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.AsyncEx.Tasks.1.1.0\lib\net46\Nito.AsyncEx.Tasks.dll</HintPath>
     </Reference>
-    <Reference Include="Nito.Collections.Deque, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nito.Collections.Deque.1.0.4\lib\netstandard2.0\Nito.Collections.Deque.dll</HintPath>
+    <Reference Include="Nito.Collections.Deque, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nito.Collections.Deque.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Collections.Deque.dll</HintPath>
     </Reference>
     <Reference Include="Nito.Disposables, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.Disposables.1.2.3\lib\netstandard2.0\Nito.Disposables.dll</HintPath>
@@ -93,15 +93,25 @@
       <HintPath>..\..\packages\Reflect.Extent.1.0.7\lib\net46\Reflect.Extent.dll</HintPath>
     </Reference>
     <Reference Include="Reinterpret.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Reinterpret.Net.2.0.2\lib\net46\Reinterpret.Net.dll</HintPath>
+      <HintPath>..\..\packages\Reinterpret.Net.2.0.7\lib\net46\Reinterpret.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.0\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

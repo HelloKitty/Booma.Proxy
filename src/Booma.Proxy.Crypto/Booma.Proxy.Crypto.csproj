@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GladNet3.Crypto.API" Version="3.0.10" />
+    <PackageReference Include="GladNet3.Crypto.API" Version="3.0.38" />
   </ItemGroup>
 
 </Project>

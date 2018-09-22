@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer">
-      <Version>3.0.27</Version>
+      <Version>3.0.35</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

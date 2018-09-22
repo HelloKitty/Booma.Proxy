@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		{
 			//Sends the request and gets the game list response in the continuation method
 			SendServiceAsync.SendRequestAsync<BlockGameListResponsePayload>(new BlockGameListRequestPayload())
-				.UnityAsyncContinueWith(this, HandleGameListResponse);
+				.UnityAsyncContinueWith(this, (Action<BlockGameListResponsePayload>)HandleGameListResponse);
 		}
 
 		private void HandleGameListResponse(BlockGameListResponsePayload response)
