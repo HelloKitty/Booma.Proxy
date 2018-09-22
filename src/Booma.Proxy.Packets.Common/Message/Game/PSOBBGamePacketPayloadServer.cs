@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
-	[DefaultChild(typeof(UnknownGamePayload))] //this will be the default deserialized packet when we don't know what it is.
+	[DefaultChild(typeof(UnknownServerGamePayload))] //this will be the default deserialized packet when we don't know what it is.
 	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
 	public abstract class PSOBBGamePacketPayloadServer : IPacketPayload
 	{
