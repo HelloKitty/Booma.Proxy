@@ -41,7 +41,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Optional(nameof(isFlagsSerialized))] //Makes this flags optional; some subpayloads may want to consume the 4 bytes instead
 		[KnownSize(4)] //always 4 bytes
-		[WireMember(1)]
+		[WireMember(2)]
 		private byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
 
 		/// <summary>
