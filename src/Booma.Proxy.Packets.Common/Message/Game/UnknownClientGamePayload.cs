@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// The default/unknown packet that is deserialized when an unknown
 	/// or unimplemented opcode is encountered.
 	/// </summary>
-	public class UnknownClientGamePayload : PSOBBGamePacketPayloadServer, IUnknownPayloadType
+	public class UnknownClientGamePayload : PSOBBGamePacketPayloadClient, IUnknownPayloadType
 	{
 		//We don't know what the packet is so we can't put any information here
 

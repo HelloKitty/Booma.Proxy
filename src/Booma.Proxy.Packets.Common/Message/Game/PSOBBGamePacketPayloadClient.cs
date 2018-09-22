@@ -14,9 +14,18 @@ namespace Booma.Proxy
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
-	[WireDataContract(WireDataContractAttribute.KeyType.UShort, true)]
+	[DefaultChild(typeof(UnknownClientGamePayload))]
+	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
 	public abstract class PSOBBGamePacketPayloadClient : IPacketPayload
 	{
+		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
+		/// <summary>
+		/// The operation code of the packet.
+		/// </summary>
+		[DontWrite] //we don't want to write this since the type key already handlers opcodes
+		[WireMember(1)]
+		public short OperationCode { get; }
+
 		/// <summary>
 		/// Indicates if the flags is serialized with <see cref="Flags"/>.
 		/// If false then serialization for <see cref="Flags"/> will be skipped

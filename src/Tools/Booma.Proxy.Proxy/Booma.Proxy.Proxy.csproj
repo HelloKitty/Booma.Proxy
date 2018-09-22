@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.2</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.35" />
+    <PackageReference Include="GladNet3.Proxy.Common" Version="3.0.43" />
+    <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.43" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
+    <ProjectReference Include="..\..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FreecraftCore.Serializer">
+      <HintPath>..\..\..\packages\FreecraftCore.Serializer.3.0.35\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
