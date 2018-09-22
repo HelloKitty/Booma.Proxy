@@ -1,4 +1,5 @@
-﻿using Booma.Proxy;
+﻿using System.Linq;
+using Booma.Proxy;
 using FreecraftCore.Serializer;
 
 namespace Booma
@@ -39,7 +40,9 @@ namespace Booma
 		//TODO: What is this?
 
 		/// <summary>
-		/// TODO: ?
+		/// Indicates the map section (chunk) this object is apart of.
+		/// Sections contain a position offset that must be used. Otherwise
+		/// the object will not end up in the correct spot.
 		/// </summary>
 		[WireMember(5)]
 		public ushort Section { get; }
@@ -62,6 +65,8 @@ namespace Booma
 		[WireMember(8)]
 		public Vector3<int> Rotation { get; }
 
+		//First byte for teleports may be the floor
+		//5th byte may be type (red vs blue)
 		[KnownSize(6)]
 		[WireMember(9)]
 		private byte[] unk3 { get; }
@@ -87,6 +92,21 @@ namespace Booma
 		public override string ToString()
 		{
 			return $"Id: {Identifier} Group: {Group} Section: {Section} Unk2: {unk2} ObjectType: {ObjectType} Position: {Position}";
+		}
+
+		public string ToFullString()
+		{
+			return $"Type: {ObjectType} \nUnk1: {ConvertByteArrayToLogFormat(unk1)} Hex: {ConvertByteArrayToLogFormatHex(unk1)} \nIdentifier: {Identifier} ({Identifier:X00}) \nGroup: {Group} \nSection: {Section} ({Section:X00}) \n Unk2: {unk2} \nPosition: {Position} \nRotation: {Rotation} \nUnk3: {ConvertByteArrayToLogFormat(unk3)} Hex: {ConvertByteArrayToLogFormatHex(unk3)} \nObjectActionIdentifer: {ObjectActionIdentifier} ({ObjectActionIdentifier:X00}) \nAction: {Action} ({Action:X00}) \nUnk4: {ConvertByteArrayToLogFormat(unk4)} Hex: {ConvertByteArrayToLogFormatHex(unk4)}";
+		}
+
+		private string ConvertByteArrayToLogFormat(byte[] bytes)
+		{
+			return bytes.Aggregate("", (s, b) => $"{s} {b:000}");
+		}
+
+		private string ConvertByteArrayToLogFormatHex(byte[] bytes)
+		{
+			return bytes.Aggregate("", (s, b) => $"{s} {b:X2}");
 		}
 	}
 }

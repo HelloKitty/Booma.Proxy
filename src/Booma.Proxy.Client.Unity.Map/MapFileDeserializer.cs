@@ -19,6 +19,7 @@ namespace Booma
 			SerializerService serializer = new SerializerService();
 
 			serializer.RegisterType<MapDatFormatGenericBodyModel<MapDataFormatObjectEntry>>();
+			serializer.RegisterType<NRelSectionsChunkModel>();
 			serializer.Compile();
 
 			return serializer;
@@ -39,6 +40,22 @@ namespace Booma
 			Resources.UnloadAsset(map);
 
 			return entries;
+		}
+
+		public NRelSectionsChunkModel LoadSections(string path)
+		{
+			if(string.IsNullOrWhiteSpace(path)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(path));
+
+			TextAsset map = Resources.Load<TextAsset>(Path.ChangeExtension(path, null));
+
+			if(map == null)
+				throw new InvalidOperationException($"Unable load map from resources Path: {path}");
+
+			NRelSectionsChunkModel model = Serializer.Deserialize<NRelSectionsChunkModel>(map.bytes);
+
+			Resources.UnloadAsset(map);
+
+			return model;
 		}
 	}
 }

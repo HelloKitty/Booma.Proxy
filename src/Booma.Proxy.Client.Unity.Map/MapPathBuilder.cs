@@ -31,14 +31,27 @@ namespace Booma
 		}
 
 		//TODO: Should we make generic? Should we add overloads?
-		public string GenerateFileName(Episode1Map map, int basemap, int variation)
+		public string GenerateDataFileName(Episode1Map map, int basemap, int variation)
 		{
 			return $"map_{map.ToString().ToLower()}_{basemap:00}_{variation:00}";
 		}
 
-		public string GeneratePath(Episode1Map map, int basemap, int variation)
+		public string GenerateDataPath(Episode1Map map, int basemap, int variation)
 		{
-			return Path.Combine(RootPath, $"{GenerateFileName(map, basemap, variation)}{Extension}");
+			return Path.Combine(RootPath, $"{GenerateDataFileName(map, basemap, variation)}{Extension}");
+		}
+
+		//TODO: Refactor/doc
+		/// <summary>
+		/// Builds the file name path for the n.rel (n.bytes now) that contains
+		/// section information.
+		/// </summary>
+		/// <param name="map"></param>
+		/// <param name="basemap"></param>
+		/// <returns></returns>
+		public string GenerateSectionDataPath(Episode1Map map, int basemap)
+		{
+			return Path.Combine(RootPath, $"map_{map.ToString().ToLower()}_{basemap:00}n{Extension}");
 		}
 	}
 }

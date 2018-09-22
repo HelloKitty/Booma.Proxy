@@ -8,6 +8,10 @@ using FreecraftCore.Serializer;
 namespace Booma
 {
 	//WARNING: This is technically not a model of the original data. I added the length prefix size for easier reading
+	/// <summary>
+	/// Format of the custom n.bytes format.
+	/// Used in Unity3D to load section information.
+	/// </summary>
 	[WireDataContract]
 	public sealed class NRelSectionsChunkModel
 	{
