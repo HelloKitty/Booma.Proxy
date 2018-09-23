@@ -22,18 +22,23 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override async Task OnHandleMessage(IProxiedMessageContext<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> context, SharedConnectionRedirectPayload payload)
 		{
+			Logger.Info($"Redirecting to: {payload.EndpointAddress.ToString()}:{payload.EndpointerPort}");
+
 			//5001 is the port used when we are running the character server and login server starting from 5000
 			//so if we get a redirect to 5001 we should wire it to 12001 instead
 			switch(payload.EndpointerPort)
 			{
 				case 5001:
 					payload = new SharedConnectionRedirectPayload(payload.EndpointAddress, 12001);
+					Logger.Info($"Switching Port to: {12001}");
 					break;
 				case 5002:
 					payload = new SharedConnectionRedirectPayload(payload.EndpointAddress, 5278);
+					Logger.Info($"Switching Port to: {5278}");
 					break;
 				case 5003:
 					payload = new SharedConnectionRedirectPayload(payload.EndpointAddress, 5279);
+					Logger.Info($"Switching Port to: {5279}");
 					break;
 			}
 
@@ -46,6 +51,9 @@ namespace Booma.Proxy
 			CryptoInitializable.DecryptionInitializable.Uninitialize();
 
 			await context.ProxyConnection.DisconnectAsync(1)
+				.ConfigureAwait(false);
+
+			await context.ConnectionService.DisconnectAsync(1)
 				.ConfigureAwait(false);
 		}
 	}

@@ -65,10 +65,17 @@ namespace Booma.Proxy
 
 			Console.WriteLine("Starting proxy.");
 
-			Task.Run(loginAppBase.BeginListening);
-			Task.Run(characterAppBase.BeginListening);
-			Task.Run(shipAppBase.BeginListening);
-			Task.Run(block1AppBase.BeginListening);
+			Task.Run(loginAppBase.BeginListening)
+				.ConfigureAwait(false);
+
+			Task.Run(characterAppBase.BeginListening)
+				.ConfigureAwait(false);
+
+			Task.Run(shipAppBase.BeginListening)
+				.ConfigureAwait(false);
+
+			Task.Run(block1AppBase.BeginListening)
+				.ConfigureAwait(false);
 
 			await Task.Delay(int.MaxValue)
 				.ConfigureAwait(false);

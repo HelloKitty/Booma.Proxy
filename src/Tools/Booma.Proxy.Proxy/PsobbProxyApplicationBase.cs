@@ -35,9 +35,22 @@ namespace Booma.Proxy
 			//Don't init the crypto stuff here because the base will call RegisterDependecies before this ctor executes
 		}
 
+		void ResetCrypto()
+		{
+			ClientEncryptionService.Uninitialize();
+			ClientDecryptionService.Uninitialize();
+
+			ServerEncryptionService.Uninitialize();
+			ServerDecryptionService.Uninitialize();
+		}
+
 		/// <inheritdoc />
 		protected override IManagedNetworkServerClient<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> BuildIncomingSessionManagedClient(NetworkClientBase clientBase, INetworkSerializationService serializeService)
 		{
+			ResetCrypto();
+
+			Logger.Info($"Client connecting to Proxy App with Listener: {this.ServerAddress.AddressEndpoint}:{this.ServerAddress.Port}");
+
 			IManagedNetworkServerClient<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> session = clientBase
 				.AddCryptHandling(ClientEncryptionService, ClientDecryptionService)
 				.AddBufferredWrite(4)
@@ -126,6 +139,11 @@ namespace Booma.Proxy
 				{
 					return new ProxiedFullCryptoInitializable(new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Encryption)), new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Decryption)));
 				});
+
+			builder.RegisterInstance(new BinaryPacketWriter("Packets"))
+				.AsSelf()
+				.SingleInstance()
+				.ExternallyOwned();
 
 			return builder;
 		}

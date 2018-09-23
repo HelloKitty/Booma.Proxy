@@ -38,6 +38,7 @@ namespace FreecraftCore
 			//Also we need redirection so we can redirect the connections
 			serializer.RegisterType<SharedWelcomePayload>();
 			serializer.RegisterType<SharedConnectionRedirectPayload>();
+			serializer.RegisterType<SharedDisconnectionRequestPayload>();
 
 			//Also the header types
 			serializer.RegisterType<PSOBBPacketHeader>();
