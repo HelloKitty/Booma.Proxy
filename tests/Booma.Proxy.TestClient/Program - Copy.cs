@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using GladNet;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy.TestClient
 {
@@ -32,11 +33,16 @@ namespace Booma.Proxy.TestClient
 			PacketPatchServerMetadataMarker.SerializableTypes
 				.Concat(PacketCommonServerMetadataMarker.SerializableTypes)
 				.Concat(PacketLoginServerMetadataMarker.SerializableTypes)
-				.ToList().ForEach(t => Serializer.RegisterType(t));
+				.Concat(PacketSharedServerMetadataMarker.SerializableTypes)
+				.ToList().ForEach(t =>
+				{
+					Console.WriteLine($"Registering PayloadType: {t.Name}");
+					Serializer.RegisterType(t);
+				});
 
 			Serializer.Compile();
 
-			RunClient("127.0.0.1", 12000).Wait();
+			RunClient("127.0.0.1", 5055).Wait();
 		}
 
 		private static async Task RunClient(string ip, int port)
@@ -61,7 +67,8 @@ namespace Booma.Proxy.TestClient
 			//relevant decorators
 			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = new DotNetTcpClientNetworkClient()
 				.AddCryptHandling(encrypt, decrypt)
-				.AddHeaderReading<PSOBBPacketHeader>(new FreecraftCoreGladNetSerializerAdapter(Serializer), 4)
+				.AddBufferredWrite(4)
+				.AddHeaderReading<PSOBBPacketHeader>(new FreecraftCoreGladNetSerializerAdapter(Serializer), 2)
 				.AddNetworkMessageReading(new FreecraftCoreGladNetSerializerAdapter(Serializer))
 				.For<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, IPacketPayload>(new PSOBBPacketHeaderFactory())
 				.AddReadBufferClearing()
@@ -79,7 +86,8 @@ namespace Booma.Proxy.TestClient
 
 			while(true)
 			{
-				NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message = await client.ReadMessageAsync();
+				NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message = await client.ReadMessageAsync()
+					.ConfigureAwait(false);
 
 				LogMessage(message);
 
@@ -185,10 +193,12 @@ namespace Booma.Proxy.TestClient
 
 			if(hasSecurityData)
 			{
-				await client.SendMessage(new SharedLoginRequest93Payload(0x41, teamId, "glader", "playpso69", ClientVerification));
+				await client.SendMessage(new SharedLoginRequest93Payload(0x41, teamId, "admin", "test", ClientVerification))
+					.ConfigureAwait(false);
 			}
 			else
-				await client.SendMessage(new SharedLoginRequest93Payload(0x41, "glader", "playpso69", ClientVerificationData.FromVersionString("TethVer12510")));
+				await client.SendMessage(new SharedLoginRequest93Payload(0x41, "admin", "test", ClientVerificationData.FromVersionString("TethVer12510")))
+					.ConfigureAwait(false);
 		}
 
 		private static async Task HandlePayload(object payload, IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client)
@@ -196,8 +206,13 @@ namespace Booma.Proxy.TestClient
 
 		}
 
-		public static void LogMessage(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		public static void LogMessage([NotNull] NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
+			if(message == null) throw new ArgumentNullException(nameof(message));
+
+			if(message.Header == null) throw new InvalidOperationException("Header was null.");
+			if(message.Payload == null) throw new InvalidOperationException("Payload was null.");
+
 			if(message.Payload is IUnknownPayloadType unk)
 			{
 				Console.BackgroundColor = ConsoleColor.DarkBlue;
@@ -207,7 +222,7 @@ namespace Booma.Proxy.TestClient
 			else
 			{
 				Console.BackgroundColor = ConsoleColor.DarkBlue;
-				Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{message.Payload.GetType().GetTypeInfo().GetCustomAttribute<WireDataContractBaseLinkAttribute>().Index:X} Type: {message.Payload.GetType().Name}");
+				Console.WriteLine($"Size: {message.Header.PacketSize} OpCode: 0x{message.Payload.GetType().GetTypeInfo().GetCustomAttribute<WireDataContractBaseLinkAttribute>(true).Index:X} Type: {message.Payload.GetType().Name}");
 				Console.BackgroundColor = ConsoleColor.Black;
 			}
 		}

@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// <summary>
 	/// This module allows for the registeration of all server handlers in the assembly.
 	/// </summary>
-	public sealed class PsobbProxyTestClientMessageHandlerRegisterationModule : GameClientPayloadHandlerRegisterationModule<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>
+	public sealed class PsobbProxyTestClientMessageHandlerRegisterationModule : PayloadHandlerRegisterationModule<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer, IProxiedMessageContext<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>
 	{
 
 	}
