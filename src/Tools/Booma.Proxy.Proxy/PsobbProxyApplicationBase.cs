@@ -9,8 +9,15 @@ using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
+	//MessageHandlerService<TPayloadWriteType, TPayloadReadType, IProxiedMessageContext<TPayloadReadType, TPayloadWriteType>
 	public class PsobbProxyApplicationBase : ProxiedTcpServerApplicationBase<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>
 	{
+		enum CryptoType
+		{
+			Server,
+			Client
+		}
+
 		//TODO: Technically this proxy only supports 1 session since these are essentially static
 		private EncryptionLazyWithoutKeyDecorator<byte[]> ClientEncryptionService { get; set; }
 
@@ -107,22 +114,29 @@ namespace Booma.Proxy
 			}, 8);
 
 			//Register all the crypto providers as crypto initializers
-			RegisterCryptoInitializable(builder, ClientEncryptionService);
-			RegisterCryptoInitializable(builder, ClientDecryptionService);
-			RegisterCryptoInitializable(builder, ServerEncryptionService);
-			RegisterCryptoInitializable(builder, ServerDecryptionService);
+			RegisterCryptoInitializable(builder, ClientEncryptionService, true);
+			RegisterCryptoInitializable(builder, ClientDecryptionService, true);
+			RegisterCryptoInitializable(builder, ServerEncryptionService, false);
+			RegisterCryptoInitializable(builder, ServerDecryptionService, false);
+
+
+			builder
+				.Register<IFullCryptoInitializationService<byte[]>>(context =>
+				{
+					return new ProxiedFullCryptoInitializable(new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Client)), new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Server)));
+				});
 
 			return builder;
 		}
 
-		private ContainerBuilder RegisterCryptoInitializable([NotNull] ContainerBuilder builder, [NotNull] ICryptoKeyInitializable<byte[]> initializable)
+		private ContainerBuilder RegisterCryptoInitializable([NotNull] ContainerBuilder builder, [NotNull] ICryptoKeyInitializable<byte[]> initializable, bool isClient)
 		{
 			if(builder == null) throw new ArgumentNullException(nameof(builder));
 			if(initializable == null) throw new ArgumentNullException(nameof(initializable));
 
 			builder
 				.RegisterInstance(initializable)
-				.As<ICryptoKeyInitializable<byte[]>>()
+				.Keyed<ICryptoKeyInitializable<byte[]>>(isClient ? CryptoType.Client : CryptoType.Server)
 				.SingleInstance()
 				.ExternallyOwned();
 

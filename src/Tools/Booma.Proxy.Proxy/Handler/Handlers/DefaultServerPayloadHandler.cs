@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		public async Task HandleMessage(IProxiedMessageContext<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> context, PSOBBGamePacketPayloadServer payload)
 		{
 			if(Logger.IsDebugEnabled)
-				Logger.Debug($"Recieved unhandled server payload with OpCode: {(GameNetworkOperationCode)payload.OperationCode} - {payload.OperationCode:X}");
+				Logger.Debug($"Recieved unhandled server payload Name: {payload.GetType().Name} with OpCode: {(GameNetworkOperationCode)payload.OperationCode} - {payload.OperationCode:X}");
 
 			await context.ProxyConnection.SendMessage(payload)
 				.ConfigureAwait(false);
