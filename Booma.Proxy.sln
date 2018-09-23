@@ -71,7 +71,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Client.Unity.Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Format.MapNRel.Dumper", "src\Tools\Booma.Proxy.Format.MapNRel.Dumper\Booma.Proxy.Format.MapNRel.Dumper.csproj", "{8F551CC8-5E8A-48F7-A52D-BF90C83DE148}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Proxy", "src\Tools\Booma.Proxy.Proxy\Booma.Proxy.Proxy.csproj", "{D29A9395-BDFB-4E6F-B893-5E8386F04B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Proxy", "src\Tools\Booma.Proxy.Proxy\Booma.Proxy.Proxy.csproj", "{D29A9395-BDFB-4E6F-B893-5E8386F04B44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.DTOStubGenerator", "src\Tools\Booma.Proxy.DTOStubGenerator\Booma.Proxy.DTOStubGenerator.csproj", "{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +193,10 @@ Global
 		{D29A9395-BDFB-4E6F-B893-5E8386F04B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D29A9395-BDFB-4E6F-B893-5E8386F04B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D29A9395-BDFB-4E6F-B893-5E8386F04B44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,6 +235,7 @@ Global
 		{16836101-8B23-4EEB-B1BA-2D6C9B57A554} = {3872F557-EF3F-432F-8363-9C92109F01D3}
 		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{D29A9395-BDFB-4E6F-B893-5E8386F04B44} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
+		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}

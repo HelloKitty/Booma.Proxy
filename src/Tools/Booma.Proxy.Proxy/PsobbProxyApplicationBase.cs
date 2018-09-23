@@ -14,8 +14,8 @@ namespace Booma.Proxy
 	{
 		enum CryptoType
 		{
-			Server,
-			Client
+			Encryption,
+			Decryption
 		}
 
 		//TODO: Technically this proxy only supports 1 session since these are essentially static
@@ -55,7 +55,7 @@ namespace Booma.Proxy
 		{
 			//Copied from the test client project
 			IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client = clientBase
-				.AddCryptHandling(ClientEncryptionService, ClientDecryptionService)
+				.AddCryptHandling(ServerEncryptionService, ServerDecryptionService)
 				.AddBufferredWrite(4)
 				.AddHeaderReading<PSOBBPacketHeader>(serializeService, 2)
 				.AddNetworkMessageReading(serializeService)
@@ -114,29 +114,29 @@ namespace Booma.Proxy
 			}, 8);
 
 			//Register all the crypto providers as crypto initializers
-			RegisterCryptoInitializable(builder, ClientEncryptionService, true);
-			RegisterCryptoInitializable(builder, ClientDecryptionService, true);
-			RegisterCryptoInitializable(builder, ServerEncryptionService, false);
-			RegisterCryptoInitializable(builder, ServerDecryptionService, false);
+			RegisterCryptoInitializable(builder, ClientEncryptionService, CryptoType.Decryption);
+			RegisterCryptoInitializable(builder, ClientDecryptionService, CryptoType.Encryption);
+			RegisterCryptoInitializable(builder, ServerEncryptionService, CryptoType.Decryption);
+			RegisterCryptoInitializable(builder, ServerDecryptionService, CryptoType.Encryption);
 
 
 			builder
 				.Register<IFullCryptoInitializationService<byte[]>>(context =>
 				{
-					return new ProxiedFullCryptoInitializable(new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Client)), new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Server)));
+					return new ProxiedFullCryptoInitializable(new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Encryption)), new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Decryption)));
 				});
 
 			return builder;
 		}
 
-		private ContainerBuilder RegisterCryptoInitializable([NotNull] ContainerBuilder builder, [NotNull] ICryptoKeyInitializable<byte[]> initializable, bool isClient)
+		private ContainerBuilder RegisterCryptoInitializable([NotNull] ContainerBuilder builder, [NotNull] ICryptoKeyInitializable<byte[]> initializable, CryptoType cryptoType)
 		{
 			if(builder == null) throw new ArgumentNullException(nameof(builder));
 			if(initializable == null) throw new ArgumentNullException(nameof(initializable));
 
 			builder
 				.RegisterInstance(initializable)
-				.Keyed<ICryptoKeyInitializable<byte[]>>(isClient ? CryptoType.Client : CryptoType.Server)
+				.Keyed<ICryptoKeyInitializable<byte[]>>(cryptoType)
 				.SingleInstance()
 				.ExternallyOwned();
 
