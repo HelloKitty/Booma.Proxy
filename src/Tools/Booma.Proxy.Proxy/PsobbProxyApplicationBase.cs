@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Autofac;
 using Autofac.Builder;
@@ -87,14 +88,14 @@ namespace Booma.Proxy
 			ClientEncryptionService = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
-				encryptionService.Initialize(val);
+				encryptionService.Initialize(val.ToArray());
 				return encryptionService;
 			}, 8);
 
 			ClientDecryptionService = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
-				decryptionService.Initialize(val);
+				decryptionService.Initialize(val.ToArray());
 				return decryptionService;
 			}, 8);
 
@@ -102,22 +103,22 @@ namespace Booma.Proxy
 			ServerEncryptionService = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
-				encryptionService.Initialize(val);
+				encryptionService.Initialize(val.ToArray());
 				return encryptionService;
 			}, 8);
 
 			ServerDecryptionService = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
-				decryptionService.Initialize(val);
+				decryptionService.Initialize(val.ToArray()); //for PROXY PURPOSES ONLY we have to copy so we don't modify the key used by the other end
 				return decryptionService;
 			}, 8);
 
 			//Register all the crypto providers as crypto initializers
 			RegisterCryptoInitializable(builder, ClientEncryptionService, CryptoType.Decryption);
 			RegisterCryptoInitializable(builder, ClientDecryptionService, CryptoType.Encryption);
-			RegisterCryptoInitializable(builder, ServerEncryptionService, CryptoType.Decryption);
-			RegisterCryptoInitializable(builder, ServerDecryptionService, CryptoType.Encryption);
+			RegisterCryptoInitializable(builder, ServerEncryptionService, CryptoType.Encryption);
+			RegisterCryptoInitializable(builder, ServerDecryptionService, CryptoType.Decryption);
 
 
 			builder
