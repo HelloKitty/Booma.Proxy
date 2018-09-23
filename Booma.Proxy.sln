@@ -75,6 +75,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Proxy", "src\To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.DTOStubGenerator", "src\Tools\Booma.Proxy.DTOStubGenerator\Booma.Proxy.DTOStubGenerator.csproj", "{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Game.Stubs", "src\Booma.Proxy.Packets.Game.Stubs\Booma.Proxy.Packets.Game.Stubs.csproj", "{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -236,6 +242,7 @@ Global
 		{8F551CC8-5E8A-48F7-A52D-BF90C83DE148} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{D29A9395-BDFB-4E6F-B893-5E8386F04B44} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
+		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}
