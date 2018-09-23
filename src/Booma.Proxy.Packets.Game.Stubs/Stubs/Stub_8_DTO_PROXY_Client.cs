@@ -4,7 +4,7 @@ using Booma.Proxy;
 
 [WireDataContractBaseLinkAttribute(8, typeof(PSOBBGamePacketPayloadClient))]
 [WireDataContractAttribute]
-public sealed class Stub_0x8_DTO_PROXY_Client : PSOBBGamePacketPayloadClient, IUnknownPayloadType
+public sealed class Stub_0x0008_DTO_PROXY_Client : PSOBBGamePacketPayloadClient, IUnknownPayloadType
 {
     [ReadToEndAttribute]
     [WireMemberAttribute(1)]
@@ -22,7 +22,7 @@ public sealed class Stub_0x8_DTO_PROXY_Client : PSOBBGamePacketPayloadClient, IU
         }
     }
 
-    public Stub_0x8_DTO_PROXY_Client()
+    public Stub_0x0008_DTO_PROXY_Client()
     {
     }
 }

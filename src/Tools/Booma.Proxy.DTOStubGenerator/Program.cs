@@ -17,13 +17,13 @@ namespace Booma
 	{
 		static void Main(string[] args)
 		{
-			List<CompilationUnitSyntax> clientCompilationUnits = new List<CompilationUnitSyntax>(1000);
-			List<CompilationUnitSyntax> serverCompilationUnits = new List<CompilationUnitSyntax>(1000);
+			Dictionary<GameNetworkOperationCode, CompilationUnitSyntax> clientCompilationUnits = new Dictionary<GameNetworkOperationCode, CompilationUnitSyntax>(2000);
+			Dictionary<GameNetworkOperationCode, CompilationUnitSyntax> serverCompilationUnits = new Dictionary<GameNetworkOperationCode, CompilationUnitSyntax>(2000);
 
-			foreach(int code in Enumerable.Range(0, 1000))
+			foreach(GameNetworkOperationCode code in Enum.GetValues(typeof(GameNetworkOperationCode)))
 			{
-				clientCompilationUnits.Add(BuildPayloadClassSyntax<PSOBBGamePacketPayloadClient>($"Stub_0x{code:X}_DTO_PROXY_Client", code));
-				serverCompilationUnits.Add(BuildPayloadClassSyntax<PSOBBGamePacketPayloadServer>($"Stub_0x{code:X}_DTO_PROXY_Server", code));
+				clientCompilationUnits.Add(code, BuildPayloadClassSyntax<PSOBBGamePacketPayloadClient>($"Stub_0x{code:X}_DTO_PROXY_Client", (int)code));
+				serverCompilationUnits.Add(code, BuildPayloadClassSyntax<PSOBBGamePacketPayloadServer>($"Stub_0x{code:X}_DTO_PROXY_Server", (int)code));
 			}
 
 			string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "Packets");
@@ -31,11 +31,9 @@ namespace Booma
 			if(!Directory.Exists(outputPath))
 				Directory.CreateDirectory(outputPath);
 
-			//TODO: Kinda a hack to do this
-			int count = 0;
 			foreach(var cu in clientCompilationUnits)
 			{
-				SyntaxNode formattedNode = Formatter.Format(cu, new AdhocWorkspace());
+				SyntaxNode formattedNode = Formatter.Format(cu.Value, new AdhocWorkspace());
 
 				StringBuilder sb = new StringBuilder();
 				using(TextWriter classFileWriter = new StringWriter(sb))
@@ -44,14 +42,12 @@ namespace Booma
 				}
 
 				//Write the packet file out
-				File.WriteAllText($"Packets/Stub_{count}_DTO_PROXY_Client.cs", sb.ToString());
-				count++;
+				File.WriteAllText($"Packets/Stub_{((int)cu.Key):X}_DTO_PROXY_Client.cs", sb.ToString());
 			}
 
-			count = 0;
 			foreach(var cu in serverCompilationUnits)
 			{
-				SyntaxNode formattedNode = Formatter.Format(cu, new AdhocWorkspace());
+				SyntaxNode formattedNode = Formatter.Format(cu.Value, new AdhocWorkspace());
 
 				StringBuilder sb = new StringBuilder();
 				using(TextWriter classFileWriter = new StringWriter(sb))
@@ -60,8 +56,7 @@ namespace Booma
 				}
 
 				//Write the packet file out
-				File.WriteAllText($"Packets/Stub_{count}_DTO_PROXY_Server.cs", sb.ToString());
-				count++;
+				File.WriteAllText($"Packets/Stub_{((int)cu.Key):X}_DTO_PROXY_Server.cs", sb.ToString());
 			}
 		}
 
