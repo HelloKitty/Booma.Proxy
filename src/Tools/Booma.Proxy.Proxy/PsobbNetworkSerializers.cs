@@ -35,7 +35,9 @@ namespace FreecraftCore
 					serializer.RegisterType(t);
 
 			//Also register the welcome, since it is critical to setting up the connection
-			serializer.RegisterType(typeof(SharedWelcomePayload));
+			//Also we need redirection so we can redirect the connections
+			serializer.RegisterType<SharedWelcomePayload>();
+			serializer.RegisterType<SharedConnectionRedirectPayload>();
 
 			//Also the header types
 			serializer.RegisterType<PSOBBPacketHeader>();

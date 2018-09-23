@@ -42,7 +42,7 @@ namespace Booma.Proxy.TestClient
 
 			Serializer.Compile();
 
-			RunClient("127.0.0.1", 5055).Wait();
+			RunClient("127.0.0.1", 12000).Wait();
 		}
 
 		private static async Task RunClient(string ip, int port)
@@ -121,7 +121,7 @@ namespace Booma.Proxy.TestClient
 					await Task.Delay(3000);
 					DecryptionKeyInitializer.Uninitialize();
 					EncryptionKeyInitializer.Uninitialize();
-					await client.ConnectAsync("158.69.215.131", 12001);
+					await client.ConnectAsync("127.0.0.1", 12001);
 				});
 
 				return;
@@ -136,7 +136,7 @@ namespace Booma.Proxy.TestClient
 				Task.Factory.StartNew(async () =>
 				{
 					await Task.Delay(6000);
-					await client.ConnectAsync("158.69.215.131", 12001);
+					await client.ConnectAsync("127.0.0.1", 12001);
 					DecryptionKeyInitializer.Uninitialize();
 					EncryptionKeyInitializer.Uninitialize();
 				});
