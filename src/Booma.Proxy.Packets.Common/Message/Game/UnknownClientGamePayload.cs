@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	{
 		//For unknown payloads we don't want to serialize the flags so that all bytes end up in the UnknownBytes property
 		/// <inheritdoc />
-		public override bool isFlagsSerialized => false;
+		public override bool isFlagsSerialized { get; } = false;
 
 		//We don't know what the packet is so we can't put any information here
 		/// <summary>

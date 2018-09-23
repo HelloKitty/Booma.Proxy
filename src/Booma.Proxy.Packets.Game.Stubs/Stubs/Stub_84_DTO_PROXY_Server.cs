@@ -6,6 +6,12 @@ using Booma.Proxy;
 [WireDataContractAttribute]
 public sealed class Stub_0x0084_DTO_PROXY_Server : PSOBBGamePacketPayloadServer, IUnknownPayloadType
 {
+    public override bool isFlagsSerialized
+    {
+        get;
+    }
+
+    = false;
     [ReadToEndAttribute]
     [WireMemberAttribute(1)]
     private byte[] _UnknownBytes;
