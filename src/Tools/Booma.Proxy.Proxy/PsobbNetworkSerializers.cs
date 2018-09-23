@@ -31,9 +31,11 @@ namespace FreecraftCore
 		{
 			SerializerService serializer = new SerializerService();
 
-			foreach(Type t in PacketSharedServerMetadataMarker.SerializableTypes
-				.Concat(PacketCommonServerMetadataMarker.SerializableTypes))
+			foreach(Type t in PacketGameStubMetadataMarker.SerializableTypes)
 					serializer.RegisterType(t);
+
+			//Also register the welcome, since it is critical to setting up the connection
+			serializer.RegisterType(typeof(SharedWelcomePayload));
 
 			//Also the header types
 			serializer.RegisterType<PSOBBPacketHeader>();

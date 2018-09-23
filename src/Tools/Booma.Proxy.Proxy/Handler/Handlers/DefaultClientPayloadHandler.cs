@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
@@ -21,7 +22,12 @@ namespace Booma.Proxy
 		public async Task HandleMessage(IProxiedMessageContext<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> context, PSOBBGamePacketPayloadClient payload)
 		{
 			if(Logger.IsDebugEnabled)
-				Logger.Debug($"Recieved unhandled client payload with OpCode: {(GameNetworkOperationCode)payload.OperationCode} - {payload.OperationCode:X}");
+				Logger.Debug($"Recieved unhandled client payload Name: {payload.GetType().Name} with OpCode: {(GameNetworkOperationCode)payload.OperationCode} - {payload.OperationCode:X}");
+
+			if(payload is IUnknownPayloadType u)
+			{
+				Logger.Info($"{u.UnknownBytes.Aggregate("", (s, b) => $"{s} 0x{b:X}")}");
+			}
 
 			await context.ProxyConnection.SendMessage(payload)
 				.ConfigureAwait(false);
