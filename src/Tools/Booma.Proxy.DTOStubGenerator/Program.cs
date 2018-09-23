@@ -192,6 +192,56 @@ namespace Booma
 									(
 										new MemberDeclarationSyntax[]
 										{
+											SyntaxFactory.PropertyDeclaration
+												(
+													SyntaxFactory.PredefinedType
+													(
+														SyntaxFactory.Token(SyntaxKind.BoolKeyword)
+													),
+													SyntaxFactory.Identifier(nameof(PSOBBGamePacketPayloadClient.isFlagsSerialized))
+												)
+												.WithModifiers
+												(
+													SyntaxFactory.TokenList
+													(
+														new []
+														{
+															SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+															SyntaxFactory.Token(SyntaxKind.OverrideKeyword)
+														}
+													)
+												)
+												.WithAccessorList
+												(
+													SyntaxFactory.AccessorList
+													(
+														SyntaxFactory.SingletonList<AccessorDeclarationSyntax>
+														(
+															SyntaxFactory.AccessorDeclaration
+																(
+																	SyntaxKind.GetAccessorDeclaration
+																)
+																.WithSemicolonToken
+																(
+																	SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+																)
+														)
+													)
+												)
+												.WithInitializer
+												(
+													SyntaxFactory.EqualsValueClause
+													(
+														SyntaxFactory.LiteralExpression
+														(
+															SyntaxKind.FalseLiteralExpression
+														)
+													)
+												)
+												.WithSemicolonToken
+												(
+													SyntaxFactory.Token(SyntaxKind.SemicolonToken)
+												),
 											SyntaxFactory.FieldDeclaration
 												(
 													SyntaxFactory.VariableDeclaration
