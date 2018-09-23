@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using NUnit.Framework;
 
-namespace Booma.Proxy.Packets.Tests.UnitTests
+namespace Booma.Proxy
 {
 	[TestFixture]
 	public class AllPacketsTests
