@@ -13,8 +13,11 @@ namespace Booma.Proxy
 	/// </summary>
 	public class UnknownClientGamePayload : PSOBBGamePacketPayloadClient, IUnknownPayloadType
 	{
-		//We don't know what the packet is so we can't put any information here
+		//For unknown payloads we don't want to serialize the flags so that all bytes end up in the UnknownBytes property
+		/// <inheritdoc />
+		public override bool isFlagsSerialized => false;
 
+		//We don't know what the packet is so we can't put any information here
 		/// <summary>
 		/// The entire unknown deserialized bytes for game packets.
 		/// </summary>

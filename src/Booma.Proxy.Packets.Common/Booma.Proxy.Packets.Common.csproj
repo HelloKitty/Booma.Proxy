@@ -74,6 +74,7 @@
     <Compile Include="Message\Game\UnknownClientGamePayload.cs" />
     <Compile Include="Message\Game\UnknownSubCommand60Command.cs" />
     <Compile Include="Message\Game\UnknownSubCommand62Command.cs" />
+    <Compile Include="Message\IOperationCodeable.cs" />
     <Compile Include="Message\IUnknownPayloadType.cs" />
     <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
     <Compile Include="Models\DifficultyType.cs" />

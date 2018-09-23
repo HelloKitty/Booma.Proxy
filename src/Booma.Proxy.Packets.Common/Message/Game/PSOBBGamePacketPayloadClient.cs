@@ -16,7 +16,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[DefaultChild(typeof(UnknownClientGamePayload))]
 	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class PSOBBGamePacketPayloadClient : IPacketPayload
+	public abstract class PSOBBGamePacketPayloadClient : IPacketPayload, IOperationCodeable
 	{
 		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
 		/// <summary>
