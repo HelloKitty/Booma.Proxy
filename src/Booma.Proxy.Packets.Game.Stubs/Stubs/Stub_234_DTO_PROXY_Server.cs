@@ -2,9 +2,9 @@ using FreecraftCore;
 using FreecraftCore.Serializer;
 using Booma.Proxy;
 
-[WireDataContractBaseLinkAttribute(34, typeof(PSOBBGamePacketPayloadServer))]
+[WireDataContractBaseLinkAttribute(234, typeof(PSOBBGamePacketPayloadServer))]
 [WireDataContractAttribute]
-public sealed class Stub_0x22_DTO_PROXY_Server : PSOBBGamePacketPayloadServer, IUnknownPayloadType
+public sealed class Stub_0xEA_DTO_PROXY_Server : PSOBBGamePacketPayloadServer, IUnknownPayloadType
 {
     [ReadToEndAttribute]
     [WireMemberAttribute(1)]
@@ -22,7 +22,7 @@ public sealed class Stub_0x22_DTO_PROXY_Server : PSOBBGamePacketPayloadServer, I
         }
     }
 
-    public Stub_0x22_DTO_PROXY_Server()
+    public Stub_0xEA_DTO_PROXY_Server()
     {
     }
 }

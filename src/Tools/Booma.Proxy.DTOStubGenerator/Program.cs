@@ -17,10 +17,10 @@ namespace Booma
 	{
 		static void Main(string[] args)
 		{
-			List<CompilationUnitSyntax> clientCompilationUnits = new List<CompilationUnitSyntax>(200);
-			List<CompilationUnitSyntax> serverCompilationUnits = new List<CompilationUnitSyntax>(200);
+			List<CompilationUnitSyntax> clientCompilationUnits = new List<CompilationUnitSyntax>(255);
+			List<CompilationUnitSyntax> serverCompilationUnits = new List<CompilationUnitSyntax>(255);
 
-			foreach(int code in Enumerable.Range(0, 200))
+			foreach(int code in Enumerable.Range(0, 255))
 			{
 				clientCompilationUnits.Add(BuildPayloadClassSyntax<PSOBBGamePacketPayloadClient>($"Stub_0x{code:X}_DTO_PROXY_Client", code));
 				serverCompilationUnits.Add(BuildPayloadClassSyntax<PSOBBGamePacketPayloadServer>($"Stub_0x{code:X}_DTO_PROXY_Server", code));
@@ -48,6 +48,7 @@ namespace Booma
 				count++;
 			}
 
+			count = 0;
 			foreach(var cu in serverCompilationUnits)
 			{
 				SyntaxNode formattedNode = Formatter.Format(cu, new AdhocWorkspace());
