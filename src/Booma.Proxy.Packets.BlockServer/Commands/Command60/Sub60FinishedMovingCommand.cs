@@ -28,6 +28,8 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		private short AnimationState { get; }
 
+		//TODO: The calculation we're doing to init or parse this is wrong. It does not match the binary packet
+		//TODO: We must figure out how to exactly compute this value, test cases show off by 1 bit.
 		/// <summary>
 		/// The raw rotation value
 		/// that is sent over the network.
