@@ -118,565 +118,727 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Packets\Client\0x10_b0357db4-b75c-4dd4-9c9d-113523835e09.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x10_f7e3e9dc-39d1-4aaf-93a2-bd17aba9b3ff.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x1D_24dadc08-98ac-4b02-b92c-69dabcc9381c.packet" />
-    <None Include="Packets\Client\0x1D_d44e6b98-2d86-4a71-a21e-cabed80b71af.packet" />
+    <None Include="Packets\Client\0x1D_24dadc08-98ac-4b02-b92c-69dabcc9381c.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x1D_d44e6b98-2d86-4a71-a21e-cabed80b71af.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x1E8_285d6b87-d973-4c05-8513-bbdab40074fe.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3DC_0e516281-64c3-4adb-a669-f7fa7872709e.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3DC_149a6e0b-27bd-4c02-8ad1-9319dc82826f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3DC_66e605d8-d2eb-438d-9b9c-5a8931f0cdef.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3DC_82238cf9-51fe-4aba-8fde-7f2e35894984.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3E8_3b79243f-7882-45f4-a6a7-ea5180d1ab40.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_02dae492-429b-498a-8456-6ea00b65fb8c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_0695a665-c10e-4941-98e2-3f69274211e9.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_1e7e2829-bc50-480f-8f7b-afbf410ffef4.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_28c03d90-acd9-4aad-8ef3-101205dc94ae.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_32bee2e7-40ef-4021-9fb6-c0982849c8c4.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_63228e01-4931-4dbd-a1d2-19e40df2e2cb.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_64ce2d58-3fbb-4202-b73e-58f72958903a.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_82616943-5f7c-4a34-b0ed-13dfc471a1c9.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_8361a227-4a8e-4677-b097-13cf34934d1c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_8e3fe3a1-3253-4bf3-a500-1851f6c909df.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_a4852d4c-1e37-4d07-8a2d-cc7049568294.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_b6af5b93-3b3e-4164-ac72-6a826a8759f8.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_c35ada5a-2ed7-4ece-ad40-2efc7ad45103.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_d1a29506-65e7-41c2-b4a5-fbaa63c7ca8b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_e76de7e6-f46e-4016-a417-01be32dba6c7.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x3EB_e868656c-fa23-4c4e-b0fd-69988dae5e92.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x4EB_c30f3b37-ef58-4833-872a-07dee8995938.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_01794910-1d37-4335-9a3e-9720c56262b7.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_01cc4366-1b99-4c27-9bac-8ede8cc19dae.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_0280a75d-16bd-4ef4-add2-a87fa6eedc07.packet" />
-    <None Include="Packets\Client\0x60_02a7befc-ccd3-4c7c-87cf-0ae95037f5c5.packet" />
-    <None Include="Packets\Client\0x60_02d4aab1-51c5-44e9-8f01-c9a19afa188b.packet" />
-    <None Include="Packets\Client\0x60_04caa756-6df0-4abd-8eca-6cacd7ceac92.packet" />
-    <None Include="Packets\Client\0x60_061ac296-fd9c-469e-a07a-36bd8bd6a68b.packet" />
+    <None Include="Packets\Client\0x60_0280a75d-16bd-4ef4-add2-a87fa6eedc07.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_02a7befc-ccd3-4c7c-87cf-0ae95037f5c5.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_02d4aab1-51c5-44e9-8f01-c9a19afa188b.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_04caa756-6df0-4abd-8eca-6cacd7ceac92.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_061ac296-fd9c-469e-a07a-36bd8bd6a68b.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_075c97be-9250-46da-a1d7-4a4b98c16a34.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_086ced53-f13e-42a2-9304-b8a9b8fb2d37.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_0c271c2e-bf99-4ecb-a0bd-7da0ef7f05d0.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_0d618b2c-d1db-40f2-b59f-4a1b53c212ea.packet" />
-    <None Include="Packets\Client\0x60_0f0656a9-d1cb-4029-89bb-f13e12c8ffc3.packet" />
+    <None Include="Packets\Client\0x60_0d618b2c-d1db-40f2-b59f-4a1b53c212ea.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_0f0656a9-d1cb-4029-89bb-f13e12c8ffc3.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_13f702b5-ad28-4e2d-a65f-3fb65e519a12.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_158972bc-2453-4770-8bd2-0a66305c696e.packet" />
-    <None Include="Packets\Client\0x60_174f92f3-7d1b-4880-9042-e25ab576cc98.packet" />
+    <None Include="Packets\Client\0x60_158972bc-2453-4770-8bd2-0a66305c696e.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_174f92f3-7d1b-4880-9042-e25ab576cc98.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_19365f57-0472-46ce-9f06-3c275806cd3f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_19593d15-cbd4-4bbd-8698-ff24eff423dc.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_199988ce-80b2-4685-98bb-2f9715a601a9.packet" />
-    <None Include="Packets\Client\0x60_1c2e695a-76f1-44ab-a722-853b7fb9f130.packet" />
-    <None Include="Packets\Client\0x60_1c6fcc6b-b16d-4db1-9bc2-d2953778a1b4.packet" />
-    <None Include="Packets\Client\0x60_1d53e029-075f-43ba-9f76-4a7d8bbac435.packet" />
-    <None Include="Packets\Client\0x60_20ea4ce2-bd52-40ce-bfeb-376f0d55cbf5.packet" />
+    <None Include="Packets\Client\0x60_199988ce-80b2-4685-98bb-2f9715a601a9.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_1c2e695a-76f1-44ab-a722-853b7fb9f130.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_1c6fcc6b-b16d-4db1-9bc2-d2953778a1b4.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_1d53e029-075f-43ba-9f76-4a7d8bbac435.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_20ea4ce2-bd52-40ce-bfeb-376f0d55cbf5.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_22e3ba7e-16fc-4254-a55c-678ef3bc95fb.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_28b2cce2-2f78-44c8-b2b9-9590947d2097.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_2b12b64d-a53d-4794-8df6-e5740e016867.packet" />
-    <None Include="Packets\Client\0x60_2d4b47fc-66cf-4ffb-b9b2-886c5501c08f.packet" />
+    <None Include="Packets\Client\0x60_2b12b64d-a53d-4794-8df6-e5740e016867.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_2d4b47fc-66cf-4ffb-b9b2-886c5501c08f.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_2de36726-a607-463c-885c-ec7d24df7b43.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_2ef77f30-04a2-400b-aec1-ff2146301c27.packet" />
+    <None Include="Packets\Client\0x60_2ef77f30-04a2-400b-aec1-ff2146301c27.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_2fb1984b-00ca-424c-8f42-667d345cf3eb.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_323ad192-9682-4d05-ae36-ce283db01f40.packet" />
-    <None Include="Packets\Client\0x60_335e4cf2-2b09-4fc3-bd71-815496923953.packet" />
-    <None Include="Packets\Client\0x60_34f20190-2303-4e12-8bef-b6df4b0744d3.packet" />
+    <None Include="Packets\Client\0x60_323ad192-9682-4d05-ae36-ce283db01f40.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_335e4cf2-2b09-4fc3-bd71-815496923953.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_34f20190-2303-4e12-8bef-b6df4b0744d3.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_383c219c-0063-45cf-88fc-9880128cf5e3.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_38aae54b-45aa-40d7-b8f6-3c8b83faee85.packet" />
+    <None Include="Packets\Client\0x60_38aae54b-45aa-40d7-b8f6-3c8b83faee85.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_391bdccf-a5cc-41d1-bd31-25ba1f1aad1c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_3b4bf6b9-6cb2-47e7-8520-2afb2bf61b91.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_3c395704-95e8-48a9-b786-9eba4d3cb2d5.packet" />
-    <None Include="Packets\Client\0x60_3d08eb50-c341-4ebc-a4e1-ec4c2241e9f4.packet" />
+    <None Include="Packets\Client\0x60_3c395704-95e8-48a9-b786-9eba4d3cb2d5.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_3d08eb50-c341-4ebc-a4e1-ec4c2241e9f4.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_3d31da8d-e52a-4725-9664-1dafcb0c961b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_3eb6c97b-dc99-4cf2-9910-a6b10f463b63.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_3f0a49aa-9457-4ab6-a6e8-ab57890ec835.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_3f51723a-e010-4370-b411-308b74d7bd66.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_43555277-595e-41be-87b2-be65bab4688a.packet" />
-    <None Include="Packets\Client\0x60_47b72aaa-78ca-499e-ae6b-88ca9801824f.packet" />
+    <None Include="Packets\Client\0x60_43555277-595e-41be-87b2-be65bab4688a.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_47b72aaa-78ca-499e-ae6b-88ca9801824f.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_4b31a3cc-fd13-470f-8a5d-baf05b0d27c2.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_4b5c1596-3307-4924-bfc6-83e6328e559f.packet" />
+    <None Include="Packets\Client\0x60_4b5c1596-3307-4924-bfc6-83e6328e559f.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_4d6b7f1c-1591-42dd-a7a8-1421e0ee184d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_4dca84cd-9155-4d20-97dd-347ba05d1a94.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_4f941088-d5d6-4971-abcf-f85dc0c200dd.packet" />
+    <None Include="Packets\Client\0x60_4f941088-d5d6-4971-abcf-f85dc0c200dd.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_520b71a4-9507-4b56-81f4-d9a1b6913f2d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_53d1682f-abb2-448b-81d2-2fbaaf2f51d4.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_54877e18-eec7-4eb0-8e54-860a0975c16c.packet" />
+    <None Include="Packets\Client\0x60_54877e18-eec7-4eb0-8e54-860a0975c16c.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_57749915-ec7a-49f2-8e81-e8481670c69e.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_58b39abc-615f-45a2-a56b-386c83785d7d.packet" />
-    <None Include="Packets\Client\0x60_597bf7cb-91ec-4f83-bdf9-f8d94fb7a035.packet" />
+    <None Include="Packets\Client\0x60_58b39abc-615f-45a2-a56b-386c83785d7d.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_597bf7cb-91ec-4f83-bdf9-f8d94fb7a035.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_5af2a1ad-0a4a-4797-9241-a8e6ab619023.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_5b855976-2fd6-4aed-a705-9d9b31fbeb49.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_5c133f65-7561-4b25-bfeb-97d94682d24f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_60ffaffb-5625-4203-a419-02703757e3fe.packet" />
-    <None Include="Packets\Client\0x60_638e26e7-a8a0-4362-9670-944bed5854c1.packet" />
-    <None Include="Packets\Client\0x60_63ce467e-5b0b-4788-96d1-44d8d838acdb.packet" />
+    <None Include="Packets\Client\0x60_60ffaffb-5625-4203-a419-02703757e3fe.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_638e26e7-a8a0-4362-9670-944bed5854c1.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_63ce467e-5b0b-4788-96d1-44d8d838acdb.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_66adbe63-f37a-4310-b780-65984cbcffe3.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_689cfece-afe8-4d6d-894f-ebfb0e90898f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_68a4197c-f58c-4c5f-8153-6adf9d75fc8a.packet" />
+    <None Include="Packets\Client\0x60_68a4197c-f58c-4c5f-8153-6adf9d75fc8a.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_6919c5bc-9413-4d17-8786-dde8ca318bb1.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_6cc04c66-b45c-447c-ab98-f0f0cf8aac2f.packet" />
+    <None Include="Packets\Client\0x60_6cc04c66-b45c-447c-ab98-f0f0cf8aac2f.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_6d5e33e0-b8e2-4042-919d-7661457fd878.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_70335375-fe12-4539-bbbd-910780b502ac.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_752d31ff-2c2c-4695-9fc9-42b26228a891.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_77d54ed3-0962-4fbf-bf0f-fa42152eea1a.packet" />
-    <None Include="Packets\Client\0x60_7886ee30-f0a9-414a-a8dc-02c9fcb5557e.packet" />
-    <None Include="Packets\Client\0x60_7be5dbdc-b30b-404b-a0c9-1f7e1f97acec.packet" />
-    <None Include="Packets\Client\0x60_7f9b3738-b810-4f3e-a4c5-a383be3b09e0.packet" />
-    <None Include="Packets\Client\0x60_80c9ffe2-90b2-4191-b21d-c54a21bfa185.packet" />
+    <None Include="Packets\Client\0x60_77d54ed3-0962-4fbf-bf0f-fa42152eea1a.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_7886ee30-f0a9-414a-a8dc-02c9fcb5557e.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_7be5dbdc-b30b-404b-a0c9-1f7e1f97acec.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_7f9b3738-b810-4f3e-a4c5-a383be3b09e0.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_80c9ffe2-90b2-4191-b21d-c54a21bfa185.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_81c549de-76c1-4626-af4b-0bb01fbe1400.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_833d6c20-ad85-4325-946f-6857f9b5bcc4.packet" />
+    <None Include="Packets\Client\0x60_833d6c20-ad85-4325-946f-6857f9b5bcc4.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_8457bfb6-05ac-4d13-ab32-f0eb46888802.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_84747c15-8923-4937-8653-4ea712fabcee.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_84a391ba-4da9-4332-8a6e-0da0e847c8ec.packet" />
+    <None Include="Packets\Client\0x60_84a391ba-4da9-4332-8a6e-0da0e847c8ec.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_84e9fde2-5e25-461b-b708-d0b5effee236.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_8651665e-cd4e-449b-a4fa-3cba13083548.packet" />
-    <None Include="Packets\Client\0x60_86fc28cd-14e4-41c7-9829-64405e6a9c8c.packet" />
-    <None Include="Packets\Client\0x60_8c1b42a3-b916-4268-af2f-908c3db24499.packet" />
-    <None Include="Packets\Client\0x60_908d6992-7710-44de-ad7b-f191c8a20f61.packet" />
-    <None Include="Packets\Client\0x60_92e784a5-5cdf-46ae-a82d-5f4a80ad5577.packet" />
+    <None Include="Packets\Client\0x60_8651665e-cd4e-449b-a4fa-3cba13083548.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_86fc28cd-14e4-41c7-9829-64405e6a9c8c.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_8c1b42a3-b916-4268-af2f-908c3db24499.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_908d6992-7710-44de-ad7b-f191c8a20f61.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_92e784a5-5cdf-46ae-a82d-5f4a80ad5577.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_93377853-bd69-4dcf-9759-9a5546fdad59.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_9372d545-2734-49e1-98fc-20ff5b89d2ac.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_958a7c00-44c9-484b-bed6-4658a460369b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_974b395f-745e-48b0-a623-2d8f29c3913b.packet" />
+    <None Include="Packets\Client\0x60_974b395f-745e-48b0-a623-2d8f29c3913b.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_97f7c06c-c934-4470-805b-9badfe228e73.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_99ac01a2-8abf-4c15-bf27-4d28277ea541.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_9a0a48c3-c14a-4549-95cc-ea4a717e7e10.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_9aac529c-945f-4ddf-b025-0f8e558d8ce7.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_9b8dd851-40cb-434e-9f9b-de74ad71b07e.packet" />
-    <None Include="Packets\Client\0x60_9ca4f20d-0d2a-496e-8ed3-ccd0d71a97ad.packet" />
+    <None Include="Packets\Client\0x60_9b8dd851-40cb-434e-9f9b-de74ad71b07e.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_9ca4f20d-0d2a-496e-8ed3-ccd0d71a97ad.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_9ddce9e5-1074-4246-beb5-3a884fcd257e.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_a0b721f8-fd1a-4e04-a90d-0eb4d5501a49.packet" />
+    <None Include="Packets\Client\0x60_a0b721f8-fd1a-4e04-a90d-0eb4d5501a49.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_a1d9bfa5-cdfc-484c-972a-c433eba5e06e.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_a2af812a-4925-4ea8-813d-691fb0fe4aa9.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_a412621e-198a-4054-b071-ce85c4721ebf.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_a71364e8-4a8b-4ef4-8cfb-0fb80945f616.packet" />
-    <None Include="Packets\Client\0x60_ac7ed2c5-c9c7-4973-b682-b2cfd670cd57.packet" />
-    <None Include="Packets\Client\0x60_ae2bb0ef-db81-4e19-a5d5-f4049debcb5c.packet" />
-    <None Include="Packets\Client\0x60_ae81020c-55d0-4db8-aa07-d81299ef22b5.packet" />
+    <None Include="Packets\Client\0x60_a71364e8-4a8b-4ef4-8cfb-0fb80945f616.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_ac7ed2c5-c9c7-4973-b682-b2cfd670cd57.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_ae2bb0ef-db81-4e19-a5d5-f4049debcb5c.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_ae81020c-55d0-4db8-aa07-d81299ef22b5.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_b252787a-7aa2-4e79-a0cd-3d2d4c60fc6d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_b2b3a443-4eaa-4906-861a-9bab23baca5f.packet" />
+    <None Include="Packets\Client\0x60_b2b3a443-4eaa-4906-861a-9bab23baca5f.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_b45b3bb7-0ed3-4ef2-bedc-cd1628d7ddf0.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_b47fc6b7-5e16-45d7-a1a0-b4fdf07be1e5.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_b4d6ba0d-021b-411c-b198-16a3062976e3.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_b4ea79f9-fbf1-42d7-abae-e6a33aad4a68.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_b5920ffc-84e3-45c2-9742-3fc66641b148.packet" />
-    <None Include="Packets\Client\0x60_c47c168d-7a9a-45c8-b8dc-35d2ac4920f1.packet" />
+    <None Include="Packets\Client\0x60_b5920ffc-84e3-45c2-9742-3fc66641b148.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_c47c168d-7a9a-45c8-b8dc-35d2ac4920f1.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_c9214b0c-a32f-47cc-af95-9cbc4c022757.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_c9c6a9b3-5f75-4028-867d-63bc8cd46afe.packet" />
+    <None Include="Packets\Client\0x60_c9c6a9b3-5f75-4028-867d-63bc8cd46afe.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_ca7a4329-8859-46e1-ac74-a84b7ea77862.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_cd9d3ce5-bfe5-4def-8d84-a7b9a695ef4e.packet" />
-    <None Include="Packets\Client\0x60_cdc18936-be60-4858-8615-320df25a0cc3.packet" />
+    <None Include="Packets\Client\0x60_cd9d3ce5-bfe5-4def-8d84-a7b9a695ef4e.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_cdc18936-be60-4858-8615-320df25a0cc3.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_ce515217-6126-4a95-9f87-56312f53359c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_d150c82f-720d-4c64-a8d5-8742e154dc9d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_d281d105-df08-4a0b-8c36-9e0516b115ef.packet" />
+    <None Include="Packets\Client\0x60_d281d105-df08-4a0b-8c36-9e0516b115ef.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_d32f65f2-d281-48a4-a5ab-7f7bb9dafcc3.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_d4b45f79-a2e9-4aa7-a243-19bb598cef97.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_d66cf8a3-0819-475e-84a6-71a87de7fd2f.packet" />
-    <None Include="Packets\Client\0x60_d8e16a9a-d1f2-47b8-89c2-00aee01c37ab.packet" />
+    <None Include="Packets\Client\0x60_d66cf8a3-0819-475e-84a6-71a87de7fd2f.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_d8e16a9a-d1f2-47b8-89c2-00aee01c37ab.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_dc7ec664-d6fa-408e-b3d7-a66b728f6731.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_dd6b000a-1718-440b-84d0-ca4f9336bce8.packet" />
-    <None Include="Packets\Client\0x60_de66f8df-096f-4117-8d27-551fb6f7cd5a.packet" />
-    <None Include="Packets\Client\0x60_dfbb1dd2-1dc8-4a2b-9807-68b538706450.packet" />
-    <None Include="Packets\Client\0x60_e16e8494-6d4c-428b-8d9d-dd6cb646c9ee.packet" />
+    <None Include="Packets\Client\0x60_dd6b000a-1718-440b-84d0-ca4f9336bce8.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_de66f8df-096f-4117-8d27-551fb6f7cd5a.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_dfbb1dd2-1dc8-4a2b-9807-68b538706450.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Client\0x60_e16e8494-6d4c-428b-8d9d-dd6cb646c9ee.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_e3d74385-3e9d-41e3-970f-114cf2909563.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_e63c7547-33f7-4a32-91c6-a672fa4281ec.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_e6f0181f-4342-4f36-84c1-1e207a7319d3.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_ed153084-d8a5-40c6-9036-54804c90ce27.packet" />
+    <None Include="Packets\Client\0x60_ed153084-d8a5-40c6-9036-54804c90ce27.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_f1237e36-ebb2-4d4e-82d1-dea5892bc5dc.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_f15e444b-ee1c-49f7-96a7-c6c7d13bcf3d.packet" />
+    <None Include="Packets\Client\0x60_f15e444b-ee1c-49f7-96a7-c6c7d13bcf3d.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_f2c328a0-c9c8-45a2-b7ef-c19da9d90889.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_f508c77b-c134-4910-bb0d-430e9ae7dc16.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_f56b2fc1-4223-49a0-ac77-cdc7353d6e93.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_f56d6296-3e49-4a5e-84e7-1a44ff402faf.packet" />
+    <None Include="Packets\Client\0x60_f56d6296-3e49-4a5e-84e7-1a44ff402faf.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_fc6c06f2-6f50-4893-ab6a-52b4e4fa6015.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_fd3d480b-ef56-4ec2-986d-682eba2828f5.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x60_ff180458-a529-411a-95be-a983cb3f2e57.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x60_ff3e0626-cd90-4eed-8ccb-22e674a6eb50.packet" />
+    <None Include="Packets\Client\0x60_ff3e0626-cd90-4eed-8ccb-22e674a6eb50.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x61_8a2a6870-d46b-4901-b8f3-207e2f92b88b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x61_da337e7e-4e3c-454f-8378-92147639323d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0x6F_7549f09c-c44c-4004-9aea-6f65430b8d41.packet" />
+    <None Include="Packets\Client\0x6F_7549f09c-c44c-4004-9aea-6f65430b8d41.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x84_4a64c9c5-0897-4397-b38a-2cf41a0b104f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x8_cb07a350-7db9-48f9-ae6f-5469c4969356.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x93_17d202fd-29c0-430a-8b7d-eda2f80410db.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x93_1c084605-6d2b-47a7-ad9c-755ba84717a5.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x93_31fffd57-eca5-4a51-95d2-b44800b86e41.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x93_45aba536-981b-4662-bbd3-77f6c2bcf7df.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x93_b88a72d4-cefb-465c-8b10-26c625269a41.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0x93_fa4681ba-8961-4b7d-8cf0-b5570104dd07.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Client\0xC1_3d285492-2efa-40e8-876d-173e6d0e0abb.packet" />
+    <None Include="Packets\Client\0xC1_3d285492-2efa-40e8-876d-173e6d0e0abb.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0xE0_0132f04d-8d71-4227-8bff-aa2ccbee2fbb.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0xE3_158256b8-5e6b-4b82-bdba-569735764294.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0xE3_1a690b41-a6d4-4c01-b5d8-dfa7ccf3ffea.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0xE3_3fbfd6f8-5efe-4c1e-bd2b-b4e255081787.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0xE3_455a8590-c004-4331-bf2e-cb6fdf90212b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0xE3_a8e38baa-f53c-47bd-8c36-05c47221217c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Client\0xE7_f9ef62aa-4013-4666-af40-6167a5049d7a.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x1DC_8c54f6c4-8ca9-4b02-92af-7703e020d69e.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Server\0x1D_386a6912-fa74-4346-a5ff-75dfc88e5fc5.packet" />
-    <None Include="Packets\Server\0x1D_e00a898a-4f81-444d-baa6-ce369f25a992.packet" />
+    <None Include="Packets\Server\0x1D_386a6912-fa74-4346-a5ff-75dfc88e5fc5.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Server\0x1D_e00a898a-4f81-444d-baa6-ce369f25a992.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Server\0x1EB_5ae542c1-6da0-4af2-8109-ce590c1d6015.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2DC_9b011c8d-86aa-4d23-bf10-574ae5717501.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2DC_d4890f5a-c282-4f2a-b801-46bf27dd258c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2DC_f1f0eac2-d4df-44d3-bb27-883a53731ed7.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2E8_0580900d-58b8-4b96-9d6f-507cdc943227.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_05d339f5-70f4-42e3-b4e4-2ff1c1763f55.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_07b9b9bf-bfb4-4a8f-b139-8e5bcca51e63.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_0e5805fb-096b-4ade-9edf-58684fd18346.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_115b9be6-d7c3-4cfb-9ac6-6d1365c0a59a.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_12fa608e-8f24-4461-a357-5aa93a56fbc9.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_3b78d624-1ccb-4a8f-9bf1-7f35ecc94adc.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_3d757224-ffe1-4b45-8341-ef6d74eb0053.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_51e647da-3a9a-43d5-9ca1-1b7a37942f9c.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_52b1633e-6f3c-48ef-a986-585b67a58b7b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_7c8a41a1-8976-40fb-901e-5a49b6cd493e.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_ae9f93c9-c8ee-4006-b2fb-ae56e29ca61f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_b0ef08af-8781-4c94-9f0d-1c5a957b3ce3.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_b46c6418-29b6-454e-ab55-e9254565eeff.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_ba2491f9-2c3c-4534-ae6c-44d0f48e80eb.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_c79f570e-dbbb-4ded-ba8b-2278c788d388.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x2EB_e1eca16b-3677-4151-bf58-5b68bedd8e1a.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x60_50a06606-430a-4645-90ff-cf6078d32ccc.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x60_5bb7ca04-9f90-4e3c-ae48-514672a015bc.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Packets\Server\0x60_63722a2a-2e44-4e8a-aa89-b98ea582669d.packet" />
-    <None Include="Packets\Server\0x60_7d6048ff-d68d-4b94-a818-5f1e2cbd5fa4.packet" />
-    <None Include="Packets\Server\0x64_e99a43c9-5723-4125-bae2-8f743c27e302.packet" />
+    <None Include="Packets\Server\0x60_63722a2a-2e44-4e8a-aa89-b98ea582669d.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Server\0x60_7d6048ff-d68d-4b94-a818-5f1e2cbd5fa4.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Packets\Server\0x64_e99a43c9-5723-4125-bae2-8f743c27e302.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Server\0x67_59256b24-82f0-4fde-bf8a-dd127b54f2b5.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x67_66ce8b86-7e75-448d-85bb-fbcd987b7348.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x7_37a29557-65d6-43a0-be28-905371767e32.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x83_f0154760-ab3b-48cd-918e-5df0b63c8416.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x8_931cd0fc-3337-4c78-9075-a2546766541d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x95_1262e938-82d2-45d7-97b4-ef8c9dfff441.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0x95_6572ae1e-2372-4ee5-aa40-a48e7be8697f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xA0_f1edbe70-4276-4db4-8705-a718fb90f610.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xB1_00a3eab2-753b-49b6-9052-6d882ec5e848.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE2_4878ef4d-5fb8-4cbf-a66e-55b1649f089b.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE4_19a9f7d1-288e-457b-9df9-53fd2bdacef9.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE4_8be912a2-e959-4ff4-9c95-efa22d1bf5ee.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE4_b6db6960-e7e9-426a-987a-f8e495c91110.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE4_e148bc81-54ee-4c3a-915d-cc8c620742ab.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE5_c3eadac5-bc84-409a-9553-ee8bf0177683.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE6_1f408de6-11b0-49b0-8bd7-a40143bb0492.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE6_2690517e-5de7-4b1c-8095-dc12830dec0a.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE6_5b6751e4-bde0-4fc2-9291-f2d63778c65d.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE6_5e26e9c9-6c3d-4d95-a1ce-0dbbf2d94476.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE6_8c4ada4d-f26c-479b-8485-3b559302903f.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE6_b55705d5-4c5e-4c07-9680-1f0782bdcf16.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xE7_68ca6d33-07a4-4c6e-91da-f30fd84cc662.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Packets\Server\0xEE_c9a9c6c3-e516-4c52-a35d-81eafb78aadd.packet">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
