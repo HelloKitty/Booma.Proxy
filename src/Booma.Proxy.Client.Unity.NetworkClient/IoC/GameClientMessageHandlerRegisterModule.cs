@@ -28,10 +28,11 @@ namespace Booma.Proxy
 
 			foreach(var h in handlers)
 				register.RegisterInstance(h)
-					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
+					.AsImplementedInterfaces();
 
+			//New IPeerContext generic param now so we register as implemented interface
 			register.RegisterType<DefaultPayloadHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
-				.As<IPeerPayloadSpecificMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
+				.AsImplementedInterfaces()
 				.SingleInstance();
 
 			register.RegisterType<MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
