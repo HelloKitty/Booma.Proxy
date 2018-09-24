@@ -222,8 +222,8 @@ namespace Booma.Proxy
 
 		public static string PrintFailureBytes(byte[] original, byte[] result)
 		{
-			if(original.Length > 300)
-				return $"Original bytes too long to log. Size: {original.Length}";
+			//if(original.Length > 300)
+			//	return $"Original bytes too long to log. Size: {original.Length}";
 
 			return $"Original bytes: \n{original.Aggregate("", (s, b) => $"{s} {b:X}")}\n\n Result: \n{result.Aggregate("", (s, b) => $"{s} {b:X}")}";
 		}

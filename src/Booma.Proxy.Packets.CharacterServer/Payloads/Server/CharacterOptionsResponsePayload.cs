@@ -8,6 +8,8 @@ using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
+	//See: https://github.com/Sylverant/libsylverant/blob/7f7e31d90da1b02c8d89d055628540ee3ad59417/include/sylverant/characters.h#L167
+	//Based on Sylverant's sylverant_bb_key_team_config_t
 	/// <summary>
 	/// Payload that responds to <see cref="CharacterOptionsRequestPayload"/> with options saved on the
 	/// server for the specified client.

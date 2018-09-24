@@ -103,6 +103,11 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Opcode for event that lets clients know a box has been hit.
 		/// </summary>
-		GameBoxHit = 0x0B
+		GameBoxHit = 0x0B,
+
+		/// <summary>
+		/// Opcode for when a user sits down in a photon chair.
+		/// </summary>
+		PhotonChairSit = 0xAB
 	}
 }
