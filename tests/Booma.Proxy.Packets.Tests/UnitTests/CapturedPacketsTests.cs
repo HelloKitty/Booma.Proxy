@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
@@ -163,16 +164,22 @@ namespace Booma.Proxy
 			//act
 			byte[] serializedBytes = serializer.Serialize(payload);
 
+			//The plus 2 is from the packet size which is included as calculation in whether it is appropriate for the block
+			//size of 8.
+			//+2 is also added to the original binary length since it's missing the packet size too.
+			int serializedBytesWithBlockSize = ConvertToBlocksizeCount(serializedBytes.Length + 2, 8);
+			int entryBytesWithBlockSize = ConvertToBlocksizeCount(entry.BinaryData.Length + 2, 8);
 			//assert
 			try
 			{
 				if(!isSub60)
-					Assert.AreEqual(entry.BinaryData.Length, serializedBytes.Length, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
+					//convert the serialized bytes to block size since Sylverant and the packet captures will include that in the data
+					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
 				else
 				{
 					var command = (payload as ISub60CommandContainer).Command;
 					//Similar to the above but we include information about the sub60 command
-					Assert.AreEqual(entry.BinaryData.Length, serializedBytes.Length, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 			}
 			catch(AssertionException e)
@@ -180,17 +187,23 @@ namespace Booma.Proxy
 				Assert.Fail($"Failed: {e.Message} {PrintFailureBytes(entry.BinaryData, serializedBytes)}");
 			}
 
-
-			for(int i = 0; i < entry.BinaryData.Length; i++)
+			//check both lengths since we accept that some packet models won't include the padding.
+			for(int i = 0; i < entry.BinaryData.Length && i < serializedBytes.Length; i++)
 			{
 				if(!isSub60)
-					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: {entry.OpCode} Type: {payload.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
 				else
 				{
 					var command = (payload as ISub60CommandContainer).Command;
-					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: {entry.OpCode} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 			}
+
+			//Special check for when we have a packet that hasn't failed but has differently lenghts (assumed to be blocksize)
+			//we check and make sure that the ending bytes are actually 0. If they aren't it likely NOT padding and additional unhandled data
+			if(entry.BinaryData.Length > serializedBytes.Length)
+				for(int i = serializedBytes.Length; i < entry.BinaryData.Length; i++)
+					Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X}");
 		}
 
 		[Test]
@@ -209,7 +222,24 @@ namespace Booma.Proxy
 
 		public static string PrintFailureBytes(byte[] original, byte[] result)
 		{
+			if(original.Length > 300)
+				return $"Original bytes too long to log. Size: {original.Length}";
+
 			return $"Original bytes: {original.Aggregate("", (s, b) => $"{s} {b:X}")} Result: {result.Aggregate("", (s, b) => $"{s} {b:X}")}";
+		}
+
+		//From GladNet block cipher implementation, will compute the blocksize of something.
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private int ConvertToBlocksizeCount(int count, int blockSize)
+		{
+			int remainder = count % blockSize;
+
+			//Important to check if it's already perfectly size
+			//otherwise below code will return count + blocksize
+			if(remainder == 0)
+				return count;
+
+			return count + (blockSize - (count % blockSize));
 		}
 	}
 }

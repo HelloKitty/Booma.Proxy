@@ -29,10 +29,7 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public Vector2<float> Position { get; }
 
-		//Sylverant has this 4 byte value here, but it could be padding from block cipher.
-		//TODO: What is this? Is it always 0?
-		[WireMember(4)]
-		private uint unk2 { get; } = 0;
+		//Sylverant will pad 4 bytes here, it's possible they aren't 0 and are used for some thing. but for now we leave them off.
 
 		//Serializer ctor
 		private Sub60MovingSlowPositionSetCommand()
