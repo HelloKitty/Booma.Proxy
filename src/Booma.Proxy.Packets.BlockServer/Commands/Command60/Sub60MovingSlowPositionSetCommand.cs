@@ -21,13 +21,18 @@ namespace Booma.Proxy
 		public byte Identifier { get; }
 
 		[WireMember(2)]
-		private byte unused { get; }
+		private byte unk1 { get; }
 
 		/// <summary>
 		/// The new position of the client.
 		/// </summary>
 		[WireMember(3)]
 		public Vector2<float> Position { get; }
+
+		//Sylverant has this 4 byte value here, but it could be padding from block cipher.
+		//TODO: What is this? Is it always 0?
+		[WireMember(4)]
+		private uint unk2 { get; } = 0;
 
 		//Serializer ctor
 		private Sub60MovingSlowPositionSetCommand()

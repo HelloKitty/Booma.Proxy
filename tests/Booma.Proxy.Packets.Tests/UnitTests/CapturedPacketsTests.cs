@@ -172,7 +172,7 @@ namespace Booma.Proxy
 				{
 					var command = (payload as ISub60CommandContainer).Command;
 					//Similar to the above but we include information about the sub60 command
-					Assert.AreEqual(entry.BinaryData.Length, serializedBytes.Length, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: {entry.BinaryData[6]} Type: {command.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData.Length, serializedBytes.Length, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 			}
 			catch(AssertionException e)
@@ -188,7 +188,7 @@ namespace Booma.Proxy
 				else
 				{
 					var command = (payload as ISub60CommandContainer).Command;
-					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: {entry.OpCode} Type: {payload.GetType().Name} Sub60 OpCode: {entry.BinaryData[6]} Type: {command.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: {entry.OpCode} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 			}
 		}
