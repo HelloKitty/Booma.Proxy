@@ -95,6 +95,12 @@ namespace Booma.Proxy
 		/// Opcode sent by the client when it wants to create a game
 		/// on a block.
 		/// </summary>
-		GAME_CREATE_TYPE = 0x00C1
+		GAME_CREATE_TYPE = 0x00C1,
+
+		/// <summary>
+		/// Opcode sent by the server when a client
+		/// is joining a lobby.
+		/// </summary>
+		GAME_ADD_PLAYER_TYPE = 0x0065
 	}
 }
