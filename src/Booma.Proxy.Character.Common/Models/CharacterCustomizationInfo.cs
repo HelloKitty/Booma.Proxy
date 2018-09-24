@@ -39,7 +39,7 @@ namespace Booma.Proxy
 		/// The hair color.
 		/// </summary>
 		[WireMember(6)]
-		public HairColorInfo HairColor { get; }
+		public Vector3<ushort> HairColor { get; }
 
 		/// <summary>
 		/// The proportions foe the character.

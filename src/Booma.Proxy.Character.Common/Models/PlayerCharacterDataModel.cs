@@ -70,7 +70,7 @@ namespace Booma.Proxy
 		/// The name of the character.
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
-		[KnownSize(12)] //TODO: Destiny only sends 15 char for char name. Other servers use 16.
+		[KnownSize(16)] //TODO: Destiny only sends 15 char for char name. Other servers use 16.
 		[WireMember(9)]
 		public string CharacterName { get; }
 
@@ -78,7 +78,7 @@ namespace Booma.Proxy
 		/// The amount of time the character has played.
 		/// </summary>
 		[WireMember(10)]
-		public ulong PlayedTime { get; }
+		public uint PlayedTime { get; }
 
 		//Serializer ctor
 		public PlayerCharacterDataModel()
