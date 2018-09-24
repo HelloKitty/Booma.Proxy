@@ -34,9 +34,11 @@ namespace Booma.Proxy
 		private int One { get; } = 1;
 
 		//TODO: What is this length?
+		[WireMember(2)]
 		public uint Length { get; }
 
 		//TODO: What is this checksum?
+		[WireMember(3)]
 		public uint CheckSum { get; }
 
 		//Serializer ctor
