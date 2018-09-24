@@ -23,7 +23,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.GAME_COMMAND2_TYPE)]
-	public class BlockNetworkCommand62EventClientPayload : PSOBBGamePacketPayloadClient
+	public class BlockNetworkCommand62EventClientPayload : PSOBBGamePacketPayloadClient, ISub62CommandContainer
 	{
 		/// <summary>
 		/// The subcommand.
