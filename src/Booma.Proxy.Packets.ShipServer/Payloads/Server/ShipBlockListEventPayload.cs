@@ -20,6 +20,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override bool isFlagsSerialized { get; } = false;
 
+		//They include ShipSelect and Ship name in this listing
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
@@ -30,6 +31,8 @@ namespace Booma.Proxy
 		/// </summary>
 		public IEnumerable<MenuListing> Blocks => _Blocks;
 
+		//TODO: Failing test cases for mismatch size. The reason it is happening is public Teth sends 8 extra padding bytes that it doesn't need.
+
 		//Serializer ctor
 		private ShipBlockListEventPayload()
 		{
@@ -39,14 +42,14 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void OnBeforeSerialization()
 		{
-			//TODO: Deal with the bullshit the server adds for some reason
+
 		}
 
 		/// <inheritdoc />
 		public void OnAfterDeserialization()
 		{
 			//Remove the first entry, it's garbage
-			_Blocks = _Blocks.Skip(1).ToArray();
+			//_Blocks = _Blocks.Skip(1).ToArray();
 		}
 	}
 }
