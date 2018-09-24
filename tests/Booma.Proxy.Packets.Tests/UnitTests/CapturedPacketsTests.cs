@@ -225,7 +225,7 @@ namespace Booma.Proxy
 			if(original.Length > 300)
 				return $"Original bytes too long to log. Size: {original.Length}";
 
-			return $"Original bytes: {original.Aggregate("", (s, b) => $"{s} {b:X}")} Result: {result.Aggregate("", (s, b) => $"{s} {b:X}")}";
+			return $"Original bytes: \n{original.Aggregate("", (s, b) => $"{s} {b:X}")}\n\n Result: \n{result.Aggregate("", (s, b) => $"{s} {b:X}")}";
 		}
 
 		//From GladNet block cipher implementation, will compute the blocksize of something.
