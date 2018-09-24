@@ -203,7 +203,15 @@ namespace Booma.Proxy
 			//we check and make sure that the ending bytes are actually 0. If they aren't it likely NOT padding and additional unhandled data
 			if(entry.BinaryData.Length > serializedBytes.Length)
 				for(int i = serializedBytes.Length; i < entry.BinaryData.Length; i++)
-					Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X}");
+					if(!isSub60)
+					{
+						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X}");
+					}
+					else
+					{
+						var command = (payload as ISub60CommandContainer).Command;
+						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+					}
 		}
 
 		[Test]
