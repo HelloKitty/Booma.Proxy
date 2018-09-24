@@ -150,6 +150,7 @@ namespace Booma.Proxy
 			}
 
 			bool isSub60 = false;
+			bool isSub62 = false;
 			//Special handling for 0x60 payloads, we don't want to deal with unknown subcommands. Just warn
 			if(payload is ISub60CommandContainer sub60)
 			{
@@ -157,6 +158,15 @@ namespace Booma.Proxy
 				if(sub60.Command is UnknownSubCommand60Command)
 				{
 					Assert.Warn($"Encountered unimplemented Sub60 SubCommand: 0x{payload.OperationCode:X} 0x{entry.BinaryData[6]:X}.");
+					return;
+				}
+			}
+			else if(payload is ISub62CommandContainer sub62)
+			{
+				isSub62 = true;
+				if(sub62.Command is UnknownSubCommand62Command)
+				{
+					Assert.Warn($"Encountered unimplemented Sub62 SubCommand: 0x{payload.OperationCode:X} 0x{entry.BinaryData[6]:X}.");
 					return;
 				}
 			}
@@ -172,14 +182,20 @@ namespace Booma.Proxy
 			//assert
 			try
 			{
-				if(!isSub60)
+				if(!isSub60 && !isSub62)
 					//convert the serialized bytes to block size since Sylverant and the packet captures will include that in the data
 					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
-				else
+				else if(isSub60)
 				{
 					var command = (payload as ISub60CommandContainer).Command;
 					//Similar to the above but we include information about the sub60 command
 					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+				}
+				else if(isSub62)
+				{
+					var command = (payload as ISub62CommandContainer).Command;
+					//Similar to the above but we include information about the sub60 command
+					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 			}
 			catch(AssertionException e)
@@ -190,12 +206,17 @@ namespace Booma.Proxy
 			//check both lengths since we accept that some packet models won't include the padding.
 			for(int i = 0; i < entry.BinaryData.Length && i < serializedBytes.Length; i++)
 			{
-				if(!isSub60)
+				if(!isSub60 && !isSub62)
 					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
-				else
+				else if(isSub60)
 				{
 					var command = (payload as ISub60CommandContainer).Command;
 					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+				}
+				else if(isSub62)
+				{
+					var command = (payload as ISub62CommandContainer).Command;
+					Assert.AreEqual(entry.BinaryData[i], serializedBytes[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 			}
 
@@ -203,14 +224,19 @@ namespace Booma.Proxy
 			//we check and make sure that the ending bytes are actually 0. If they aren't it likely NOT padding and additional unhandled data
 			if(entry.BinaryData.Length > serializedBytes.Length)
 				for(int i = serializedBytes.Length; i < entry.BinaryData.Length; i++)
-					if(!isSub60)
+					if(!isSub60 && !isSub62)
 					{
 						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X}");
 					}
-					else
+					else if(isSub60)
 					{
 						var command = (payload as ISub60CommandContainer).Command;
 						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+					}
+					else if(isSub62)
+					{
+						var command = (payload as ISub62CommandContainer).Command;
+						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 					}
 		}
 
