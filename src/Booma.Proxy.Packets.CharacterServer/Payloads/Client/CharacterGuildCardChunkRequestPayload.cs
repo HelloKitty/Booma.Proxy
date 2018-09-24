@@ -29,14 +29,18 @@ namespace Booma.Proxy
 		/// <summary>
 		/// ?
 		/// </summary>
+		public bool ShouldContinue => _ShouldContinue != 0;
+
+		//Sylverant shows this as 4 bytes, captures show it as 4 bytes so we should treat it as
+		//4 bytes for completeness sake.
 		[WireMember(3)]
-		public bool ShouldContinue { get; }
+		private int _ShouldContinue { get; }
 
 		/// <inheritdoc />
 		public CharacterGuildCardChunkRequestPayload(uint chunkNumber, bool shouldContinue)
 		{
 			ChunkNumber = chunkNumber;
-			ShouldContinue = shouldContinue;
+			_ShouldContinue = shouldContinue ? 1 : 0;
 		}
 
 		private CharacterGuildCardChunkRequestPayload()
