@@ -24,12 +24,17 @@ namespace Booma.Proxy
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
-		private MenuListing[] _Blocks { get; set; } //settable for removing the garbage entry
+		private MenuListing[] _MenuListings { get; set; } //settable for removing the garbage entry
 
 		/// <summary>
-		/// The ship menu models.
+		/// All the menu listings sent in the packet.
 		/// </summary>
-		public IEnumerable<MenuListing> Blocks => _Blocks;
+		public IEnumerable<MenuListing> MenuListings => _MenuListings;
+
+		/// <summary>
+		/// Only the block menu listings sent in the packet.
+		/// </summary>
+		public IEnumerable<MenuListing> Blocks => _MenuListings.Skip(1);
 
 		//TODO: Failing test cases for mismatch size. The reason it is happening is public Teth sends 8 extra padding bytes that it doesn't need.
 
