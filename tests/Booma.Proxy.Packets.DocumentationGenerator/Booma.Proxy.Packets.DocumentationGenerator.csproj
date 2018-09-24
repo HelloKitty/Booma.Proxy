@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.35" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
     <PackageReference Include="Generic.Math" Version="1.0.2" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
