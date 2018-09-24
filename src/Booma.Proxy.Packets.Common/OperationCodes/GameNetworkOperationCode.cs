@@ -89,6 +89,12 @@ namespace Booma.Proxy
 
 		CHAT_TYPE = 0x0006,
 
-		DONE_BURSTING_TYPE = 0x006F
+		DONE_BURSTING_TYPE = 0x006F,
+
+		/// <summary>
+		/// Opcode sent by the client when it wants to create a game
+		/// on a block.
+		/// </summary>
+		GAME_CREATE_TYPE = 0x00C1
 	}
 }
