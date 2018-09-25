@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Booma.Proxy;
 using FreecraftCore.Serializer;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 namespace Booma
 {
@@ -14,9 +16,13 @@ namespace Booma
 		/// <summary>
 		/// The Entity's object type.
 		/// </summary>
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(1)]
 		public MapDatFormatEntityObjectType ObjectType { get; }
 
+		[ReadOnly]
+		[OdinSerialize]
 		[KnownSize(6)]
 		[WireMember(2)]
 		public byte[] unk1 { get; }
@@ -26,6 +32,8 @@ namespace Booma
 		/// <summary>
 		/// The identifier for this object.
 		/// </summary>
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(3)]
 		public ushort Identifier { get; }
 
@@ -34,6 +42,8 @@ namespace Booma
 		/// <summary>
 		/// TODO: ?
 		/// </summary>
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(4)]
 		public ushort Group { get; }
 
@@ -44,17 +54,22 @@ namespace Booma
 		/// Sections contain a position offset that must be used. Otherwise
 		/// the object will not end up in the correct spot.
 		/// </summary>
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(5)]
 		public ushort Section { get; }
 
 		//TODO: What is this?
-
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(6)]
 		public short unk2 { get; }
 
 		/// <summary>
 		/// Position of the object.
 		/// </summary>
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(7)]
 		public Vector3<float> Position { get; }
 
@@ -62,23 +77,33 @@ namespace Booma
 		/// Rotation of the object.
 		/// (Not in Euler form)
 		/// </summary>
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(8)]
 		public Vector3<int> Rotation { get; }
 
 		//First byte for teleports may be the floor
 		//5th byte may be type (red vs blue)
+		[ReadOnly]
+		[OdinSerialize]
 		[KnownSize(6)]
 		[WireMember(9)]
 		private byte[] unk3 { get; }
 
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(10)]
 		public int ObjectActionIdentifier { get; }
 
+		[ReadOnly]
+		[OdinSerialize]
 		[WireMember(11)]
 		public int Action { get; }
 
 		//TODO: What is this?
 
+		[ReadOnly]
+		[OdinSerialize]
 		[KnownSize(14)]
 		[WireMember(12)]
 		private byte[] unk4 { get; }
