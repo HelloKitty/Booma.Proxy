@@ -32,7 +32,7 @@ namespace Booma.Proxy.Editor
 			{
 				MapPathBuilder pathbuilder = new MapPathBuilder(".bytes");
 
-				string objectPath = pathbuilder.GenerateDataPath(DesiredMap, BaseMap, Variant);
+				string objectPath = pathbuilder.GenerateObjectDataPath(DesiredMap, BaseMap, Variant);
 				string sectionPath = pathbuilder.GenerateSectionDataPath(DesiredMap, BaseMap);
 
 				DynamicMapSceneBuilder sceneBuilder = new DynamicMapSceneBuilder(new DefaultPSOScaleUnitScalerStrategy());
