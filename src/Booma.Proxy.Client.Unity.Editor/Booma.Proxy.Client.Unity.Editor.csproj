@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Editors\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
@@ -14,10 +13,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Map\Booma.Proxy.Client.Unity.Map.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Ship\Booma.Proxy.Client.Unity.Ship.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Format.MapDat\Booma.Proxy.Format.MapDat.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Sirenix.OdinInspector.Attributes">
+      <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>..\..\lib\Unity\UnityEditor.dll</HintPath>
     </Reference>

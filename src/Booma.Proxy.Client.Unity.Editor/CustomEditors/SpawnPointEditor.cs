@@ -10,7 +10,7 @@ namespace Booma.Proxy
 {
 	//based on: https://unity3d.college/2016/09/12/unity-oninspectorgui/
 	[CustomEditor(typeof(SpawnPointComponent))]
-	public class SpawnPointEditor : Editor
+	public class SpawnPointEditor : UnityEditor.Editor
 	{
 		public override void OnInspectorGUI()
 		{

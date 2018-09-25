@@ -11,6 +11,7 @@ namespace Booma.Proxy.Format.MapNRel.Dumper
 {
 	class Program
 	{
+		//NRels are from the client
 		static void Main(string[] args)
 		{
 			Console.WriteLine("Enter Filename:");

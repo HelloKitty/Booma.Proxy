@@ -11,6 +11,7 @@ namespace Booma
 {
 	class Program
 	{
+		//MapData can be gathered from Tethealla. xx_xx_o.dat contains the variant object data.
 		//TODO: Support multiple types. Only does object right now
 		static void Main(string[] args)
 		{

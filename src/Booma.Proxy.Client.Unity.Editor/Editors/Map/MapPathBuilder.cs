@@ -36,9 +36,9 @@ namespace Booma
 			return $"map_{map.ToString().ToLower()}_{basemap:00}_{variation:00}";
 		}
 
-		public string GenerateDataPath(Episode1Map map, int basemap, int variation)
+		public string GenerateObjectDataPath(Episode1Map map, int basemap, int variation)
 		{
-			return Path.Combine(RootPath, $"{GenerateDataFileName(map, basemap, variation)}{Extension}");
+			return Path.Combine(RootPath, $"{GenerateDataFileName(map, basemap, variation)}o{Extension}");
 		}
 
 		//TODO: Refactor/doc

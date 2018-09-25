@@ -28,13 +28,17 @@ namespace Booma.Proxy.Editor
 			BaseMap = EditorGUILayout.IntField(BaseMap, "The base map id (Ex. (_XX_00) where base map id is XX");
 			Variant = EditorGUILayout.IntField(Variant, "The variant number of the map (ex. (_00_XX) where the variant is XX");
 
-
 			if(GUILayout.Button("Generate Variant"))
 			{
 				MapPathBuilder pathbuilder = new MapPathBuilder(".bytes");
 
 				string objectPath = pathbuilder.GenerateDataPath(DesiredMap, BaseMap, Variant);
 				string sectionPath = pathbuilder.GenerateSectionDataPath(DesiredMap, BaseMap);
+
+				DynamicMapSceneBuilder sceneBuilder = new DynamicMapSceneBuilder(new DefaultPSOScaleUnitScalerStrategy());
+
+				MapFileDeserializer mapSerializer = new MapFileDeserializer();
+				sceneBuilder.AddObjectsToScene(mapSerializer.LoadObjects(objectPath), mapSerializer.LoadSections(sectionPath).Sections.ToDictionary(model => (int)model.SecionId));
 			}
 		}
 	}
