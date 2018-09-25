@@ -28,9 +28,7 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public short ZoneId { get; }
 		
-		//TODO: What is this?
-		[WireMember(4)]
-		public short Unused2 { get; }
+		//Unused2 was padding, not sent in the payload.
 
 		public Sub60StartNewWarpCommand()
 		{
