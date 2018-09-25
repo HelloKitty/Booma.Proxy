@@ -17,6 +17,15 @@ namespace Booma.Proxy
 	public sealed class MapObjectIdentifier : SerializedMonoBehaviour
 	{
 		/// <summary>
+		/// Level unique identifier
+		/// (32bit unique identifier that is always unique for the given level variant).
+		/// </summary>
+		[PropertyTooltip("The unique ID (unique per level variant) of the object.")]
+		[ReadOnly]
+		[OdinSerialize]
+		public int LUID { get; private set; }
+
+		/// <summary>
 		/// The Entity's object type.
 		/// </summary>
 		[ReadOnly]
@@ -48,12 +57,14 @@ namespace Booma.Proxy
 		[OdinSerialize] //TODO: Make this recomputed if we ever move it? (Ex. Levle editor)
 		public ushort Section { get; private set; }
 
-		internal void SetFromEntry(MapDataFormatObjectEntry objectEntry)
+		internal void SetFromEntry(MapDataFormatObjectEntry objectEntry, int luid)
 		{
 			ObjectType = objectEntry.ObjectType;
 			Identifier = objectEntry.Identifier;
 			Group = objectEntry.Group;
 			Section = objectEntry.Section;
+
+			LUID = luid;
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Booma
 				//and should be removed before shipping
 				o.AddComponent<MapObjectDataComponent>().MapObject = entry;
 
-				o.AddComponent<MapObjectIdentifier>().SetFromEntry(entry);
+				o.AddComponent<MapObjectIdentifier>().SetFromEntry(entry, index); //index in the file is the level variant unique identifier (luid)
 
 				o.name = $"{index}_{entry.ObjectType.ToString()}_{entry.Identifier}";
 
