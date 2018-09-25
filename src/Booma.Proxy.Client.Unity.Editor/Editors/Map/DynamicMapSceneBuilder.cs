@@ -31,7 +31,11 @@ namespace Booma
 				//TODO: This is for testing purposes
 				GameObject o = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
 
+				//This is only attached for the purposes of debugging, we don't use it any other way
+				//and should be removed before shipping
 				o.AddComponent<MapObjectDataComponent>().MapObject = entry;
+
+				o.AddComponent<MapObjectIdentifier>().SetFromEntry(entry);
 
 				o.name = $"{index}_{entry.ObjectType.ToString()}_{entry.Identifier}";
 

@@ -11,6 +11,7 @@ namespace Booma.Proxy
 	/// Generic 2-dimensional vector.
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
+	[Serializable]
 	[WireDataContract]
 	public class Vector2<T>
 	{

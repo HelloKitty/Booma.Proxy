@@ -9,17 +9,22 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	/// <summary>
-	/// Raw .REL data component attached to objects
-	/// generated from PSO REL data.
-	/// </summary>
+	//This component exists only for debugging.
 	public class MapObjectDataComponent : SerializedMonoBehaviour
 	{
+		[ShowInInspector]
+		[ReadOnly]
+		[OdinSerialize]
+		private MapDataFormatObjectEntry _MapObject;
+
 		/// <summary>
 		/// Should be set 
 		/// </summary>
-		[OdinSerialize]
-		public MapDataFormatObjectEntry MapObject { get; set; } //needs to be publicly settable for creation time
+		public MapDataFormatObjectEntry MapObject
+		{
+			get => _MapObject;
+			set => _MapObject = value;
+		} //needs to be publicly settable for creation time
 
 		[Button]
 		public void DebugLogObjectDetails()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,14 @@ namespace Booma.Proxy.Editor
 
 		void OnGUI()
 		{
-			DesiredMap = (Episode1Map)EditorGUILayout.EnumPopup(DesiredMap, "The map.");
-			BaseMap = EditorGUILayout.IntField(BaseMap, "The base map id (Ex. (_XX_00) where base map id is XX");
-			Variant = EditorGUILayout.IntField(Variant, "The variant number of the map (ex. (_00_XX) where the variant is XX");
+			EditorGUILayout.LabelField("The map.", EditorStyles.boldLabel);
+			DesiredMap = (Episode1Map)EditorGUILayout.EnumPopup(DesiredMap);
+
+			EditorGUILayout.LabelField("The base map id (Ex. (_XX_00) where base map id is XX", EditorStyles.boldLabel);
+			BaseMap = EditorGUILayout.IntField(BaseMap);
+
+			EditorGUILayout.LabelField("The variant number of the map (ex. (_00_XX) where the variant is XX", EditorStyles.boldLabel);
+			Variant = EditorGUILayout.IntField(Variant);
 
 			if(GUILayout.Button("Generate Variant"))
 			{

@@ -7,6 +7,7 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	[Serializable]
 	[WireDataContract]
 	public class Vector3<T> : Vector2<T>
 	{
