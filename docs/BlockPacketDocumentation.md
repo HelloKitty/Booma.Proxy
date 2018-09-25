@@ -9,11 +9,14 @@
 | BLOCK_SET_CHAR_DATA_TYPE | 0x0061 | **n/a** | [BlockCharacterDataInitializeClientResponsePayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Client/BlockCharacterDataInitializeClientResponsePayload.cs) |
 | GAME_COMMAND2_TYPE | 0x0062 | [BlockNetworkCommand62EventServerPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockNetworkCommand62EventServerPayload.cs) | [BlockNetworkCommand62EventClientPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Client/BlockNetworkCommand62EventClientPayload.cs) |
 | GAME_JOIN_TYPE | 0x0064 | [BlockGameJoinEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockGameJoinEventPayload.cs) | **n/a** |
+| GAME_LEAVE_TYPE | 0x0066 | [BlockOtherPlayerLeaveGameEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockOtherPlayerLeaveGameEventPayload.cs) | **n/a** |
 | LOBBY_JOIN_TYPE | 0x0067 | [BlockLobbyJoinEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockLobbyJoinEventPayload.cs) | **n/a** |
 | LOBBY_ADD_PLAYER_TYPE | 0x0068 | [BlockOtherPlayerJoinedLobbyEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockOtherPlayerJoinedLobbyEventPayload.cs) | **n/a** |
 | LOBBY_LEAVE_TYPE | 0x0069 | [BlockOtherPlayerLeaveLobbyEventPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockOtherPlayerLeaveLobbyEventPayload.cs) | **n/a** |
+| DONE_BURSTING_TYPE | 0x006F | **n/a** | [BlockFinishedGameBurstingRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Client/BlockFinishedGameBurstingRequestPayload.cs) |
 | LOBBY_CHANGE_TYPE | 0x0084 | **n/a** | [BlockLobbyChangeRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Client/BlockLobbyChangeRequestPayload.cs) |
 | CHAR_DATA_REQUEST_TYPE | 0x0095 | [BlockCharacterDataInitializationServerRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Server/BlockCharacterDataInitializationServerRequestPayload.cs) | **n/a** |
+| GAME_CREATE_TYPE | 0x00C1 | **n/a** | [BlockPlayerCreateGameRequestPayload](https://github.com/HelloKitty/Booma.Proxy/tree/master/src/Booma.Proxy.Packets.BlockServer/Payloads/Client/BlockPlayerCreateGameRequestPayload.cs) |
 
 
 This documentation was automatically generated using the documentation tools.
