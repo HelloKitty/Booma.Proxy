@@ -9,7 +9,6 @@ using UnityEngine;
 
 namespace Booma
 {
-	[Injectee]
 	public class DynamicMapSceneBuilder
 	{
 		private IUnitScalerStrategy Scaler { get; }
@@ -29,9 +28,9 @@ namespace Booma
 
 			foreach(var entry in objects)
 			{
+				//TODO: This is for testing purposes
 				GameObject o = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
 
-				//TODO: This is for testing purposes
 				o.AddComponent<MapObjectDataComponent>().MapObject = entry;
 
 				o.name = $"{index}_{entry.ObjectType.ToString()}_{entry.Identifier}";

@@ -21,7 +21,7 @@ namespace Booma
 		/// </summary>
 		public string Extension { get; }
 
-		public MapPathBuilder(string extension = ".dat", string rootPath = @"maps/")
+		public MapPathBuilder(string extension = ".dat", string rootPath = @"data/maps/")
 		{
 			if(string.IsNullOrWhiteSpace(extension)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(extension));
 			if(string.IsNullOrWhiteSpace(rootPath)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(rootPath));
