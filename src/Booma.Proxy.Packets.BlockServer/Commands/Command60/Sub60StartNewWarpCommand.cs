@@ -32,6 +32,13 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public short Unused2 { get; }
 
+		/// <inheritdoc />
+		public Sub60StartNewWarpCommand(byte identifier, short zoneId)
+		{
+			Identifier = identifier;
+			ZoneId = zoneId;
+		}
+
 		public Sub60StartNewWarpCommand()
 		{
 			//Calc static 32bit size

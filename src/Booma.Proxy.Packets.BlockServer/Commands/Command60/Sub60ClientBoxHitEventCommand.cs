@@ -17,7 +17,6 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		private short _BoxId { get; }
 
-		/// <inheritdoc />
 		public short BoxId => (short)(_BoxId & 0x0FFF);
 
 		public int SignificantBitsId => _BoxId & 0xF000;

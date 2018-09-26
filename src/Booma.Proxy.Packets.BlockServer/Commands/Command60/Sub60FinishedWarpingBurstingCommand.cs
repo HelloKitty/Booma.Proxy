@@ -25,6 +25,12 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		private byte unused { get; }
 
+		/// <inheritdoc />
+		public Sub60FinishedWarpingBurstingCommand(byte identifier)
+		{
+			Identifier = identifier;
+		}
+
 		public Sub60FinishedWarpingBurstingCommand()
 		{
 			//Calc static 32bit size

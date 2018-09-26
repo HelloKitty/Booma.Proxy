@@ -1560,6 +1560,9 @@
     <None Include="Packets\Client\0x60_752d31ff-2c2c-4695-9fc9-42b26228a891.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_0x0B_75f79c3f-592e-4f26-a3dd-b7a1f3a3b206.packet">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Packets\Client\0x60_760204b8-87e7-47da-95ec-9ce0686109ac.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
