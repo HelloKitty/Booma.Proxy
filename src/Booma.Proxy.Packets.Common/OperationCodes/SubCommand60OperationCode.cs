@@ -108,6 +108,12 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Opcode for when a user sits down in a photon chair.
 		/// </summary>
-		PhotonChairSit = 0xAB
+		PhotonChairSit = 0xAB,
+
+		/// <summary>
+		/// Opcode for when a step in an attack finished.
+		/// This packet will contain the results of an attack step.
+		/// </summary>
+		AttackStepFinished = 0x46
 	}
 }

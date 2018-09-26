@@ -792,6 +792,7 @@
     <None Include="Packets\Client\0x60_067ed27b-b9ca-412c-90d8-81676cd8ddf0.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_070e2f52-bdb9-4c03-b9fa-bcd90832884f.packet" />
     <None Include="Packets\Client\0x60_075c97be-9250-46da-a1d7-4a4b98c16a34.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1263,6 +1264,7 @@
     <None Include="Packets\Client\0x60_4177ce26-6107-4d0b-882c-af2b9f0caabd.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_434c5b6a-cd58-43d9-b206-3f258f589725.packet" />
     <None Include="Packets\Client\0x60_43555277-595e-41be-87b2-be65bab4688a.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1320,6 +1322,7 @@
     <None Include="Packets\Client\0x60_4cd85011-4f51-4ac9-b371-18d7872858bd.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_4d62cd65-c122-4d27-b382-a77505b2ee48.packet" />
     <None Include="Packets\Client\0x60_4d6b7f1c-1591-42dd-a7a8-1421e0ee184d.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1572,6 +1575,7 @@
     <None Include="Packets\Client\0x60_76ea8880-4d6d-4dff-b28e-9353ab58ddca.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_773a0567-e1a1-4e06-b5fb-b8d2ea5e4ca0.packet" />
     <None Include="Packets\Client\0x60_7766108c-4a01-4250-866f-2a70b38f4a77.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1587,6 +1591,7 @@
     <None Include="Packets\Client\0x60_78bfc29c-eed7-4631-8438-695b269bdcad.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_79e6bea1-0716-42f6-94e5-1ef229b5afb6.packet" />
     <None Include="Packets\Client\0x60_7a6c3d1b-a63c-49fa-b8b2-4ab06eaebd6d.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2034,6 +2039,7 @@
     <None Include="Packets\Client\0x60_b0e60152-18d0-4ed2-9993-134619089386.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_b1a6bd60-4674-4bfb-b09a-267c2177da6e.packet" />
     <None Include="Packets\Client\0x60_b2362a42-de97-4bd5-af6b-2497e6b28174.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2361,6 +2367,7 @@
     <None Include="Packets\Client\0x60_e2156ce1-d420-40db-8463-94f9ba575acf.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x60_e255e2b8-a6a7-49bc-b29f-37ff26e7bd35.packet" />
     <None Include="Packets\Client\0x60_e31664b7-35d8-4aa7-ad3e-6ebcc20d4182.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2577,12 +2584,16 @@
     <None Include="Packets\Client\0x62_0b06358c-b8e9-4331-a9f3-8ebdb77d4367.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x62_23e7d629-7665-414a-9f40-413909564c09.packet" />
+    <None Include="Packets\Client\0x62_44b37dbb-b3ae-47fe-be22-f25371f82439.packet" />
     <None Include="Packets\Client\0x62_50cbbad3-5015-4e0c-bc21-010149f94583.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x62_6000d680-864a-4155-853e-5091d6f4eee5.packet" />
     <None Include="Packets\Client\0x62_69bd6997-78a4-4ec1-82fd-d57598abbf64.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Packets\Client\0x62_9910bdb3-40ba-4ee4-ace5-2b4b288df606.packet" />
     <None Include="Packets\Client\0x62_9a17390c-d9bd-4613-93c2-b3b99118b78b.packet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
