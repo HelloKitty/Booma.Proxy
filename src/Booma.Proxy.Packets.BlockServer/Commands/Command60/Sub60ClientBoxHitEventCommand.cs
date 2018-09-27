@@ -40,6 +40,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60ClientBoxHitEventCommand(MapObjectIdentifier objectIdentifier)
+			: this()
 		{
 			ObjectIdentifier = objectIdentifier;
 			Identifier2_unk2 = objectIdentifier.ObjectIndex; //don't include object type for some reason
