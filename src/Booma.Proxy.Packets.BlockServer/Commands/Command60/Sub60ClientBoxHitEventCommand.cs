@@ -36,7 +36,14 @@ namespace Booma.Proxy
 		private short Identifier2_unk2 { get; }
 
 		[WireMember(4)]
-		private short unk3 { get; }
+		private short unk3 { get; } = 0;
+
+		/// <inheritdoc />
+		public Sub60ClientBoxHitEventCommand(MapObjectIdentifier objectIdentifier)
+		{
+			ObjectIdentifier = objectIdentifier;
+			Identifier2_unk2 = objectIdentifier.ObjectIndex; //don't include object type for some reason
+		}
 
 		//Serializer ctor
 		private Sub60ClientBoxHitEventCommand()
