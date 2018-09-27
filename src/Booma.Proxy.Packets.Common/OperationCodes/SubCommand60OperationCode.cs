@@ -114,6 +114,12 @@ namespace Booma.Proxy
 		/// Opcode for when a step in an attack finished.
 		/// This packet will contain the results of an attack step.
 		/// </summary>
-		AttackStepFinished = 0x46
+		AttackStepFinished = 0x46,
+
+		/// <summary>
+		/// Opcode for when the first step of an attack is occuring for
+		/// the player sending it.
+		/// </summary>
+		AttackStepOne = 0x43
 	}
 }

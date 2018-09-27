@@ -42,6 +42,7 @@ namespace Booma.Proxy
 			ObjectIdentifier = objectIdentifier;
 		}
 
+		//TODO: This is NOT floorid.
 		public MapObjectIdentifier(ObjectHitType objectType, byte floorId, byte objectId)
 		{
 			//We have to bitshift these together, since the entry is sent packed like this.
