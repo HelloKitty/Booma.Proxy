@@ -191,6 +191,9 @@ namespace Booma.Proxy
 					var command = (payload as ISub60CommandContainer).Command;
 					//Similar to the above but we include information about the sub60 command
 					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+
+					//Command 60s should also check the command size
+					Assert.AreEqual(entry.BinaryData[7], serializedBytes[7], $"Mismatched Sub60 {nameof(BaseSubCommand60.CommandSize)} on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 				}
 				else if(isSub62)
 				{
