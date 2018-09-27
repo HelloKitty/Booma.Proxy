@@ -23,7 +23,7 @@
 			{
 				//Special naming for 0x60 to make it easier to search
 				if(OpCode == 0x60)
-					return FileName.Replace("0x60_", $"0x60_0x{BinaryData[6]:X}_");
+					return FileName.Replace("0x60_", $"0x60_0x{(int)(BinaryData[6]):X2}_");
 
 				return $"{FileName}";
 			}
