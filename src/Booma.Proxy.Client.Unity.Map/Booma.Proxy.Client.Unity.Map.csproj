@@ -6,12 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer" Version="3.0.38" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.8" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
-    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Ship\Booma.Proxy.Client.Unity.Ship.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Format.MapDat\Booma.Proxy.Format.MapDat.csproj" />
   </ItemGroup>
 

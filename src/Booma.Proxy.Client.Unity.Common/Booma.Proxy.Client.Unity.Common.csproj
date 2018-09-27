@@ -10,8 +10,8 @@
     <PackageReference Include="GladNet3.Client.API" Version="3.0.43" />
     <PackageReference Include="GladNet3.Handler.API" Version="3.0.43" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="SceneJect.Common" Version="3.0.8" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.8" />
+    <PackageReference Include="SceneJect.Common" Version="3.0.10" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
     <PackageReference Include="Unitysync.Async" Version="1.0.13" />
   </ItemGroup>
 

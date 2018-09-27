@@ -9,8 +9,8 @@
     <PackageReference Include="FreecraftCore.Serializer" Version="3.0.38" />
     <PackageReference Include="GladNet3.Client.DotNetTcpClient" Version="3.0.43" />
     <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.44" />
-    <PackageReference Include="SceneJect.Common" Version="3.0.8" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.8" />
+    <PackageReference Include="SceneJect.Common" Version="3.0.10" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
   </ItemGroup>
 
   <ItemGroup>

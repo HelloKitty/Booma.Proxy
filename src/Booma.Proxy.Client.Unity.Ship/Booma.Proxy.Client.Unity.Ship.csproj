@@ -6,11 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="Nito.AsyncEx" Version="3.0.1" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.8" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.Map\Booma.Proxy.Client.Unity.Map.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj" />
