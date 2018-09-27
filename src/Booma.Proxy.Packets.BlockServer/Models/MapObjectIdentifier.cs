@@ -7,6 +7,7 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	//TODO: Unit test against some known values
 	[WireDataContract]
 	public sealed class MapObjectIdentifier : IMessageContextIdentifiable, IComparable<MapObjectIdentifier>, IEquatable<MapObjectIdentifier>
 	{
@@ -44,7 +45,7 @@ namespace Booma.Proxy
 		public MapObjectIdentifier(ObjectHitType objectType, byte floorId, byte objectId)
 		{
 			//We have to bitshift these together, since the entry is sent packed like this.
-			ObjectIdentifier = (short)((short)objectType << 12 + floorId + objectId << 8);
+			ObjectIdentifier = (short)(((short)objectType << 12) + (floorId << 8) + objectId);
 		}
 
 		private MapObjectIdentifier()
