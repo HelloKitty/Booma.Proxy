@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace Booma.Proxy
 {
 	[WireDataContract]
-	public sealed class AttackHitResults
+	public sealed class AttackHitResult
 	{
 		//TODO: What is this?
 		[WireMember(1)]
@@ -15,12 +15,12 @@ namespace Booma.Proxy
 		public MapObjectIdentifier ObjectIdentifier { get; }
 
 		/// <inheritdoc />
-		public AttackHitResults([NotNull] MapObjectIdentifier objectIdentifier)
+		public AttackHitResult([NotNull] MapObjectIdentifier objectIdentifier)
 		{
 			ObjectIdentifier = objectIdentifier ?? throw new ArgumentNullException(nameof(objectIdentifier));
 		}
 
-		private AttackHitResults()
+		private AttackHitResult()
 		{
 
 		}

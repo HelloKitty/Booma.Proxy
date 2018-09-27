@@ -27,7 +27,8 @@ namespace Booma.Proxy
 
 			//Do file loading first because it could fail
 			//Then we need to populate the input source for the tests.
-			string testPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "Packets", isSearchingForClient ? "Client" : "Server");
+			//TODO: Expose a better way for other contributors to deal with this
+			string testPath = Path.Combine(@"C:\Users\Glader\Documents\GitHub\Booma.Proxy\data", "Packets", isSearchingForClient ? "Client" : "Server");
 
 			//Each directory should fit the form of OpCode name
 			//Even though the below is a Path with the directory if we pretend it's a file we can easily get the last part of the path

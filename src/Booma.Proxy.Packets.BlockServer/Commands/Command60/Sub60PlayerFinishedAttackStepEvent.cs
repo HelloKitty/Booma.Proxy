@@ -25,12 +25,12 @@ namespace Booma.Proxy
 		
 		[SendSize(SendSizeAttribute.SizeType.UShort)]
 		[WireMember(3)]
-		private AttackHitResults[] _HitResults { get; }
+		private AttackHitResult[] _HitResults { get; }
 
 		/// <summary>
 		/// The results of an attack hit.
 		/// </summary>
-		public IEnumerable<AttackHitResults> HitResults => _HitResults;
+		public IEnumerable<AttackHitResult> HitResults => _HitResults;
 
 		/// <summary>
 		/// Indicates if the attack missed.

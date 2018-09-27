@@ -10,16 +10,13 @@ namespace Booma.Proxy
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x0B
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.GameBoxHit)]
-	public sealed class Sub60ClientBoxHitEventCommand : BaseSubCommand60
+	public sealed class Sub60ClientBoxHitEventCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
-		//Teth and Soly's server both remove the most significant 4 bits
-		//when computing the ID.
+		/// <inheritdoc />
+		public byte Identifier => ObjectIdentifier.Identifier;
+
 		[WireMember(1)]
-		private short _BoxId { get; }
-
-		public short BoxId => (short)(_BoxId & 0x0FFF);
-
-		public int SignificantBitsId => _BoxId & 0xF000;
+		public MapObjectIdentifier ObjectIdentifier { get; }
 
 		//TODO: What is this?
 		//Sylverant says this is always 1? Also considers the first and subsequent 3 bytes sepertae but we'll leave this
@@ -36,7 +33,10 @@ namespace Booma.Proxy
 		/// TODO: ?
 		/// </summary>
 		[WireMember(3)]
-		public short Identifier2_unk2 { get; }
+		private short Identifier2_unk2 { get; }
+
+		[WireMember(4)]
+		private short unk3 { get; }
 
 		//Serializer ctor
 		private Sub60ClientBoxHitEventCommand()
@@ -47,7 +47,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override string ToString()
 		{
-			return $"Id: {BoxId} Unk1: {unk1} Id2unk: {Identifier2_unk2} SigBits: {SignificantBitsId}";
+			return $"Id: {Identifier} Unk1: {unk1} Id2unk: {Identifier2_unk2}";
 		}
 	}
 }

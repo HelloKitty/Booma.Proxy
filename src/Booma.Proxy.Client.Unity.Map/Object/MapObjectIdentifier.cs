@@ -7,6 +7,7 @@ using FreecraftCore.Serializer;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Booma.Proxy
 {
@@ -14,7 +15,7 @@ namespace Booma.Proxy
 	/// Data component that should be attached to any PSOBB .dat defined
 	/// object.
 	/// </summary>
-	public sealed class MapObjectIdentifier : SerializedMonoBehaviour
+	public sealed class MapObjectIdentifierDataComponent : SerializedMonoBehaviour
 	{
 		/// <summary>
 		/// Level unique identifier
