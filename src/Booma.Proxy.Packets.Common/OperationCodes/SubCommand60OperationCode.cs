@@ -120,6 +120,17 @@ namespace Booma.Proxy
 		/// Opcode for when the first step of an attack is occuring for
 		/// the player sending it.
 		/// </summary>
-		AttackStepOne = 0x43
+		AttackStepOne = 0x43,
+
+		/// <summary>
+		/// Opcode sent around the time the player tries to interact with an object.
+		/// </summary>
+		BeginObjectInteract = 0x50,
+
+		/// <summary>
+		/// Opcode sent after a player interacts with an object.
+		/// TODO: I think this changes the state of an object, due to interaction. Research.
+		/// </summary>
+		ChangeObjectState = 0x05
 	}
 }
