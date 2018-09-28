@@ -40,6 +40,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60PlayerChangedObjectStateCommand([NotNull] MapObjectIdentifier objectIdentifier)
+			: this()
 		{
 			ObjectIdentifier = objectIdentifier ?? throw new ArgumentNullException(nameof(objectIdentifier));
 		}
