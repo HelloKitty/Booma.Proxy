@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// </summary>
 	public enum ObjectHitType : byte
 	{
-		Box = 4,
+		Object = 4,
 
 		Creature = 1
 	}
