@@ -25,32 +25,43 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public TechniqueDefinitionData Technique { get; }
 
-		//TODO: might be lenth prefix size for hit result
-		[WireMember(4)]
-		public bool Hit { get; }
+		/// <summary>
+		/// Indicates if the spell cast has any targets.
+		/// </summary>
+		public bool HasTargets => HitIdentifiers != null && HitIdentifiers.Length != 0;
 
-		[Optional(nameof(Hit))]
+		[SendSize(SendSizeAttribute.SizeType.Byte)]
 		[WireMember(5)]
-		public MapObjectIdentifier HitIdentifier { get; }
+		private TechniqueHitResult[] HitIdentifiers { get; }
 
-		[Optional(nameof(Hit))]
-		[WireMember(6)]
-		private short unk2 { get; }
-
-		/// <inheritdoc />
-		public Sub60PlayerCastingTechniqueCommand(byte clientId, TechniqueDefinitionData technique, bool hit)
+		/// <summary>
+		/// Creates a new technique cast with no targets.
+		/// </summary>
+		/// <param name="clientId"></param>
+		/// <param name="technique"></param>
+		public Sub60PlayerCastingTechniqueCommand(byte clientId, TechniqueDefinitionData technique)
 			: this()
 		{
 			Identifier = clientId;
 			Technique = technique;
-			Hit = hit;
+		}
+
+		/// <summary>
+		/// Creates a new technique cast with no targets.
+		/// </summary>
+		/// <param name="clientId"></param>
+		/// <param name="technique"></param>
+		public Sub60PlayerCastingTechniqueCommand(byte clientId, TechniqueDefinitionData technique, params TechniqueHitResult[] hits)
+			: this(clientId, technique)
+		{
+			HitIdentifiers = hits;
 		}
 
 		//Serializer ctor
 		private Sub60PlayerCastingTechniqueCommand()
 		{
 			//TODO: If this is dynamically sized then change this.
-			CommandSize = (byte)(Hit ? ((8 + 4) / 4) : (8 / 4));
+			CommandSize = (byte)(HasTargets ? ((8 + 4 * HitIdentifiers.Length) / 4) : (8 / 4));
 		}
 	}
 }
