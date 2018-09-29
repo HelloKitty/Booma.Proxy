@@ -136,6 +136,18 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Opcode sent when a player begings casting a technique.
 		/// </summary>
-		BeginTechniqueCast = 0x8D
+		BeginTechniqueCast = 0x8D,
+
+		/// <summary>
+		/// Opcode sent when the player has actually started to cast the technique.
+		/// Contains the actual spell cast info.
+		/// </summary>
+		CastingTechiqueCast = 0x47,
+
+		/// <summary>
+		/// Opcode sent when the player finished casting a technique.
+		/// Contains spell cast information.
+		/// </summary>
+		FinishedTechniqueCast = 0x48
 	}
 }
