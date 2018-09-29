@@ -131,6 +131,11 @@ namespace Booma.Proxy
 		/// Opcode sent after a player interacts with an object.
 		/// TODO: I think this changes the state of an object, due to interaction. Research.
 		/// </summary>
-		ChangeObjectState = 0x05
+		ChangeObjectState = 0x05,
+
+		/// <summary>
+		/// Opcode sent when a player begings casting a technique.
+		/// </summary>
+		BeginTechniqueCast = 0x8D
 	}
 }
