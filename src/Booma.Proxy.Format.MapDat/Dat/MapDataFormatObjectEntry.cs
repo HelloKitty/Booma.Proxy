@@ -75,12 +75,14 @@ namespace Booma
 		public int ObjectActionIdentifier { get; }
 
 		[WireMember(11)]
-		public int Action { get; }
+		public short Action { get; }
+
+		[WireMember(12)]
+		public short ObjectInteractionId { get; }
 
 		//TODO: What is this?
-
 		[KnownSize(14)]
-		[WireMember(12)]
+		[WireMember(13)]
 		private byte[] unk4 { get; }
 
 		protected MapDataFormatObjectEntry()
