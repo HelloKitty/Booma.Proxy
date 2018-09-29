@@ -24,29 +24,32 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(2)]
 		private int unk1 { get; } = 0;
-
-		//This is actually the ID of the ObjectActionID that should be fired. Weird design, but each interactable object has this interact id defined.
+		
 		/// <summary>
-		/// TODO: Unknown value, seems to be related to the object type hit.
-		/// Maybe the new animation state?
+		/// The ID of the object interaction.
+		/// This is NOT the ObjectId/Index. It is a 2 byte field later in the map object format.
 		/// </summary>
 		[WireMember(3)]
-		public short Unk2 { get; }
+		public short ObjectInteractionId { get; }
 
 		[WireMember(4)]
 		public byte Unk3 { get; } //seems to be 1, at least when pressing a button.
 
+		/// <summary>
+		/// Indicates if the object should be set active.
+		/// (Ex. Switched that have been used should send 1)
+		/// </summary>
 		[WireMember(5)]
-		public byte Unk4 { get; } //seems to be 1, at least when pressing a button.
+		public bool isActive { get; } //seems to be 1, at least when pressing a button.
 
 		/// <inheritdoc />
-		public Sub60PlayerChangedObjectStateCommand([NotNull] MapObjectIdentifier objectIdentifier, short unk2, byte unk3, byte unk4)
+		public Sub60PlayerChangedObjectStateCommand([NotNull] MapObjectIdentifier objectIdentifier, short unk2, byte unk3, bool isActive)
 			: this()
 		{
 			ObjectIdentifier = objectIdentifier ?? throw new ArgumentNullException(nameof(objectIdentifier));
-			Unk2 = unk2;
+			ObjectInteractionId = unk2;
 			Unk3 = unk3;
-			Unk4 = unk4;
+			this.isActive = isActive;
 		}
 
 		//Serializer ctor
