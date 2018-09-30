@@ -25,12 +25,10 @@ namespace Booma.Proxy
 		private MapObjectIdentifier ObjectIdentifier2 { get; }
 
 		/// <summary>
-		/// Usually the new HP of the object
-		/// but in rare instances it is the amount of damage dealt to a creature.
-		/// (Ex. Tofu says for De Rol this is damage dealt)
+		/// Usually the new health deficiet of the object/creature.
 		/// </summary>
 		[WireMember(3)]
-		private ushort ObjectDamageUpdate { get; }
+		private ushort TotalDamageTaken { get; }
 
 		/// <summary>
 		/// Unknown flags.
