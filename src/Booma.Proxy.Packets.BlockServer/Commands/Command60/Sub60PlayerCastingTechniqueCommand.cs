@@ -32,7 +32,7 @@ namespace Booma.Proxy
 
 		[SendSize(SendSizeAttribute.SizeType.Byte)]
 		[WireMember(5)]
-		private TechniqueHitResult[] HitIdentifiers { get; }
+		private TechniqueHitResult[] HitIdentifiers { get; } = new TechniqueHitResult[0];
 
 		/// <summary>
 		/// Creates a new technique cast with no targets.

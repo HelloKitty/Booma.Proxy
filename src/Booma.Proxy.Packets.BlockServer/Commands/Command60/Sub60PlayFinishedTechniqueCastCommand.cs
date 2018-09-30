@@ -16,14 +16,17 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte Identifier { get; }
 
+		[WireMember(2)]
+		private byte unk1 { get; }
+
 		/// <summary>
 		/// The technique being cast.
 		/// </summary>
-		[WireMember(2)]
+		[WireMember(3)]
 		public TechniqueDefinitionData Technique { get; }
 
 		//TODO: might be lenth prefix size for hit result
-		[WireMember(3)]
+		[WireMember(4)]
 		public byte Unk3 { get; }
 
 		/// <inheritdoc />

@@ -17,6 +17,13 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public byte Level { get; }
 
+		/// <inheritdoc />
+		public TechniqueDefinitionData(short techniqueId, byte level)
+		{
+			TechniqueId = techniqueId;
+			Level = level;
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
