@@ -148,6 +148,12 @@ namespace Booma.Proxy
 		/// Opcode sent when the player finished casting a technique.
 		/// Contains spell cast information.
 		/// </summary>
-		FinishedTechniqueCast = 0x48
+		FinishedTechniqueCast = 0x48,
+
+		/// <summary>
+		/// Opcode sent when an enemy is hit with damage (maybe objects too).
+		/// Clients/Players don't own the damage they deal, they are not in the packet.
+		/// </summary>
+		ObjectDamageHit = 0x0A
 	}
 }
