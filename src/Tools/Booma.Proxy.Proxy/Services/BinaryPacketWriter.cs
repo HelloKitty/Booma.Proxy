@@ -43,7 +43,7 @@ namespace Booma.Proxy
 			byte[] opCodeBytes = ((short)opCode).Reinterpret();
 
 			//We have special support for 0x60 and 0x62
-			string fileName = opCode == GameNetworkOperationCode.GAME_COMMAND0_TYPE ? $"0x{((int)opCode):X}_0x{(int)(payload.UnknownBytes[4]):X2}{Guid.NewGuid()}.packet" : $"0x{((int)opCode):X}_{Guid.NewGuid()}.packet";
+			string fileName = opCode == GameNetworkOperationCode.GAME_COMMAND0_TYPE ? $"0x{((int)opCode):X}_0x{(int)(payload.UnknownBytes[4]):X2}_{Guid.NewGuid()}.packet" : $"0x{((int)opCode):X}_{Guid.NewGuid()}.packet";
 
 			using(FileStream fs = File.Open(Path.Combine(RootPath, packetType == PacketType.Client ? "Client" : "Server", fileName), FileMode.CreateNew))
 			{
