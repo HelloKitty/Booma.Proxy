@@ -25,6 +25,8 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		private int unk1 { get; } = 0;
 		
+		//This value is linked to whatever the target object is too. Laser switch with ID 5 will point to Laser Gate ID 5.
+		//This is NOT the same for Forest doors, for some reaosn though.
 		/// <summary>
 		/// The ID of the object interaction.
 		/// This is NOT the ObjectId/Index. It is a 2 byte field later in the map object format.

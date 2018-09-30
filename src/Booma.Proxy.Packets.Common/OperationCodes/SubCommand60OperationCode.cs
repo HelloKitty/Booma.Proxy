@@ -154,6 +154,18 @@ namespace Booma.Proxy
 		/// Opcode sent when an enemy is hit with damage (maybe objects too).
 		/// Clients/Players don't own the damage they deal, they are not in the packet.
 		/// </summary>
-		ObjectDamageHit = 0x0A
+		ObjectDamageHit = 0x0A,
+
+		//TODO: Implement
+		/// <summary>
+		/// Opcode sent when the client has encountered a dead creature
+		/// </summary>
+		RequestCreatureExperience = 0xC8,
+
+		/// <summary>
+		/// Opcode sent when a creature dies on a client, broadcasted
+		/// to everyone else that it has died.
+		/// </summary>
+		CreatureDeathEvent = 0x76
 	}
 }
