@@ -14,3 +14,7 @@ BlueCrab (Sylverant)
 Wilhuf
 
 Eidolon
+
+Tofuman
+
+Aleron Ives
