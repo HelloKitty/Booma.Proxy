@@ -1,4 +1,6 @@
-﻿namespace Booma.Proxy
+﻿using System.Linq;
+
+namespace Booma.Proxy
 {
 	public sealed partial class CapturedPacketsTests
 	{
@@ -22,8 +24,10 @@
 			public override string ToString()
 			{
 				//Special naming for 0x60 to make it easier to search
+				//We need to support both new captures that automatically have this AND legacy captures which do not
 				if(OpCode == 0x60)
-					return FileName.Replace("0x60_", $"0x60_0x{(int)(BinaryData[6]):X2}_");
+					if(FileName.ToCharArray().Count(c => c == '_') < 2)
+						return FileName.Replace("0x60_", $"0x60_0x{(int)(BinaryData[6]):X2}_");
 
 				return $"{FileName}";
 			}
