@@ -13,7 +13,14 @@ namespace Booma.Proxy
 	[Flags]
 	public enum DamageFlag1
 	{
+		Unknown0 = 0,
+		Paralysis = 0b0000_0010,
 		Confusion = 0b0001_0000,
+		Frozen = 0b0010_0000
+
+		//0100 (4) is nothing?
+		//1000 (8) is nothing too
+		//All other bits don't seem to do anything, at least on normal creatures.
 	}
 
 	[Flags]
@@ -22,8 +29,8 @@ namespace Booma.Proxy
 		//Maybe? I can't tell if it's special effect.
 		SpecialEffect = 0b0000_0000,
 
-		//TODO: I don't think this is multiple hit, maybe has something to do with accuracy.
-		Unknown1 = 0b0000_0001,
+		//TODO: I don't think this is multiple hit, maybe has something to do with accuracy. Randomly pops up sometimes, don't know why
+		Unknown1 = 0b0000_0001, //this one alone will cause no visual, this one alone is sometimes sent along with 3 packets when something gets confused
 		Hit = 0b0000_0010,
 		HeavyHit = 0b0000_0100,
 		CausedDeath = 0b0000_1000
@@ -83,7 +90,7 @@ namespace Booma.Proxy
 			ObjectIdentifier2 = objectIdentifier.Identifier; //TODO: We are actually sending extra things we shouldn't here, we may need to change it
 			TotalDamageTaken = totalDamageTaken;
 
-			//TODO: Legacy reason
+			//TODO: Legacy reason, replace this with flag enums in cto
 			UnknownFlag1 = flags[0];
 			UnknownFlag2 = (DamageFlag2)flags[1];
 			UnknownFlag3 = (DamageFlag3)flags[2];
