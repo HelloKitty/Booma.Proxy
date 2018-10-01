@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using JetBrains.Annotations;
+using Reinterpret.Net;
 
 namespace Booma.Proxy
 {
@@ -18,14 +20,22 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public MapObjectIdentifier ObjectIdentifier { get; }
 
+		//TODO: What is this?
 		//Unknown, is 01 00 08 00 sometimes.
 		[WireMember(2)]
-		public int Unk1 { get; }
+		public int Unk1 { get; } = new byte[4] {01, 00, 08, 00}.Reinterpret<int>();
+
+		/// <inheritdoc />
+		public Sub60CreatureDeathEventCommand([NotNull] MapObjectIdentifier objectIdentifier)
+			: this()
+		{
+			ObjectIdentifier = objectIdentifier ?? throw new ArgumentNullException(nameof(objectIdentifier));
+		}
 
 		//Serializer ctor
 		private Sub60CreatureDeathEventCommand()
 		{
-			CommandSize = 12 / 4;
+			CommandSize = 8 / 4;
 		}
 	}
 }

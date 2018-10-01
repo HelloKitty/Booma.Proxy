@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		//Why is this sent twice? Maybe when creatures deal damage to other creatures??
 		//This version is missing the objecttype/floor
 		[WireMember(2)]
-		private MapObjectIdentifier ObjectIdentifier2 { get; }
+		private short ObjectIdentifier2 { get; }
 
 		/// <summary>
 		/// Usually the new health deficiet of the object/creature.
@@ -35,6 +35,16 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(4)]
 		private uint Flags { get; }
+
+		/// <inheritdoc />
+		public Sub60ObjectDamageRecievedCommand(MapObjectIdentifier objectIdentifier, ushort totalDamageTaken, uint flags)
+			: this()
+		{
+			ObjectIdentifier = objectIdentifier;
+			ObjectIdentifier2 = objectIdentifier.Identifier; //TODO: We are actually sending extra things we shouldn't here, we may need to change it
+			TotalDamageTaken = totalDamageTaken;
+			Flags = flags;
+		}
 
 		/// <summary>
 		/// Serializer ctor.
