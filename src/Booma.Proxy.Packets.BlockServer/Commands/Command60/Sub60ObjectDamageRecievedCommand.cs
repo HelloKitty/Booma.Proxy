@@ -11,7 +11,12 @@ namespace Booma.Proxy
 	[Flags]
 	public enum DamageFlag2 : byte
 	{
-		Unknown2 = 2,
+		//Maybe?
+		NormalSingleHit = 2,
+
+		//Seems to be sent when the hit involves multiple hits. Like mechguns.
+		MultipleHit = 3,
+
 		NormalCreatureDeath = 10,
 		NormalCreatureDeath2 = 11,
 
