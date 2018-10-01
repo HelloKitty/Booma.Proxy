@@ -7,21 +7,13 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
-	//TODO: Finish reverse engineering what each flag means.
 	[Flags]
-	public enum DamageFlag2 : byte
+	public enum DamageFlags2
 	{
-		//Maybe?
-		NormalSingleHit = 2,
-
-		//Seems to be sent when the hit involves multiple hits. Like mechguns.
-		MultipleHit = 3,
-
-		NormalCreatureDeath = 10,
-		NormalCreatureDeath2 = 11,
-
-		//Sent sometimes when the creature dies? Maybe for playing no animation?
-		NormalCreatureDeath3 = 14
+		MultipleHit = 0b0000_0001,
+		NormalHit = 0b0000_0010,
+		HeavyHit = 0b0000_0100,
+		CausedDeath = 0b0000_1000
 	}
 
 	[Flags]
