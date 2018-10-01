@@ -7,6 +7,25 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	//TODO: Finish reverse engineering what each flag means.
+	[Flags]
+	public enum DamageFlag2 : byte
+	{
+		Unknown2 = 2,
+		NormalCreatureDeath = 10,
+		NormalCreatureDeath2 = 11,
+
+		//Sent sometimes when the creature dies? Maybe for playing no animation?
+		NormalCreatureDeath3 = 14
+	}
+
+	[Flags]
+	public enum DamageFlag3 : byte
+	{
+		Unknown9 = 9,
+		Unknown11 = 11,
+	}
+
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x0A
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.ObjectDamageHit)]
@@ -31,19 +50,33 @@ namespace Booma.Proxy
 		private ushort TotalDamageTaken { get; }
 
 		/// <summary>
-		/// Unknown flags.
+		/// Unknown, seems to always be 0.
 		/// </summary>
 		[WireMember(4)]
-		private uint Flags { get; }
+		private byte UnknownFlag1 { get; }
+
+		[WireMember(5)]
+		private DamageFlag2 UnknownFlag2 { get; }
+
+		[WireMember(6)]
+		private DamageFlag3 UnknownFlag3 { get; }
+
+		[WireMember(7)]
+		private byte UnknownFlag4 { get; }
 
 		/// <inheritdoc />
-		public Sub60ObjectDamageRecievedCommand(MapObjectIdentifier objectIdentifier, ushort totalDamageTaken, uint flags)
+		public Sub60ObjectDamageRecievedCommand(MapObjectIdentifier objectIdentifier, ushort totalDamageTaken, byte[] flags)
 			: this()
 		{
 			ObjectIdentifier = objectIdentifier;
 			ObjectIdentifier2 = objectIdentifier.Identifier; //TODO: We are actually sending extra things we shouldn't here, we may need to change it
 			TotalDamageTaken = totalDamageTaken;
-			Flags = flags;
+
+			//TODO: Legacy reason
+			UnknownFlag1 = flags[0];
+			UnknownFlag2 = (DamageFlag2)flags[1];
+			UnknownFlag3 = (DamageFlag3)flags[2];
+			UnknownFlag4 = flags[3];
 		}
 
 		/// <summary>
