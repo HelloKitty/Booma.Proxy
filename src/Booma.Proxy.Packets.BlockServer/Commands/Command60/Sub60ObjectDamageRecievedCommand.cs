@@ -8,14 +8,19 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	[Flags]
-	public enum DamageFlags2
+	public enum DamageFlag2
 	{
-		MultipleHit = 0b0000_0001,
-		NormalHit = 0b0000_0010,
+		//Maybe? I can't tell if it's special effect.
+		SpecialEffect = 0b0000_0000,
+
+		//TODO: I don't think this is multiple hit, maybe has something to do with accuracy.
+		Unknown1 = 0b0000_0001,
+		Hit = 0b0000_0010,
 		HeavyHit = 0b0000_0100,
 		CausedDeath = 0b0000_1000
 	}
 
+	//Seems to go from 0x90 to 0xB0 if it interupts an attack animation?
 	[Flags]
 	public enum DamageFlag3 : byte
 	{
