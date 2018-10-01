@@ -7,6 +7,15 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	/// <summary>
+	/// Damage flag1 contains status effects data.
+	/// </summary>
+	[Flags]
+	public enum DamageFlag1
+	{
+		Confusion = 0b0001_0000,
+	}
+
 	[Flags]
 	public enum DamageFlag2
 	{
