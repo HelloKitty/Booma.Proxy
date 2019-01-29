@@ -33,17 +33,16 @@ namespace Booma.Proxy
 		[SerializeField]
 		public List<CharacterTabUIElement> Elements;
 
-		[Inject]
-		private ICharacterSlotSelectedModel SelectedSlotModel;
+		private ICharacterSlotSelectedModel SelectedSlotModel { get; }
 
 		[SerializeField]
 		private UnityEvent OnCharacterSelected;
 
 		/// <inheritdoc />
-		public CharacterCharacterUpdateResponseHandler(ILog logger)
+		public CharacterCharacterUpdateResponseHandler([NotNull] ICharacterSlotSelectedModel selectedSlotModel, ILog logger)
 			: base(logger)
 		{
-
+			SelectedSlotModel = selectedSlotModel ?? throw new ArgumentNullException(nameof(selectedSlotModel));
 		}
 
 		/// <inheritdoc />
