@@ -20,13 +20,13 @@ namespace Booma.Proxy
 		/// Service that translates the incoming position to the correct unit scale that
 		/// Unity3D expects.
 		/// </summary>
-		[Inject]
 		private IUnitScalerStrategy Scaler { get; }
 
-		public BlockMovingSlowPositionChangedEventHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory) 
+		public BlockMovingSlowPositionChangedEventHandler([NotNull] IUnitScalerStrategy scaler, 
+			ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory)
 			: base(logger, contextFactory)
 		{
-
+			Scaler = scaler ?? throw new ArgumentNullException(nameof(scaler));
 		}
 
 		/// <inheritdoc />
