@@ -29,11 +29,15 @@ namespace Booma.Proxy
 		//Maybe? I can't tell if it's special effect.
 		SpecialEffect = 0b0000_0000,
 
-		//TODO: I don't think this is multiple hit, maybe has something to do with accuracy. Randomly pops up sometimes, don't know why
+		//This 1 bit is sent when you use stuff like Dim Mechguns AND they miss. Last 4: 00 01 90 20
+		//TODO: I don't think this is multiple hit, maybe has something to do with accuracy. Randomly pops up sometimes, don't know why. Maybe a miss?
 		Unknown1 = 0b0000_0001, //this one alone will cause no visual, this one alone is sometimes sent along with 3 packets when something gets confused
 		Hit = 0b0000_0010,
 		HeavyHit = 0b0000_0100,
-		CausedDeath = 0b0000_1000
+		CausedDeath = 0b0000_1000,
+
+		//Seems to make the creature forget anyone is in the room, will reset and ignore players.
+		Blind = 0b0001_0000
 	}
 
 	//Seems to go from 0x90 to 0xB0 if it interupts an attack animation?
@@ -42,6 +46,9 @@ namespace Booma.Proxy
 	{
 		Unknown9 = 9,
 		Unknown11 = 11,
+
+		//Probably unused, or a glitch, but it freezes the creature into an idle state.
+		FreezeForever = 0b0100_0000,
 	}
 
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x0A
