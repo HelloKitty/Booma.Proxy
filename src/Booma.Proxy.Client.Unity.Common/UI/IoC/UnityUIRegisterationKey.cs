@@ -10,20 +10,15 @@ namespace Guardians
 	/// </summary>
 	public enum UnityUIRegisterationKey
 	{
+		//I know it's weird, but I did character screen first. That's why they're first
 		Unknown = 0,
 
-		PlayerUnitFrame = 1,
+		CharacterSlot1 = 1,
 
-		UsernameTextBox = 2,
+		CharacterSlot2 = 2,
 
-		PasswordTextBox = 3,
+		CharacterSlot3 = 3,
 
-		Login = 4,
-
-		PlayerHealthBar = 6,
-
-		Registeration = 7,
-
-		ChatBox = 8
+		CharacterSlot4 = 4
 	}
 }
