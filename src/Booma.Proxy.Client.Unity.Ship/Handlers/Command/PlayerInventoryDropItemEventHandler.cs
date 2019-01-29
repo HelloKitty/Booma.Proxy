@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,20 +10,18 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class PlayerInventoryDropItemEventHandler : Command60Handler<Sub60DropInventoryItemCommand>
 	{
-		[Inject]
 		private INetworkEntityFactory<INetworkItem> WorldItemFactory { get; }
 
-		[Inject]
 		private IUnitScalerStrategy UnitScaler { get; }
 
 		/// <inheritdoc />
-		public PlayerInventoryDropItemEventHandler(ILog logger) 
+		public PlayerInventoryDropItemEventHandler([NotNull] INetworkEntityFactory<INetworkItem> worldItemFactory, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ILog logger) 
 			: base(logger)
 		{
-
+			WorldItemFactory = worldItemFactory ?? throw new ArgumentNullException(nameof(worldItemFactory));
+			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
 		}
 
 		/// <inheritdoc />
