@@ -20,80 +20,17 @@ namespace Booma.Proxy
 	/// <typeparam name="TOutgoingPayloadType">The outgoing payload type.</typeparam>
 	/// <typeparam name="TPayloadType">The payload type this handler actually handles.</typeparam>
 	[Injectee]
-	public abstract class BaseUnityMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType, TPayloadType> : SerializedMonoBehaviour, IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>,
+	public abstract class BaseUnityMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType, TPayloadType> : IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>,
 		IPeerPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType>
 		where TOutgoingPayloadType : class
 		where TIncomingPayloadBaseType : class
 		where TPayloadType : class, TIncomingPayloadBaseType
 	{
 		/// <summary>
-		/// The actual message handler implementation.
-		/// </summary>
-		private Lazy<IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>> Handler { get; set; }
-
-		/// <summary>
 		/// The message handler logger.
 		/// </summary>
 		[Inject]
 		protected ILog Logger { get; }
-
-		/// <inheritdoc />
-		protected override void OnAfterDeserialize()
-		{
-			//Call to base so the object is fully initialized
-			base.OnAfterDeserialize();
-
-			Handler = new Lazy<IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>>(CreateDecoratedHandler, true);
-		}
-
-		protected virtual void Start()
-		{
-			//This just validates that the handler was created
-			if(Handler == null)
-			{
-				ThrowFailedInitialization();
-				return;
-			}
-
-			IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType> handler = null;
-
-			try
-			{
-				handler = Handler.Value;
-			}
-			catch(Exception e)
-			{
-				ThrowFailedInitialization(e);
-				throw;
-			}
-
-			if(handler == null)
-			{
-				ThrowFailedInitialization();
-				return;
-			}
-		}
-
-		/// <summary>
-		/// Throws an initialization failure exception for this handler.
-		/// </summary>
-		/// <param name="e">Optional inner-exception.</param>
-		private void ThrowFailedInitialization(Exception e = null)
-		{
-			if(e == null)
-				throw new InvalidOperationException($"Failed to create message handler internal dependencies for Type: {GetType().Name}.");
-			else
-				throw new InvalidOperationException($"Failed to create message handler internal dependencies for Type: {GetType().Name}.", e);
-		}
-
-		/// <summary>
-		/// Creates the try decorator.
-		/// </summary>
-		/// <returns>The decorated message handler.</returns>
-		private IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType> CreateDecoratedHandler()
-		{
-			return this.AsTryHandler<TPayloadType, TIncomingPayloadBaseType, TOutgoingPayloadType>();
-		}
 
 		public abstract Task HandleMessage(IPeerMessageContext<TOutgoingPayloadType> context, TPayloadType payload);
 
@@ -113,12 +50,18 @@ namespace Booma.Proxy
 
 			try
 			{
-				Logger.Info($"Recieved: {message.Payload}");
-				return await Handler.Value.TryHandleMessage(context, message);
+				if(CanHandle(message))
+				{
+					Logger.Info($"Recieved: {message.Payload}");
+
+					await HandleMessage(context, message.Payload as TPayloadType);
+					return true;
+				}
+					return false;
 			}
 			catch(Exception e)
 			{
-				Logger.Error($"Encounter error in Handle: {Handler.Value} Exception: {e.Message} \n\n StackTrace: {e.StackTrace}");
+				Logger.Error($"Encounter error in Handle: {GetType().Name} Exception: {e.Message} \n\n StackTrace: {e.StackTrace}");
 				throw;
 			}
 		}

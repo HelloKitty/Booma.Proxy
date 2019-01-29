@@ -25,14 +25,6 @@ namespace Booma.Proxy
 
 		private IDictionary<int, string> LobbyNumberToSceneNameMap { get; } = new LobbyMapToSceneMappingCollection();
 
-		protected override void Start()
-		{
-			base.Start();
-
-			if(LobbyNumberToSceneNameMap == null || !LobbyNumberToSceneNameMap.Any())
-				throw new InvalidOperationException("Must initialize lobby id to scene mapping.");
-		}
-
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockLobbyJoinEventPayload payload)
 		{

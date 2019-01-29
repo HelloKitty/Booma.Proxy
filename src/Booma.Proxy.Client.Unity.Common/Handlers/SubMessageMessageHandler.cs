@@ -18,18 +18,6 @@ namespace Booma.Proxy
 		where TPayloadType : PSOBBGamePacketPayloadServer
 	{
 		/// <inheritdoc />
-		public override async Task<bool> TryHandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
-		{
-			//Odd design but we override so we can check that this is the payload
-			//and then check if we have the right command type
-			if(CanHandle(message))
-				return await base.TryHandleMessage(context, message);
-
-			//If it's not then we don't want to consume it
-			return false;
-		}
-
-		/// <inheritdoc />
 		public override bool CanHandle(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			//We have to overide this because base doesn't implement what we want
