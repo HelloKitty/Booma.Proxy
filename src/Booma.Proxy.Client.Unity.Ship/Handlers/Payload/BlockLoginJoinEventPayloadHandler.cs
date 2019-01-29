@@ -12,11 +12,9 @@ using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public class BlockLoginJoinEventPayloadHandler : GameMessageHandler<BlockLobbyJoinEventPayload>
 	{
 		//TODO: Is it ok to reuse this?
-		[Inject]
 		private ICharacterSlotSelectedModel SlotModel { get; }
 
 		[SerializeField]
@@ -25,10 +23,10 @@ namespace Booma.Proxy
 		private IDictionary<int, string> LobbyNumberToSceneNameMap { get; } = new LobbyMapToSceneMappingCollection();
 
 		/// <inheritdoc />
-		public BlockLoginJoinEventPayloadHandler(ILog logger) 
+		public BlockLoginJoinEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel) 
 			: base(logger)
 		{
-			
+			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		/// <inheritdoc />
