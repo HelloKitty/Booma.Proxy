@@ -28,7 +28,7 @@ namespace Booma
 		public static void Test_Handler_Contains_No_Scenejected_FieldsOrProps(Type handlerType)
 		{
 			//arrange
-			MemberInfo[] members = handlerType.GetMembers();
+			MemberInfo[] members = handlerType.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
 			//assert
 			foreach(var mi in members)
