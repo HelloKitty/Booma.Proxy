@@ -18,22 +18,19 @@ namespace Booma.Proxy
 
 		private ICharacterSlotSelectedModel SlotModel { get; }
 
-		/// <summary>
-		/// Event broadcast right before we load the game scene.
-		/// </summary>
-		[Tooltip("Invoked before the game scene is loaded.")]
-		[SerializeField]
-		private UnityEvent OnBeforeGameJoin;
+		//TODO: Find a better to handle events on game join.
+		private INetworkClientExportable ExportableClient { get; }
 
 		//TODO: Implement proper scene/game loading
 		public int TestGameSceneIndex = 0;
 
 		/// <inheritdoc />
-		public BlockGameJoinEventPayloadHandler([NotNull] ILog logger, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ICharacterSlotSelectedModel slotModel) 
+		public BlockGameJoinEventPayloadHandler([NotNull] ILog logger, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ICharacterSlotSelectedModel slotModel, [NotNull] INetworkClientExportable exportableClient) 
 			: base(logger)
 		{
 			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
 			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
+			ExportableClient = exportableClient ?? throw new ArgumentNullException(nameof(exportableClient));
 		}
 
 		/// <inheritdoc />
@@ -64,11 +61,11 @@ namespace Booma.Proxy
 			//We should init the slot model with our new identifer
 			SlotModel.SlotSelected = payload.Identifier;
 
+			//TODO: We don't support broadcasting events right now. We just directly export the client.
 			//Then just like joining a lobby we should
 			//broadcast that we're about to join a game
 			//then load the scene responsible for handling the game we're entering.
-
-			OnBeforeGameJoin?.Invoke();
+			ExportableClient.ExportmanagedClient();
 
 			//TODO: Handle multiple different lobby scenes
 			//Now we need to load the game/amp (probably pioneer 2 but I don't think it HAAS to be)
