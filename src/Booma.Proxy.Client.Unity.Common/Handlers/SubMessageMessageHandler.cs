@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 
 namespace Booma.Proxy
@@ -62,6 +63,13 @@ namespace Booma.Proxy
 		public override string ToString()
 		{
 			return $"SubmessageHandler: {GetType().Name} for SubMessage: {typeof(TSubMessageType).Name} Payload: {typeof(TPayloadType).Name}";
+		}
+
+		/// <inheritdoc />
+		protected SubMessageMessageHandler(ILog logger) 
+			: base(logger)
+		{
+			
 		}
 	}
 }

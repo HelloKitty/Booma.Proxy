@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 
 namespace Booma.Proxy
 {
@@ -18,6 +19,13 @@ namespace Booma.Proxy
 		public override string ToString()
 		{
 			return $"GameHandler: {GetType().Name} for Payload: {typeof(TPayloadType).Name}";
+		}
+
+		/// <inheritdoc />
+		protected GameMessageHandler(ILog logger) 
+			: base(logger)
+		{
+
 		}
 	}
 }

@@ -28,8 +28,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The message handler logger.
 		/// </summary>
-		[Inject]
 		protected ILog Logger { get; }
+
+		/// <inheritdoc />
+		protected BaseUnityMessageHandler([NotNull] ILog logger)
+		{
+			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
+		}
 
 		public abstract Task HandleMessage(IPeerMessageContext<TOutgoingPayloadType> context, TPayloadType payload);
 
