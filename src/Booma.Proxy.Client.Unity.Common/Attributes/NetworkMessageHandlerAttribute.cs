@@ -17,27 +17,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Indicates the scene type this handler is for.
 		/// </summary>
-		public HandlerSceneType SceneType { get; }
+		public GameSceneType SceneType { get; }
 
 		/// <inheritdoc />
-		public NetworkMessageHandlerAttribute(HandlerSceneType sceneType)
+		public NetworkMessageHandlerAttribute(GameSceneType sceneType)
 		{
-			if(!Enum.IsDefined(typeof(HandlerSceneType), sceneType)) throw new InvalidEnumArgumentException(nameof(sceneType), (int)sceneType, typeof(HandlerSceneType));
+			if(!Enum.IsDefined(typeof(GameSceneType), sceneType)) throw new InvalidEnumArgumentException(nameof(sceneType), (int)sceneType, typeof(GameSceneType));
 			SceneType = sceneType;
 		}
-	}
-
-	/// <summary>
-	/// Enumeration of scene types.
-	/// </summary>
-	public enum HandlerSceneType
-	{
-		LobbyDefault = 1,
-
-		LobbySoccer = 2,
-
-		Pioneer2 = 3,
-
-		RagolDefault = 4
 	}
 }
