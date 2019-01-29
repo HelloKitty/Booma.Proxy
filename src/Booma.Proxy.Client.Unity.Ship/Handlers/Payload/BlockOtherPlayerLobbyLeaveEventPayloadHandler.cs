@@ -11,14 +11,13 @@ namespace Booma.Proxy
 {
 	public sealed class BlockOtherPlayerLobbyLeaveEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveLobbyEventPayload>
 	{
-		[Inject]
 		private INetworkEntityRegistery<INetworkPlayer> PlayerRegistry { get; }
 
 		/// <inheritdoc />
-		public BlockOtherPlayerLobbyLeaveEventPayloadHandler(ILog logger) 
+		public BlockOtherPlayerLobbyLeaveEventPayloadHandler([NotNull] INetworkEntityRegistery<INetworkPlayer> playerRegistry, ILog logger) 
 			: base(logger)
 		{
-			
+			PlayerRegistry = playerRegistry ?? throw new ArgumentNullException(nameof(playerRegistry));
 		}
 
 		/// <inheritdoc />
