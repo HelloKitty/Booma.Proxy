@@ -13,8 +13,8 @@ namespace Booma.Proxy
 	public sealed class PlayerStartPlayerWarpEventHandler : ContextExtendedCommand60Handler<Sub60StartNewWarpCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <inheritdoc />
-		public PlayerStartPlayerWarpEventHandler(ILog logger) 
-			: base(logger)
+		public PlayerStartPlayerWarpEventHandler(ILog logger, INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory) 
+			: base(logger, contextFactory)
 		{
 
 		}

@@ -15,8 +15,8 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy ScalerService { get; }
 
 		/// <inheritdoc />
-		public BlockTeleportToPositionCommandHandler(ILog logger) 
-			: base(logger)
+		public BlockTeleportToPositionCommandHandler(ILog logger, INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory)
+			: base(logger, contextFactory)
 		{
 
 		}

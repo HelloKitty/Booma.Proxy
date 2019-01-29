@@ -23,9 +23,8 @@ namespace Booma.Proxy
 		[Inject]
 		private IUnitScalerStrategy Scaler { get; }
 
-		/// <inheritdoc />
-		public BlockMovingSlowPositionChangedEventHandler(ILog logger) 
-			: base(logger)
+		public BlockMovingSlowPositionChangedEventHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory) 
+			: base(logger, contextFactory)
 		{
 
 		}

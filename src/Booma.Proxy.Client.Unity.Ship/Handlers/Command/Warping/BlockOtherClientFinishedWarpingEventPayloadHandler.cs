@@ -23,9 +23,8 @@ namespace Booma.Proxy
 		[SerializeField]
 		public int ZoneId;
 
-		/// <inheritdoc />
-		public BlockOtherClientFinishedWarpingEventPayloadHandler(ILog logger) 
-			: base(logger)
+		protected BlockOtherClientFinishedWarpingEventPayloadHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerFullNetworkMessageContext> contextFactory) 
+			: base(logger, contextFactory)
 		{
 
 		}

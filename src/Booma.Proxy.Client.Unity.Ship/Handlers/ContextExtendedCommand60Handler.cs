@@ -24,14 +24,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The context factory required to build the context for the message.
 		/// </summary>
-		[Inject]
 		private INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> ContextFactory { get; }
 
 		/// <inheritdoc />
-		protected ContextExtendedCommand60Handler(ILog logger)
+		protected ContextExtendedCommand60Handler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> contextFactory)
 			: base(logger)
 		{
-
+			ContextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
 		}
 
 		/// <inheritdoc />
