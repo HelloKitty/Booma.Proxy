@@ -28,10 +28,10 @@ namespace Booma.Proxy
 		private INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> ContextFactory { get; }
 
 		/// <inheritdoc />
-		protected ContextExtendedMessageHandler(ILog logger)
+		protected ContextExtendedMessageHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> contextFactory)
 			: base(logger)
 		{
-
+			ContextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
 		}
 
 		/// <inheritdoc />

@@ -10,9 +10,8 @@ namespace Booma.Proxy
 {
 	public sealed class BlockChatMessageEventPayloadHandler : ContextExtendedMessageHandler<BlockTextChatMessageEventPayload, INetworkPlayerNetworkMessageContext>
 	{
-		/// <inheritdoc />
-		public BlockChatMessageEventPayloadHandler(ILog logger) 
-			: base(logger)
+		public BlockChatMessageEventPayloadHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory) 
+			: base(logger, contextFactory)
 		{
 
 		}
