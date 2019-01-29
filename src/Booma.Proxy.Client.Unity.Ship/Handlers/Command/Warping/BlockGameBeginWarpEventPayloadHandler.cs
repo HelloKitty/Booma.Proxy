@@ -13,20 +13,18 @@ namespace Booma.Proxy
 	/// Command handler that handles the game/62 version of the <see cref="Sub60ClientWarpBeginEventCommand"/>.
 	/// This one uses a similar one called <see cref="Sub62ClientWarpBeginEventCommand"/> for games
 	/// </summary>
-	[Injectee]
 	public sealed class BlockGameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientWarpBeginEventCommand>
 	{
-		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
 
-		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
 
 		/// <inheritdoc />
-		public BlockGameBeginWarpEventPayloadHandler(ILog logger) 
+		public BlockGameBeginWarpEventPayloadHandler([NotNull] ILog logger, [NotNull] IUnitScalerStrategy scalerService, [NotNull] INetworkPlayerFactory playerFactory) 
 			: base(logger)
 		{
-
+			ScalerService = scalerService ?? throw new ArgumentNullException(nameof(scalerService));
+			PlayerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
 		}
 
 		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand command)
