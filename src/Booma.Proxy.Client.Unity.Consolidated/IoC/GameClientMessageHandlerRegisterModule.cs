@@ -30,27 +30,12 @@ namespace Booma.Proxy
 			//This will load and register EACH payload specific handler as itself.
 			foreach(Type handlerType in IterateAllAssembliesWithHandlers(HandlersType))
 			{
+				//This is quite simple, in this project handlers are quite controlling.
+				//They can directly define their OWN CanHandle or TypeHandle methods/logic
+				//They aren't just purely payload Type handlers
+				//so we don't need to make TryHandle semantics around them or anything.
 				register.RegisterType(handlerType)
-					.AsSelf()
-					.SingleInstance();
-
-				//This gets the payload type this handles
-				Type concretePayloadType = handlerType.GetTypeInfo()
-					.ImplementedInterfaces
-					.First(i => i.GetTypeInfo().IsGenericType && i.GetTypeInfo().GetGenericTypeDefinition() == typeof(IPeerPayloadSpecificMessageHandler<,>))
-					.GetGenericArguments()
-					.First();
-
-				Type tryHandlerType = typeof(TrySemanticsBasedOnTypePeerMessageHandler<,,>)
-					.MakeGenericType(typeof(PSOBBGamePacketPayloadServer), typeof(PSOBBGamePacketPayloadClient), concretePayloadType);
-
-				register.Register(context =>
-					{
-						object handler = context.Resolve(handlerType);
-
-						return Activator.CreateInstance(tryHandlerType, handler);
-					})
-					.AsImplementedInterfaces()
+					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
 					.SingleInstance();
 			}
 
