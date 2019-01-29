@@ -9,17 +9,15 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
 	{
-		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
 
 		/// <inheritdoc />
-		public BlockOtherPlayerLobbyJoinEventPayloadHandler(ILog logger) 
+		public BlockOtherPlayerLobbyJoinEventPayloadHandler([NotNull] INetworkPlayerFactory playerFactory, ILog logger) 
 			: base(logger)
 		{
-
+			PlayerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
 		}
 
 		/// <inheritdoc />
