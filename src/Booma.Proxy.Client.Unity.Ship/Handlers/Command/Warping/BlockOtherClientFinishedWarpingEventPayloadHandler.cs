@@ -10,23 +10,23 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : ContextExtendedCommand60Handler<Sub60FinishedWarpingBurstingCommand, INetworkPlayerFullNetworkMessageContext>
 	{
 		/// <summary>
 		/// The scaling service.
 		/// </summary>
-		[Inject]
 		private IUnitScalerStrategy ScalingService { get; }
 
-		//TODO: How should this be designed?
-		[SerializeField]
-		public int ZoneId;
+		private int ZoneId { get; }
 
-		protected BlockOtherClientFinishedWarpingEventPayloadHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerFullNetworkMessageContext> contextFactory) 
+		protected BlockOtherClientFinishedWarpingEventPayloadHandler([NotNull] IUnitScalerStrategy scalingService, IZoneSettings zoneSettings,
+			ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerFullNetworkMessageContext> contextFactory)
 			: base(logger, contextFactory)
 		{
+			ScalingService = scalingService ?? throw new ArgumentNullException(nameof(scalingService));
 
+			//We just need the zone id.
+			ZoneId = zoneSettings.ZoneId;
 		}
 
 		/// <inheritdoc />
