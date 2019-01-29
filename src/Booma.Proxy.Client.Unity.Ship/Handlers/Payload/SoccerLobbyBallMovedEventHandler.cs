@@ -14,9 +14,9 @@ namespace Booma.Proxy
 	[Injectee]
 	public sealed class SoccerLobbyBallMovedEventHandler : Command60Handler<Sub60LobbySoccerBallMoveEventPayload>
 	{
-		[Inject]
 		private IUnitScalerStrategy UnitScaler { get; }
 
+		//TODO: This kinda... doesn't work whatever it is after the Inject/handlers as non-behaviours thing changed.
 		/// <summary>
 		/// The current ball in play.
 		/// </summary>
@@ -25,10 +25,10 @@ namespace Booma.Proxy
 		public bool addPotentialOffsets = true;
 
 		/// <inheritdoc />
-		public SoccerLobbyBallMovedEventHandler(ILog logger) 
+		public SoccerLobbyBallMovedEventHandler([NotNull] IUnitScalerStrategy unitScaler, ILog logger) 
 			: base(logger)
 		{
-
+			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
 		}
 
 		/// <inheritdoc />

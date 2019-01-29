@@ -15,7 +15,6 @@ using Button = UnityEngine.UI.Button;
 namespace Booma.Proxy
 {
 	//TODO: This is a test handler. It should not be used in the final product
-	[Injectee]
 	public sealed class CharacterCharacterUpdateResponseHandler : GameMessageHandler<CharacterCharacterUpdateResponsePayload>
 	{
 		[Serializable]
