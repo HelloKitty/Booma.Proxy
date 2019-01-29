@@ -73,9 +73,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Format.MapNRel.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Proxy", "src\Tools\Booma.Proxy.Proxy\Booma.Proxy.Proxy.csproj", "{D29A9395-BDFB-4E6F-B893-5E8386F04B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.DTOStubGenerator", "src\Tools\Booma.Proxy.DTOStubGenerator\Booma.Proxy.DTOStubGenerator.csproj", "{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.DTOStubGenerator", "src\Tools\Booma.Proxy.DTOStubGenerator\Booma.Proxy.DTOStubGenerator.csproj", "{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Game.Stubs", "src\Booma.Proxy.Packets.Game.Stubs\Booma.Proxy.Packets.Game.Stubs.csproj", "{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.Game.Stubs", "src\Booma.Proxy.Packets.Game.Stubs\Booma.Proxy.Packets.Game.Stubs.csproj", "{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Client.Unity.Consolidated", "src\Booma.Proxy.Client.Unity.Consolidated\Booma.Proxy.Client.Unity.Consolidated.csproj", "{40D840BE-0066-45FD-8A51-C856B0677A15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -203,6 +205,10 @@ Global
 		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D840BE-0066-45FD-8A51-C856B0677A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D840BE-0066-45FD-8A51-C856B0677A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D840BE-0066-45FD-8A51-C856B0677A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D840BE-0066-45FD-8A51-C856B0677A15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -243,6 +249,7 @@ Global
 		{D29A9395-BDFB-4E6F-B893-5E8386F04B44} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8} = {9F687B11-0BD1-45EF-9E1C-40D0B5CBC52F}
 		{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
+		{40D840BE-0066-45FD-8A51-C856B0677A15} = {3872F557-EF3F-432F-8363-9C92109F01D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}
