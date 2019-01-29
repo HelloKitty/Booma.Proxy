@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
+using GladNet;
 using UnityEngine;
 
 namespace Booma.Proxy
 {
 	public sealed class ShipSelectionWelcomePayloadHandler : SharedWelcomePayloadHandler
 	{
-		/// <inheritdoc />
-		public ShipSelectionWelcomePayloadHandler(ILog logger) 
-			: base(logger)
+		public ShipSelectionWelcomePayloadHandler(IFullCryptoInitializationService<byte[]> cryptoInitializer, IAuthenticationDetailsModel loginDetails, IClientSessionDetails sessionDetails, ILog logger) 
+			: base(cryptoInitializer, loginDetails, sessionDetails, logger)
 		{
 
 		}
