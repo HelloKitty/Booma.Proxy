@@ -41,5 +41,23 @@ namespace Booma
 				}
 			}
 		}
+
+		[Test]
+		[TestCaseSource(nameof(HandlerTypes))]
+		public static void Test_Handler_Contains_No_SerializedField_Members(Type handlerType)
+		{
+			//arrange
+			MemberInfo[] members = handlerType.Members(MemberTypes.All).ToArray();
+
+			//assert
+			foreach(var mi in members)
+			{
+				if(mi.GetCustomAttribute<UnityEngine.SerializeField>() != null)
+				{
+					//We have an inject attribute still, we should warn
+					Assert.Fail($"Failed. Type: {handlerType} has {nameof(UnityEngine.SerializeField)} on Field/Prop: {mi.Name}. Handlers no longer scene objects. Must address this.");
+				}
+			}
+		}
 	}
 }
