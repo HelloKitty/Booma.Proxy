@@ -17,21 +17,23 @@ namespace Booma.Proxy
 		//TODO: Is it ok to reuse this?
 		private ICharacterSlotSelectedModel SlotModel { get; }
 
-		[SerializeField]
-		private UnityEvent OnLobbyJoinEvent;
+		private INetworkClientExportable ExportableClient { get; }
 
 		private IDictionary<int, string> LobbyNumberToSceneNameMap { get; } = new LobbyMapToSceneMappingCollection();
 
 		/// <inheritdoc />
-		public BlockLoginJoinEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel) 
+		public BlockLoginJoinEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel, [NotNull] INetworkClientExportable exportableClient) 
 			: base(logger)
 		{
 			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
+			ExportableClient = exportableClient ?? throw new ArgumentNullException(nameof(exportableClient));
 		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockLobbyJoinEventPayload payload)
 		{
+			throw new NotImplementedException($"This handler is temporarily disabled. We don't properly setup lobby id to scene matching yet. It was broken in update.");
+
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"**Handling**: {nameof(BlockLobbyJoinEventPayload)}");
 
@@ -49,7 +51,7 @@ namespace Booma.Proxy
 			//It's basically like a slot, like a lobby or party slot.
 			SlotModel.SlotSelected = payload.ClientId;
 
-			OnLobbyJoinEvent?.Invoke();
+			ExportableClient.ExportmanagedClient();
 
 			//TODO: Handle multiple different lobby scenes
 			//Now we need to load the actual lobby
