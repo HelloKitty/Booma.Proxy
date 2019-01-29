@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Sirenix.Serialization.Config">
+      <HintPath>..\..\lib\Nido\Sirenix.Serialization.Config.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEditor, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
