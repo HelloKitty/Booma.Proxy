@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GladNet;
 using SceneJect.Common;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -17,6 +15,9 @@ namespace Booma.Proxy
 	[Injectee]
 	public class SharedWelcomePayloadHandler : GameMessageHandler<SharedWelcomePayload>
 	{
+		//TODO: Remove
+		private SharedLoginRequest93Payload.ServerType _AuthType;
+
 		/// <summary>
 		/// Crypto initialization service that can be init from the welcome message.
 		/// </summary>
@@ -35,9 +36,14 @@ namespace Booma.Proxy
 		[Inject]
 		protected IClientSessionDetails SessionDetails { get; }
 
-		[PropertyTooltip("Optional auth type that can be changed. If you're connected to a ship/block you should use the ship auth type.")]
-		[OdinSerialize]
-		public SharedLoginRequest93Payload.ServerType AuthType { get; protected set; } = SharedLoginRequest93Payload.ServerType.PreShip;
+		//TODO: Fix this
+		//[PropertyTooltip("Optional auth type that can be changed. If you're connected to a ship/block you should use the ship auth type.")]
+		//[OdinSerialize]
+		public SharedLoginRequest93Payload.ServerType AuthType
+		{
+			get => throw new NotSupportedException("MUST PROPERLY IMPLEMENT NEW CTOR WORKFLOW.");
+			protected set => throw new NotSupportedException("MUST PROPERLY IMPLEMENT NEW CTOR WORKFLOW.");
+		} /*SharedLoginRequest93Payload.ServerType.PreShip*/ //first value
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedWelcomePayload payload)

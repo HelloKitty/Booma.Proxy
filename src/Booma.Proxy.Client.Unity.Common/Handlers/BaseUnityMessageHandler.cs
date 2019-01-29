@@ -8,7 +8,6 @@ using Common.Logging;
 using GladNet;
 using JetBrains.Annotations;
 using SceneJect.Common;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Booma.Proxy

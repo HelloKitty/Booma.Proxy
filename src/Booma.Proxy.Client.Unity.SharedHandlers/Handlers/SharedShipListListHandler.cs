@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GladNet;
 using SceneJect.Common;
-using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,8 +17,7 @@ namespace Booma.Proxy
 	public sealed class SharedShipListListHandler : GameMessageHandler<SharedShipListEventPayload>
 	{
 		//TODO: This is a temp handler until we implement the UI.
-		[OdinSerialize]
-		private IMenuListingRegisterable ShipRegisterationService { get; set; }
+		private IMenuListingRegisterable ShipRegisterationService => throw new NotSupportedException($"MUST MOVE OVER TO CTOR WORKFLOW");
 
 		[SerializeField]
 		private UnityEvent OnRecievedShipList;

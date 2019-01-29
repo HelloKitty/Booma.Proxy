@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Autofac;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy

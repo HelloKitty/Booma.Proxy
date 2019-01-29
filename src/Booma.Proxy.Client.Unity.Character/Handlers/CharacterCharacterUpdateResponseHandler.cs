@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GladNet;
 using SceneJect.Common;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.UIElements;
@@ -21,7 +20,7 @@ namespace Booma.Proxy
 		[Serializable]
 		public struct CharacterTabUIElement
 		{
-			[DrawWithUnity]
+			//[DrawWithUnity] //TODO: Was this important? Was sirenix
 			[SerializeField]
 			public UnityEngine.UI.Button ButtonElement;
 

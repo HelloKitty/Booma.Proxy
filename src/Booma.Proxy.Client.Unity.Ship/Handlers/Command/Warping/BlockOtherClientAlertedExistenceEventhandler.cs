@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GladNet;
 using SceneJect.Common;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy

@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GladNet;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,9 +18,9 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The menu registeration service.
 		/// </summary>
-		[Required]
-		[OdinSerialize]
-		private IMenuListingRegisterable BlockListingRegisterService { get; set; }
+		//[Required]
+		//[OdinSerialize]
+		private IMenuListingRegisterable BlockListingRegisterService => throw new NotSupportedException($"TODO: MOVE OVER TO CTOR WORKFLOW");
 
 		[SerializeField]
 		private UnityEvent OnRecievedBlockList;
