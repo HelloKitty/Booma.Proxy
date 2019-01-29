@@ -19,7 +19,7 @@ namespace Booma.Proxy
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
 	/// <typeparam name="TOutgoingPayloadType"></typeparam>
 	[Injectee]
-	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : SerializedMonoBehaviour
+	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : SerializedMonoBehaviour, INetworkClientExportable
 		where TOutgoingPayloadType : class 
 		where TIncomingPayloadType : class
 	{
