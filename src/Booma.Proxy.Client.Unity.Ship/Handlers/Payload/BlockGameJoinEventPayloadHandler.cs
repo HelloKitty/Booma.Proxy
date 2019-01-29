@@ -12,13 +12,10 @@ using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class BlockGameJoinEventPayloadHandler : GameMessageHandler<BlockGameJoinEventPayload>
 	{
-		[Inject]
 		private IUnitScalerStrategy UnitScaler { get; }
 
-		[Inject]
 		private ICharacterSlotSelectedModel SlotModel { get; }
 
 		/// <summary>
@@ -32,10 +29,11 @@ namespace Booma.Proxy
 		public int TestGameSceneIndex = 0;
 
 		/// <inheritdoc />
-		public BlockGameJoinEventPayloadHandler(ILog logger) 
+		public BlockGameJoinEventPayloadHandler([NotNull] ILog logger, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ICharacterSlotSelectedModel slotModel) 
 			: base(logger)
 		{
-
+			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
+			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		/// <inheritdoc />
