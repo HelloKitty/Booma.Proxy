@@ -13,7 +13,6 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Handler for the <see cref="SharedWelcomePayload"/>.
 	/// </summary>
-	[Injectee]
 	public class SharedWelcomePayloadHandler : GameMessageHandler<SharedWelcomePayload>
 	{
 		//TODO: Remove
@@ -22,19 +21,16 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Crypto initialization service that can be init from the welcome message.
 		/// </summary>
-		[Inject]
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
 		
 		/// <summary>
 		/// The login details model.
 		/// </summary>
-		[Inject]
 		protected IAuthenticationDetailsModel LoginDetails { get; }
 
 		/// <summary>
 		/// The session details model.
 		/// </summary>
-		[Inject]
 		protected IClientSessionDetails SessionDetails { get; }
 
 		//TODO: Fix this
@@ -48,10 +44,12 @@ namespace Booma.Proxy
 		} /*SharedLoginRequest93Payload.ServerType.PreShip*/
 
 		/// <inheritdoc />
-		public SharedWelcomePayloadHandler(ILog logger) 
+		public SharedWelcomePayloadHandler(IFullCryptoInitializationService<byte[]> cryptoInitializer, IAuthenticationDetailsModel loginDetails, IClientSessionDetails sessionDetails, ILog logger) 
 			: base(logger)
 		{
-			
+			CryptoInitializer = cryptoInitializer;
+			LoginDetails = loginDetails;
+			SessionDetails = sessionDetails;
 		}
 
 		/// <inheritdoc />
