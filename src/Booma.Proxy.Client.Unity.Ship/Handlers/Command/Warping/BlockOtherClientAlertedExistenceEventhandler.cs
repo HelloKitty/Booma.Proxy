@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	public sealed class BlockOtherClientAlertedExistenceEventhandler : Command60Handler<Sub60FinishedWarpAckCommand> //we don't need context
+	public sealed class BlockOtherClientAlertedExistenceEventHandler : Command60Handler<Sub60FinishedWarpAckCommand> //we don't need context
 	{
 		private INetworkPlayerFactory PlayerFactory { get; }
 
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		private IUnitScalerStrategy UnitScaler { get; }
 
 		/// <inheritdoc />
-		public BlockOtherClientAlertedExistenceEventhandler([NotNull] INetworkPlayerFactory playerFactory, [NotNull] INetworkPlayerCollection playerCollection, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ILog logger) 
+		public BlockOtherClientAlertedExistenceEventHandler([NotNull] INetworkPlayerFactory playerFactory, [NotNull] INetworkPlayerCollection playerCollection, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ILog logger) 
 			: base(logger)
 		{
 			PlayerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
