@@ -12,20 +12,19 @@ namespace Booma.Proxy
 {
 	public sealed class BlockOtherClientAlertedExistenceEventhandler : Command60Handler<Sub60FinishedWarpAckCommand> //we don't need context
 	{
-		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
 
-		[Inject]
 		private INetworkPlayerCollection PlayerCollection { get; }
 
-		[Inject]
 		private IUnitScalerStrategy UnitScaler { get; }
 
 		/// <inheritdoc />
-		public BlockOtherClientAlertedExistenceEventhandler(ILog logger) 
+		public BlockOtherClientAlertedExistenceEventhandler([NotNull] INetworkPlayerFactory playerFactory, [NotNull] INetworkPlayerCollection playerCollection, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ILog logger) 
 			: base(logger)
 		{
-			
+			PlayerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
+			PlayerCollection = playerCollection ?? throw new ArgumentNullException(nameof(playerCollection));
+			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
 		}
 
 		/// <inheritdoc />
