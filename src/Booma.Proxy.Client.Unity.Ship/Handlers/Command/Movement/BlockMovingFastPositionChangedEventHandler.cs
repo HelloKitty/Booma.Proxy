@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,21 +14,19 @@ namespace Booma.Proxy
 	/// Handler that deals with the <see cref="Sub60MovingFastPositionSetCommand"/>
 	/// event that is raised by the server when a client is moving fast/running.
 	/// </summary>
-	[Injectee]
 	public sealed class BlockMovingFastPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingFastPositionSetCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>
 		/// Service that translates the incoming position to the correct unit scale that
 		/// Unity3D expects.
 		/// </summary>
-		[Inject]
 		private IUnitScalerStrategy Scaler { get; }
 
 		/// <inheritdoc />
-		public BlockMovingFastPositionChangedEventHandler(ILog logger)
+		public BlockMovingFastPositionChangedEventHandler(ILog logger, [NotNull] IUnitScalerStrategy scaler)
 			: base(logger)
 		{
-
+			Scaler = scaler ?? throw new ArgumentNullException(nameof(scaler));
 		}
 
 		/// <inheritdoc />
