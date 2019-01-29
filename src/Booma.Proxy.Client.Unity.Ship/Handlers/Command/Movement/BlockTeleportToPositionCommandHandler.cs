@@ -11,14 +11,13 @@ namespace Booma.Proxy
 {
 	public sealed class BlockTeleportToPositionCommandHandler : ContextExtendedCommand60Handler<Sub60TeleportToPositionCommand, INetworkPlayerNetworkMessageContext>
 	{
-		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
 
 		/// <inheritdoc />
-		public BlockTeleportToPositionCommandHandler(ILog logger, INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory)
+		public BlockTeleportToPositionCommandHandler([NotNull] IUnitScalerStrategy scalerService, ILog logger, INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory)
 			: base(logger, contextFactory)
 		{
-
+			ScalerService = scalerService ?? throw new ArgumentNullException(nameof(scalerService));
 		}
 
 		/// <inheritdoc />
