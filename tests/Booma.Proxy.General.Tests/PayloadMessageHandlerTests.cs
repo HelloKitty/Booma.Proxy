@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Booma.Proxy;
+using Fasterflect;
 using NUnit.Framework;
 using SceneJect.Common;
 
@@ -28,7 +29,7 @@ namespace Booma
 		public static void Test_Handler_Contains_No_Scenejected_FieldsOrProps(Type handlerType)
 		{
 			//arrange
-			MemberInfo[] members = handlerType.GetMembers(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+			MemberInfo[] members = handlerType.Members(MemberTypes.All).ToArray();
 
 			//assert
 			foreach(var mi in members)
