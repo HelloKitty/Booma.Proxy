@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 
 namespace Booma.Proxy
 {
 	public sealed class BlockChatMessageEventPayloadHandler : ContextExtendedMessageHandler<BlockTextChatMessageEventPayload, INetworkPlayerNetworkMessageContext>
 	{
+		/// <inheritdoc />
+		public BlockChatMessageEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
+
 		/// <inheritdoc />
 		protected override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockTextChatMessageEventPayload payload, INetworkPlayerNetworkMessageContext payloadContext)
 		{

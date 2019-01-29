@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -11,6 +12,13 @@ namespace Booma.Proxy
 	[Injectee]
 	public sealed class PlayerStartPlayerWarpEventHandler : ContextExtendedCommand60Handler<Sub60StartNewWarpCommand, INetworkPlayerNetworkMessageContext>
 	{
+		/// <inheritdoc />
+		public PlayerStartPlayerWarpEventHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
+
 		/// <inheritdoc />
 		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60StartNewWarpCommand command, INetworkPlayerNetworkMessageContext commandContext)
 		{

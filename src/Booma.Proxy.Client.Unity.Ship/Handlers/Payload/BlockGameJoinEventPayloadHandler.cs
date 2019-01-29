@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -29,6 +30,13 @@ namespace Booma.Proxy
 
 		//TODO: Implement proper scene/game loading
 		public int TestGameSceneIndex = 0;
+
+		/// <inheritdoc />
+		public BlockGameJoinEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockGameJoinEventPayload payload)

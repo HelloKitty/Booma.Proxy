@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using Reinterpret.Net;
 using SceneJect.Common;
@@ -22,6 +23,13 @@ namespace Booma.Proxy
 		public GameObject CurrentBall { get; set; }
 
 		public bool addPotentialOffsets = true;
+
+		/// <inheritdoc />
+		public SoccerLobbyBallMovedEventHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60LobbySoccerBallMoveEventPayload command)

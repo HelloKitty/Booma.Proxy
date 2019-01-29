@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -43,7 +44,15 @@ namespace Booma.Proxy
 		{
 			get => throw new NotSupportedException("MUST PROPERLY IMPLEMENT NEW CTOR WORKFLOW.");
 			protected set => throw new NotSupportedException("MUST PROPERLY IMPLEMENT NEW CTOR WORKFLOW.");
-		} /*SharedLoginRequest93Payload.ServerType.PreShip*/ //first value
+			//first value
+		} /*SharedLoginRequest93Payload.ServerType.PreShip*/
+
+		/// <inheritdoc />
+		public SharedWelcomePayloadHandler(ILog logger) 
+			: base(logger)
+		{
+			
+		}
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedWelcomePayload payload)

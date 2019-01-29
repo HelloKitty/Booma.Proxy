@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 
@@ -12,6 +13,13 @@ namespace Booma.Proxy
 	{
 		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
+
+		/// <inheritdoc />
+		public BlockTeleportToPositionCommandHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60TeleportToPositionCommand command, INetworkPlayerNetworkMessageContext commandContext)

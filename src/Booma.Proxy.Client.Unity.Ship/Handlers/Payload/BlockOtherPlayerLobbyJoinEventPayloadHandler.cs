@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 
@@ -13,6 +14,13 @@ namespace Booma.Proxy
 	{
 		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
+
+		/// <inheritdoc />
+		public BlockOtherPlayerLobbyJoinEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockOtherPlayerJoinedLobbyEventPayload payload)

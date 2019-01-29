@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -22,6 +23,13 @@ namespace Booma.Proxy
 		private UnityEvent OnLobbyJoinEvent;
 
 		private IDictionary<int, string> LobbyNumberToSceneNameMap { get; } = new LobbyMapToSceneMappingCollection();
+
+		/// <inheritdoc />
+		public BlockLoginJoinEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+			
+		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockLobbyJoinEventPayload payload)

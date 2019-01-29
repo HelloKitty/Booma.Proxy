@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -11,6 +12,13 @@ namespace Booma.Proxy
 	[Injectee]
 	public sealed class PlayerHitBoxEventHandler : Command60Handler<Sub60ClientBoxHitEventCommand>
 	{
+		/// <inheritdoc />
+		public PlayerHitBoxEventHandler(ILog logger) 
+			: base(logger)
+		{
+			
+		}
+
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientBoxHitEventCommand command)
 		{

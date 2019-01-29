@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -37,6 +38,13 @@ namespace Booma.Proxy
 
 		[SerializeField]
 		private UnityEvent OnCharacterSelected;
+
+		/// <inheritdoc />
+		public CharacterCharacterUpdateResponseHandler(ILog logger)
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterUpdateResponsePayload payload)

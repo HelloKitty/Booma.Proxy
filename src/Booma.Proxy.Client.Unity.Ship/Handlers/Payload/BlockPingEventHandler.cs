@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 
 namespace Booma.Proxy
@@ -19,6 +20,13 @@ namespace Booma.Proxy
 			context.PayloadSendService.SendMessage(new BlockClientPingResponsePayload());
 
 			return Task.CompletedTask;
+		}
+
+		/// <inheritdoc />
+		public BlockPingEventHandler(ILog logger) 
+			: base(logger)
+		{
+
 		}
 	}
 }

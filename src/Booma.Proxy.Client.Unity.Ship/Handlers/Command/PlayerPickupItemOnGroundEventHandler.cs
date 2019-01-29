@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -13,6 +14,13 @@ namespace Booma.Proxy
 	{
 		[Inject]
 		private INetworkEntityRegistery<INetworkItem> WorldItemRegistery { get; }
+
+		/// <inheritdoc />
+		public PlayerPickupItemOnGroundEventHandler(ILog logger) 
+			: base(logger)
+		{
+		
+		}
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60PickupItemFromGroundCommand command)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -27,6 +28,13 @@ namespace Booma.Proxy
 		/// </summary>
 		[Inject]
 		private IGameConnectionEndpointDetails ConnectionEndpoint { get; }
+
+		/// <inheritdoc />
+		public SharedConnectionRedirectionPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+			
+		}
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedConnectionRedirectPayload payload)

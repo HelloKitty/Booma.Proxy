@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>
 	{
-		[Inject]
 		private INetworkPlayerFactory PlayerFactory { get; }
 
-		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
 		
-		//TODO: How should we handle zone id?
-		[SerializeField]
-		private byte ZoneId;
+		private byte ZoneId { get; }
+
+		/// <inheritdoc />
+		public BlockBeginWarpEventPayloadHandler(ILog logger, [NotNull] INetworkPlayerFactory playerFactory, [NotNull] IUnitScalerStrategy scalerService, [NotNull] IZoneSettings zoneSettingsData) 
+			: base(logger)
+		{
+			if(playerFactory == null) throw new ArgumentNullException(nameof(playerFactory));
+			if(scalerService == null) throw new ArgumentNullException(nameof(scalerService));
+			if(zoneSettingsData == null) throw new ArgumentNullException(nameof(zoneSettingsData));
+
+			PlayerFactory = playerFactory;
+			ScalerService = scalerService;
+
+			//So instead of serializing the zone id we inject zone settings.
+			ZoneId = (byte)zoneSettingsData.ZoneId;
+		}
+
+		public BlockBeginWarpEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientWarpBeginEventCommand payload)

@@ -4,12 +4,20 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 
 namespace Booma.Proxy
 {
 	public sealed class CharacterTimeStampEventHandler : GameMessageHandler<CharacterTimestampEventPayload>
 	{
+		/// <inheritdoc />
+		public CharacterTimeStampEventHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
+
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterTimestampEventPayload payload)
 		{

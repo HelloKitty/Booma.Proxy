@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,6 +27,13 @@ namespace Booma.Proxy
 		/// </summary>
 		[SerializeField]
 		private UnityEvent OnSelectionSuccess;
+
+		/// <inheritdoc />
+		public PreShipListCharacterSelectionAckHandler(ILog logger) 
+			: base(logger)
+		{
+			
+		}
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterSelectionAckPayload payload)

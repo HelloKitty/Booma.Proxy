@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 
 namespace Booma.Proxy
 {
@@ -27,6 +28,13 @@ namespace Booma.Proxy
 		{
 			//If they ask for it just provide it. Could be null, but not up to us.
 			return payload.Command as TSubCommandType;
+		}
+
+		/// <inheritdoc />
+		protected Command62Handler(ILog logger) 
+			: base(logger)
+		{
+
 		}
 	}
 }

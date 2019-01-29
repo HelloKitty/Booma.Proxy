@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 
@@ -20,6 +21,13 @@ namespace Booma.Proxy
 
 		[Inject]
 		private IUnitScalerStrategy ScalerService { get; }
+
+		/// <inheritdoc />
+		public BlockGameBeginWarpEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand command)
 		{

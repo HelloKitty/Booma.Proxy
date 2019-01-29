@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 
@@ -25,6 +26,13 @@ namespace Booma.Proxy
 		/// </summary>
 		[Inject]
 		private INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> ContextFactory { get; }
+
+		/// <inheritdoc />
+		protected ContextExtendedMessageHandler(ILog logger)
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		public override async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, TPayloadType payload)

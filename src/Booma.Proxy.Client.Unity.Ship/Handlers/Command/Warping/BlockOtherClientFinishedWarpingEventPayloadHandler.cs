@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using GladNet;
 using SceneJect.Common;
 using UnityEngine;
@@ -21,6 +22,13 @@ namespace Booma.Proxy
 		//TODO: How should this be designed?
 		[SerializeField]
 		public int ZoneId;
+
+		/// <inheritdoc />
+		public BlockOtherClientFinishedWarpingEventPayloadHandler(ILog logger) 
+			: base(logger)
+		{
+
+		}
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpingBurstingCommand command, INetworkPlayerFullNetworkMessageContext commandContext)
