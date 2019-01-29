@@ -15,13 +15,11 @@ namespace Booma.Proxy
 	/// Handler that handles the <see cref="SharedLoginResponsePayload"/> and initializes the recieved payload
 	/// information.
 	/// </summary>
-	[Injectee]
 	public sealed class SharedLoginResponsePayloadHandler : GameMessageHandler<SharedLoginResponsePayload>
 	{
 		/// <summary>
 		/// Repository to load and session the session data.
 		/// </summary>
-		[Inject]
 		private IClientSessionDetails SessionDetails { get; }
 
 		/// <summary>
@@ -37,10 +35,10 @@ namespace Booma.Proxy
 		private UnityEvent OnLoginSuccess;
 
 		/// <inheritdoc />
-		public SharedLoginResponsePayloadHandler(ILog logger)
+		public SharedLoginResponsePayloadHandler([NotNull] IClientSessionDetails sessionDetails, ILog logger)
 			: base(logger)
 		{
-
+			SessionDetails = sessionDetails ?? throw new ArgumentNullException(nameof(sessionDetails));
 		}
 
 		/// <inheritdoc />
