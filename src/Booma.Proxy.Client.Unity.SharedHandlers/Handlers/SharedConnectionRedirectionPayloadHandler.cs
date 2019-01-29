@@ -11,10 +11,8 @@ using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<SharedConnectionRedirectPayload>
 	{
-		[Inject]
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
 
 		/// <summary>
@@ -26,14 +24,14 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Data model for connection details.
 		/// </summary>
-		[Inject]
 		private IGameConnectionEndpointDetails ConnectionEndpoint { get; }
 
 		/// <inheritdoc />
-		public SharedConnectionRedirectionPayloadHandler(ILog logger) 
+		public SharedConnectionRedirectionPayloadHandler([NotNull] IGameConnectionEndpointDetails connectionEndpoint, [NotNull] IFullCryptoInitializationService<byte[]> cryptoInitializer, ILog logger) 
 			: base(logger)
 		{
-			
+			ConnectionEndpoint = connectionEndpoint ?? throw new ArgumentNullException(nameof(connectionEndpoint));
+			CryptoInitializer = cryptoInitializer ?? throw new ArgumentNullException(nameof(cryptoInitializer));
 		}
 
 		/// <inheritdoc />
