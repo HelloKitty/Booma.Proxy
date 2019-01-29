@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,17 +10,15 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[Injectee]
 	public sealed class PlayerPickupItemOnGroundEventHandler : Command60Handler<Sub60PickupItemFromGroundCommand>
 	{
-		[Inject]
 		private INetworkEntityRegistery<INetworkItem> WorldItemRegistery { get; }
 
 		/// <inheritdoc />
-		public PlayerPickupItemOnGroundEventHandler(ILog logger) 
+		public PlayerPickupItemOnGroundEventHandler([NotNull] INetworkEntityRegistery<INetworkItem> worldItemRegistery, ILog logger) 
 			: base(logger)
 		{
-		
+			WorldItemRegistery = worldItemRegistery ?? throw new ArgumentNullException(nameof(worldItemRegistery));
 		}
 
 		/// <inheritdoc />
