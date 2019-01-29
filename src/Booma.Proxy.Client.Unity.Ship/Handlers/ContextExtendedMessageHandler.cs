@@ -24,7 +24,6 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The context factory required to build the context for the message.
 		/// </summary>
-		[Inject]
 		private INetworkMessageContextFactory<IMessageContextIdentifiable, TContextType> ContextFactory { get; }
 
 		/// <inheritdoc />
