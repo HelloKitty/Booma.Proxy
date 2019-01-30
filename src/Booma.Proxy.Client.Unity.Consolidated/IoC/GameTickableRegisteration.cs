@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-    public sealed class Class1
-    {
+	public sealed class GameTickableRegisteration : AutoCreatedRegisteration<IGameTickable>
+	{
 		
-    }
+	}
 }
