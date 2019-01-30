@@ -34,9 +34,16 @@ namespace Booma.Proxy
 				//They can directly define their OWN CanHandle or TypeHandle methods/logic
 				//They aren't just purely payload Type handlers
 				//so we don't need to make TryHandle semantics around them or anything.
-				register.RegisterType(handlerType)
-					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
-					.SingleInstance();
+				var handlerRegisterationBuilder = register.RegisterType(handlerType)
+					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
+
+				//Now we need to register it as the additional specified types
+				foreach(var additionalServiceTypeAttri in handlerType.GetCustomAttributes<AdditionalRegisterationAsAttribute>())
+					handlerRegisterationBuilder
+						.As(additionalServiceTypeAttri.ServiceType);
+
+				//Only ever want one handler, otherwise... things get werid with AdditionalRegisterationAsAttributes.
+				handlerRegisterationBuilder.SingleInstance();
 			}
 
 			//New IPeerContext generic param now so we register as implemented interface
