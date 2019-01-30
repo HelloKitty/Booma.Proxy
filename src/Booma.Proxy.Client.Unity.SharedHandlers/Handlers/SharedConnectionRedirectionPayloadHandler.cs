@@ -11,15 +11,9 @@ using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
-	public sealed class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<SharedConnectionRedirectPayload>
+	public class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<SharedConnectionRedirectPayload>
 	{
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
-
-		/// <summary>
-		/// Broadcasts when a connection redirection is recieved.
-		/// </summary>
-		[SerializeField]
-		private UnityEvent OnConnectionRedirected;
 
 		/// <summary>
 		/// Data model for connection details.
@@ -50,12 +44,18 @@ namespace Booma.Proxy
 			ConnectionEndpoint.IpAddress = payload.EndpointAddress.ToString();
 			ConnectionEndpoint.Port = payload.EndpointerPort;
 
-			OnConnectionRedirected?.Invoke();
+			await OnConnectionRedirected();
 		}
 
 		private string BuildLoginDebugString(SharedConnectionRedirectPayload payload)
 		{
 			return $"Ip: {payload.EndpointAddress} Port: {payload.EndpointerPort}";
+		}
+
+		//Default version we don't do anything.
+		protected virtual Task OnConnectionRedirected()
+		{
+			return Task.CompletedTask;
 		}
 	}
 }
