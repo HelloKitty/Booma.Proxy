@@ -15,9 +15,6 @@ namespace Booma.Proxy
 	/// </summary>
 	public class SharedWelcomePayloadHandler : GameMessageHandler<SharedWelcomePayload>
 	{
-		//TODO: Remove
-		private SharedLoginRequest93Payload.ServerType _AuthType;
-
 		/// <summary>
 		/// Crypto initialization service that can be init from the welcome message.
 		/// </summary>
@@ -36,12 +33,7 @@ namespace Booma.Proxy
 		//TODO: Fix this
 		//[PropertyTooltip("Optional auth type that can be changed. If you're connected to a ship/block you should use the ship auth type.")]
 		//[OdinSerialize]
-		public SharedLoginRequest93Payload.ServerType AuthType
-		{
-			get => throw new NotSupportedException("MUST PROPERLY IMPLEMENT NEW CTOR WORKFLOW.");
-			protected set => throw new NotSupportedException("MUST PROPERLY IMPLEMENT NEW CTOR WORKFLOW.");
-			//first value
-		} /*SharedLoginRequest93Payload.ServerType.PreShip*/
+		public SharedLoginRequest93Payload.ServerType AuthType { get; protected set; } = SharedLoginRequest93Payload.ServerType.PreShip;
 
 		/// <inheritdoc />
 		public SharedWelcomePayloadHandler(IFullCryptoInitializationService<byte[]> cryptoInitializer, IAuthenticationDetailsModel loginDetails, IClientSessionDetails sessionDetails, ILog logger) 
