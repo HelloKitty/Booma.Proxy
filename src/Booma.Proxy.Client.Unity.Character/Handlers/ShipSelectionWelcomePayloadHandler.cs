@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
 	public sealed class ShipSelectionWelcomePayloadHandler : SharedWelcomePayloadHandler
 	{
 		public ShipSelectionWelcomePayloadHandler(IFullCryptoInitializationService<byte[]> cryptoInitializer, IAuthenticationDetailsModel loginDetails, IClientSessionDetails sessionDetails, ILog logger) 

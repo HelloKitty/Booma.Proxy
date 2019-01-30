@@ -9,6 +9,8 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	//Oddly this runs in the shipselection screen. Not the character screen.
+	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
 	public sealed class CharacterTimeStampEventHandler : GameMessageHandler<CharacterTimestampEventPayload>
 	{
 		/// <inheritdoc />

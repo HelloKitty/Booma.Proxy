@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	/// Handles <see cref="ShipBlockListEventPayload"/> and dispatches to the
 	/// UI controller service.
 	/// </summary>
+	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
 	public sealed class ShipBlockListListHandler : GameMessageHandler<ShipBlockListEventPayload>
 	{
 		/// <summary>

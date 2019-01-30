@@ -12,7 +12,7 @@ namespace Booma.Proxy
 {
 	//TODO: This marquee change handler should be able to handle all marquees for all servers
 	//TODO: This is a temporary handler, we really need a fully featured version.
-	[Injectee]
+	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
 	public sealed class SharedScrollMarqueeChangeHandler : GameMessageHandler<SharedMarqueeScrollChangeEventPayload>
 	{
 		//TODO: This is just for testing purposes

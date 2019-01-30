@@ -11,6 +11,7 @@ using UnityEngine.Events;
 
 namespace Booma.Proxy
 {
+	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
 	public class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<SharedConnectionRedirectPayload>
 	{
 		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
