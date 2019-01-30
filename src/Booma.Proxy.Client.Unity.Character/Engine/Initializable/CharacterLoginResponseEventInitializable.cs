@@ -16,9 +16,10 @@ namespace Booma.Proxy
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		/// <inheritdoc />
-		public CharacterLoginResponseEventInitializable([NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService)
+		public CharacterLoginResponseEventInitializable([NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, [NotNull] ILoginResponseEventSubscribable loginResponseSubscriptionService)
 		{
 			SendService = sendService ?? throw new ArgumentNullException(nameof(sendService));
+			LoginResponseSubscriptionService = loginResponseSubscriptionService ?? throw new ArgumentNullException(nameof(loginResponseSubscriptionService));
 		}
 
 		/// <inheritdoc />
