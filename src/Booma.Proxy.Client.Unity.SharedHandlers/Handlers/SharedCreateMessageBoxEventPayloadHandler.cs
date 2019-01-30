@@ -9,7 +9,7 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
-	[Injectee]
+	[NetworkMessageHandler(GameSceneType.TitleScreen)]
 	public sealed class SharedCreateMessageBoxEventPayloadHandler : GameMessageHandler<SharedCreateMessageBoxEventPayload>
 	{
 		/// <inheritdoc />
