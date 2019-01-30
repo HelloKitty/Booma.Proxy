@@ -15,6 +15,8 @@
 
 		TitleScreen = 5,
 
-		CharacterSelectionScreen = 6
+		CharacterSelectionScreen = 6,
+
+		ServerSelectionScreen = 7
 	}
 }
