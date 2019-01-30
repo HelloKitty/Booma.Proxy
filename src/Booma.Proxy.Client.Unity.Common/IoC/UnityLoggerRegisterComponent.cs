@@ -28,6 +28,10 @@ namespace Booma.Proxy
 			register.RegisterInstance(new UnityLoggingService(LoggingLevel))
 				.As<ILog>()
 				.SingleInstance();
+
+			//This is important to create yielding to Unity3D sync context.
+			//TODO: This is a bad place to put it, but every scene has this so maybe it's not
+			UnityExtended.InitializeSyncContext();
 		}
 	}
 }
