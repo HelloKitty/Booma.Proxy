@@ -11,6 +11,10 @@
 
 		Pioneer2 = 3,
 
-		RagolDefault = 4
+		RagolDefault = 4,
+
+		TitleScreen = 5,
+
+		CharacterSelectionScreen = 6
 	}
 }
