@@ -10,52 +10,52 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
-using Button = UnityEngine.UI.Button;
 
 namespace Booma.Proxy
 {
 	//TODO: This is a test handler. It should not be used in the final product
 	public sealed class CharacterCharacterUpdateResponseHandler : GameMessageHandler<CharacterCharacterUpdateResponsePayload>
 	{
-		[Serializable]
-		public struct CharacterTabUIElement
-		{
-			//[DrawWithUnity] //TODO: Was this important? Was sirenix
-			[SerializeField]
-			public UnityEngine.UI.Button ButtonElement;
-
-			[SerializeField]
-			public UnityEngine.UI.Text TextElement;
-		}
-
-		//TODO: We should have a better MVC, or something, approach once the UI is finalized
-		[SerializeField]
-		public List<CharacterTabUIElement> Elements;
-
 		private ICharacterSlotSelectedModel SelectedSlotModel { get; }
 
-		[SerializeField]
-		private UnityEvent OnCharacterSelected;
+		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+
+		private CharacterTabUIElementsContext CharacterScreenUIContext { get; }
 
 		/// <inheritdoc />
-		public CharacterCharacterUpdateResponseHandler([NotNull] ICharacterSlotSelectedModel selectedSlotModel, ILog logger)
+		public CharacterCharacterUpdateResponseHandler([NotNull] ICharacterSlotSelectedModel selectedSlotModel, ILog logger, [NotNull] CharacterTabUIElementsContext characterScreenUiContext, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService)
 			: base(logger)
 		{
 			SelectedSlotModel = selectedSlotModel ?? throw new ArgumentNullException(nameof(selectedSlotModel));
+			CharacterScreenUIContext = characterScreenUiContext ?? throw new ArgumentNullException(nameof(characterScreenUiContext));
+			SendService = sendService ?? throw new ArgumentNullException(nameof(sendService));
 		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, CharacterCharacterUpdateResponsePayload payload)
 		{
-			if(Elements == null || Elements.Count < payload.SlotSelected)
+			if(CharacterScreenUIContext.Elements.Count < payload.SlotSelected)
 				throw new InvalidOperationException($"Character slot unavailable for Slot: {payload.SlotSelected}");
 
-			Elements[payload.SlotSelected].TextElement.text = payload.CharacterData.CharacterName.Replace("\tE", "");
-			Elements[payload.SlotSelected].ButtonElement.onClick.AddListener(() =>
+			CharacterScreenUIContext.Elements.ElementAt(payload.SlotSelected).ButtonElement.IsInteractable = true;
+			CharacterScreenUIContext.Elements.ElementAt(payload.SlotSelected).TextElement.Text = payload.CharacterData.CharacterName.Replace("\tE", "");
+			CharacterScreenUIContext.Elements.ElementAt(payload.SlotSelected).ButtonElement.AddOnClickListenerAsync(async () =>
 			{
 				//Save the character we picked
 				SelectedSlotModel.SlotSelected = payload.SlotSelected;
-				OnCharacterSelected?.Invoke();
+				
+				//Disable all character buttons
+				foreach(var uiEle in CharacterScreenUIContext.Elements)
+					uiEle.ButtonElement.IsInteractable = false;
+
+				//TODO: What is this?
+				//I really don't know what this is
+				await SendService.SendMessage(new CharacterChecksumRequestPayload(0))
+					.ConfigureAwait(false);
+
+				//This starts the long drawnout bullshit for guild card data reading or whatever
+				await SendService.SendMessage(new CharacterGuildHeaderRequestPayload())
+					.ConfigureAwait(false);
 			});
 
 			return Task.CompletedTask;
