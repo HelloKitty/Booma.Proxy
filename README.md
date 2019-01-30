@@ -1,3 +1,5 @@
+## Discord: https://discord.gg/Qk8HpmG
+
 # Booma.Proxy
 
 Booma.Proxy is actually not a Proxy. It is a collection of C#/.NET libraries for communication, understanding and emulating Phantasy Star Online Blue Burst. These can be used to construct an emulated PSOBB server or an emulated PSOBB client. In fact this repository contains an in-development implementation of a client in Unity3D.
