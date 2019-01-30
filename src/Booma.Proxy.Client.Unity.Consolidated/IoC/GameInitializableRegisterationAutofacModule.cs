@@ -17,6 +17,15 @@ namespace Booma.Proxy
 {
 	public abstract class GameInitializableRegisterationAutofacModule : NonBehaviourDependency
 	{
+		//This is kinda hacky, but we need a cached efficient collection of all IGameInitializable types
+		private static IReadOnlyCollection<Type> CachedInitializableCollection { get; } = 
+			new ClientUnitySharedHandlersMetadataMarker().AllAssemblyTypes
+				.Concat(new ClientUnityAuthenticationMetadataMarker().AllAssemblyTypes)
+				.Concat(new ClientUnityCharacterMetadataMarker().AllAssemblyTypes)
+				.Concat(new ClientUnityShipMetadataMarker().AllAssemblyTypes)
+				.Where(t => t.Implements(typeof(IGameInitializable)))
+				.ToArray();
+
 		//TODO: When we have specific floors or special scenes that don't fit type we may want to supply zone id or additional metadata.
 		/// <summary>
 		/// The scene to load initializables for.
@@ -33,7 +42,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override void Register(ContainerBuilder builder)
 		{
-			foreach(var gameInit in GetType().Assembly.GetExportedTypes()
+			foreach(var gameInit in CachedInitializableCollection
 				.Where(t => t.Implements(typeof(IGameInitializable)))
 				.Where(t => t.Attributes<SceneTypeCreateAttribute>().Any(a => a.SceneType == SceneType)))
 			{
