@@ -8,6 +8,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	//Based on the old: GuildcardDataRequestSender. (deleted)
 	[NetworkMessageHandler(GameSceneType.CharacterSelectionScreen)]
 	public sealed class CharacterLoginResponsePayloadHandler : SharedLoginResponsePayloadHandler
 	{
