@@ -11,7 +11,7 @@ namespace Booma
 	/// <summary>
 	/// Base type for client assembly metadata markers.
 	/// </summary>
-	public abstract class BaseUnityClientMetadataMarker : IMessageHandlerTypeContainable
+	public abstract class BaseUnityClientMetadataMarker : IMessageHandlerTypeContainable, IAssemblyTypeContainable
 	{
 		/// <inheritdoc />
 		public virtual IEnumerable<Type> AssemblyDefinedHandlerTyped => GetType()
@@ -19,5 +19,10 @@ namespace Booma
 			.GetTypes()
 			.Where(t => t.GetInterfaces().Any(i => i.GetTypeInfo().IsGenericType && i.GetGenericTypeDefinition() == typeof(IPeerPayloadSpecificMessageHandler<,>)) && !t.IsAbstract)
 			.ToArray();
+
+		/// <inheritdoc />
+		public IEnumerable<Type> AllAssemblyTypes => GetType()
+			.Assembly
+			.GetTypes();
 	}
 }
