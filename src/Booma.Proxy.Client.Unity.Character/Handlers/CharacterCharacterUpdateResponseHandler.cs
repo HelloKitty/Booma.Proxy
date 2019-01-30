@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 namespace Booma.Proxy
 {
 	//TODO: This is a test handler. It should not be used in the final product
+	[NetworkMessageHandler(GameSceneType.CharacterSelectionScreen)]
 	public sealed class CharacterCharacterUpdateResponseHandler : GameMessageHandler<CharacterCharacterUpdateResponsePayload>
 	{
 		private ICharacterSlotSelectedModel SelectedSlotModel { get; }
