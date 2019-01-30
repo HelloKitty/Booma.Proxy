@@ -17,6 +17,11 @@
 
 		CharacterSelectionScreen = 6,
 
-		ServerSelectionScreen = 7
+		ServerSelectionScreen = 7,
+
+		/// <summary>
+		/// This is the scene right before bursting into the block's lobby.
+		/// </summary>
+		PreBlockBurstingScene = 8
 	}
 }
