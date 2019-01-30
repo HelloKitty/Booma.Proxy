@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Engine\Initializables\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>
