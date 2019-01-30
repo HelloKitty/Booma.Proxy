@@ -29,4 +29,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Engine\Initializables\" />
+  </ItemGroup>
+
 </Project>
