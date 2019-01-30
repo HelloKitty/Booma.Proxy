@@ -44,15 +44,22 @@ namespace Booma.Proxy
 		{
 			foreach(var creatable in CachedCreationType
 				.Where(t => t.Implements(typeof(TInterfaceType)))
-				.Where(t => t.Attributes<SceneTypeCreateAttribute>().Any(a => a.SceneType == SceneType)))
+				.Where(t => t.Attributes<SceneTypeCreateAttribute>().Any(a => a.SceneType == SceneType))
+				.Where(t => OnFilterCreationType(t)))
 			{
+				//TODO: DO we need register self?
 				builder.RegisterType(creatable)
 					.As<TInterfaceType>()
-					.AsSelf()
+					//.AsSelf()
 					.SingleInstance()
 					//TODO: We don't want to have to manually deal with this, we should create Attribute/Metadata to determine if this should be enabled.
 					.WithAttributeFiltering();
 			}
+		}
+
+		protected virtual bool OnFilterCreationType(Type t)
+		{
+			return true;
 		}
 	}
 }
