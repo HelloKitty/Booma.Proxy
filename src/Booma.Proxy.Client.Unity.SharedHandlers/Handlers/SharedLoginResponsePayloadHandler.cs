@@ -15,14 +15,21 @@ namespace Booma.Proxy
 	/// Handler that handles the <see cref="SharedLoginResponsePayload"/> and initializes the recieved payload
 	/// information.
 	/// </summary>
+	[AdditionalRegisterationAs(typeof(ILoginResponseEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.TitleScreen)] //titlescreen obviously needs to recieve login responses.
-	public class SharedLoginResponsePayloadHandler : GameMessageHandler<SharedLoginResponsePayload>
+	public class SharedLoginResponsePayloadHandler : GameMessageHandler<SharedLoginResponsePayload>, ILoginResponseEventSubscribable
 	{
 		/// <summary>
 		/// Repository to load and session the session data.
 		/// </summary>
 		private IClientSessionDetails SessionDetails { get; }
+
+		/// <inheritdoc />
+		public event EventHandler OnLoginSuccess;
+
+		/// <inheritdoc />
+		public event EventHandler OnLoginFailure;
 
 		/// <inheritdoc />
 		public SharedLoginResponsePayloadHandler([NotNull] IClientSessionDetails sessionDetails, ILog logger)
@@ -43,7 +50,7 @@ namespace Booma.Proxy
 
 			if(!payload.isSuccessful)
 			{
-				OnLoginFailed();
+				OnLoginFailure?.Invoke(this, EventArgs.Empty);
 				return Task.CompletedTask;
 			}
 
@@ -53,19 +60,9 @@ namespace Booma.Proxy
 			SessionDetails.GuildCardNumber = payload.GuildCard;
 
 			//Invoke login success if it's succesful at this point.
-			OnLoginSuccess();
+			OnLoginSuccess?.Invoke(this, EventArgs.Empty);
 
 			return Task.CompletedTask;
-		}
-
-		protected virtual void OnLoginFailed()
-		{
-			
-		}
-
-		protected virtual void OnLoginSuccess()
-		{
-
 		}
 	}
 }

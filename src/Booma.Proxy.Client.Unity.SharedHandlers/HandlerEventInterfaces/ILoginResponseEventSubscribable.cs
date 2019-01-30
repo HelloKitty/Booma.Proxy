@@ -8,6 +8,7 @@ namespace Booma.Proxy
 {
 	public interface ILoginResponseEventSubscribable
 	{
+		//TODO: Provide actual args/data for reasons and such.
 		event EventHandler OnLoginSuccess;
 
 		event EventHandler OnLoginFailure;
