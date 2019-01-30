@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
 using GladNet;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
@@ -53,6 +55,10 @@ namespace Booma.Proxy
 			await context.PayloadSendService.SendMessage(new CharacterGuildCardChunkRequestPayload(0, false));
 
 			await Task.Delay(500); //enough time for server to see.
+
+			//The old editor/scene handlers eventually ended up
+			//loading the next scene after all that
+			SceneManager.LoadSceneAsync(2).allowSceneActivation = true;
 		}
 	}
 }
