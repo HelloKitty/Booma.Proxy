@@ -9,6 +9,7 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.TitleScreen)]

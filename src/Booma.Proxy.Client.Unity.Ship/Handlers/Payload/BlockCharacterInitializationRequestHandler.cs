@@ -8,6 +8,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
 	public sealed class BlockCharacterInitializationRequestHandler : GameMessageHandler<BlockCharacterDataInitializationServerRequestPayload>
 	{
 		/// <inheritdoc />
