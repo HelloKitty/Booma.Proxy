@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// Metadata attributed used to encode information
-	/// about a network message handler.
+	/// Metadata attributed used to indicate that
+	/// a particular object should be created in a specified <see cref="GameSceneType"/>.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-	public sealed class NetworkMessageHandlerAttribute : Attribute
+	public sealed class SceneTypeCreateAttribute : Attribute
 	{
 		/// <summary>
 		/// Indicates the scene type this handler is for.
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		public GameSceneType SceneType { get; }
 
 		/// <inheritdoc />
-		public NetworkMessageHandlerAttribute(GameSceneType sceneType)
+		public SceneTypeCreateAttribute(GameSceneType sceneType)
 		{
 			if(!Enum.IsDefined(typeof(GameSceneType), sceneType)) throw new InvalidEnumArgumentException(nameof(sceneType), (int)sceneType, typeof(GameSceneType));
 			SceneType = sceneType;

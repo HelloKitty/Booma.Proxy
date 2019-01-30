@@ -29,7 +29,7 @@ namespace Booma.Proxy
 			foreach(Type handlerType in provider.AssemblyDefinedHandlerTyped)
 			{
 				//We just skip now instead. For ease, maybe revert
-				if(handlerType.GetCustomAttribute<NetworkMessageHandlerAttribute>(false) == null) //don't use base attributes
+				if(handlerType.GetCustomAttribute<SceneTypeCreateAttribute>(false) == null) //don't use base attributes
 					continue;
 
 				//if(!handlerType.HasAttribute<NetworkMessageHandlerAttribute>())
@@ -57,7 +57,7 @@ namespace Booma.Proxy
 			//We don't want to get base attributes
 			//devs may want to inherit from a handler and change some stuff. But not register it as a handler
 			//for the same stuff obviously.
-			foreach(NetworkMessageHandlerAttribute attris in handlerType.GetCustomAttributes<NetworkMessageHandlerAttribute>(false))
+			foreach(SceneTypeCreateAttribute attris in handlerType.GetCustomAttributes<SceneTypeCreateAttribute>(false))
 			{
 				if(attris.SceneType == sceneType)
 					return true;

@@ -15,8 +15,8 @@ namespace Booma.Proxy
 	/// Handler that handles the <see cref="SharedLoginResponsePayload"/> and initializes the recieved payload
 	/// information.
 	/// </summary>
-	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
-	[NetworkMessageHandler(GameSceneType.TitleScreen)] //titlescreen obviously needs to recieve login responses.
+	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
+	[SceneTypeCreate(GameSceneType.TitleScreen)] //titlescreen obviously needs to recieve login responses.
 	public class SharedLoginResponsePayloadHandler : GameMessageHandler<SharedLoginResponsePayload>
 	{
 		/// <summary>

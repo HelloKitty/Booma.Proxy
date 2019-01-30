@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
-	[NetworkMessageHandler(GameSceneType.TitleScreen)]
+	[SceneTypeCreate(GameSceneType.TitleScreen)]
 	public sealed class TitleConnectionRedirectionPayloadHandler : SharedConnectionRedirectionPayloadHandler
 	{
 		private PlayableDirector Director { get; }

@@ -12,7 +12,7 @@ namespace Booma.Proxy
 {
 	//Based on the old: GuildcardDataRequestSender. (deleted)
 	//TODO: We don't even do anything with this data. We should.
-	[NetworkMessageHandler(GameSceneType.CharacterSelectionScreen)]
+	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	public sealed class CharacterGuildCardDataHeaderResponseHandler : GameMessageHandler<CharacterGuildCardDataHeaderResponsePayload>
 	{
 		/// <inheritdoc />

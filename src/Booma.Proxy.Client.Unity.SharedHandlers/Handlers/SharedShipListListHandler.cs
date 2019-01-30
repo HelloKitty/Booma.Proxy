@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Handler for recieveing the ship list payload, <see cref="SharedShipListEventPayload"/>.
 	/// </summary>
-	[NetworkMessageHandler(GameSceneType.ServerSelectionScreen)]
+	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	public sealed class SharedShipListListHandler : GameMessageHandler<SharedShipListEventPayload>
 	{
 		//TODO: This is a temp handler until we implement the UI.

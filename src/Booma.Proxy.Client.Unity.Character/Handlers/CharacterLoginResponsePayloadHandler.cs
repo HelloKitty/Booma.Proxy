@@ -8,7 +8,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
-	[NetworkMessageHandler(GameSceneType.CharacterSelectionScreen)]
+	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	public sealed class CharacterLoginResponsePayloadHandler : SharedLoginResponsePayloadHandler
 	{
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
