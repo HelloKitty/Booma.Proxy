@@ -28,8 +28,11 @@ namespace Booma.Proxy
 			//Now, we have to iterate the handler Types from the container
 			foreach(Type handlerType in provider.AssemblyDefinedHandlerTyped)
 			{
+				//We just skip now instead. For ease, maybe revert
 				if(!handlerType.HasAttribute<NetworkMessageHandlerAttribute>())
-					throw new InvalidOperationException($"Found Handler: {handlerType.Name} with missing/no {nameof(NetworkMessageHandlerAttribute)}. All handlers must have.");
+					continue;
+				//if(!handlerType.HasAttribute<NetworkMessageHandlerAttribute>())
+				//	throw new InvalidOperationException($"Found Handler: {handlerType.Name} with missing/no {nameof(NetworkMessageHandlerAttribute)}. All handlers must have.");
 
 				bool isForSceneType = DetermineIfHandlerIsForSceneType(handlerType, GameSceneTypeSearchingFor);
 
