@@ -18,7 +18,7 @@ namespace Booma.Proxy
 	[AdditionalRegisterationAs(typeof(ILoginResponseEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.TitleScreen)] //titlescreen obviously needs to recieve login responses.
-	public class SharedLoginResponsePayloadHandler : GameMessageHandler<SharedLoginResponsePayload>, ILoginResponseEventSubscribable
+	public sealed class SharedLoginResponsePayloadHandler : GameMessageHandler<SharedLoginResponsePayload>, ILoginResponseEventSubscribable
 	{
 		/// <summary>
 		/// Repository to load and session the session data.

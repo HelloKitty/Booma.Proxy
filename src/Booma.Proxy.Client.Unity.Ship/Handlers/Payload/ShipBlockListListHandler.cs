@@ -22,6 +22,7 @@ namespace Booma.Proxy
 		/// </summary>
 		//[Required]
 		//[OdinSerialize]
+		[SerializeField] //temp so I don't forget to fix this
 		private IMenuListingRegisterable BlockListingRegisterService => throw new NotSupportedException($"TODO: MOVE OVER TO CTOR WORKFLOW");
 
 		[SerializeField]
