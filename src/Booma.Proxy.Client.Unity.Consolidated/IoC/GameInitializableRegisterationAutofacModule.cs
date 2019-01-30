@@ -15,7 +15,7 @@ using Module = Autofac.Module;
 
 namespace Booma.Proxy
 {
-	public sealed class GameInitializableRegisterationAutofacModule : NonBehaviourDependency
+	public abstract class GameInitializableRegisterationAutofacModule : NonBehaviourDependency
 	{
 		//TODO: When we have specific floors or special scenes that don't fit type we may want to supply zone id or additional metadata.
 		/// <summary>
