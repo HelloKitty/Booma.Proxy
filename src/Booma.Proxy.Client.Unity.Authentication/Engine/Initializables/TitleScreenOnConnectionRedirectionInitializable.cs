@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac.Features.AttributeFilters;
+using Guardians;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -15,13 +17,15 @@ namespace Booma.Proxy
 		private IConnectionRedirectionEventSubscribable OnConnectionRedirectionSubcriptionService { get; }
 
 		//TODO: Don't expose Unity directors directly.
-		private PlayableDirector Director { get; }
+		private IUIPlayable SceneEndPlayable { get; }
 
 		/// <inheritdoc />
-		public TitleScreenOnConnectionRedirectionInitializable([NotNull] IConnectionRedirectionEventSubscribable onConnectionRedirectionSubcriptionService, [NotNull] PlayableDirector director)
+		public TitleScreenOnConnectionRedirectionInitializable(
+			[NotNull] IConnectionRedirectionEventSubscribable onConnectionRedirectionSubcriptionService,
+			[KeyFilter(UnityUIRegisterationKey.TitleLoginButton)] [NotNull] IUIPlayable sceneEndPlayable)
 		{
 			OnConnectionRedirectionSubcriptionService = onConnectionRedirectionSubcriptionService ?? throw new ArgumentNullException(nameof(onConnectionRedirectionSubcriptionService));
-			Director = director ?? throw new ArgumentNullException(nameof(director));
+			SceneEndPlayable = sceneEndPlayable ?? throw new ArgumentNullException(nameof(sceneEndPlayable));
 		}
 
 		/// <inheritdoc />
@@ -39,7 +43,7 @@ namespace Booma.Proxy
 
 			//For titlescreen, when we're finally redirected to a new connection
 			//it's going to be the character connection
-			Director.Play();
+			SceneEndPlayable.Play();
 
 			//We do a wait so the screen is mostly black before we attempt to async load the scene
 			await Task.Delay(2000);
