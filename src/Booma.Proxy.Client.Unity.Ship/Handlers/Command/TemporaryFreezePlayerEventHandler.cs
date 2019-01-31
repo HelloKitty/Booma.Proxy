@@ -9,7 +9,8 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[Injectee]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class TemporaryFreezePlayerEventHandler : Command60Handler<Sub60PlayerFreezeCommand>
 	{
 		/// <inheritdoc />

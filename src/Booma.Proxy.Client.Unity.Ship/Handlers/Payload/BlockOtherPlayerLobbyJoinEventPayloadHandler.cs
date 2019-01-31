@@ -9,6 +9,8 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
 	{

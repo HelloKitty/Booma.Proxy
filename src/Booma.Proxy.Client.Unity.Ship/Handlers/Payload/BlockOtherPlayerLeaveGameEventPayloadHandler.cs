@@ -9,6 +9,8 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class BlockOtherPlayerLeaveGameEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveGameEventPayload>
 	{
 		private INetworkEntityRegistery<INetworkPlayer> PlayerRegistry { get; }

@@ -8,8 +8,10 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	//TODO: Do we need this on Pioneer2?
 	[SceneTypeCreate(GameSceneType.LobbyDefault)] //lobby has this handler too, according to my old self.
 	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
+	//[SceneTypeCreate(GameSceneType.Pioneer2)] //Don't know why this has to happen all the time
 	public sealed class BlockCharacterInitializationRequestHandler : GameMessageHandler<BlockCharacterDataInitializationServerRequestPayload>
 	{
 		/// <inheritdoc />

@@ -10,6 +10,8 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherClientAlertedExistenceEventHandler : Command60Handler<Sub60FinishedWarpAckCommand> //we don't need context
 	{

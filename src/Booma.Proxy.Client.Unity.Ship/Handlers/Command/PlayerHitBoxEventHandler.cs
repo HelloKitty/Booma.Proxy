@@ -9,7 +9,8 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[Injectee]
+	[SceneTypeCreate(GameSceneType.Pioneer2)] //the reason we need to recieve this on Pioneer 2 is so we can adjust the gamestate here.
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class PlayerHitBoxEventHandler : Command60Handler<Sub60ClientBoxHitEventCommand>
 	{
 		/// <inheritdoc />

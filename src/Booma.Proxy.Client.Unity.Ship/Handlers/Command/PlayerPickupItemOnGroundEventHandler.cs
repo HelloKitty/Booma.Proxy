@@ -10,6 +10,8 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class PlayerPickupItemOnGroundEventHandler : Command60Handler<Sub60PickupItemFromGroundCommand>
 	{
 		private INetworkEntityRegistery<INetworkItem> WorldItemRegistery { get; }

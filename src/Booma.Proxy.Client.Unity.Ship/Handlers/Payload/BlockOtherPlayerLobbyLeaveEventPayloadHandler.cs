@@ -9,6 +9,9 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	//Can leave anywhere in lobby or in game technically
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherPlayerLobbyLeaveEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveLobbyEventPayload>
 	{
