@@ -19,6 +19,12 @@ namespace Guardians
 
 		CharacterSlot3 = 3,
 
-		CharacterSlot4 = 4
+		CharacterSlot4 = 4,
+
+		TitleLoginUsername = 5,
+
+		TitleLoginPassword = 6,
+
+		TitleLoginButton = 7
 	}
 }
