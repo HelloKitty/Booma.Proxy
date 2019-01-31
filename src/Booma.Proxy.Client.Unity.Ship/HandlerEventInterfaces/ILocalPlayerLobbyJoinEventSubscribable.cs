@@ -8,6 +8,22 @@ namespace Booma.Proxy
 {
 	public interface ILocalPlayerLobbyJoinEventSubscribable
 	{
-		event EventHandler OnLocalPlayerLobbyJoined;
+		event EventHandler<LobbyJoinedEventArgs> OnLocalPlayerLobbyJoined;
+	}
+
+	public sealed class LobbyJoinedEventArgs : EventArgs
+	{
+		/// <summary>
+		/// The ID of the lobby loaded.
+		/// </summary>
+		public int LobbyId { get; }
+
+		/// <inheritdoc />
+		public LobbyJoinedEventArgs(int lobbyId)
+		{
+			if(lobbyId <= 0) throw new ArgumentOutOfRangeException(nameof(lobbyId));
+
+			LobbyId = lobbyId;
+		}
 	}
 }
