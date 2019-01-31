@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac.Features.AttributeFilters;
+using Common.Logging;
 using GladNet;
 using Guardians;
 
@@ -33,17 +34,21 @@ namespace Booma.Proxy
 
 		private IAuthenticationDetailsModel AuthenticationModel { get; }
 
+		private ILog Logger { get; }
+
 		/// <inheritdoc />
 		public LoginButtonAuthenticationModelinitializationController(
 			[KeyFilter(UnityUIRegisterationKey.TitleLoginUsername)] [NotNull] IUIText usernameTextElement, 
 			[KeyFilter(UnityUIRegisterationKey.TitleLoginPassword)] [NotNull] IUIText passwordTextElement, 
 			[KeyFilter(UnityUIRegisterationKey.TitleLoginButton)] [NotNull] IUIButton loginButtonElement,
-			[NotNull] IAuthenticationDetailsModel authenticationModel)
+			[NotNull] IAuthenticationDetailsModel authenticationModel,
+			[NotNull] ILog logger)
 		{
 			UsernameTextElement = usernameTextElement ?? throw new ArgumentNullException(nameof(usernameTextElement));
 			PasswordTextElement = passwordTextElement ?? throw new ArgumentNullException(nameof(passwordTextElement));
 			LoginButtonElement = loginButtonElement ?? throw new ArgumentNullException(nameof(loginButtonElement));
 			AuthenticationModel = authenticationModel ?? throw new ArgumentNullException(nameof(authenticationModel));
+			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
 		/// <inheritdoc />
@@ -60,6 +65,9 @@ namespace Booma.Proxy
 		{
 			AuthenticationModel.Username = UsernameTextElement.Text;
 			AuthenticationModel.Password = PasswordTextElement.Text;
+
+			if(Logger.IsInfoEnabled)
+				Logger.Info($"Initialized AuthModel. User: {AuthenticationModel.Username} Password: {AuthenticationModel.Password}");
 
 			//Also disable the button interaction.
 			LoginButtonElement.IsInteractable = false;
