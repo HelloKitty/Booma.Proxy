@@ -12,6 +12,7 @@ using UnityEngine.Events;
 namespace Booma.Proxy
 {
 	[AdditionalRegisterationAs(typeof(IConnectionRedirectionEventSubscribable))]
+	[SceneTypeCreate(GameSceneType.TitleScreen)]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	public sealed class SharedConnectionRedirectionPayloadHandler : GameMessageHandler<SharedConnectionRedirectPayload>, IConnectionRedirectionEventSubscribable
 	{
