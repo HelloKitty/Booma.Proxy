@@ -15,6 +15,8 @@ namespace Booma.Proxy
 	/// event that is raised by the server when a client is moving slow/walking.
 	/// </summary>
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class BlockMovingSlowPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingSlowPositionSetCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>

@@ -15,6 +15,8 @@ namespace Booma.Proxy
 	/// event that is raised by the server when a client is moving fast/running.
 	/// </summary>
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class BlockMovingFastPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingFastPositionSetCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>
