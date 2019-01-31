@@ -8,6 +8,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockChatMessageEventPayloadHandler : ContextExtendedMessageHandler<BlockTextChatMessageEventPayload, INetworkPlayerNetworkMessageContext>
 	{
 		public BlockChatMessageEventPayloadHandler(ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory) 

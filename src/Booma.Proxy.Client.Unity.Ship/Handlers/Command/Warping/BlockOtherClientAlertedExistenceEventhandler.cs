@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherClientAlertedExistenceEventHandler : Command60Handler<Sub60FinishedWarpAckCommand> //we don't need context
 	{
 		private INetworkPlayerFactory PlayerFactory { get; }

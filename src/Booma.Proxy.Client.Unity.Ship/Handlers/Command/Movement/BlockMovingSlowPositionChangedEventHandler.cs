@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	/// Handler that deals with the <see cref="Sub60MovingSlowPositionSetCommand"/>
 	/// event that is raised by the server when a client is moving slow/walking.
 	/// </summary>
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockMovingSlowPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingSlowPositionSetCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>

@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : ContextExtendedCommand60Handler<Sub60FinishedWarpingBurstingCommand, INetworkPlayerFullNetworkMessageContext>
 	{
 		/// <summary>

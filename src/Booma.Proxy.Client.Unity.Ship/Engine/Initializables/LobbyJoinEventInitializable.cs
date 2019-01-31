@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)] //it's possible for lobbies to want to block join a lobby so we need to basically do the same thing here.
 	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
 	public sealed class LobbyJoinEventInitializable : IGameInitializable
 	{

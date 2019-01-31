@@ -11,6 +11,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// The ping event handler. Will just send the ping response.
 	/// </summary>
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public class BlockPingEventHandler : GameMessageHandler<BlockClientPingEventPayload>
 	{
 		/// <inheritdoc />

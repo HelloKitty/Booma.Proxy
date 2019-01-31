@@ -9,6 +9,7 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockTeleportToPositionCommandHandler : ContextExtendedCommand60Handler<Sub60TeleportToPositionCommand, INetworkPlayerNetworkMessageContext>
 	{
 		private IUnitScalerStrategy ScalerService { get; }

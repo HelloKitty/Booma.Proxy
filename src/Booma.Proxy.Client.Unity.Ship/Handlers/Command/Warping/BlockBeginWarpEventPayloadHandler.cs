@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>
 	{
 		private INetworkPlayerFactory PlayerFactory { get; }
@@ -31,12 +32,6 @@ namespace Booma.Proxy
 
 			//So instead of serializing the zone id we inject zone settings.
 			ZoneId = (byte)zoneSettingsData.ZoneId;
-		}
-
-		public BlockBeginWarpEventPayloadHandler(ILog logger) 
-			: base(logger)
-		{
-
 		}
 
 		/// <inheritdoc />

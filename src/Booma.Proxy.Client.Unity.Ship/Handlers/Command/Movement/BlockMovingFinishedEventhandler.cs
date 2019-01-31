@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockMovingFinishedEventhandler : ContextExtendedCommand60Handler<Sub60FinishedMovingCommand, INetworkPlayerNetworkMessageContext>
 	{
 		/// <summary>

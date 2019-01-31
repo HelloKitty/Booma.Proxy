@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockGameJoinEventPayloadHandler : GameMessageHandler<BlockGameJoinEventPayload>
 	{
 		private IUnitScalerStrategy UnitScaler { get; }
@@ -22,7 +23,7 @@ namespace Booma.Proxy
 		private INetworkClientExportable ExportableClient { get; }
 
 		//TODO: Implement proper scene/game loading
-		public int TestGameSceneIndex = 0;
+		public int TestGameSceneIndex = 7; //TODO: We're just hardcoding Pioneer2 scene
 
 		/// <inheritdoc />
 		public BlockGameJoinEventPayloadHandler([NotNull] ILog logger, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ICharacterSlotSelectedModel slotModel, [NotNull] INetworkClientExportable exportableClient) 
