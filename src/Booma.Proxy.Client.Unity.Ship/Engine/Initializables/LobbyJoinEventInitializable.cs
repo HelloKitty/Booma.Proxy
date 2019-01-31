@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
-	public sealed class PreBlockLobbyJoinEventInitializable : IGameInitializable
+	public sealed class LobbyJoinEventInitializable : IGameInitializable
 	{
 		private INetworkClientExportable ClientExportable { get; }
 
@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		private ILocalPlayerLobbyJoinEventSubscribable LobbyJoinEventSubscriptionService { get; }
 
 		/// <inheritdoc />
-		public PreBlockLobbyJoinEventInitializable([NotNull] INetworkClientExportable clientExportable, [NotNull] ILog logger, [NotNull] ILocalPlayerLobbyJoinEventSubscribable lobbyJoinEventSubscriptionService)
+		public LobbyJoinEventInitializable([NotNull] INetworkClientExportable clientExportable, [NotNull] ILog logger, [NotNull] ILocalPlayerLobbyJoinEventSubscribable lobbyJoinEventSubscriptionService)
 		{
 			ClientExportable = clientExportable ?? throw new ArgumentNullException(nameof(clientExportable));
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
