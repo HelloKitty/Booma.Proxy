@@ -39,7 +39,8 @@ namespace Booma.Proxy
 				//They aren't just purely payload Type handlers
 				//so we don't need to make TryHandle semantics around them or anything.
 				var handlerRegisterationBuilder = register.RegisterType(handlerType)
-					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
+					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
+					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, IPeerMessageContext<PSOBBGamePacketPayloadClient>>>();
 
 				//Now we need to register it as the additional specified types
 				foreach(var additionalServiceTypeAttri in handlerType.GetCustomAttributes<AdditionalRegisterationAsAttribute>(true))
