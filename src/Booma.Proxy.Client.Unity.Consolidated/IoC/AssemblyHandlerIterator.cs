@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using Reflect.Extent;
 
@@ -28,8 +29,11 @@ namespace Booma.Proxy
 			//Now, we have to iterate the handler Types from the container
 			foreach(Type handlerType in provider.AssemblyDefinedHandlerTyped)
 			{
+				//TODO: Improve efficiency of all this reflection we are doing.
+				IEnumerable<SceneTypeCreateAttribute> attributes = handlerType.GetCustomAttributes<SceneTypeCreateAttribute>(false);
+
 				//We just skip now instead. For ease, maybe revert
-				if(handlerType.GetCustomAttribute<SceneTypeCreateAttribute>(false) == null) //don't use base attributes
+				if(attributes == null || !attributes.Any())  //don't use base attributes
 					continue;
 
 				//if(!handlerType.HasAttribute<NetworkMessageHandlerAttribute>())
