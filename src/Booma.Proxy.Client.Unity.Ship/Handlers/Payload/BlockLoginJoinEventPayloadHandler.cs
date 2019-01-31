@@ -32,8 +32,6 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockLobbyJoinEventPayload payload)
 		{
-			throw new NotImplementedException($"This handler is temporarily disabled. We don't properly setup lobby id to scene matching yet. It was broken in update.");
-
 			if(Logger.IsDebugEnabled)
 				Logger.Debug($"**Handling**: {nameof(BlockLobbyJoinEventPayload)}");
 
