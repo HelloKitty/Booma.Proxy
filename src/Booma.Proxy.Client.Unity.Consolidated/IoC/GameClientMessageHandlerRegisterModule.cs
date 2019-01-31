@@ -27,9 +27,13 @@ namespace Booma.Proxy
 			if(!Enum.IsDefined(typeof(GameSceneType), HandlersType))
 				throw new InvalidOperationException($"Cannot use {nameof(GameSceneType)} with Value: {(int)HandlersType} as handler scene type. Invalid.");
 
+			StringBuilder handlerResultString = new StringBuilder(200);
+
 			//This will load and register EACH payload specific handler as itself.
 			foreach(Type handlerType in IterateAllAssembliesWithHandlers(HandlersType))
 			{
+				handlerResultString.AppendLine($"Register Handler: {handlerType.Name}");
+
 				//This is quite simple, in this project handlers are quite controlling.
 				//They can directly define their OWN CanHandle or TypeHandle methods/logic
 				//They aren't just purely payload Type handlers
@@ -38,13 +42,21 @@ namespace Booma.Proxy
 					.As<IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>();
 
 				//Now we need to register it as the additional specified types
-				foreach(var additionalServiceTypeAttri in handlerType.GetCustomAttributes<AdditionalRegisterationAsAttribute>())
-					handlerRegisterationBuilder
+				foreach(var additionalServiceTypeAttri in handlerType.GetCustomAttributes<AdditionalRegisterationAsAttribute>(true))
+				{
+					handlerResultString.AppendLine($"\t As Also: Register Handler: {additionalServiceTypeAttri.ServiceType}");
+
+					handlerRegisterationBuilder = handlerRegisterationBuilder
 						.As(additionalServiceTypeAttri.ServiceType);
+				}
 
 				//Only ever want one handler, otherwise... things get werid with AdditionalRegisterationAsAttributes.
-				handlerRegisterationBuilder.SingleInstance();
+				handlerRegisterationBuilder = handlerRegisterationBuilder.SingleInstance();
+
+				handlerResultString.AppendLine("\n\n");
 			}
+
+			Debug.Log(handlerResultString.ToString());
 
 			//New IPeerContext generic param now so we register as implemented interface
 			register.RegisterType<DefaultPayloadHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>>()
