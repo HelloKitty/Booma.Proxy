@@ -25,7 +25,18 @@ namespace Booma.Proxy
 		{
 			//Just register the service. Let users define the flags.
 			//Single instance is preferable though.
-			register.RegisterInstance(new UnityLoggingService(LoggingLevel))
+			/*register.RegisterInstance(new UnityLoggingService(LoggingLevel))
+				.As<ILog>()
+				.SingleInstance();*/
+
+			ILoggylyRemoteLoggingService loggingService = Refit.RestService.For<ILoggylyRemoteLoggingService>(@"http://logs-01.loggly.com/inputs/fcf420d4-3164-42ac-82c9-140e2a68bf91/tag/Unity3D");
+
+			register.RegisterInstance(loggingService)
+				.AsImplementedInterfaces()
+				.SingleInstance();
+
+			//Loggly
+			register.Register(context => { return new LogglyLoggingService(LoggingLevel, context.Resolve<ILoggylyRemoteLoggingService>()); })
 				.As<ILog>()
 				.SingleInstance();
 
