@@ -13,31 +13,6 @@ namespace Booma.Proxy
 	[Injectee]
 	public sealed class GameNetworkClient : BaseUnityNetworkClient<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>, IConnectable
 	{
-		[Tooltip("Indicates if the client should connect on Start.")]
-		[SerializeField]
-		private bool ConnectOnStart = false;
-
-		private void Start()
-		{
-			if(ConnectOnStart)
-				StartConnection();
-		}
-
-		//TODO: Is it safe or ok to await in start without ever completing?
-		public void StartConnection()
-		{
-			//Just start the startup task.
-			Task.Factory.StartNew(StartNetworkClient, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext())
-				.ConfigureAwait(true);
-		}
-
-		//Starts the client by connecting
-		//If connection seems to succeed it will continue and startup the full client
-		private async Task StartNetworkClient()
-		{
-			
-		}
-
 		/// <inheritdoc />
 		public async Task<bool> ConnectAsync(string ip, int port)
 		{
