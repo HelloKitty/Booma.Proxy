@@ -19,17 +19,14 @@ namespace Booma.Proxy
 	{
 		private ICharacterSlotSelectedModel SelectedSlotModel { get; }
 
-		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
-
 		private CharacterTabUIElementsContext CharacterScreenUIContext { get; }
 
 		/// <inheritdoc />
-		public CharacterCharacterUpdateResponseHandler([NotNull] ICharacterSlotSelectedModel selectedSlotModel, ILog logger, [NotNull] CharacterTabUIElementsContext characterScreenUiContext, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService)
+		public CharacterCharacterUpdateResponseHandler([NotNull] ICharacterSlotSelectedModel selectedSlotModel, ILog logger, [NotNull] CharacterTabUIElementsContext characterScreenUiContext)
 			: base(logger)
 		{
 			SelectedSlotModel = selectedSlotModel ?? throw new ArgumentNullException(nameof(selectedSlotModel));
 			CharacterScreenUIContext = characterScreenUiContext ?? throw new ArgumentNullException(nameof(characterScreenUiContext));
-			SendService = sendService ?? throw new ArgumentNullException(nameof(sendService));
 		}
 
 		/// <inheritdoc />
@@ -42,6 +39,9 @@ namespace Booma.Proxy
 			CharacterScreenUIContext.Elements.ElementAt(payload.SlotSelected).TextElement.Text = payload.CharacterData.CharacterName.Replace("\tE", "");
 			CharacterScreenUIContext.Elements.ElementAt(payload.SlotSelected).ButtonElement.AddOnClickListenerAsync(async () =>
 			{
+				if(Logger.IsInfoEnabled)
+					Logger.Info($"Selecting Character: {payload.SlotSelected}");
+
 				//Save the character we picked
 				SelectedSlotModel.SlotSelected = payload.SlotSelected;
 				
@@ -51,11 +51,19 @@ namespace Booma.Proxy
 
 				//TODO: What is this?
 				//I really don't know what this is
-				await SendService.SendMessage(new CharacterChecksumRequestPayload(0))
+				//However I DO know that we MUST wait for the result to come in before things continue.
+				CharacterChecksumResponsePayload checksumResult = await context.RequestSendService.SendRequestAsync<CharacterChecksumResponsePayload>(new CharacterChecksumRequestPayload(0))
 					.ConfigureAwait(false);
 
+				if(Logger.IsInfoEnabled)
+				{
+					Logger.Info($"Character ChecksumResponse: {checksumResult.ResponseCode}:{(int)checksumResult.ResponseCode} WasSuccessful: {checksumResult.ResponseCode == LoginChecksumResult.Success}");
+				}
+
+				await Task.Delay(2000);
+
 				//This starts the long drawnout bullshit for guild card data reading or whatever
-				await SendService.SendMessage(new CharacterGuildHeaderRequestPayload())
+				await context.PayloadSendService.SendMessage(new CharacterGuildHeaderRequestPayload())
 					.ConfigureAwait(false);
 			});
 
