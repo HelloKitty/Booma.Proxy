@@ -11,8 +11,12 @@ namespace Booma.Proxy
 {
 	public abstract class ConnectionDetailsPlayerPrefsStorageModel : MonoBehaviour, IGameConnectionEndpointDetails
 	{
+		[ReadOnly]
+		[ShowInInspector]
 		private string _IpAddress;
 
+		[ReadOnly]
+		[ShowInInspector]
 		private int _Port;
 
 		/// <inheritdoc />
