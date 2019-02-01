@@ -29,7 +29,7 @@ namespace Booma.Proxy
 				.As<ILog>()
 				.SingleInstance();*/
 
-			ILoggylyRemoteLoggingService loggingService = Refit.RestService.For<ILoggylyRemoteLoggingService>(@"http://logs-01.loggly.com/inputs/fcf420d4-3164-42ac-82c9-140e2a68bf91/tag/Unity3D");
+			ILoggylyRemoteLoggingService loggingService = Refit.RestService.For<ILoggylyRemoteLoggingService>(@"http://logs-01.loggly.com");
 
 			register.RegisterInstance(loggingService)
 				.AsImplementedInterfaces()

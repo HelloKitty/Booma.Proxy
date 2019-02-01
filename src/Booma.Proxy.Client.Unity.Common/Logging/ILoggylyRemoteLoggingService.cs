@@ -11,6 +11,7 @@ namespace Booma.Proxy
 {
 	public interface ILoggylyRemoteLoggingService
 	{
+		[Post(@"/inputs/fcf420d4-3164-42ac-82c9-140e2a68bf91/tag/Unity3D")]
 		Task LogAsync([Body(BodySerializationMethod.UrlEncoded)] LogglyLoggingModel logData);
 	}
 
