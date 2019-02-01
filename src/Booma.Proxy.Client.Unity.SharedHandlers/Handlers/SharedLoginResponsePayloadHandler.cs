@@ -16,6 +16,7 @@ namespace Booma.Proxy
 	/// information.
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(ILoginResponseEventSubscribable))]
+	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.TitleScreen)] //titlescreen obviously needs to recieve login responses.
