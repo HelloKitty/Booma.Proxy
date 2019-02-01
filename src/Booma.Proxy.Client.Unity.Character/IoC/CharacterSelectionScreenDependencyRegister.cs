@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Features.AttributeFilters;
 using SceneJect.Common;
 
 namespace Booma.Proxy
@@ -15,6 +16,7 @@ namespace Booma.Proxy
 		{
 			//This is for anything that needs to touch the character UI.
 			register.RegisterType<CharacterTabUIElementsContext>()
+				.WithAttributeFiltering()
 				.AsSelf();
 		}
 	}
