@@ -23,6 +23,7 @@ namespace Booma.Proxy
 				.Concat(new ClientUnityAuthenticationMetadataMarker().AllAssemblyTypes)
 				.Concat(new ClientUnityCharacterMetadataMarker().AllAssemblyTypes)
 				.Concat(new ClientUnityShipMetadataMarker().AllAssemblyTypes)
+				.Concat(new ClientUnityCommonMetadataMarker().AllAssemblyTypes)
 				.Where(t => t.Implements(typeof(TInterfaceType)))
 				.ToArray();
 
