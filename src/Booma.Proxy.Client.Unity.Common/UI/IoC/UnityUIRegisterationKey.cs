@@ -27,6 +27,8 @@ namespace Guardians
 
 		TitleLoginButton = 7,
 
-		Marquee = 8
+		Marquee = 8,
+
+		ServerSelectionButton = 9
 	}
 }
