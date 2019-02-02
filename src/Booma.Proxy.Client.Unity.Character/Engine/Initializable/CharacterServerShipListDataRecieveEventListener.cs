@@ -9,6 +9,7 @@ using Guardians;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	public sealed class CharacterServerShipListDataRecieveEventListener : BaseSingleEventListenerInitializable<IShipListingEventSubscribable, ShipListingDataRecievedEventArgs>
 	{
 		private IReadOnlyCollection<IUILabeledButton> StaticShipButtons { get; }
