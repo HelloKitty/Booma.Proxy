@@ -41,30 +41,7 @@ namespace Guardians
 
 			//When this is called, the button has been clicked and we need async button handling.
 			//This will call the async Method, get the task and create a coroutine that awaits it (for exception handling purposes)
-			StartCoroutine(AsyncButtonEventHandler(action()));
-		}
-
-		private IEnumerator AsyncButtonEventHandler(Task task)
-		{
-			if(task == null) throw new ArgumentNullException(nameof(task));
-
-			//This will wait until the task is complete
-			yield return new WaitForFuture(task);
-
-			if(task.IsFaulted)
-			{
-				StringBuilder builder = new StringBuilder(200);
-
-				if(task.Exception != null && task.Exception.InnerExceptions != null)
-					foreach(Exception inner in task.Exception?.InnerExceptions)
-					{
-						builder.Append($"\nMessage: {inner.Message}\nStack: {inner.StackTrace}");
-					}
-
-				UnityEngine.Debug.LogError($"Encounter exception from Button: {name} OnClickAsync: {builder.ToString()}");
-			}
-
-			//We don't need to do anything, task succeeded and is finished.
+			StartCoroutine(AsyncCallbackHandler(action()));
 		}
 
 		//TODO: Have UnitySync.Async support exception forwarding.
