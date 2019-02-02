@@ -4,13 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Guardians;
 using Sirenix.OdinInspector;
+using UnityEngine;
 using Unitysync.Async;
 
 namespace Booma.Proxy
 {
-	public abstract class BaseUnityUI : SerializedMonoBehaviour
+	public abstract class BaseUnityUI<TAdaptedToType> : SerializedMonoBehaviour, IUIAdapterRegisterable
 	{
+		[Tooltip("Used to determine wiring for UI dependencies.")]
+		[SerializeField]
+		private UnityUIRegisterationKey _RegisterationKey;
+
+		/// <summary>
+		/// The registeration key for the adapted UI element.
+		/// </summary>
+		public UnityUIRegisterationKey RegisterationKey => _RegisterationKey;
+
+		/// <inheritdoc />
+		public Type UISerivdeType => typeof(TAdaptedToType);
+
+		//TODO: Eventually we need to refactor this away.
 		/// <summary>
 		/// Can be called as a <see cref="StartCoroutine"/>
 		/// to track the result, and dispatch the exception/logging for, async tasks.

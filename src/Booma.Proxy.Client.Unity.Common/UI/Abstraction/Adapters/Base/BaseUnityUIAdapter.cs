@@ -10,7 +10,7 @@ using Unitysync.Async;
 
 namespace Guardians
 {
-	public abstract class BaseUnityUIAdapter<TAdaptedUnityEngineType, TAdaptedToType> : BaseUnityUI, IUIAdapterRegisterable
+	public abstract class BaseUnityUIAdapter<TAdaptedUnityEngineType, TAdaptedToType> : BaseUnityUI<TAdaptedToType>
 	{
 		static BaseUnityUIAdapter()
 		{
@@ -27,18 +27,6 @@ namespace Guardians
 		/// The Unity engine UI object being adapted.
 		/// </summary>
 		protected TAdaptedUnityEngineType UnityUIObject => _UnityUIObject;
-
-		[Tooltip("Used to determine wiring for UI dependencies.")]
-		[SerializeField]
-		private UnityUIRegisterationKey _RegisterationKey;
-
-		/// <summary>
-		/// The registeration key for the adapted UI element.
-		/// </summary>
-		public UnityUIRegisterationKey RegisterationKey => _RegisterationKey;
-
-		/// <inheritdoc />
-		public Type UISerivdeType => typeof(TAdaptedToType);
 
 		[Button]
 		public void TryInitializeAdaptedObject()
