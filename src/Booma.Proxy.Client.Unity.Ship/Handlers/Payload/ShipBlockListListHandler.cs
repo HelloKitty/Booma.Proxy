@@ -14,19 +14,15 @@ namespace Booma.Proxy
 	/// Handles <see cref="ShipBlockListEventPayload"/> and dispatches to the
 	/// UI controller service.
 	/// </summary>
+	[AdditionalRegisterationAs(typeof(IBlockListingEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
-	public sealed class ShipBlockListListHandler : GameMessageHandler<ShipBlockListEventPayload>
+	public sealed class ShipBlockListListHandler : GameMessageHandler<ShipBlockListEventPayload>, IBlockListingEventSubscribable
 	{
-		/// <summary>
-		/// The menu registeration service.
-		/// </summary>
-		//[Required]
-		//[OdinSerialize]
-		[SerializeField] //temp so I don't forget to fix this
-		private IMenuListingRegisterable BlockListingRegisterService => throw new NotSupportedException($"TODO: MOVE OVER TO CTOR WORKFLOW");
+		/// <inheritdoc />
+		public event EventHandler<BlockListingDataRecievedEventArgs> OnBlockListingRecieved;
 
-		[SerializeField]
-		private UnityEvent OnRecievedBlockList;
+		/// <inheritdoc />
+		public event EventHandler OnBlockListFinishedRecieving;
 
 		/// <inheritdoc />
 		public ShipBlockListListHandler(ILog logger)
@@ -43,11 +39,11 @@ namespace Booma.Proxy
 				if(Logger.IsDebugEnabled)
 					Logger.Debug($"Block Listing: {m.ItemName}");
 
-				BlockListingRegisterService.RegisterMenuItem(m);
+				OnBlockListingRecieved?.Invoke(this, new BlockListingDataRecievedEventArgs(m.Selection, m.ItemName));
 			}
 
 			//Once it's completely registered invoke OnRecieved.
-			OnRecievedBlockList?.Invoke();
+			OnBlockListFinishedRecieving?.Invoke(this, EventArgs.Empty);
 
 			return Task.CompletedTask;
 		}
