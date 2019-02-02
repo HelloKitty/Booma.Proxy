@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// Provider the ability for ordered collections of element Type <typeparamref name="TAdaptedToType"/>
 	/// to be adapted and registered together.
 	/// </summary>
-	public sealed class BaseCollectionUnityUIAdapter<TAdaptedToType> : BaseUnityUI<IReadOnlyCollection<TAdaptedToType>>
+	public abstract class BaseCollectionUnityUIAdapter<TAdaptedToType> : BaseUnityUI<IReadOnlyCollection<TAdaptedToType>>
 	{
 		[OdinSerialize] //probably required due to the generic-ness.
 		[Tooltip("Order matters. This is the collection of elements to be exposed.")]
