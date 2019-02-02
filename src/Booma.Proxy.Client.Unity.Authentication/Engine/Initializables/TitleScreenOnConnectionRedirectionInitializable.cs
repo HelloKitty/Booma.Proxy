@@ -12,10 +12,8 @@ using UnityEngine.SceneManagement;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.TitleScreen)]
-	public sealed class TitleScreenOnConnectionRedirectionInitializable : IGameInitializable
+	public sealed class TitleScreenOnConnectionRedirectionInitializable : BaseSingleEventListenerInitializable<IConnectionRedirectionEventSubscribable>
 	{
-		private IConnectionRedirectionEventSubscribable OnConnectionRedirectionSubcriptionService { get; }
-
 		//TODO: Don't expose Unity directors directly.
 		private IUIPlayable SceneEndPlayable { get; }
 
@@ -23,20 +21,13 @@ namespace Booma.Proxy
 		public TitleScreenOnConnectionRedirectionInitializable(
 			[NotNull] IConnectionRedirectionEventSubscribable onConnectionRedirectionSubcriptionService,
 			[KeyFilter(UnityUIRegisterationKey.TitleLoginButton)] [NotNull] IUIPlayable sceneEndPlayable)
+			: base(onConnectionRedirectionSubcriptionService)
 		{
-			OnConnectionRedirectionSubcriptionService = onConnectionRedirectionSubcriptionService ?? throw new ArgumentNullException(nameof(onConnectionRedirectionSubcriptionService));
 			SceneEndPlayable = sceneEndPlayable ?? throw new ArgumentNullException(nameof(sceneEndPlayable));
 		}
 
 		/// <inheritdoc />
-		public Task OnGameInitialized()
-		{
-			OnConnectionRedirectionSubcriptionService.OnConnectionRedirection += OnConnectionDirection;
-			return Task.CompletedTask;
-		}
-
-		//TODO: Is this afe to do an async eventhandler? It won't capture exceptions and such.
-		public async void OnConnectionDirection(object sender, EventArgs eventArgs)
+		protected override async void OnEventFired(object source, EventArgs args)
 		{
 			//Joins this to the main thread first.
 			await new UnityYieldAwaitable();
