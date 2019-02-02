@@ -12,6 +12,10 @@ namespace Guardians
 {
 	public sealed class UnityButtonUIButtonAdapter : BaseUnityUIAdapter<Button, IUIButton>, IUIButton
 	{
+		//This is sorta the new design
+		//Create an adapter property that will actually handle the adaptor
+		//the responsibility of this class is to expose registeration and to
+		//handle the internal complicated parts of exposing it to the editor.
 		private UnityButtonUIButtonAdapterImplementation Adapter { get; set; }
 
 		//On awake we should just create the adapter for
