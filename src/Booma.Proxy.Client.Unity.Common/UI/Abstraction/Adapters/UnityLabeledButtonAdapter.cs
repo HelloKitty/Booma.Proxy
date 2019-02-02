@@ -8,9 +8,9 @@ using UnityEngine.UI;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// See <see cref="ILabeledButton"/>.
+	/// See <see cref="IUILabeledButton"/>.
 	/// </summary>
-	public sealed class UnityLabeledButtonAdapter : BaseTwoComponentUnityUIAdapter<Button, Text, ILabeledButton>, ILabeledButton
+	public sealed class UnityLabeledButtonAdapter : BaseTwoComponentUnityUIAdapter<Button, Text, IUILabeledButton>, IUILabeledButton
 	{
 		private UnityTextUITextAdapterImplementation TextAdapter { get; set; }
 
