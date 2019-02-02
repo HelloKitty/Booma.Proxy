@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Booma.Proxy;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +13,24 @@ namespace Guardians
 	/// </summary>
 	public sealed class UnityTextUITextAdapter : BaseUnityUIAdapter<Text, IUIText>, IUIText
 	{
+		//This is sorta the new design
+		//Create an adapter property that will actually handle the adaptor
+		//the responsibility of this class is to expose registeration and to
+		//handle the internal complicated parts of exposing it to the editor.
+		private UnityTextUITextAdapterImplementation Adapter { get; set; }
+
+		//On awake we should just create the adapter for
+		//adaptation forwarding.
+		void Awake()
+		{
+			Adapter = new UnityTextUITextAdapterImplementation(UnityUIObject);
+		}
+
 		/// <inheritdoc />
 		public string Text
 		{
-			get => UnityUIObject.text;
-			set => UnityUIObject.text = value;
+			get => Adapter.Text;
+			set => Adapter.Text = value;
 		}
 	}
 }
