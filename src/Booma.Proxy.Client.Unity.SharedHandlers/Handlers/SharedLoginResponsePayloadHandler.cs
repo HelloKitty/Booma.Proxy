@@ -16,6 +16,7 @@ namespace Booma.Proxy
 	/// information.
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(ILoginResponseEventSubscribable))]
+	[SceneTypeCreate(GameSceneType.PreShipSelectionScene)]
 	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
