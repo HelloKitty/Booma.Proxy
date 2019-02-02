@@ -14,6 +14,7 @@ namespace Booma.Proxy
 		public CharacterSelectionResultEventListenerInitializable([NotNull] IOnCharacterSelectionAcknowledgementEventSubscribable characterAckSubscriptionService)
 			: base(characterAckSubscriptionService)
 		{
+
 		}
 
 		/// <inheritdoc />
