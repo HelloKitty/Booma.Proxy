@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Autofac.Features.AttributeFilters;
 using GladNet;
@@ -15,6 +16,11 @@ namespace Booma.Proxy
 		private IReadOnlyCollection<IUILabeledButton> StaticShipButtons { get; }
 
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
+
+		/// <summary>
+		/// This is state persisted to determine which index of ships we're on.
+		/// </summary>
+		private int CurrentShipNumber = 0;
 
 		/// <inheritdoc />
 		public CharacterServerShipListDataRecieveEventListener(
@@ -33,7 +39,9 @@ namespace Booma.Proxy
 			if(StaticShipButtons.Count <= args.Identifier.ItemId)
 				throw new InvalidOperationException($"Encountered Ship Entry with MenuId: {args.Identifier}");
 
-			IUILabeledButton button = StaticShipButtons.ElementAt((int)args.Identifier.ItemId);
+			//Don't use menu identifier to get the index
+			IUILabeledButton button = StaticShipButtons.ElementAt(CurrentShipNumber);
+			Interlocked.Increment(ref CurrentShipNumber);
 
 			button.IsInteractable = true;
 			button.Text = args.ShipName;
