@@ -30,10 +30,7 @@ namespace Booma.Proxy
 		private IClientSessionDetails SessionDetails { get; }
 
 		/// <inheritdoc />
-		public event EventHandler OnLoginSuccess;
-
-		/// <inheritdoc />
-		public event EventHandler OnLoginFailure;
+		public event EventHandler<LoginResultEventArgs> OnLoginProcessResult;
 
 		/// <inheritdoc />
 		public SharedLoginResponsePayloadHandler([NotNull] IClientSessionDetails sessionDetails, ILog logger)
@@ -54,7 +51,7 @@ namespace Booma.Proxy
 
 			if(!payload.isSuccessful)
 			{
-				OnLoginFailure?.Invoke(this, EventArgs.Empty);
+				OnLoginProcessResult?.Invoke(this, new LoginResultEventArgs(payload.ResponseCode));
 				return Task.CompletedTask;
 			}
 
@@ -64,7 +61,7 @@ namespace Booma.Proxy
 			SessionDetails.GuildCardNumber = payload.GuildCard;
 
 			//Invoke login success if it's succesful at this point.
-			OnLoginSuccess?.Invoke(this, EventArgs.Empty);
+			OnLoginProcessResult?.Invoke(this, new LoginResultEventArgs(payload.ResponseCode));
 
 			return Task.CompletedTask;
 		}

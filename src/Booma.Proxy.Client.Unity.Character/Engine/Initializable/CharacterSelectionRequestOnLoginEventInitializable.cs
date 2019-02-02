@@ -9,35 +9,29 @@ using GladNet;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.PreShipSelectionScene)]
-	public class CharacterSelectionRequestOnLoginEventInitializable : IGameInitializable
+	public class CharacterSelectionRequestOnLoginEventInitializable : BaseSingleEventListenerInitializable<ILoginResponseEventSubscribable, LoginResultEventArgs>
 	{
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
 		private ILog Logger { get; }
 
-		private ILoginResponseEventSubscribable LoginEventSubscriptionService { get; }
-
 		private ICharacterSlotSelectedModel SlotModel { get; }
 
 		/// <inheritdoc />
-		public CharacterSelectionRequestOnLoginEventInitializable([NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, [NotNull] ILog logger, [NotNull] ILoginResponseEventSubscribable loginEventSubscriptionService, [NotNull] ICharacterSlotSelectedModel slotModel)
+		public CharacterSelectionRequestOnLoginEventInitializable([NotNull] ILoginResponseEventSubscribable subscriptionService, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, [NotNull] ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel) 
+			: base(subscriptionService)
 		{
 			SendService = sendService ?? throw new ArgumentNullException(nameof(sendService));
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			LoginEventSubscriptionService = loginEventSubscriptionService ?? throw new ArgumentNullException(nameof(loginEventSubscriptionService));
 			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		/// <inheritdoc />
-		public Task OnGameInitialized()
+		protected override void OnEventFired(object source, LoginResultEventArgs args)
 		{
-			//We have to send when we recieve the event, not on init
-			LoginEventSubscriptionService.OnLoginSuccess += LoginEventSubscriptionServiceOnOnLoginSuccess;
-			return Task.CompletedTask;
-		}
+			if(!args.isSuccessful)
+				return;
 
-		private void LoginEventSubscriptionServiceOnOnLoginSuccess(object sender, EventArgs e)
-		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"OnLogin: Sending {nameof(CharacterCharacterSelectionRequestPayload)} with Id: {SlotModel.SlotSelected}");
 

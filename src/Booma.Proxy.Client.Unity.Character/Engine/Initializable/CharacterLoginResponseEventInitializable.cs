@@ -23,7 +23,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		protected void OnLoginSuccess(object sender, EventArgs eventArgs)
+		protected void OnLoginSuccess(object sender, LoginResultEventArgs args)
 		{
 			//The shared login handler on the character
 			//server needs to send
@@ -35,7 +35,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public Task OnGameInitialized()
 		{
-			LoginResponseSubscriptionService.OnLoginSuccess += OnLoginSuccess;
+			LoginResponseSubscriptionService.OnLoginProcessResult += OnLoginSuccess;
 			return Task.CompletedTask;
 		}
 	}
