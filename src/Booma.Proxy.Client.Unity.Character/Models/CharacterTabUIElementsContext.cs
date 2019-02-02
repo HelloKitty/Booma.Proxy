@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 namespace Booma.Proxy
 {
+	//TODO: Migrate away from this crap, use new collection adapter.
 	public sealed class CharacterTabUIElementsContext
 	{
 		public sealed class CharacterTabUIElement
