@@ -17,6 +17,8 @@ namespace Booma.Proxy
 
 	public sealed class LogglyLoggingModel
 	{
+		private static string cachedIdentifier = SystemInfo.deviceUniqueIdentifier;
+
 		[AliasAs("LEVEL")]
 		public string Level { get; private set; }
 
@@ -24,7 +26,7 @@ namespace Booma.Proxy
 		public string Message { get; private set; }
 
 		[AliasAs("ID")]
-		public static string Identifier { get; private set; } = SystemInfo.deviceUniqueIdentifier;
+		public string Identifier { get; private set; } = cachedIdentifier;
 
 		/// <inheritdoc />
 		public LogglyLoggingModel([NotNull] string level, [NotNull] string message)
