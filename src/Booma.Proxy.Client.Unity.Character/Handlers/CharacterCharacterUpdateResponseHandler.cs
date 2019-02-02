@@ -60,8 +60,6 @@ namespace Booma.Proxy
 					Logger.Info($"Character ChecksumResponse: {checksumResult.ResponseCode}:{(int)checksumResult.ResponseCode} WasSuccessful: {checksumResult.ResponseCode == LoginChecksumResult.Success}");
 				}
 
-				await Task.Delay(2000);
-
 				//This starts the long drawnout bullshit for guild card data reading or whatever
 				await context.PayloadSendService.SendMessage(new CharacterGuildHeaderRequestPayload())
 					.ConfigureAwait(false);
