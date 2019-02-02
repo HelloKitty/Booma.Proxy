@@ -8,28 +8,20 @@ using UnityEngine.SceneManagement;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.PreShipSelectionScene)]
-	public sealed class CharacterSelectionResultEventListenerInitializable : IGameInitializable
+	public sealed class CharacterSelectionResultEventListenerInitializable : BaseSingleEventListenerInitializable<IOnCharacterSelectionAcknowledgementEventSubscribable, CharacterSelectionAckEventArgs>
 	{
-		private IOnCharacterSelectionAcknowledgementEventSubscribable CharacterAckSubscriptionService { get; }
-
 		/// <inheritdoc />
 		public CharacterSelectionResultEventListenerInitializable([NotNull] IOnCharacterSelectionAcknowledgementEventSubscribable characterAckSubscriptionService)
+			: base(characterAckSubscriptionService)
 		{
-			CharacterAckSubscriptionService = characterAckSubscriptionService ?? throw new ArgumentNullException(nameof(characterAckSubscriptionService));
 		}
 
 		/// <inheritdoc />
-		public Task OnGameInitialized()
+		protected override void OnEventFired(object source, CharacterSelectionAckEventArgs args)
 		{
-			CharacterAckSubscriptionService.OnCharacterSelectionAcknowledgementRecieved += OnCharacterSelectionAckRecieved;
-			return Task.CompletedTask;
-		}
+			if(args == null) throw new ArgumentNullException(nameof(args));
 
-		private void OnCharacterSelectionAckRecieved(object sender, [NotNull] CharacterSelectionAckEventArgs e)
-		{
-			if(e == null) throw new ArgumentNullException(nameof(e));
-
-			switch(e.AckType)
+			switch(args.AckType)
 			{
 				case CharacterSelectionAckType.BB_CHAR_ACK_UPDATE:
 					break;
