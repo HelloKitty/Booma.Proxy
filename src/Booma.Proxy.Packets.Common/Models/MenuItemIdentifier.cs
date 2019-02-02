@@ -38,5 +38,11 @@ namespace Booma.Proxy
 		{
 			
 		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return $"MenuID: {MenuId} ItemId: {ItemId}";
+		}
 	}
 }
