@@ -14,14 +14,15 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Handler for recieveing the ship list payload, <see cref="SharedShipListEventPayload"/>.
 	/// </summary>
+	[AdditionalRegisterationAs(typeof(IShipListingEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
-	public sealed class SharedShipListListHandler : GameMessageHandler<SharedShipListEventPayload>
+	public sealed class SharedShipListListHandler : GameMessageHandler<SharedShipListEventPayload>, IShipListingEventSubscribable
 	{
-		//TODO: This is a temp handler until we implement the UI.
-		private IMenuListingRegisterable ShipRegisterationService => throw new NotSupportedException($"MUST MOVE OVER TO CTOR WORKFLOW");
+		/// <inheritdoc />
+		public event EventHandler<ShipListingDataRecievedEventArgs> OnShipListingRecieved;
 
-		[SerializeField]
-		private UnityEvent OnRecievedShipList;
+		/// <inheritdoc />
+		public event EventHandler OnShipListFinishedRecieving;
 
 		/// <inheritdoc />
 		public SharedShipListListHandler(ILog logger)
@@ -42,11 +43,11 @@ namespace Booma.Proxy
 				if(Logger.IsDebugEnabled)
 					Logger.Debug($"Menu: {s.Selection.MenuId} Item: {s.Selection.ItemId} Content: {s.ItemName.Replace("Desinty", "[redacted]")}");
 
-				ShipRegisterationService.RegisterMenuItem(s);
+				OnShipListingRecieved?.Invoke(this, new ShipListingDataRecievedEventArgs(s.Selection, s.ItemName));
 			}
 
 			//Once it's completely registered invoke OnRecieved.
-			OnRecievedShipList?.Invoke();
+			OnShipListFinishedRecieving?.Invoke(this, EventArgs.Empty);
 
 			return Task.CompletedTask;
 		}
