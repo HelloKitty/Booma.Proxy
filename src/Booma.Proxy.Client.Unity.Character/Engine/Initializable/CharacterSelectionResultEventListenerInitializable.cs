@@ -8,12 +8,12 @@ using UnityEngine.SceneManagement;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.PreShipSelectionScene)]
-	public sealed class CharacterSelectionResultEventHandlerInitializable : IGameInitializable
+	public sealed class CharacterSelectionResultEventListenerInitializable : IGameInitializable
 	{
 		private IOnCharacterSelectionAcknowledgementEventSubscribable CharacterAckSubscriptionService { get; }
 
 		/// <inheritdoc />
-		public CharacterSelectionResultEventHandlerInitializable([NotNull] IOnCharacterSelectionAcknowledgementEventSubscribable characterAckSubscriptionService)
+		public CharacterSelectionResultEventListenerInitializable([NotNull] IOnCharacterSelectionAcknowledgementEventSubscribable characterAckSubscriptionService)
 		{
 			CharacterAckSubscriptionService = characterAckSubscriptionService ?? throw new ArgumentNullException(nameof(characterAckSubscriptionService));
 		}
