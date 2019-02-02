@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// UI combination of <see cref="IUIButton"/>
 	/// and a label <see cref="IUIText"/>.
 	/// </summary>
-	public interface ILabeledButton : IUIButton, IUIText
+	public interface IUILabeledButton : IUIButton, IUIText
 	{
 		
 	}
