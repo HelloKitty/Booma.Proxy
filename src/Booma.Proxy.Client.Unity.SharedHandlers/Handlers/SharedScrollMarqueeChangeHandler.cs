@@ -12,12 +12,12 @@ namespace Booma.Proxy
 {
 	//TODO: This marquee change handler should be able to handle all marquees for all servers
 	//TODO: This is a temporary handler, we really need a fully featured version.
+	[AdditionalRegisterationAs(typeof(IMarqueeTextChangedEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
-	public sealed class SharedScrollMarqueeChangeHandler : GameMessageHandler<SharedMarqueeScrollChangeEventPayload>
+	public sealed class SharedScrollMarqueeChangeHandler : GameMessageHandler<SharedMarqueeScrollChangeEventPayload>, IMarqueeTextChangedEventSubscribable
 	{
-		//TODO: This is just for testing purposes
-		[SerializeField]
-		public UnityEngine.UI.Text TempMarqueeText;
+		/// <inheritdoc />
+		public event EventHandler<MarqueeTextChangedEventArgs> OnMarqueeTextChangedEvent;
 
 		/// <inheritdoc />
 		public SharedScrollMarqueeChangeHandler(ILog logger) 
@@ -30,6 +30,7 @@ namespace Booma.Proxy
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, SharedMarqueeScrollChangeEventPayload payload)
 		{
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
+
 			if(payload.Message == null)
 				Logger.Warn($"Encountered empty Marquee message.");
 
@@ -38,8 +39,7 @@ namespace Booma.Proxy
 			if(Logger.IsDebugEnabled)
 				Logger.Debug(message);
 
-			//TODO: This is the scrolling marquee at the top of the ship. When the UI is implemented we should handle it
-			TempMarqueeText.text = message;
+			OnMarqueeTextChangedEvent?.Invoke(this, new MarqueeTextChangedEventArgs(message));
 
 			return Task.CompletedTask;
 		}
