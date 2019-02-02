@@ -36,7 +36,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		protected override void OnEventFired(object source, ShipListingDataRecievedEventArgs args)
 		{
-			if(StaticShipButtons.Count <= args.Identifier.ItemId)
+			if(StaticShipButtons.Count <= CurrentShipNumber)
 				throw new InvalidOperationException($"Encountered Ship Entry with MenuId: {args.Identifier}");
 
 			//Don't use menu identifier to get the index
