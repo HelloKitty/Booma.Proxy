@@ -19,7 +19,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public DefaultCharacterMarqueeChangeEventListenerInitializable(IMarqueeTextChangedEventSubscribable subscriptionService,
-			[NotNull] [KeyFilter(UnityUIRegisterationKey.Marquee)] IUIText marqueeTextElement) 
+			[NotNull] [KeyFilter(UnityUIRegisterationKey.Marquee)] IUIText marqueeTextElement)
 			: base(subscriptionService)
 		{
 			MarqueeTextElement = marqueeTextElement ?? throw new ArgumentNullException(nameof(marqueeTextElement));
