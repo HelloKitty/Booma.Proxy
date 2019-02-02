@@ -22,6 +22,11 @@
 		/// <summary>
 		/// This is the scene right before bursting into the block's lobby.
 		/// </summary>
-		PreBlockBurstingScene = 8
+		PreBlockBurstingScene = 8,
+
+		/// <summary>
+		/// The scene right before ship selection, that looks liks bursting.
+		/// </summary>
+		PreShipSelectionScene = 9,
 	}
 }
