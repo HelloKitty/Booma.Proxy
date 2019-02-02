@@ -29,6 +29,8 @@ namespace Guardians
 
 		Marquee = 8,
 
-		ServerSelectionButton = 9
+		ServerSelectionButton = 9,
+
+		BlockSelectionButton = 10
 	}
 }
