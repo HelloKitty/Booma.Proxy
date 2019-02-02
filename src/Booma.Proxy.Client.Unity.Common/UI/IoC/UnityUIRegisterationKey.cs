@@ -25,6 +25,8 @@ namespace Guardians
 
 		TitleLoginPassword = 6,
 
-		TitleLoginButton = 7
+		TitleLoginButton = 7,
+
+		Marquee = 8
 	}
 }
