@@ -72,8 +72,7 @@ namespace Booma.Proxy
 			register.RegisterInstance(client)
 				.As<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>()
 				.As<IPeerPayloadSendService<PSOBBGamePacketPayloadClient>>()
-				.As<IPayloadInterceptable>()
-				.As<IConnectionService>();
+				.As<IPayloadInterceptable>();
 
 			register.RegisterType<DefaultMessageContextFactory>()
 				.As<IPeerMessageContextFactory>()
@@ -85,6 +84,18 @@ namespace Booma.Proxy
 
 			register.RegisterInstance(new SeperateAggregateCryptoInitializationService<byte[]>(encrypt, decrypt))
 				.As<IFullCryptoInitializationService<byte[]>>()
+				.SingleInstance();
+
+			//TODO: This is all so hacky, is this really what we're going to do forever??
+			register.RegisterType<GlobalExportableClient>()
+				.As<INetworkClientExportable>()
+				.SingleInstance();
+
+			register.RegisterType<DefaultConnectionRedirector>()
+				.As<IConnectionRedirector>();
+
+			register.RegisterType<GlobalConnectionService>()
+				.As<IConnectionService>()
 				.SingleInstance();
 		}
 	}
