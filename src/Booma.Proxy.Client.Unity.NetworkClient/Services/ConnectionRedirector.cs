@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	/// Redirects the connection to the connection
 	/// stored in the connection details model.
 	/// </summary>
+	[Obsolete]
 	public sealed class ConnectionRedirector : MonoBehaviour
 	{
 		void Awake()
