@@ -17,12 +17,18 @@ namespace Booma.Proxy
 
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
+		/// <summary>
+		/// Indicates if the inheritor would like to hook into and listen to events.
+		/// </summary>
+		protected bool isCustomEventsEnabled { get; }
+
 		/// <inheritdoc />
-		protected NetworkedDynamicMenuPopulationEventListener([NotNull] TEventSubsribable subscriptionService, [NotNull] IReadOnlyCollection<IUILabeledButton> staticButtons, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService) 
+		protected NetworkedDynamicMenuPopulationEventListener([NotNull] TEventSubsribable subscriptionService, [NotNull] IReadOnlyCollection<IUILabeledButton> staticButtons, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, bool enableCustomEvents) 
 			: base(subscriptionService)
 		{
 			StaticButtons = staticButtons ?? throw new ArgumentNullException(nameof(staticButtons));
 			SendService = sendService ?? throw new ArgumentNullException(nameof(sendService));
+			isCustomEventsEnabled = enableCustomEvents;
 		}
 
 		/// <summary>
@@ -51,23 +57,34 @@ namespace Booma.Proxy
 			//TODO: Should we send networked menu click first before exposing click events to inheritor?
 			button.AddOnClickListenerAsync(async () => await SendNetworkedMenuClick(args.Identifier));
 
-			button.AddOnClickListenerAsync(async () => await OnButtonClickedAsync(MenuEntryRunningCount, args));
-			button.AddOnClickListener(() => OnButtonClicked(MenuEntryRunningCount, args));
+			if(isCustomEventsEnabled)
+			{
+				button.AddOnClickListenerAsync(async () => await OnButtonClickedAsync(MenuEntryRunningCount, args));
+				button.AddOnClickListener(() => OnButtonClicked(MenuEntryRunningCount, args));
+			}
 		}
 
 		/// <summary>
 		/// Called first (before async) when a button is clicked.
+		/// ONLY CALLED IF <see cref="isCustomEventsEnabled"/> is enabled via the ctor! 
 		/// </summary>
 		/// <param name="entryNumber">The index/entry number of the button.</param>
 		/// <param name="args">The event args.</param>
-		protected abstract void OnButtonClicked(int entryNumber, TMenuChangeArgs args);
+		protected virtual void OnButtonClicked(int entryNumber, TMenuChangeArgs args)
+		{
+
+		}
 
 		/// <summary>
 		/// Called first (before async) when a button is clicked.
+		/// ONLY CALLED IF <see cref="isCustomEventsEnabled"/> is enabled via the ctor!
 		/// </summary>
 		/// <param name="entryNumber">The index/entry number of the button.</param>
 		/// <param name="args">The event args.</param>
-		protected abstract Task OnButtonClickedAsync(int entryNumber, TMenuChangeArgs args);
+		protected virtual Task OnButtonClickedAsync(int entryNumber, TMenuChangeArgs args)
+		{
+			return Task.CompletedTask;
+		}
 
 		private async Task SendNetworkedMenuClick(MenuItemIdentifier buttonIdentifier)
 		{
