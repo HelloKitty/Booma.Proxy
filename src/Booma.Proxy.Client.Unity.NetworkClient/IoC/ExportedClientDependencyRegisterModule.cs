@@ -32,8 +32,7 @@ namespace Booma.Proxy
 			register.RegisterInstance(ManagedClient)
 				.As<IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer>>()
 				.As<IPeerPayloadSendService<PSOBBGamePacketPayloadClient>>()
-				.As<IPayloadInterceptable>()
-				.As<IConnectionService>();
+				.As<IPayloadInterceptable>();
 
 			register.RegisterType<DefaultMessageContextFactory>()
 				.As<IPeerMessageContextFactory>()
