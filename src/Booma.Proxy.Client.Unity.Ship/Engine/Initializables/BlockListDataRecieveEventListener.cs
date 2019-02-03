@@ -15,8 +15,8 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		public BlockListDataRecieveEventListener(IBlockListingEventSubscribable subscriptionService,
-			[KeyFilter(UnityUIRegisterationKey.BlockSelectionButton)] IReadOnlyCollection<IUILabeledButton> staticButtons, IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, bool enableCustomEvents) 
-			: base(subscriptionService, staticButtons, sendService, enableCustomEvents)
+			[KeyFilter(UnityUIRegisterationKey.BlockSelectionButton)] IReadOnlyCollection<IUILabeledButton> staticButtons, IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService) 
+			: base(subscriptionService, staticButtons, sendService, false)
 		{
 			//false means we don't listen to events through overridable virtuals
 		}
