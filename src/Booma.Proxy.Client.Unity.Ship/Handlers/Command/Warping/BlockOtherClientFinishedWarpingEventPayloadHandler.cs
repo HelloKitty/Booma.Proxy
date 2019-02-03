@@ -22,7 +22,7 @@ namespace Booma.Proxy
 
 		private int ZoneId { get; }
 
-		protected BlockOtherClientFinishedWarpingEventPayloadHandler([NotNull] IUnitScalerStrategy scalingService, IZoneSettings zoneSettings,
+		public BlockOtherClientFinishedWarpingEventPayloadHandler([NotNull] IUnitScalerStrategy scalingService, IZoneSettings zoneSettings,
 			ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerFullNetworkMessageContext> contextFactory)
 			: base(logger, contextFactory)
 		{
