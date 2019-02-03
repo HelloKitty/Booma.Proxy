@@ -17,7 +17,7 @@ namespace Booma.Proxy
 
 		internal static IConnectionService CurrentConnectionService { get; private set; }
 
-		public GameNetworkClient()
+		private void Awake()
 		{
 			//TODO: This is sooooooo a hack but I don't have it in me to change this.
 			//Whenever we begin existence, we become the new exportable client
