@@ -39,21 +39,65 @@ namespace Booma.Proxy
 			//We failt if success isn't thrown first
 			Assert.Fail();
 		}
+
+		[Test]
+		public static void Test_BaseSingleEventListenerInitializable_WhenUnsubscriberd_Doesnt_Call_Event_NonGeneric()
+		{
+			//arrange
+			TestEventInterfaceImplNonGeneric subscriable = new TestEventInterfaceImplNonGeneric();
+			TestSingleEventChildNonGeneric obj = new TestSingleEventChildNonGeneric(subscriable, false);
+
+			//sub and then unsub.
+			obj.OnGameInitialized().Wait();
+			obj.UnSub();
+
+			subscriable.CallEvent();
+
+			//We failt if success isn't thrown first
+			Assert.Pass($"Succeded, did not call event.");
+		}
+
+		[Test]
+		public static void Test_BaseSingleEventListenerInitializable_WhenUnsubscriberd_Doesnt_Call_Event()
+		{
+			//arrange
+			TestEventInterfaceImpl subscriable = new TestEventInterfaceImpl();
+			TestSingleEventChild obj = new TestSingleEventChild(subscriable, false);
+
+			//sub and then unsub.
+			obj.OnGameInitialized().Wait();
+			obj.UnSub();
+
+			subscriable.CallEvent();
+
+			//We failt if success isn't thrown first
+			Assert.Pass($"Succeded, did not call event.");
+		}
 	}
 
 	public class TestSingleEventChild : BaseSingleEventListenerInitializable<TestEventInterface, int>
 	{
+		private bool assertedTrueValue { get; }
+
 		/// <inheritdoc />
-		public TestSingleEventChild(TestEventInterface subscriptionService)
+		public TestSingleEventChild(TestEventInterface subscriptionService, bool assertedTrueValue = true)
 			: base(subscriptionService)
 		{
-
+			this.assertedTrueValue = assertedTrueValue;
 		}
 
 		/// <inheritdoc />
 		protected override void OnEventFired(object source, int args)
 		{
+			Assert.True(assertedTrueValue, $"Failed to assert the asserted true.");
+
 			Assert.Pass($"Called the {nameof(OnEventFired)} Val: {args}");
+		}
+
+
+		public void UnSub()
+		{
+			this.Unsubscribe();
 		}
 	}
 
@@ -77,17 +121,26 @@ namespace Booma.Proxy
 
 	public class TestSingleEventChildNonGeneric : BaseSingleEventListenerInitializable<TestEventInterfaceNonGeneric>
 	{
+		private bool assertedTrueValue { get; }
+
 		/// <inheritdoc />
-		public TestSingleEventChildNonGeneric(TestEventInterfaceNonGeneric subscriptionService)
+		public TestSingleEventChildNonGeneric(TestEventInterfaceNonGeneric subscriptionService, bool assertedTrueValue = true)
 			: base(subscriptionService)
 		{
-
+			this.assertedTrueValue = assertedTrueValue;
 		}
 
 		/// <inheritdoc />
 		protected override void OnEventFired(object source, EventArgs args)
 		{
+			Assert.True(assertedTrueValue, $"Failed to assert the asserted true.");
+
 			Assert.Pass($"Called the {nameof(OnEventFired)} Val: {args}");
+		}
+
+		public void UnSub()
+		{
+			this.Unsubscribe();
 		}
 	}
 
