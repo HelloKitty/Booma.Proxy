@@ -537,6 +537,11 @@
             Disables a property if it is drawn from a prefab asset or a prefab instance.
             </summary>
         </member>
+        <member name="T:Sirenix.OdinInspector.DoNotDrawAsReferenceAttribute">
+            <summary>
+            Indicates that the member should not be drawn as a value reference, if it becomes a reference to another value in the tree. Beware, and use with care! This may lead to infinite draw loops!
+            </summary>
+        </member>
         <member name="T:Sirenix.OdinInspector.EnableGUIAttribute">
             <summary>
             <para>An attribute that enables GUI.</para>
@@ -730,6 +735,12 @@
         <member name="F:Sirenix.OdinInspector.FolderPathAttribute.UseBackslashes">
             <summary>
             By default FolderPath enforces forward slashes. Set UseBackslashes to <c>true</c> if you want backslashes instead.
+            </summary>
+        </member>
+        <member name="T:Sirenix.OdinInspector.HideDuplicateReferenceBoxAttribute">
+            <summary>
+            Indicates that Odin should hide the reference box, if this property would otherwise be drawn as a reference to another property, due to duplicate reference values being encountered.
+            Note that if the value is referencing itself recursively, then the reference box will be drawn regardless of this attribute in all recursive draw calls.
             </summary>
         </member>
         <member name="T:Sirenix.OdinInspector.HideInInlineEditorsAttribute">
@@ -1622,6 +1633,16 @@
         <member name="F:Sirenix.OdinInspector.TableMatrixAttribute.HideRowIndices">
             <summary>
             If true, no row indices drawn.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.TableMatrixAttribute.RespectIndentLevel">
+            <summary>
+            Whether the drawn table should respect the current GUI indent level.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.TableMatrixAttribute.Transpose">
+            <summary>
+            If true, tables are drawn with rows/columns reversed (C# initialization order).
             </summary>
         </member>
         <member name="F:Sirenix.OdinInspector.TypeFilterAttribute.MemberName">
@@ -3273,6 +3294,11 @@
         <member name="F:Sirenix.OdinInspector.InfoBoxAttribute.VisibleIf">
             <summary>
             Optional member field, property or function to show and hide the info box.
+            </summary>
+        </member>
+        <member name="F:Sirenix.OdinInspector.InfoBoxAttribute.GUIAlwaysEnabled">
+            <summary>
+            When <c>true</c> the InfoBox will ignore the GUI.enable flag and always draw as enabled.
             </summary>
         </member>
         <member name="M:Sirenix.OdinInspector.InfoBoxAttribute.#ctor(System.String,Sirenix.OdinInspector.InfoMessageType,System.String)">
