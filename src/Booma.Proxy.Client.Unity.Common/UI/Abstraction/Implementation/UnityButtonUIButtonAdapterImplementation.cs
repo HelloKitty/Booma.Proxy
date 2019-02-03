@@ -55,7 +55,9 @@ namespace Booma.Proxy
 
 			//When this is called, the button has been clicked and we need async button handling.
 			//This will call the async Method, get the task and create a coroutine that awaits it (for exception handling purposes)
-			UnityButton.StartCoroutine(AsyncCallbackHandler(action()));
+
+			//We can't use the Button MonoBehaviour because it might be deactivated, we have to use a global behaviour
+			UnityExtended.UnityUIAsyncContinuationBehaviour.StartCoroutine(AsyncCallbackHandler(action()));
 		}
 	}
 }
