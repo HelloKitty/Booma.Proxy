@@ -10,59 +10,18 @@ using Guardians;
 
 namespace Booma.Proxy
 {
-	//TODO: This is almost copy-paste of the server selection listener. Maybe we should make a generic version somehow
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
-	public sealed class BlockListDataRecieveEventListener : BaseSingleEventListenerInitializable<IBlockListingEventSubscribable, BlockListingDataRecievedEventArgs>
+	public sealed class BlockListDataRecieveEventListener : NetworkedDynamicMenuPopulationEventListener<IBlockListingEventSubscribable, BlockListingDataRecievedEventArgs>
 	{
-		private IReadOnlyCollection<IUILabeledButton> StaticBlockButtons { get; }
-
-		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
-
 		/// <inheritdoc />
-		public BlockListDataRecieveEventListener(
-			[NotNull] IBlockListingEventSubscribable subscriptionService, 
-			[KeyFilter(UnityUIRegisterationKey.BlockSelectionButton)] [NotNull] IReadOnlyCollection<IUILabeledButton> staticBlockButtons, 
-			[NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService) 
-			: base(subscriptionService)
+		public BlockListDataRecieveEventListener(IBlockListingEventSubscribable subscriptionService,
+			[KeyFilter(UnityUIRegisterationKey.BlockSelectionButton)] IReadOnlyCollection<IUILabeledButton> staticButtons, IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, bool enableCustomEvents) 
+			: base(subscriptionService, staticButtons, sendService, enableCustomEvents)
 		{
-			StaticBlockButtons = staticBlockButtons ?? throw new ArgumentNullException(nameof(staticBlockButtons));
-			SendService = sendService ?? throw new ArgumentNullException(nameof(sendService));
-		}
+			//false means we don't listen to events through overridable virtuals
 
-		/// <summary>
-		/// This is state persisted to determine which index of block we're on.
-		/// </summary>
-		private int CurrentBlockNumber = 0;
-
-		private async Task OnBlockButtonClicked(MenuItemIdentifier buttonIdentifier)
-		{
-			//We should just send that we clicked this menu id.
-			//if it's successful it should redirect connection to that ship.
-			//We must properly handle redirection to move the scene forward.
-			await SendService.SendMessage(new SharedMenuSelectionRequestPayload(buttonIdentifier));
-		}
-
-		/// <inheritdoc />
-		protected override void OnEventFired(object source, BlockListingDataRecievedEventArgs args)
-		{
-			if(StaticBlockButtons.Count <= CurrentBlockNumber)
-				throw new InvalidOperationException($"Encountered Block Entry with MenuId: {args.Identifier} Count: {CurrentBlockNumber} BlockUIElementSize: {StaticBlockButtons.Count}");
-
-			//Don't use menu identifier to get the index
-			IUILabeledButton button = StaticBlockButtons.ElementAt(CurrentBlockNumber);
-			Interlocked.Increment(ref CurrentBlockNumber);
-
-			button.IsInteractable = true;
-			button.Text = args.BlockName;
-
-			//On click we disable all buttons.
-			button.AddOnClickListener(() =>
-			{
-				foreach(var b in StaticBlockButtons)
-					b.IsInteractable = false;
-			});
-
-			button.AddOnClickListenerAsync(async () => await OnBlockButtonClicked(args.Identifier));
+			//We DON'T want it possible to click any more buttons after one is clicked.
+			this.DisableInteractionOnMenuButtonsOnClick();
 		}
 	}
 }
