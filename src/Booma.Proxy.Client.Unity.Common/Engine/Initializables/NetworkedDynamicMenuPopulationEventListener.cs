@@ -94,6 +94,17 @@ namespace Booma.Proxy
 			await SendService.SendMessage(new SharedMenuSelectionRequestPayload(buttonIdentifier));
 		}
 
+		/// <inheritdoc />
+		public override async Task OnGameInitialized()
+		{
+			await base.OnGameInitialized();
+
+			//We just call conf
+			Configure();
+		}
+
+		protected abstract void Configure();
+
 		/// <summary>
 		/// Disables the options/buttons interactivity when any of them
 		/// are clicked.

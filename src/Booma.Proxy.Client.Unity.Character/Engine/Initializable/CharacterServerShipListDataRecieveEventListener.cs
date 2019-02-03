@@ -21,7 +21,11 @@ namespace Booma.Proxy
 			: base(subscriptionService, staticShipButtons, sendService, false)
 		{
 			//false means we don't listen to events through overridable virtuals
+		}
 
+		/// <inheritdoc />
+		protected override void Configure()
+		{
 			//We DON'T want it possible to click any more buttons after one is clicked.
 			this.DisableInteractionOnMenuButtonsOnClick();
 		}
