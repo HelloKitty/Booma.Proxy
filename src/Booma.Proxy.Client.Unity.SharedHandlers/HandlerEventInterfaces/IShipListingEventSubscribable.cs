@@ -19,20 +19,13 @@ namespace Booma.Proxy
 		event EventHandler OnShipListFinishedRecieving;
 	}
 
-	public sealed class ShipListingDataRecievedEventArgs
+	public sealed class ShipListingDataRecievedEventArgs : BaseMenuItemDataChangedEventArgs
 	{
-		/// <summary>
-		/// The identifier for the menu option.
-		/// </summary>
-		public MenuItemIdentifier Identifier { get; }
-
-		public string ShipName { get; }
-
 		/// <inheritdoc />
-		public ShipListingDataRecievedEventArgs([NotNull] MenuItemIdentifier identifier, [NotNull] string shipName)
+		public ShipListingDataRecievedEventArgs(MenuItemIdentifier identifier, string menuItemName) 
+			: base(identifier, menuItemName)
 		{
-			Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
-			ShipName = shipName ?? throw new ArgumentNullException(nameof(shipName));
+
 		}
 	}
 }

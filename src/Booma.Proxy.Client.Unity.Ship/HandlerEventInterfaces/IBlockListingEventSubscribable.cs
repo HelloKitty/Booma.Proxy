@@ -19,20 +19,13 @@ namespace Booma.Proxy
 		event EventHandler OnBlockListFinishedRecieving;
 	}
 
-	public sealed class BlockListingDataRecievedEventArgs
+	public sealed class BlockListingDataRecievedEventArgs : BaseMenuItemDataChangedEventArgs
 	{
-		/// <summary>
-		/// The identifier for the menu option.
-		/// </summary>
-		public MenuItemIdentifier Identifier { get; }
-
-		public string BlockName { get; }
-
 		/// <inheritdoc />
-		public BlockListingDataRecievedEventArgs([NotNull] MenuItemIdentifier identifier, [NotNull] string blockName)
+		public BlockListingDataRecievedEventArgs(MenuItemIdentifier identifier, string menuItemName) 
+			: base(identifier, menuItemName)
 		{
-			Identifier = identifier ?? throw new ArgumentNullException(nameof(identifier));
-			BlockName = blockName ?? throw new ArgumentNullException(nameof(blockName));
+
 		}
 	}
 }
