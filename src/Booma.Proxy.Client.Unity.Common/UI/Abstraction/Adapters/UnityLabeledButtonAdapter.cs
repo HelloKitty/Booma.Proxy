@@ -16,7 +16,8 @@ namespace Booma.Proxy
 
 		private UnityButtonUIButtonAdapterImplementation ButtonAdapter { get; set; }
 
-		void Awake()
+		/// <inheritdoc />
+		protected override void Initialize()
 		{
 			TextAdapter = new UnityTextUITextAdapterImplementation(UnityUIObject2);
 			ButtonAdapter = new UnityButtonUIButtonAdapterImplementation(UnityUIObject);
@@ -25,27 +26,47 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public string Text
 		{
-			get => TextAdapter.Text;
-			set => TextAdapter.Text = value;
+			get
+			{
+				EnsureInitialized();
+				return TextAdapter.Text;
+			}
+			set
+			{
+				EnsureInitialized();
+				TextAdapter.Text = value;
+			}
 		}
 
 		/// <inheritdoc />
 		public void AddOnClickListener(Action action)
 		{
+			EnsureInitialized();
+
 			ButtonAdapter.AddOnClickListener(action);
 		}
 
 		/// <inheritdoc />
 		public void AddOnClickListenerAsync(Func<Task> action)
 		{
+			EnsureInitialized();
+
 			ButtonAdapter.AddOnClickListenerAsync(action);
 		}
 
 		/// <inheritdoc />
 		public bool IsInteractable
 		{
-			get => ButtonAdapter.IsInteractable;
-			set => ButtonAdapter.IsInteractable = value;
+			get
+			{
+				EnsureInitialized();
+				return ButtonAdapter.IsInteractable;
+			}
+			set
+			{
+				EnsureInitialized();
+				ButtonAdapter.IsInteractable = value;
+			}
 		}
 	}
 }
