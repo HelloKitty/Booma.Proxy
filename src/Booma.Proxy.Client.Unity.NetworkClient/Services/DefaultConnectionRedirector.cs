@@ -18,27 +18,22 @@ namespace Booma.Proxy
 		/// </summary>
 		private IConnectionService ConnectionService { get; }
 
-		private IFullCryptoInitializationService<byte[]> CryptoInitializer { get; }
-
 		private IGameConnectionEndpointDetails ConnectionDetails { get; }
 
 		/// <inheritdoc />
-		public DefaultConnectionRedirector([NotNull] IGameObjectComponentAttachmentFactory componentAttachmentFactory, [NotNull] IConnectionService connectionService, [NotNull] IFullCryptoInitializationService<byte[]> cryptoInitializer, [NotNull] IGameConnectionEndpointDetails connectionDetails)
+		public DefaultConnectionRedirector([NotNull] IGameObjectComponentAttachmentFactory componentAttachmentFactory, [NotNull] IConnectionService connectionService, [NotNull] IGameConnectionEndpointDetails connectionDetails)
 		{
 			ComponentAttachmentFactory = componentAttachmentFactory ?? throw new ArgumentNullException(nameof(componentAttachmentFactory));
 			ConnectionService = connectionService ?? throw new ArgumentNullException(nameof(connectionService));
-			CryptoInitializer = cryptoInitializer ?? throw new ArgumentNullException(nameof(cryptoInitializer));
 			ConnectionDetails = connectionDetails ?? throw new ArgumentNullException(nameof(connectionDetails));
 		}
 
 		/// <inheritdoc />
 		public async Task RedirectAsync()
 		{
-			//absolutely critical that the encryption be uninitialaized
-			CryptoInitializer.DecryptionInitializable.Uninitialize();
-			CryptoInitializer.EncryptionInitializable.Uninitialize();
+			ConnectionService.Disconnect();
 
-			await ConnectionService.DisconnectAsync(0);
+			await Task.Delay(1000);
 
 			GameNetworkClient client = ComponentAttachmentFactory.AddTo<GameNetworkClient>(new GameObject("Runtime Redirected NetworkClient"));
 
