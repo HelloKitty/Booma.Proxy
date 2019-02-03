@@ -14,7 +14,6 @@ namespace Booma.Proxy
 	/// Handler for the <see cref="SharedWelcomePayload"/>.
 	/// </summary>
 	[SceneTypeCreate(GameSceneType.TitleScreen)]
-	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.PreShipSelectionScene)]
 	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	public class SharedWelcomePayloadHandler : GameMessageHandler<SharedWelcomePayload>
