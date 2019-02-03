@@ -114,12 +114,17 @@ namespace Booma.Proxy
 		protected void DisableInteractionOnMenuButtonsOnClick()
 		{
 			foreach(var button in StaticButtons)
+			{
+				if(button == null)
+					throw new InvalidOperationException($"Encountered NULL button in: {GetType().Name} Method: {nameof(DisableInteractionOnMenuButtonsOnClick)}");
+
 				//On click we disable all buttons.
 				button.AddOnClickListener(() =>
 				{
 					foreach(var b in StaticButtons)
 						b.IsInteractable = false;
 				});
+			}
 		}
 	}
 }
