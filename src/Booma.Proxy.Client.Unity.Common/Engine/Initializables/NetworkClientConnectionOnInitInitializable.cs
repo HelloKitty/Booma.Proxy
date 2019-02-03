@@ -8,6 +8,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.PreBlockBurstingScene)]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.PreShipSelectionScene)]
 	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)] //probably more than just the character screen.
