@@ -31,11 +31,12 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public async Task RedirectAsync()
 		{
-			ConnectionService.Disconnect();
-
-			await Task.Delay(1000);
+			await ConnectionService.DisconnectAsync(0);
 
 			GameNetworkClient client = ComponentAttachmentFactory.AddTo<GameNetworkClient>(new GameObject("Runtime Redirected NetworkClient"));
+
+			//This is kinda hack, but we need to wait for Awake to run.
+			await new UnityYieldAwaitable();
 
 			//It's important we connect THROUGH this client, not the connection service so that
 			//it starts the network thread
