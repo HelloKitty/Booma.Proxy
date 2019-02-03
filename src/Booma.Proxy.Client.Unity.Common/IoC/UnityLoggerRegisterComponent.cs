@@ -43,6 +43,15 @@ namespace Booma.Proxy
 			//This is important to create yielding to Unity3D sync context.
 			//TODO: This is a bad place to put it, but every scene has this so maybe it's not
 			UnityExtended.InitializeSyncContext();
+			UnityExtended.UnityUIAsyncContinuationBehaviour = this.gameObject.AddComponent<UnityUIAsyncContinuationBehaviour>();
+
+			UnityExtended.UnityUIAsyncContinuationBehaviour.name = nameof(UnityExtended.UnityUIAsyncContinuationBehaviour);
 		}
+	}
+
+	//TODO: Move this somewhere else
+	internal class UnityUIAsyncContinuationBehaviour : MonoBehaviour
+	{
+
 	}
 }
