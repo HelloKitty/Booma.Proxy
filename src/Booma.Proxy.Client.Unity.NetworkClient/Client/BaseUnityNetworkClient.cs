@@ -57,6 +57,8 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Indicates if the managed client has been exported from this container.
 		/// </summary>
+		[ReadOnly]
+		[ShowInInspector]
 		private bool isClientExported = false;
 
 		/// <summary>
