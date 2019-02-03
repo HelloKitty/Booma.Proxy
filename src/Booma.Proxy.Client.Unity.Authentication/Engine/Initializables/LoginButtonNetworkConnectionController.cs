@@ -19,17 +19,17 @@ namespace Booma.Proxy
 
 		private IGameConnectionEndpointDetails ConnectDetails { get; }
 
-		private IConnectable Connectable { get; }
+		private IConnectionService ConnectionService { get; }
 
 		/// <inheritdoc />
 		public LoginButtonNetworkConnectionController(
 			[KeyFilter(UnityUIRegisterationKey.TitleLoginButton)] [NotNull] IUIButton loginButtonElement, 
-			[NotNull] IGameConnectionEndpointDetails connectDetails, 
-			[NotNull] IConnectable connectable)
+			[NotNull] IGameConnectionEndpointDetails connectDetails,
+			IConnectionService connectionService)
 		{
 			LoginButtonElement = loginButtonElement ?? throw new ArgumentNullException(nameof(loginButtonElement));
 			ConnectDetails = connectDetails ?? throw new ArgumentNullException(nameof(connectDetails));
-			Connectable = connectable ?? throw new ArgumentNullException(nameof(connectable));
+			ConnectionService = connectionService ?? throw new ArgumentNullException(nameof(connectionService));
 		}
 
 		/// <inheritdoc />
@@ -43,7 +43,7 @@ namespace Booma.Proxy
 		{
 			//Assume that the connection details of this model have been validated before we
 			//reach this point, not this objects responsiability
-			return Connectable.ConnectAsync(ConnectDetails.IpAddress, ConnectDetails.Port);
+			return ConnectionService.ConnectAsync(ConnectDetails.IpAddress, ConnectDetails.Port);
 		}
 	}
 }

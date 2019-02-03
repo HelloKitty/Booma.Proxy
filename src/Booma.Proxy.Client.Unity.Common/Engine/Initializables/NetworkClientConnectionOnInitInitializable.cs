@@ -13,16 +13,16 @@ namespace Booma.Proxy
 	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)] //probably more than just the character screen.
 	public sealed class NetworkClientConnectionOnInitInitializable : IGameInitializable
 	{
-		private IConnectable Connectable { get; }
+		private IConnectionService ConnectionService { get; }
 
 		private IGameConnectionEndpointDetails ConnectionDetails { get; }
 
 		private ILog Logger { get; }
 
 		/// <inheritdoc />
-		public NetworkClientConnectionOnInitInitializable([NotNull] IConnectable connectable, [NotNull] IGameConnectionEndpointDetails connectionDetails, [NotNull] ILog logger)
+		public NetworkClientConnectionOnInitInitializable([NotNull] IConnectionService connectionService, [NotNull] IGameConnectionEndpointDetails connectionDetails, [NotNull] ILog logger)
 		{
-			Connectable = connectable ?? throw new ArgumentNullException(nameof(connectable));
+			ConnectionService = connectionService ?? throw new ArgumentNullException(nameof(connectionService));
 			ConnectionDetails = connectionDetails ?? throw new ArgumentNullException(nameof(connectionDetails));
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
@@ -34,8 +34,8 @@ namespace Booma.Proxy
 				Logger.Info($"Connectiong to: {ConnectionDetails.IpAddress}:{ConnectionDetails.Port}");
 
 			//This initializable actually just
-			//connects a IConnectable with the provided game details.
-			return Connectable.ConnectAsync(ConnectionDetails.IpAddress, ConnectionDetails.Port);
+			//connects a IConnectionService with the provided game details.
+			return ConnectionService.ConnectAsync(ConnectionDetails.IpAddress, ConnectionDetails.Port);
 		}
 	}
 }
