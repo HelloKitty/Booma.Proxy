@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Logging;
 using SceneJect.Common;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -25,6 +26,9 @@ namespace Booma.Proxy
 		[Inject]
 		private IEnumerable<IGameTickable> Tickables { get; }
 
+		[Inject]
+		private ILog Logger { get; }
+
 		[ReadOnly]
 		[ShowInInspector]
 		private bool isInitializationFinished = false;
@@ -35,8 +39,17 @@ namespace Booma.Proxy
 			//Preferably you'd want this to always run on the main thread, or continue to the main thread
 			//but called code could avoid caputring the sync context, so it's out of our control
 			foreach(var init in Initializables)
-				await init.OnGameInitialized()
-					.ConfigureAwait(true);
+				try
+				{
+					await init.OnGameInitialized()
+						.ConfigureAwait(true);
+				}
+				catch(Exception e)
+				{
+					if(Logger.IsErrorEnabled)
+						Logger.Error($"Encountered Exception in {nameof(IGameInitializable.OnGameInitialized)} for Type: {init.GetType().Name}. Reason: {e.Message}\n\nStack: {e.StackTrace}");
+					throw;
+				}
 
 			isInitializationFinished = true;
 		}
