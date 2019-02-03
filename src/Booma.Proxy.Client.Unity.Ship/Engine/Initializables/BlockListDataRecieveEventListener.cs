@@ -46,7 +46,7 @@ namespace Booma.Proxy
 		protected override void OnEventFired(object source, BlockListingDataRecievedEventArgs args)
 		{
 			if(StaticBlockButtons.Count <= CurrentBlockNumber)
-				throw new InvalidOperationException($"Encountered Ship Entry with MenuId: {args.Identifier}");
+				throw new InvalidOperationException($"Encountered Block Entry with MenuId: {args.Identifier} Count: {CurrentBlockNumber} BlockUIElementSize: {StaticBlockButtons.Count}");
 
 			//Don't use menu identifier to get the index
 			IUILabeledButton button = StaticBlockButtons.ElementAt(CurrentBlockNumber);

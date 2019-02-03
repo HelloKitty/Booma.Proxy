@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public LobbyJoinedEventArgs(int lobbyId)
 		{
-			if(lobbyId <= 0) throw new ArgumentOutOfRangeException(nameof(lobbyId));
+			if(lobbyId < 0) throw new ArgumentOutOfRangeException(nameof(lobbyId));
 
 			LobbyId = lobbyId;
 		}
