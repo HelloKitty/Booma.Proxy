@@ -13,11 +13,17 @@ namespace Booma.Proxy
 	/// Component that allows you to load scenes in a way that
 	/// can be hooked up to <see cref="UnityEvent"/>s.
 	/// </summary>
+	[Obsolete]
 	public sealed class SceneLoader : MonoBehaviour
 	{
 		[Tooltip("The scene to be loaded.")]
 		[SerializeField]
 		private int SceneId;
+
+		void Awake()
+		{
+			throw new NotSupportedException($"This component is deprecated. It will be removed soon.");
+		}
 
 		public void LoadScene()
 		{
