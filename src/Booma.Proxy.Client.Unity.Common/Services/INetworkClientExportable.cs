@@ -8,6 +8,11 @@ namespace Booma
 {
 	public interface INetworkClientExportable
 	{
+		/// <summary>
+		/// Indicates if the network client has been exported.
+		/// </summary>
+		bool isClientExported { get; }
+
 		void ExportmanagedClient();
 	}
 }

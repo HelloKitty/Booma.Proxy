@@ -10,6 +10,9 @@ namespace Booma.Proxy
 	public sealed class GlobalExportableClient : INetworkClientExportable
 	{
 		/// <inheritdoc />
+		public bool isClientExported { get; } = GameNetworkClient.CurrentExportableClient.isClientExported;
+
+		/// <inheritdoc />
 		public void ExportmanagedClient()
 		{
 			GameNetworkClient.CurrentExportableClient.ExportmanagedClient();

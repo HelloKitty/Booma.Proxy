@@ -59,7 +59,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[ReadOnly]
 		[ShowInInspector]
-		private bool isClientExported = false;
+		public bool isClientExported { get; private set; }
 
 		/// <summary>
 		/// The token source for canceling the read message await.
