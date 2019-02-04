@@ -97,6 +97,25 @@ namespace Booma.Proxy
 			register.RegisterType<GlobalConnectionService>()
 				.As<IConnectionService>()
 				.SingleInstance();
+
+			//TODO: This is a hack to help prevent mobile network issues
+			this.gameObject.AddComponent<DisconnectClientOnNonExportableSceneChange>();
+		}
+	}
+
+	//TODO: This is a quick hack for a mobile test
+	internal class DisconnectClientOnNonExportableSceneChange : MonoBehaviour
+	{
+		public void OnDestroy()
+		{
+			//This is SUCH a hack
+			if(GameNetworkClient.CurrentExportableClient.isClientExported)
+				return;
+
+			Debug.Log($"Disconnection HACK is about to disconnect the client.");
+
+			//Otherwise, if not exported we should try to disconnect
+			GameNetworkClient.CurrentConnectionService.Disconnect();
 		}
 	}
 }

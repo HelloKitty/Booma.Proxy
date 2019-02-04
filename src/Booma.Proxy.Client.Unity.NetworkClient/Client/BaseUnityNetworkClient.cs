@@ -122,6 +122,10 @@ namespace Booma.Proxy
 		/// </summary>
 		public void ExportmanagedClient()
 		{
+			//We should cancel the networking
+			//since we're going to export this.
+			CancelTokenSource.Cancel();
+
 			GameObject exportClientObject = new GameObject(@"[ExportedNetClient]");
 
 			AttachmentFactory
@@ -139,7 +143,6 @@ namespace Booma.Proxy
 
 			if(!isClientExported)
 				Client?.Disconnect();
-				
 		}
 
 		protected virtual void OnDestroy()

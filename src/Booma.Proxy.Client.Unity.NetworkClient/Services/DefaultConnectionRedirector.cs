@@ -31,6 +31,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public async Task RedirectAsync()
 		{
+			await new UnityYieldAwaitable();
+
 			await ConnectionService.DisconnectAsync(0);
 
 			GameNetworkClient client = ComponentAttachmentFactory.AddTo<GameNetworkClient>(new GameObject("Runtime Redirected NetworkClient"));

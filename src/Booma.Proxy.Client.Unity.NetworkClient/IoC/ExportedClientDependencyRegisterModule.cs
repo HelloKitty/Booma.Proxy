@@ -41,7 +41,22 @@ namespace Booma.Proxy
 			register.RegisterType<PayloadInterceptMessageSendService<PSOBBGamePacketPayloadClient>>()
 				.As<IPeerRequestSendService<PSOBBGamePacketPayloadClient>>()
 				.SingleInstance();
-			
+
+			//TODO: This is all so hacky, is this really what we're going to do forever??
+			register.RegisterType<GlobalExportableClient>()
+				.As<INetworkClientExportable>()
+				.SingleInstance();
+
+			register.RegisterType<DefaultConnectionRedirector>()
+				.As<IConnectionRedirector>();
+
+			register.RegisterType<GlobalConnectionService>()
+				.As<IConnectionService>()
+				.SingleInstance();
+
+			//TODO: This is a hack to help prevent mobile network issues
+			this.gameObject.AddComponent<DisconnectClientOnNonExportableSceneChange>();
+
 			//Once we're registered we can destroy
 			Destroy(this.gameObject);
 		}
