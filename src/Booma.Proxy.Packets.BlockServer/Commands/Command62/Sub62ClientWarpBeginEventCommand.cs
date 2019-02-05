@@ -7,6 +7,7 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	//TODO: We may need a better name.
 	/// <summary>
 	/// Command sent the client when it should begin the bursting
 	/// to a game that it is attempting to join.

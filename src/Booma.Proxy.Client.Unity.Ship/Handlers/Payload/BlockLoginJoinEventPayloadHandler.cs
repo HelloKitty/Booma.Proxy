@@ -19,8 +19,6 @@ namespace Booma.Proxy
 		//TODO: Is it ok to reuse this?
 		private ICharacterSlotSelectedModel SlotModel { get; }
 
-		
-
 		/// <inheritdoc />
 		public event EventHandler<LobbyJoinedEventArgs> OnLocalPlayerLobbyJoined;
 
