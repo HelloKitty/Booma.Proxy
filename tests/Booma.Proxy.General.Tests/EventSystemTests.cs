@@ -75,7 +75,7 @@ namespace Booma.Proxy
 		}
 	}
 
-	public class TestSingleEventChild : BaseSingleEventListenerInitializable<TestEventInterface, int>
+	public class TestSingleEventChild : BaseSingleEventListenerInitializable<TestEventInterface, EventArgsTest>
 	{
 		private bool assertedTrueValue { get; }
 
@@ -87,11 +87,11 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		protected override void OnEventFired(object source, int args)
+		protected override void OnEventFired(object source, EventArgsTest args)
 		{
 			Assert.True(assertedTrueValue, $"Failed to assert the asserted true.");
 
-			Assert.Pass($"Called the {nameof(OnEventFired)} Val: {args}");
+			Assert.Pass($"Called the {nameof(OnEventFired)} Val: {args.Value}");
 		}
 
 
@@ -103,17 +103,17 @@ namespace Booma.Proxy
 
 	public interface TestEventInterface
 	{
-		event EventHandler<int> TestEvent;
+		event EventHandler<EventArgsTest> TestEvent;
 	}
 
 	public class TestEventInterfaceImpl : TestEventInterface
 	{
 		/// <inheritdoc />
-		public event EventHandler<int> TestEvent;
+		public event EventHandler<EventArgsTest> TestEvent;
 
 		public void CallEvent()
 		{
-			TestEvent?.Invoke(this, 5);
+			TestEvent?.Invoke(this, new EventArgsTest(5));
 		}
 	}
 
@@ -157,6 +157,17 @@ namespace Booma.Proxy
 		public void CallEvent()
 		{
 			TestEvent?.Invoke(this, EventArgs.Empty);
+		}
+	}
+
+	public class EventArgsTest : EventArgs
+	{
+		public int Value { get; }
+
+		/// <inheritdoc />
+		public EventArgsTest(int value)
+		{
+			Value = value;
 		}
 	}
 }
