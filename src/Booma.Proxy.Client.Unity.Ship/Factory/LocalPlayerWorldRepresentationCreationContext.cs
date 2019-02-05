@@ -40,9 +40,17 @@ namespace Booma.Proxy
 		{
 			if(data == null) throw new ArgumentNullException(nameof(data));
 			if(EntityGuid.GetEntityType(data.EntityGuid) != EntityType.Player)
+				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {EntityGuid.GetEntityType(data.EntityGuid)}", nameof(data));
+
+			SpawnData = data;
+		}
+
+		public LocalPlayerWorldRepresentationCreationContext(int entityId, Transform transform)
+		{
+			if(EntityGuid.GetEntityType(entityId) != EntityType.Player)
 				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {EntityGuid.GetEntityType(entityId)}", nameof(entityId));
 
-			SpawnData = data
+			SpawnData = new EntityAssoicatedObject<WorldTransform>(entityId, new WorldTransform(transform.position, transform.rotation));
 		}
 	}
 }
