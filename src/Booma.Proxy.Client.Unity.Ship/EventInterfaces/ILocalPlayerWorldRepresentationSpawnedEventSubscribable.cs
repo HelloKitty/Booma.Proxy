@@ -12,7 +12,7 @@ namespace Booma.Proxy
 		event EventHandler<LocalPlayerWorldObjectSpawnedEventArgs> OnLocalPlayerWorldObjectCreated;
 	}
 
-	public sealed class LocalPlayerWorldObjectSpawnedEventArgs : IEntityIdentifable
+	public sealed class LocalPlayerWorldObjectSpawnedEventArgs : EventArgs, IEntityIdentifable
 	{
 		public int EntityGuid { get; }
 
