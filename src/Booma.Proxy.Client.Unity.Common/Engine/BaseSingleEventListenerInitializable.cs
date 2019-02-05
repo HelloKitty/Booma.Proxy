@@ -30,6 +30,11 @@ namespace Booma.Proxy
 		/// </summary>
 		protected internal TSubscribableType SubscriptionService { get; }
 
+		/// <summary>
+		/// Indicates if the listener is subscribed to the <see cref="SubscriptionService"/>.
+		/// </summary>
+		protected bool isSubscribed { get; private set; }
+
 		/// <inheritdoc />
 		internal SharedBaseSingleEventListenerInitializable([NotNull] TSubscribableType subscriptionService)
 		{
@@ -74,6 +79,7 @@ namespace Booma.Proxy
 		/// <param name="args"></param>
 		protected abstract void OnEventFired(object source, TEventArgsType args);
 
+		//TODO: Doc exceptions/warnings.
 		/// <summary>
 		/// Unregisters the event handler <see cref="OnEventFired"/> from the
 		/// <see cref="SubscriptionService"/>.
@@ -82,10 +88,15 @@ namespace Booma.Proxy
 		{
 			lock(SyncObj)
 			{
+				if(!isSubscribed)
+					throw new InvalidOperationException($"Cannot {nameof(Unsubscribe)} in {GetType().Name} without already being subscribed.");
+
 				HandleOnEventFiredCast(CachedEventRemoveDelegate);
+				isSubscribed = false;
 			}
 		}
 
+		//TODO: Doc exceptions/warnings.
 		/// <summary>
 		/// Registers the event handler <see cref="OnEventFired"/> to the
 		/// <see cref="SubscriptionService"/>.
@@ -94,7 +105,11 @@ namespace Booma.Proxy
 		{
 			lock(SyncObj)
 			{
+				if(isSubscribed)
+					throw new InvalidOperationException($"Cannot {nameof(Subscribe)} multiple times in {GetType().Name}. Subscriptions should only occur once..");
+
 				HandleOnEventFiredCast(CachedEventRegisterationDelegate);
+				isSubscribed = true;
 			}
 		}
 
