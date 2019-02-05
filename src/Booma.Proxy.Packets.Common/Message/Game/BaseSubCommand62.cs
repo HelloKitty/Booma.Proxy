@@ -8,11 +8,11 @@ using FreecraftCore.Serializer;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The base type for the subcommand sent in the 0x60 packets.
+	/// The base type for the subcommand sent in the 0x6 packets.
 	/// </summary>
 	[DefaultChild(typeof(UnknownSubCommand62Command))]
 	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class BaseSubCommand62 : ISubCommand60
+	public abstract class BaseSubCommand62 : ISubCommand62
 	{
 		/// <summary>
 		/// The operation code for the subcommand.
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite]
 		[WireMember(1)]
-		public SubCommand60OperationCode CommandOperationCode { get; }
+		public SubCommand62OperationCode CommandOperationCode { get; }
 
 		/// <summary>
 		/// Indicates if the <see cref="CommandSize"/> property is serialized and
