@@ -40,7 +40,15 @@ namespace Booma.Proxy
 			await Task.Delay(2000);
 
 			AsyncOperation loadSceneAsync = SceneManager.LoadSceneAsync(1);
-			loadSceneAsync.allowSceneActivation = false;
+
+			try
+			{
+				loadSceneAsync.allowSceneActivation = false;
+			}
+			catch(Exception e)
+			{
+				throw new InvalidOperationException($"Unable to load or set scene as not load immediately. Scene: {1}. Exception: {e.GetType().Name} Reason: {e.Message}\n\n Stack: {e.StackTrace}");
+			}
 
 			await Task.Delay(2500);
 

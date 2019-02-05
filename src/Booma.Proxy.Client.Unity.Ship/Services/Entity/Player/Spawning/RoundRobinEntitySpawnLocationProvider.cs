@@ -10,7 +10,7 @@ namespace Booma.Proxy
 {
 	//From: https://github.com/BoomaNation/Booma.Library/blob/c5af8ed85e0ddd07f86f941588d8962824ae04be/src/Booma.Instance.Server/Entity/RoundRobinEntitySpawnLocationProvider.cs
 	[Serializable]
-	public class RoundRobinEntitySpawnLocationProvider : ISpawnPointStrategy
+	public class RoundRobinEntitySpawnLocationProvider : MonoBehaviour, ISpawnPointStrategy
 	{
 		/// <summary>
 		/// Spawn points for the entity.
