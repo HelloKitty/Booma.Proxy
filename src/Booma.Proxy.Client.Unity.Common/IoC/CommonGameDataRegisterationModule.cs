@@ -14,6 +14,11 @@ namespace Booma.Proxy
 		public override void Register(ContainerBuilder register)
 		{
 			RegisterEntityMappableCollections(register);
+
+			register.RegisterType<WorldObjectToEntityDictionary>()
+				.As<IWorldObjectToEntityMappable>()
+				.As<IReadonlyWorldObjectToEntityMappable>()
+				.SingleInstance();
 		}
 
 		//TODO: Refactor into module.
