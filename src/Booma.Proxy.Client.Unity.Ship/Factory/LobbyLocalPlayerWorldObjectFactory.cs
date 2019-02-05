@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[AdditionalRegisterationAs(typeof(IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class LobbyLocalPlayerWorldObjectFactory : IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext>, IGameInitializable
 	{
