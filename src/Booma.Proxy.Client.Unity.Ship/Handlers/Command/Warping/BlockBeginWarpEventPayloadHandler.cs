@@ -10,38 +10,34 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	/// <summary>
+	/// The handler for <see cref="Sub60ClientWarpBeginEventCommand"/> which handles this payload
+	/// alerting 
+	/// </summary>
+	[AdditionalRegisterationAs(typeof(IWarpBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	[SceneTypeCreate(GameSceneType.Pioneer2)]
-	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>
+	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>, IWarpBeginEventSubscribable
 	{
-		private INetworkPlayerFactory PlayerFactory { get; }
-
-		private IUnitScalerStrategy ScalerService { get; }
-		
-		private byte ZoneId { get; }
+		/// <inheritdoc />
+		public event EventHandler OnWarpBeginning;
 
 		/// <inheritdoc />
-		public BlockBeginWarpEventPayloadHandler(ILog logger, [NotNull] INetworkPlayerFactory playerFactory, [NotNull] IUnitScalerStrategy scalerService, [NotNull] IZoneSettings zoneSettingsData) 
+		public BlockBeginWarpEventPayloadHandler(ILog logger)
 			: base(logger)
 		{
-			if(playerFactory == null) throw new ArgumentNullException(nameof(playerFactory));
-			if(scalerService == null) throw new ArgumentNullException(nameof(scalerService));
-			if(zoneSettingsData == null) throw new ArgumentNullException(nameof(zoneSettingsData));
 
-			PlayerFactory = playerFactory;
-			ScalerService = scalerService;
-
-			//So instead of serializing the zone id we inject zone settings.
-			ZoneId = (byte)zoneSettingsData.ZoneId;
 		}
 
 		/// <inheritdoc />
 		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientWarpBeginEventCommand payload)
 		{
 			if(Logger.IsInfoEnabled)
-				Logger.Info($"Recieved: {this.MessageName()} about to create local player.");
+				Logger.Info($"Recieved: {this.MessageName()}.");
 
-			INetworkPlayer player = null;
+			//TODO: We should really be initializing the quest data, or whatever it is, this packet sends.
+			OnWarpBeginning?.Invoke(this, EventArgs.Empty);
+
+			/*INetworkPlayer player = null;
 			try
 			{
 				//TODO: Is this where we should do this?
@@ -52,11 +48,11 @@ namespace Booma.Proxy
 			{
 				if(Logger.IsErrorEnabled || Logger.IsFatalEnabled)
 					Logger.Fatal($"Failed to create network player. Exception: {e.Message} \n\n Stacktrace: {e.StackTrace}");
-				throw;
-			}
-			
 
-			//TODO: Send rotation
+				throw;
+			}*/
+
+			/*//TODO: Send rotation
 			//TODO: What should the W coord be? How sould we handle this poition?
 			//We can't do anything with the data right now
 			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand((byte)player.Identity.EntityId,
@@ -68,7 +64,7 @@ namespace Booma.Proxy
 
 			//TODO: Should we send ClientId with this one too?
 			//We can just send a finished right away, we have nothing to load really
-			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpingBurstingCommand().ToPayload());
+			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpingBurstingCommand().ToPayload());*/
 		}
 	}
 }
