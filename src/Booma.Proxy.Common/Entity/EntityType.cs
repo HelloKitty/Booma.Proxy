@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Booma.Proxy
 {
+	//TODO: Figure out how we should implement this
 	/// <summary>
-	/// Enumeration of all Entity types.
+	/// Enumeration of all entity types.
 	/// </summary>
 	public enum EntityType : byte
 	{
@@ -16,16 +17,13 @@ namespace Booma.Proxy
 		None = 0,
 
 		/// <summary>
-		/// Player entity.
+		/// Represents a player entity.
 		/// </summary>
 		Player = 1,
 
 		/// <summary>
-		/// GameObject entity.
-		/// (Such as a Door or a Button)
+		/// Represents an item entity.
 		/// </summary>
-		GameObject = 2,
-
-		Npc = 3,
+		Item = 2
 	}
 }
