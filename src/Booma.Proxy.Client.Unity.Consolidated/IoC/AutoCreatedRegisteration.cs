@@ -49,12 +49,19 @@ namespace Booma.Proxy
 				.Where(t => OnFilterCreationType(t)))
 			{
 				//TODO: DO we need register self?
-				builder.RegisterType(creatable)
+				var registrationBuilder = builder.RegisterType(creatable)
 					.As<TInterfaceType>()
 					//.AsSelf()
 					.SingleInstance()
 					//TODO: We don't want to have to manually deal with this, we should create Attribute/Metadata to determine if this should be enabled.
 					.WithAttributeFiltering();
+
+				//We should also iterate all RegisterationAs attributes and register
+				//the types under those too
+				foreach(var regAttri in creatable.GetCustomAttributes<AdditionalRegisterationAsAttribute>(false))
+				{
+					registrationBuilder = registrationBuilder.As(regAttri.ServiceType);
+				}
 			}
 		}
 
