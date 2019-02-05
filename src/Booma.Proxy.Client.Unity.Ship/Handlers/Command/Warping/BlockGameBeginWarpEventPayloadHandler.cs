@@ -9,11 +9,12 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	//TODO: Rewrite
 	/// <summary>
 	/// Command handler that handles the game/62 version of the <see cref="Sub60ClientWarpBeginEventCommand"/>.
 	/// This one uses a similar one called <see cref="Sub62ClientWarpBeginEventCommand"/> for games
 	/// </summary>
-	public sealed class BlockGameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientWarpBeginEventCommand>
+	/*public sealed class BlockGameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientWarpBeginEventCommand>
 	{
 		private INetworkPlayerFactory PlayerFactory { get; }
 
@@ -54,5 +55,5 @@ namespace Booma.Proxy
 			//This tells everyone else we're doing bursting
 			await context.PayloadSendService.SendMessage(new BlockFinishedGameBurstingRequestPayload());
 		}
-	}
+	}*/
 }

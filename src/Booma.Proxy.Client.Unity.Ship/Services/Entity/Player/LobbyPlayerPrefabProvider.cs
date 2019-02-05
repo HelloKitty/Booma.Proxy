@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	//This component must exist in the scene for easier initialization.
 	public sealed class LobbyPlayerPrefabProvider : MonoBehaviour, INetworkPlayerPrefabProvider
 	{
 		[SerializeField]

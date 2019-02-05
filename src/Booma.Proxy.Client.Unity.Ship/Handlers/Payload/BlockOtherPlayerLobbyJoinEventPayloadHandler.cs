@@ -9,7 +9,8 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
-	[SceneTypeCreate(GameSceneType.RagolDefault)]
+	//TODO: Rewrite
+	/*[SceneTypeCreate(GameSceneType.RagolDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
@@ -35,5 +36,5 @@ namespace Booma.Proxy
 
 			return Task.CompletedTask;
 		}
-	}
+	}*/
 }
