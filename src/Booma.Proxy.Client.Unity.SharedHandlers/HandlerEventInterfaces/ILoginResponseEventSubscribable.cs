@@ -13,7 +13,7 @@ namespace Booma.Proxy
 		event EventHandler<LoginResultEventArgs> OnLoginProcessResult;
 	}
 
-	public class LoginResultEventArgs
+	public class LoginResultEventArgs : EventArgs
 	{
 		/// <summary>
 		/// The result of authentication/login.
