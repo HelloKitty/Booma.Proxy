@@ -48,6 +48,8 @@ namespace Booma.Proxy
 			if(CurrentMovementArgs == args)
 				return;
 
+			//It's ok to capture the sync context here, we'll need it to touch the GameObject
+			//and the Transform.
 			using(var l = await SyncObj.LockAsync())
 			{
 				//If the input says NOT MOVING but we are MOVING
@@ -56,7 +58,11 @@ namespace Booma.Proxy
 				{
 					GameObject worldObject = WorldObjectMap[EntityGuid.ComputeEntityGuid(EntityType.Player, SlotModel.SlotSelected)];
 
-					await LocalPlayerNetworkController.StopMovementAsync(worldObject.transform.position, worldObject.transform.rotation);
+					//It's important that this doesn't capture the sync context otheriwse it could block Update from finishing (causing deadlock)
+					//since it needs to wait on SyncContext to be serviced by Unity3D in fixed update. It's CRITICAL that we do NOT block on the main thread
+					//or such a deadlock will occur.
+					await LocalPlayerNetworkController.StopMovementAsync(worldObject.transform.position, worldObject.transform.rotation)
+						.ConfigureAwait(false);
 
 					//We tell the controller to stop moving and we set our movement here to false.
 					isMoving = false;
