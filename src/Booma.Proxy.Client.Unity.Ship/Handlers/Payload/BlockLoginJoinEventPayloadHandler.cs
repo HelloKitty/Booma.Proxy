@@ -39,7 +39,7 @@ namespace Booma.Proxy
 			//It's basically like a slot, like a lobby or party slot.
 			SlotModel.SlotSelected = payload.ClientId;
 
-			OnLocalPlayerLobbyJoined?.Invoke(this, new LobbyJoinedEventArgs(payload.LobbyNumber));
+			OnLocalPlayerLobbyJoined?.Invoke(this, new LobbyJoinedEventArgs(payload.LobbyNumber, EntityGuid.ComputeEntityGuid(EntityType.Player, payload.ClientId)));
 
 			//Don't send anything here, the server will send a 0x60 0x6F after this
 			return Task.CompletedTask;

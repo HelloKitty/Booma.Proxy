@@ -11,7 +11,7 @@ namespace Booma.Proxy
 		event EventHandler<LobbyJoinedEventArgs> OnLocalPlayerLobbyJoined;
 	}
 
-	public sealed class LobbyJoinedEventArgs : EventArgs
+	public sealed class LobbyJoinedEventArgs : EventArgs, IEntityIdentifable
 	{
 		/// <summary>
 		/// The ID of the lobby loaded.
@@ -19,11 +19,17 @@ namespace Booma.Proxy
 		public int LobbyId { get; }
 
 		/// <inheritdoc />
-		public LobbyJoinedEventArgs(int lobbyId)
+		public int EntityGuid { get; }
+
+		/// <inheritdoc />
+		public LobbyJoinedEventArgs(int lobbyId, int entityGuid)
 		{
 			if(lobbyId < 0) throw new ArgumentOutOfRangeException(nameof(lobbyId));
 
+			//TODO: Validate entity guid
+
 			LobbyId = lobbyId;
+			EntityGuid = entityGuid;
 		}
 	}
 }
