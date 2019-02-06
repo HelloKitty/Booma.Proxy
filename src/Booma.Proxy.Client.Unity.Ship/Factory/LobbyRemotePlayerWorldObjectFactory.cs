@@ -38,7 +38,7 @@ namespace Booma.Proxy
 			//TODO: Save to assume non-cheaters have sent the required position data.
 			WorldTransform transform = EntityWorldTransformMappable[context.EntityGuid];
 
-			GameObject player = GameObject.Instantiate(PrefabProvider.LocalPlayerPrefab, transform.Position, transform.Rotation);
+			GameObject player = GameObject.Instantiate(PrefabProvider.RemotePlayerPrefab, transform.Position, transform.Rotation);
 
 			//This makes it so things can go from GameObject (root) to entity guid.
 			WorldPlayerMap.Add(player, context.EntityGuid);
