@@ -32,6 +32,25 @@ namespace Booma.Proxy
 			NewHorizontalInput = newHorizontalInput;
 		}
 
+		public static bool operator ==(MovementInputChangedEventArgs obj1, MovementInputChangedEventArgs obj2)
+		{
+			if(ReferenceEquals(obj1, obj2))
+				return true;
+
+			if(ReferenceEquals(obj1, null))
+				return false;
+
+			if(ReferenceEquals(obj2, null))
+				return false;
+
+			return obj1.Equals(obj2);
+		}
+
+		public static bool operator !=(MovementInputChangedEventArgs obj1, MovementInputChangedEventArgs obj2)
+		{
+			return !(obj1 == obj2);
+		}
+
 		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
