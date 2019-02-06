@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		private IReadonlyEntityGuidMappable<GameObject> WorldObjectMappable { get; }
 
 		/// <inheritdoc />
-		public byte SlotIndex => SlotIndex;
+		public byte SlotIndex => SlotModel.SlotSelected;
 
 		/// <inheritdoc />
 		public int EntityGuid => Booma.EntityGuid.ComputeEntityGuid(EntityType.Player, (short)SlotIndex);
