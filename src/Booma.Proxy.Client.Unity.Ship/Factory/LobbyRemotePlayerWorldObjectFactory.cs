@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[AdditionalRegisterationAs(typeof(IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext>))]
+	[AdditionalRegisterationAs(typeof(IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext>))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class LobbyRemotePlayerWorldObjectFactory : IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext>, IGameInitializable
+	public sealed class LobbyRemotePlayerWorldObjectFactory : IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext>, IGameInitializable
 	{
 		private IRoomCollection Rooms { get; }
 
@@ -20,24 +20,30 @@ namespace Booma.Proxy
 
 		private INetworkPlayerPrefabProvider PrefabProvider { get; }
 
+		private IReadonlyEntityGuidMappable<WorldTransform> EntityWorldTransformMappable { get; }
+
 		/// <inheritdoc />
-		public LobbyRemotePlayerWorldObjectFactory([NotNull] IRoomCollection rooms, [NotNull] IWorldObjectToEntityMappable worldPlayerMap, [NotNull] INetworkPlayerPrefabProvider prefabProvider, [NotNull] IEntityGuidMappable<GameObject> entityGuidToGameObjectMappable)
+		public LobbyRemotePlayerWorldObjectFactory([NotNull] IRoomCollection rooms, [NotNull] IWorldObjectToEntityMappable worldPlayerMap, [NotNull] INetworkPlayerPrefabProvider prefabProvider, [NotNull] IEntityGuidMappable<GameObject> entityGuidToGameObjectMappable, [NotNull] IReadonlyEntityGuidMappable<WorldTransform> entityWorldTransformMappable)
 		{
 			Rooms = rooms ?? throw new ArgumentNullException(nameof(rooms));
 			WorldPlayerMap = worldPlayerMap ?? throw new ArgumentNullException(nameof(worldPlayerMap));
 			PrefabProvider = prefabProvider ?? throw new ArgumentNullException(nameof(prefabProvider));
 			EntityGuidToGameObjectMappable = entityGuidToGameObjectMappable ?? throw new ArgumentNullException(nameof(entityGuidToGameObjectMappable));
+			EntityWorldTransformMappable = entityWorldTransformMappable ?? throw new ArgumentNullException(nameof(entityWorldTransformMappable));
 		}
 
 		/// <inheritdoc />
-		public GameObject Create(LocalPlayerWorldRepresentationCreationContext context)
+		public GameObject Create(RemotePlayerWorldRepresentationCreationContext context)
 		{
-			GameObject player = GameObject.Instantiate(PrefabProvider.LocalPlayerPrefab, context.SpawnData.AssociatedObject.Position, context.SpawnData.AssociatedObject.Rotation);
+			//TODO: Save to assume non-cheaters have sent the required position data.
+			WorldTransform transform = EntityWorldTransformMappable[context.EntityGuid];
+
+			GameObject player = GameObject.Instantiate(PrefabProvider.LocalPlayerPrefab, transform.Position, transform.Rotation);
 
 			//This makes it so things can go from GameObject (root) to entity guid.
-			WorldPlayerMap.Add(player, context.SpawnData.EntityGuid);
+			WorldPlayerMap.Add(player, context.EntityGuid);
 			//This allows for the reverse
-			EntityGuidToGameObjectMappable.Add(context.SpawnData.EntityGuid, player);
+			EntityGuidToGameObjectMappable.Add(context.EntityGuid, player);
 
 			//TODO: How should we handle rooms?
 			//Rooms.DefaultRoom.TryEnter(player);

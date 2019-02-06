@@ -10,47 +10,21 @@ namespace Booma.Proxy
 	/// <summary>
 	/// Context for creating a remote player.
 	/// </summary>
-	public sealed class RemotePlayerWorldRepresentationCreationContext
+	public sealed class RemotePlayerWorldRepresentationCreationContext : IEntityIdentifable
 	{
+		//We only need the guid. The factory should know where the player is.
 		/// <summary>
 		/// Data contains spawn information for the remote player.
 		/// </summary>
-		public EntityAssoicatedObject<WorldTransform> SpawnData { get; }
+		public int EntityGuid { get; }
 
 		/// <inheritdoc />
-		public RemotePlayerWorldRepresentationCreationContext(int entityId, Vector3 spawnLocation, Quaternion spawnRotation)
+		public RemotePlayerWorldRepresentationCreationContext(int entityId)
 		{
-			if(EntityGuid.GetEntityType(entityId) != EntityType.Player)
-				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {EntityGuid.GetEntityType(entityId)}", nameof(entityId));
+			if(Booma.EntityGuid.GetEntityType(entityId) != EntityType.Player)
+				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {Booma.EntityGuid.GetEntityType(entityId)}", nameof(entityId));
 
-			SpawnData = new EntityAssoicatedObject<WorldTransform>(entityId, new WorldTransform(spawnLocation, spawnRotation));
-		}
-
-		/// <inheritdoc />
-		public RemotePlayerWorldRepresentationCreationContext(int entityId, WorldTransform transform)
-		{
-			if(EntityGuid.GetEntityType(entityId) != EntityType.Player)
-				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {EntityGuid.GetEntityType(entityId)}", nameof(entityId));
-
-			SpawnData = new EntityAssoicatedObject<WorldTransform>(entityId, transform);
-		}
-
-		/// <inheritdoc />
-		public RemotePlayerWorldRepresentationCreationContext([NotNull] EntityAssoicatedObject<WorldTransform> data) 
-		{
-			if(data == null) throw new ArgumentNullException(nameof(data));
-			if(EntityGuid.GetEntityType(data.EntityGuid) != EntityType.Player)
-				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {EntityGuid.GetEntityType(data.EntityGuid)}", nameof(data));
-
-			SpawnData = data;
-		}
-
-		public RemotePlayerWorldRepresentationCreationContext(int entityId, Transform transform)
-		{
-			if(EntityGuid.GetEntityType(entityId) != EntityType.Player)
-				throw new ArgumentException($"Cannot create: {nameof(LocalPlayerWorldRepresentationCreationContext)} with guid with {nameof(EntityType)}: {EntityGuid.GetEntityType(entityId)}", nameof(entityId));
-
-			SpawnData = new EntityAssoicatedObject<WorldTransform>(entityId, new WorldTransform(transform.position, transform.rotation));
+			EntityGuid = entityId;
 		}
 	}
 }
