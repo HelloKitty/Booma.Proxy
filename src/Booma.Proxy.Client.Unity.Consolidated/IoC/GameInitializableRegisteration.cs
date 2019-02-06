@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public sealed class GameInitializableRegisteration : AutoCreatedRegisteration<IGameInitializable>
+
+	public sealed class GameInitializableRegisteration : AutoCreatedRegisteration
 	{
 		
 	}
