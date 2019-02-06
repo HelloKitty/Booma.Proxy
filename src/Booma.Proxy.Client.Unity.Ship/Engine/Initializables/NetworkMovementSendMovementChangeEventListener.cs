@@ -30,6 +30,8 @@ namespace Booma.Proxy
 		//TODO: We need better state handling than a bool
 		private bool isMoving = false;
 
+		private Vector3 LastPosition;
+
 		/// <inheritdoc />
 		public NetworkMovementSendMovementChangeEventListener(IMovementInputChangedEventSubscribable subscriptionService, [NotNull] ILocalPlayerNetworkMovementController localPlayerNetworkController, [NotNull] IReadonlyEntityGuidMappable<GameObject> worldObjectMap, ICharacterSlotSelectedModel slotModel) 
 			: base(subscriptionService)
@@ -87,7 +89,15 @@ namespace Booma.Proxy
 
 					GameObject worldObject = WorldObjectMap[EntityGuid.ComputeEntityGuid(EntityType.Player, SlotModel.SlotSelected)];
 
-					LocalPlayerNetworkController.UpdatedMovementLocation(worldObject.transform.position, worldObject.transform.rotation);
+					//From old movement
+					//Vector3.Magnitude(lastPosition - transform.position) > Vector3.kEpsilon
+					if(Vector3.Magnitude(LastPosition - worldObject.transform.position) > Vector3.kEpsilon)
+					{
+						LocalPlayerNetworkController.UpdatedMovementLocation(worldObject.transform.position, worldObject.transform.rotation);
+
+						//TODO: This design is such that the above statement will be true the first time around. This could be bad for the first time the player moves
+						LastPosition = worldObject.transform.position;
+					}
 				}
 		}
 	}
