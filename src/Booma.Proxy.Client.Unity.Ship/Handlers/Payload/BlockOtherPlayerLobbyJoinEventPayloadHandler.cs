@@ -12,15 +12,11 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	//TODO: Rewrite
-	[AdditionalRegisterationAs(typeof(IRemotePlayerLobbyJoinEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>, IRemotePlayerLobbyJoinEventSubscribable
+	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
 	{
-		/// <inheritdoc />
-		public event EventHandler<LobbyJoinedEventArgs> OnRemotePlayerLobbyJoined;
-
 		/// <inheritdoc />
 		public BlockOtherPlayerLobbyJoinEventPayloadHandler(ILog logger)
 			: base(logger)
@@ -34,9 +30,15 @@ namespace Booma.Proxy
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Player Lobby Join: {payload.ClientId} LeaderId: {payload.LeaderId} EventId: {payload.EventId} Lobby: {payload.LobbyNumber}");
 
-			//Create the joined player
-			//We don't really have a position for them though, it didn't come in this packet
-			OnRemotePlayerLobbyJoined?.Invoke(this, new LobbyJoinedEventArgs(payload.LobbyNumber, EntityGuid.ComputeEntityGuid(EntityType.Player, payload.ClientId)));
+			//We actually DON'T need to do anything here.
+			//Reason being this packet contains pretty much no relevant data.
+			//It just says "A player with this id is going to join the lobby"
+
+			//Future packet 15EA will contain character data (I think)
+			//Then next comes a teleport position command to set the position of the
+			//player.
+			//Then it actually warps to the area with Sub60WarpToNewAreaCommand
+			//Then it alerts everyone to its existence now in the zone with EnterFreshlyWrappedZoneCommand
 
 			return Task.CompletedTask;
 		}
