@@ -54,7 +54,7 @@ namespace Booma.Proxy
 			{
 				//If the input says NOT MOVING but we are MOVING
 				//then we need to end the movement and then send a movement finished command
-				if(!CurrentMovementArgs.isMoving && isMoving)
+				if(!args.isMoving && isMoving)
 				{
 					GameObject worldObject = WorldObjectMap[EntityGuid.ComputeEntityGuid(EntityType.Player, SlotModel.SlotSelected)];
 
@@ -67,6 +67,8 @@ namespace Booma.Proxy
 					//We tell the controller to stop moving and we set our movement here to false.
 					isMoving = false;
 				}
+				else
+					isMoving = true; //it probably already is true but it doesn't hurt to set it again.
 
 				CurrentMovementArgs = args;
 			}
@@ -75,12 +77,18 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void Tick()
 		{
-			using(SyncObj.Lock())
-			{
-				GameObject worldObject = WorldObjectMap[EntityGuid.ComputeEntityGuid(EntityType.Player, SlotModel.SlotSelected)];
+			//Don't need to do this if we aren't moving
+			if(isMoving)
+				using(SyncObj.Lock())
+				{
+					//Double check locking
+					if(!isMoving)
+						return;
 
-				LocalPlayerNetworkController.UpdatedMovementLocation(worldObject.transform.position, worldObject.transform.rotation);
-			}
+					GameObject worldObject = WorldObjectMap[EntityGuid.ComputeEntityGuid(EntityType.Player, SlotModel.SlotSelected)];
+
+					LocalPlayerNetworkController.UpdatedMovementLocation(worldObject.transform.position, worldObject.transform.rotation);
+				}
 		}
 	}
 }
