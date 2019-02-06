@@ -15,6 +15,8 @@ namespace Booma.Proxy
 	/// Handler for recieveing the ship list payload, <see cref="SharedShipListEventPayload"/>.
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(IShipListingEventSubscribable))]
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.LobbySoccer)]
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	public sealed class SharedShipListListHandler : GameMessageHandler<SharedShipListEventPayload>, IShipListingEventSubscribable
 	{
