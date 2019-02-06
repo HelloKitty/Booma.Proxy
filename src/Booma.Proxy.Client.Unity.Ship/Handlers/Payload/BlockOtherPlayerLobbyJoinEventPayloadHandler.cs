@@ -12,8 +12,6 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	//TODO: Rewrite
-	[SceneTypeCreate(GameSceneType.RagolDefault)]
-	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
 	{
@@ -39,6 +37,9 @@ namespace Booma.Proxy
 			//player.
 			//Then it actually warps to the area with Sub60WarpToNewAreaCommand
 			//Then it alerts everyone to its existence now in the zone with EnterFreshlyWrappedZoneCommand
+
+			//At the very least, this is how we should handle a player joing the lobby.
+			//Games might be different.
 
 			return Task.CompletedTask;
 		}
