@@ -9,7 +9,10 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	public sealed class DefaultLocalPlayerNetworkMovementController : ILocalPlayerNetworkMovementController
+	//TODO: This is a kinda a hack, to get it into the scene. We don't need init on this.
+	[AdditionalRegisterationAs(typeof(ILocalPlayerNetworkMovementController))]
+	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	public sealed class DefaultLocalPlayerNetworkMovementController : ILocalPlayerNetworkMovementController, IGameInitializable
 	{
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }
 
@@ -44,6 +47,12 @@ namespace Booma.Proxy
 		{
 			return SendService.SendMessage(new Sub60MovingFastPositionSetCommand(PlayerSlotModel.SlotSelected,
 				UnitScaler.UnScaleYtoZ(position)).ToPayload());
+		}
+
+		/// <inheritdoc />
+		public Task OnGameInitialized()
+		{
+			return Task.CompletedTask;
 		}
 	}
 }
