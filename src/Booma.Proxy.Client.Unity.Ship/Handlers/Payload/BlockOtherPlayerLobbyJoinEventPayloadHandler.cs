@@ -5,23 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
 using GladNet;
+using Guardians;
 using SceneJect.Common;
+using UnityEngine;
 
 namespace Booma.Proxy
 {
 	//TODO: Rewrite
-	/*[SceneTypeCreate(GameSceneType.RagolDefault)]
+	[AdditionalRegisterationAs(typeof(IRemotePlayerLobbyJoinEventSubscribable))]
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>
+	public sealed class BlockOtherPlayerLobbyJoinEventPayloadHandler : GameMessageHandler<BlockOtherPlayerJoinedLobbyEventPayload>, IRemotePlayerLobbyJoinEventSubscribable
 	{
-		private INetworkPlayerFactory PlayerFactory { get; }
+		/// <inheritdoc />
+		public event EventHandler<LobbyJoinedEventArgs> OnRemotePlayerLobbyJoined;
 
 		/// <inheritdoc />
-		public BlockOtherPlayerLobbyJoinEventPayloadHandler([NotNull] INetworkPlayerFactory playerFactory, ILog logger) 
+		public BlockOtherPlayerLobbyJoinEventPayloadHandler(ILog logger)
 			: base(logger)
 		{
-			PlayerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
+
 		}
 
 		/// <inheritdoc />
@@ -32,9 +36,9 @@ namespace Booma.Proxy
 
 			//Create the joined player
 			//We don't really have a position for them though, it didn't come in this packet
-			PlayerFactory.CreateEntity(payload.ClientId);
+			OnRemotePlayerLobbyJoined?.Invoke(this, new LobbyJoinedEventArgs(payload.LobbyNumber, EntityGuid.ComputeEntityGuid(EntityType.Player, payload.ClientId)));
 
 			return Task.CompletedTask;
 		}
-	}*/
+	}
 }
