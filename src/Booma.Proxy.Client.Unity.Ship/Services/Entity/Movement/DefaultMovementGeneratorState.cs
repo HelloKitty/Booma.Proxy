@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	{
 		//This is based on what was in the old lerp component. No idea if this is the best approach, may have to re-examine.
 		/// <inheritdoc />
-		public override bool isFinished => MovementData.CurrentStep <= LerpDuration;
+		public override bool isFinished => MovementData.CurrentStep >= LerpDuration;
 
 		/// <inheritdoc />
 		public override bool isSkippable => true;
