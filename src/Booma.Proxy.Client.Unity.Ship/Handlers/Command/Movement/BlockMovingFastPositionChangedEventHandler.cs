@@ -17,7 +17,7 @@ namespace Booma.Proxy
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.RagolDefault)]
-	public sealed class BlockMovingFastPositionChangedEventHandler : ContextExtendedCommand60Handler<Sub60MovingFastPositionSetCommand, INetworkPlayerNetworkMessageContext>
+	public sealed class BlockMovingFastPositionChangedEventHandler : Command60Handler<Sub60MovingFastPositionSetCommand>
 	{
 		/// <summary>
 		/// Service that translates the incoming position to the correct unit scale that
@@ -25,20 +25,34 @@ namespace Booma.Proxy
 		/// </summary>
 		private IUnitScalerStrategy Scaler { get; }
 
+		private IEntityGuidMappable<WorldTransform> WorldTransformMappable { get; }
+
+		private IEntityGuidMappable<MovementManager> MovementManagerMappable { get; }
+
 		/// <inheritdoc />
-		public BlockMovingFastPositionChangedEventHandler([NotNull] IUnitScalerStrategy scaler, ILog logger, [NotNull] INetworkMessageContextFactory<IMessageContextIdentifiable, INetworkPlayerNetworkMessageContext> contextFactory)
-			: base(logger, contextFactory)
+		public BlockMovingFastPositionChangedEventHandler([NotNull] IUnitScalerStrategy scaler, ILog logger, IEntityGuidMappable<WorldTransform> worldTransformMappable, [NotNull] IEntityGuidMappable<MovementManager> movementManagerMappable)
+			: base(logger)
 		{
 			Scaler = scaler ?? throw new ArgumentNullException(nameof(scaler));
+			WorldTransformMappable = worldTransformMappable;
+			MovementManagerMappable = movementManagerMappable ?? throw new ArgumentNullException(nameof(movementManagerMappable));
 		}
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command, INetworkPlayerNetworkMessageContext commandContext)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60MovingFastPositionSetCommand command)
 		{
-			Vector2 position = Scaler.ScaleYasZ(command.Position);
+			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
 
-			//Set the position of the network transform
-			commandContext.RemotePlayer.Transform.Position = new Vector3(position.x, commandContext.RemotePlayer.Transform.Position.y, position.y);
+			//We can safely assume they have a known world transform or they can't have been spawned.
+			//It's very possible, if this fails, that they are cheating/hacking or something.
+
+			Vector2 position = Scaler.ScaleYasZ(command.Position);
+			MovementManagerMappable[entityGuid].RegisterState(new DefaultMovementGeneratorState(new DefaultMovementGenerationStateState(position, WorldTransformMappable[entityGuid].Position)));
+
+			//New position commands should be direcly updating the entity's position. Even though "MovementGenerators" handle true movement by learping them.
+			//They aren't the source of Truth since they aren't deterministic/authorative like is REAL MMOs. So, the true source of truth is the WorldTransform.
+			Vector3 positionIn3dSpace = new Vector3(position.x, WorldTransformMappable[entityGuid].Position.y, position.y);
+			WorldTransformMappable[entityGuid] = new WorldTransform(positionIn3dSpace, WorldTransformMappable[entityGuid].Rotation);
 
 			return Task.CompletedTask;
 		}
