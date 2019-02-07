@@ -10,33 +10,29 @@ using SceneJect.Common;
 namespace Booma.Proxy
 {
 	//Can leave anywhere in lobby or in game technically
-	[SceneTypeCreate(GameSceneType.RagolDefault)]
-	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[AdditionalRegisterationAs(typeof(IRemotePlayerLeaveLobbyEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class BlockOtherPlayerLobbyLeaveEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveLobbyEventPayload>
+	public sealed class BlockOtherPlayerLobbyLeaveEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveLobbyEventPayload>, IRemotePlayerLeaveLobbyEventSubscribable
 	{
-		private INetworkEntityRegistery<INetworkPlayer> PlayerRegistry { get; }
+		/// <inheritdoc />
+		public event EventHandler<RemotePlayerLeaveLobbyEventArgs> OnRemotePlayerLeftLobby;
 
 		/// <inheritdoc />
 		public BlockOtherPlayerLobbyLeaveEventPayloadHandler([NotNull] INetworkEntityRegistery<INetworkPlayer> playerRegistry, ILog logger) 
 			: base(logger)
 		{
-			PlayerRegistry = playerRegistry ?? throw new ArgumentNullException(nameof(playerRegistry));
+
 		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockOtherPlayerLeaveLobbyEventPayload payload)
 		{
-			//TODO: We can't check that we have this spawned, so we should address that.
-			INetworkPlayer player = PlayerRegistry.RemoveEntity(payload.ClientId);
+			if(Logger.IsInfoEnabled)
+				Logger.Info($"Player with Id: {payload.ClientId} left Lobby. CurrentLeader: {payload.LeaderId}");
 
-			if(player == null)
-			{
-				Logger.Warn($"Recieved LobbyLeave for unknown Client: {payload.ClientId}.");
-				return Task.CompletedTask;
-			}
-
-			player.Despawn();
+			//TODO: So, we don't really want to do this INPLACE. But we're kinda forced to remove players INPLACE. Because of Sega's index/id design
+			//we can't queue it up to be handled at another time becuase a new player WITH THAT ID, might join. So dumb but can't be avoided.
+			OnRemotePlayerLeftLobby?.Invoke(this, new RemotePlayerLeaveLobbyEventArgs(EntityGuid.ComputeEntityGuid(EntityType.Player, payload.ClientId)));
 
 			return Task.CompletedTask;
 		}
