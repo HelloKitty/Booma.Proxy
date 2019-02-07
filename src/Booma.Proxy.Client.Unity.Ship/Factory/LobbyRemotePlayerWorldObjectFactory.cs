@@ -22,14 +22,22 @@ namespace Booma.Proxy
 
 		private IReadonlyEntityGuidMappable<WorldTransform> EntityWorldTransformMappable { get; }
 
+		private IEntityGuidMappable<MovementManager> MovementManagerMappable { get; }
+
 		/// <inheritdoc />
-		public LobbyRemotePlayerWorldObjectFactory([NotNull] IRoomCollection rooms, [NotNull] IWorldObjectToEntityMappable worldPlayerMap, [NotNull] INetworkPlayerPrefabProvider prefabProvider, [NotNull] IEntityGuidMappable<GameObject> entityGuidToGameObjectMappable, [NotNull] IReadonlyEntityGuidMappable<WorldTransform> entityWorldTransformMappable)
+		public LobbyRemotePlayerWorldObjectFactory([NotNull] IRoomCollection rooms, 
+			[NotNull] IWorldObjectToEntityMappable worldPlayerMap, 
+			[NotNull] INetworkPlayerPrefabProvider prefabProvider, 
+			[NotNull] IEntityGuidMappable<GameObject> entityGuidToGameObjectMappable, 
+			[NotNull] IReadonlyEntityGuidMappable<WorldTransform> entityWorldTransformMappable, 
+			IEntityGuidMappable<MovementManager> movementManagerMappable)
 		{
 			Rooms = rooms ?? throw new ArgumentNullException(nameof(rooms));
 			WorldPlayerMap = worldPlayerMap ?? throw new ArgumentNullException(nameof(worldPlayerMap));
 			PrefabProvider = prefabProvider ?? throw new ArgumentNullException(nameof(prefabProvider));
 			EntityGuidToGameObjectMappable = entityGuidToGameObjectMappable ?? throw new ArgumentNullException(nameof(entityGuidToGameObjectMappable));
 			EntityWorldTransformMappable = entityWorldTransformMappable ?? throw new ArgumentNullException(nameof(entityWorldTransformMappable));
+			MovementManagerMappable = movementManagerMappable;
 		}
 
 		/// <inheritdoc />
@@ -44,6 +52,11 @@ namespace Booma.Proxy
 			WorldPlayerMap.Add(player, context.EntityGuid);
 			//This allows for the reverse
 			EntityGuidToGameObjectMappable.Add(context.EntityGuid, player);
+
+			//TODO: Maybe make movementmanager in a factory?
+			//TODO: This is kinda a hack to down cast. We don't have another way right now.
+			//Remote players also get a default movement manager
+			MovementManagerMappable.Add(context.EntityGuid, new MovementManager((IReadonlyEntityGuidMappable<GameObject>)EntityGuidToGameObjectMappable));
 
 			//TODO: How should we handle rooms?
 			//Rooms.DefaultRoom.TryEnter(player);
