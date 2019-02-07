@@ -47,7 +47,7 @@ namespace Booma.Proxy
 			//It's very possible, if this fails, that they are cheating/hacking or something.
 
 			Vector2 position = Scaler.ScaleYasZ(command.Position);
-			MovementManagerMappable[entityGuid].RegisterState(new DefaultMovementGeneratorState(new DefaultMovementGenerationStateState(position, WorldTransformMappable[entityGuid].Position)));
+			MovementManagerMappable[entityGuid].RegisterState(new DefaultMovementGeneratorState(new DefaultMovementGenerationStateState(position)));
 
 			//New position commands should be direcly updating the entity's position. Even though "MovementGenerators" handle true movement by learping them.
 			//They aren't the source of Truth since they aren't deterministic/authorative like is REAL MMOs. So, the true source of truth is the WorldTransform.

@@ -20,6 +20,8 @@ namespace Booma.Proxy
 		//Old default for lerping was 0.2 seconds for regular remote PSOBB clients.
 		public float LerpDuration = 0.2f;
 
+		private Vector3 RealStartPosition { get; set; }
+
 		/// <inheritdoc />
 		public DefaultMovementGeneratorState(DefaultMovementGenerationStateState movementData)
 			: base(movementData)
@@ -31,6 +33,7 @@ namespace Booma.Proxy
 		protected override void Start(GameObject entity, long currentTime)
 		{
 			//TODO: On start should we move the entity to the position specified as the StartPosition? They may not be at that point.
+			RealStartPosition = entity.transform.position;
 		}
 
 		/// <inheritdoc />
@@ -38,8 +41,8 @@ namespace Booma.Proxy
 		{
 			//TODO: We currently ignore currentTime. In the future we should base things off absolute time. We will
 			//eventually transition PSO's networking to using timestamps for prediction and simulation syncronization for movement.
-			float newX = Mathf.Lerp(MovementData.StartPosition.x, MovementData.TargetPosition.x, MovementData.CurrentStep / LerpDuration);
-			float newZ = Mathf.Lerp(MovementData.StartPosition.z, MovementData.TargetPosition.y, MovementData.CurrentStep / LerpDuration);
+			float newX = Mathf.Lerp(RealStartPosition.x, MovementData.TargetPosition.x, MovementData.CurrentStep / LerpDuration);
+			float newZ = Mathf.Lerp(RealStartPosition.z, MovementData.TargetPosition.y, MovementData.CurrentStep / LerpDuration);
 
 			//Set the new lerped position and step the current step forward
 			entity.transform.position = new Vector3(newX, entity.transform.position.y, newZ);
@@ -61,16 +64,10 @@ namespace Booma.Proxy
 		/// </summary>
 		public Vector2 TargetPosition { get; }
 
-		/// <summary>
-		/// The cached start position to lerp towards.
-		/// </summary>
-		public Vector3 StartPosition { get; }
-
 		/// <inheritdoc />
-		public DefaultMovementGenerationStateState(Vector2 targetPosition, Vector3 startPosition)
+		public DefaultMovementGenerationStateState(Vector2 targetPosition)
 		{
 			TargetPosition = targetPosition;
-			StartPosition = startPosition;
 		}
 	}
 }
