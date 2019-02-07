@@ -10,45 +10,51 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	//TODO: Rewrite
-	/*[SceneTypeCreate(GameSceneType.RagolDefault)]
-	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[AdditionalRegisterationAs(typeof(IRemoteClientAcknowledgedWarpEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class BlockOtherClientAlertedExistenceEventHandler : Command60Handler<Sub60FinishedWarpAckCommand> //we don't need context
+	public sealed class BlockOtherClientAlertedExistenceEventHandler : Command60Handler<Sub60FinishedWarpAckCommand>, IRemoteClientAcknowledgedWarpEventSubscribable //we don't need context
 	{
-		private INetworkPlayerFactory PlayerFactory { get; }
-
-		private INetworkPlayerCollection PlayerCollection { get; }
-
 		private IUnitScalerStrategy UnitScaler { get; }
 
+		private IEntityGuidMappable<WorldTransform> WorldTransformMappable { get; }
+
+		private IEntityGuidMappable<PlayerZoneData> ZoneDataMappable { get; }
+
 		/// <inheritdoc />
-		public BlockOtherClientAlertedExistenceEventHandler([NotNull] INetworkPlayerFactory playerFactory, [NotNull] INetworkPlayerCollection playerCollection, [NotNull] IUnitScalerStrategy unitScaler, [NotNull] ILog logger) 
+		public event EventHandler<RemotePlayerWarpAcknowledgementEventArgs> OnRemotePlayerAcknowledgedWarp;
+
+		/// <inheritdoc />
+		public BlockOtherClientAlertedExistenceEventHandler([NotNull] IUnitScalerStrategy unitScaler, [NotNull] ILog logger, [NotNull] IEntityGuidMappable<WorldTransform> worldTransformMappable, [NotNull] IEntityGuidMappable<PlayerZoneData> zoneDataMappable) 
 			: base(logger)
 		{
-			PlayerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
-			PlayerCollection = playerCollection ?? throw new ArgumentNullException(nameof(playerCollection));
 			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
+			WorldTransformMappable = worldTransformMappable ?? throw new ArgumentNullException(nameof(worldTransformMappable));
+			ZoneDataMappable = zoneDataMappable ?? throw new ArgumentNullException(nameof(zoneDataMappable));
 		}
 
 		/// <inheritdoc />
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60FinishedWarpAckCommand command)
 		{
-			//Clients do a full broadcast and we already know about this client
-			//so we should just return
-			if(PlayerCollection.ContainsId(command.Identifier))
-				return Task.CompletedTask;
+			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
 
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Client broadcasted existence Id: {command.Identifier} ZoneId: {command.ZoneId}");
 
+			//We have to do basically what the 3 packet process does for newly joining clients
+			//We need to create the world transform so that it will be known where to spawn.
 			float rotation = UnitScaler.ScaleYRotation(command.YAxisRotation);
 			Vector3 position = UnitScaler.Scale(command.Position);
+			WorldTransformMappable[entityGuid] = new WorldTransform(position, Quaternion.Euler(0.0f, rotation, 0.0f));
 
-			//TODO: We should check the ZoneId being sent AND if we already know the player. We shouldn't but we should still verify
-			PlayerFactory.CreateEntity(command.Identifier, position, Quaternion.AngleAxis(rotation, Vector3.up));
+			//Then we have to actually create/set the zone data so that
+			//it's known which zone the player is in
+			ZoneDataMappable[entityGuid] = new PlayerZoneData(command.ZoneId);
+
+			//At this point, it should be able to spawn the player so we should let any listeners know about
+			//the ack
+			OnRemotePlayerAcknowledgedWarp?.Invoke(this, new RemotePlayerWarpAcknowledgementEventArgs(entityGuid));
 
 			return Task.CompletedTask;
 		}
-	}*/
+	}
 }
