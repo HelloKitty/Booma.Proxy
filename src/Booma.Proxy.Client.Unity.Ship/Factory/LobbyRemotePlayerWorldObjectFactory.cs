@@ -29,15 +29,15 @@ namespace Booma.Proxy
 			[NotNull] IWorldObjectToEntityMappable worldPlayerMap, 
 			[NotNull] INetworkPlayerPrefabProvider prefabProvider, 
 			[NotNull] IEntityGuidMappable<GameObject> entityGuidToGameObjectMappable, 
-			[NotNull] IReadonlyEntityGuidMappable<WorldTransform> entityWorldTransformMappable, 
-			IEntityGuidMappable<MovementManager> movementManagerMappable)
+			[NotNull] IReadonlyEntityGuidMappable<WorldTransform> entityWorldTransformMappable,
+			[NotNull] IEntityGuidMappable<MovementManager> movementManagerMappable)
 		{
 			Rooms = rooms ?? throw new ArgumentNullException(nameof(rooms));
 			WorldPlayerMap = worldPlayerMap ?? throw new ArgumentNullException(nameof(worldPlayerMap));
 			PrefabProvider = prefabProvider ?? throw new ArgumentNullException(nameof(prefabProvider));
 			EntityGuidToGameObjectMappable = entityGuidToGameObjectMappable ?? throw new ArgumentNullException(nameof(entityGuidToGameObjectMappable));
 			EntityWorldTransformMappable = entityWorldTransformMappable ?? throw new ArgumentNullException(nameof(entityWorldTransformMappable));
-			MovementManagerMappable = movementManagerMappable;
+			MovementManagerMappable = movementManagerMappable ?? throw new ArgumentNullException(nameof(movementManagerMappable));
 		}
 
 		/// <inheritdoc />
