@@ -62,21 +62,31 @@ namespace Booma.Proxy
 					//Though this should never happen
 					//Reentrant lock will also prevent anything from changing
 					//so this is safe.
-					if(CurrentState == null)
+					if(CurrentState != null)
+					{
 						Update(entity, currentTime);
+						return;
+					}
+					else
+						throw new InvalidOperationException($"Dequeued a NULL State in {nameof(MovementManager)} for Entity: {entity} Id: {EntityGuid.GetEntityId(entity)}");
 				}
 
 				//TODO: We should cache finished call maybe
 				//The case where we have a non-null currentstate is done
 				//or we we have queued up movement states and the current state is low priority/skippable.
-				if(CurrentState.isFinished || (CurrentState.isSkippable && MovementStates.Count == 0))
+				if(CurrentState.isSkippable && MovementStates.Count != 0)
 				{
+					//Error in logic was here originally, it tried to dequeue a new state if the
+					//above expression was true. The issue was, it's possible for a state to be finished and not have anything more to dequeue.
+					//Because of that we should only handle skippable AND something left in there.
+					//isFinished can be handled last.
 					CurrentState = MovementStates.Dequeue();
 
 					//This may seem weird, but calling into the same method again here recursively makes sense
 					//because it'll check if the next state is finished (probably not) or is skippable and we have more.
 					//It will eventually run out of skippable states or we'll find one that isn't skippable
 					Update(entity, currentTime);
+					return;
 				}
 
 				//At this point the CurrentState is either finished, unskippable or we've got no more states left.
