@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[DefaultChild(typeof(UnknownSubCommand60Command))]
 	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class BaseSubCommand60
+	public abstract class BaseSubCommand60 : ISubCommand60
 	{
 		/// <summary>
 		/// The operation code for the subcommand.
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite]
 		[WireMember(1)]
-		public byte CommandOperationCode { get; }
+		public SubCommand60OperationCode CommandOperationCode { get; }
 
 		/// <summary>
 		/// Indicates if the <see cref="CommandSize"/> property is serialized and
