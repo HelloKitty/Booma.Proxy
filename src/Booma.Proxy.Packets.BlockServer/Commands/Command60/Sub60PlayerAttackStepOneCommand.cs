@@ -57,13 +57,13 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public void OnBeforeSerialization()
 		{
-			RawNetworkRotation = (short)(YAxisRotation * 180f);
+			RawNetworkRotation = (short)(YAxisRotation * 182.04444f);
 		}
 
 		/// <inheritdoc />
 		public void OnAfterDeserialization()
 		{
-			YAxisRotation = RawNetworkRotation / 180f;
+			YAxisRotation = (RawNetworkRotation & 0xffff) / 182.04444f;
 		}
 	}
 }
