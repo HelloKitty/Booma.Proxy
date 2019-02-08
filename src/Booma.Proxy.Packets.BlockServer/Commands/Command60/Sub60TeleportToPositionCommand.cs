@@ -34,7 +34,7 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		private byte unused { get; }
 
-		//TODO: What is this? I think it's a position checksum.
+		//TODO: Handle/document animation states
 		[WireMember(3)]
 		private int AnimationState { get; } = 0;
 

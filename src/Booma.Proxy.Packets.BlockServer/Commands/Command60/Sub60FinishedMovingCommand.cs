@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SetFinalMovingPosition)]
-	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener, IMessageContextIdentifiable
+	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener, IMessageContextIdentifiable, IWorldPositionable<float>
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -59,6 +59,8 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(7)]
 		public Vector3<float> Position { get; }
+
+		Vector2<float> IWorldPositionable<float>.Position => new Vector2<float>(Position.X, Position.Z);
 
 		/// <inheritdoc />
 		public Sub60FinishedMovingCommand(byte clientId, float yAxisRotation, [NotNull] Vector3<float> position, short roomId, short zoneId)
