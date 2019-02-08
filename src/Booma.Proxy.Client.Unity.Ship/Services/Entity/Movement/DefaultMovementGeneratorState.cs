@@ -7,8 +7,19 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	//TODO: This is mostly just a test movement generator for now
-	public sealed class DefaultMovementGeneratorState : BaseMovementGenerator<DefaultMovementGenerationStateState>
+	//Default non-generic is DefaultMovementGenerationStateState.
+	public class DefaultMovementGeneratorState : DefaultMovementGeneratorState<DefaultMovementGenerationStateState>
+	{
+		/// <inheritdoc />
+		public DefaultMovementGeneratorState(DefaultMovementGenerationStateState movementData) 
+			: base(movementData)
+		{
+
+		}
+	}
+
+	public class DefaultMovementGeneratorState<TMovementGeneratorData> : BaseMovementGenerator<TMovementGeneratorData>
+		where TMovementGeneratorData : class, IMovementStatePositionTargetable, IMovementStateSteppable
 	{
 		//This is based on what was in the old lerp component. No idea if this is the best approach, may have to re-examine.
 		/// <inheritdoc />
@@ -23,7 +34,7 @@ namespace Booma.Proxy
 		private Vector3 RealStartPosition { get; set; }
 
 		/// <inheritdoc />
-		public DefaultMovementGeneratorState(DefaultMovementGenerationStateState movementData)
+		public DefaultMovementGeneratorState(TMovementGeneratorData movementData)
 			: base(movementData)
 		{
 
@@ -48,26 +59,15 @@ namespace Booma.Proxy
 			entity.transform.position = new Vector3(newX, entity.transform.position.y, newZ);
 
 			MovementData.CurrentStep += Time.deltaTime;
+
+			//This is expected to only be called once, because callers should check isFinished.
+			if(isFinished)
+				OnFinished();
 		}
-	}
 
-	public sealed class DefaultMovementGenerationStateState
-	{
-		/// <summary>
-		/// The current step of the lerp.
-		/// Progress = CurrentStep / LerpDuration.
-		/// </summary>
-		public float CurrentStep { get; set; } = 0.0f;//public mutable.
-
-		/// <summary>
-		/// Cached target position to lerp towards.
-		/// </summary>
-		public Vector2 TargetPosition { get; }
-
-		/// <inheritdoc />
-		public DefaultMovementGenerationStateState(Vector2 targetPosition)
+		protected virtual void OnFinished()
 		{
-			TargetPosition = targetPosition;
+
 		}
 	}
 }
