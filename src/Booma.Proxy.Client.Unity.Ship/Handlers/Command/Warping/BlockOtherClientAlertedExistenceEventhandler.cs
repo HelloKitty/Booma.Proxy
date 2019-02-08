@@ -40,6 +40,34 @@ namespace Booma.Proxy
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Client broadcasted existence Id: {command.Identifier} ZoneId: {command.ZoneId}");
 
+			//The reason we have to do this is because remote players, that we already known about,
+			//could be broadcasting out a warp ack to alert other players that they exist
+			//but not intend for it to reach us really. In this case, we already have the player existing
+			//so if we don't do it this way then we will end up with duplicate spawns
+			if(WorldTransformMappable.ContainsKey(entityGuid) && ZoneDataMappable.ContainsKey(entityGuid))
+			{
+				//TODO: Should we ever assume they will ack a new zone??? Probably never legit in the lobby but might happen in games? Unsure.
+				InitializeAckDataToEntityMappables(command, entityGuid);
+			}
+			else
+			{
+				HandleUnknownEntityWarpAck(command, entityGuid);
+			}
+
+			return Task.CompletedTask;
+		}
+
+		private void HandleUnknownEntityWarpAck(Sub60FinishedWarpAckCommand command, int entityGuid)
+		{
+			InitializeAckDataToEntityMappables(command, entityGuid);
+
+			//At this point, it should be able to spawn the player so we should let any listeners know about
+			//the ack
+			OnRemotePlayerAcknowledgedWarp?.Invoke(this, new RemotePlayerWarpAcknowledgementEventArgs(entityGuid));
+		}
+
+		private void InitializeAckDataToEntityMappables(Sub60FinishedWarpAckCommand command, int entityGuid)
+		{
 			//We have to do basically what the 3 packet process does for newly joining clients
 			//We need to create the world transform so that it will be known where to spawn.
 			float rotation = UnitScaler.ScaleYRotation(command.YAxisRotation);
@@ -49,12 +77,6 @@ namespace Booma.Proxy
 			//Then we have to actually create/set the zone data so that
 			//it's known which zone the player is in
 			ZoneDataMappable[entityGuid] = new PlayerZoneData(command.ZoneId);
-
-			//At this point, it should be able to spawn the player so we should let any listeners know about
-			//the ack
-			OnRemotePlayerAcknowledgedWarp?.Invoke(this, new RemotePlayerWarpAcknowledgementEventArgs(entityGuid));
-
-			return Task.CompletedTask;
 		}
 	}
 }
