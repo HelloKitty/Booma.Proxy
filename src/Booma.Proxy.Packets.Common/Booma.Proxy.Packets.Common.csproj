@@ -73,6 +73,7 @@
     <Compile Include="Message\Game\BaseSubCommand60.cs" />
     <Compile Include="Message\Game\BaseSubCommand62.cs" />
     <Compile Include="Message\Game\ISubCommand.cs" />
+    <Compile Include="Message\Game\ISubCommand6D.cs" />
     <Compile Include="Message\Game\ISubCommand62.cs" />
     <Compile Include="Message\Game\ISubCommand60.cs" />
     <Compile Include="Message\Game\UnknownClientGamePayload.cs" />
