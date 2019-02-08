@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x43
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.AttackStepOne)]
-	public sealed class Sub60PlayerAttackStepOneCommand : BaseSubCommand60, IMessageContextIdentifiable, ISerializationEventListener
+	public sealed class Sub60PlayerAttackStepOneCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The rotation about the Y-axis.
 		/// </summary>
-		public float YAxisRotation { get; private set; }
+		public float YAxisRotation => RawNetworkRotation.FromNetworkRotationToYAxisRotation();
 
 		//TODO: Is this anything but padding?
 		[WireMember(4)]
@@ -43,27 +43,14 @@ namespace Booma.Proxy
 			: this()
 		{
 			Identifier = identifier;
-			YAxisRotation = yAxisRotation;
+
+			RawNetworkRotation = yAxisRotation.ToNetworkRotation();
 		}
 
 		//Serializer ctor
 		private Sub60PlayerAttackStepOneCommand()
 		{
 			CommandSize = 8 / 4;
-		}
-
-		//The below serialization event callbacks will properly handle the network rotation
-		//conversion
-		/// <inheritdoc />
-		public void OnBeforeSerialization()
-		{
-			RawNetworkRotation = (short)(YAxisRotation * 182.04444f);
-		}
-
-		/// <inheritdoc />
-		public void OnAfterDeserialization()
-		{
-			YAxisRotation = (RawNetworkRotation & 0xffff) / 182.04444f;
 		}
 	}
 }
