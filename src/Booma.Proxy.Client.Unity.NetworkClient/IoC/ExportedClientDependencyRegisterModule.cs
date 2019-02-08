@@ -54,9 +54,6 @@ namespace Booma.Proxy
 				.As<IConnectionService>()
 				.SingleInstance();
 
-			//TODO: This is a hack to help prevent mobile network issues
-			this.gameObject.AddComponent<DisconnectClientOnNonExportableSceneChange>();
-
 			//Once we're registered we can destroy
 			Destroy(this.gameObject);
 		}

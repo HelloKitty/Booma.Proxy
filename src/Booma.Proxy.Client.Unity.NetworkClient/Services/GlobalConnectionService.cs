@@ -13,16 +13,16 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public Task DisconnectAsync(int delay)
 		{
-			return GameNetworkClient.CurrentConnectionService.DisconnectAsync(delay);
+			return GlobalNetwork.CurrentConnectionService.DisconnectAsync(delay);
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ConnectAsync(string ip, int port)
 		{
-			return GameNetworkClient.CurrentConnectionService.ConnectAsync(ip, port);
+			return GlobalNetwork.CurrentConnectionService.ConnectAsync(ip, port);
 		}
 
 		/// <inheritdoc />
-		public bool isConnected => GameNetworkClient.CurrentConnectionService.isConnected;
+		public bool isConnected => GlobalNetwork.CurrentConnectionService.isConnected;
 	}
 }

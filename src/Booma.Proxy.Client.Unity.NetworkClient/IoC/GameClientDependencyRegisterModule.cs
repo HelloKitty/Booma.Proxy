@@ -106,16 +106,26 @@ namespace Booma.Proxy
 	//TODO: This is a quick hack for a mobile test
 	internal class DisconnectClientOnNonExportableSceneChange : MonoBehaviour
 	{
+		private INetworkClientExportable ClientExportable;
+
+		private IConnectionService ConnectionService;
+
+		void Start()
+		{
+			ClientExportable = GlobalNetwork.CurrentExportableClient;
+			ConnectionService = GlobalNetwork.CurrentConnectionService;
+		}
+
 		public void OnDestroy()
 		{
 			//This is SUCH a hack
-			if(GameNetworkClient.CurrentExportableClient.isClientExported)
+			if(ClientExportable.isClientExported)
 				return;
 
 			Debug.Log($"Disconnection HACK is about to disconnect the client.");
 
 			//Otherwise, if not exported we should try to disconnect
-			GameNetworkClient.CurrentConnectionService.Disconnect();
+			ConnectionService.Disconnect();
 		}
 	}
 }

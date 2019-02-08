@@ -13,13 +13,20 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	public static class GlobalNetwork
+	{
+		internal static INetworkClientExportable CurrentExportableClient { get; set; }
+
+		internal static IConnectionService CurrentConnectionService { get; set; }
+	}
+
 	/// <summary>
 	/// Abstract base network client for Unity3D.
 	/// </summary>
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
 	/// <typeparam name="TOutgoingPayloadType"></typeparam>
 	[Injectee]
-	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : SerializedMonoBehaviour, INetworkClientExportable
+	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : SerializedMonoBehaviour, INetworkClientExportable, IConnectionService
 		where TOutgoingPayloadType : class 
 		where TIncomingPayloadType : class
 	{
@@ -65,6 +72,16 @@ namespace Booma.Proxy
 		/// The token source for canceling the read message await.
 		/// </summary>
 		protected CancellationTokenSource CancelTokenSource { get; } = new CancellationTokenSource();
+
+		private void Awake()
+		{
+			Debug.Log($"Setting global network services.");
+
+			//TODO: This is sooooooo a hack but I don't have it in me to change this.
+			//Whenever we begin existence, we become the new exportable client
+			GlobalNetwork.CurrentExportableClient = this;
+			GlobalNetwork.CurrentConnectionService = this;
+		}
 
 		/// <summary>
 		/// Starts dispatching the messages and won't yield until
@@ -149,9 +166,6 @@ namespace Booma.Proxy
 		{
 			if(!CancelTokenSource.IsCancellationRequested)
 				CancelTokenSource.Cancel();
-
-			if(!isClientExported)
-				Client?.Disconnect();
 		}
 
 		protected void CreateDispatchTask()
@@ -160,5 +174,35 @@ namespace Booma.Proxy
 			Task.Factory.StartNew(StartDispatchingAsync, CancelTokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.FromCurrentSynchronizationContext())
 				.ConfigureAwait(true);
 		}
+
+		/// <inheritdoc />
+		public async Task<bool> ConnectAsync(string ip, int port)
+		{
+			if(Logger.IsDebugEnabled)
+				Logger.Debug("Starting game client");
+
+			//As soon as we start we should attempt to connect to the login server.
+			bool result = await Client.ConnectAsync(ip, port)
+				.ConfigureAwait(true);
+
+			if(!result)
+				throw new InvalidOperationException($"Failed to connect to Server: {ip} Port: {port}");
+
+			if(Logger.IsDebugEnabled)
+				Logger.Debug($"Connected client. isConnected: {Client.isConnected}");
+
+			CreateDispatchTask();
+			return true;
+		}
+
+		/// <inheritdoc />
+		public Task DisconnectAsync(int delay)
+		{
+			CancelTokenSource.Cancel();
+			return Client.DisconnectAsync(delay);
+		}
+
+		/// <inheritdoc />
+		public bool isConnected => Client.isConnected;
 	}
 }
