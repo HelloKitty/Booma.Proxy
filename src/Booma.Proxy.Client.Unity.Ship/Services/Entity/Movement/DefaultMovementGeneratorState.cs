@@ -33,7 +33,7 @@ namespace Booma.Proxy
 
 		private Vector3 RealStartPosition { get; set; }
 
-		private Quaternion RealStartRotiation { get; set; }
+		protected Quaternion RealStartRotiation { get; private set; }
 
 		private Quaternion RealEndRotation { get; set; }
 
@@ -67,13 +67,18 @@ namespace Booma.Proxy
 
 			//Set the new lerped position and step the current step forward
 			entity.transform.position = new Vector3(newX, entity.transform.position.y, newZ);
-			entity.transform.rotation = Quaternion.Slerp(RealStartRotiation, RealEndRotation, MovementData.CurrentStep / LerpDuration);
+			ApplySlerpedRotation(entity);
 
 			MovementData.CurrentStep += Time.deltaTime;
 
 			//This is expected to only be called once, because callers should check isFinished.
 			if(isFinished)
 				OnFinished(entity);
+		}
+
+		protected virtual void ApplySlerpedRotation(GameObject entity)
+		{
+			entity.transform.rotation = Quaternion.Slerp(RealStartRotiation, RealEndRotation, MovementData.CurrentStep / LerpDuration);
 		}
 
 		protected virtual void OnFinished(GameObject entity)

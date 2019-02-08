@@ -9,11 +9,22 @@ namespace Booma.Proxy
 {
 	public sealed class EndRotationDefaultMovementGeneratorState : DefaultMovementGeneratorState<TargetPositionRotationMovementGeneratorInput>
 	{
+		//Don't skip ending movement.
+		/// <inheritdoc />
+		public override bool isSkippable => false;
+
 		/// <inheritdoc />
 		public EndRotationDefaultMovementGeneratorState(TargetPositionRotationMovementGeneratorInput movementData) 
 			: base(movementData)
 		{
 
+		}
+
+		/// <inheritdoc />
+		protected override void ApplySlerpedRotation(GameObject entity)
+		{
+			//We can do better here since we known the true rotation
+			entity.transform.rotation = Quaternion.Slerp(RealStartRotiation, MovementData.TargetRotation, MovementData.CurrentStep / LerpDuration);
 		}
 
 		/// <inheritdoc />
