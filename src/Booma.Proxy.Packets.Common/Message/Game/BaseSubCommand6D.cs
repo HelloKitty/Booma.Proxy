@@ -10,6 +10,7 @@ namespace Booma.Proxy
 	/// <summary>
 	/// The base type for the subcommand sent in the 0x6D packets.
 	/// </summary>
+	[DefaultChild(typeof(UnknownSubCommand6DCommand))]
 	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
 	public abstract class BaseSubCommand6D : ISubCommand6D
 	{
