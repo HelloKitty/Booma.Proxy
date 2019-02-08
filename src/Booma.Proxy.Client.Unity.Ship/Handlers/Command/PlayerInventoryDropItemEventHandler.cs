@@ -10,8 +10,10 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[SceneTypeCreate(GameSceneType.Pioneer2)]
-	[SceneTypeCreate(GameSceneType.RagolDefault)]
+#warning Disabled Sub60DropInventoryItemCommand handler
+	//TODO: This has been disabled for now.
+	//[SceneTypeCreate(GameSceneType.Pioneer2)]
+	//[SceneTypeCreate(GameSceneType.RagolDefault)]
 	public sealed class PlayerInventoryDropItemEventHandler : Command60Handler<Sub60DropInventoryItemCommand>
 	{
 		private INetworkEntityFactory<INetworkItem> WorldItemFactory { get; }
