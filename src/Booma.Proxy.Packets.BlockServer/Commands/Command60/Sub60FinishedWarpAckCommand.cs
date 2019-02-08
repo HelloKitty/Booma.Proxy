@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.AlertFreshlyWarpedClients)]
-	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60, IMessageContextIdentifiable, ISerializationEventListener
+	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -41,7 +41,7 @@ namespace Booma.Proxy
 
 		//TODO: Soly said this is rotation so we should handle it 65536f / 360f
 		//[WireMember(5)]
-		public float YAxisRotation { get; private set; }
+		public float YAxisRotation => RawRotation.FromNetworkRotationToYAxisRotation();
 
 		//There are 2 extra bytes here at the end and are FF FF
 		[WireMember(6)]
@@ -53,10 +53,11 @@ namespace Booma.Proxy
 			if(position == null) throw new ArgumentNullException(nameof(position));
 			if(zoneId < 0) throw new ArgumentOutOfRangeException(nameof(zoneId));
 
-			YAxisRotation = yAxisRotation;
 			Identifier = clientId;
 			ZoneId = zoneId;
 			Position = position;
+
+			RawRotation = yAxisRotation.ToNetworkRotation();
 		}
 
 		public Sub60FinishedWarpAckCommand(int clientId, int zoneId, [NotNull] Vector3<float> position, float yAxisRotation)
@@ -70,20 +71,6 @@ namespace Booma.Proxy
 		{
 			//Calc static 32bit size
 			CommandSize = 24 / 4;
-		}
-
-		//The below serialization event callbacks will properly handle the network rotation
-		//conversion
-		/// <inheritdoc />
-		public void OnBeforeSerialization()
-		{
-			RawRotation = (short)(YAxisRotation * 180f);
-		}
-
-		/// <inheritdoc />
-		public void OnAfterDeserialization()
-		{
-			YAxisRotation = RawRotation / 180f;
 		}
 	}
 }
