@@ -62,10 +62,10 @@ namespace Booma.Proxy
 
 			//This is expected to only be called once, because callers should check isFinished.
 			if(isFinished)
-				OnFinished();
+				OnFinished(entity);
 		}
 
-		protected virtual void OnFinished()
+		protected virtual void OnFinished(GameObject entity)
 		{
 
 		}

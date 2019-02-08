@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		/// Service that translates the incoming position to the correct unit scale that
 		/// Unity3D expects.
 		/// </summary>
-		private IUnitScalerStrategy Scaler { get; }
+		protected IUnitScalerStrategy Scaler { get; }
 
 		private IEntityGuidMappable<WorldTransform> WorldTransformMappable { get; }
 
@@ -46,7 +46,7 @@ namespace Booma.Proxy
 			//It's very possible, if this fails, that they are cheating/hacking or something.
 
 			Vector2 position = Scaler.ScaleYasZ(command.Position);
-			MovementManagerMappable[entityGuid].RegisterState(CreateMovementGenerator(position));
+			MovementManagerMappable[entityGuid].RegisterState(CreateMovementGenerator(position, command));
 
 			//New position commands should be direcly updating the entity's position. Even though "MovementGenerators" handle true movement by learping them.
 			//They aren't the source of Truth since they aren't deterministic/authorative like is REAL MMOs. So, the true source of truth is the WorldTransform.
@@ -56,8 +56,10 @@ namespace Booma.Proxy
 			return Task.CompletedTask;
 		}
 
-		protected virtual IMovementGeneratorState CreateMovementGenerator(Vector2 position)
+		protected virtual IMovementGeneratorState CreateMovementGenerator(Vector2 position, [NotNull] TPositionChangeCommandType command)
 		{
+			if(command == null) throw new ArgumentNullException(nameof(command));
+
 			//By default we use the default.
 			return new DefaultMovementGeneratorState(new DefaultMovementGenerationStateState(position));
 		}
