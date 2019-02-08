@@ -88,6 +88,7 @@
     <Compile Include="Models\IMenuItemIdentifiable.cs" />
     <Compile Include="Models\MenuItemIdentifier.cs" />
     <Compile Include="Models\MenuListing.cs" />
+    <Compile Include="OperationCodes\SubCommand6DOperationCode.cs" />
     <Compile Include="OperationCodes\GameNetworkOperationCode.cs" />
     <Compile Include="OperationCodes\PatchNetworkOperationCode.cs" />
     <Compile Include="Message\Game\UnknownServerGamePayload.cs" />
