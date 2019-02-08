@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public interface ISubCommand62 : ISubCommand
+	public interface ISubCommand62 : ISubCommand<SubCommand62OperationCode>
 	{
-		/// <summary>
-		/// The operation code for the subcommand.
-		/// This is only read for logging of unknown subcommands.
-		/// </summary>
-		SubCommand62OperationCode CommandOperationCode { get; }
+
 	}
 }
