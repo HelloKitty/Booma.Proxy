@@ -19,20 +19,20 @@ namespace Booma.Proxy
 
 			//Login server
 			PsobbProxyApplicationBase loginAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 12000),
-				new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5000), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
+				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 12000), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
 				new PsobbNetworkSerializers());
 
 			PsobbProxyApplicationBase characterAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 12001),
-				new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5001), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
+				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 12001), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
 				new PsobbNetworkSerializers());
 
 			//5278
-			PsobbProxyApplicationBase shipAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5278),
-				new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5002), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
+			PsobbProxyApplicationBase shipAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5002),
+				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 5002), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
 				new PsobbNetworkSerializers());
 
-			PsobbProxyApplicationBase block1AppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5279),
-				new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5003), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
+			PsobbProxyApplicationBase block1AppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5003),
+				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 5003), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
 				new PsobbNetworkSerializers());
 
 			if(!loginAppBase.StartServer())

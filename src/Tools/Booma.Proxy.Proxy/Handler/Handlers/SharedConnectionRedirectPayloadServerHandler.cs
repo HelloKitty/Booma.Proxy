@@ -26,7 +26,10 @@ namespace Booma.Proxy
 
 			//5001 is the port used when we are running the character server and login server starting from 5000
 			//so if we get a redirect to 5001 we should wire it to 12001 instead
-			switch(payload.EndpointerPort)
+
+			//This was the old design. We should ALWAYS connect to the same port. Just rewrite the IP to 
+			//go through 127.0.0.1
+			/*switch(payload.EndpointerPort)
 			{
 				case 5001:
 					payload = new SharedConnectionRedirectPayload(payload.EndpointAddress, 12001);
@@ -40,7 +43,9 @@ namespace Booma.Proxy
 					payload = new SharedConnectionRedirectPayload(payload.EndpointAddress, 5279);
 					Logger.Info($"Switching Port to: {5279}");
 					break;
-			}
+			}*/
+
+			payload = new SharedConnectionRedirectPayload("127.0.0.1", payload.EndpointerPort);
 
 			//TODO: Handle port mapping
 			//Just forward the redirect, also disconnect the client after uninitializing the crypto
