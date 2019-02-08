@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SetFinalMovingPosition)]
-	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, ISerializationEventListener, IMessageContextIdentifiable, IWorldPositionable<float>
+	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The rotation about the Y-axis.
 		/// </summary>
-		public float YAxisRotation { get; private set; }
+		public float YAxisRotation => RawNetworkRotation.FromNetworkRotationToYAxisRotation();
 
 		/// <summary>
 		/// ID for the zone the character is in.
@@ -70,10 +70,11 @@ namespace Booma.Proxy
 			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
 
 			Identifier = clientId;
-			YAxisRotation = yAxisRotation;
 			Position = position;
 			RoomId = roomId;
 			ZoneId = zoneId;
+
+			RawNetworkRotation = yAxisRotation.ToNetworkRotation();
 		}
 
 		/// <inheritdoc />
@@ -86,20 +87,6 @@ namespace Booma.Proxy
 		private Sub60FinishedMovingCommand()
 		{
 			CommandSize = 24 / 4;
-		}
-		
-		//The below serialization event callbacks will properly handle the network rotation
-		//conversion
-		/// <inheritdoc />
-		public void OnBeforeSerialization()
-		{
-			RawNetworkRotation = (short)(YAxisRotation * 180f);
-		}
-
-		/// <inheritdoc />
-		public void OnAfterDeserialization()
-		{
-			YAxisRotation = RawNetworkRotation / 180f;
 		}
 	}
 }
