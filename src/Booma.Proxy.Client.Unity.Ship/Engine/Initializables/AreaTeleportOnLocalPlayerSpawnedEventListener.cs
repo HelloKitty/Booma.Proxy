@@ -7,6 +7,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class AreaTeleportOnLocalPlayerSpawnedEventListener : BaseSingleEventListenerInitializable<ILocalPlayerWorldRepresentationSpawnedEventSubscribable, LocalPlayerWorldObjectSpawnedEventArgs>
 	{
