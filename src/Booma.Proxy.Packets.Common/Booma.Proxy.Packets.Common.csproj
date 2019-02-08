@@ -79,6 +79,7 @@
     <Compile Include="Message\Game\ISubCommand60.cs" />
     <Compile Include="Message\Game\UnknownClientGamePayload.cs" />
     <Compile Include="Message\Game\UnknownSubCommand60Command.cs" />
+    <Compile Include="Message\Game\UnknownSubCommand6DCommand.cs" />
     <Compile Include="Message\Game\UnknownSubCommand62Command.cs" />
     <Compile Include="Message\IOperationCodeable.cs" />
     <Compile Include="Message\IUnknownPayloadType.cs" />
