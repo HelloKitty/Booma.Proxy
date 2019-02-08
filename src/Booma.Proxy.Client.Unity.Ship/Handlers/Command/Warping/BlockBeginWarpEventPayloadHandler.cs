@@ -36,35 +36,6 @@ namespace Booma.Proxy
 
 			//TODO: We should really be initializing the quest data, or whatever it is, this packet sends.
 			OnWarpBeginning?.Invoke(this, EventArgs.Empty);
-
-			/*INetworkPlayer player = null;
-			try
-			{
-				//TODO: Is this where we should do this?
-				//We need to create the player represenation here
-				player = PlayerFactory.CreateLocalPlayer();
-			}
-			catch(Exception e)
-			{
-				if(Logger.IsErrorEnabled || Logger.IsFatalEnabled)
-					Logger.Fatal($"Failed to create network player. Exception: {e.Message} \n\n Stacktrace: {e.StackTrace}");
-
-				throw;
-			}*/
-
-			/*//TODO: Send rotation
-			//TODO: What should the W coord be? How sould we handle this poition?
-			//We can't do anything with the data right now
-			await context.PayloadSendService.SendMessage(new Sub60TeleportToPositionCommand((byte)player.Identity.EntityId,
-				ScalerService.UnScale(player.Transform.Position).ToNetworkVector3()).ToPayload());
-
-			//Now we have to send a 1F to start the warp
-			//Tell the server we're warping now
-			await context.PayloadSendService.SendMessage(new Sub60WarpToNewAreaCommand((byte)player.Identity.EntityId, ZoneId).ToPayload());
-
-			//TODO: Should we send ClientId with this one too?
-			//We can just send a finished right away, we have nothing to load really
-			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpingBurstingCommand().ToPayload());*/
 		}
 	}
 }
