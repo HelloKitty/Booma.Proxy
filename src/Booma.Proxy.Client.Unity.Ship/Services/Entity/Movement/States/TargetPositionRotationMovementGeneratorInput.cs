@@ -12,13 +12,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The final/target rotation desired for movement.
 		/// </summary>
-		public float TargetYAxisRotation { get; }
+		public Quaternion TargetRotation { get; }
 
 		/// <inheritdoc />
-		public TargetPositionRotationMovementGeneratorInput(Vector2 targetPosition, float targetYAxisRotation) 
+		public TargetPositionRotationMovementGeneratorInput(Vector2 targetPosition, Quaternion targetRotation) 
 			: base(targetPosition)
 		{
-			TargetYAxisRotation = targetYAxisRotation;
+			TargetRotation = targetRotation;
 		}
 	}
 }

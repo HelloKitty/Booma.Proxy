@@ -25,9 +25,7 @@ namespace Booma.Proxy
 		{
 			if(command == null) throw new ArgumentNullException(nameof(command));
 
-			float yAxisRotation = Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up).eulerAngles.y;
-
-			return new DefaultMovementGeneratorState(new TargetPositionRotationMovementGeneratorInput(position, yAxisRotation));
+			return new EndRotationDefaultMovementGeneratorState(new TargetPositionRotationMovementGeneratorInput(position, Quaternion.AngleAxis(Scaler.ScaleYRotation(command.YAxisRotation), Vector3.up)));
 		}
 	}
 }

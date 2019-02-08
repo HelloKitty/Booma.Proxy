@@ -22,7 +22,7 @@ namespace Booma.Proxy
 			if(entity == null) throw new ArgumentNullException(nameof(entity));
 
 			//The movement is finished, we should set rotation here.
-			entity.transform.rotation = Quaternion.AngleAxis(MovementData.TargetYAxisRotation, Vector3.up);
+			entity.transform.rotation = MovementData.TargetRotation;
 		}
 	}
 }
