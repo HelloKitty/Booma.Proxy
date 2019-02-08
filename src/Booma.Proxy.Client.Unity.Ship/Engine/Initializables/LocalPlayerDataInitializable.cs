@@ -9,6 +9,7 @@ namespace Booma.Proxy
 {
 	[AdditionalRegisterationAs(typeof(ILocalPlayerData))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public class LocalPlayerDataInitializable : ILocalPlayerData, IGameInitializable
 	{
 		private ICharacterSlotSelectedModel SlotModel { get; }
