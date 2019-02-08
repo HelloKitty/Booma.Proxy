@@ -85,6 +85,11 @@ namespace Booma.Proxy
 
 		GAME_COMMAND2_TYPE = 0x0062,
 
+		/// <summary>
+		/// 0x6D subcommand. Sent mostly at game join.
+		/// </summary>
+		GAME_COMMANDD_TYPE = 0x006D,
+
 		PING_TYPE = 0x001D,
 
 		CHAT_TYPE = 0x0006,
