@@ -33,6 +33,10 @@ namespace Booma.Proxy
 
 		private Vector3 RealStartPosition { get; set; }
 
+		private Quaternion RealStartRotiation { get; set; }
+
+		private Quaternion RealEndRotation { get; set; }
+
 		/// <inheritdoc />
 		public DefaultMovementGeneratorState(TMovementGeneratorData movementData)
 			: base(movementData)
@@ -45,6 +49,12 @@ namespace Booma.Proxy
 		{
 			//TODO: On start should we move the entity to the position specified as the StartPosition? They may not be at that point.
 			RealStartPosition = entity.transform.position;
+			RealStartRotiation = entity.transform.rotation;
+
+			Vector3 dir = new Vector3(MovementData.TargetPosition.x, 0, MovementData.TargetPosition.y) - new Vector3(entity.transform.position.x, 0.0f, entity.transform.position.z);
+
+			//TODO: This could be expensive, there might be a better way
+			RealEndRotation = Quaternion.LookRotation(dir.normalized, Vector3.up);
 		}
 
 		/// <inheritdoc />
@@ -57,6 +67,7 @@ namespace Booma.Proxy
 
 			//Set the new lerped position and step the current step forward
 			entity.transform.position = new Vector3(newX, entity.transform.position.y, newZ);
+			entity.transform.rotation = Quaternion.Slerp(RealStartRotiation, RealEndRotation, MovementData.CurrentStep / LerpDuration);
 
 			MovementData.CurrentStep += Time.deltaTime;
 
