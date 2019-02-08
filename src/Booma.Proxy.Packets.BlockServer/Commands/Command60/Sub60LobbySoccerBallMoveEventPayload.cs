@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.LobbyBallMove)]
-	public sealed class Sub60LobbySoccerBallMoveEventPayload : BaseSubCommand60, ISerializationEventListener
+	public sealed class Sub60LobbySoccerBallMoveEventPayload : BaseSubCommand60
 	{
 		//TODO: Is this right?
 		[WireMember(1)]
@@ -43,7 +43,7 @@ namespace Booma.Proxy
 		/// Y-axis rotation that determines the direction
 		/// the ball should move in.
 		/// </summary>
-		public float YAxisRotation { get; private set; }
+		public float YAxisRotation => RawRotation.FromNetworkRotationToYAxisRotation();
 
 		/// <summary>
 		/// The starting position of the kick.
@@ -61,27 +61,17 @@ namespace Booma.Proxy
 		public Sub60LobbySoccerBallMoveEventPayload(byte clientId, short timeStamp, float rotation, Vector2<float> kickStartPosition)
 			: this()
 		{
-			YAxisRotation = rotation;
 			TimeStamp = timeStamp;
 			ClientId = clientId;
 			KickStartPosition = kickStartPosition;
+
+			RawRotation = rotation.ToNetworkRotation();
 		}
 
 		//Serializer ctor
 		private Sub60LobbySoccerBallMoveEventPayload()
 		{
 			CommandSize = 24 / 4;
-		}
-
-		public void OnBeforeSerialization()
-		{
-			RawRotation = (short)(YAxisRotation * 180f);
-		}
-
-		/// <inheritdoc />
-		public void OnAfterDeserialization()
-		{
-			YAxisRotation = RawRotation / 180f;
 		}
 	}
 }
