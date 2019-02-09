@@ -42,8 +42,12 @@ namespace Booma.Proxy
 		{
 			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
 
+			//TODO: is this the best approach, just ignoring/ditching the position of players
+			//if they aren't in our zone?
+			if(!MovementManagerMappable.ContainsKey(entityGuid))
+				return Task.CompletedTask;
+
 			//We can safely assume they have a known world transform or they can't have been spawned.
-			//It's very possible, if this fails, that they are cheating/hacking or something.
 
 			Vector2 position = Scaler.ScaleYasZ(command.Position);
 			MovementManagerMappable[entityGuid].RegisterState(CreateMovementGenerator(position, command));
