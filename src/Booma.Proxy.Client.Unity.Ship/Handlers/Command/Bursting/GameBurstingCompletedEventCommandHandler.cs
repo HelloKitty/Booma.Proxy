@@ -42,11 +42,12 @@ namespace Booma.Proxy
 			//TODO: At some point, this may not run on the main thread so this won't be safe.
 			GameObject playerWorldObject = PlayerData.WorldObject;
 
-			float yaxisRotation = playerWorldObject.transform.rotation.eulerAngles.y;
-			Vector3<float> position = ScalerService.Scale(playerWorldObject.transform.position).ToNetworkVector3();
+			Vector3<float> scaledPosition = ScalerService.UnScale(playerWorldObject.transform.position).ToNetworkVector3();
+			float scaledRotation = ScalerService.UnScaleYRotation(playerWorldObject.transform.rotation.y);
 
-			//When a remote game bursting is complete, we need to send an area/teleport ack.
-			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(SlotModel.SlotSelected, 0, position, yaxisRotation).ToPayload());
+			//If have to send this message otherwise other client's won't know we're also in the same zone
+			//It's odd, but it's something we have to do.
+			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(SlotModel.SlotSelected, ZoneSettings.ZoneId, scaledPosition, scaledRotation).ToPayload());
 		}
 	}
 }
