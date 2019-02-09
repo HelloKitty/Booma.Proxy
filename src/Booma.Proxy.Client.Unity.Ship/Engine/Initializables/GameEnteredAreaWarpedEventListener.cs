@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	//We can basically handle GAME and LOBBY warp acks. They work pretty much the same for spawning purposes.
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
-	public sealed class LobbyEnteredAreaWarpedEventListener : BaseSingleEventListenerInitializable<IRemotePlayerWarpedToZoneEventSubscribable, PlayerWarpedToZoneEventArgs>
+	public sealed class GameEnteredAreaWarpedEventListener : BaseSingleEventListenerInitializable<IRemotePlayerWarpedToZoneEventSubscribable, PlayerWarpedToZoneEventArgs>
 	{
 		private IZoneSettings ZoneSettings { get; }
 
@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		private IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext> RemotePlayerFactory { get; }
 
 		/// <inheritdoc />
-		public LobbyEnteredAreaWarpedEventListener(IRemotePlayerWarpedToZoneEventSubscribable subscriptionService, [NotNull] IZoneSettings zoneSettings, [NotNull] ILog logger, [NotNull] IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext> remotePlayerFactory) : base(subscriptionService)
+		public GameEnteredAreaWarpedEventListener(IRemotePlayerWarpedToZoneEventSubscribable subscriptionService, [NotNull] IZoneSettings zoneSettings, [NotNull] ILog logger, [NotNull] IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext> remotePlayerFactory) : base(subscriptionService)
 		{
 			ZoneSettings = zoneSettings ?? throw new ArgumentNullException(nameof(zoneSettings));
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
