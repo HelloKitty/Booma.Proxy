@@ -9,6 +9,7 @@ namespace Booma.Proxy
 {
 	[AdditionalRegisterationAs(typeof(IMovementInputChangedEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class MovementInputBroadcastingTickable : IGameTickable, IMovementInputChangedEventSubscribable
 	{
 		/// <inheritdoc />

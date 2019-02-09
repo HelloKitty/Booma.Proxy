@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class MovementInputLocalPlayerMotorEventListener : BaseSingleEventListenerInitializable<IMovementInputChangedEventSubscribable, MovementInputChangedEventArgs>, IGameTickable
 	{
 		private MovementInputChangedEventArgs CurrentMovementArgs { get; set; } = new MovementInputChangedEventArgs(0,0);

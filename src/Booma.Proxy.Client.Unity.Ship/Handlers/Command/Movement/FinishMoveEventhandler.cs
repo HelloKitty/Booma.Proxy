@@ -11,6 +11,7 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class FinishMoveEventhandler : BaseDefaultPositionChangedEventHandler<Sub60FinishedMovingCommand>
 	{
 		/// <inheritdoc />

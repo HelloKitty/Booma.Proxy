@@ -12,6 +12,7 @@ namespace Booma.Proxy
 	//This current design could put the movement a frame or two behind the actual local movement
 	//probably doesn't matter for PSO though.
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class NetworkMovementSendMovementChangeEventListener : BaseSingleEventListenerInitializable<IMovementInputChangedEventSubscribable, MovementInputChangedEventArgs>, IGameTickable
 	{
 		//Dependencies

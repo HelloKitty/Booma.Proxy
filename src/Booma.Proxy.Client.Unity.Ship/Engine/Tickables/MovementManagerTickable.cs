@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class MovementManagerTickable : IGameTickable
 	{
 		private IReadonlyEntityGuidMappable<MovementManager> MovementManagerMappable { get; }

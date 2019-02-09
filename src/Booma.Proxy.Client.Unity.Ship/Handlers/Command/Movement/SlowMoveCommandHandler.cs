@@ -8,6 +8,7 @@ using Common.Logging;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class SlowMoveCommandHandler : BaseDefaultPositionChangedEventHandler<Sub60MovingSlowPositionSetCommand>
 	{
 		/// <inheritdoc />

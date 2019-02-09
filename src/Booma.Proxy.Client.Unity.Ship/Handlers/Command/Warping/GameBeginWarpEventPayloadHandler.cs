@@ -35,6 +35,8 @@ namespace Booma.Proxy
 
 			//TODO: We should really be initializing the quest data, or whatever it is, this packet sends.
 			OnWarpBeginning?.Invoke(this, EventArgs.Empty);
+
+			return Task.CompletedTask;
 		}
 	}
 }
