@@ -7,6 +7,8 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	//6D also sends the target play in the Flags
+	//Example: 6D 00 02 00 00 00 targets player index 02.
 	/// <summary>
 	/// The base type for the subcommand sent in the 0x6D packets.
 	/// </summary>
@@ -22,22 +24,21 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public SubCommand6DOperationCode CommandOperationCode { get; }
 
-		/// <summary>
-		/// Indicates if the <see cref="CommandSize"/> property is serialized and
-		/// deserialized.
-		/// Child Types can override this to gain access to the single Byte size if needed.
-		/// </summary>
-		public virtual bool isSizeSerialized { get; } = true;
+		//Usually this is where the CommandSize would go based on ints
+		//but it's a 0 byte here
+		[WireMember(2)]
+		private byte HeaderUnk1 { get; set; }
+		
+		[WireMember(3)]
+		private short HeaderUnk2 { get; set; }
 
 		//Since the Type byte is eaten by the polymorphic deserialization process
 		//We just read the size to discard it
 		/// <summary>
 		/// The size of the subcommand (subpayload).
-		/// Not needed for deserialization of subcommand.
 		/// </summary>
-		[Optional(nameof(isSizeSerialized))]
-		[WireMember(2)]
-		public byte CommandSize { get; protected set; }
+		[WireMember(4)]
+		public int CommandSize { get; protected set; }
 
 		//Serializer ctor
 		protected BaseSubCommand6D()
@@ -49,9 +50,9 @@ namespace Booma.Proxy
 		public override string ToString()
 		{
 			if(Enum.IsDefined(typeof(SubCommand6DOperationCode), CommandOperationCode))
-				return $"Type: {GetType().Name} OpCode: {(SubCommand6DOperationCode)CommandOperationCode}:{CommandOperationCode:X} CommandSize: {CommandSize * 4} (byte size)";
+				return $"Type: {GetType().Name} OpCode: {(SubCommand6DOperationCode)CommandOperationCode}:{CommandOperationCode:X} CommandSize: {CommandSize} (byte size)";
 			else
-				return $"Type: {GetType().Name} OpCode: {CommandOperationCode:X} CommandSize: {CommandSize * 4} (byte size)";
+				return $"Type: {GetType().Name} OpCode: {CommandOperationCode:X} CommandSize: {CommandSize} (byte size)";
 		}
 	}
 }
