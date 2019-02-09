@@ -67,6 +67,7 @@
     <Compile Include="Attributes\Game\GameClientPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Game\GameServerPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Game\SubCommand60Attribute.cs" />
+    <Compile Include="Attributes\Game\SubCommand6DAttribute.cs" />
     <Compile Include="Attributes\Game\SubCommand62Attribute.cs" />
     <Compile Include="Attributes\Patch\PatchClientPacketPayloadAttribute.cs" />
     <Compile Include="Attributes\Patch\PatchServerPacketPayloadAttribute.cs" />
