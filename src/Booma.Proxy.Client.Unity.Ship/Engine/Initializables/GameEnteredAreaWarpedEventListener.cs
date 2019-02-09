@@ -36,7 +36,7 @@ namespace Booma.Proxy
 			if(ZoneSettings.ZoneId != args.ZoneId)
 			{
 				if(Logger.IsInfoEnabled)
-					Logger.Info($"Encountered warped player same zone. Current: {ZoneSettings.ZoneId} Remote: {args.ZoneId}.");
+					Logger.Info($"Encountered warped player different zone. Current: {ZoneSettings.ZoneId} Remote: {args.ZoneId}.");
 
 				return;
 			}
