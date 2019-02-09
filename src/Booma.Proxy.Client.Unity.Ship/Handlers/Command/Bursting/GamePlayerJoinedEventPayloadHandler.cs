@@ -12,10 +12,10 @@ namespace Booma.Proxy
 	public sealed class GamePlayerJoinedEventPayloadHandler : GameMessageHandler<BlockGamePlayerJoinedEventPayload>
 	{
 		/// <inheritdoc />
-		public GamePlayerJoinedEventPayloadHandler(ILog logger) 
+		public GamePlayerJoinedEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel) 
 			: base(logger)
 		{
-
+			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		/// <inheritdoc />
@@ -23,7 +23,9 @@ namespace Booma.Proxy
 		{
 			//TODO: We are creating a fake 0x6D 0x70 here. Do we ever need a real one??
 
-			await context.PayloadSendService.SendMessage(new BlockNetworkCommand6DEventClientPayload(payload.Identifier, new Sub6DFakePlayerJoinDataNeededCommand()));
+			//TODO: We are currently testing sending this in 15EA.
+			//TODO: We are creating a fake 0x6D 0x70 here. Do we ever need a real one??
+			await context.PayloadSendService.SendMessage(new BlockNetworkCommand6DEventClientPayload(payload.Identifier, new Sub6DFakePlayerJoinDataNeededCommand(SlotModel.SlotSelected)));
 		}
 	}
 }
