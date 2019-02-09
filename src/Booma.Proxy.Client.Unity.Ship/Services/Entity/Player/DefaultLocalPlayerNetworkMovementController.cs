@@ -12,6 +12,7 @@ namespace Booma.Proxy
 	//TODO: This is a kinda a hack, to get it into the scene. We don't need init on this.
 	[AdditionalRegisterationAs(typeof(ILocalPlayerNetworkMovementController))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class DefaultLocalPlayerNetworkMovementController : ILocalPlayerNetworkMovementController, IGameInitializable
 	{
 		private IPeerPayloadSendService<PSOBBGamePacketPayloadClient> SendService { get; }

@@ -12,6 +12,7 @@ namespace Booma.Proxy
 {
 	[AdditionalRegisterationAs(typeof(IRemoteClientAcknowledgedWarpEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class BlockOtherClientAlertedExistenceEventHandler : Command60Handler<Sub60FinishedWarpAckCommand>, IRemoteClientAcknowledgedWarpEventSubscribable //we don't need context
 	{
 		private IUnitScalerStrategy UnitScaler { get; }

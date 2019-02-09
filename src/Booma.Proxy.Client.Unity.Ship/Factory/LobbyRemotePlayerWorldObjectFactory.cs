@@ -10,6 +10,7 @@ namespace Booma.Proxy
 {
 	[AdditionalRegisterationAs(typeof(IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext>))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class LobbyRemotePlayerWorldObjectFactory : IFactoryCreatable<GameObject, RemotePlayerWorldRepresentationCreationContext>, IGameInitializable
 	{
 		private IRoomCollection Rooms { get; }

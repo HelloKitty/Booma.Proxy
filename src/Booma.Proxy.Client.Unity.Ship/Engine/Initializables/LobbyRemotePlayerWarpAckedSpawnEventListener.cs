@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	//Lobby handles this simply and specificly compared to the Game
 	//In Lobby it should only really mean that they're now fully init
 	//and ready for physical world object initialization.
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class LobbyRemotePlayerWarpAckedSpawnEventListener : BaseSingleEventListenerInitializable<IRemoteClientAcknowledgedWarpEventSubscribable, RemotePlayerWarpAcknowledgementEventArgs>
 	{
