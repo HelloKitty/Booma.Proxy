@@ -21,7 +21,7 @@ namespace Booma.Proxy
 	/// Sent by the client.
 	/// </summary>
 	[WireDataContract]
-	[GameServerPacketPayload(GameNetworkOperationCode.GAME_COMMANDD_TYPE)]
+	[GameClientPacketPayload(GameNetworkOperationCode.GAME_COMMANDD_TYPE)]
 	public class BlockNetworkCommand6DEventClientPayload : PSOBBGamePacketPayloadClient, ISub6DCommandContainer
 	{
 		//Sub6D actually uses the flags for something.
