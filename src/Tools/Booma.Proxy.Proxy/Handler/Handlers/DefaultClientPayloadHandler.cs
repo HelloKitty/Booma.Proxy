@@ -54,17 +54,19 @@ namespace Booma.Proxy
 				//Some packets are several kilobytes. We DON'T want to write those to the screen.
 				if(u.UnknownBytes.Length < 200)
 					Logger.Info(GetBytesToString(u.UnknownBytes));
+				else
+					Logger.Info($"Truncated: {GetBytesToString(u.UnknownBytes, 20)}");
 			}
 		}
 
-		public static string GetBytesToString(byte[] value)
+		public static string GetBytesToString(byte[] value, int count = -1)
 		{
 			//Based on MS SoapHexBinary source
 			StringBuilder sb = new StringBuilder(value.Length * 4);
 
 			unchecked
 			{
-				for(int i = 0; i < value.Length; i++)
+				for(int i = 0; i < (count == -1 ? value.Length : count); i++)
 				{
 					//TODO: This part can probably be sped up
 					String s = value[i].ToString("X", CultureInfo.InvariantCulture);
