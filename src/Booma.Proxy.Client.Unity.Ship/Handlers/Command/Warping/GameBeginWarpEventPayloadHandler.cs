@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand payload)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved: {this.MessageName()} Dispatching: {nameof(IWarpBeginEventSubscribable)}.");
