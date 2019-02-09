@@ -9,10 +9,9 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	//Lobby handles this simply and specificly compared to the Game
-	//In Lobby it should only really mean that they're now fully init
-	//and ready for physical world object initialization.
+	//We can basically handle GAME and LOBBY warp acks. They work pretty much the same for spawning purposes.
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class LobbyEnteredAreaWarpedEventListener : BaseSingleEventListenerInitializable<IRemotePlayerWarpedToZoneEventSubscribable, PlayerWarpedToZoneEventArgs>
 	{
 		private IZoneSettings ZoneSettings { get; }
@@ -32,9 +31,15 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		protected override void OnEventFired(object source, PlayerWarpedToZoneEventArgs args)
 		{
+			//This shouldn't happen in lobby
+			//But it CAN happen in games, all the time.
 			if(ZoneSettings.ZoneId != args.ZoneId)
-				if(Logger.IsWarnEnabled)
-					Logger.Warn($"Encountered warped player in Lobby not in the same zone. Current: {ZoneSettings.ZoneId} Remote: {args.ZoneId}. This should only happen if they are cheating.");
+			{
+				if(Logger.IsInfoEnabled)
+					Logger.Info($"Encountered warped player same zone. Current: {ZoneSettings.ZoneId} Remote: {args.ZoneId}.");
+
+				return;
+			}
 
 			//If the zone id is the same as the current local zone
 			//then we should create a world representation for the player.
