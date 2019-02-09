@@ -41,6 +41,9 @@ namespace Booma.Proxy
 			//Tell the server we're warping now
 			await SendService.SendMessage(new Sub60WarpToNewAreaCommand((byte)EntityGuid.GetEntityId(args.EntityGuid), ZoneSettings.ZoneId).ToPayload());
 
+			//TODO: is it save to send this in the lobby??
+			await SendService.SendMessage(new Sub60FinishedMapLoadCommand(EntityGuid.GetEntityId(args.EntityGuid)).ToPayload());
+
 			//TODO: Should we send ClientId with this one too?
 			//We can just send a finished right away, we have nothing to load really
 			await SendService.SendMessage(new Sub60FinishedWarpingBurstingCommand().ToPayload());
