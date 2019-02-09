@@ -45,9 +45,16 @@ namespace Booma.Proxy
 		protected override void OnEventFired(object source, RemotePlayerWarpAcknowledgementEventArgs args)
 		{
 			//We should never call this event unless we have zone data. It would make no sense.
+			//Also, this case is very possible in games. They can Ack that they saw our warp. That they are now Forest or
+			//something and we're in Caves or Pioneer. We should NOT create a visible/world representation of a
+			//remote player that acked on a different zone.
 			if(ZoneSettings.ZoneId != ZoneDataMappable[args.EntityGuid].ZoneId)
-				if(Logger.IsWarnEnabled)
-					Logger.Warn($"Encountered warped player in Lobby not in the same zone. Current: {ZoneSettings.ZoneId} Remote: {ZoneDataMappable[args.EntityGuid].ZoneId}. This should only happen if they are cheating.");
+			{
+				if(Logger.IsInfoEnabled)
+					Logger.Info($"Encountered warped player {args.EntityGuid} not in the same zone. Current: {ZoneSettings.ZoneId} Remote: {ZoneDataMappable[args.EntityGuid].ZoneId}.");
+
+				return;
+			}
 
 			//If the zone id is the same as the current local zone
 			//then we should create a world representation for the player.
