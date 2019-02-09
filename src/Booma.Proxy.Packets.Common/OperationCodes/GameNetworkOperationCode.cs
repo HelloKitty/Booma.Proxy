@@ -106,6 +106,10 @@ namespace Booma.Proxy
 		/// Opcode sent by the server when a client
 		/// is joining a lobby.
 		/// </summary>
-		GAME_ADD_PLAYER_TYPE = 0x0065
+		GAME_ADD_PLAYER_TYPE = 0x0065,
+
+		//Can't find this on on Sylverant
+		//It's related to character data I think
+		SERVER_CHARACTER_DATA_TYPE = 0x15EA,
 	}
 }
