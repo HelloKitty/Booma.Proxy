@@ -25,8 +25,9 @@ namespace Booma.Proxy
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved Unknown: {command}");
 
+			//TODO: Only 3/4 of these are static. The 0x70 is player specific and we should expect N of them where N is the player number.
 			//TODO: We kinda just count how many we've recieved.
-			if(recievedCount == 4)
+			if(recievedCount == 3)
 			{
 				if(Logger.IsInfoEnabled)
 					Logger.Info($"About to send: {nameof(BlockFinishedGameBurstingRequestPayload)}");
