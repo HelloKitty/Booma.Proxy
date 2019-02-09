@@ -16,7 +16,7 @@ namespace Booma.Proxy
 	//and ready for physical world object initialization.
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class LobbyRemotePlayerWarpAckedSpawnEventListener : BaseSingleEventListenerInitializable<IRemoteClientAcknowledgedWarpEventSubscribable, RemotePlayerWarpAcknowledgementEventArgs>
+	public sealed class GameRemotePlayerWarpAckedSpawnEventListener : BaseSingleEventListenerInitializable<IRemoteClientAcknowledgedWarpEventSubscribable, RemotePlayerWarpAcknowledgementEventArgs>
 	{
 		private IZoneSettings ZoneSettings { get; }
 
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		private IReadonlyEntityGuidMappable<PlayerZoneData> ZoneDataMappable { get; }
 
 		/// <inheritdoc />
-		public LobbyRemotePlayerWarpAckedSpawnEventListener(
+		public GameRemotePlayerWarpAckedSpawnEventListener(
 			IRemoteClientAcknowledgedWarpEventSubscribable subscriptionService, 
 			[NotNull] IZoneSettings zoneSettings, 
 			[NotNull] ILog logger, 
