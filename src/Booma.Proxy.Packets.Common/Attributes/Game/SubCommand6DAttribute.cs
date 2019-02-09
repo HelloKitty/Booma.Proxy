@@ -18,7 +18,7 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		public SubCommand6DAttribute(SubCommand6DOperationCode opCode)
-			: base((int)opCode, typeof(BaseSubCommand62))
+			: base((int)opCode, typeof(BaseSubCommand6D))
 		{
 			if(!Enum.IsDefined(typeof(SubCommand6DOperationCode), opCode)) throw new InvalidEnumArgumentException(nameof(opCode), (int)opCode, typeof(SubCommand6DOperationCode));
 		}
