@@ -18,11 +18,11 @@ namespace Booma.Proxy
 
 	/// <summary>
 	/// Payload that is a container for opcode based network commands.
-	/// Sent by the server.
+	/// Sent by the client.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_COMMANDD_TYPE)]
-	public class BlockNetworkCommand6DEventServerPayload : PSOBBGamePacketPayloadServer, ISub6DCommandContainer, IMessageContextIdentifiable
+	public class BlockNetworkCommand6DEventClientPayload : PSOBBGamePacketPayloadClient, ISub6DCommandContainer
 	{
 		//Sub6D actually uses the flags for something.
 		//It uses the first flags byte to indicate which remote player index
@@ -43,13 +43,13 @@ namespace Booma.Proxy
 		public BaseSubCommand6D Command { get; }
 
 		/// <inheritdoc />
-		public BlockNetworkCommand6DEventServerPayload(byte targetRemotePlayer, [JetBrains.Annotations.NotNull] BaseSubCommand6D command)
+		public BlockNetworkCommand6DEventClientPayload(byte targetRemotePlayer, [JetBrains.Annotations.NotNull] BaseSubCommand6D command)
 		{
 			Command = command ?? throw new ArgumentNullException(nameof(command));
 			TargetClientIndex = targetRemotePlayer;
 		}
 
-		protected BlockNetworkCommand6DEventServerPayload()
+		protected BlockNetworkCommand6DEventClientPayload()
 		{
 			
 		}
