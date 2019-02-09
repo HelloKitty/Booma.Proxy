@@ -11,6 +11,7 @@ namespace Booma.Proxy
 	/// </summary>
 	public enum SubCommand6DOperationCode : byte //it's sent as byte from server
 	{
-
+		//TODO: Is this a good name? This one is sent about a player to a joining player, not just the leader.
+		PlayerJoinedData = 0x70,
 	}
 }
