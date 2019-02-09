@@ -30,9 +30,9 @@ namespace Booma.Proxy
 		public override string ToString()
 		{
 			if(Enum.IsDefined(typeof(SubCommand6DOperationCode), (byte)OperationCode))
-				return $"Unknown Subcommand6D OpCode: {OperationCode:X} Name: {((SubCommand6DOperationCode)OperationCode).ToString()} Type: {GetType().Name} CommandSize: {CommandSize * 4 - 2} (bytes size)";
+				return $"Unknown Subcommand6D OpCode: {OperationCode:X} Name: {((SubCommand6DOperationCode)OperationCode).ToString()} Type: {GetType().Name} CommandSize: {CommandSize} (bytes size)";
 			else
-				return $"Unknown Subcommand6D OpCode: {OperationCode:X} Type: {GetType().Name} CommandSize: {CommandSize * 4 - 2} (bytes size)";
+				return $"Unknown Subcommand6D OpCode: {OperationCode:X} Type: {GetType().Name} CommandSize: {CommandSize} (bytes size)";
 		}
 	}
 }
