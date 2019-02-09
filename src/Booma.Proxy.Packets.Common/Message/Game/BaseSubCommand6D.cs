@@ -29,16 +29,32 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		private byte HeaderUnk1 { get; set; }
 		
+		/// <summary>
+		/// The sender index/identifier that the packet is for.
+		/// </summary>
 		[WireMember(3)]
-		private short HeaderUnk2 { get; set; }
+		public byte OptionalIdentifier { get; set; }
+
+		[WireMember(4)]
+		private byte HeaderUnk3 { get; set; }
 
 		//Since the Type byte is eaten by the polymorphic deserialization process
 		//We just read the size to discard it
 		/// <summary>
 		/// The size of the subcommand (subpayload).
 		/// </summary>
-		[WireMember(4)]
+		[WireMember(5)]
 		public int CommandSize { get; protected set; }
+
+		/// <summary>
+		/// One of the sub6D commands actually sends the sender
+		/// in the above byte.
+		/// </summary>
+		/// <param name="optionalIdentifier"></param>
+		protected BaseSubCommand6D(byte optionalIdentifier)
+		{
+			OptionalIdentifier = optionalIdentifier;
+		}
 
 		//Serializer ctor
 		protected BaseSubCommand6D()
