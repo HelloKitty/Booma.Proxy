@@ -11,6 +11,9 @@ namespace Booma.Proxy
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class GamePlayerJoinedEventPayloadHandler : GameMessageHandler<BlockGamePlayerJoinedEventPayload>
 	{
+
+		private ICharacterSlotSelectedModel SlotModel { get; }
+
 		/// <inheritdoc />
 		public GamePlayerJoinedEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel) 
 			: base(logger)
