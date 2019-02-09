@@ -7,6 +7,8 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	//Seems this is sent to all clients in the party after a joined player has finished bursting
+	//I think clients shortly after send a 0x60 0x20 Area/Warp Ack.
 	/// <summary>
 	/// Sent by the server in response to a 6F being sent during bursting into a game.
 	/// (no idea what is in it at the moment)

@@ -100,6 +100,10 @@ namespace Booma.Proxy
 		/// </summary>
 		GameStartWarpToArea = 0x21,
 
+		//TODO: Is this right?
+		//https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L9212
+		PlayerInventorySet = 0xDE,
+
 		/// <summary>
 		/// Opcode for event that lets clients know a box has been hit.
 		/// </summary>
