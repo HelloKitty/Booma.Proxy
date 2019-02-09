@@ -45,7 +45,7 @@ namespace Booma.Proxy
 
 		//There are 2 extra bytes here at the end and are FF FF
 		[WireMember(6)]
-		private short unk { get; } = short.MaxValue; 
+		private ushort unk { get; } = ushort.MaxValue; 
 
 		public Sub60FinishedWarpAckCommand(byte clientId, int zoneId, [NotNull] Vector3<float> position, float yAxisRotation)
 			: this()
