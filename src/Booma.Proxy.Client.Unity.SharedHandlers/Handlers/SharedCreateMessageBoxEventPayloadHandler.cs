@@ -13,6 +13,7 @@ namespace Booma.Proxy
 	[SceneTypeCreate(GameSceneType.ServerSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.CharacterSelectionScreen)]
 	[SceneTypeCreate(GameSceneType.TitleScreen)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	public sealed class SharedCreateMessageBoxEventPayloadHandler : GameMessageHandler<SharedCreateMessageBoxEventPayload>
 	{
 		/// <inheritdoc />
