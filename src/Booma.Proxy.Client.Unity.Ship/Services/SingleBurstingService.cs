@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		public bool isBurstingInProgress { get; private set; }
 
 		/// <inheritdoc />
-		public int? BurstingEntityGuid => isBurstingInProgress ? null : new int?(_burstingEntityGuid);
+		public int? BurstingEntityGuid => isBurstingInProgress ? new int?(_burstingEntityGuid) : null;
 
 		/// <inheritdoc />
 		public void ClearBursting()
@@ -43,7 +43,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public Task OnGameInitialized()
 		{
-
+			return Task.CompletedTask;
 		}
 	}
 }
