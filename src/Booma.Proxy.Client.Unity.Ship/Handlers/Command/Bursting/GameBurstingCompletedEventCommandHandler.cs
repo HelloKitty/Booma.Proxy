@@ -46,8 +46,10 @@ namespace Booma.Proxy
 			if(!PlayerData.isWorldObjectSpawned)
 				return;
 
+			//This could be for a couple of reasons. Bursting wasn't set, and it's a BIG failure
+			//or this is our JOIN bursting finish and we don't do anything here really.
 			if(!BurstingService.isBurstingInProgress)
-				throw new InvalidOperationException($"Encountered: {command.GetType().Name} when NOT bursting.");
+				return;
 
 			//TODO: At some point, this may not run on the main thread so this won't be safe.
 			GameObject playerWorldObject = PlayerData.WorldObject;
