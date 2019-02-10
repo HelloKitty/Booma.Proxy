@@ -23,7 +23,7 @@ namespace Booma.Proxy
 		{
 			CommandSize = 0x4C0;
 
-			UnknownBytes = binaryDump;
+			//UnknownBytes = binaryDump;
 
 			//Teth will check Tech data which is a signed byte I guess
 			//It needs to have -1 in all fields for test purposes
