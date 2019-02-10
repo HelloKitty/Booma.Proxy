@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// Damage flag1 contains status effects data.
 	/// </summary>
 	[Flags]
-	public enum DamageFlag1
+	public enum DamageFlag1 : byte
 	{
 		Unknown0 = 0,
 		Paralysis = 0b0000_0010,
@@ -24,7 +24,7 @@ namespace Booma.Proxy
 	}
 
 	[Flags]
-	public enum DamageFlag2
+	public enum DamageFlag2 : byte
 	{
 		//Maybe? I can't tell if it's special effect.
 		SpecialEffect = 0b0000_0000,
