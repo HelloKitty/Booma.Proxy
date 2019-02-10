@@ -37,7 +37,7 @@ namespace Booma.Proxy
 
 			//We should spawn IF we're both in the same zone
 			//If not, it's not an error. We just aren't interested
-			if(ZoneMappable[PlayerData.EntityGuid].ZoneId != ZoneMappable[args.EntityGuid].ZoneId)
+			if(!ZoneMappable.AreEntitiesInSameZone(PlayerData.EntityGuid, args.EntityGuid))
 				return;
 
 			RemotePlayerFactory.Create(new RemotePlayerWorldRepresentationCreationContext(args.EntityGuid));
