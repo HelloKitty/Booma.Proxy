@@ -13,7 +13,7 @@ namespace Booma.Proxy
 
 		public DefaultTransientEntityDataCollection()
 		{
-			InternalRemovableCollection = new List<IEntityCollectionRemovable>();
+			InternalRemovableCollection = new List<IEntityCollectionRemovable>(10);
 		}
 
 		/// <inheritdoc />
