@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	[NonTransientEntityData]
 	public sealed class WorldTransform
 	{
 		public Vector3 Position { get; }

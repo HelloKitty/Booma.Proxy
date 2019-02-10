@@ -10,6 +10,7 @@ namespace Booma.Proxy
 	/// Data model that contains information about the zone
 	/// a player is in.
 	/// </summary>
+	[NonTransientEntityData]
 	public sealed class PlayerZoneData
 	{
 		/// <summary>
