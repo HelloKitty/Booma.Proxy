@@ -18,7 +18,7 @@ namespace Booma.Proxy
 		public event EventHandler<RemotePlayerLeaveLobbyEventArgs> OnRemotePlayerLeftLobby;
 
 		/// <inheritdoc />
-		public BlockOtherPlayerLeaveGameEventPayloadHandler([NotNull] INetworkEntityRegistery<INetworkPlayer> playerRegistry, ILog logger) 
+		public BlockOtherPlayerLeaveGameEventPayloadHandler(ILog logger) 
 			: base(logger)
 		{
 
