@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	//TODO: This isn't a tickable??
 	//We can use lobby cleanup as leaving game too. It works the same way.
 	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]

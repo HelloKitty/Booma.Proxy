@@ -9,32 +9,29 @@ using SceneJect.Common;
 
 namespace Booma.Proxy
 {
+	[AdditionalRegisterationAs(typeof(IRemotePlayerLeaveLobbyEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.RagolDefault)]
-	public sealed class BlockOtherPlayerLeaveGameEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveGameEventPayload>
+	public sealed class BlockOtherPlayerLeaveGameEventPayloadHandler : GameMessageHandler<BlockOtherPlayerLeaveGameEventPayload>, IRemotePlayerLeaveLobbyEventSubscribable
 	{
-		private INetworkEntityRegistery<INetworkPlayer> PlayerRegistry { get; }
+		/// <inheritdoc />
+		public event EventHandler<RemotePlayerLeaveLobbyEventArgs> OnRemotePlayerLeftLobby;
 
 		/// <inheritdoc />
 		public BlockOtherPlayerLeaveGameEventPayloadHandler([NotNull] INetworkEntityRegistery<INetworkPlayer> playerRegistry, ILog logger) 
 			: base(logger)
 		{
-			PlayerRegistry = playerRegistry ?? throw new ArgumentNullException(nameof(playerRegistry));
+
 		}
 
 		/// <inheritdoc />
 		public override Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, BlockOtherPlayerLeaveGameEventPayload payload)
 		{
-			//TODO: We can't check that we have this spawned, so we should address that.
-			INetworkPlayer player = PlayerRegistry.RemoveEntity(payload.Identifier);
+			if(Logger.IsInfoEnabled)
+				Logger.Warn($"Recieved Player GameLeave From EntityId: {payload.Identifier}.");
 
-			if(player == null)
-			{
-				Logger.Warn($"Recieved GameLeave for unknown Client: {payload.Identifier}.");
-				return Task.CompletedTask;
-			}
-
-			player.Despawn();
+			//We should just broadcast that a player left the lobby.
+			OnRemotePlayerLeftLobby?.Invoke(this, new RemotePlayerLeaveLobbyEventArgs(EntityGuid.ComputeEntityGuid(EntityType.Player, payload.Identifier)));
 
 			return Task.CompletedTask;
 		}
