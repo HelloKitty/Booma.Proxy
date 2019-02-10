@@ -28,11 +28,11 @@ namespace Booma.Proxy
 			//Teth will check Tech data which is a signed byte I guess
 			//It needs to have -1 in all fields for test purposes
 			//From Teth: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L11109
-			/*for(int ch = 0; ch < 19; ch++)
+			for(int ch = 0; ch < 19; ch++)
 			{
 				//if ((char) client->decryptbuf[0xC4+ch] > max_tech_level[ch][client->character._class])
 				UnknownBytes[0xC4 - 8 + ch] = byte.MaxValue;
-			}*/
+			}
 
 			//UnknownBytes[0xC4 - 8 - 2] = 0x60;
 			//UnknownBytes[0xC4 - 8 - 1] = 0x01;
