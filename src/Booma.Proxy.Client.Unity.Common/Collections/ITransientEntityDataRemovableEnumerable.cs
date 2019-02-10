@@ -8,9 +8,9 @@ namespace Booma.Proxy
 {
 	/// <summary>
 	/// Just a simplified type of <see cref="IEnumerable{T}"/> where T is <see cref="IEntityCollectionRemovable"/>
-	/// for non-transient data.
+	/// for transient data.
 	/// </summary>
-	public interface INonTransientEntityDataRemovableEnumerable : IEnumerable<IEntityCollectionRemovable>
+	public interface ITransientEntityDataRemovableEnumerable : IEnumerable<IEntityCollectionRemovable>
 	{
 		
 	}
