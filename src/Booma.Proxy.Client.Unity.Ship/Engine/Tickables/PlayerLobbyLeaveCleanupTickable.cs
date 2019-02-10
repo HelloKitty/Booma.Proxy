@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
+	//We can use lobby cleanup as leaving game too. It works the same way.
+	[SceneTypeCreate(GameSceneType.RagolDefault)]
+	[SceneTypeCreate(GameSceneType.Pioneer2)]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	public sealed class PlayerLobbyLeaveCleanupTickable : BaseSingleEventListenerInitializable<IRemotePlayerLeaveLobbyEventSubscribable, RemotePlayerLeaveLobbyEventArgs>
 	{
