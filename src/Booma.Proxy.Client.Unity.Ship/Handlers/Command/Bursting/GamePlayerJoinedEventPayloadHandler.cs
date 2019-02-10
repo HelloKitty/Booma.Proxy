@@ -9,6 +9,7 @@ using GladNet;
 namespace Booma.Proxy
 {
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
+	[SceneTypeCreate(GameSceneType.RagolDefault)] //burst handling must happen pretty much everywhere.
 	public sealed class GamePlayerJoinedEventPayloadHandler : GameMessageHandler<BlockGamePlayerJoinedEventPayload>
 	{
 		private ICharacterSlotSelectedModel SlotModel { get; }

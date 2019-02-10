@@ -9,11 +9,12 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	//TODO: Temp disabled, it didn't work. Also, it didn't make other late joining clients see us.
+	[AdditionalRegisterationAs(typeof(IClientFinishedBurstingEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
-	[SceneTypeCreate(GameSceneType.RagolDefault)]
-	public sealed class GameBurstingCompletedEventCommandHandler : Command60Handler<Sub60GameBurstingCompleteEventCommand>
+	[SceneTypeCreate(GameSceneType.RagolDefault)] //bursting happens pretty much anywhere
+	public sealed class GameBurstingCompletedEventCommandHandler : Command60Handler<Sub60GameBurstingCompleteEventCommand>, IClientFinishedBurstingEventSubscribable
 	{
+		//TODO: Refactor
 		private ICharacterSlotSelectedModel SlotModel { get; }
 		
 		private IZoneSettings ZoneSettings { get; }
@@ -22,14 +23,20 @@ namespace Booma.Proxy
 
 		private IUnitScalerStrategy ScalerService { get; }
 
+		private IBurstingService BurstingService { get; }
+
 		/// <inheritdoc />
-		public GameBurstingCompletedEventCommandHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel, [NotNull] ILocalPlayerData playerData, [NotNull] IUnitScalerStrategy scalerService, [NotNull] IZoneSettings zoneSettings) 
+		public event EventHandler<ClientBurstingEndingEventArgs> OnClientBurstingFinished;
+
+		/// <inheritdoc />
+		public GameBurstingCompletedEventCommandHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel, [NotNull] ILocalPlayerData playerData, [NotNull] IUnitScalerStrategy scalerService, [NotNull] IZoneSettings zoneSettings, [NotNull] IBurstingService burstingService) 
 			: base(logger)
 		{
 			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 			PlayerData = playerData ?? throw new ArgumentNullException(nameof(playerData));
 			ScalerService = scalerService ?? throw new ArgumentNullException(nameof(scalerService));
 			ZoneSettings = zoneSettings ?? throw new ArgumentNullException(nameof(zoneSettings));
+			BurstingService = burstingService ?? throw new ArgumentNullException(nameof(burstingService));
 		}
 
 		/// <inheritdoc />
@@ -38,6 +45,9 @@ namespace Booma.Proxy
 			//It's possible we get this on OUR join. We may not be spawned yet.
 			if(!PlayerData.isWorldObjectSpawned)
 				return;
+
+			if(!BurstingService.isBurstingInProgress)
+				throw new InvalidOperationException($"Encountered: {command.GetType().Name} when NOT bursting.");
 
 			//TODO: At some point, this may not run on the main thread so this won't be safe.
 			GameObject playerWorldObject = PlayerData.WorldObject;
@@ -48,6 +58,15 @@ namespace Booma.Proxy
 			//If have to send this message otherwise other client's won't know we're also in the same zone
 			//It's odd, but it's something we have to do.
 			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(SlotModel.SlotSelected, ZoneSettings.ZoneId, scaledPosition, scaledRotation).ToPayload());
+
+			int entityGuid = BurstingService.BurstingEntityGuid.Value;
+
+			//Successful burst, let everyone know.
+			OnClientBurstingFinished?.Invoke(this, new ClientBurstingEndingEventArgs(entityGuid, true));
+
+			//Bursting is done, we should release bursting state
+			//Then we should broadcast to everyone that bursting is done.
+			BurstingService.ClearBursting();
 		}
 	}
 }
