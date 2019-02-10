@@ -46,7 +46,7 @@ namespace Booma.Proxy
 
 			//TODO: Should we send ClientId with this one too?
 			//We can just send a finished right away, we have nothing to load really
-			await SendService.SendMessage(new Sub60FinishedWarpingBurstingCommand().ToPayload());
+			await SendService.SendMessage(new Sub60FinishedWarpingBurstingCommand((byte)EntityGuid.GetEntityId(args.EntityGuid)).ToPayload());
 		}
 	}
 }

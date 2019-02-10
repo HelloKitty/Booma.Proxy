@@ -27,11 +27,12 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60FinishedWarpingBurstingCommand(byte identifier)
+			: this() //important to call ctor with commandsize too
 		{
 			Identifier = identifier;
 		}
 
-		public Sub60FinishedWarpingBurstingCommand()
+		protected Sub60FinishedWarpingBurstingCommand()
 		{
 			//Calc static 32bit size
 			CommandSize = 4 / 4;
