@@ -77,13 +77,30 @@ namespace Booma.Proxy
 			}
 		}
 
+		//TODO: Not used
+		private int sendRatePerSecond = 5;
+
+		private float currentTimeSince = 0.0f;
+
+		private float timeSendInterval = 0.2f;
+
 		/// <inheritdoc />
 		public void Tick()
 		{
+
+			if(currentTimeSince < timeSendInterval)
+			{
+				currentTimeSince += Time.deltaTime;
+				return;
+			}
+
 			//Don't need to do this if we aren't moving
 			if(isMoving)
 				using(SyncObj.Lock())
 				{
+					//Only reset if we're actually moving. Want to broadcast right away.
+					currentTimeSince = 0.0f;
+
 					//Double check locking
 					if(!isMoving)
 						return;
