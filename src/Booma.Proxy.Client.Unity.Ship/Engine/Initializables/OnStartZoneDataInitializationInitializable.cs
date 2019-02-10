@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public Task OnGameInitialized()
 		{
-			ZoneDataMappable[SlotModel.SlotSelected] = new PlayerZoneData(ZoneSettings.ZoneId);
+			ZoneDataMappable[EntityGuid.ComputeEntityGuid(EntityType.Player, SlotModel.SlotSelected)] = new PlayerZoneData(ZoneSettings.ZoneId);
 			return Task.CompletedTask;
 		}
 	}
