@@ -11,17 +11,17 @@ namespace Booma.Proxy
 {
 	/// <summary>
 	/// The handler for <see cref="Sub62ClientBurstBeginEventCommand"/> which handles this payload
-	/// alerting 
+	/// alerting that the local client has begun bursting.
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(IBurstBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.Pioneer2)] //only needed on pioneer2
-	public sealed class GameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientBurstBeginEventCommand>, IBurstBeginEventSubscribable
+	public sealed class GameBeginBurstEventPayloadHandler : Command62Handler<Sub62ClientBurstBeginEventCommand>, IBurstBeginEventSubscribable
 	{
 		/// <inheritdoc />
 		public event EventHandler OnBurstBeginning;
 
 		/// <inheritdoc />
-		public GameBeginWarpEventPayloadHandler(ILog logger)
+		public GameBeginBurstEventPayloadHandler(ILog logger)
 			: base(logger)
 		{
 
