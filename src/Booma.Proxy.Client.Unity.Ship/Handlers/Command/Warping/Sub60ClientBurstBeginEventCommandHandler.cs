@@ -16,13 +16,13 @@ namespace Booma.Proxy
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(IWarpBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
+	public sealed class Sub60ClientBurstBeginEventCommandHandler : Command60Handler<Sub60ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
 	{
 		/// <inheritdoc />
 		public event EventHandler OnWarpBeginning;
 
 		/// <inheritdoc />
-		public BlockBeginWarpEventPayloadHandler(ILog logger)
+		public Sub60ClientBurstBeginEventCommandHandler(ILog logger)
 			: base(logger)
 		{
 
