@@ -10,12 +10,12 @@ using SceneJect.Common;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The handler for <see cref="Sub62ClientWarpBeginEventCommand"/> which handles this payload
+	/// The handler for <see cref="Sub62ClientBurstBeginEventCommand"/> which handles this payload
 	/// alerting 
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(IWarpBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.Pioneer2)] //only needed on pioneer2
-	public sealed class GameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientWarpBeginEventCommand>, IWarpBeginEventSubscribable
+	public sealed class GameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
 	{
 		/// <inheritdoc />
 		public event EventHandler OnWarpBeginning;
@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientWarpBeginEventCommand payload)
+		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientBurstBeginEventCommand payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved: {this.MessageName()} Dispatching: {nameof(IWarpBeginEventSubscribable)}.");
