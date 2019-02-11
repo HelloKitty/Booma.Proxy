@@ -18,7 +18,7 @@ namespace Booma.Proxy
 	public sealed class GameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
 	{
 		/// <inheritdoc />
-		public event EventHandler OnWarpBeginning;
+		public event EventHandler OnBurstBeginning;
 
 		/// <inheritdoc />
 		public GameBeginWarpEventPayloadHandler(ILog logger)
@@ -34,7 +34,7 @@ namespace Booma.Proxy
 				Logger.Info($"Recieved: {this.MessageName()} Dispatching: {nameof(IWarpBeginEventSubscribable)}.");
 
 			//TODO: We should really be initializing the quest data, or whatever it is, this packet sends.
-			OnWarpBeginning?.Invoke(this, EventArgs.Empty);
+			OnBurstBeginning?.Invoke(this, EventArgs.Empty);
 
 			return Task.CompletedTask;
 		}

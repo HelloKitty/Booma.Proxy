@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public interface IWarpBeginEventSubscribable
+	public interface IBurstBeginEventSubscribable
 	{
-		event EventHandler OnWarpBeginning;
+		event EventHandler OnBurstBeginning;
 	}
 }
