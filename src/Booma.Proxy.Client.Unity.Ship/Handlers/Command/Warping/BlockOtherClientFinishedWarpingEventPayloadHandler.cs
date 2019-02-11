@@ -10,11 +10,11 @@ using UnityEngine;
 
 namespace Booma.Proxy
 {
-	[AdditionalRegisterationAs(typeof(IRemotePlayerWarpedToZoneEventSubscribable))]
+	[AdditionalRegisterationAs(typeof(IRemotePlayerFinishedWarpedToZoneEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	[SceneTypeCreate(GameSceneType.RagolDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
-	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : Command60Handler<Sub60FinishedWarpingBurstingCommand>, IRemotePlayerWarpedToZoneEventSubscribable
+	public sealed class BlockOtherClientFinishedWarpingEventPayloadHandler : Command60Handler<Sub60FinishedWarpingBurstingCommand>, IRemotePlayerFinishedWarpedToZoneEventSubscribable
 	{
 		/// <summary>
 		/// The scaling service.

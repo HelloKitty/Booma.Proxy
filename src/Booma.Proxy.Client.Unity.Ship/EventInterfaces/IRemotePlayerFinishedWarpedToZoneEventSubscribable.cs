@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Booma.Proxy
 {
-	public interface IRemotePlayerWarpedToZoneEventSubscribable
+	public interface IRemotePlayerFinishedWarpedToZoneEventSubscribable
 	{
 		event EventHandler<PlayerWarpedToZoneEventArgs> OnRemotePlayedFinishedWarpToZone;
 	}
