@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.BurstType5)]
-	public sealed class Sub60ClientWarpBeginEventCommand : BaseSubCommand60
+	public sealed class Sub60ClientBurstBeginEventCommand : BaseSubCommand60
 	{
 		//TODO: This are about 518 bytes here for quest data
 		[ReadToEnd]
@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		private byte[] QuestData { get; } = new byte[0];
 
 		//Serializer ctor
-		private Sub60ClientWarpBeginEventCommand()
+		private Sub60ClientBurstBeginEventCommand()
 		{
 			
 		}

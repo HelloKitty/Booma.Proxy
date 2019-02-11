@@ -11,12 +11,12 @@ using UnityEngine;
 namespace Booma.Proxy
 {
 	/// <summary>
-	/// The handler for <see cref="Sub60ClientWarpBeginEventCommand"/> which handles this payload
+	/// The handler for <see cref="Sub60ClientBurstBeginEventCommand"/> which handles this payload
 	/// alerting 
 	/// </summary>
 	[AdditionalRegisterationAs(typeof(IWarpBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientWarpBeginEventCommand>, IWarpBeginEventSubscribable
+	public sealed class BlockBeginWarpEventPayloadHandler : Command60Handler<Sub60ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
 	{
 		/// <inheritdoc />
 		public event EventHandler OnWarpBeginning;
@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientWarpBeginEventCommand payload)
+		protected override async Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub60ClientBurstBeginEventCommand payload)
 		{
 			if(Logger.IsInfoEnabled)
 				Logger.Info($"Recieved: {this.MessageName()}.");
