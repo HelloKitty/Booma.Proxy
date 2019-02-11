@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	[AdditionalRegisterationAs(typeof(ILocalPlayerWorldRepresentationSpawnedEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
 	[SceneTypeCreate(GameSceneType.Pioneer2)]
-	public sealed class LobbyPlayerWorldRepresentationCreationOnWarpBeginEventListener : BaseSingleEventListenerInitializable<IBurstBeginEventSubscribable>, ILocalPlayerWorldRepresentationSpawnedEventSubscribable
+	public sealed class LobbyPlayerWorldRepresentationCreationOnBurstingBeginEventListener : BaseSingleEventListenerInitializable<IBurstBeginEventSubscribable>, ILocalPlayerWorldRepresentationSpawnedEventSubscribable
 	{
 		private IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext> LocalPlayerWorldRepresentationFactory { get; }
 
@@ -26,7 +26,7 @@ namespace Booma.Proxy
 		public event EventHandler<LocalPlayerWorldObjectSpawnedEventArgs> OnLocalPlayerWorldObjectCreated;
 
 		/// <inheritdoc />
-		public LobbyPlayerWorldRepresentationCreationOnWarpBeginEventListener(IBurstBeginEventSubscribable subscriptionService, [NotNull] IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext> localPlayerWorldRepresentationFactory, [NotNull] ISpawnPointStrategy spawnStrategy, [NotNull] ICharacterSlotSelectedModel slotIndex, [NotNull] ILog logger) 
+		public LobbyPlayerWorldRepresentationCreationOnBurstingBeginEventListener(IBurstBeginEventSubscribable subscriptionService, [NotNull] IFactoryCreatable<GameObject, LocalPlayerWorldRepresentationCreationContext> localPlayerWorldRepresentationFactory, [NotNull] ISpawnPointStrategy spawnStrategy, [NotNull] ICharacterSlotSelectedModel slotIndex, [NotNull] ILog logger) 
 			: base(subscriptionService)
 		{
 			LocalPlayerWorldRepresentationFactory = localPlayerWorldRepresentationFactory ?? throw new ArgumentNullException(nameof(localPlayerWorldRepresentationFactory));
