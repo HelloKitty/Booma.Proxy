@@ -14,9 +14,9 @@ namespace Booma.Proxy
 	/// The handler for <see cref="Sub60ClientBurstBeginEventCommand"/> which handles this payload
 	/// alerting 
 	/// </summary>
-	[AdditionalRegisterationAs(typeof(IWarpBeginEventSubscribable))]
+	[AdditionalRegisterationAs(typeof(IBurstBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.LobbyDefault)]
-	public sealed class Sub60ClientBurstBeginEventCommandHandler : Command60Handler<Sub60ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
+	public sealed class Sub60ClientBurstBeginEventCommandHandler : Command60Handler<Sub60ClientBurstBeginEventCommand>, IBurstBeginEventSubscribable
 	{
 		/// <inheritdoc />
 		public event EventHandler OnBurstBeginning;

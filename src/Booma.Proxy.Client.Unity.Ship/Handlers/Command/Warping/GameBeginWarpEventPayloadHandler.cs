@@ -13,9 +13,9 @@ namespace Booma.Proxy
 	/// The handler for <see cref="Sub62ClientBurstBeginEventCommand"/> which handles this payload
 	/// alerting 
 	/// </summary>
-	[AdditionalRegisterationAs(typeof(IWarpBeginEventSubscribable))]
+	[AdditionalRegisterationAs(typeof(IBurstBeginEventSubscribable))]
 	[SceneTypeCreate(GameSceneType.Pioneer2)] //only needed on pioneer2
-	public sealed class GameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientBurstBeginEventCommand>, IWarpBeginEventSubscribable
+	public sealed class GameBeginWarpEventPayloadHandler : Command62Handler<Sub62ClientBurstBeginEventCommand>, IBurstBeginEventSubscribable
 	{
 		/// <inheritdoc />
 		public event EventHandler OnBurstBeginning;
@@ -31,7 +31,7 @@ namespace Booma.Proxy
 		protected override Task HandleSubMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, Sub62ClientBurstBeginEventCommand payload)
 		{
 			if(Logger.IsInfoEnabled)
-				Logger.Info($"Recieved: {this.MessageName()} Dispatching: {nameof(IWarpBeginEventSubscribable)}.");
+				Logger.Info($"Recieved: {this.MessageName()} Dispatching: {nameof(IBurstBeginEventSubscribable)}.");
 
 			//TODO: We should really be initializing the quest data, or whatever it is, this packet sends.
 			OnBurstBeginning?.Invoke(this, EventArgs.Empty);
