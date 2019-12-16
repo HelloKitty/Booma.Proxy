@@ -3,20 +3,16 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.12" />
     <PackageReference Include="JetBrains.Annotations" Version="10.2.1" />
-    <PackageReference Include="Reinterpret.Net" Version="2.0.2" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
+    <PackageReference Include="Reinterpret.Net" Version="2.0.7" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Payloads\Client\" />
     <Folder Include="Payloads\Server\" />
     <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
-    <PackageReference Include="Reinterpret.Net" Version="2.0.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
