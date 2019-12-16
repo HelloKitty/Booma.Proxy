@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Nito.AsyncEx" Version="5.0.0-pre-05" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.31" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Map\Booma.Proxy.Client.Unity.Map.csproj" />
@@ -17,7 +14,6 @@
     <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
@@ -32,5 +28,4 @@
       <HintPath>..\..\lib\Unity\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>

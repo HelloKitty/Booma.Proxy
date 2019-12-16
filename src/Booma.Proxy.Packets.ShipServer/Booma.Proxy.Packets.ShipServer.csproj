@@ -1,19 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="Payloads\Client\" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
   </ItemGroup>
-
 </Project>

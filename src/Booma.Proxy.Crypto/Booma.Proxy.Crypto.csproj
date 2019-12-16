@@ -1,19 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="GladNet3.Crypto.API" Version="3.0.43" />
+    <PackageReference Include="GladNet3.Crypto.API" Version="3.0.46" />
   </ItemGroup>
-
 </Project>

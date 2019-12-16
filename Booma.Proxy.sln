@@ -25,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packets", "Packets", "{5E10
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{EDF62AD7-A96C-41A5-89E7-F70794758175}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Client.Launcher", "src\Booma.Proxy.Client.Launcher\Booma.Proxy.Client.Launcher.csproj", "{F3A22529-F7FE-4A9F-87AA-E2F3AAEF1F17}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Client.Unity.Editor", "src\Booma.Proxy.Client.Unity.Editor\Booma.Proxy.Client.Unity.Editor.csproj", "{D3104E17-87F8-46B6-9277-0A7DFDCED0CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unity", "Unity", "{3872F557-EF3F-432F-8363-9C92109F01D3}"

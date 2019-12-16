@@ -1,17 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Common\Booma.Proxy.Common.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>..\Booma.Proxy.Client.Unity.Common\bin\Debug\net46\Sirenix.OdinInspector.Attributes.dll</HintPath>
@@ -23,5 +19,4 @@
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>

@@ -1,18 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Common.Logging" Version="3.4.1" />
     <PackageReference Include="FreecraftCore.Serializer" Version="3.0.38" />
     <PackageReference Include="GladNet3.Client.DotNetTcpClient" Version="3.0.43" />
-    <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.44" />
-    <PackageReference Include="SceneJect.Common" Version="3.0.10" />
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
+    <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.46" />
+    <PackageReference Include="SceneJect.Common" Version="3.0.31" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.31" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj" />
@@ -21,7 +18,6 @@
     <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
@@ -33,5 +29,4 @@
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>

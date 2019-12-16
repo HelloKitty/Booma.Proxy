@@ -1,117 +1,33 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1A775854-1484-45FB-B465-1967A971646C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Booma.Proxy</RootNamespace>
-    <AssemblyName>Booma.Proxy.Packets.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyTitle>Booma.Proxy.Packets.Common</AssemblyTitle>
+    <Company>Microsoft</Company>
+    <Product>Booma.Proxy.Packets.Common</Product>
+    <Copyright>Copyright © Microsoft 2017</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.38\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="GladNet3.Common.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Common.API.3.0.43\lib\net46\GladNet3.Common.API.dll</HintPath>
-    </Reference>
-    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.AsyncEx.Coordination, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nito.AsyncEx.Coordination.1.0.2\lib\net46\Nito.AsyncEx.Coordination.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.AsyncEx.Tasks, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nito.AsyncEx.Tasks.1.0.1\lib\net46\Nito.AsyncEx.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.Collections.Deque, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nito.Collections.Deque.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Collections.Deque.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.Disposables, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Nito.Disposables.1.0.0\lib\portable45-net45+win8+wp8+wpa81\Nito.Disposables.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
+    <PackageReference Include="GladNet3.Common.API" Version="3.0.46" />
+    <PackageReference Include="JetBrains.Annotations" Version="10.2.1" />
+    <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.0.0" />
+    <PackageReference Include="Nito.AsyncEx.Tasks" Version="5.0.0" />
+    <PackageReference Include="Nito.Collections.Deque" Version="1.0.4" />
+    <PackageReference Include="Nito.Disposables" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Attributes\Game\GameClientPacketPayloadAttribute.cs" />
-    <Compile Include="Attributes\Game\GameServerPacketPayloadAttribute.cs" />
-    <Compile Include="Attributes\Game\SubCommand60Attribute.cs" />
-    <Compile Include="Attributes\Game\SubCommand6DAttribute.cs" />
-    <Compile Include="Attributes\Game\SubCommand62Attribute.cs" />
-    <Compile Include="Attributes\Patch\PatchClientPacketPayloadAttribute.cs" />
-    <Compile Include="Attributes\Patch\PatchServerPacketPayloadAttribute.cs" />
-    <Compile Include="Message\Game\BaseSubCommand60.cs" />
-    <Compile Include="Message\Game\BaseSubCommand62.cs" />
-    <Compile Include="Message\Game\BaseSubCommand6D.cs" />
-    <Compile Include="Message\Game\ISubCommand.cs" />
-    <Compile Include="Message\Game\ISubCommand6D.cs" />
-    <Compile Include="Message\Game\ISubCommand62.cs" />
-    <Compile Include="Message\Game\ISubCommand60.cs" />
-    <Compile Include="Message\Game\UnknownClientGamePayload.cs" />
-    <Compile Include="Message\Game\UnknownSubCommand60Command.cs" />
-    <Compile Include="Message\Game\UnknownSubCommand6DCommand.cs" />
-    <Compile Include="Message\Game\UnknownSubCommand62Command.cs" />
-    <Compile Include="Message\IOperationCodeable.cs" />
-    <Compile Include="Message\IUnknownPayloadType.cs" />
-    <Compile Include="Message\PSOBBNetworkOutgoingMessage.cs" />
-    <Compile Include="Models\DifficultyType.cs" />
-    <Compile Include="Models\EpisodeType.cs" />
-    <Compile Include="Models\IChunkRequest.cs" />
-    <Compile Include="Models\IChunkResponse.cs" />
-    <Compile Include="Models\IMenuItemIdentifiable.cs" />
-    <Compile Include="Models\MenuItemIdentifier.cs" />
-    <Compile Include="Models\MenuListing.cs" />
-    <Compile Include="OperationCodes\SubCommand6DOperationCode.cs" />
-    <Compile Include="OperationCodes\GameNetworkOperationCode.cs" />
-    <Compile Include="OperationCodes\PatchNetworkOperationCode.cs" />
-    <Compile Include="Message\Game\UnknownServerGamePayload.cs" />
-    <Compile Include="Message\Game\PSOBBGamePacketPayloadClient.cs" />
-    <Compile Include="Message\Game\PSOBBGamePacketPayloadServer.cs" />
-    <Compile Include="Message\Patch\PSOBBPatchPacketPayloadClient.cs" />
-    <Compile Include="Message\Patch\UnknownPatchPayload.cs" />
-    <Compile Include="Message\Patch\PSOBBPatchPacketPayloadServer.cs" />
-    <Compile Include="OperationCodes\SubCommand60OperationCode.cs" />
-    <Compile Include="OperationCodes\SubCommand62OperationCode.cs" />
-    <Compile Include="PacketCommonServerMetadataMarker.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Message\PSOBBPacketHeader.cs" />
-    <Compile Include="Response\IResponseCodePayload.cs" />
-    <Compile Include="Response\IResponseSucceedable.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

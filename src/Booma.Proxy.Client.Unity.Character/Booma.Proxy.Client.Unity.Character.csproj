@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="SceneJect.Metadata" Version="3.0.10" />
+    <PackageReference Include="SceneJect.Metadata" Version="3.0.31" />
     <PackageReference Include="Unitysync.Async" Version="1.0.15" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Authentication\Booma.Proxy.Client.Unity.Authentication.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj" />
@@ -16,7 +13,6 @@
     <ProjectReference Include="..\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj" />
     <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
@@ -31,10 +27,8 @@
       <HintPath>..\..\lib\Unity\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Engine\Tickables\" />
   </ItemGroup>
-
 </Project>
