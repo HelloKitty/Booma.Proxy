@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Booma.Proxy.Client.Unity.NetworkClient\Booma.Proxy.Client.Unity.NetworkClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GladMMO.Client.Common">
+      <HintPath>..\..\lib\GladMMO\API\Client\GladMMO.Client.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GladMMO.Network.Common">
+      <HintPath>..\..\lib\GladMMO\API\Client\GladMMO.Network.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
