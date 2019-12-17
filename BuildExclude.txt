@@ -18,6 +18,8 @@ Sirenix.Utilities.dll
 Microsoft.AspNetCore.WebUtilities.dll
 Microsoft.Extensions.Primitives.dll
 Microsoft.Net.Http.Headers.dll
+System.Runtime.Numerics.dll
+System.Diagnostics.Contracts.dll
 
 UnityEngine.dll
 UnityEngine.xml
