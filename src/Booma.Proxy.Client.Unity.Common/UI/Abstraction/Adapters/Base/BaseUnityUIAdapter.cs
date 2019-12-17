@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Booma.Proxy;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Unitysync.Async;
 
@@ -28,7 +27,7 @@ namespace Guardians
 		/// </summary>
 		protected TAdaptedUnityEngineType UnityUIObject => _UnityUIObject;
 
-		[Button]
+		//[Button]
 		public void TryInitializeAdaptedObject()
 		{
 			TAdaptedUnityEngineType obj = GetComponent<TAdaptedUnityEngineType>();

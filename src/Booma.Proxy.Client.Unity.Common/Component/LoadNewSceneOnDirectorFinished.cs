@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -16,8 +15,8 @@ namespace Booma.Proxy
 	{
 		private CancellationTokenSource tokenSource = new CancellationTokenSource();
 
-		[MaxValue(500)]
-		[MinValue(0.0f)]
+		//[MaxValue(500)]
+		//[MinValue(0.0f)]
 		[SerializeField]
 		public float DefaultWaitTime;
 

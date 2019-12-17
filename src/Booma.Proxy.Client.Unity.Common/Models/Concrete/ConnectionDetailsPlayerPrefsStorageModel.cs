@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Booma.Proxy
 {
 	public abstract class ConnectionDetailsPlayerPrefsStorageModel : MonoBehaviour, IGameConnectionEndpointDetails
 	{
-		[ReadOnly]
-		[ShowInInspector]
+		//[ReadOnly]
+		//[ShowInInspector]
 		private string _IpAddress;
 
-		[ReadOnly]
-		[ShowInInspector]
+		//[ReadOnly]
+		//[ShowInInspector]
 		private int _Port;
 
 		/// <inheritdoc />

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -13,12 +12,12 @@ namespace Booma.Proxy
 	/// </summary>
 	public sealed class EditorExposedConnectionEndpointDetails : ConnectionDetailsPlayerPrefsStorageModel
 	{
-		[Required]
+		//[Required]
 		[SerializeField]
 		private string EndpointIpAddress;
 
-		[MaxValue(short.MaxValue)]
-		[MinValue(1)]
+		//[MaxValue(short.MaxValue)]
+		//[MinValue(1)]
 		[SerializeField]
 		private int EndpointPort;
 

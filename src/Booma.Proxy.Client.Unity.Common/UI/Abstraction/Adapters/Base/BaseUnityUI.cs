@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Guardians;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Unitysync.Async;
 
 namespace Booma.Proxy
 {
-	public abstract class BaseUnityUI<TAdaptedToType> : SerializedMonoBehaviour, IUIAdapterRegisterable
+	public abstract class BaseUnityUI<TAdaptedToType> : MonoBehaviour, IUIAdapterRegisterable
 	{
 		[Tooltip("Used to determine wiring for UI dependencies.")]
 		[SerializeField]

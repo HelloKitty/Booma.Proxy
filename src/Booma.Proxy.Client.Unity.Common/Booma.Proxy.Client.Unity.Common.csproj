@@ -21,12 +21,6 @@
     <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Sirenix.OdinInspector.Attributes">
-      <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
     </Reference>
