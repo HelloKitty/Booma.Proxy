@@ -17,6 +17,8 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override void Register(ContainerBuilder builder)
 		{
+			builder.RegisterModule<PSOBBGladMMOEngineServicesModule>();
+
 			//This is required to catch outgoing client packets
 			//and convert them to PSOBB packets and send them
 			builder.RegisterType<GladMMOManagedClientPSOBBInterceptor>()
