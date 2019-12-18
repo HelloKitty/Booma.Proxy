@@ -24,6 +24,7 @@ namespace Booma.Proxy
 				.As<IPayloadInterceptable>()
 				.As<IPeerPayloadSendService<GameClientPacketPayload>>()
 				.As<IConnectionService>()
+				.As<IPeerPayloadSendService<GameServerPacketPayload>>()
 				.SingleInstance();
 
 			//We don't need this to change.

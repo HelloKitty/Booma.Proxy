@@ -14,9 +14,9 @@ namespace Booma.Proxy
 
 		public IPeerRequestSendService<PSOBBGamePacketPayloadClient> RequestSendService { get; }
 
-		public IPeerPayloadSendService<GameClientPacketPayload> GladMMOClientPayloadReceiver { get; }
+		public IPeerPayloadSendService<GameServerPacketPayload> GladMMOClientPayloadReceiver { get; }
 
-		public InteropPSOBBPeerMessageContext([NotNull] IConnectionService connectionService, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> payloadSendService, [NotNull] IPeerRequestSendService<PSOBBGamePacketPayloadClient> requestSendService, [NotNull] IPeerPayloadSendService<GameClientPacketPayload> gladMmoClientPayloadReceiver)
+		public InteropPSOBBPeerMessageContext([NotNull] IConnectionService connectionService, [NotNull] IPeerPayloadSendService<PSOBBGamePacketPayloadClient> payloadSendService, [NotNull] IPeerRequestSendService<PSOBBGamePacketPayloadClient> requestSendService, [NotNull] IPeerPayloadSendService<GameServerPacketPayload> gladMmoClientPayloadReceiver)
 		{
 			ConnectionService = connectionService ?? throw new ArgumentNullException(nameof(connectionService));
 			PayloadSendService = payloadSendService ?? throw new ArgumentNullException(nameof(payloadSendService));

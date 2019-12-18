@@ -11,7 +11,11 @@ using Nito.AsyncEx;
 
 namespace Booma.Proxy
 {
-	public sealed class GladMMOManagedClientPSOBBInterceptor : IManagedNetworkClient<GameClientPacketPayload, GameServerPacketPayload>, IPeerRequestSendService<PSOBBGamePacketPayloadClient>
+	public sealed class GladMMOManagedClientPSOBBInterceptor : 
+		IManagedNetworkClient<GameClientPacketPayload, GameServerPacketPayload>, 
+		IPeerRequestSendService<PSOBBGamePacketPayloadClient>,
+		IPeerRequestSendService<GameClientPacketPayload>,
+		IPeerPayloadSendService<GameServerPacketPayload>
 	{
 		private ILog Logger { get; }
 
@@ -21,14 +25,18 @@ namespace Booma.Proxy
 
 		private MessageHandlerService<GameClientPacketPayload, PSOBBGamePacketPayloadClient> GladMMOOutgoingMessageHandlers { get; }
 
+		private MessageHandlerService<GameServerPacketPayload, GameClientPacketPayload> GladMMOIncomingMessageHandlers { get; }
+
 		public GladMMOManagedClientPSOBBInterceptor([NotNull] ILog logger, [NotNull] IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> psobbNetworkClient, 
 			MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext> psobbIncomingMessageHandlers, 
-			MessageHandlerService<GameClientPacketPayload, PSOBBGamePacketPayloadClient> gladMmoOutgoingMessageHandlers)
+			MessageHandlerService<GameClientPacketPayload, PSOBBGamePacketPayloadClient> gladMmoOutgoingMessageHandlers,
+			[NotNull] MessageHandlerService<GameServerPacketPayload, GameClientPacketPayload> gladMmoIncomingMessageHandlers)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			PSOBBNetworkClient = psobbNetworkClient ?? throw new ArgumentNullException(nameof(psobbNetworkClient));
 			PSOBBIncomingMessageHandlers = psobbIncomingMessageHandlers;
 			GladMMOOutgoingMessageHandlers = gladMmoOutgoingMessageHandlers;
+			GladMMOIncomingMessageHandlers = gladMmoIncomingMessageHandlers ?? throw new ArgumentNullException(nameof(gladMmoIncomingMessageHandlers));
 		}
 
 		async Task<SendResult> IPeerPayloadSendService<GameClientPacketPayload>.SendMessage<TPayloadType>(TPayloadType payload, DeliveryMethod method = DeliveryMethod.ReliableOrdered)
@@ -39,7 +47,24 @@ namespace Booma.Proxy
 			return SendResult.Sent;
 		}
 
-		//TODO: Implement SendImmediately mechanics.
+		async Task<SendResult> IPeerPayloadSendService<GameServerPacketPayload>.SendMessageImmediately<TPayloadType>(TPayloadType payload, DeliveryMethod method)
+		{
+			await GladMMOIncomingMessageHandlers.TryHandleMessage(new DefaultPeerMessageContext<GameClientPacketPayload>(PSOBBNetworkClient, this, this), new NetworkIncomingMessage<GameServerPacketPayload>(new HeaderlessPacketHeader(1), payload))
+				.ConfigureAwait(false);
+
+			//TODO: Send real result.
+			return SendResult.Sent;
+		}
+
+		async Task<SendResult> IPeerPayloadSendService<GameServerPacketPayload>.SendMessage<TPayloadType>(TPayloadType payload, DeliveryMethod method)
+		{
+			await GladMMOIncomingMessageHandlers.TryHandleMessage(new DefaultPeerMessageContext<GameClientPacketPayload>(PSOBBNetworkClient, this, this), new NetworkIncomingMessage<GameServerPacketPayload>(new HeaderlessPacketHeader(1), payload))
+				.ConfigureAwait(false);
+
+			//TODO: Send real result.
+			return SendResult.Sent;
+		}
+
 		async Task<SendResult> IPeerPayloadSendService<GameClientPacketPayload>.SendMessageImmediately<TPayloadType>(TPayloadType payload, DeliveryMethod method = DeliveryMethod.ReliableOrdered)
 		{
 			await GladMMOOutgoingMessageHandlers.TryHandleMessage(new DefaultPeerMessageContext<PSOBBGamePacketPayloadClient>(PSOBBNetworkClient, PSOBBNetworkClient, this), new NetworkIncomingMessage<GameClientPacketPayload>(new HeaderlessPacketHeader(1), payload))
@@ -94,6 +119,11 @@ namespace Booma.Proxy
 		}
 
 		public async Task<TResponseType> SendRequestAsync<TResponseType>(PSOBBGamePacketPayloadClient request, DeliveryMethod method = DeliveryMethod.ReliableOrdered, CancellationToken cancellationToken = new CancellationToken())
+		{
+			throw new NotImplementedException($"Async message sending is not implemented.");
+		}
+
+		public async Task<TResponseType> SendRequestAsync<TResponseType>(GameClientPacketPayload request, DeliveryMethod method = DeliveryMethod.ReliableOrdered, CancellationToken cancellationToken = new CancellationToken())
 		{
 			throw new NotImplementedException($"Async message sending is not implemented.");
 		}
