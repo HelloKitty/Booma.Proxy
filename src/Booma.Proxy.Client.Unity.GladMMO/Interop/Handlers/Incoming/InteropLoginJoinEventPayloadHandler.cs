@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	public class InteropLoginJoinEventPayloadHandler : BasePSOBBIncomingInteropPayloadHandler<BlockLobbyJoinEventPayload>
 	{
 		/// <inheritdoc />
-		public BlockLoginJoinEventPayloadHandler(ILog logger)
+		public InteropLoginJoinEventPayloadHandler(ILog logger)
 			: base(logger)
 		{
 
