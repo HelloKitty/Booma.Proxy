@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// to the implementer of this type.
 	/// </summary>
 	/// <typeparam name="TSubCommandType"></typeparam>
-	public abstract class InteropCommand60Handler<TSubCommandType> : SubMessageMessageHandler<TSubCommandType, BlockNetworkCommand60EventServerPayload>
+	public abstract class InteropCommand60Handler<TSubCommandType> : BaseInteropSubMessageMessageHandler<TSubCommandType, BlockNetworkCommand60EventServerPayload>
 		where TSubCommandType : BaseSubCommand60
 	{
 		/// <inheritdoc />
