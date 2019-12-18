@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Common.Logging;
 using GladMMO;
 using GladNet;
+using Reinterpret.Net;
 using SceneJect.Common;
 using UnityEngine;
 
@@ -45,7 +46,10 @@ namespace Booma.Proxy
 
 		protected virtual PSOBBGamePacketPayloadClient BuildLoginPacket()
 		{
-			return new SharedLoginRequest93Payload(0x41, 0, 0, "admin2", "test", new ClientVerificationData(0x41, new byte[40]), SharedLoginRequest93Payload.ServerType.Ship);
+			byte[] securityData = new byte[40];
+			42000002.Reinterpret(securityData, 0);
+
+			return new SharedLoginRequest93Payload(0x41, 0, 42000002, "admin2", "test", new ClientVerificationData(0x41, securityData), SharedLoginRequest93Payload.ServerType.Ship);
 		}
 	}
 }
