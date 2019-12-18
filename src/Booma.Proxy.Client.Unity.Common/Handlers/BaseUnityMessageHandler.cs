@@ -20,7 +20,7 @@ namespace Booma.Proxy
 	/// <typeparam name="TPayloadType">The payload type this handler actually handles.</typeparam>
 	[Injectee]
 	public abstract class BaseUnityMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType, TPayloadType> : IPeerMessageHandler<TIncomingPayloadBaseType, TOutgoingPayloadType>,
-		IPeerPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType>
+		IPeerPayloadSpecificMessageHandler<TPayloadType, TOutgoingPayloadType>, IGameMessageHandler<TPayloadType>
 		where TOutgoingPayloadType : class
 		where TIncomingPayloadBaseType : class
 		where TPayloadType : class, TIncomingPayloadBaseType
@@ -68,6 +68,15 @@ namespace Booma.Proxy
 				Logger.Error($"Encounter error in Handle: {GetType().Name} Exception: {e.Message} \n\n StackTrace: {e.StackTrace}");
 				throw;
 			}
+		}
+
+		/// <summary>
+		/// Gets the loggable message name that the handler handles.
+		/// </summary>
+		/// <returns>The string name of the message type.</returns>
+		public virtual string MessageName()
+		{
+			return typeof(TPayloadType).Name;
 		}
 	}
 }

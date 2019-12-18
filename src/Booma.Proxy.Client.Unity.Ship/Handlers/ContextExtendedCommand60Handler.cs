@@ -44,6 +44,7 @@ namespace Booma.Proxy
 			{
 				if(Logger.IsWarnEnabled)
 					Logger.Warn($"Recieved Code: {command.OpCodeHexString()} {this.MessageName()} for unknown Id: {command.Identifier}");
+
 				return;
 			}
 

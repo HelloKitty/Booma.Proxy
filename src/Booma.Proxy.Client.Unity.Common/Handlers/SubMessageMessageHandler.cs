@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	/// <typeparam name="TSubMessageType">The inner message type to be handled.</typeparam>
 	/// <typeparam name="TPayloadType">The payload type this submessage is in.</typeparam>
-	public abstract class SubMessageMessageHandler<TSubMessageType, TPayloadType> : BaseUnityMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, TPayloadType> 
+	public abstract class SubMessageMessageHandler<TSubMessageType, TPayloadType> : BaseUnityMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, TPayloadType>, ISubMessageHandler<TSubMessageType, TPayloadType>
 		where TPayloadType : PSOBBGamePacketPayloadServer
 	{
 		/// <inheritdoc />
@@ -70,6 +70,15 @@ namespace Booma.Proxy
 			: base(logger)
 		{
 			
+		}
+
+		/// <summary>
+		/// Gets the loggable message name that the handler handles.
+		/// </summary>
+		/// <returns>The string name of the message type.</returns>
+		public override string MessageName()
+		{
+			return typeof(TSubMessageType).Name;
 		}
 	}
 }

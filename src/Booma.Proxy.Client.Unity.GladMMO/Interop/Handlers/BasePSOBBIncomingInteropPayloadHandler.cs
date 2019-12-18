@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// Base handler for all game handlers.
 	/// </summary>
 	/// <typeparam name="TSpecificPayloadType"></typeparam>
-	public abstract class BasePSOBBIncomingInteropPayloadHandler<TSpecificPayloadType> : IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext>
+	public abstract class BasePSOBBIncomingInteropPayloadHandler<TSpecificPayloadType> : IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext>, IGameMessageHandler<TSpecificPayloadType>
 		where TSpecificPayloadType : PSOBBGamePacketPayloadServer
 	{
 		protected ILog Logger { get; }
@@ -46,6 +46,15 @@ namespace Booma.Proxy
 		public override string ToString()
 		{
 			return $"GameHandler: {GetType().Name} for Payload: {typeof(TSpecificPayloadType).Name}";
+		}
+
+		/// <summary>
+		/// Gets the loggable message name that the handler handles.
+		/// </summary>
+		/// <returns>The string name of the message type.</returns>
+		public virtual string MessageName()
+		{
+			return typeof(TSpecificPayloadType).Name;
 		}
 	}
 }
