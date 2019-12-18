@@ -25,4 +25,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interop\Handlers\Incoming\Command\" />
+  </ItemGroup>
+
 </Project>
