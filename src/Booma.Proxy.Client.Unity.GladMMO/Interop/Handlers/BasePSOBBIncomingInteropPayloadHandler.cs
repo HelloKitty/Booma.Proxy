@@ -26,7 +26,7 @@ namespace Booma.Proxy
 		//TODO: Add exception logging support
 		public abstract Task HandleMessage(InteropPSOBBPeerMessageContext context, TSpecificPayloadType payload);
 
-		public bool CanHandle(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		public virtual bool CanHandle(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			return message.Payload is TSpecificPayloadType;
 		}
