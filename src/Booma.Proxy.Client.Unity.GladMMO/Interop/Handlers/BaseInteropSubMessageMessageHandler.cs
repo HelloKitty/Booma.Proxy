@@ -14,11 +14,11 @@ namespace Booma.Proxy
 	/// </summary>
 	/// <typeparam name="TSubMessageType">The inner message type to be handled.</typeparam>
 	/// <typeparam name="TPayloadType">The payload type this submessage is in.</typeparam>
-	public abstract class InteropSubMessageMessageHandler<TSubMessageType, TPayloadType> : BasePSOBBIncomingInteropPayloadHandler<TPayloadType>
+	public abstract class BaseInteropSubMessageMessageHandler<TSubMessageType, TPayloadType> : BasePSOBBIncomingInteropPayloadHandler<TPayloadType>
 		where TPayloadType : PSOBBGamePacketPayloadServer
 	{
 		/// <inheritdoc />
-		protected InteropSubMessageMessageHandler(ILog logger)
+		protected BaseInteropSubMessageMessageHandler(ILog logger)
 			: base(logger)
 		{
 
