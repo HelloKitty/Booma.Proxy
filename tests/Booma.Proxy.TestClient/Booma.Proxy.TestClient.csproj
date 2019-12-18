@@ -57,22 +57,28 @@
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Client.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Client.API.3.0.46\lib\netstandard2.0\GladNet3.Client.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Client.API.3.0.48\lib\netstandard2.0\GladNet3.Client.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Client.DotNetTcpClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Client.DotNetTcpClient.3.0.46\lib\netstandard2.0\GladNet3.Client.DotNetTcpClient.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Client.DotNetTcpClient.3.0.48\lib\netstandard2.0\GladNet3.Client.DotNetTcpClient.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Common.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Common.API.3.0.46\lib\netstandard2.0\GladNet3.Common.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Common.API.3.0.48\lib\netstandard2.0\GladNet3.Common.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Crypto.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Crypto.API.3.0.46\lib\netstandard2.0\GladNet3.Crypto.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Crypto.API.3.0.48\lib\netstandard2.0\GladNet3.Crypto.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Serializer.API.3.0.46\lib\netstandard2.0\GladNet3.Serializer.API.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Serializer.API.3.0.48\lib\netstandard2.0\GladNet3.Serializer.API.dll</HintPath>
     </Reference>
     <Reference Include="GladNet3.Serializer.FreecraftCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\GladNet3.Serializer.FreecraftCore.3.0.46\lib\netstandard2.0\GladNet3.Serializer.FreecraftCore.dll</HintPath>
+      <HintPath>..\..\packages\GladNet3.Serializer.FreecraftCore.3.0.48\lib\netstandard2.0\GladNet3.Serializer.FreecraftCore.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Server.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Server.API.3.0.48\lib\netstandard2.0\GladNet3.Server.API.dll</HintPath>
+    </Reference>
+    <Reference Include="GladNet3.Server.DotNetTcpServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\GladNet3.Server.DotNetTcpServer.3.0.48\lib\netstandard2.0\GladNet3.Server.DotNetTcpServer.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
