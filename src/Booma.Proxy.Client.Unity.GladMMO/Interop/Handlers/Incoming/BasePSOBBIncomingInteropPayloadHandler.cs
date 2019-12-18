@@ -12,29 +12,26 @@ namespace Booma.Proxy
 	/// Base handler for all game handlers.
 	/// </summary>
 	/// <typeparam name="TSpecificPayloadType"></typeparam>
-	public abstract class BasePSOBBIncomingInteropPayloadHandler<TSpecificPayloadType> : IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>
+	public abstract class BasePSOBBIncomingInteropPayloadHandler<TSpecificPayloadType> : IPeerMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext>
 		where TSpecificPayloadType : PSOBBGamePacketPayloadServer
 	{
 		protected ILog Logger { get; }
 
-		protected MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> GladMMOHandlers { get; }
-
 		/// <inheritdoc />
-		protected BasePSOBBIncomingInteropPayloadHandler(ILog logger, [NotNull] MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> gladMmoHandlers)
+		protected BasePSOBBIncomingInteropPayloadHandler(ILog logger)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-			GladMMOHandlers = gladMmoHandlers ?? throw new ArgumentNullException(nameof(gladMmoHandlers));
 		}
 
 		//TODO: Add exception logging support
-		public abstract Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, TSpecificPayloadType payload);
+		public abstract Task HandleMessage(InteropPSOBBPeerMessageContext context, TSpecificPayloadType payload);
 
 		public bool CanHandle(NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			return message.Payload is TSpecificPayloadType;
 		}
 
-		public async Task<bool> TryHandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
+		public async Task<bool> TryHandleMessage(InteropPSOBBPeerMessageContext context, NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message)
 		{
 			if(!CanHandle(message))
 				return false;

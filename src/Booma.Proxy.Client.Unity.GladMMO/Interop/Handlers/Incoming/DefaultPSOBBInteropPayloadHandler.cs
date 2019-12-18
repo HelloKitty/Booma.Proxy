@@ -8,7 +8,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
-	public sealed class DefaultPSOBBInteropPayloadHandler : IPeerPayloadSpecificMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient>
+	public sealed class DefaultPSOBBInteropPayloadHandler : IPeerPayloadSpecificMessageHandler<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext>
 	{
 		private ILog Logger { get; }
 
@@ -17,10 +17,10 @@ namespace Booma.Proxy
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
 		}
 
-		public async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, PSOBBGamePacketPayloadServer payload)
+		public async Task HandleMessage(InteropPSOBBPeerMessageContext context, PSOBBGamePacketPayloadServer payload)
 		{
 			if(Logger.IsWarnEnabled)
-				Logger.Warn($"PSOBB Unhandled Packet: {payload.OperationCode}:{payload.GetType().Name}");
+				Logger.Warn($"PSOBB Unhandled Packet: 0x{payload.OperationCode:x}:{payload.GetType().Name}");
 		}
 	}
 }

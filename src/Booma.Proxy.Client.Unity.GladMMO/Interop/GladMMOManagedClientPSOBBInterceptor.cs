@@ -17,12 +17,12 @@ namespace Booma.Proxy
 
 		private IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> PSOBBNetworkClient { get; }
 
-		private MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> PSOBBIncomingMessageHandlers { get; }
+		private MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext> PSOBBIncomingMessageHandlers { get; }
 
 		private MessageHandlerService<GameClientPacketPayload, PSOBBGamePacketPayloadClient> GladMMOOutgoingMessageHandlers { get; }
 
 		public GladMMOManagedClientPSOBBInterceptor([NotNull] ILog logger, [NotNull] IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> psobbNetworkClient, 
-			MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient> psobbIncomingMessageHandlers, 
+			MessageHandlerService<PSOBBGamePacketPayloadServer, PSOBBGamePacketPayloadClient, InteropPSOBBPeerMessageContext> psobbIncomingMessageHandlers, 
 			MessageHandlerService<GameClientPacketPayload, PSOBBGamePacketPayloadClient> gladMmoOutgoingMessageHandlers)
 		{
 			Logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -33,9 +33,6 @@ namespace Booma.Proxy
 
 		async Task<SendResult> IPeerPayloadSendService<GameClientPacketPayload>.SendMessage<TPayloadType>(TPayloadType payload, DeliveryMethod method = DeliveryMethod.ReliableOrdered)
 		{
-			if(Logger.IsDebugEnabled)
-				Logger.Debug($"GladMMO PSOBB payload intercepted: {payload.GetType().Name}");
-
 			await GladMMOOutgoingMessageHandlers.TryHandleMessage(new DefaultPeerMessageContext<PSOBBGamePacketPayloadClient>(PSOBBNetworkClient, PSOBBNetworkClient, this), new NetworkIncomingMessage<GameClientPacketPayload>(new HeaderlessPacketHeader(1), payload))
 				.ConfigureAwait(false);
 
@@ -45,9 +42,6 @@ namespace Booma.Proxy
 		//TODO: Implement SendImmediately mechanics.
 		async Task<SendResult> IPeerPayloadSendService<GameClientPacketPayload>.SendMessageImmediately<TPayloadType>(TPayloadType payload, DeliveryMethod method = DeliveryMethod.ReliableOrdered)
 		{
-			if(Logger.IsDebugEnabled)
-				Logger.Debug($"GladMMO PSOBB payload intercepted: {payload.GetType().Name}");
-
 			await GladMMOOutgoingMessageHandlers.TryHandleMessage(new DefaultPeerMessageContext<PSOBBGamePacketPayloadClient>(PSOBBNetworkClient, PSOBBNetworkClient, this), new NetworkIncomingMessage<GameClientPacketPayload>(new HeaderlessPacketHeader(1), payload))
 				.ConfigureAwait(false);
 
@@ -80,9 +74,7 @@ namespace Booma.Proxy
 				NetworkIncomingMessage<PSOBBGamePacketPayloadServer> message = await PSOBBNetworkClient.ReadMessageAsync(token)
 					.ConfigureAwait(false);
 
-				Logger.Debug($"Recieved PSOBB packet: {message.Payload.OperationCode}:{message.Payload.GetType().Name}");
-
-				await PSOBBIncomingMessageHandlers.TryHandleMessage(new DefaultPeerMessageContext<PSOBBGamePacketPayloadClient>(PSOBBNetworkClient, PSOBBNetworkClient, this), message)
+				await PSOBBIncomingMessageHandlers.TryHandleMessage(new InteropPSOBBPeerMessageContext(PSOBBNetworkClient, PSOBBNetworkClient, this, this), message)
 					.ConfigureAwait(false);
 			}
 
