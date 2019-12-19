@@ -21,6 +21,27 @@ namespace Booma.Proxy
 		{
 			if(Logger.IsWarnEnabled)
 				Logger.Warn($"PSOBB Unhandled Packet: 0x{payload.OperationCode:x}:{payload.GetType().Name}");
+
+			if (payload is ISub60CommandContainer sub60)
+			{
+				Logger.Info($"PSOBB Unhandled Packet: 0x60 {sub60.Command.CommandOperationCode:x} {sub60}");
+			}
+			else if (payload is ISub62CommandContainer sub62)
+			{
+				Logger.Info($"PSOBB Unhandled Packet: 0x62 {sub62.Command.CommandOperationCode:x} {sub62}");
+			}
+			else if (payload is ISub6DCommandContainer sub6D)
+			{
+				Logger.Info($"PSOBB Unhandled Packet: 0x62 {sub6D.Command.CommandOperationCode:x} {sub6D}");
+			}
+			else
+			{
+				if(Logger.IsWarnEnabled)
+					if(payload is IUnknownPayloadType unk)
+						Logger.Info($"PSOBB Unhandled Packet: 0x{payload.OperationCode:x}:{unk.ToString()}");
+					else
+						Logger.Info($"PSOBB Unhandled Packet of Type: 0x{payload.OperationCode:x}:{payload.GetType().Name} Info: {payload}");
+			}
 		}
 	}
 }
