@@ -2,6 +2,7 @@
 
 namespace Booma.Proxy
 {
+	//Based on: https://github.com/Sylverant/ship_server/blob/9373df882859b234bc3e299d2e85f7b4c515d025/src/player.h#L54
 	/// <summary>
 	/// Header for player information.
 	/// </summary>
