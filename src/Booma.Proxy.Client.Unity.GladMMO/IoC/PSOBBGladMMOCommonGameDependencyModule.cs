@@ -12,6 +12,10 @@ namespace Booma.Proxy
 			builder.RegisterType<DefaultPSOUnitScalerStrategy>()
 				.As<IUnitScalerStrategy>()
 				.SingleInstance();
+
+			builder.RegisterType<DefaultCharacterSlotModel>()
+				.AsImplementedInterfaces()
+				.SingleInstance();
 		}
 	}
 }
