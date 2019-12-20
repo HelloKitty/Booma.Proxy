@@ -69,6 +69,9 @@ namespace Booma.Proxy
 		public short EventId { get; }
 
 		//TODO: Implement character stuff later
+		//TODO: Combine this into a conslidated object
+		[WireMember(7)]
+		public PlayerInformationHeader PlayerInfoHeader { get; }
 
 		//Serializer ctor
 		private BlockOtherPlayerJoinedLobbyEventPayload()
