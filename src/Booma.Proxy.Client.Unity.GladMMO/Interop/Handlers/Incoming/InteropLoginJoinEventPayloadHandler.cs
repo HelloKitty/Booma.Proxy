@@ -8,13 +8,16 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	[PSOBBHandler]
 	public class InteropLoginJoinEventPayloadHandler : BasePSOBBIncomingInteropPayloadHandler<BlockLobbyJoinEventPayload>
 	{
+		private ICharacterSlotSelectedModel SlotModel { get; }
+
 		/// <inheritdoc />
-		public InteropLoginJoinEventPayloadHandler(ILog logger)
+		public InteropLoginJoinEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel)
 			: base(logger)
 		{
-
+			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		public override async Task HandleMessage(InteropPSOBBPeerMessageContext context, BlockLobbyJoinEventPayload payload)
@@ -25,7 +28,7 @@ namespace Booma.Proxy
 			//TODO: Init the slot we were assigned.
 			//Just set the old char slot to the clientid
 			//It's basically like a slot, like a lobby or party slot.
-			//SlotModel.SlotSelected = payload.ClientId;
+			SlotModel.SlotSelected = payload.ClientId;
 
 			//OnLocalPlayerLobbyJoined?.Invoke(this, new LobbyJoinedEventArgs(payload.LobbyNumber, EntityGuid.ComputeEntityGuid(EntityType.Player, payload.ClientId)));
 
