@@ -22,18 +22,22 @@ namespace Booma.Proxy
 
 		private IUnitScalerStrategy UnitScaler { get; }
 
-		private GladMMO.IReadonlyEntityGuidMappable<GladMMO.WorldTransform> WorldTransformMappable { get; } 
+		private GladMMO.IReadonlyEntityGuidMappable<GladMMO.WorldTransform> WorldTransformMappable { get; }
+
+		private ICharacterSlotSelectedModel SlotModel { get; }
 
 		/// <inheritdoc />
 		public InteropSub60FinishedWarpingBurstingCommandHandler(ILog logger,
 			[NotNull] IReadonlyLocalPlayerDetails playerDetails,
 			[NotNull] IUnitScalerStrategy unitScaler,
-			[NotNull] GladMMO.IReadonlyEntityGuidMappable<GladMMO.WorldTransform> worldTransformMappable)
+			[NotNull] GladMMO.IReadonlyEntityGuidMappable<GladMMO.WorldTransform> worldTransformMappable,
+			[NotNull] ICharacterSlotSelectedModel slotModel)
 			: base(logger)
 		{
 			PlayerDetails = playerDetails ?? throw new ArgumentNullException(nameof(playerDetails));
 			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
 			WorldTransformMappable = worldTransformMappable ?? throw new ArgumentNullException(nameof(worldTransformMappable));
+			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		protected override async Task HandleSubMessage(InteropPSOBBPeerMessageContext context, Sub60FinishedWarpingBurstingCommand command)
@@ -44,7 +48,7 @@ namespace Booma.Proxy
 			Vector3<float> scaledPosition = UnitScaler.UnScale(position).ToNetworkVector3();
 			float scaledRotation = UnitScaler.ScaleYRotation(transform.YAxisRotation);
 
-			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(1, 15, scaledPosition, scaledRotation).ToPayload());
+			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(SlotModel.SlotSelected, 15, scaledPosition, scaledRotation).ToPayload());
 		}
 	}
 }

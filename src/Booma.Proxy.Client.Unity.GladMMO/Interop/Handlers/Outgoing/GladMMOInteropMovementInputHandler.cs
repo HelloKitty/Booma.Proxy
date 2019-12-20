@@ -23,9 +23,13 @@ namespace Booma.Proxy
 
 		private ClientRotationDataUpdateRequest LastRotationRequest = null;
 
-		public GladMMOInteropMovementInputHandler(ILog logger, [NotNull] IUnitScalerStrategy unitScaler)
+		private ICharacterSlotSelectedModel SlotModel { get; }
+
+		public GladMMOInteropMovementInputHandler(ILog logger, [NotNull] IUnitScalerStrategy unitScaler,
+			[NotNull] ICharacterSlotSelectedModel slotModel)
 		{
 			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
+			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 		}
 
 		public async Task HandleMessage(IPeerMessageContext<PSOBBGamePacketPayloadClient> context, ClientMovementDataUpdateRequest payload)
@@ -65,7 +69,7 @@ namespace Booma.Proxy
 		public Task StopMovementAsync(IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, Vector3 position, float yAxisRotation)
 		{
 			//TODO: Support zone and room.
-			return sendService.SendMessage(new Sub60FinishedMovingCommand(1,
+			return sendService.SendMessage(new Sub60FinishedMovingCommand(SlotModel.SlotSelected,
 				UnitScaler.ScaleYRotation(yAxisRotation),
 				UnitScaler.UnScale(position).ToNetworkVector3(), 1, 15).ToPayload());
 		}
@@ -73,7 +77,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public Task UpdatedMovementLocation(IPeerPayloadSendService<PSOBBGamePacketPayloadClient> sendService, Vector3 position)
 		{
-			return sendService.SendMessage(new Sub60MovingFastPositionSetCommand(1,
+			return sendService.SendMessage(new Sub60MovingFastPositionSetCommand(SlotModel.SlotSelected,
 				UnitScaler.UnScaleYtoZ(position)).ToPayload());
 		}
 
