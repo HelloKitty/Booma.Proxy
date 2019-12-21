@@ -16,6 +16,11 @@ namespace Booma.Proxy
 			builder.RegisterType<DefaultCharacterSlotModel>()
 				.AsImplementedInterfaces()
 				.SingleInstance();
+
+			//TransientInteropEntityMappable : IInteropEntityMappable
+			builder.RegisterType<TransientInteropEntityMappable>()
+				.As<IInteropEntityMappable>()
+				.SingleInstance();
 		}
 	}
 }
