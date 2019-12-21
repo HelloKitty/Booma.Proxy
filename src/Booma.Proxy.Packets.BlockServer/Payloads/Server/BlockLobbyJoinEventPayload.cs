@@ -53,6 +53,19 @@ namespace Booma.Proxy
 
 		//TODO: There is more to the packet here: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/packets.h#L517
 
+		[WireMember(8)]
+		public CharacterJoinData LocalPlayerData { get; }
+
+		[WireMember(9)]
+		private short unk2 { get; }
+
+		//There could be 15 here but it actually depends on the Lobby count
+		//and it isn't length-prefixed sadly.
+		//[SendSize(SendSizeAttribute.SizeType.UShort)]
+		[ReadToEnd]
+		[WireMember(10)]
+		public CharacterJoinData[] LobbyCharacterData { get; }
+
 		private BlockLobbyJoinEventPayload()
 		{
 			
