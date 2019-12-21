@@ -15,11 +15,14 @@ namespace Booma.Proxy
 	{
 		private IInteropEntityMappable PsoEntityKeyToGuidMappable { get; }
 
+		private IReadOnlyCollection<IEntityCollectionRemovable<int>> ComponentRemovables { get; }
+
 		/// <inheritdoc />
-		public BlockOtherPlayerLeaveLobbyEventPayloadHandler(ILog logger, [NotNull] IInteropEntityMappable psoEntityKeyToGuidMappable)
+		public BlockOtherPlayerLeaveLobbyEventPayloadHandler(ILog logger, [NotNull] IInteropEntityMappable psoEntityKeyToGuidMappable, [NotNull] IReadOnlyCollection<IEntityCollectionRemovable<int>> componentRemovables)
 			: base(logger)
 		{
 			PsoEntityKeyToGuidMappable = psoEntityKeyToGuidMappable ?? throw new ArgumentNullException(nameof(psoEntityKeyToGuidMappable));
+			ComponentRemovables = componentRemovables ?? throw new ArgumentNullException(nameof(componentRemovables));
 		}
 
 		public override async Task HandleMessage(InteropPSOBBPeerMessageContext context, BlockOtherPlayerLeaveLobbyEventPayload payload)
@@ -29,6 +32,9 @@ namespace Booma.Proxy
 
 			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, (short)payload.ClientId);
 			PsoEntityKeyToGuidMappable.RemoveEntityEntry(entityGuid);
+
+			foreach (var removable in ComponentRemovables)
+				removable.RemoveEntityEntry(entityGuid);
 		}
 	}
 }
