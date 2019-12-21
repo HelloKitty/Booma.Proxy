@@ -15,21 +15,41 @@ namespace Booma.Proxy
 	public sealed class BlockLobbyJoinEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: We can't currently handle this packet. It does something odd the serializer can't handle
-		//For now we read up until clientid
+		/// <summary>
+		/// The ID granted to the client that is joining the lobby.
+		/// </summary>
 		[WireMember(1)]
 		public byte ClientId { get; }
 
+		//TODO: What is this?
 		[WireMember(2)]
 		public byte LeaderId { get; }
 
+		//Why is this in some of the packets?
 		[WireMember(3)]
-		private byte One { get; } //one for some reason?
+		private byte One { get; }
 
+		//Why is this sent? Shouldn't we be in the same lobby?
 		/// <summary>
 		/// The number of the lobby being joined.
 		/// </summary>
 		[WireMember(4)]
 		public byte LobbyNumber { get; }
+
+		//Once again, why is this sent? Shouldn't we know what block we're in?
+		/// <summary>
+		/// The number of the block.
+		/// </summary>
+		[WireMember(5)]
+		public short BlockNumber { get; }
+
+		//TODO: What is this for?
+		[WireMember(6)]
+		public short EventId { get; }
+
+		//Sylverant lists this as padding.
+		[WireMember(7)]
+		private int Padding { get; }
 
 		//TODO: There is more to the packet here: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/packets.h#L517
 
