@@ -72,10 +72,8 @@ namespace Booma.Proxy
 		[WireMember(7)]
 		private int Padding { get; }
 
-		//TODO: Implement character stuff later
-		//TODO: Combine this into a conslidated object
 		[WireMember(8)]
-		public PlayerInformationHeader PlayerInfoHeader { get; }
+		public CharacterJoinData JoinData { get; }
 
 		//Serializer ctor
 		private BlockOtherPlayerJoinedLobbyEventPayload()
