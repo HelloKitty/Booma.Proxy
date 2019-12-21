@@ -68,9 +68,13 @@ namespace Booma.Proxy
 		[WireMember(6)]
 		public short EventId { get; }
 
+		//Sylverant lists this as padding.
+		[WireMember(7)]
+		private int Padding { get; }
+
 		//TODO: Implement character stuff later
 		//TODO: Combine this into a conslidated object
-		[WireMember(7)]
+		[WireMember(8)]
 		public PlayerInformationHeader PlayerInfoHeader { get; }
 
 		//Serializer ctor
