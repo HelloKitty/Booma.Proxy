@@ -84,7 +84,8 @@ namespace Booma.Proxy
 			Logger.Debug($"GladMMO Connect request: {ip}:{port}");
 
 			//TODO: Hack to connect locally.
-			return PSOBBNetworkClient.ConnectAsync("192.168.0.12", 5003);
+			//return PSOBBNetworkClient.ConnectAsync("192.168.0.12", 5003);
+			return PSOBBNetworkClient.ConnectAsync("127.0.0.1", 5003);
 		}
 
 		//It's important for handling restarting that
