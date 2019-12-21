@@ -9,6 +9,7 @@ using GladNet;
 
 namespace Booma.Proxy
 {
+	//TODO: Consolidate with 0x67 packet handling
 	//Another player joined the lobby/game BUT we don't have enough information to spawn them
 	//here so we just preparing their NetworkEntityGuid mapping by slot.
 	[PSOBBHandler]
@@ -40,7 +41,7 @@ namespace Booma.Proxy
 			//TODO: Support guids larger than shorts.
 			NetworkEntityGuid networkEntityGuid = NetworkEntityGuidBuilder.New()
 				.WithType(GladMMO.EntityType.Player)
-				.WithId((short) payload.JoinData.PlayerHeader.GuildCardNumber)
+				.WithId((int)(0xFFFF & payload.JoinData.PlayerHeader.GuildCardNumber))
 				.Build();
 
 			PsoEntityKeyToGuidMappable[entityGuid] = networkEntityGuid;
