@@ -85,10 +85,10 @@ namespace Booma.Proxy
 		[WireMember(13)]
 		public string CharacterName { get; }
 
-		//TODO: No idea what this is
+		//This is pallete/actionbar according to Soly.
 		[KnownSize(0xE8)]
 		[WireMember(14)]
-		public byte[] Config { get; }
+		public byte[] ActionBarSettings { get; }
 
 		[KnownSize(0x14)]
 		[WireMember(15)]
