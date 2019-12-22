@@ -41,7 +41,7 @@ namespace Booma.Proxy
 				//TODO: Support guids larger than shorts.
 				NetworkEntityGuid networkEntityGuid = NetworkEntityGuidBuilder.New()
 					.WithType(GladMMO.EntityType.Player)
-					.WithId((int)(0xFFFF & entry.PlayerHeader.GuildCardNumber))
+					.WithId((int)entry.PlayerHeader.GuildCardNumber)
 					.Build();
 
 				Logger.Debug($"RemotePlayer: {entry.PlayerHeader.CharacterName} GuildCard: {entry.PlayerHeader.GuildCardNumber} Slot: {entry.PlayerHeader.ClientId} PSOGuid: {entityGuid} GladMMOGUID: {networkEntityGuid.ToString()}");
