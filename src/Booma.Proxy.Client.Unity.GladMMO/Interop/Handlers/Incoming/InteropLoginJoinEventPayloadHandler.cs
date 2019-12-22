@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Common.Logging;
 using GladMMO;
 using GladNet;
+using Reinterpret.Net;
 
 namespace Booma.Proxy
 {
@@ -15,13 +16,19 @@ namespace Booma.Proxy
 
 		private IInteropEntityMappable PsoEntityKeyToGuidMappable { get; }
 
+		//This is required for the playerdetails guid to be accurate
+		//GladMMO uses this as input.
+		private ILocalCharacterDataRepository CharacterDataRepo { get; }
+
 		/// <inheritdoc />
 		public InteropLoginJoinEventPayloadHandler(ILog logger, [NotNull] ICharacterSlotSelectedModel slotModel,
-			[NotNull] IInteropEntityMappable psoEntityKeyToGuidMappable)
+			[NotNull] IInteropEntityMappable psoEntityKeyToGuidMappable,
+			[NotNull] ILocalCharacterDataRepository characterDataRepo)
 			: base(logger)
 		{
 			SlotModel = slotModel ?? throw new ArgumentNullException(nameof(slotModel));
 			PsoEntityKeyToGuidMappable = psoEntityKeyToGuidMappable ?? throw new ArgumentNullException(nameof(psoEntityKeyToGuidMappable));
+			CharacterDataRepo = characterDataRepo ?? throw new ArgumentNullException(nameof(characterDataRepo));
 		}
 
 		public override async Task HandleMessage(InteropPSOBBPeerMessageContext context, BlockLobbyJoinEventPayload payload)
@@ -47,6 +54,9 @@ namespace Booma.Proxy
 				Logger.Debug($"RemotePlayer: {entry.PlayerHeader.CharacterName} GuildCard: {entry.PlayerHeader.GuildCardNumber} Slot: {entry.PlayerHeader.ClientId} PSOGuid: {entityGuid} GladMMOGUID: {networkEntityGuid.ToString()}");
 
 				PsoEntityKeyToGuidMappable[entityGuid] = networkEntityGuid;
+
+				if (SlotModel.SlotSelected == entry.PlayerHeader.ClientId)
+					CharacterDataRepo.UpdateCharacterId((int)entry.PlayerHeader.GuildCardNumber);
 			}
 
 			//OnLocalPlayerLobbyJoined?.Invoke(this, new LobbyJoinedEventArgs(payload.LobbyNumber, EntityGuid.ComputeEntityGuid(EntityType.Player, payload.ClientId)));
