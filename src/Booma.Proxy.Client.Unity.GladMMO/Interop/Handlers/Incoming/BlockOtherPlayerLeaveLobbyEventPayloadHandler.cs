@@ -31,6 +31,10 @@ namespace Booma.Proxy
 				Logger.Info($"Player Slot: {payload.ClientId} left lobby.");
 
 			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, (short)payload.ClientId);
+
+			//This tells GladMMO that the player is despawning.
+			await context.GladMMOClientPayloadReceiver.SendMessage(new NetworkObjectVisibilityChangeEventPayload(Array.Empty<EntityCreationData>(), new NetworkEntityGuid[1] {PsoEntityKeyToGuidMappable[entityGuid]}));
+			
 			PsoEntityKeyToGuidMappable.RemoveEntityEntry(entityGuid);
 
 			foreach (var removable in ComponentRemovables)
