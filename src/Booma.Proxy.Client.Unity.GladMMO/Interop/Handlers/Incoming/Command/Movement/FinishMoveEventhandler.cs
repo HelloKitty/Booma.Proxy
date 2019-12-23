@@ -34,5 +34,10 @@ namespace Booma.Proxy
 		{
 			return Scaler.ScaleY(command.Position.Y);
 		}
+
+		protected override Vector3 ComputeInitialMovementPosition(Sub60FinishedMovingCommand command, GladMMO.WorldTransform gladMMOworldTransform, float currentYAxisPosition)
+		{
+			return this.Scaler.Scale(command.Position);
+		}
 	}
 }
