@@ -32,7 +32,7 @@ namespace Booma.Proxy
 			Vector3 position = UnitScaler.Scale(command.Position);
 
 			//TODO: Set position in GladMMO
-			WorldTransformMappable[entityGuid] = new GladMMO.WorldTransform(position.x, position.y, position.z, UnitScaler.ScaleYRotation(command.Identifier));
+			WorldTransformMappable[entityGuid] = new GladMMO.WorldTransform(position.x, position.y, position.z, UnitScaler.ScaleYRotation(180));
 		}
 	}
 }
