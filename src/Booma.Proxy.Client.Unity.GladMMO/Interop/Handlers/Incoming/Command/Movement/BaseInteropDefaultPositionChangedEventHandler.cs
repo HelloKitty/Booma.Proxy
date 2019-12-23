@@ -67,7 +67,12 @@ namespace Booma.Proxy
 
 			Vector2 direction = ComputeMovementDirection(position2D, lastPosition2D);
 
-			await context.GladMMOClientPayloadReceiver.SendMessage(new MovementDataUpdateEventPayload(new EntityAssociatedData<IMovementData>[1] {CreateMovementData(entityGuid, new Vector3(gladMMOworldTransform.PositionX, currentYAxisPosition, gladMMOworldTransform.PositionZ), direction) }));
+			await context.GladMMOClientPayloadReceiver.SendMessage(new MovementDataUpdateEventPayload(new EntityAssociatedData<IMovementData>[1] {CreateMovementData(entityGuid, ComputeInitialMovementPosition(command, gladMMOworldTransform, currentYAxisPosition), direction) }));
+		}
+
+		protected virtual Vector3 ComputeInitialMovementPosition(TPositionChangeCommandType command, GladMMO.WorldTransform gladMMOworldTransform, float currentYAxisPosition)
+		{
+			return new Vector3(gladMMOworldTransform.PositionX, currentYAxisPosition, gladMMOworldTransform.PositionZ);
 		}
 
 		protected virtual float GetYAxisPosition(NetworkEntityGuid networtkEntityGuid, TPositionChangeCommandType command)
