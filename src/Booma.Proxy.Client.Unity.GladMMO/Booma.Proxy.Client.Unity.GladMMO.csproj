@@ -17,6 +17,9 @@
     <Reference Include="GladMMO.Common">
       <HintPath>..\..\lib\GladMMO\API\Client\GladMMO.Common.dll</HintPath>
     </Reference>
+    <Reference Include="GladMMO.Models.Common">
+      <HintPath>..\..\lib\GladMMO\API\Client\GladMMO.Models.Common.dll</HintPath>
+    </Reference>
     <Reference Include="GladMMO.Network.Common">
       <HintPath>..\..\lib\GladMMO\API\Client\GladMMO.Network.Common.dll</HintPath>
     </Reference>
