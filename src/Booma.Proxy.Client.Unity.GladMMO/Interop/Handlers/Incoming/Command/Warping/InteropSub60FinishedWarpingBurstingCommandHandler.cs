@@ -59,14 +59,11 @@ namespace Booma.Proxy
 			//GladMMO needs to spawn the player when they complete the warp.
 			//This is kinda duplicate code from the WarpAck handler.
 			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
-
-			GladMMO.WorldTransform transform = WorldTransformMappable.RetrieveEntity(PlayerDetails.LocalPlayerGuid);
+			GladMMO.WorldTransform transform = PsobbWorldTransformMappable[entityGuid];
 			Vector3 position = new Vector3(transform.PositionX, transform.PositionY, transform.PositionZ);
 
 			Vector3<float> scaledPosition = UnitScaler.UnScale(position).ToNetworkVector3();
 			float scaledRotation = UnitScaler.ScaleYRotation(transform.YAxisRotation);
-			PsobbWorldTransformMappable[entityGuid] = new GladMMO.WorldTransform(scaledPosition.X, scaledPosition.Y, scaledPosition.Z, scaledRotation);
-
 
 			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(SlotModel.SlotSelected, 15, scaledPosition, scaledRotation).ToPayload());
 
@@ -76,7 +73,7 @@ namespace Booma.Proxy
 				//If they are on the same floor as us.
 				//TODO: Don't check 15 (lobby) check client's current floor.
 				if(ZoneDataMappable[entityGuid].ZoneId == 15)
-					await SpawnPlayer(context, entityGuid, PsobbWorldTransformMappable[entityGuid]);
+					await SpawnPlayer(context, entityGuid, transform);
 			}
 		}
 
