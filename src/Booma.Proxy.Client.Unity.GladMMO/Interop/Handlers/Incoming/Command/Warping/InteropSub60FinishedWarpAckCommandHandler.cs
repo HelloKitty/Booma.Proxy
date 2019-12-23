@@ -22,17 +22,26 @@ namespace Booma.Proxy
 
 		private IUnitScalerStrategy UnitScaler { get; }
 
-		public InteropSub60FinishedWarpAckCommandHandler(ILog logger, [NotNull] IEntityGuidMappable<int, PlayerZoneData> zoneDataMappable, [NotNull] IInteropEntityMappable psoEntityKeyToGuidMappable, [NotNull] IUnitScalerStrategy unitScaler)
+		private IEntityGuidMappable<int, GladMMO.WorldTransform> TransformMappable { get; }
+
+		public InteropSub60FinishedWarpAckCommandHandler(ILog logger, 
+			[NotNull] IEntityGuidMappable<int, PlayerZoneData> zoneDataMappable, 
+			[NotNull] IInteropEntityMappable psoEntityKeyToGuidMappable, 
+			[NotNull] IUnitScalerStrategy unitScaler,
+			[NotNull] IEntityGuidMappable<int, GladMMO.WorldTransform> transformMappable)
 			: base(logger)
 		{
 			ZoneDataMappable = zoneDataMappable ?? throw new ArgumentNullException(nameof(zoneDataMappable));
 			PsoEntityKeyToGuidMappable = psoEntityKeyToGuidMappable ?? throw new ArgumentNullException(nameof(psoEntityKeyToGuidMappable));
 			UnitScaler = unitScaler ?? throw new ArgumentNullException(nameof(unitScaler));
+			TransformMappable = transformMappable ?? throw new ArgumentNullException(nameof(transformMappable));
 		}
 
 		protected override async Task HandleSubMessage(InteropPSOBBPeerMessageContext context, Sub60FinishedWarpAckCommand command)
 		{
 			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
+
+			InitializeWorldTransform(command, entityGuid);
 
 			if (ZoneDataMappable.ContainsKey(entityGuid))
 			{
@@ -45,6 +54,12 @@ namespace Booma.Proxy
 				await SpawnPlayer(context, command);
 
 			ZoneDataMappable[entityGuid] = new PlayerZoneData(command.ZoneId);
+		}
+
+		private void InitializeWorldTransform(Sub60FinishedWarpAckCommand command, int entityGuid)
+		{
+			Vector3 position = UnitScaler.Scale(command.Position);
+			TransformMappable[entityGuid] = new GladMMO.WorldTransform(position.x, position.y, position.z, UnitScaler.ScaleYRotation(command.YAxisRotation));
 		}
 
 		private async Task SpawnPlayer(InteropPSOBBPeerMessageContext context, Sub60FinishedWarpAckCommand command)

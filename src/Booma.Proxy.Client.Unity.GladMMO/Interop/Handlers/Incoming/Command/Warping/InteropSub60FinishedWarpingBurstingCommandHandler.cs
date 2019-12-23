@@ -29,7 +29,7 @@ namespace Booma.Proxy
 
 		private IReadonlyEntityGuidMappable<int, PlayerZoneData> ZoneDataMappable { get; }
 
-		private IReadonlyEntityGuidMappable<int, GladMMO.WorldTransform> PsobbWorldTransformMappable { get; }
+		private IEntityGuidMappable<int, GladMMO.WorldTransform> PsobbWorldTransformMappable { get; }
 
 		private IInteropEntityMappable GuidMappable { get; }
 
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 			[NotNull] GladMMO.IReadonlyEntityGuidMappable<GladMMO.WorldTransform> worldTransformMappable,
 			[NotNull] ICharacterSlotSelectedModel slotModel,
 			[NotNull] IEntityGuidMappable<int, PlayerZoneData> zoneDataMappable,
-			[NotNull] IReadonlyEntityGuidMappable<int, GladMMO.WorldTransform> psobbWorldTransformMappable,
+			[NotNull] IEntityGuidMappable<int, GladMMO.WorldTransform> psobbWorldTransformMappable,
 			[NotNull] IInteropEntityMappable guidMappable)
 			: base(logger)
 		{
@@ -55,18 +55,20 @@ namespace Booma.Proxy
 
 		protected override async Task HandleSubMessage(InteropPSOBBPeerMessageContext context, Sub60FinishedWarpingBurstingCommand command)
 		{
+			//TODO: Refactor, not worth the time right now.
+			//GladMMO needs to spawn the player when they complete the warp.
+			//This is kinda duplicate code from the WarpAck handler.
+			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
+
 			GladMMO.WorldTransform transform = WorldTransformMappable.RetrieveEntity(PlayerDetails.LocalPlayerGuid);
 			Vector3 position = new Vector3(transform.PositionX, transform.PositionY, transform.PositionZ);
 
 			Vector3<float> scaledPosition = UnitScaler.UnScale(position).ToNetworkVector3();
 			float scaledRotation = UnitScaler.ScaleYRotation(transform.YAxisRotation);
+			PsobbWorldTransformMappable[entityGuid] = new GladMMO.WorldTransform(scaledPosition.X, scaledPosition.Y, scaledPosition.Z, scaledRotation);
+
 
 			await context.PayloadSendService.SendMessage(new Sub60FinishedWarpAckCommand(SlotModel.SlotSelected, 15, scaledPosition, scaledRotation).ToPayload());
-
-			//TODO: Refactor, not worth the time right now.
-			//GladMMO needs to spawn the player when they complete the warp.
-			//This is kinda duplicate code from the WarpAck handler.
-			int entityGuid = EntityGuid.ComputeEntityGuid(EntityType.Player, command.Identifier);
 
 			//This prevents disconnection by remote malicious clients.
 			if(ZoneDataMappable.ContainsKey(entityGuid) && PsobbWorldTransformMappable.ContainsKey(entityGuid))
