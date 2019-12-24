@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Common.Logging;
 
 namespace Booma.Proxy
@@ -33,6 +34,25 @@ namespace Booma.Proxy
 		{
 			//If they ask for it just provide it. Could be null, but not up to us.
 			return payload.Command as TSubCommandType;
+		}
+
+		public override Task HandleMessage(InteropPSOBBPeerMessageContext context, BlockNetworkCommand60EventServerPayload payload)
+		{
+			//Because this is technically unsanitized input from remote clients, psobb servers just forward it
+			//we don't want exceptions in this area to bubble up
+			//if they do the network client will disconnect itself
+			//therefore we supress and log these exceptions
+			try
+			{
+				return base.HandleMessage(context, payload);
+			}
+			catch (Exception e)
+			{
+				if(Logger.IsErrorEnabled)
+					Logger.Error($"Encountered Sub60 message Exception: \n {e.ToString()}");
+
+				return Task.CompletedTask;
+			}
 		}
 	}
 }
