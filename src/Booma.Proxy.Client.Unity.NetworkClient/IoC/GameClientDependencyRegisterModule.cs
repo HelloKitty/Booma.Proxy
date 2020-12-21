@@ -8,7 +8,6 @@ using Common.Logging;
 using FreecraftCore.Serializer;
 using GladNet;
 using SceneJect.Common;
-using Sirenix.Serialization;
 using UnityEngine;
 
 namespace Booma.Proxy

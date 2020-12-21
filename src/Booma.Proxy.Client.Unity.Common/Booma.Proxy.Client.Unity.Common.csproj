@@ -6,8 +6,8 @@
   <ItemGroup>
     <PackageReference Include="C5" Version="2.5.3" />
     <PackageReference Include="Common.Logging" Version="3.4.1" />
-    <PackageReference Include="GladNet3.Client.API" Version="3.0.46" />
-    <PackageReference Include="GladNet3.Handler.API" Version="3.0.46" />
+    <PackageReference Include="GladNet3.Client.API" Version="3.0.48" />
+    <PackageReference Include="GladNet3.Handler.API" Version="3.0.48" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
     <PackageReference Include="Refit" Version="4.4.17" />
@@ -21,12 +21,6 @@
     <ProjectReference Include="..\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Sirenix.OdinInspector.Attributes">
-      <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
     </Reference>

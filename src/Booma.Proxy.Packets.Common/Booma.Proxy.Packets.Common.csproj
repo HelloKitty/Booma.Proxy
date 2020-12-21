@@ -18,12 +18,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
-    <PackageReference Include="GladNet3.Common.API" Version="3.0.46" />
+    <PackageReference Include="GladNet3.Common.API" Version="3.0.48" />
     <PackageReference Include="JetBrains.Annotations" Version="10.2.1" />
-    <PackageReference Include="Nito.AsyncEx.Coordination" Version="5.0.0" />
-    <PackageReference Include="Nito.AsyncEx.Tasks" Version="5.0.0" />
-    <PackageReference Include="Nito.Collections.Deque" Version="1.0.4" />
-    <PackageReference Include="Nito.Disposables" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />

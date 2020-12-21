@@ -4,6 +4,6 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GladNet3.Crypto.API" Version="3.0.46" />
+    <PackageReference Include="GladNet3.Crypto.API" Version="3.0.48" />
   </ItemGroup>
 </Project>

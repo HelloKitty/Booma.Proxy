@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer" Version="3.0.38" />
-    <PackageReference Include="GladNet3.Proxy.Common" Version="3.0.46" />
-    <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.46" />
+    <PackageReference Include="GladNet3.Proxy.Common" Version="3.0.48" />
+    <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.48" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj" />

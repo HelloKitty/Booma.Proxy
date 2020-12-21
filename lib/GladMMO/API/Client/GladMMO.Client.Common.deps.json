@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "851b1445c078ba9b8ed7a02cfbaeafcaffe73ba6"
+    "signature": "2b249132241abf42030c805265f3b37323faaae3"
   },
   "compilationOptions": {},
   "targets": {
@@ -21,8 +21,8 @@
           "GladMMO.Common": "1.0.0",
           "GladMMO.Network.Common": "1.0.0",
           "GladMMO.Payloads.ZoneServer": "1.0.0",
-          "GladNet3.Client.DotNetTcpClient": "3.0.46",
-          "GladNet3.Handler.API": "3.0.46",
+          "GladNet3.Client.DotNetTcpClient": "3.0.48",
+          "GladNet3.Handler.API": "3.0.48",
           "Glader.Essentials.Common": "1.0.32",
           "NETStandard.Library": "2.0.3",
           "Refit": "4.7.51",
@@ -110,12 +110,12 @@
           }
         }
       },
-      "GladNet3.Client.API/3.0.46": {
+      "GladNet3.Client.API/3.0.48": {
         "dependencies": {
           "Common.Logging": "3.4.1",
-          "GladNet3.Common.API": "3.0.46",
-          "GladNet3.Crypto.API": "3.0.46",
-          "GladNet3.Serializer.API": "3.0.46",
+          "GladNet3.Common.API": "3.0.48",
+          "GladNet3.Crypto.API": "3.0.48",
+          "GladNet3.Serializer.API": "3.0.48",
           "Nito.AsyncEx.Coordination": "5.0.0"
         },
         "runtime": {
@@ -125,9 +125,9 @@
           }
         }
       },
-      "GladNet3.Client.DotNetTcpClient/3.0.46": {
+      "GladNet3.Client.DotNetTcpClient/3.0.48": {
         "dependencies": {
-          "GladNet3.Client.API": "3.0.46"
+          "GladNet3.Client.API": "3.0.48"
         },
         "runtime": {
           "lib/netstandard2.0/GladNet3.Client.DotNetTcpClient.dll": {
@@ -136,7 +136,7 @@
           }
         }
       },
-      "GladNet3.Common.API/3.0.46": {
+      "GladNet3.Common.API/3.0.48": {
         "dependencies": {
           "Nito.AsyncEx.Coordination": "5.0.0"
         },
@@ -147,7 +147,7 @@
           }
         }
       },
-      "GladNet3.Crypto.API/3.0.46": {
+      "GladNet3.Crypto.API/3.0.48": {
         "runtime": {
           "lib/netstandard2.0/GladNet3.Crypto.API.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -155,9 +155,9 @@
           }
         }
       },
-      "GladNet3.Handler.API/3.0.46": {
+      "GladNet3.Handler.API/3.0.48": {
         "dependencies": {
-          "GladNet3.Common.API": "3.0.46"
+          "GladNet3.Common.API": "3.0.48"
         },
         "runtime": {
           "lib/netstandard2.0/GladNet3.Handler.API.dll": {
@@ -166,9 +166,9 @@
           }
         }
       },
-      "GladNet3.Serializer.API/3.0.46": {
+      "GladNet3.Serializer.API/3.0.48": {
         "dependencies": {
-          "GladNet3.Common.API": "3.0.46"
+          "GladNet3.Common.API": "3.0.48"
         },
         "runtime": {
           "lib/netstandard2.0/GladNet3.Serializer.API.dll": {
@@ -979,8 +979,8 @@
       "GladMMO.Network.Common/1.0.0": {
         "dependencies": {
           "GladMMO.Common": "1.0.0",
-          "GladNet3.Client.API": "3.0.46",
-          "GladNet3.Common.API": "3.0.46",
+          "GladNet3.Client.API": "3.0.48",
+          "GladNet3.Common.API": "3.0.48",
           "Glader.Essentials.Common": "1.0.32",
           "protobuf-net": "2.3.7"
         },
@@ -1057,47 +1057,47 @@
       "path": "glader.essentials.common/1.0.32",
       "hashPath": "glader.essentials.common.1.0.32.nupkg.sha512"
     },
-    "GladNet3.Client.API/3.0.46": {
+    "GladNet3.Client.API/3.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-HJ2KwlKAGLxWPRSDZH9xPXTA6fPdnSMAewOGgYeYIeIVaUSAzmXLB5G8kanolDN+Z84h1EYEiPJiYTIZC9ZKDQ==",
-      "path": "gladnet3.client.api/3.0.46",
-      "hashPath": "gladnet3.client.api.3.0.46.nupkg.sha512"
+      "sha512": "sha512-fgdqcd7Mqq5imqD9Qa01f1FoOjUGYPk+Lm+64vSiK0K54Y1CMOg4C38ljM3I5hJEQp08l910DrDNXMkP8IMXlQ==",
+      "path": "gladnet3.client.api/3.0.48",
+      "hashPath": "gladnet3.client.api.3.0.48.nupkg.sha512"
     },
-    "GladNet3.Client.DotNetTcpClient/3.0.46": {
+    "GladNet3.Client.DotNetTcpClient/3.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-n0fp11dRNqM+qUVos2CkCFDqqlV1T5Q0VWer0qhMGIbBHTxvYgpy3jk/99bdfSSR6rgpnrHVa24u3cWprrBl5Q==",
-      "path": "gladnet3.client.dotnettcpclient/3.0.46",
-      "hashPath": "gladnet3.client.dotnettcpclient.3.0.46.nupkg.sha512"
+      "sha512": "sha512-IFacOkFQyvPhlvIFUoOUhYqmQxf/PRCO4db7KrmEz4ATU9VbEeGrCjLk266Clmr3clMh2Yr+XRLIp+U2DCexEA==",
+      "path": "gladnet3.client.dotnettcpclient/3.0.48",
+      "hashPath": "gladnet3.client.dotnettcpclient.3.0.48.nupkg.sha512"
     },
-    "GladNet3.Common.API/3.0.46": {
+    "GladNet3.Common.API/3.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xl3nbOKPuaEDjKNeYHplbHUY4+vSdl9FIprYWSp96VT1iBKXCOjWLeuKB+lX4uVnGxnRwBf12JruXBPGh/drbQ==",
-      "path": "gladnet3.common.api/3.0.46",
-      "hashPath": "gladnet3.common.api.3.0.46.nupkg.sha512"
+      "sha512": "sha512-3ofLBNL0jd3i/cIQymDrcI2mhXrRed5W/7gr5pQ7OLcnY5EBDxieZwt6i8Lnbb7R4vbBUQ35a1CqW2qImpeNzg==",
+      "path": "gladnet3.common.api/3.0.48",
+      "hashPath": "gladnet3.common.api.3.0.48.nupkg.sha512"
     },
-    "GladNet3.Crypto.API/3.0.46": {
+    "GladNet3.Crypto.API/3.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RxcYfm84VuXQzoYvdxgUIO3QgIteY6CXD3BpD1lFkvunHwuAScyz+6rY2CzTTPgO4UdM8Y/0mGMMnfUc2CIDLQ==",
-      "path": "gladnet3.crypto.api/3.0.46",
-      "hashPath": "gladnet3.crypto.api.3.0.46.nupkg.sha512"
+      "sha512": "sha512-MvXoV8hJq6wq1uzzRl6vJ2WoEUWofC8PkYinogschH8r006QqRT7/em4tkQ6UJDLzq+f6tXOxrvYOW9atQsk6Q==",
+      "path": "gladnet3.crypto.api/3.0.48",
+      "hashPath": "gladnet3.crypto.api.3.0.48.nupkg.sha512"
     },
-    "GladNet3.Handler.API/3.0.46": {
+    "GladNet3.Handler.API/3.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Y/pF+E2KfQuNAwOArZkPauigjrpbXqgZspkLFWrXroevEj2se17sCPxkLiBIUI7QZYSWjbETUoEkf88xqGFIBA==",
-      "path": "gladnet3.handler.api/3.0.46",
-      "hashPath": "gladnet3.handler.api.3.0.46.nupkg.sha512"
+      "sha512": "sha512-SkmcR7sz8sseeDoud3JF1dtdywIsJGE2UrAEok37p/Qh5Zb9eFd6keJx87IQMN5BqP2rwUFm3UCosb5bIUHPqA==",
+      "path": "gladnet3.handler.api/3.0.48",
+      "hashPath": "gladnet3.handler.api.3.0.48.nupkg.sha512"
     },
-    "GladNet3.Serializer.API/3.0.46": {
+    "GladNet3.Serializer.API/3.0.48": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3g3j3RV6RrBK5SWjTdk/Xcocvdjq7DVub2tbJeA8qZZaF2PmlGtMgekdK7hlromPvGJSyI5wv3VtdpyHgaPwHQ==",
-      "path": "gladnet3.serializer.api/3.0.46",
-      "hashPath": "gladnet3.serializer.api.3.0.46.nupkg.sha512"
+      "sha512": "sha512-baW4hHBCXByJ/ktuoTLqM0GRm1yTY4/WzNuXmM97oPOy0uGytOPY5JVU1YXcMqkFNmI+Dazto9+Z/zrrEulX5w==",
+      "path": "gladnet3.serializer.api/3.0.48",
+      "hashPath": "gladnet3.serializer.api.3.0.48.nupkg.sha512"
     },
     "JetBrains.Annotations/11.1.0": {
       "type": "package",

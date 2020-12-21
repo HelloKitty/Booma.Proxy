@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Logging;
 using SceneJect.Common;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -29,8 +28,9 @@ namespace Booma.Proxy
 		[Inject]
 		private ILog Logger { get; }
 
-		[ReadOnly]
-		[ShowInInspector]
+		//TODO: Show isInitializationFinished
+		//[ReadOnly]
+		//[ShowInInspector]
 		private bool isInitializationFinished = false;
 
 		private async Task Start()

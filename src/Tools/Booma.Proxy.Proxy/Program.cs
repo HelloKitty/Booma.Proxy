@@ -18,7 +18,7 @@ namespace Booma.Proxy
 			psobbHandlerModules.AddClientHanderModule(new PsobbProxyTestClientMessageHandlerRegisterationModule());
 
 			//Login server
-			PsobbProxyApplicationBase loginAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 12000),
+			/*PsobbProxyApplicationBase loginAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 12000),
 				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 12000), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
 				new PsobbNetworkSerializers());
 
@@ -28,14 +28,14 @@ namespace Booma.Proxy
 
 			//5278
 			PsobbProxyApplicationBase shipAppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5002),
-				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 5002), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
-				new PsobbNetworkSerializers());
+				new NetworkAddressInfo(IPAddress.Parse("192.168.0.12"), 5002), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
+				new PsobbNetworkSerializers());*/
 
 			PsobbProxyApplicationBase block1AppBase = new PsobbProxyApplicationBase(new NetworkAddressInfo(IPAddress.Parse("127.0.0.1"), 5003),
-				new NetworkAddressInfo(IPAddress.Parse("192.168.0.3"), 5003), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
+				new NetworkAddressInfo(IPAddress.Parse("192.168.0.12"), 5003), new ConsoleLogger(LogLevel.All), psobbHandlerModules,
 				new PsobbNetworkSerializers());
 
-			if(!loginAppBase.StartServer())
+			/*if(!loginAppBase.StartServer())
 			{
 				Console.WriteLine("Failed to start login proxy. Press any key to close.");
 				Console.ReadKey();
@@ -54,8 +54,8 @@ namespace Booma.Proxy
 				Console.WriteLine("Failed to start ship proxy. Press any key to close.");
 				Console.ReadKey();
 				return;
-			}
-
+			}*/
+			
 			if(!block1AppBase.StartServer())
 			{
 				Console.WriteLine("Failed to start block proxy. Press any key to close.");
@@ -65,14 +65,14 @@ namespace Booma.Proxy
 
 			Console.WriteLine("Starting proxy.");
 
-			Task.Run(loginAppBase.BeginListening)
+			/*Task.Run(loginAppBase.BeginListening)
 				.ConfigureAwait(false);
 
 			Task.Run(characterAppBase.BeginListening)
 				.ConfigureAwait(false);
 
 			Task.Run(shipAppBase.BeginListening)
-				.ConfigureAwait(false);
+				.ConfigureAwait(false);*/
 
 			Task.Run(block1AppBase.BeginListening)
 				.ConfigureAwait(false);

@@ -8,7 +8,6 @@ using System.Xml;
 using Common.Logging;
 using GladNet;
 using SceneJect.Common;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Booma.Proxy
@@ -26,7 +25,7 @@ namespace Booma.Proxy
 	/// <typeparam name="TIncomingPayloadType"></typeparam>
 	/// <typeparam name="TOutgoingPayloadType"></typeparam>
 	[Injectee]
-	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : SerializedMonoBehaviour, INetworkClientExportable, IConnectionService
+	public abstract class BaseUnityNetworkClient<TIncomingPayloadType, TOutgoingPayloadType> : MonoBehaviour, INetworkClientExportable, IConnectionService
 		where TOutgoingPayloadType : class 
 		where TIncomingPayloadType : class
 	{
@@ -61,11 +60,12 @@ namespace Booma.Proxy
 		//TODO: Move to IoC
 		private IPeerRequestSendService<TOutgoingPayloadType> RequestService { get; set; }
 
+		//TODO: Re-enable export showing in inspector
 		/// <summary>
 		/// Indicates if the managed client has been exported from this container.
 		/// </summary>
-		[ReadOnly]
-		[ShowInInspector]
+		//[ReadOnly]
+		//[ShowInInspector]
 		public bool isClientExported { get; private set; }
 
 		/// <summary>
