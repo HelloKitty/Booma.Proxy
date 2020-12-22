@@ -14,7 +14,4 @@
     <Folder Include="Payloads\Server\" />
     <Folder Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
-  </ItemGroup>
 </Project>

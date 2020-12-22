@@ -10,7 +10,4 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.9.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="2.9.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj" />
-  </ItemGroup>
 </Project>

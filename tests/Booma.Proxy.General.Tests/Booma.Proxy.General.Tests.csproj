@@ -93,10 +93,6 @@
       <Project>{467024D6-4CE5-458F-8BD5-2E811930A154}</Project>
       <Name>Booma.Proxy.Packets.BlockServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
-      <Project>{1A775854-1484-45FB-B465-1967A971646C}</Project>
-      <Name>Booma.Proxy.Packets.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
