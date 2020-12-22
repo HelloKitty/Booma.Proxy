@@ -122,28 +122,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj">
-      <Project>{467024d6-4ce5-458f-8bd5-2e811930a154}</Project>
-      <Name>Booma.Proxy.Packets.BlockServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj">
-      <Project>{9459d6e6-9795-4449-9c5e-31af348f51e6}</Project>
-      <Name>Booma.Proxy.Packets.CharacterServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
-      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
-      <Name>Booma.Proxy.Packets.LoginServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj">
-      <Project>{a29319a3-6771-42a4-a910-39e69603a867}</Project>
-      <Name>Booma.Proxy.Packets.SharedServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj">
-      <Project>{7b08404b-8aea-450f-a886-047e5e16bf4b}</Project>
-      <Name>Booma.Proxy.Packets.ShipServer</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -136,20 +136,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj">
-      <Project>{9459D6E6-9795-4449-9C5E-31AF348F51E6}</Project>
-      <Name>Booma.Proxy.Packets.CharacterServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
-      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
-      <Name>Booma.Proxy.Packets.LoginServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj">
-      <Project>{A29319A3-6771-42A4-A910-39E69603A867}</Project>
-      <Name>Booma.Proxy.Packets.SharedServer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Handlers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
