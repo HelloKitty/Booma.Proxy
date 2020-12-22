@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(28)]
 		[WireMember(1)]
-		public string Timestamp { get; }
+		public string Timestamp { get; internal set; }
 
 		//Serializer ctor
 		private CharacterTimestampEventPayload()

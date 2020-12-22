@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,40 +40,40 @@ namespace Booma.Proxy
 		/// The ID granted to the client that is joining the lobby.
 		/// </summary>
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte ClientId { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(2)]
-		public byte LeaderId { get; }
+		public byte LeaderId { get; internal set; }
 
 		//Why is this in some of the packets?
 		[WireMember(3)]
-		private byte One { get; }
+		internal byte One { get; set; }
 
 		//Why is this sent? Shouldn't we be in the same lobby?
 		/// <summary>
 		/// The number of the lobby.
 		/// </summary>
 		[WireMember(4)]
-		public byte LobbyNumber { get; }
+		public byte LobbyNumber { get; internal set; }
 
 		//Once again, why is this sent? Shouldn't we know what block we're in?
 		/// <summary>
 		/// The number of the block.
 		/// </summary>
 		[WireMember(5)]
-		public short BlockNumber { get; }
+		public short BlockNumber { get; internal set; }
 
 		//TODO: What is this for?
 		[WireMember(6)]
-		public short EventId { get; }
+		public short EventId { get; internal set; }
 
 		//Sylverant lists this as padding.
 		[WireMember(7)]
-		private int Padding { get; }
+		internal int Padding { get; set; }
 
 		[WireMember(8)]
-		public CharacterJoinData JoinData { get; }
+		public CharacterJoinData JoinData { get; internal set; }
 
 		//Serializer ctor
 		private BlockOtherPlayerJoinedLobbyEventPayload()

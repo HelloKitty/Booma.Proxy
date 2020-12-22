@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		/// The file number to request
 		/// </summary>
 		[WireMember(1)]
-		public uint ChunkNumber { get; }
+		public uint ChunkNumber { get; internal set; }
 
 		public CharacterDataParametersChunkRequestPayload(uint chunkNumber)
 		{

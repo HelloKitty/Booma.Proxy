@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -18,20 +18,20 @@ namespace Booma.Proxy
 	public sealed class CharacterInventoryData
 	{
 		[WireMember(1)]
-		public byte ItemCount { get; }
+		public byte ItemCount { get; internal set; }
 
 		[WireMember(2)]
-		public byte HpMaterialsUsed { get; }
+		public byte HpMaterialsUsed { get; internal set; }
 
 		[WireMember(3)]
-		public byte TpMaterialsUsed { get; }
+		public byte TpMaterialsUsed { get; internal set; }
 
 		[WireMember(4)]
-		private byte Language { get; }
+		internal byte Language { get; set; }
 
 		[WireMember(5)]
 		[KnownSize(30)]
-		public InventoryItem[] Items { get; }
+		public InventoryItem[] Items { get; internal set; }
 
 		/// <summary>
 		/// Serializer ctor.

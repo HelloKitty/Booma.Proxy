@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +18,16 @@ namespace Booma.Proxy
 		/// The ID of the client moving.
 		/// </summary>
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 
 		/// <summary>
 		/// The new position of the client.
 		/// </summary>
 		[WireMember(3)]
-		public Vector2<float> Position { get; }
+		public Vector2<float> Position { get; internal set; }
 
 		//Sylverant will pad 4 bytes here, it's possible they aren't 0 and are used for some thing. but for now we leave them off.
 

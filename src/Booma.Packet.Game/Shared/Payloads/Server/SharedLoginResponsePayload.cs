@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +37,7 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public AuthenticationResponseCode ResponseCode { get; }
+		public AuthenticationResponseCode ResponseCode { get; internal set; }
 
 		/// <inheritdoc />
 		public bool isSuccessful => ResponseCode == AuthenticationResponseCode.LOGIN_93BB_OK;
@@ -47,20 +47,20 @@ namespace Booma.Proxy
 		/// ?
 		/// </summary>
 		[WireMember(2)]
-		public int Tag { get; } = 0x00010000;
+		public int Tag { get; internal set; } = 0x00010000;
 
 		/// <summary>
 		/// The account-wide guildcard number.
 		/// </summary>
 		[WireMember(3)]
-		public uint GuildCard { get; }
+		public uint GuildCard { get; internal set; }
 
 		//it is easier to work with his as an int in .NET
 		/// <summary>
 		/// The account-wide team id.
 		/// </summary>
 		[WireMember(4)]
-		public int TeamId { get; } 
+		public int TeamId { get; internal set; } 
 
 		//TODO: What is this really?
 		/// <summary>
@@ -68,11 +68,11 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(40)]
 		[WireMember(5)]
-		public byte[] SecurityData { get; }
+		public byte[] SecurityData { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(6)]
-		public int Caps { get; } = 0x00000102; //newserv
+		public int Caps { get; internal set; } = 0x00000102; //newserv
 
 		/// <summary>
 		/// Creates a successful auth response with code <see cref="AuthenticationResponseCode"/> OK.

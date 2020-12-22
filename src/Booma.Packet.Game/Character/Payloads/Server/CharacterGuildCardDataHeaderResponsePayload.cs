@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,15 +31,15 @@ namespace Booma.Proxy
 		/// One? Not sure why.
 		/// </summary>
 		[WireMember(1)]
-		private int One { get; } = 1;
+		internal int One { get; set; } = 1;
 
 		//TODO: What is this length?
 		[WireMember(2)]
-		public uint Length { get; }
+		public uint Length { get; internal set; }
 
 		//TODO: What is this checksum?
 		[WireMember(3)]
-		public uint CheckSum { get; }
+		public uint CheckSum { get; internal set; }
 
 		//Serializer ctor
 		private CharacterGuildCardDataHeaderResponsePayload()

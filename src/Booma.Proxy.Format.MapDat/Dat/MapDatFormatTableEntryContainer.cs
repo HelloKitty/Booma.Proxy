@@ -1,4 +1,4 @@
-﻿using FreecraftCore.Serializer;
+using FreecraftCore.Serializer;
 
 namespace Booma
 {
@@ -13,7 +13,7 @@ namespace Booma
 		/// Header for the entry.
 		/// </summary>
 		[WireMember(1)]
-		public MapDatFormatTableEntryHeader Header { get; }
+		public MapDatFormatTableEntryHeader Header { get; internal set; }
 
 		//We don't prevent int32 consumption on child type polymorphism
 		//Which means we'll need to not make this serializable and must have child type
@@ -33,7 +33,7 @@ namespace Booma
 		//Think of like sizeof(T) where T is  the entry type.
 		//We need to allow inheritors to indicate the actual size
 		//so we know the actual count of the entries.
-		protected abstract int EntrySize { get; }
+		protected abstract int EntrySize { get; internal set; }
 
 		//Serializer ctor
 		protected MapDatFormatTableEntryContainer()

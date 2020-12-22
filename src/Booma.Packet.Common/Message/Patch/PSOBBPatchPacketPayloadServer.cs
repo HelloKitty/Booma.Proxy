@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite] //we don't want to write this since the type key already handlers opcodes
 		[WireMember(1)]
-		protected short OperationCode { get; }
+		protected short OperationCode { get; internal set; }
 
 		//Nothing, only the 2 byte Type is relevant for this base packet.
 

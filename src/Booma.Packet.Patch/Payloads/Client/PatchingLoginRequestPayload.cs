@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,28 +33,28 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(12)]
 		[WireMember(1)]
-		private byte[] Padding { get; } = new byte[12];
+		internal byte[] Padding { get; set; } = new byte[12];
 
 		/// <summary>
 		/// Username to authenticate with the patchserver.
 		/// </summary>
 		[KnownSize(16)]
 		[WireMember(2)]
-		public string UserName { get; }
+		public string UserName { get; internal set; }
 
 		/// <summary>
 		/// Password to authenticate with the patchserver.
 		/// </summary>
 		[KnownSize(16)]
 		[WireMember(3)]
-		public string Password { get; }
+		public string Password { get; internal set; }
 
 		/// <summary>
 		/// Padding (?)
 		/// </summary>
 		[KnownSize(64)]
 		[WireMember(4)]
-		private byte[] Padding2 { get; } = new byte[64];
+		internal byte[] Padding2 { get; set; } = new byte[64];
 
 		//serializer ctor
 

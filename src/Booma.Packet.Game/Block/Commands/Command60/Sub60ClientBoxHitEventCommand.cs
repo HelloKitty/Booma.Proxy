@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		public byte Identifier => ObjectIdentifier.Identifier;
 
 		[WireMember(1)]
-		public MapObjectIdentifier ObjectIdentifier { get; }
+		public MapObjectIdentifier ObjectIdentifier { get; internal set; }
 
 		//TODO: What is this?
 		//Sylverant says this is always 1? Also considers the first and subsequent 3 bytes sepertae but we'll leave this
@@ -25,7 +25,7 @@ namespace Booma.Proxy
 		/// TODO: ?
 		/// </summary>
 		[WireMember(2)]
-		private int unk1 { get; } = 1;
+		internal int unk1 { get; set; } = 1;
 
 		//Slyverant says the last 3 bytes of this are always 0. So, we'll guess it's a 4 byte value instead. Little enditan
 		//TODO: What is this?
@@ -33,10 +33,10 @@ namespace Booma.Proxy
 		/// TODO: ?
 		/// </summary>
 		[WireMember(3)]
-		private short Identifier2_unk2 { get; }
+		internal short Identifier2_unk2 { get; set; }
 
 		[WireMember(4)]
-		private short unk3 { get; } = 0;
+		internal short unk3 { get; set; } = 0;
 
 		/// <inheritdoc />
 		public Sub60ClientBoxHitEventCommand(MapObjectIdentifier objectIdentifier)

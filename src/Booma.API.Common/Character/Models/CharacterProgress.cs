@@ -1,4 +1,4 @@
-﻿using FreecraftCore.Serializer;
+using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
@@ -12,13 +12,13 @@ namespace Booma.Proxy
 		/// Experience earned by the character.
 		/// </summary>
 		[WireMember(1)]
-		public uint Experience { get; }
+		public uint Experience { get; internal set; }
 
 		/// <summary>
 		/// Level of the character.
 		/// </summary>
 		[WireMember(2)]
-		public uint Level { get; }
+		public uint Level { get; internal set; }
 
 		//Serializer ctor
 		private CharacterProgress()

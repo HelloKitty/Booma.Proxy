@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +18,12 @@ namespace Booma.Proxy
 		public byte Identifier => ObjectIdentifier.Identifier;
 
 		[WireMember(1)]
-		public MapObjectIdentifier ObjectIdentifier { get; }
+		public MapObjectIdentifier ObjectIdentifier { get; internal set; }
 
 		//TODO: What is this?
 		//Unknown, is 01 00 08 00 sometimes.
 		[WireMember(2)]
-		public int Unk1 { get; } = new byte[4] {01, 00, 08, 00}.Reinterpret<int>();
+		public int Unk1 { get; internal set; } = new byte[4] {01, 00, 08, 00}.Reinterpret<int>();
 
 		/// <inheritdoc />
 		public Sub60CreatureDeathEventCommand([NotNull] MapObjectIdentifier objectIdentifier)

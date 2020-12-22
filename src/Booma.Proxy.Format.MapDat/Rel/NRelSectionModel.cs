@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,37 +15,37 @@ namespace Booma
 	public sealed class NRelSectionModel
 	{
 		[WireMember(1)]
-		public uint SecionId { get; }
+		public uint SecionId { get; internal set; }
 
 		[WireMember(2)]
-		public Vector3<float> Position { get; }
+		public Vector3<float> Position { get; internal set; }
 
 		[WireMember(3)]
-		private int unk1 { get; }
+		internal int unk1 { get; set; }
 
 		[WireMember(4)]
-		public uint YRotation { get; }
+		public uint YRotation { get; internal set; }
 
 		[WireMember(5)]
-		private int unk2 { get; }
+		internal int unk2 { get; set; }
 
 		[WireMember(6)]
-		private float unk3 { get; }
+		internal float unk3 { get; set; }
 
 		[WireMember(7)]
-		public uint SimpleGeometryPointer { get; }
+		public uint SimpleGeometryPointer { get; internal set; }
 
 		[WireMember(8)]
-		public uint AnimatedGeometryPointer { get; }
+		public uint AnimatedGeometryPointer { get; internal set; }
 
 		[WireMember(9)]
-		public uint SimpleGeometryCount { get; }
+		public uint SimpleGeometryCount { get; internal set; }
 
 		[WireMember(10)]
-		public uint AnimatedGeometryCount { get; }
+		public uint AnimatedGeometryCount { get; internal set; }
 
 		[WireMember(11)]
-		private int unk4 { get; }
+		internal int unk4 { get; set; }
 
 		public NRelSectionModel()
 		{

@@ -1,4 +1,4 @@
-﻿using FreecraftCore.Serializer;
+using FreecraftCore.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// The size of the packet.
 		/// </summary>
 		[WireMember(1)]
-		private short _PacketSize { get; }
+		internal short _PacketSize { get; set; }
 
 		/// <inheritdoc />
 		public int PacketSize => _PacketSize;

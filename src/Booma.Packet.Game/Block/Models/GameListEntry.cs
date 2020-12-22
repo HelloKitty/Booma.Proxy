@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,19 +27,19 @@ namespace Booma.Proxy
 		/// Listing information.
 		/// </summary>
 		[WireMember(1)]
-		public MenuItemIdentifier Listing { get; }
+		public MenuItemIdentifier Listing { get; internal set; }
 
 		/// <summary>
 		/// The difficulty mode of the game.
 		/// </summary>
 		[WireMember(2)]
-		public DifficultyType Difficulty { get; }
+		public DifficultyType Difficulty { get; internal set; }
 
 		/// <summary>
 		/// The amount of player's in the game.
 		/// </summary>
 		[WireMember(3)]
-		public byte PlayerCount { get; }
+		public byte PlayerCount { get; internal set; }
 
 		/// <summary>
 		/// The name of the game.
@@ -47,17 +47,17 @@ namespace Booma.Proxy
 		[KnownSize(16)]
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(4)]
-		public string Name { get; }
+		public string Name { get; internal set; }
 
 		/// <summary>
 		/// The episode of the game
 		/// </summary>
 		[WireMember(5)]
-		public EpisodeType Episode { get; }
+		public EpisodeType Episode { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(6)]
-		private byte flags { get; }
+		internal byte flags { get; set; }
 
 		//Serializer ctor
 		private GameListEntry()

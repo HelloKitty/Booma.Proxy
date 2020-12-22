@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace Booma
 	{
 		[SendSize(SendSizeAttribute.SizeType.Int32)]
 		[WireMember(1)]
-		private NRelSectionModel[] _Sections { get; }
+		internal NRelSectionModel[] _Sections { get; set; }
 
 		/// <summary>
 		/// NRel sections data.

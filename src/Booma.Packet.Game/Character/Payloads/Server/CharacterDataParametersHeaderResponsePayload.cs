@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +36,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(9)] //Soly said there are only 9 files
 		[WireMember(1)]
-		private DataParameterFileHeader[] _Headers { get; }
+		internal DataParameterFileHeader[] _Headers { get; set; }
 
 		/// <summary>
 		/// The file headers for the parameter files.

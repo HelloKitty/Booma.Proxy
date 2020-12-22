@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,25 +23,25 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(276)]
 		[WireMember(1)]
-		private byte[] unk { get; }
+		internal byte[] unk { get; set; }
 
 		/// <summary>
 		/// Binding configuration.
 		/// </summary>
 		[WireMember(2)]
-		public BindingsConfig Bindings { get; }
+		public BindingsConfig Bindings { get; internal set; }
 
 		/// <summary>
 		/// The guild card for the account.
 		/// </summary>
 		[WireMember(3)]
-		public uint GuildCard { get; }
+		public uint GuildCard { get; internal set; }
 
 		/// <summary>
 		/// The team information.
 		/// </summary>
 		[WireMember(4)]
-		public AccountTeamInformation TeamInfo { get; }
+		public AccountTeamInformation TeamInfo { get; internal set; }
 
 		public CharacterOptionsResponsePayload()
 		{

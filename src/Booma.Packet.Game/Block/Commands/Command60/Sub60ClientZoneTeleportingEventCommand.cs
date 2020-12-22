@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +13,11 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(2)]
-		private byte unk { get; }
+		internal byte unk { get; set; }
 
 		/// <inheritdoc />
 		public Sub60ClientZoneTeleportingEventCommand(byte identifier)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +14,20 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 
 		/// <summary>
 		/// The technique being cast.
 		/// </summary>
 		[WireMember(3)]
-		public TechniqueDefinitionData Technique { get; }
+		public TechniqueDefinitionData Technique { get; internal set; }
 
 		//TODO: might be lenth prefix size for hit result
 		[WireMember(4)]
-		public byte Unk3 { get; }
+		public byte Unk3 { get; internal set; }
 
 		/// <inheritdoc />
 		public Sub60PlayFinishedTechniqueCastCommand(byte clientId, TechniqueDefinitionData technique)

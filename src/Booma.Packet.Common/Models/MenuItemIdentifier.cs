@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +17,14 @@ namespace Booma.Proxy
 		/// The id of the menu selecting from.
 		/// </summary>
 		[WireMember(1)]
-		public uint MenuId { get; }
+		public uint MenuId { get; internal set; }
 
 		/// <summary>
 		/// The item id of the item on the menu
 		/// being selected.
 		/// </summary>
 		[WireMember(2)]
-		public uint ItemId { get; }
+		public uint ItemId { get; internal set; }
 
 		/// <inheritdoc />
 		public MenuItemIdentifier(uint menuId, uint itemId)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Booma
 	{
 		[SendSize(SendSizeAttribute.SizeType.Int32)]
 		[WireMember(1)]
-		private TBodyType[] _Entries { get; }
+		internal TBodyType[] _Entries { get; set; }
 
 		/// <summary>
 		/// Body entries.

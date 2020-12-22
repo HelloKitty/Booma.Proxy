@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		/// The subcommand.
 		/// </summary>
 		[WireMember(1)]
-		public BaseSubCommand62 Command { get; }
+		public BaseSubCommand62 Command { get; internal set; }
 
 		/// <inheritdoc />
 		public BlockNetworkCommand62EventClientPayload([NotNull] BaseSubCommand62 command)

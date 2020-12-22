@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +19,13 @@ namespace Booma.Proxy
 		/// X value.
 		/// </summary>
 		[WireMember(1)]
-		public T X { get; }
+		public T X { get; internal set; }
 
 		/// <summary>
 		/// Y value.
 		/// </summary>
 		[WireMember(2)]
-		public T Y { get; }
+		public T Y { get; internal set; }
 
 		/// <inheritdoc />
 		public Vector2(T x, T y)

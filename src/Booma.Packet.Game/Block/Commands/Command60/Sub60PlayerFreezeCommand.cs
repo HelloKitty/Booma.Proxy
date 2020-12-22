@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,29 +36,29 @@ namespace Booma.Proxy
 		//Client ID/Lobbyslot
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(2)]
-		public byte Unknown1 { get; }
+		public byte Unknown1 { get; internal set; }
 
 		/// <summary>
 		/// Indicates reason for the reason for the freeze event.
 		/// </summary>
 		[WireMember(3)]
-		public FreezeReason Reason { get; } //4 bytes, last 2 usually 0x0000 but might not be apart of the enum
+		public FreezeReason Reason { get; internal set; } //4 bytes, last 2 usually 0x0000 but might not be apart of the enum
 
 		/// <summary>
 		/// The position the player with <see cref="Identifier"/> id is at.
 		/// Contains the X and Z component of the position.
 		/// </summary>
 		[WireMember(4)]
-		public Vector2<float> Position { get; }
+		public Vector2<float> Position { get; internal set; }
 
 		//TODO: Do we need this? Is it ever not 0?
 		//TODO: Sylverant has some additional bytes here. Says they're padding. Do we need them?
 		[WireMember(5)]
-		public int Unknown2 { get; }
+		public int Unknown2 { get; internal set; }
 
 		//Serializer ctor
 		private Sub60PlayerFreezeCommand()

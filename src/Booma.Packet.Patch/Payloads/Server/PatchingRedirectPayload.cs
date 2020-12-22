@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +19,14 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(4)]
 		[WireMember(1)]
-		public byte[] IPAddress { get; }
+		public byte[] IPAddress { get; internal set; }
 
 		/// <summary>
 		/// Port
 		/// </summary>
 		[ReverseData]
 		[WireMember(2)]
-		public ushort Port { get; }
+		public ushort Port { get; internal set; }
 
 		public PatchingRedirectPayload(byte[] ipAddress, ushort port)
 		{

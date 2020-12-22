@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,25 +35,25 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(44)]
 		[WireMember(1)]
-		public string PatchCopyrightMessage { get; } //I don't think this is null terminated?
+		public string PatchCopyrightMessage { get; internal set; } //I don't think this is null terminated?
 
 		//TODO: Why?
 		[KnownSize(20)]
 		[WireMember(2)]
-		private byte[] Padding { get; }
+		internal byte[] Padding { get; set; }
 
 		//TODO: What is this?
 		/// <summary>
 		/// Server IV (?)
 		/// </summary>
 		[WireMember(3)]
-		public uint ServerVector { get; }
+		public uint ServerVector { get; internal set; }
 
 		/// <summary>
 		/// Client IV (?)
 		/// </summary>
 		[WireMember(4)]
-		public uint ClientVector { get; }
+		public uint ClientVector { get; internal set; }
 
 		public PatchingWelcomePayload([NotNull] string patchCopyrightMessage, uint serverVector, uint clientVector)
 		{

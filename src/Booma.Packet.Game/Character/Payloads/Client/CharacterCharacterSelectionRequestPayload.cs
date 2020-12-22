@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -20,14 +20,14 @@ namespace Booma.Proxy
 		/// The slot being selected.
 		/// </summary>
 		[WireMember(1)]
-		public int SlotSelected { get; }
+		public int SlotSelected { get; internal set; }
 
 		/// <summary>
 		/// Indicates the type of selection to be done.
 		/// (Ex. Preview or Play)
 		/// </summary>
 		[WireMember(2)]
-		public CharacterSelectionType SelectionType { get; }
+		public CharacterSelectionType SelectionType { get; internal set; }
 
 		/// <inheritdoc />
 		public CharacterCharacterSelectionRequestPayload(byte slotSelected, CharacterSelectionType selectionType)

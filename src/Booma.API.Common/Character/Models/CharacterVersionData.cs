@@ -1,4 +1,4 @@
-﻿using FreecraftCore.Serializer;
+using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
@@ -10,15 +10,15 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private byte V2Flags { get; }
+		internal byte V2Flags { get; set; }
 
 		//TODO: What is this?
 		[WireMember(2)]
-		private byte Version { get; }
+		internal byte Version { get; set; }
 
 		//TODO: What is this?
 		[WireMember(3)]
-		private uint V1Flags { get; }
+		internal uint V1Flags { get; set; }
 
 		//Serializer ctor.
 		private CharacterVersionData()

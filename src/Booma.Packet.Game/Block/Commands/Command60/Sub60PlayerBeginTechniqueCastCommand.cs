@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +17,15 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//Always a byte after identifier.
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 
 		//Unknown 4 bytes at the end of this command.
 		[WireMember(3)]
-		private int unk2 { get; }
+		internal int unk2 { get; set; }
 
 		/// <inheritdoc />
 		public Sub60PlayerBeginTechniqueCastCommand(byte identifier)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +19,11 @@ namespace Booma.Proxy
 		//Packet is empty. Just tells the server we bursted/warped finished.
 		//TODO: Is this client id?
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//Is this really unused?
 		[WireMember(2)]
-		private byte unused { get; }
+		internal byte unused { get; set; }
 
 		/// <inheritdoc />
 		public Sub60FinishedWarpingBurstingCommand(byte identifier)

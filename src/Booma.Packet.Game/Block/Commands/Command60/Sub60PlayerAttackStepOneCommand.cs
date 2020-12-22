@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,11 +14,11 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//Unknown 1 byte always follows id
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 
 		//TODO: The calculation we're doing to init or parse this is wrong. It does not match the binary packet
 		//TODO: We must figure out how to exactly compute this value, test cases show off by 1 bit.
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		/// that is sent over the network.
 		/// </summary>
 		[WireMember(3)]
-		private short RawNetworkRotation { get; set; }
+		internal short RawNetworkRotation { get; set; }
 
 		/// <summary>
 		/// The rotation about the Y-axis.
@@ -36,7 +36,7 @@ namespace Booma.Proxy
 
 		//TODO: Is this anything but padding?
 		[WireMember(4)]
-		private short unk2 { get; }
+		internal short unk2 { get; set; }
 
 		/// <inheritdoc />
 		public Sub60PlayerAttackStepOneCommand(byte identifier, float yAxisRotation)

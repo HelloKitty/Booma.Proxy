@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Encoding(EncodingType.UTF16)] //wchar 16bit
 		[WireMember(1)]
-		public string Message { get; }
+		public string Message { get; internal set; }
 
 		public PatchingMessagePayload([NotNull] string message)
 		{

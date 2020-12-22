@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,19 +23,19 @@ namespace Booma.Proxy
 		/// Patch file index
 		/// </summary>
 		[WireMember(1)]
-		public int PatchFileIndex { get; }
+		public int PatchFileIndex { get; internal set; }
 
 		/// <summary>
 		/// Patch file checksum
 		/// </summary>
 		[WireMember(2)]
-		public uint PatchFileChecksum { get; }
+		public uint PatchFileChecksum { get; internal set; }
 
 		/// <summary>
 		/// Patch file size
 		/// </summary>
 		[WireMember(3)]
-		public int PatchFileSize { get; }
+		public int PatchFileSize { get; internal set; }
 
 		public PatchingFileInformationReplyPayload(int patchFileIndex, uint patchFileChecksum, int patchFileSize)
 		{

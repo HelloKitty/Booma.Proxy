@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
@@ -12,11 +12,11 @@ namespace Booma.Proxy
 	public sealed class TechniqueHitResult
 	{
 		[WireMember(1)]
-		public MapObjectIdentifier ObjectIdentifier { get; }
+		public MapObjectIdentifier ObjectIdentifier { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(2)]
-		public short unk1 { get; }
+		public short unk1 { get; internal set; }
 
 		/// <inheritdoc />
 		public TechniqueHitResult([NotNull] MapObjectIdentifier objectIdentifier)

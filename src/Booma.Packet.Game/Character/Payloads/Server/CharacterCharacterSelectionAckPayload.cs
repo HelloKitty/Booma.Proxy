@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +20,13 @@ namespace Booma.Proxy
 		/// The slot this character ack is for.
 		/// </summary>
 		[WireMember(1)]
-		public int Slot { get; }
+		public int Slot { get; internal set; }
 
 		/// <summary>
 		/// The type of ack.
 		/// </summary>
 		[WireMember(2)]
-		public CharacterSelectionAckType AckType { get; }
+		public CharacterSelectionAckType AckType { get; internal set; }
 
 		//Serializer ctor
 		private CharacterCharacterSelectionAckPayload()

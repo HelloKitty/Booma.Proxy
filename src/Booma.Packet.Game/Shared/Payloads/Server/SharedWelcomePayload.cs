@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(96)]
 		[WireMember(2)]
-		public string CopyrightMessage { get; }
+		public string CopyrightMessage { get; internal set; }
 
 		/// <summary>
 		/// Encryption initialization vector
@@ -38,7 +38,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(48)]
 		[WireMember(3)]
-		public byte[] ServerVector { get; }
+		public byte[] ServerVector { get; internal set; }
 
 		/// <summary>
 		/// Decryption initialization vector
@@ -46,7 +46,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(48)]
 		[WireMember(4)]
-		public byte[] ClientVector { get; }
+		public byte[] ClientVector { get; internal set; }
 
 		//Serializer ctor
 		private SharedWelcomePayload()

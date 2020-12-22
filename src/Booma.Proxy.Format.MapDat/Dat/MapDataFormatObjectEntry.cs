@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Booma.Proxy;
 using FreecraftCore.Serializer;
 
@@ -15,11 +15,11 @@ namespace Booma
 		/// The Entity's object type.
 		/// </summary>
 		[WireMember(1)]
-		public MapDatFormatEntityObjectType ObjectType { get; }
+		public MapDatFormatEntityObjectType ObjectType { get; internal set; }
 
 		[KnownSize(6)]
 		[WireMember(2)]
-		public byte[] unk1 { get; }
+		public byte[] unk1 { get; internal set; }
 
 		//TODO: Is this globally unique? Unique to zone? Unique to area?
 
@@ -27,7 +27,7 @@ namespace Booma
 		/// The identifier for this object.
 		/// </summary>
 		[WireMember(3)]
-		public ushort Identifier { get; }
+		public ushort Identifier { get; internal set; }
 
 		//TODO: What is this?
 
@@ -35,7 +35,7 @@ namespace Booma
 		/// TODO: ?
 		/// </summary>
 		[WireMember(4)]
-		public ushort Group { get; }
+		public ushort Group { get; internal set; }
 
 		//TODO: What is this?
 
@@ -45,45 +45,45 @@ namespace Booma
 		/// the object will not end up in the correct spot.
 		/// </summary>
 		[WireMember(5)]
-		public ushort Section { get; }
+		public ushort Section { get; internal set; }
 
 		//TODO: What is this?
 
 		[WireMember(6)]
-		public short unk2 { get; }
+		public short unk2 { get; internal set; }
 
 		/// <summary>
 		/// Position of the object.
 		/// </summary>
 		[WireMember(7)]
-		public Vector3<float> Position { get; }
+		public Vector3<float> Position { get; internal set; }
 
 		/// <summary>
 		/// Rotation of the object.
 		/// (Not in Euler form)
 		/// </summary>
 		[WireMember(8)]
-		public Vector3<int> Rotation { get; }
+		public Vector3<int> Rotation { get; internal set; }
 
 		//First byte for teleports may be the floor
 		//5th byte may be type (red vs blue)
 		[KnownSize(6)]
 		[WireMember(9)]
-		private byte[] unk3 { get; }
+		internal byte[] unk3 { get; set; }
 
 		[WireMember(10)]
-		public int ObjectActionIdentifier { get; }
+		public int ObjectActionIdentifier { get; internal set; }
 
 		[WireMember(11)]
-		public short Action { get; }
+		public short Action { get; internal set; }
 
 		[WireMember(12)]
-		public short ObjectInteractionId { get; }
+		public short ObjectInteractionId { get; internal set; }
 
 		//TODO: What is this?
 		[KnownSize(14)]
 		[WireMember(13)]
-		private byte[] unk4 { get; }
+		internal byte[] unk4 { get; set; }
 
 		protected MapDataFormatObjectEntry()
 		{

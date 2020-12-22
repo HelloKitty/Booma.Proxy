@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +26,7 @@ namespace Booma.Proxy
 		/// Hardware information (?)
 		/// </summary>
 		[WireMember(9)]
-		public long HardwareInformation { get; }
+		public long HardwareInformation { get; internal set; }
 
 		//TODO: What is this really?
 		/// <summary>
@@ -34,7 +34,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(40)]
 		[WireMember(10)]
-		public byte[] SecurityData { get; }
+		public byte[] SecurityData { get; internal set; }
 
 		public ClientVerificationData(long hardwareInformation, [NotNull] byte[] securityData)
 		{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,19 +31,19 @@ namespace Booma.Proxy
 
 		//TODO: What is this?
 		[WireMember(1)]
-		private int Tag { get; }
+		internal int Tag { get; set; }
 
 		/// <summary>
 		/// Unused
 		/// </summary>
 		[WireMember(2)]
-		public uint GuildCardId { get; }
+		public uint GuildCardId { get; internal set; }
 
 		/// <summary>
 		/// Client version moniker.
 		/// </summary>
 		[WireMember(3)]
-		public ushort ClientVersion { get; }
+		public ushort ClientVersion { get; internal set; }
 
 		//Soly said: meet the user will put a 6 here and teth puts the lobby you want to go, in offset 0x7C
 		/// <summary>
@@ -51,48 +51,48 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(6)]
 		[WireMember(4)]
-		private byte[] unk2 { get; } //Tethella will expect a 4 at 0x16 during Character and 5 during Ship.
+		internal byte[] unk2 { get; set; } //Tethella will expect a 4 at 0x16 during Character and 5 during Ship.
 
 		//easier to work with this as an int in .NET/Unity3D
 		/// <summary>
 		/// Unused
 		/// </summary>
 		[WireMember(5)]
-		private int TeamId { get; }
+		internal int TeamId { get; set; }
 
 		/// <summary>
 		/// The username to authenticate with.
 		/// </summary>
 		[KnownSize(16)] //username can be 15 char ASCII string with a null terminator
 		[WireMember(6)]
-		public string UserName { get; }
+		public string UserName { get; internal set; }
 
 		/// <summary>
 		/// Unused
 		/// </summary>
 		[KnownSize(32)]
 		[WireMember(7)]
-		private byte[] unused1 { get; } = new byte[32];
+		internal byte[] unused1 { get; set; } = new byte[32];
 
 		/// <summary>
 		/// The password to authenticate with.
 		/// </summary>
 		[KnownSize(16)] //password can be 15 char ASCII string with a null terminator
 		[WireMember(8)]
-		public string Password { get; }
+		public string Password { get; internal set; }
 
 		/// <summary>
 		/// Unusued
 		/// </summary>
 		[KnownSize(40)]
 		[WireMember(9)]
-		private byte[] unused2 { get; } = new byte[40];
+		internal byte[] unused2 { get; set; } = new byte[40];
 
 		/// <summary>
 		/// Verification/security information the client is using for the session.
 		/// </summary>
 		[WireMember(10)]
-		public ClientVerificationData ClientData { get; }
+		public ClientVerificationData ClientData { get; internal set; }
 
 		public SharedLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
 			: this(clientVersion, 0, userName, password, clientData, serverType)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +14,19 @@ namespace Booma.Proxy
 	{
 		//TODO: Syl doesn't deal with this, Teth sends client id. Not sure what to do. Why bother
 		[WireMember(1)]
-		private int Padding { get; }
+		internal int Padding { get; set; }
 
 		[WireMember(2)]
-		private uint GuildCardNumber { get; }
+		internal uint GuildCardNumber { get; set; }
 
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(2)]
 		[WireMember(3)]
-		private string Encoding { get; } = "\tE";
+		internal string Encoding { get; set; } = "\tE";
 
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(4)]
-		public string ChatMessage { get; }
+		public string ChatMessage { get; internal set; }
 
 		public BlockTextChatMessageRequestPayload([NotNull] string chatMessage)
 		{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,31 +19,31 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: Is this zone id?
 		[WireMember(2)]
-		public byte Unknown1 { get; }
+		public byte Unknown1 { get; internal set; }
 
 		//TODO: Why is the identifier sent twice?
 		[WireMember(3)]
-		public byte Identifier2 { get; }
+		public byte Identifier2 { get; internal set; }
 
 		//TODO: Is this zone id?
 		[WireMember(4)]
-		public byte Unknown2 { get; }
+		public byte Unknown2 { get; internal set; }
 
 		/// <summary>
 		/// The zone this item is being dropped in.
 		/// </summary>
 		[WireMember(5)]
-		public short ZoneId { get; }
+		public short ZoneId { get; internal set; }
 
 		/// <summary>
 		/// The ID of the item.
 		/// </summary>
 		[WireMember(6)]
-		public uint ItemId { get; }
+		public uint ItemId { get; internal set; }
 		//TODO: Ctor
 
 		/// <inheritdoc />

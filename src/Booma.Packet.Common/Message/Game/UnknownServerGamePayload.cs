@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +23,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[ReadToEnd]
 		[WireMember(1)]
-		public byte[] UnknownBytes { get; }
+		public byte[] UnknownBytes { get; internal set; }
 
 		//Serializer ctor
 		private UnknownServerGamePayload()

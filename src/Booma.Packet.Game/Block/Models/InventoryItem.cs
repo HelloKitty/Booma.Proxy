@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		//TODO: Implement structure.
 		[KnownSize(28)]
 		[WireMember(1)]
-		private byte[] ItemData { get; }
+		internal byte[] ItemData { get; set; }
 
 		/// <summary>
 		/// Serializer ctor.

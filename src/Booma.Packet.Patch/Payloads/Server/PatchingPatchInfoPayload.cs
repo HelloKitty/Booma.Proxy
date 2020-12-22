@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,13 +23,13 @@ namespace Booma.Proxy
 		/// Indicates the length and size of the patching data.
 		/// </summary>
 		[WireMember(1)]
-		public int PatchingByteLength { get; }
+		public int PatchingByteLength { get; internal set; }
 
 		/// <summary>
 		/// Number of files that need to be patched.
 		/// </summary>
 		[WireMember(2)]
-		public int PatchFileCount { get; }
+		public int PatchFileCount { get; internal set; }
 
 		public PatchingPatchInfoPayload(int patchingByteLength, int patchFileCount)
 		{

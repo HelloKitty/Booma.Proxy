@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,17 +23,17 @@ namespace Booma.Proxy
 		/// The amount of players in the room.
 		/// </summary>
 		[WireMember(1)]
-		public int PlayerCount { get; }
+		public int PlayerCount { get; internal set; }
 
 		//TODO: What is this?
 		[KnownSize(0x20)]
 		[WireMember(2)]
-		public uint[] Maps { get; }
+		public uint[] Maps { get; internal set; }
 
 		//It will always send 4 slots but some may be uninitialized
 		[KnownSize(4)]
 		[WireMember(3)]
-		private PlayerInformationHeader[] _Players { get; }
+		internal PlayerInformationHeader[] _Players { get; set; }
 
 		/// <summary>
 		/// The players currently in the game/room.
@@ -45,22 +45,22 @@ namespace Booma.Proxy
 		/// (ClientId)
 		/// </summary>
 		[WireMember(4)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		/// <summary>
 		/// The ID of the room leader.
 		/// </summary>
 		[WireMember(5)]
-		public byte LeaderId { get; }
+		public byte LeaderId { get; internal set; }
 
 		[WireMember(6)]
-		private byte One { get; } = 1;
+		internal byte One { get; set; } = 1;
 
 		/// <summary>
 		/// The settings for the game/room.
 		/// </summary>
 		[WireMember(7)]
-		public GameSettings Settings { get; }
+		public GameSettings Settings { get; internal set; }
 
 		//Serializer ctor
 		private BlockGameJoinEventPayload()

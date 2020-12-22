@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,14 +31,14 @@ namespace Booma.Proxy
 		/// The slot being selected.
 		/// </summary>
 		[WireMember(1)]
-		public byte SlotSelected { get; }
+		public byte SlotSelected { get; internal set; }
 
 		[KnownSize(3)]
 		[WireMember(2)]
-		private byte[] unused { get; }
+		internal byte[] unused { get; set; }
 
 		[WireMember(3)]
-		public PlayerCharacterDataModel CharacterData { get; }
+		public PlayerCharacterDataModel CharacterData { get; internal set; }
 
 		//serializer ctor
 		private CharacterCharacterUpdateResponsePayload()

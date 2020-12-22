@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,34 +19,34 @@ namespace Booma.Proxy
 		//TODO: What is this? Probably client id
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(2)]
-		public byte Unknown1 { get; }
+		public byte Unknown1 { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(3)]
-		public short Unknown2 { get; }
+		public short Unknown2 { get; internal set; }
 
 		//TODO: Create an enum? If it possible
 		/// <summary>
 		/// ID for the zone the character is in.
 		/// </summary>
 		[WireMember(4)]
-		public short ZoneId { get; }
+		public short ZoneId { get; internal set; }
 
 		/// <summary>
 		/// The ID of the item being dropped.
 		/// </summary>
 		[WireMember(5)]
-		public int ItemId { get; }
+		public int ItemId { get; internal set; }
 
 		/// <summary>
 		/// The position of the item being dropped.
 		/// </summary>
 		[WireMember(6)]
-		public Vector3<float> Position { get; }
+		public Vector3<float> Position { get; internal set; }
 
 		//Serializer ctor
 

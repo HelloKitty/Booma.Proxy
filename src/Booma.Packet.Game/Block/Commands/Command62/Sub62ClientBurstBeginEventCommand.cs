@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		//TODO: This are about 518 bytes here for quest data
 		[ReadToEnd]
 		[WireMember(1)]
-		private byte[] QuestData { get; } = new byte[0];
+		internal byte[] QuestData { get; set; } = new byte[0];
 
 		//Serializer ctor
 		private Sub62ClientBurstBeginEventCommand()

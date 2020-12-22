@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +19,10 @@ namespace Booma.Proxy
 		/// The checksum.
 		/// </summary>
 		[WireMember(1)]
-		public uint Checksum { get; }
+		public uint Checksum { get; internal set; }
 
 		[WireMember(2)]
-		private uint Padding { get; }
+		internal uint Padding { get; set; }
 
 		public CharacterChecksumRequestPayload(uint checksum)
 		{

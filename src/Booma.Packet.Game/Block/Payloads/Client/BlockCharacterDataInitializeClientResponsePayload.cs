@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 	{
 		[WireMember(1)]
 		[KnownSize(2096 - 8)]
-		public byte[] Bytes { get; } = new byte[2096 - 8];
+		public byte[] Bytes { get; internal set; } = new byte[2096 - 8];
 
 		public BlockCharacterDataInitializeClientResponsePayload()
 		{

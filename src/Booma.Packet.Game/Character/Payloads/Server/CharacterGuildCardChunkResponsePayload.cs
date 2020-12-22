@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +13,13 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private int unk { get; }
+		internal int unk { get; set; }
 
 		/// <summary>
 		/// The chunk number of this partial data.
 		/// </summary>
 		[WireMember(2)]
-		public uint ChunkNumber { get; }
+		public uint ChunkNumber { get; internal set; }
 
 		//The maximum size
 		/// <summary>
@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[ReadToEnd]
 		[WireMember(3)]
-		public byte[] PartialData { get; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
+		public byte[] PartialData { get; internal set; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
 
 		//Serializer ctor
 		private CharacterGuildCardChunkResponsePayload()

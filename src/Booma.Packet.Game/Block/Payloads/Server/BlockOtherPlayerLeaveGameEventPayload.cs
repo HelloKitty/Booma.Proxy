@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +19,13 @@ namespace Booma.Proxy
 		/// Indicates the ID of the player leaving the game.
 		/// </summary>
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 		
 		/// <summary>
 		/// Indicates the ID of the player that has been promoted to the leader.
 		/// </summary>
 		[WireMember(2)]
-		public byte PromotedLeaderIdentifier { get; }
+		public byte PromotedLeaderIdentifier { get; internal set; }
 
 		//TODO: Ctor for serverside
 

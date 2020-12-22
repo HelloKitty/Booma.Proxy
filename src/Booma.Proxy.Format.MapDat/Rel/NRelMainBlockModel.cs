@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,27 +11,27 @@ namespace Booma
 	public class NRelMainBlockModel
 	{
 		[WireMember(1)]
-		private long unk1 { get; }
+		internal long unk1 { get; set; }
 
 		/// <summary>
 		/// Number of sections in the NRel file.
 		/// </summary>
 		[WireMember(2)]
-		public uint SectionCount { get; }
+		public uint SectionCount { get; internal set; }
 
 		[WireMember(3)]
-		private int unk2 { get; }
+		internal int unk2 { get; set; }
 
 		/// <summary>
 		/// Pointer/offset to the section chunk in the stream/file.
 		/// </summary>
 		[WireMember(4)]
-		public uint SectionPointer { get; }
+		public uint SectionPointer { get; internal set; }
 
 		/// <summary>
 		/// Pointer/offset to the section chunk in the stream/file.
 		/// </summary>
 		[WireMember(5)]
-		public uint TextureNamePointer { get; }
+		public uint TextureNamePointer { get; internal set; }
 	}
 }

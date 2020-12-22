@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public LoginChecksumResult ResponseCode { get; }
+		public LoginChecksumResult ResponseCode { get; internal set; }
 
 		//Serializer ctor
 		private CharacterChecksumResponsePayload()

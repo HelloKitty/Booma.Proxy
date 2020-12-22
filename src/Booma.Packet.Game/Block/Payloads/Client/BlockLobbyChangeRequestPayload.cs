@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,7 @@ namespace Booma.Proxy
 		/// request.
 		/// </summary>
 		[WireMember(1)]
-		public MenuItemIdentifier Selecion { get; }
+		public MenuItemIdentifier Selecion { get; internal set; }
 
 		/// <inheritdoc />
 		public BlockLobbyChangeRequestPayload([NotNull] MenuItemIdentifier selecion)

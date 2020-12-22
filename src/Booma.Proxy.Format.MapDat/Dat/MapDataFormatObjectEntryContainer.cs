@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using FreecraftCore.Serializer;
 
 namespace Booma
@@ -20,7 +20,7 @@ namespace Booma
 		//The size is seperated into the base type property
 		//which is linked with the metadata above.
 		[WireMember(1)]
-		internal MapDataFormatObjectEntry[] _Entries { get; }
+		internal MapDataFormatObjectEntry[] _Entries { get; set; }
 
 		/// <summary>
 		/// Object entries.

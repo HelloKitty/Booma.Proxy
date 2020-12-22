@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,33 +61,33 @@ namespace Booma.Proxy
 
 		//Most likely a creature, but could be other things.
 		[WireMember(1)]
-		public MapObjectIdentifier ObjectIdentifier { get; }
+		public MapObjectIdentifier ObjectIdentifier { get; internal set; }
 
 		//Why is this sent twice? Maybe when creatures deal damage to other creatures??
 		//This version is missing the objecttype/floor
 		[WireMember(2)]
-		private short ObjectIdentifier2 { get; }
+		internal short ObjectIdentifier2 { get; set; }
 
 		/// <summary>
 		/// Usually the new health deficiet of the object/creature.
 		/// </summary>
 		[WireMember(3)]
-		private ushort TotalDamageTaken { get; }
+		internal ushort TotalDamageTaken { get; set; }
 
 		/// <summary>
 		/// Unknown, seems to always be 0.
 		/// </summary>
 		[WireMember(4)]
-		private byte UnknownFlag1 { get; }
+		internal byte UnknownFlag1 { get; set; }
 
 		[WireMember(5)]
-		private DamageFlag2 UnknownFlag2 { get; }
+		internal DamageFlag2 UnknownFlag2 { get; set; }
 
 		[WireMember(6)]
-		private DamageFlag3 UnknownFlag3 { get; }
+		internal DamageFlag3 UnknownFlag3 { get; set; }
 
 		[WireMember(7)]
-		private byte UnknownFlag4 { get; }
+		internal byte UnknownFlag4 { get; set; }
 
 		/// <inheritdoc />
 		public Sub60ObjectDamageRecievedCommand(MapObjectIdentifier objectIdentifier, ushort totalDamageTaken, byte[] flags)

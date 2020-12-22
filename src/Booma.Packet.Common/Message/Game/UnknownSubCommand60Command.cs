@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		[ReadToEnd]
 		[WireMember(1)]
-		public byte[] UnknownBytes { get; } = new byte[0]; //readtoend requires at least an empty array init
+		public byte[] UnknownBytes { get; internal set; } = new byte[0]; //readtoend requires at least an empty array init
 
 		private UnknownSubCommand60Command()
 		{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +31,7 @@ namespace Booma.Proxy
 		public override bool isFlagsSerialized => false;
 
 		[WireMember(1)]
-		private int TargetClientIndex { get; }
+		internal int TargetClientIndex { get; set; }
 
 		/// <inheritdoc />
 		public byte Identifier => (byte)TargetClientIndex;
@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		/// The subcommand.
 		/// </summary>
 		[WireMember(2)]
-		public BaseSubCommand6D Command { get; }
+		public BaseSubCommand6D Command { get; internal set; }
 
 		/// <inheritdoc />
 		public BlockNetworkCommand6DEventClientPayload(byte targetRemotePlayer, [JetBrains.Annotations.NotNull] BaseSubCommand6D command)

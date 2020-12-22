@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// The id of the menu selecting from.
 		/// </summary>
 		[WireMember(1)]
-		public MenuItemIdentifier Selection { get; }
+		public MenuItemIdentifier Selection { get; internal set; }
 
 		/// <inheritdoc />
 		public SharedMenuSelectionRequestPayload([NotNull] MenuItemIdentifier selection)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,29 +16,29 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private short unk { get; } //Syl has this as: 0x00010000
+		internal short unk { get; set; } //Syl has this as: 0x00010000
 
 		//Tethealla sends a client id byt Sylv sends some nonsense. Not sure why.
 		/// <summary>
 		/// The id for the client source.
 		/// </summary>
 		[WireMember(2)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(3)]
-		private byte unk2 { get; }
+		internal byte unk2 { get; set; }
 
 		/// <summary>
 		/// The guild card number associated with the chat message.
 		/// </summary>
 		[WireMember(4)]
-		public uint GuildCardNumber { get; }
+		public uint GuildCardNumber { get; internal set; }
 
 		//Contains the {username}\t\tE{message}
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(5)]
-		public string ChatMessage { get; }
+		public string ChatMessage { get; internal set; }
 
 		private BlockTextChatMessageEventPayload()
 		{

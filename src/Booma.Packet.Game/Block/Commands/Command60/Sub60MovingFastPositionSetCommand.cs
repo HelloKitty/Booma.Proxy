@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,16 +19,16 @@ namespace Booma.Proxy
 		/// The client that is moving.
 		/// </summary>
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		private byte unused { get; }
+		internal byte unused { get; set; }
 
 		/// <summary>
 		/// The position the client has moved to.
 		/// </summary>
 		[WireMember(3)]
-		public Vector2<float> Position { get; }
+		public Vector2<float> Position { get; internal set; }
 
 		//TODO: This is a 3rd unknown int
 

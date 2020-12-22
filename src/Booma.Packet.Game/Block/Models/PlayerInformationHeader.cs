@@ -1,4 +1,4 @@
-﻿using FreecraftCore.Serializer;
+using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
@@ -11,51 +11,51 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		/*[WireMember(1)]
-		private short tagChunk1 { get; }
+		internal short tagChunk1 { get; set; }
 
 		/// <summary>
 		/// Indicates if the player header is filled with player
 		/// information. It may be uninitialized or empty.
 		/// </summary>
 		[WireMember(2)]
-		public bool isSlotFilled { get; }
+		public bool isSlotFilled { get; internal set; }
 
 		[WireMember(3)]
-		private byte tagChunk2 { get; }*/
+		internal byte tagChunk2 { get; set; }*/
 
 		//TODO: Remove.
 		//[WireMember(2)]
-		public bool isSlotFilled { get; }
+		public bool isSlotFilled { get; internal set; }
 
 		//Sylverant doesn't have this, Teth does and Soly uses it too.
 		[WireMember(4)]
-		private int unk4 { get; }
+		internal int unk4 { get; set; }
 
 		/// <summary>
 		/// The guild card number of the player.
 		/// </summary>
 		[WireMember(5)]
-		public uint GuildCardNumber { get; }
+		public uint GuildCardNumber { get; internal set; }
 
 		//TODO: What is this?
 		[KnownSize(5)] //Syl says there are 3 of these but Soda's Teth skips x10 from the begining of GCN meaning he considers there is only 4
 		[WireMember(6)]
-		private uint[] unk1 { get; }
+		internal uint[] unk1 { get; set; }
 
 		/// <summary>
 		/// The ID of the client.
 		/// </summary>
 		[WireMember(7)] //TODO: Should this be a byte?
-		public int ClientId { get; }
+		public int ClientId { get; internal set; }
 
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(16)]
 		[WireMember(9)]
-		public string CharacterName { get; }
+		public string CharacterName { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(10)]
-		private uint unk3 { get; }
+		internal uint unk3 { get; set; }
 
 		//Serializer ctor
 		private PlayerInformationHeader()

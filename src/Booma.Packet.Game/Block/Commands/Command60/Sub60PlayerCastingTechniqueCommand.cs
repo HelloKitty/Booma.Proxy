@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,16 +14,16 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 
 		/// <summary>
 		/// The technique being cast.
 		/// </summary>
 		[WireMember(3)]
-		public TechniqueDefinitionData Technique { get; }
+		public TechniqueDefinitionData Technique { get; internal set; }
 
 		/// <summary>
 		/// Indicates if the spell cast has any targets.
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 
 		[SendSize(SendSizeAttribute.SizeType.Byte)]
 		[WireMember(5)]
-		private TechniqueHitResult[] HitIdentifiers { get; } = new TechniqueHitResult[0];
+		internal TechniqueHitResult[] HitIdentifiers { get; set; } = new TechniqueHitResult[0];
 
 		/// <summary>
 		/// Creates a new technique cast with no targets.

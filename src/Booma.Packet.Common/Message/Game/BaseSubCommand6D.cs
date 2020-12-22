@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,21 +22,21 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite]
 		[WireMember(1)]
-		public SubCommand6DOperationCode CommandOperationCode { get; }
+		public SubCommand6DOperationCode CommandOperationCode { get; internal set; }
 
 		//Usually this is where the CommandSize would go based on ints
 		//but it's a 0 byte here
 		[WireMember(2)]
-		private byte HeaderUnk1 { get; set; }
+		internal byte HeaderUnk1 { get; set; }
 		
 		/// <summary>
 		/// The sender index/identifier that the packet is for.
 		/// </summary>
 		[WireMember(3)]
-		public byte OptionalIdentifier { get; set; }
+		public byte OptionalIdentifier { get; internal set; }
 
 		[WireMember(4)]
-		private byte HeaderUnk3 { get; set; }
+		internal byte HeaderUnk3 { get; set; }
 
 		//Since the Type byte is eaten by the polymorphic deserialization process
 		//We just read the size to discard it
@@ -44,7 +44,7 @@ namespace Booma.Proxy
 		/// The size of the subcommand (subpayload).
 		/// </summary>
 		[WireMember(5)]
-		public int CommandSize { get; protected set; }
+		public int CommandSize { get; internal set; }
 
 		/// <summary>
 		/// One of the sub6D commands actually sends the sender

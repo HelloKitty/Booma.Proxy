@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// The experience rate for the game/room.
 		/// </summary>
 		[WireMember(1)]
-		public byte ExperienceRate { get; }
+		public byte ExperienceRate { get; internal set; }
 
 		//Serializer ctor
 		private Sub60SetExperienceRateCommand()

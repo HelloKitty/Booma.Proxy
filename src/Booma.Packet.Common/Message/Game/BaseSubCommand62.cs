@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite]
 		[WireMember(1)]
-		public SubCommand62OperationCode CommandOperationCode { get; }
+		public SubCommand62OperationCode CommandOperationCode { get; internal set; }
 
 		/// <summary>
 		/// Indicates if the <see cref="CommandSize"/> property is serialized and
@@ -37,7 +37,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Optional(nameof(isSizeSerialized))]
 		[WireMember(2)]
-		public byte CommandSize { get; protected set; }
+		public byte CommandSize { get; internal set; }
 
 		//Serializer ctor
 		protected BaseSubCommand62()

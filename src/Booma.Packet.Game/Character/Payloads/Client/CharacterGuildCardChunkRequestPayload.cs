@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,21 +19,21 @@ namespace Booma.Proxy
 
 		//TODO: What is this?
 		[WireMember(1)]
-		private int unk { get; } = 1; //this is 0x08
+		internal int unk { get; set; } = 1; //this is 0x08
 
 		/// <summary>
 		/// The chunk number to request for
 		/// the guild card data.
 		/// </summary>
 		[WireMember(2)]
-		public uint ChunkNumber { get; }
+		public uint ChunkNumber { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>
 		/// ?
 		/// </summary>
 		[WireMember(3)]
-		public bool ShouldContinue { get; } //this is 0x10
+		public bool ShouldContinue { get; internal set; } //this is 0x10
 
 		/// <inheritdoc />
 		public CharacterGuildCardChunkRequestPayload(uint chunkNumber, bool shouldContinue)

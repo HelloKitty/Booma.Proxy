@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,17 +13,17 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 	
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 
 		//TODO: Is this what it is? Matche 0x3F "animationstate" which maye be a checksum too. Probably don't need to send.
 		/// <summary>
 		/// TODO: What is this
 		/// </summary>
 		[WireMember(3)]
-		public int PositionChecksum { get; }
+		public int PositionChecksum { get; internal set; }
 
 		/// <inheritdoc />
 		public Sub60PlayerInteractObjectCommand(byte identifier)

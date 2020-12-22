@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(364)]
 		[WireMember(1)]
-		public byte[] KeyConfiguration { get; }
+		public byte[] KeyConfiguration { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>
@@ -27,7 +27,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(56)]
 		[WireMember(2)]
-		public byte[] JoystickConfiguration { get; }
+		public byte[] JoystickConfiguration { get; internal set; }
 
 		private BindingsConfig()
 		{

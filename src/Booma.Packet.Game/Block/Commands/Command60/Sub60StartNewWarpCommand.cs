@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,20 +17,20 @@ namespace Booma.Proxy
 	{
 		//TODO: Is this client id?
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		public byte Unused1 { get; }
+		public byte Unused1 { get; internal set; }
 
 		/// <summary>
 		/// The zone ID that the user is teleporting to.
 		/// </summary>
 		[WireMember(3)]
-		public short ZoneId { get; }
+		public short ZoneId { get; internal set; }
 		
 		//TODO: What is this?
 		[WireMember(4)]
-		public short Unused2 { get; }
+		public short Unused2 { get; internal set; }
 
 		/// <inheritdoc />
 		public Sub60StartNewWarpCommand(byte identifier, short zoneId)

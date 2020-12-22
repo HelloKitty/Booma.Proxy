@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ namespace Booma.Proxy
 		/// Padding
 		/// </summary>
 		[WireMember(1)]
-		public int Padding { get; }
+		public int Padding { get; internal set; }
 
 		public PatchingFileDonePayload()
 		{

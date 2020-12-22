@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +17,14 @@ namespace Booma.Proxy
 		/// The id of the menu selecting from.
 		/// </summary>
 		[WireMember(1)]
-		public MenuItemIdentifier Selection { get; }
+		public MenuItemIdentifier Selection { get; internal set; }
 
 		//TODO: What is this for?
 		/// <summary>
 		/// (?)
 		/// </summary>
 		[WireMember(2)]
-		private ushort Flags { get; }
+		internal ushort Flags { get; set; }
 
 		/// <summary>
 		/// The ship name.
@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(17)]
 		[WireMember(3)]
-		public string ItemName { get; }
+		public string ItemName { get; internal set; }
 
 		//Serializer ctor
 		private MenuListing()

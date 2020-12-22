@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,27 +17,27 @@ namespace Booma.Proxy
 	{
 		//TODO: Is this right?
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte ClientId { get; internal set; }
 
 		//TODO: Is this right?
 		[WireMember(2)]
-		public byte LeaderId { get; }
+		public byte LeaderId { get; internal set; }
 
 		/// <summary>
 		/// The number of frames (30fps) since the ball spawned.
 		/// </summary>
 		[WireMember(3)]
-		public int TimeStamp { get; }
+		public int TimeStamp { get; internal set; }
 
 		/// <summary>
 		/// Y-axis rotation that determines the direction
 		/// the ball should move in.
 		/// </summary>
 		[WireMember(4)]
-		private short RawRotation { get; set; }
+		internal short RawRotation { get; set; }
 
 		[WireMember(5)]
-		private short unk { get; }
+		internal short unk { get; set; }
 
 		/// <summary>
 		/// Y-axis rotation that determines the direction
@@ -50,12 +50,12 @@ namespace Booma.Proxy
 		/// (Where the ball was on the remote player's screen when he kicked it)
 		/// </summary>
 		[WireMember(6)]
-		public Vector2<float> KickStartPosition { get; }
+		public Vector2<float> KickStartPosition { get; internal set; }
 
 		//TODO: What is this?
 		[KnownSize(4)]
 		[WireMember(7)]
-		private byte[] UnknownBytes { get; } = new byte[4] {0, 0x59, 0x66, 0};
+		internal byte[] UnknownBytes { get; set; } = new byte[4] {0, 0x59, 0x66, 0};
 
 		/// <inheritdoc />
 		public Sub60LobbySoccerBallMoveEventPayload(byte clientId, short timeStamp, float rotation, Vector2<float> kickStartPosition)

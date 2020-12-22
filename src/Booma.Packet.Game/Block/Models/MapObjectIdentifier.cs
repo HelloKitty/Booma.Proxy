@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// and A is the object type.
 		/// </summary>
 		[WireMember(2)]
-		private short ObjectIdentifier { get; }
+		internal short ObjectIdentifier { get; set; }
 
 		/// <summary>
 		/// The floor ID of the object. Unique per floor.

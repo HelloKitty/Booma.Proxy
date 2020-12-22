@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,14 +29,14 @@ namespace Booma.Proxy
 		/// The id/number for this chunk.
 		/// </summary>
 		[WireMember(1)]
-		public uint ChunkNumber { get; }
+		public uint ChunkNumber { get; internal set; }
 
 		/// <summary>
 		/// Partial chunk for the parameter data.
 		/// </summary>
 		[ReadToEnd]
 		[WireMember(2)]
-		public byte[] PartialData { get; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
+		public byte[] PartialData { get; internal set; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
 
 		//Serializer ctor
 		private CharacterDataParametersChunkResponsePayload()

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +15,13 @@ namespace Booma.Proxy
 		/// Patch file chunk index
 		/// </summary>
 		[WireMember(1)]
-		public int PatchFileChunkIndex { get; }
+		public int PatchFileChunkIndex { get; internal set; }
 		
 		/// <summary>
 		/// Patch file chunk checksum (CRC32)
 		/// </summary>
 		[WireMember(2)]
-		public uint PatchFileChunkChecksum { get; }
+		public uint PatchFileChunkChecksum { get; internal set; }
 
 		// Chunk size is part of the packet, not used because of FreecraftCore
 
@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[SendSize(SendSizeAttribute.SizeType.Int32)]
 		[WireMember(3)]
-		public byte[] PatchFileChunkData { get; }
+		public byte[] PatchFileChunkData { get; internal set; }
 
 		public PatchingFileChunkPayload(int patchFileChunkIndex, uint patchFileChunkChecksum, byte[] patchFileChunkData)
 		{

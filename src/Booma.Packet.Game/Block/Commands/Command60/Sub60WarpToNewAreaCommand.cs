@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +16,18 @@ namespace Booma.Proxy
 		/// The ID associated with this client.
 		/// </summary>
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: maybe leader?
 		[WireMember(2)]
-		private byte unusued { get; }
+		internal byte unusued { get; set; }
 
 		/// <summary>
 		/// The Map/Level/Zone to warp to.
 		/// (Ex. go from Forest 1 to Forest 2)
 		/// </summary>
 		[WireMember(3)]
-		public int Zone { get; }
+		public int Zone { get; internal set; }
 
 		/// <inheritdoc />
 		public Sub60WarpToNewAreaCommand(byte clientId, int zone)

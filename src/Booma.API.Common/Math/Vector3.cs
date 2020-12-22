@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +15,7 @@ namespace Booma.Proxy
 		/// X value.
 		/// </summary>
 		[WireMember(1)]
-		public T Z { get; }
+		public T Z { get; internal set; }
 
 		public Vector3(T x, T y, T z) 
 			: base(x, y)

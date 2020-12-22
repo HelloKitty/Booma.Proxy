@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(64)]
 		[WireMember(1)]
-		public string PatchDirectoryname { get; }
+		public string PatchDirectoryname { get; internal set; }
 
 		public PatchingSetDirectoryPayload(string patchDirectoryName)
 		{

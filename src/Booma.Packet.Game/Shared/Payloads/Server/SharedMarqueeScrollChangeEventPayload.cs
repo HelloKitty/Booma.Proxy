@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		private long unusued { get; } //this could be 2 fields, treating it as 1 for effiecency
+		internal long unusued { get; set; } //this could be 2 fields, treating it as 1 for effiecency
 
 		//We don't know the size of this. It's dynamic.
 		/// <summary>
@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(2)]
-		public string Message { get; }
+		public string Message { get; internal set; }
 
 		//Serializer ctor
 		private SharedMarqueeScrollChangeEventPayload()

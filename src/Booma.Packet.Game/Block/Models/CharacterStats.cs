@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		//TODO: Provide a better API for accessing the stats data.
 		[KnownSize(7)]
 		[WireMember(1)]
-		public ushort[] Stats { get; }
+		public ushort[] Stats { get; internal set; }
 
 		/// <summary>
 		/// Serializer ctor.

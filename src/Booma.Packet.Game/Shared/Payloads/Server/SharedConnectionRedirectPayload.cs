@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +31,13 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(4)]
 		[WireMember(1)]
-		private byte[] IpAddressBytes { get; }
+		internal byte[] IpAddressBytes { get; set; }
 
 		/// <summary>
 		/// The port for the endpoint to redirect to.
 		/// </summary>
 		[WireMember(2)]
-		public short EndpointerPort { get; }
+		public short EndpointerPort { get; internal set; }
 
 		//TODO: What and why?
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(2)]
 		[WireMember(3)]
-		private byte[] padding { get; } = new byte[2];
+		internal byte[] padding { get; set; } = new byte[2];
 
 		//Lazy cache of the computed ipaddr
 		private Lazy<IPAddress> _EndpointAddress { get; }

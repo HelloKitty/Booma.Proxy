@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace Booma.Proxy
 		/// The progress for the character.
 		/// </summary>
 		[WireMember(1)]
-		public CharacterProgress Progress { get; }
+		public CharacterProgress Progress { get; internal set; }
 
 		//TODO: Is this just the guild card as a string?
 		/// <summary>
@@ -26,45 +26,45 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(16)]
 		[WireMember(2)]
-		public string GuildCard { get; }
+		public string GuildCard { get; internal set; }
 
 		//TODO: What is this?
 		[KnownSize(2)]
 		[WireMember(3)]
-		private uint[] unk3 { get; }
+		internal uint[] unk3 { get; set; }
 
 		/// <summary>
 		/// The special character data such as name color
 		/// or NPC skin.
 		/// </summary>
 		[WireMember(4)]
-		public CharacterSpecialCustomInfo Special { get; }
+		public CharacterSpecialCustomInfo Special { get; internal set; }
 
 		/// <summary>
 		/// Section ID of the character.
 		/// </summary>
 		[WireMember(5)]
-		public SectionId SectionId { get; }
+		public SectionId SectionId { get; internal set; }
 
 		/// <summary>
 		/// The class/race for the character.
 		/// </summary>
 		[WireMember(6)]
-		public CharacterClassRace ClassRace { get; }
+		public CharacterClassRace ClassRace { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>
 		/// Character version data.
 		/// </summary>
 		[WireMember(7)]
-		public CharacterVersionData VersionData { get; }
+		public CharacterVersionData VersionData { get; internal set; }
 
 		/// <summary>
 		/// Character customization information/data
 		/// (Ex. Hair, Costume)
 		/// </summary>
 		[WireMember(8)]
-		public CharacterCustomizationInfo CustomizationInfo { get; }
+		public CharacterCustomizationInfo CustomizationInfo { get; internal set; }
 
 		/// <summary>
 		/// The name of the character.
@@ -72,13 +72,13 @@ namespace Booma.Proxy
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(16)] //TODO: Destiny only sends 15 char for char name. Other servers use 16.
 		[WireMember(9)]
-		public string CharacterName { get; }
+		public string CharacterName { get; internal set; }
 
 		/// <summary>
 		/// The amount of time the character has played.
 		/// </summary>
 		[WireMember(10)]
-		public uint PlayedTime { get; }
+		public uint PlayedTime { get; internal set; }
 
 		//Serializer ctor
 		public PlayerCharacterDataModel()

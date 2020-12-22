@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,27 +25,27 @@ namespace Booma.Proxy
 		/// The size of the file.
 		/// </summary>
 		[WireMember(1)]
-		public uint FileSize { get; }
+		public uint FileSize { get; internal set; }
 
 		/// <summary>
 		/// The file checksum
 		/// </summary>
 		[WireMember(2)]
-		public uint Checksum { get; }
+		public uint Checksum { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>
 		/// The offset. (?)
 		/// </summary>
 		[WireMember(3)]
-		public uint Offset { get; }
+		public uint Offset { get; internal set; }
 		
 		/// <summary>
 		/// Filename (Maximum of 64 characters.
 		/// </summary>
 		[KnownSize(64)] //0x40
 		[WireMember(4)]
-		public string FileName { get; }
+		public string FileName { get; internal set; }
 
 		//Serializer ctor
 		private DataParameterFileHeader()

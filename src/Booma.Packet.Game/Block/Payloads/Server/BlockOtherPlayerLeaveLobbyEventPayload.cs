@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,10 +18,10 @@ namespace Booma.Proxy
 		/// The ID of the client leaving.
 		/// </summary>
 		[WireMember(1)]
-		public byte ClientId { get; }
+		public byte ClientId { get; internal set; }
 
 		[WireMember(2)]
-		public byte LeaderId { get; }
+		public byte LeaderId { get; internal set; }
 
 		//TODO: What is this?
 		//uint16_t padding;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,15 +18,15 @@ namespace Booma.Proxy
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//Unusued in most commands, some commands have this as leaderid though?
 		[WireMember(2)]
-		private byte unused { get; }
+		internal byte unused { get; set; }
 
 		//TODO: Handle this
 		[WireMember(3)]
-		private short AnimationState { get; }
+		internal short AnimationState { get; set; }
 
 		//TODO: The calculation we're doing to init or parse this is wrong. It does not match the binary packet
 		//TODO: We must figure out how to exactly compute this value, test cases show off by 1 bit.
@@ -35,7 +35,7 @@ namespace Booma.Proxy
 		/// that is sent over the network.
 		/// </summary>
 		[WireMember(4)]
-		private short RawNetworkRotation { get; set; }
+		internal short RawNetworkRotation { get; set; }
 
 		/// <summary>
 		/// The rotation about the Y-axis.
@@ -46,19 +46,19 @@ namespace Booma.Proxy
 		/// ID for the zone the character is in.
 		/// </summary>
 		[WireMember(5)]
-		public short ZoneId { get; }
+		public short ZoneId { get; internal set; }
 
 		/// <summary>
 		/// The ID for the room the character is currently in.
 		/// </summary>
 		[WireMember(6)]
-		public short RoomId { get; }
+		public short RoomId { get; internal set; }
 
 		/// <summary>
 		/// The position to teleport to.
 		/// </summary>
 		[WireMember(7)]
-		public Vector3<float> Position { get; }
+		public Vector3<float> Position { get; internal set; }
 
 		Vector2<float> IWorldPositionable<float>.Position => new Vector2<float>(Position.X, Position.Z);
 

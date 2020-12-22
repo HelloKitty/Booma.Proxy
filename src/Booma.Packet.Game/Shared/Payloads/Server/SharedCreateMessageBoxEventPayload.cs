@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(1)]
-		public string Message { get; }
+		public string Message { get; internal set; }
 
 		//serializer ctor
 		private SharedCreateMessageBoxEventPayload()

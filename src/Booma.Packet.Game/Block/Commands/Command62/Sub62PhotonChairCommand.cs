@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(14)]
 		[WireMember(2)]
-		public byte[] UnknownBytes { get; } = new byte[14];
+		public byte[] UnknownBytes { get; internal set; } = new byte[14];
 
 		public Sub62PhotonChairCommand()
 		{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +24,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[DontWrite] //we don't want to write this since the type key already handlers opcodes
 		[WireMember(1)]
-		public short OperationCode { get; }
+		public short OperationCode { get; internal set; }
 
 		/// <summary>
 		/// Indicates if the flags is serialized with <see cref="Flags"/>.
@@ -42,7 +42,7 @@ namespace Booma.Proxy
 		[Optional(nameof(isFlagsSerialized))] //Makes this flags optional; some subpayloads may want to consume the 4 bytes instead
 		[KnownSize(4)] //always 4 bytes
 		[WireMember(2)]
-		private byte[] Flags { get; } = new byte[4]; //we can initialize new flags every payload since they're always there
+		internal byte[] Flags { get; set; } = new byte[4]; //we can initialize new flags every payload since they're always there
 
 		/// <summary>
 		/// Parameterless ctor.

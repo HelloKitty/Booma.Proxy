@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +19,14 @@ namespace Booma.Proxy
 		/// The header for the outgoing message.
 		/// </summary>
 		[WireMember(1)]
-		public PSOBBPacketHeader Header { get; }
+		public PSOBBPacketHeader Header { get; internal set; }
 
 		/// <summary>
 		/// The byte representation of the payload.
 		/// </summary>
 		[ReadToEnd]
 		[WireMember(2)]
-		public byte[] Payload { get; }
+		public byte[] Payload { get; internal set; }
 
 		/// <summary>
 		/// Creates a new outgoing message envelope. Represents a complete

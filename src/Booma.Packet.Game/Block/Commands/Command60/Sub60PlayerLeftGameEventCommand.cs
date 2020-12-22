@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,15 +21,15 @@ namespace Booma.Proxy
 		
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		//TODO: Why do we need this?
 		[WireMember(2)]
-		private byte LeaderId { get; }
+		internal byte LeaderId { get; set; }
 
 		//TODO: Is this really unused as Syl says?
 		[WireMember(3)]
-		private short unk { get; }
+		internal short unk { get; set; }
 
 		//Serializer ctor
 		private Sub60PlayerLeftGameEventCommand()

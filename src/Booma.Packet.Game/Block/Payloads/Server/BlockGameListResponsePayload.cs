@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //sends it size - 1 so we need to account for that
 		[WireMember(1)]
-		private GameListEntry[] _GameEntries { get; }
+		internal GameListEntry[] _GameEntries { get; set; }
 
 		/// <summary>
 		/// The collection of game/party listings.

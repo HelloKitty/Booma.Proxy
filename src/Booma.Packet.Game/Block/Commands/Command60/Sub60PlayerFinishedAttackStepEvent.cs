@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,14 +18,14 @@ namespace Booma.Proxy
 		//TODO: I haven't verified that this is the identifier for the client BUT it probably has to be.
 		/// <inheritdoc />
 		[WireMember(1)]
-		public byte Identifier { get; }
+		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		private byte unk1 { get; }
+		internal byte unk1 { get; set; }
 		
 		[SendSize(SendSizeAttribute.SizeType.UShort)]
 		[WireMember(3)]
-		private AttackHitResult[] _HitResults { get; }
+		internal AttackHitResult[] _HitResults { get; set; }
 
 		/// <summary>
 		/// The results of an attack hit.
@@ -39,7 +39,7 @@ namespace Booma.Proxy
 
 		//TODO: What is the last two bytes of this packet? Seems always 0, not from crypto padding.
 		[WireMember(4)]
-		private short unk2 { get; } = 0;
+		internal short unk2 { get; set; } = 0;
 
 		/// <inheritdoc />
 		public Sub60PlayerFinishedAttackStepEvent(byte identifier, params AttackHitResult[] hitResults)

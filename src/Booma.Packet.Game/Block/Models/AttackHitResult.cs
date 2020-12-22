@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
@@ -9,10 +9,10 @@ namespace Booma.Proxy
 	{
 		//TODO: What is this?
 		[WireMember(1)]
-		public short unk1 { get; }
+		public short unk1 { get; internal set; }
 
 		[WireMember(2)]
-		public MapObjectIdentifier ObjectIdentifier { get; }
+		public MapObjectIdentifier ObjectIdentifier { get; internal set; }
 
 		/// <inheritdoc />
 		public AttackHitResult([NotNull] MapObjectIdentifier objectIdentifier)
