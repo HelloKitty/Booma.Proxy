@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{82223BC2-FD4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FCFAE99C-C28A-44B7-A7BE-F9D5481C35B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.PatchServer", "src\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj", "{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.Packets.Tests", "tests\Booma.Proxy.Packets.Tests\Booma.Proxy.Packets.Tests.csproj", "{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.LoginServer", "src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj", "{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B}"
@@ -53,16 +51,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Crypto.Common", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Packet.Common", "src\Booma.Packet.Common\Booma.Packet.Common.csproj", "{1341C0C5-C1D1-46F6-8CF6-001F5D47D126}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Packet.Patch", "src\Booma.Packet.Patch\Booma.Packet.Patch.csproj", "{650B8221-FAD2-4DAC-A503-BD8F3E62F664}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -135,12 +131,15 @@ Global
 		{1341C0C5-C1D1-46F6-8CF6-001F5D47D126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1341C0C5-C1D1-46F6-8CF6-001F5D47D126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1341C0C5-C1D1-46F6-8CF6-001F5D47D126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650B8221-FAD2-4DAC-A503-BD8F3E62F664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650B8221-FAD2-4DAC-A503-BD8F3E62F664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650B8221-FAD2-4DAC-A503-BD8F3E62F664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650B8221-FAD2-4DAC-A503-BD8F3E62F664}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{FE98AA4A-C2B6-43A6-8CB9-04A7515F3E4A} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
 		{D72A23D9-AC32-4D35-86AE-5ACD3F716CC7} = {FCFAE99C-C28A-44B7-A7BE-F9D5481C35B9}
 		{2AD7EEAB-87BC-473B-AEF2-0D5A045B7A6B} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
 		{091367E6-43AD-4274-B534-85B2970B750E} = {FCFAE99C-C28A-44B7-A7BE-F9D5481C35B9}
@@ -163,6 +162,7 @@ Global
 		{5A92CA37-FE74-467F-88C1-757AA6F5BAFB} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{EF81EED8-D499-4166-B9BE-DE597463AEB1} = {82223BC2-FD46-45B7-8714-A1BBB6FACC0E}
 		{1341C0C5-C1D1-46F6-8CF6-001F5D47D126} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
+		{650B8221-FAD2-4DAC-A503-BD8F3E62F664} = {5E108D10-E251-4C15-A6CC-BBB2F1EE3C8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {886DD3D7-35E3-42F0-8CE9-74FB5AD7BBD0}
