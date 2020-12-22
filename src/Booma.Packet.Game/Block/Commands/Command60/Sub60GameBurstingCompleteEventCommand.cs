@@ -19,6 +19,29 @@ namespace Booma.Proxy
 	{
 		//See: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L13792
 		//TODO: Investigate what this is
+		//Opensource emulators always send this for some reason.
+		//Unknown meaning.
+		//pkt->data[0] = 0x18;
+		//pkt->data[1] = 0x08;
+		/// <summary>
+		/// Unknown value.
+		/// Emulators always send: 0x18
+		/// </summary>
+		[WireMember(1)]
+		public byte Unk1 { get; internal set; } = 0x18;
+
+		/// <summary>
+		/// Unknown value.
+		/// Emulators always send: 0x08
+		/// </summary>
+		[WireMember(2)]
+		public byte Unk2 { get; internal set; } = 0x08;
+
+		public Sub60GameBurstingCompleteEventCommand(byte unk1, byte unk2)
+		{
+			Unk1 = unk1;
+			Unk2 = unk2;
+		}
 
 		//Serializer ctor
 		private Sub60GameBurstingCompleteEventCommand()
