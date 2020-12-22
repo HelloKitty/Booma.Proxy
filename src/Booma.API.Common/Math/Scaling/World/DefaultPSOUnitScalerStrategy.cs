@@ -4,28 +4,19 @@ using System.Text;
 
 namespace Booma.Proxy
 {
-	public class DefaultPSOUnitScalerStrategy : IUnitScalerStrategy
+	//TODO: During refactoring I may have this backwards, it may be Unity3D to PSO scaling. Can't remember.
+	public class PsoToUnity3DUnitScalerStrategy : IUnitScalerStrategy
 	{
 		/// <summary>
 		/// The unit scale to scale to and from.
 		/// </summary>
 		private Vector3<float> Scale { get; set; }
 
-		private DefaultPSOUnitScalerStrategy(Vector3<float> scale)
+		public PsoToUnity3DUnitScalerStrategy()
 		{
-			//Can't call methods in struct ctor.
-			bool isValid = scale.X != 0 && scale.Y != 0 && scale.Z != 0;
-
-			if(!isValid)
-				throw new ArgumentException($"Provided vector {nameof(scale)} must not have any 0 components.");
-
-			Scale = scale;
-		}
-
-		public DefaultPSOUnitScalerStrategy()
-			: this(new Vector3<float>(0.2f, 0.2f, -0.2f))
-		{
-			
+			Scale = new Vector3<float>(0.2f, 0.2f, -0.2f);
+			if (!VerifyScale(Scale))
+				throw new InvalidOperationException($"Scale invalid.");
 		}
 
 		/// <summary>
