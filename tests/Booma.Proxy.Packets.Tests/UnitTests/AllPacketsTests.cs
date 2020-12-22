@@ -12,12 +12,8 @@ namespace Booma.Proxy
 	[TestFixture]
 	public class AllPacketsTests
 	{
-		public static IEnumerable<Type> PayloadTypes { get; } = PacketLoginServerMetadataMarker.SerializableTypes
-			.Concat(PacketPatchServerMetadataMarker.SerializableTypes)
-			.Concat(PacketSharedServerMetadataMarker.SerializableTypes)
-			.Concat(PacketBlockServerMetadataMarker.SerializableTypes)
-			.Concat(PacketShipServerMetadataMarker.SerializableTypes)
-			.Concat(PacketCharacterServerMetadataMarker.SerializableTypes);
+		public static IEnumerable<Type> PayloadTypes { get; } = PacketGameServerMetadataMarker.SerializableTypes
+			.Concat(PacketPatchServerMetadataMarker.SerializableTypes);
 
 		[Test]
 		[TestCaseSource(nameof(PayloadTypes))]

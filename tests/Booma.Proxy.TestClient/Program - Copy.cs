@@ -31,9 +31,7 @@ namespace Booma.Proxy.TestClient
 
 			//Registers all the types.
 			PacketPatchServerMetadataMarker.SerializableTypes
-				.Concat(PacketCommonServerMetadataMarker.SerializableTypes)
-				.Concat(PacketLoginServerMetadataMarker.SerializableTypes)
-				.Concat(PacketSharedServerMetadataMarker.SerializableTypes)
+				.Concat(PacketGameServerMetadataMarker.SerializableTypes)
 				.ToList().ForEach(t =>
 				{
 					Console.WriteLine($"Registering PayloadType: {t.Name}");
@@ -47,12 +45,14 @@ namespace Booma.Proxy.TestClient
 
 		private static async Task RunClient(string ip, int port)
 		{
-			EncryptionLazyWithoutKeyDecorator<byte[]> encrypt = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
+			throw new NotImplementedException($"TODO: Reimplement crypto.");
+			/*EncryptionLazyWithoutKeyDecorator<byte[]> encrypt = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
 				encryptionService.Initialize(val);
 				return encryptionService;
 			}, 8);
+
 			EncryptionLazyWithoutKeyDecorator<byte[]> decrypt = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
@@ -77,7 +77,7 @@ namespace Booma.Proxy.TestClient
 
 			MessageContextFactory = new DefaultMessageContextFactory();
 
-			await Task.Run(() => RunClientAsync(client, ip, port));
+			await Task.Run(() => RunClientAsync(client, ip, port));*/
 		}
 
 		public static async Task RunClientAsync(IManagedNetworkClient<PSOBBGamePacketPayloadClient, PSOBBGamePacketPayloadServer> client, string ip, int port)

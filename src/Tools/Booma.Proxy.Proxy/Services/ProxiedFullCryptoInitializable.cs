@@ -11,13 +11,13 @@ namespace Booma.Proxy
 	public sealed class ProxiedFullCryptoInitializable : IFullCryptoInitializationService<byte[]>
 	{
 		/// <inheritdoc />
-		public ICryptoKeyInitializable<byte[]> EncryptionInitializable { get; }
+		public GladNet.ICryptoKeyInitializable<byte[]> EncryptionInitializable { get; }
 
 		/// <inheritdoc />
-		public ICryptoKeyInitializable<byte[]> DecryptionInitializable { get; }
+		public GladNet.ICryptoKeyInitializable<byte[]> DecryptionInitializable { get; }
 
 		/// <inheritdoc />
-		public ProxiedFullCryptoInitializable([NotNull] ICryptoKeyInitializable<byte[]> encryptionInitializable, [NotNull] ICryptoKeyInitializable<byte[]> decryptionInitializable)
+		public ProxiedFullCryptoInitializable([NotNull] GladNet.ICryptoKeyInitializable<byte[]> encryptionInitializable, [NotNull] GladNet.ICryptoKeyInitializable<byte[]> decryptionInitializable)
 		{
 			EncryptionInitializable = encryptionInitializable ?? throw new ArgumentNullException(nameof(encryptionInitializable));
 			DecryptionInitializable = decryptionInitializable ?? throw new ArgumentNullException(nameof(decryptionInitializable));

@@ -9,4 +9,9 @@
     <PackageReference Include="GladNet3.Proxy.Common" Version="3.0.48" />
     <PackageReference Include="GladNet3.Serializer.FreecraftCore" Version="3.0.48" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Booma.Crypto.Common\Booma.Crypto.Common.csproj" />
+    <ProjectReference Include="..\..\Booma.Packet.Common\Booma.Packet.Common.csproj" />
+    <ProjectReference Include="..\..\Booma.Packet.Game\Booma.Packet.Game.csproj" />
+  </ItemGroup>
 </Project>

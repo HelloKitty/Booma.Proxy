@@ -7,18 +7,18 @@ using GladNet;
 
 namespace Booma.Proxy
 {
-	public sealed class AggergateCryptoInitializer : ICryptoKeyInitializable<byte[]>
+	public sealed class AggergateCryptoInitializer : GladNet.ICryptoKeyInitializable<byte[]>
 	{
-		private IEnumerable<ICryptoKeyInitializable<byte[]>> AggergatedCryptoInitializables { get; }
+		private IEnumerable<GladNet.ICryptoKeyInitializable<byte[]>> AggergatedCryptoInitializables { get; }
 
 		/// <inheritdoc />
-		public AggergateCryptoInitializer(params ICryptoKeyInitializable<byte[]>[] aggergatedCryptoInitializables)
+		public AggergateCryptoInitializer(params GladNet.ICryptoKeyInitializable<byte[]>[] aggergatedCryptoInitializables)
 		{
 			AggergatedCryptoInitializables = aggergatedCryptoInitializables;
 		}
 
 		/// <inheritdoc />
-		public AggergateCryptoInitializer(IEnumerable<ICryptoKeyInitializable<byte[]>> aggergatedCryptoInitializables)
+		public AggergateCryptoInitializer(IEnumerable<GladNet.ICryptoKeyInitializable<byte[]>> aggergatedCryptoInitializables)
 		{
 			AggergatedCryptoInitializables = aggergatedCryptoInitializables;
 		}
