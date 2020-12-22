@@ -18,31 +18,16 @@ namespace Booma.Proxy.Packets.DocumentationGenerator
 			//Overwrite the original file
 			Directory.CreateDirectory(@"docs");
 			File.Create(@"docs\PatchPacketDocumentation.md").Close();
-			File.Create(@"docs\LoginPacketDocumentation.md").Close();
-			File.Create(@"docs\ShipPacketDocumentation.md").Close();
-			File.Create(@"docs\BlockPacketDocumentation.md").Close();
-			File.Create(@"docs\CharacterPacketDocumentation.md").Close();
+			File.Create(@"docs\GamePacketDocumentation.md").Close();
 
 			string patchDocString = 
 				BuildPacketDocumentation<PatchClientPacketPayloadAttribute, PatchServerPacketPayloadAttribute, PatchNetworkOperationCode>(PacketPatchServerMetadataMarker.SerializableTypes, "Patch");
 
-			string loginDocString =
-				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketLoginServerMetadataMarker.SerializableTypes, "Login");
-
-			string characterDocString =
-				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketCharacterServerMetadataMarker.SerializableTypes, "Character");
-
-			string blockDocString =
-				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketBlockServerMetadataMarker.SerializableTypes, "Block");
-
-			string shipDocString =
-				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketShipServerMetadataMarker.SerializableTypes, "Ship");
+			string gameDocString =
+				BuildPacketDocumentation<GameClientPacketPayloadAttribute, GameServerPacketPayloadAttribute, GameNetworkOperationCode>(PacketGameServerMetadataMarker.SerializableTypes, "Game");
 
 			File.WriteAllText(@"docs\PatchPacketDocumentation.md", patchDocString);
-			File.WriteAllText(@"docs\LoginPacketDocumentation.md", loginDocString);
-			File.WriteAllText(@"docs\CharacterPacketDocumentation.md", characterDocString);
-			File.WriteAllText(@"docs\BlockPacketDocumentation.md", blockDocString);
-			File.WriteAllText(@"docs\ShipPacketDocumentation.md", shipDocString);
+			File.WriteAllText(@"docs\LoginPacketDocumentation.md", gameDocString);
 		}
 
 		public static string BuildPacketDocumentation<TOutgoingPayloadAttributeType, TIncomingPayloadAttributeType, TOpcodeType>([NotNull] IEnumerable<Type> packets, string packetType)
