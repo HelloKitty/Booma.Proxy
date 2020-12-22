@@ -17,21 +17,29 @@ namespace Booma.Proxy
 		//TODO: We can't currently handle this packet. It does something odd the serializer can't handle
 		/// <summary>
 		/// The ID granted to the client that is joining the lobby.
+		/// 0x08
 		/// </summary>
 		[WireMember(1)]
 		public byte ClientId { get; }
 
 		//TODO: What is this?
+		/// <summary>
+		/// 0x09
+		/// </summary>
 		[WireMember(2)]
 		public byte LeaderId { get; }
 
 		//Why is this in some of the packets?
+		/// <summary>
+		/// 0x0A
+		/// </summary>
 		[WireMember(3)]
 		private byte One { get; }
 
 		//Why is this sent? Shouldn't we be in the same lobby?
 		/// <summary>
 		/// The number of the lobby being joined.
+		/// 0x0B
 		/// </summary>
 		[WireMember(4)]
 		public byte LobbyNumber { get; }
@@ -39,11 +47,15 @@ namespace Booma.Proxy
 		//Once again, why is this sent? Shouldn't we know what block we're in?
 		/// <summary>
 		/// The number of the block.
+		/// 0x0C
 		/// </summary>
 		[WireMember(5)]
 		public short BlockNumber { get; }
 
 		//TODO: What is this for?
+		/// <summary>
+		/// 0x0E
+		/// </summary>
 		[WireMember(6)]
 		public short EventId { get; }
 
