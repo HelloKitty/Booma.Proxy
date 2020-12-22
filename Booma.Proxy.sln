@@ -47,8 +47,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Proxy", "src\To
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.DTOStubGenerator", "src\Tools\Booma.Proxy.DTOStubGenerator\Booma.Proxy.DTOStubGenerator.csproj", "{7FB36FB6-5723-43C1-ADDB-A61620B1B0F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booma.Proxy.Packets.Game.Stubs", "src\Booma.Proxy.Packets.Game.Stubs\Booma.Proxy.Packets.Game.Stubs.csproj", "{897AF8F4-3FF8-4EF2-9288-DCC48EB7B407}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.Proxy.General.Tests", "tests\Booma.Proxy.General.Tests\Booma.Proxy.General.Tests.csproj", "{0E27C5B2-AC51-4244-83A0-69B47A1FB9DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booma.API.Common", "src\Booma.API.Common\Booma.API.Common.csproj", "{5A92CA37-FE74-467F-88C1-757AA6F5BAFB}"
