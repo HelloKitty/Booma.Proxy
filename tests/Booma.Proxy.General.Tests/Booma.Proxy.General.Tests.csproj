@@ -69,9 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrashTests\CrashTest1.cs" />
-    <Compile Include="EventSystemTests.cs" />
-    <Compile Include="PayloadMessageHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
