@@ -136,10 +136,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Crypto\Booma.Proxy.Crypto.csproj">
-      <Project>{9aee67e4-f228-4201-b921-24d8be2acab2}</Project>
-      <Name>Booma.Proxy.Crypto</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj">
       <Project>{9459D6E6-9795-4449-9C5E-31AF348F51E6}</Project>
       <Name>Booma.Proxy.Packets.CharacterServer</Name>
