@@ -8,15 +8,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Booma.API.Common\Booma.API.Common.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Sirenix.OdinInspector.Attributes">
-      <HintPath>..\Booma.Proxy.Client.Unity.Common\bin\Debug\net46\Sirenix.OdinInspector.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization">
-      <HintPath>..\Booma.Proxy.Client.Unity.Common\bin\Debug\net46\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>
