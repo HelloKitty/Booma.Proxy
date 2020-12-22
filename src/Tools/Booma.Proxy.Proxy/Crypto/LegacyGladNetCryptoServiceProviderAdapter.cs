@@ -11,7 +11,7 @@ namespace Booma
 	{
 		private Booma.ICryptoServiceProvider AdaptedProvider { get; }
 
-		public LegacyGladNetCryptoServiceProviderAdapter([NotNull] ICryptoServiceProvider adaptedProvider)
+		public LegacyGladNetCryptoServiceProviderAdapter([NotNull] Booma.ICryptoServiceProvider adaptedProvider)
 		{
 			AdaptedProvider = adaptedProvider ?? throw new ArgumentNullException(nameof(adaptedProvider));
 		}

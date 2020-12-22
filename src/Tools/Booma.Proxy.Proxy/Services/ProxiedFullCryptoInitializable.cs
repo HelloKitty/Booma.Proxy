@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
-	public sealed class ProxiedFullCryptoInitializable : IFullCryptoInitializationService<byte[]>
+	public sealed class ProxiedFullCryptoInitializable : GladNet.IFullCryptoInitializationService<byte[]>
 	{
 		/// <inheritdoc />
 		public GladNet.ICryptoKeyInitializable<byte[]> EncryptionInitializable { get; }

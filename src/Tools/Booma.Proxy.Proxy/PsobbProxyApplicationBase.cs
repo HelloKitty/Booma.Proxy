@@ -155,7 +155,7 @@ namespace Booma.Proxy
 
 			builder
 				.RegisterInstance(initializable)
-				.Keyed<ICryptoKeyInitializable<byte[]>>(cryptoType)
+				.Keyed<GladNet.ICryptoKeyInitializable<byte[]>>(cryptoType)
 				.SingleInstance()
 				.ExternallyOwned();
 
