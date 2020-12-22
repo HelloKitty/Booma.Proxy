@@ -4,6 +4,8 @@ using System.Text;
 
 namespace Booma.Proxy
 {
+	//Right now things are build the scale of 0.2f, 0.2f, -0.2f
+	//PSOBB appears to have an inverted z compared to PSOBB
 	//TODO: During refactoring I may have this backwards, it may be Unity3D to PSO scaling. Can't remember.
 	public class PsoToUnity3DUnitScalerStrategy : IUnitScalerStrategy
 	{

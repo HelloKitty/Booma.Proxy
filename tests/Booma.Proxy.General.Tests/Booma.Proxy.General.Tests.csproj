@@ -89,34 +89,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Unity.Authentication\Booma.Proxy.Client.Unity.Authentication.csproj">
-      <Project>{5ED7EDE1-7FE8-45FE-A4F0-13FA372EA445}</Project>
-      <Name>Booma.Proxy.Client.Unity.Authentication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Unity.Character\Booma.Proxy.Client.Unity.Character.csproj">
-      <Project>{30703EFC-1396-4310-ADEA-F7B4F583BF60}</Project>
-      <Name>Booma.Proxy.Client.Unity.Character</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Unity.Common\Booma.Proxy.Client.Unity.Common.csproj">
-      <Project>{89754683-F9D3-4DAF-ABC3-66AEF761C7E7}</Project>
-      <Name>Booma.Proxy.Client.Unity.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Unity.Consolidated\Booma.Proxy.Client.Unity.Consolidated.csproj">
-      <Project>{40D840BE-0066-45FD-8A51-C856B0677A15}</Project>
-      <Name>Booma.Proxy.Client.Unity.Consolidated</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Unity.SharedHandlers\Booma.Proxy.Client.Unity.SharedHandlers.csproj">
-      <Project>{2E30D409-251F-4E5B-8AE5-A8004B6FD6F3}</Project>
-      <Name>Booma.Proxy.Client.Unity.SharedHandlers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Client.Unity.Ship\Booma.Proxy.Client.Unity.Ship.csproj">
-      <Project>{E756E41D-EBB4-4D48-8FB5-480F32BE7335}</Project>
-      <Name>Booma.Proxy.Client.Unity.Ship</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Common\Booma.Proxy.Common.csproj">
-      <Project>{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}</Project>
-      <Name>Booma.Proxy.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj">
       <Project>{467024D6-4CE5-458F-8BD5-2E811930A154}</Project>
       <Name>Booma.Proxy.Packets.BlockServer</Name>

@@ -6,9 +6,6 @@
     <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="3.0.38" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Booma.Proxy.Common\Booma.Proxy.Common.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>..\Booma.Proxy.Client.Unity.Common\bin\Debug\net46\Sirenix.OdinInspector.Attributes.dll</HintPath>
     </Reference>
