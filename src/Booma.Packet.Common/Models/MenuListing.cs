@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using JetBrains.Annotations;
 
 namespace Booma.Proxy
 {
@@ -34,8 +35,18 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public string ItemName { get; internal set; }
 
-		//Serializer ctor
-		private MenuListing()
+		public MenuListing([NotNull] MenuItemIdentifier selection, ushort flags, [NotNull] string itemName)
+			: this()
+		{
+			Selection = selection ?? throw new ArgumentNullException(nameof(selection));
+			Flags = flags;
+			ItemName = itemName ?? throw new ArgumentNullException(nameof(itemName));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MenuListing()
 		{
 			
 		}

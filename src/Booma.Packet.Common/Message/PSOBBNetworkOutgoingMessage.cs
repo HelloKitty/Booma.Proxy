@@ -41,8 +41,10 @@ namespace Booma.Proxy
 			Header = new PSOBBPacketHeader(payload.Length + 2);
 		}
 
-		//Serializer ctor
-		protected PSOBBNetworkOutgoingMessage()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PSOBBNetworkOutgoingMessage()
 		{
 			
 		}

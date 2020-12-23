@@ -37,6 +37,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="packetSize">The packet size</param>
 		public PSOBBPacketHeader(short packetSize)
+			: this()
 		{
 			_PacketSize = packetSize;
 		}
@@ -46,12 +47,15 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="packetSize">The packet size</param>
 		public PSOBBPacketHeader(int packetSize)
+			: this((short)packetSize)
 		{
-			_PacketSize = (short)packetSize;
+
 		}
 
-		//serializer ctor
-		private PSOBBPacketHeader()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PSOBBPacketHeader()
 		{
 			
 		}

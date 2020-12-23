@@ -28,13 +28,16 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public MenuItemIdentifier(uint menuId, uint itemId)
+			: this()
 		{
 			MenuId = menuId;
 			ItemId = itemId;
 		}
 
-		//Serializer ctor
-		private MenuItemIdentifier()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MenuItemIdentifier()
 		{
 			
 		}

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.42" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.42" />
     <PackageReference Include="GladNet3.Common.API" Version="3.0.48" />
     <PackageReference Include="JetBrains.Annotations" Version="10.2.1" />
   </ItemGroup>
