@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
+using Generic.Math;
 using GladNet;
 using NUnit.Framework;
 using Reinterpret.Net;
@@ -223,16 +224,16 @@ namespace Booma.Proxy
 			for(int i = 0; i < entry.BinaryData.Length && i < buffer.Length; i++)
 			{
 				if(!isSub60 && !isSub62)
-					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
 				else if(isSub60)
 				{
 					var command = (payload as ISub60CommandContainer).Command;
-					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
 				}
 				else if(isSub62)
 				{
 					var command = (payload as ISub62CommandContainer).Command;
-					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
 				}
 			}
 
@@ -275,7 +276,7 @@ namespace Booma.Proxy
 			//if(original.Length > 300)
 			//	return $"Original bytes too long to log. Size: {original.Length}";
 
-			return $"Original bytes: \n{original.Aggregate("", (s, b) => $"{s} {b:X}")}\n\n Result: \n{result.ToArray().Aggregate("", (s, b) => $"{s} {b:X}")}";
+			return $"Original bytes: \n{original.Aggregate("", (s, b) => $"{s} {b:X2}")}\n\n Result: \n{result.ToArray().Aggregate("", (s, b) => $"{s} {b:X2}")}";
 		}
 
 		//From GladNet block cipher implementation, will compute the blocksize of something.
