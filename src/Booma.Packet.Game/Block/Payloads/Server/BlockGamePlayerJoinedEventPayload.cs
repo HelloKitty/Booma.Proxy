@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	//See: https://github.com/Sylverant/ship_server/blob/9373df882859b234bc3e299d2e85f7b4c515d025/src/packets.h#L508
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_ADD_PLAYER_TYPE)]
-	public sealed class BlockGamePlayerJoinedEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
+	public sealed partial class BlockGamePlayerJoinedEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[SubCommand62(SubCommand62OperationCode.PhotonChairCommand)]
-	public sealed class Sub62PhotonChairCommand : BaseSubCommand62
+	public sealed partial class Sub62PhotonChairCommand : BaseSubCommand62
 	{
 		/// <summary>
 		/// TODO What is this?

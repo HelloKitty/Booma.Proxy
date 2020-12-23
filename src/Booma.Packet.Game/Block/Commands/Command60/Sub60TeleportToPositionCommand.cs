@@ -24,7 +24,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.TeleportToPosition)]
-	public sealed class Sub60TeleportToPositionCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60TeleportToPositionCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//TODO: Refactor this into an interface or something
 		//This is a short to absorb the unused byte

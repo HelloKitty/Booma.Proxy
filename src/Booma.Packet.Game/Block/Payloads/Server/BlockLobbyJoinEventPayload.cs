@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.LOBBY_JOIN_TYPE)]
-	public sealed class BlockLobbyJoinEventPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class BlockLobbyJoinEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: We can't currently handle this packet. It does something odd the serializer can't handle
 		/// <summary>

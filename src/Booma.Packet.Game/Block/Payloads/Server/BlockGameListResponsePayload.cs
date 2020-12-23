@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	//Syl: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/packets.h#L898
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_LIST_TYPE)]
-	public sealed class BlockGameListResponsePayload : PSOBBGamePacketPayloadServer
+	public sealed partial class BlockGameListResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		//This packet uses the flags for the length of the entries array - 1
 		/// <inheritdoc />

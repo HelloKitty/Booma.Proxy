@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	//Teth: https://github.com/justnoxx/psobb-tethealla/blob/master/login_server/login_server.c#L4537 I think?
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.LOGIN_93_TYPE)]
-	public sealed class SharedLoginRequest93Payload : PSOBBGamePacketPayloadClient
+	public sealed partial class SharedLoginRequest93Payload : PSOBBGamePacketPayloadClient
 	{
 		//TODO: This may not be serverType. It may have to do with the current operation
 		[Serializable]

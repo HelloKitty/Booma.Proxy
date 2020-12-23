@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.GAME_LEAVE_TYPE)]
-	public sealed class Sub60PlayerLeftGameEventCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PlayerLeftGameEventCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/*uint8_t client_id;
 		uint8_t leader_id;

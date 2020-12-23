@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_CHARACTER_SELECT_TYPE)]
-	public sealed class CharacterCharacterSelectionRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class CharacterCharacterSelectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The slot being selected.
@@ -43,7 +43,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private CharacterCharacterSelectionRequestPayload()
+		public CharacterCharacterSelectionRequestPayload()
 			: base(GameNetworkOperationCode.BB_CHARACTER_SELECT_TYPE)
 		{
 			

@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.MovingFastPositionChanged)]
-	public sealed class Sub60MovingFastPositionSetCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
+	public sealed partial class Sub60MovingFastPositionSetCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
 	{
 		/// <summary>
 		/// The client that is moving.
@@ -48,8 +48,10 @@ namespace Booma.Proxy
 			
 		}
 
-		//Serializer ctor
-		private Sub60MovingFastPositionSetCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60MovingFastPositionSetCommand()
 			: base(SubCommand60OperationCode.MovingFastPositionChanged)
 		{
 			CommandSize = 12 / 4;

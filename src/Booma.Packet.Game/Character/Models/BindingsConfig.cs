@@ -29,7 +29,17 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public byte[] JoystickConfiguration { get; internal set; }
 
-		private BindingsConfig()
+		public BindingsConfig([NotNull] byte[] keyConfiguration, [NotNull] byte[] joystickConfiguration)
+			: this()
+		{
+			KeyConfiguration = keyConfiguration ?? throw new ArgumentNullException(nameof(keyConfiguration));
+			JoystickConfiguration = joystickConfiguration ?? throw new ArgumentNullException(nameof(joystickConfiguration));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BindingsConfig()
 		{
 			
 		}

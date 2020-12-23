@@ -16,11 +16,15 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public AttackHitResult([NotNull] MapObjectIdentifier objectIdentifier)
+			: this()
 		{
 			ObjectIdentifier = objectIdentifier ?? throw new ArgumentNullException(nameof(objectIdentifier));
 		}
 
-		private AttackHitResult()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public AttackHitResult()
 		{
 
 		}

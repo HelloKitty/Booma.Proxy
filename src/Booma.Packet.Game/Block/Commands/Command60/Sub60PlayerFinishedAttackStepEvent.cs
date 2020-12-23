@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.AttackStepFinished)]
-	public sealed class Sub60PlayerFinishedAttackStepEvent : BaseSubCommand60, IMessageContextIdentifiable, ISerializationEventListener
+	public sealed partial class Sub60PlayerFinishedAttackStepEvent : BaseSubCommand60, IMessageContextIdentifiable, ISerializationEventListener
 	{
 		//TODO: I haven't verified that this is the identifier for the client BUT it probably has to be.
 		/// <inheritdoc />

@@ -37,6 +37,7 @@ namespace Booma.Proxy
 		public byte[] SecurityData { get; internal set; }
 
 		public ClientVerificationData(long hardwareInformation, [NotNull] byte[] securityData)
+			: this()
 		{
 			if(securityData == null) throw new ArgumentNullException(nameof(securityData));
 			if(securityData.Length > 40) throw new ArgumentException($"The {nameof(securityData)} was greater than the KnownSize attribute.");
@@ -45,8 +46,10 @@ namespace Booma.Proxy
 			SecurityData = securityData;
 		}
 
-		//Serializer ctor
-		private ClientVerificationData()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public ClientVerificationData()
 		{
 			
 		}

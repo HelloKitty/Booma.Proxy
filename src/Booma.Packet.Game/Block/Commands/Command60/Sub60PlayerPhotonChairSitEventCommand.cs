@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using Booma.Proxy;
 using FreecraftCore.Serializer;
 
-namespace Booma
+namespace Booma.Proxy
 {
 	/// <summary>
 	/// Subcommand 60 packet sent when a player sits down in a photon chair.
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.PhotonChairSit)]
-	public sealed class Sub60PlayerPhotonChairSitEventCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PlayerPhotonChairSitEventCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//TODO: Is this identifier?
 		/// <inheritdoc />

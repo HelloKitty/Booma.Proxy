@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.FreezePlayer)]
-	public sealed class Sub60PlayerFreezeCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PlayerFreezeCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <summary>
 		/// Enumeration of operation types.

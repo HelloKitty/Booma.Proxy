@@ -22,7 +22,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_WELCOME_TYPE)]
-	public sealed class SharedWelcomePayload : PSOBBGamePacketPayloadServer
+	public sealed partial class SharedWelcomePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Copyright message that the server sends to

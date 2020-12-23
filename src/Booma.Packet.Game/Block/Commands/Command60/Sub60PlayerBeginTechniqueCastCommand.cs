@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x8D
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.BeginTechniqueCast)]
-	public sealed class Sub60PlayerBeginTechniqueCastCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PlayerBeginTechniqueCastCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

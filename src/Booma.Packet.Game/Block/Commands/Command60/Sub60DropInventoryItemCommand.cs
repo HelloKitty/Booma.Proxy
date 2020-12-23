@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.DropInventoryItem)]
-	public sealed class Sub60DropInventoryItemCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60DropInventoryItemCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//TODO: What is this? Probably client id
 		/// <inheritdoc />

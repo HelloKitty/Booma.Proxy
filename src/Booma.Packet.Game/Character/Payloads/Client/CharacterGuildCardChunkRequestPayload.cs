@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_CHUNK_REQ_TYPE)]
-	public sealed class CharacterGuildCardChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
+	public sealed partial class CharacterGuildCardChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
 	{
 		//Tethella does this check on the unk for some reason.
 		//if ((client->decryptbuf[0x08] == 0x01) && (client->decryptbuf[0x10] == 0x01))

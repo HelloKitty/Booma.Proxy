@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SetFinalMovingPosition)]
-	public sealed class Sub60FinishedMovingCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
+	public sealed partial class Sub60FinishedMovingCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

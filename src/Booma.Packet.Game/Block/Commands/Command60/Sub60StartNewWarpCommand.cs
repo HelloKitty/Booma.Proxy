@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.GameStartWarpToArea)]
-	public sealed class Sub60StartNewWarpCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60StartNewWarpCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//TODO: Is this client id?
 		[WireMember(1)]

@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_CHARACTER_ACK_TYPE)]
-	public sealed class CharacterCharacterSelectionAckPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class CharacterCharacterSelectionAckPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The slot this character ack is for.

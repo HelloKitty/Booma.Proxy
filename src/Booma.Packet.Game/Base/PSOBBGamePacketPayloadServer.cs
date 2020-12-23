@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[DefaultChild(typeof(UnknownServerGamePayload))] //this will be the default deserialized packet when we don't know what it is.
 	[WireDataContract(PrimitiveSizeType.UInt16)]
-	public abstract class PSOBBGamePacketPayloadServer : IPacketPayload, IOperationCodeable<GameNetworkOperationCode>
+	public abstract partial class PSOBBGamePacketPayloadServer : IPacketPayload, IOperationCodeable<GameNetworkOperationCode>
 	{
 		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
 		/// <summary>

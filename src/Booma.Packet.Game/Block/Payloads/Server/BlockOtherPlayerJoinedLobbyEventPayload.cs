@@ -34,7 +34,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.LOBBY_ADD_PLAYER_TYPE)]
-	public sealed class BlockOtherPlayerJoinedLobbyEventPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class BlockOtherPlayerJoinedLobbyEventPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The ID granted to the client that is joining the lobby.

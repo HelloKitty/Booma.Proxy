@@ -10,7 +10,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.CHAT_TYPE)]
-	public class BlockTextChatMessageRequestPayload : PSOBBGamePacketPayloadClient
+	public partial class BlockTextChatMessageRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//TODO: Syl doesn't deal with this, Teth sends client id. Not sure what to do. Why bother
 		[WireMember(1)]

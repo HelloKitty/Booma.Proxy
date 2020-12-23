@@ -47,8 +47,19 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public string FileName { get; internal set; }
 
-		//Serializer ctor
-		private DataParameterFileHeader()
+		public DataParameterFileHeader(uint fileSize, uint checksum, uint offset, [NotNull] string fileName)
+			: this()
+		{
+			FileSize = fileSize;
+			Checksum = checksum;
+			Offset = offset;
+			FileName = fileName ?? throw new ArgumentNullException(nameof(fileName));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public DataParameterFileHeader()
 		{
 			
 		}

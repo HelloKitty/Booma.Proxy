@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SetExperienceRate)]
-	public sealed class Sub60SetExperienceRateCommand : BaseSubCommand60
+	public sealed partial class Sub60SetExperienceRateCommand : BaseSubCommand60
 	{
 		/// <summary>
 		/// The experience rate for the game/room.

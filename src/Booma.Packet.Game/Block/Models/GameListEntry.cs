@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,8 +60,28 @@ namespace Booma.Proxy
 		[WireMember(6)]
 		internal byte flags { get; set; }
 
-		//Serializer ctor
-		private GameListEntry()
+		public GameListEntry([NotNull] MenuItemIdentifier listing, 
+			DifficultyType difficulty, 
+			byte playerCount,
+			[NotNull] string name, 
+			EpisodeType episode, 
+			byte flags)
+		: this()
+		{
+			if (!Enum.IsDefined(typeof(DifficultyType), difficulty)) throw new InvalidEnumArgumentException(nameof(difficulty), (int) difficulty, typeof(DifficultyType));
+			if (!Enum.IsDefined(typeof(EpisodeType), episode)) throw new InvalidEnumArgumentException(nameof(episode), (int) episode, typeof(EpisodeType));
+			Listing = listing ?? throw new ArgumentNullException(nameof(listing));
+			Difficulty = difficulty;
+			PlayerCount = playerCount;
+			Name = name ?? throw new ArgumentNullException(nameof(name));
+			Episode = episode;
+			this.flags = flags;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public GameListEntry()
 		{
 			
 		}

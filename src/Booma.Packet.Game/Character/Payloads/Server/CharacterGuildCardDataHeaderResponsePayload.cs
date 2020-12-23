@@ -25,7 +25,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_GUILDCARD_HEADER_TYPE)]
-	public sealed class CharacterGuildCardDataHeaderResponsePayload : PSOBBGamePacketPayloadServer
+	public sealed partial class CharacterGuildCardDataHeaderResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// One? Not sure why.

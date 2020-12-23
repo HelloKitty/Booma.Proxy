@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand62(SubCommand62OperationCode.BurstType5)]
-	public sealed class Sub62ClientBurstBeginEventCommand : BaseSubCommand62
+	public sealed partial class Sub62ClientBurstBeginEventCommand : BaseSubCommand62
 	{
 		//TODO: Is it really quest data like the Sub60 version?
 		//TODO: This are about 518 bytes here for quest data

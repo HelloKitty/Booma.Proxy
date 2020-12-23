@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	//TODO: What is this packet for/about?
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_GUILD_REQUEST_TYPE)]
-	public class CharacterGuildHeaderRequestPayload : PSOBBGamePacketPayloadClient
+	public partial class CharacterGuildHeaderRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Empty payload that requests guild stuff? Idk
 		public CharacterGuildHeaderRequestPayload()

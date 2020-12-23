@@ -23,7 +23,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.GAME_COMMAND2_TYPE)]
-	public class BlockNetworkCommand62EventClientPayload : PSOBBGamePacketPayloadClient, ISub62CommandContainer
+	public partial class BlockNetworkCommand62EventClientPayload : PSOBBGamePacketPayloadClient, ISub62CommandContainer
 	{
 		/// <summary>
 		/// The subcommand.
@@ -38,8 +38,10 @@ namespace Booma.Proxy
 			Command = command ?? throw new ArgumentNullException(nameof(command));
 		}
 
-		//Serializer ctor
-		protected BlockNetworkCommand62EventClientPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockNetworkCommand62EventClientPayload()
 			: base(GameNetworkOperationCode.GAME_COMMAND2_TYPE)
 		{
 			

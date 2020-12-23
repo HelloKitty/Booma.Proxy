@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.CHAR_DATA_REQUEST_TYPE)]
-	public sealed class BlockCharacterDataInitializationServerRequestPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class BlockCharacterDataInitializationServerRequestPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Empty, just a command payload that tells the client to send character init.

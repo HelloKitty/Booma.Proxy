@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BLOCK_LIST_TYPE)]
-	public sealed class ShipBlockListEventPayload : PSOBBGamePacketPayloadServer, ISerializationEventListener
+	public sealed partial class ShipBlockListEventPayload : PSOBBGamePacketPayloadServer, ISerializationEventListener
 	{
 		//Disable flags serialization so that the ship can get the 4 byte length and
 		//handle writing the 4 bytes length
@@ -56,10 +56,17 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		internal MenuListing LastMenuListing { get; set; }
 
+		public ShipBlockListEventPayload([JetBrains.Annotations.NotNull] MenuListing[] menuListings, [JetBrains.Annotations.NotNull] MenuListing lastMenuListing) 
+			: this()
+		{
+			_MenuListings = menuListings ?? throw new ArgumentNullException(nameof(menuListings));
+			LastMenuListing = lastMenuListing ?? throw new ArgumentNullException(nameof(lastMenuListing));
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private ShipBlockListEventPayload()
+		public ShipBlockListEventPayload()
 			: base(GameNetworkOperationCode.BLOCK_LIST_TYPE)
 		{
 			

@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_LEAVE_TYPE)]
-	public sealed class BlockOtherPlayerLeaveGameEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
+	public sealed partial class BlockOtherPlayerLeaveGameEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
 	{
 		/// <summary>
 		/// Indicates the ID of the player leaving the game.

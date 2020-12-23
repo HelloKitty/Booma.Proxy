@@ -54,7 +54,7 @@ namespace Booma.Proxy
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x0A
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.ObjectDamageHit)]
-	public sealed class Sub60ObjectDamageRecievedCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60ObjectDamageRecievedCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		public byte Identifier => ObjectIdentifier.Identifier;

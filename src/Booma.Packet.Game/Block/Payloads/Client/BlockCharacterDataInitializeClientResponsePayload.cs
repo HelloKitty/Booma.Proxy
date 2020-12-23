@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	//Tethella doesn't even do anything with this. It initializes 10 bytes from the middle into an unknown field.
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BLOCK_SET_CHAR_DATA_TYPE)]
-	public sealed class BlockCharacterDataInitializeClientResponsePayload : PSOBBGamePacketPayloadClient
+	public sealed partial class BlockCharacterDataInitializeClientResponsePayload : PSOBBGamePacketPayloadClient
 	{
 		[WireMember(1)]
 		[KnownSize(2096 - 8)]

@@ -7,15 +7,33 @@
 
   <ItemGroup>
     <PackageReference Include="C5" Version="2.5.3" />
-    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.42" />
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.42" />
-    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.42" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.43" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.43" />
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.43" />
     <PackageReference Include="Reinterpret.Net" Version="2.0.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="SerializerDebug\**" />
     <None Include="SerializerDebug\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Booma.Packet.Common</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Booma.Packet.Patch</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Booma.Packet.Game</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
 </Project>

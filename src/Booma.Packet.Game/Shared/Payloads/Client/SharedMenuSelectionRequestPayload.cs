@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.MENU_SELECT_TYPE)]
-	public sealed class SharedMenuSelectionRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class SharedMenuSelectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The id of the menu selecting from.

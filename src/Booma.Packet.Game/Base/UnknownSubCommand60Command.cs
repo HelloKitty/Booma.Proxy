@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// An unimplemented or unknown subcommand for the <see cref="BlockNetworkCommand60EventClientPayload"/>.
 	/// </summary>
 	[WireDataContract]
-	public sealed class UnknownSubCommand60Command : BaseSubCommand60, IUnknownPayloadType
+	public partial class UnknownSubCommand60Command : BaseSubCommand60, IUnknownPayloadType
 	{
 		/// <inheritdoc />
 		public short OperationCode => (short)base.CommandOperationCode;

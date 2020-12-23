@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.SUBCMD_LOAD_3B)]
-	public sealed class Sub60FinishedMapLoadCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60FinishedMapLoadCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//Empty command that just notifies other players of finished loading map
 		/// <inheritdoc />

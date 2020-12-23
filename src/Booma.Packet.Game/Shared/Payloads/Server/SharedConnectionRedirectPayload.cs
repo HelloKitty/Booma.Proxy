@@ -24,7 +24,7 @@ namespace Booma.Proxy
 	//Syl struct: https://github.com/Sylverant/login_server/blob/d275702120ade56ce0b8b826a6c549753587d7e1/src/packets.h#L321
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.REDIRECT_TYPE)]
-	public sealed class SharedConnectionRedirectPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class SharedConnectionRedirectPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The IPAddress that should be reidrected to.

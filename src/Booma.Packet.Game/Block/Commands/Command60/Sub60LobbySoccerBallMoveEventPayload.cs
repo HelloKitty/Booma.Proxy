@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.LobbyBallMove)]
-	public sealed class Sub60LobbySoccerBallMoveEventPayload : BaseSubCommand60
+	public sealed partial class Sub60LobbySoccerBallMoveEventPayload : BaseSubCommand60
 	{
 		//TODO: Is this right?
 		[WireMember(1)]

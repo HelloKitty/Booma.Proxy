@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.GAME_CREATE_TYPE)]
-	public sealed class BlockPlayerCreateGameRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class BlockPlayerCreateGameRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Sylverant says this is unused 2 uints
 		[WireMember(1)]

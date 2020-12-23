@@ -10,9 +10,10 @@ namespace Booma.Proxy
 	/// <summary>
 	/// The base type for the subcommand sent in the 0x60 packets.
 	/// </summary>
+	[WireMessageType]
 	[DefaultChild(typeof(UnknownSubCommand60Command))]
 	[WireDataContract(PrimitiveSizeType.Byte)]
-	public abstract class BaseSubCommand60 : ISubCommand60
+	public abstract partial class BaseSubCommand60 : ISubCommand60
 	{
 		/// <summary>
 		/// The operation code for the subcommand.

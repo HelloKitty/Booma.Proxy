@@ -23,7 +23,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_PARAM_CHUNK_TYPE)]
-	public sealed class CharacterDataParametersChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
+	public sealed partial class CharacterDataParametersChunkResponsePayload : PSOBBGamePacketPayloadServer, IChunkResponse
 	{
 		/// <summary>
 		/// The id/number for this chunk.

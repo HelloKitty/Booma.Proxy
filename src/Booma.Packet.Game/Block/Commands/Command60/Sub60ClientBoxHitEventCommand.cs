@@ -10,7 +10,7 @@ namespace Booma.Proxy
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x0B
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.GameBoxHit)]
-	public sealed class Sub60ClientBoxHitEventCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60ClientBoxHitEventCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		public byte Identifier => ObjectIdentifier.Identifier;

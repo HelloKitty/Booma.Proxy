@@ -22,7 +22,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_COMMANDD_TYPE)]
-	public class BlockNetworkCommand6DEventServerPayload : PSOBBGamePacketPayloadServer, ISub6DCommandContainer, IMessageContextIdentifiable
+	public partial class BlockNetworkCommand6DEventServerPayload : PSOBBGamePacketPayloadServer, ISub6DCommandContainer, IMessageContextIdentifiable
 	{
 		//Sub6D actually uses the flags for something.
 		//It uses the first flags byte to indicate which remote player index

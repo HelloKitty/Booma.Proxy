@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// An unimplemented or unknown subcommand for the 0x6D packets.
 	/// </summary>
 	[WireDataContract]
-	public sealed class UnknownSubCommand6DCommand : BaseSubCommand6D, IUnknownPayloadType
+	public partial class UnknownSubCommand6DCommand : BaseSubCommand6D, IUnknownPayloadType
 	{
 		/// <inheritdoc />
 		public short OperationCode => (short)base.CommandOperationCode;

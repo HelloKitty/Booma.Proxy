@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[DefaultChild(typeof(UnknownSubCommand6DCommand))]
 	[WireDataContract(PrimitiveSizeType.Byte)]
-	public abstract class BaseSubCommand6D : ISubCommand6D
+	public abstract partial class BaseSubCommand6D : ISubCommand6D
 	{
 		/// <summary>
 		/// The operation code for the subcommand.

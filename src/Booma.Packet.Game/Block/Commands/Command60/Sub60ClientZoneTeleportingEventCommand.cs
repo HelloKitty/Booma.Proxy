@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.BeginZoneTeleporting)]
-	public sealed class Sub60ClientZoneTeleportingEventCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60ClientZoneTeleportingEventCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

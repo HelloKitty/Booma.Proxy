@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.MESSAGE_BOX_TYPE)]
-	public sealed class SharedCreateMessageBoxEventPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class SharedCreateMessageBoxEventPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Message to write to the created message box.

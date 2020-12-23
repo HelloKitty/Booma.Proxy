@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.GameBurstingComplete)]
-	public sealed class Sub60GameBurstingCompleteEventCommand : BaseSubCommand60
+	public sealed partial class Sub60GameBurstingCompleteEventCommand : BaseSubCommand60
 	{
 		//See: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L13792
 		//TODO: Investigate what this is
@@ -47,7 +47,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private Sub60GameBurstingCompleteEventCommand()
+		public Sub60GameBurstingCompleteEventCommand()
 			: base(SubCommand60OperationCode.GameBurstingComplete)
 		{
 			

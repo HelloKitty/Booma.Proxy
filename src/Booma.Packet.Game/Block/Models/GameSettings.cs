@@ -58,8 +58,10 @@ namespace Booma.Proxy
 		[WireMember(10)]
 		internal byte unused { get; set; }
 
-		//Serializer ctor
-		private GameSettings()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public GameSettings()
 		{
 			
 		}

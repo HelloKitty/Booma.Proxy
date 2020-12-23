@@ -24,7 +24,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private CharacterStats()
+		public CharacterStats()
 		{
 			
 		}

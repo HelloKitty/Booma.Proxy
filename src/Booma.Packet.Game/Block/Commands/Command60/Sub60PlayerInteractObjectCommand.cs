@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.BeginObjectInteract)]
-	public sealed class Sub60PlayerInteractObjectCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PlayerInteractObjectCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

@@ -38,18 +38,23 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public MapObjectIdentifier(short objectIdentifier)
+			: this()
 		{
 			ObjectIdentifier = objectIdentifier;
 		}
 
 		//TODO: This is NOT floorid.
 		public MapObjectIdentifier(ObjectHitType objectType, byte floorId, byte objectId)
+			: this()
 		{
 			//We have to bitshift these together, since the entry is sent packed like this.
 			ObjectIdentifier = (short)(((short)objectType << 12) + (floorId << 8) + objectId);
 		}
 
-		private MapObjectIdentifier()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MapObjectIdentifier()
 		{
 			
 		}

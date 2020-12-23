@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.AlertFreshlyWarpedClients)]
-	public sealed class Sub60FinishedWarpAckCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60FinishedWarpAckCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

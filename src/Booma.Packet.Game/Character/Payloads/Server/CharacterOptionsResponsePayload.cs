@@ -16,7 +16,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_OPTION_CONFIG_TYPE)]
-	public sealed class CharacterOptionsResponsePayload : PSOBBGamePacketPayloadServer
+	public sealed partial class CharacterOptionsResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// Unknown bytes.

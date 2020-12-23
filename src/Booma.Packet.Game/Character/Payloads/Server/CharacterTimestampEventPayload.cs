@@ -19,7 +19,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.TIMESTAMP_TYPE)]
-	public sealed class CharacterTimestampEventPayload : PSOBBGamePacketPayloadServer
+	public sealed partial class CharacterTimestampEventPayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
 		/// The time stamp.
@@ -29,8 +29,16 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public string Timestamp { get; internal set; }
 
-		//Serializer ctor
-		private CharacterTimestampEventPayload()
+		public CharacterTimestampEventPayload([JetBrains.Annotations.NotNull] string timestamp) 
+			: this()
+		{
+			Timestamp = timestamp ?? throw new ArgumentNullException(nameof(timestamp));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterTimestampEventPayload()
 			: base(GameNetworkOperationCode.TIMESTAMP_TYPE)
 		{
 			

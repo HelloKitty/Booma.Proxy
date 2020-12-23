@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.CHAT_TYPE)]
-	public sealed class BlockTextChatMessageEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
+	public sealed partial class BlockTextChatMessageEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
 	{
 		//TODO: What is this?
 		[WireMember(1)]

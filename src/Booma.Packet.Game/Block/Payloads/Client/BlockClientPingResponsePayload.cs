@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.PING_TYPE)]
-	public sealed class BlockClientPingResponsePayload : PSOBBGamePacketPayloadClient
+	public sealed partial class BlockClientPingResponsePayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// Just empty response to the ping.

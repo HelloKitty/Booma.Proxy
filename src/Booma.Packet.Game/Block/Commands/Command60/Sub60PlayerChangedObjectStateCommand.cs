@@ -10,7 +10,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.ChangeObjectState)]
-	public sealed class Sub60PlayerChangedObjectStateCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PlayerChangedObjectStateCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		public byte Identifier => ObjectIdentifier.Identifier;
@@ -57,7 +57,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private Sub60PlayerChangedObjectStateCommand()
+		public Sub60PlayerChangedObjectStateCommand()
 			: base(SubCommand60OperationCode.ChangeObjectState)
 		{
 			CommandSize = 12 / 4;

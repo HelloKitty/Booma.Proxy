@@ -57,8 +57,10 @@ namespace Booma.Proxy
 		[WireMember(10)]
 		internal uint unk3 { get; set; }
 
-		//Serializer ctor
-		private PlayerInformationHeader()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PlayerInformationHeader()
 		{
 			
 		}

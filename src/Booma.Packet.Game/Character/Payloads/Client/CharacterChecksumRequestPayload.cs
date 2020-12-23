@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_CHECKSUM_TYPE)]
-	public sealed class CharacterChecksumRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class CharacterChecksumRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//TODO: What is this a checksum of?
 		/// <summary>

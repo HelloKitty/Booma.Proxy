@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.DONE_BURSTING_TYPE)]
-	public sealed class BlockFinishedGameBurstingRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class BlockFinishedGameBurstingRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// This is just an empty payload that says we're done

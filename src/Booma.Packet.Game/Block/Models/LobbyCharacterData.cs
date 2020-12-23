@@ -97,7 +97,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private LobbyCharacterData()
+		public LobbyCharacterData()
 		{
 			
 		}

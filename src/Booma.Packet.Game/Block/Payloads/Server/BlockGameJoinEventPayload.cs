@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.GAME_JOIN_TYPE)]
-	public sealed class BlockGameJoinEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
+	public sealed partial class BlockGameJoinEventPayload : PSOBBGamePacketPayloadServer, IMessageContextIdentifiable
 	{
 		//We want to override the flags and deserialize it as the count of players in the room
 		/// <inheritdoc />

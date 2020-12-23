@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.PickupItem)]
-	public sealed class Sub60PickupItemFromGroundCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60PickupItemFromGroundCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		[WireMember(1)]

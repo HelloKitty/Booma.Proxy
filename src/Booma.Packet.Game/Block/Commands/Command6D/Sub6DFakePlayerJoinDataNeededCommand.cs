@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[SubCommand6D(SubCommand6DOperationCode.PlayerJoinedData)]
-	public sealed class Sub6DFakePlayerJoinDataNeededCommand : BaseSubCommand6D
+	public sealed partial class Sub6DFakePlayerJoinDataNeededCommand : BaseSubCommand6D
 	{
 		//See: https://github.com/justnoxx/psobb-tethealla/blob/master/ship_server/ship_server.c#L11090
 		//This is a lot of different types of data here

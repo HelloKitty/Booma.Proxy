@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.BB_PARAM_CHUNK_REQ_TYPE)]
-	public sealed class CharacterDataParametersChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
+	public sealed partial class CharacterDataParametersChunkRequestPayload : PSOBBGamePacketPayloadClient, IChunkRequest
 	{
 		//We don't want the flags to get the 4 byte ChunkNumber.
 		/// <inheritdoc />
@@ -36,8 +36,10 @@ namespace Booma.Proxy
 			ChunkNumber = chunkNumber;
 		}
 
-		//Serializer ctor
-		private CharacterDataParametersChunkRequestPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterDataParametersChunkRequestPayload()
 			: base(GameNetworkOperationCode.BB_PARAM_CHUNK_REQ_TYPE)
 		{
 			

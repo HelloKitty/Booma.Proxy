@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x76
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.CreatureDeathEvent)]
-	public sealed class Sub60CreatureDeathEventCommand : BaseSubCommand60, IMessageContextIdentifiable
+	public sealed partial class Sub60CreatureDeathEventCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		/// <inheritdoc />
 		public byte Identifier => ObjectIdentifier.Identifier;

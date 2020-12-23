@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.LOBBY_CHANGE_TYPE)]
-	public sealed class BlockLobbyChangeRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class BlockLobbyChangeRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// The menu selection involved with the lobby change

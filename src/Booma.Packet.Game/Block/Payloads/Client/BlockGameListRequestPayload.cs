@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameClientPacketPayload(GameNetworkOperationCode.GAME_LIST_TYPE)]
-	public sealed class BlockGameListRequestPayload : PSOBBGamePacketPayloadClient
+	public sealed partial class BlockGameListRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
 		/// Empty packet, just requires the game list.

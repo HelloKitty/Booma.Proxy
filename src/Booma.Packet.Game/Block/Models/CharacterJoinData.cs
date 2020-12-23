@@ -17,10 +17,18 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public LobbyCharacterData Data { get; internal set; }
 
+		public CharacterJoinData([NotNull] PlayerInformationHeader playerHeader, [NotNull] CharacterInventoryData inventory, [NotNull] LobbyCharacterData data)
+			: this()
+		{
+			PlayerHeader = playerHeader ?? throw new ArgumentNullException(nameof(playerHeader));
+			Inventory = inventory ?? throw new ArgumentNullException(nameof(inventory));
+			Data = data ?? throw new ArgumentNullException(nameof(data));
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private CharacterJoinData()
+		public CharacterJoinData()
 		{
 			
 		}

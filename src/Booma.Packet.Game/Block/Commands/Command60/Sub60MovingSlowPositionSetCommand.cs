@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.MovingSlowPositionChanged)]
-	public sealed class Sub60MovingSlowPositionSetCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
+	public sealed partial class Sub60MovingSlowPositionSetCommand : BaseSubCommand60, IMessageContextIdentifiable, IWorldPositionable<float>
 	{
 		/// <summary>
 		/// The ID of the client moving.

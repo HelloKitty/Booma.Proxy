@@ -19,6 +19,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public TechniqueDefinitionData(short techniqueId, byte level)
+			: this()
 		{
 			TechniqueId = techniqueId;
 			Level = level;
@@ -27,7 +28,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private TechniqueDefinitionData()
+		public TechniqueDefinitionData()
 		{
 			
 		}
