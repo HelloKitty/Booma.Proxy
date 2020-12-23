@@ -1,3 +1,4 @@
+using System;
 using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
@@ -47,8 +48,27 @@ namespace Booma.Proxy
 		[WireMember(7)]
 		public Vector2<float> Proportions { get; internal set; }
 
-		//Serializer ctor
-		private CharacterCustomizationInfo()
+		public CharacterCustomizationInfo(ushort costumeId, 
+			ushort skinId, 
+			ushort faceId, 
+			ushort headId, 
+			ushort hairId, 
+			Vector3<ushort> hairColor, 
+			Vector2<float> proportions)
+		{
+			CostumeId = costumeId;
+			SkinId = skinId;
+			FaceId = faceId;
+			HeadId = headId;
+			HairId = hairId;
+			HairColor = hairColor ?? throw new ArgumentNullException(nameof(hairColor));
+			Proportions = proportions ?? throw new ArgumentNullException(nameof(proportions));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterCustomizationInfo()
 		{
 			
 		}

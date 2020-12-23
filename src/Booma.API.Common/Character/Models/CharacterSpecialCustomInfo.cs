@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
@@ -35,8 +37,21 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public uint ColoredNameChecksum { get; internal set; }
 
-		//Serializer ctor
-		private CharacterSpecialCustomInfo()
+		public CharacterSpecialCustomInfo(uint nameColor, 
+			CharacterModelType modelType, 
+			uint coloredNameChecksum)
+		{
+			if(!Enum.IsDefined(typeof(CharacterModelType), modelType)) throw new InvalidEnumArgumentException(nameof(modelType), (int)modelType, typeof(CharacterModelType));
+
+			NameColor = nameColor;
+			ModelType = modelType;
+			ColoredNameChecksum = coloredNameChecksum;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterSpecialCustomInfo()
 		{
 			
 		}

@@ -23,7 +23,10 @@ namespace Booma.Proxy
 			Z = z;
 		}
 
-		protected Vector3()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Vector3()
 		{
 			
 		}

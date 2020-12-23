@@ -1,3 +1,4 @@
+using System;
 using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
@@ -8,27 +9,21 @@ namespace Booma.Proxy
 	[WireDataContract]
 	public sealed class HairColorInfo
 	{
-		//TODO: Why is the color 2 bytes?
 		/// <summary>
-		/// The red amount.
+		/// RGB - (Red, Green, Blue) vector color channels (2 byte for some reason).
 		/// </summary>
 		[WireMember(1)]
-		public ushort RedChannel { get; internal set; }
+		public Vector3<ushort> Color { get; internal set; }
+
+		public HairColorInfo(Vector3<ushort> color)
+		{
+			Color = color ?? throw new ArgumentNullException(nameof(color));
+		}
 
 		/// <summary>
-		/// The green amount.
+		/// Serializer ctor.
 		/// </summary>
-		[WireMember(2)]
-		public ushort GreenChannel { get; internal set; }
-		
-		/// <summary>
-		/// The blue amount.
-		/// </summary>
-		[WireMember(3)]
-		public ushort BlueChannel { get; internal set; }
-
-		//Serializer ctor
-		private HairColorInfo()
+		public HairColorInfo()
 		{
 			
 		}

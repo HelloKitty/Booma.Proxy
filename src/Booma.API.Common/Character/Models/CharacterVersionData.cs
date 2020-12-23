@@ -20,8 +20,17 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		internal uint V1Flags { get; set; }
 
-		//Serializer ctor.
-		private CharacterVersionData()
+		public CharacterVersionData(byte v2Flags, byte version, uint v1Flags)
+		{
+			V2Flags = v2Flags;
+			Version = version;
+			V1Flags = v1Flags;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterVersionData()
 		{
 			
 		}

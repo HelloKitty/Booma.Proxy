@@ -20,8 +20,16 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public uint Level { get; internal set; }
 
-		//Serializer ctor
-		private CharacterProgress()
+		public CharacterProgress(uint experience, uint level)
+		{
+			Experience = experience;
+			Level = level;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterProgress()
 		{
 			
 		}
