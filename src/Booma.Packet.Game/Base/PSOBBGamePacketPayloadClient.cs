@@ -14,6 +14,7 @@ namespace Booma.Proxy
 	/// Contains the <see cref="Flags"/> optional byte chunk and maps to child
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
+	[WireMessageType]
 	[DefaultChild(typeof(UnknownClientGamePayload))]
 	[WireDataContract(PrimitiveSizeType.UInt16)]
 	public abstract partial class PSOBBGamePacketPayloadClient : IPacketPayload, IOperationCodeable<GameNetworkOperationCode>
