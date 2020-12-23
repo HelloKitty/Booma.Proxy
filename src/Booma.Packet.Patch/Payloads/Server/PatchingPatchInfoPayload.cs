@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	//Sylverant implementation: https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.c#L237 and structure https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.h#L106
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_SEND_INFO)]
-	public sealed class PatchingPatchInfoPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingPatchInfoPayload : PSOBBPatchPacketPayloadServer
 	{
 		//0x0C 0x00 Size
 		//0x11 0x00 Type

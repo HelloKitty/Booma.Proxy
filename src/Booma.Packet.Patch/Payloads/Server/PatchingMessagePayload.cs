@@ -10,7 +10,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_MESSAGE_TYPE)]
-	public sealed class PatchingMessagePayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingMessagePayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// News, MOTD, whatever

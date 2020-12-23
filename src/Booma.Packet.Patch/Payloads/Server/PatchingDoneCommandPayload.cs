@@ -14,7 +14,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_SEND_DONE)]
-	public sealed class PatchingDoneCommandPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingDoneCommandPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// Empty command packet that indicates patching is finished.

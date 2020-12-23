@@ -27,7 +27,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_WELCOME_TYPE)]
-	public sealed class PatchingWelcomePayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingWelcomePayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// Copyright message sent down from the patch server.

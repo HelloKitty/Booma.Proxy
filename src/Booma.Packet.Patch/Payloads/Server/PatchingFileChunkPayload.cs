@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_DATA_SEND)]
-	public sealed class PatchingFileChunkPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingFileChunkPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// Patch file chunk index

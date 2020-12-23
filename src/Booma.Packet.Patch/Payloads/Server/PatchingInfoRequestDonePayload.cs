@@ -9,7 +9,7 @@ namespace Booma.Proxy
 {
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_INFO_FINISHED)]
-	public sealed class PatchingInfoRequestDonePayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingInfoRequestDonePayload : PSOBBPatchPacketPayloadServer
 	{
 		public PatchingInfoRequestDonePayload()
 			: base(PatchNetworkOperationCode.PATCH_INFO_FINISHED)

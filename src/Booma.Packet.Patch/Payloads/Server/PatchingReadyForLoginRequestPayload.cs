@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_LOGIN_TYPE)]
-	public sealed class PatchingReadyForLoginRequestPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingReadyForLoginRequestPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// This is empty, just the server telling the client it's ready for the login.

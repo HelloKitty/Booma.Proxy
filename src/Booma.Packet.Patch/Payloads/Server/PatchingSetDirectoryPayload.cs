@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_SET_DIRECTORY)]
-	public sealed class PatchingSetDirectoryPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingSetDirectoryPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// Patch file index

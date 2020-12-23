@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_REDIRECT_TYPE)]
-	public sealed class PatchingRedirectPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingRedirectPayload : PSOBBPatchPacketPayloadServer
 	{
 		/// <summary>
 		/// IP Address bytes

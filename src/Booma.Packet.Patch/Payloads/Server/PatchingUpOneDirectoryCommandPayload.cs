@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_ONE_DIR_UP)]
-	public sealed class PatchingUpOneDirectoryCommandPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingUpOneDirectoryCommandPayload : PSOBBPatchPacketPayloadServer
 	{
 		//Empty command packet that:
 		//Syl: "If t1 is non-NULL, we need to go up the tree as many times as we have

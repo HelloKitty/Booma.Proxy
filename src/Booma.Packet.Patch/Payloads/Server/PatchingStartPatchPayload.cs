@@ -13,7 +13,7 @@ namespace Booma.Proxy
 	// Will confirm or deny later after in the game.
 	[WireDataContract]
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_START_LIST)]
-	public sealed class PatchingStartPatchPayload : PSOBBPatchPacketPayloadServer
+	public sealed partial class PatchingStartPatchPayload : PSOBBPatchPacketPayloadServer
 	{
 		public PatchingStartPatchPayload()
 			: base(PatchNetworkOperationCode.PATCH_START_LIST)
