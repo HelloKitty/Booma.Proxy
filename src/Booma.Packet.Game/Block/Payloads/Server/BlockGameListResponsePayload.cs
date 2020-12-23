@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		/// The collection of game/party listings.
 		/// Contains information about the party too.
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Int32, 1)] //sends it size - 1 so we need to account for that
+		[SendSize(PrimitiveSizeType.Int32)] //sends it size - 1 so we need to account for that
 		[WireMember(1)]
 		internal GameListEntry[] _GameEntries { get; set; }
 
@@ -30,7 +30,8 @@ namespace Booma.Proxy
 		public IEnumerable<GameListEntry> GameEntries => _GameEntries?.Skip(1); //first one is junk
 
 		//Serializer ctor
-		private BlockGameListResponsePayload()
+		public BlockGameListResponsePayload()
+			: base(GameNetworkOperationCode.GAME_LIST_TYPE)
 		{
 			
 		}

@@ -28,8 +28,11 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public CharacterSelectionAckType AckType { get; internal set; }
 
-		//Serializer ctor
-		private CharacterCharacterSelectionAckPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterCharacterSelectionAckPayload()
+			: base(GameNetworkOperationCode.BB_CHARACTER_ACK_TYPE)
 		{
 			
 		}

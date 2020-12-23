@@ -48,8 +48,11 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public byte[] ClientVector { get; internal set; }
 
-		//Serializer ctor
-		private SharedWelcomePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedWelcomePayload()
+			: base(GameNetworkOperationCode.BB_WELCOME_TYPE)
 		{
 			
 		}

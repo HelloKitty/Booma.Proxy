@@ -26,8 +26,11 @@ namespace Booma.Proxy
 		//TODO: What is this?
 		//uint16_t padding;
 
-		//Serializer ctor
-		private BlockOtherPlayerLeaveLobbyEventPayload()
+		/// <summary>
+		/// Serializer ctor
+		/// </summary>
+		public BlockOtherPlayerLeaveLobbyEventPayload()
+			: base(GameNetworkOperationCode.LOBBY_LEAVE_TYPE)
 		{
 			
 		}

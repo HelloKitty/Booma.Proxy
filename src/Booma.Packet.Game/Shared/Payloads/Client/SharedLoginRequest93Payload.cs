@@ -107,6 +107,7 @@ namespace Booma.Proxy
 		}
 
 		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, uint guildCard, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
+			: this()
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
@@ -126,8 +127,11 @@ namespace Booma.Proxy
 			unk2 = Enumerable.Repeat((byte)serverType, 6).ToArray();
 		}
 
-		//Serializer ctor
-		private SharedLoginRequest93Payload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedLoginRequest93Payload()
+			: base(GameNetworkOperationCode.LOGIN_93_TYPE)
 		{
 
 		}

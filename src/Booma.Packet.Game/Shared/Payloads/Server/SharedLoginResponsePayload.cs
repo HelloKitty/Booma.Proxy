@@ -81,6 +81,7 @@ namespace Booma.Proxy
 		/// <param name="teamId">The team id the account is asscoiated with.</param>
 		/// <param name="securityData">The security data (?)</param>
 		public SharedLoginResponsePayload(uint guildCard, int teamId, byte[] securityData)
+			: this()
 		{
 			if(securityData == null) throw new ArgumentNullException(nameof(securityData));
 			if(securityData.Length != 40) throw new ArgumentException("Security data must be 40 bytes. Use fail ctor if you want to not provide the data.", nameof(securityData));
@@ -96,6 +97,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="responseCode">The response code to send.</param>
 		public SharedLoginResponsePayload(AuthenticationResponseCode responseCode)
+			: this()
 		{
 			if(!Enum.IsDefined(typeof(AuthenticationResponseCode), responseCode)) throw new InvalidEnumArgumentException(nameof(responseCode), (int)responseCode, typeof(AuthenticationResponseCode));
 			if(responseCode == AuthenticationResponseCode.LOGIN_93BB_OK) throw new ArgumentException($"Cannot create failure response with Code: {responseCode}", nameof(responseCode));
@@ -105,7 +107,11 @@ namespace Booma.Proxy
 			ResponseCode = responseCode;
 		}
 
-		private SharedLoginResponsePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedLoginResponsePayload()
+			: base(GameNetworkOperationCode.BB_SECURITY_TYPE)
 		{
 			
 		}

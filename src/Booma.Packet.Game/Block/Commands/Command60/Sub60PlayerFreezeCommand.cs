@@ -60,8 +60,11 @@ namespace Booma.Proxy
 		[WireMember(5)]
 		public int Unknown2 { get; internal set; }
 
-		//Serializer ctor
-		private Sub60PlayerFreezeCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60PlayerFreezeCommand()
+			: base(SubCommand60OperationCode.FreezePlayer)
 		{
 			
 		}

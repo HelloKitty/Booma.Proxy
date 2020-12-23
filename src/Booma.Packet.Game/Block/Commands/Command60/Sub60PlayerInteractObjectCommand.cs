@@ -32,8 +32,11 @@ namespace Booma.Proxy
 			Identifier = identifier;
 		}
 
-		//Serializer ctor
-		private Sub60PlayerInteractObjectCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60PlayerInteractObjectCommand()
+			: base(SubCommand60OperationCode.BeginObjectInteract)
 		{
 			CommandSize = 8 / 4;
 		}

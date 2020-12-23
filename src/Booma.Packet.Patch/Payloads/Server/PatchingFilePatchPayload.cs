@@ -34,6 +34,7 @@ namespace Booma.Proxy
 		public string PatchFileName { get; internal set; }
 
 		public PatchingFilePatchPayload(int patchFileIndex, int patchFileSize, string patchFileName)
+			: this()
 		{
 			if (patchFileIndex < 0) throw new ArgumentOutOfRangeException(nameof(patchFileIndex));
 			if (patchFileSize < 0) throw new ArgumentOutOfRangeException(nameof(patchFileSize));
@@ -45,8 +46,11 @@ namespace Booma.Proxy
 			PatchFileName = patchFileName;
 		}
 
-		//Serializer ctor
-		private PatchingFilePatchPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PatchingFilePatchPayload()
+			: base(PatchNetworkOperationCode.PATCH_FILE_SEND)
 		{
 
 		}

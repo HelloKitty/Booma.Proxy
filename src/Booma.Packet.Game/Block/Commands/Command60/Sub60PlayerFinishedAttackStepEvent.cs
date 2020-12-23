@@ -23,7 +23,7 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		internal byte unk1 { get; set; }
 		
-		[SendSize(SendSizeAttribute.SizeType.UShort)]
+		[SendSize(PrimitiveSizeType.UInt16)]
 		[WireMember(3)]
 		internal AttackHitResult[] _HitResults { get; set; }
 
@@ -43,6 +43,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60PlayerFinishedAttackStepEvent(byte identifier, params AttackHitResult[] hitResults)
+			: this()
 		{
 			Identifier = identifier;
 			_HitResults = hitResults;
@@ -54,7 +55,8 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private Sub60PlayerFinishedAttackStepEvent()
+		public Sub60PlayerFinishedAttackStepEvent()
+			: base(SubCommand60OperationCode.AttackStepFinished)
 		{
 			//We only set the command header before serialization because
 			//it's dynamic and can't be statically set and is only needed when we're about to serialize

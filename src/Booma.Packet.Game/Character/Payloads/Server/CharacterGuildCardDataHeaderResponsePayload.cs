@@ -41,8 +41,11 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public uint CheckSum { get; internal set; }
 
-		//Serializer ctor
-		private CharacterGuildCardDataHeaderResponsePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterGuildCardDataHeaderResponsePayload()
+			: base(GameNetworkOperationCode.BB_GUILDCARD_HEADER_TYPE)
 		{
 			
 		}

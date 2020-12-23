@@ -25,12 +25,16 @@ namespace Booma.Proxy
 		internal uint Padding { get; set; }
 
 		public CharacterChecksumRequestPayload(uint checksum)
+			: this()
 		{
 			Checksum = checksum;
 		}
 
-		//Serializer ctor
-		private CharacterChecksumRequestPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterChecksumRequestPayload()
+			: base(GameNetworkOperationCode.BB_CHECKSUM_TYPE)
 		{
 			
 		}

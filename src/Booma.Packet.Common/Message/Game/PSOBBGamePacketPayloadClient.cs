@@ -15,16 +15,16 @@ namespace Booma.Proxy
 	/// types based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
 	[DefaultChild(typeof(UnknownClientGamePayload))]
-	[WireDataContract(WireDataContractAttribute.KeyType.UShort, InformationHandlingFlags.DontConsumeRead, true)]
-	public abstract class PSOBBGamePacketPayloadClient : IPacketPayload, IOperationCodeable
+	[WireDataContract(PrimitiveSizeType.UInt16)]
+	public abstract class PSOBBGamePacketPayloadClient : IPacketPayload, IOperationCodeable<GameNetworkOperationCode>
 	{
 		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
 		/// <summary>
 		/// The operation code of the packet.
 		/// </summary>
-		[DontWrite] //we don't want to write this since the type key already handlers opcodes
+		[EnumSize(PrimitiveSizeType.UInt16)]
 		[WireMember(1)]
-		public short OperationCode { get; internal set; }
+		public GameNetworkOperationCode OperationCode { get; internal set; }
 
 		/// <summary>
 		/// Indicates if the flags is serialized with <see cref="Flags"/>.
@@ -48,9 +48,11 @@ namespace Booma.Proxy
 		/// Parameterless ctor.
 		/// Flags will be 0.
 		/// </summary>
-		protected PSOBBGamePacketPayloadClient()
+		protected PSOBBGamePacketPayloadClient(GameNetworkOperationCode operationCode)
 		{
-			
+			//This is in a serialization hotpath so we don't verify the enum with
+			//and throw because it depends on slow reflection.
+			OperationCode = operationCode;
 		}
 	}
 }

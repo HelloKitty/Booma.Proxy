@@ -14,18 +14,21 @@ namespace Booma.Proxy
 	/// Should be marked on <see cref="BaseSubCommand6D"/>.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-	public sealed class SubCommand6DAttribute : WireDataContractBaseLinkAttribute
+	public sealed class SubCommand6DAttribute : WireDataContractBaseLinkAttribute, IPayloadAttribute
 	{
 		/// <inheritdoc />
+		public Type BaseType { get; } = typeof(BaseSubCommand6D);
+
+		/// <inheritdoc />
 		public SubCommand6DAttribute(SubCommand6DOperationCode opCode)
-			: base((int)opCode, typeof(BaseSubCommand6D))
+			: base((int)opCode)
 		{
 			if(!Enum.IsDefined(typeof(SubCommand6DOperationCode), opCode)) throw new InvalidEnumArgumentException(nameof(opCode), (int)opCode, typeof(SubCommand6DOperationCode));
 		}
 
 		//Test ctor
 		internal SubCommand6DAttribute(int opCode)
-			: base(opCode, typeof(BaseSubCommand6D))
+			: base(opCode)
 		{
 
 		}

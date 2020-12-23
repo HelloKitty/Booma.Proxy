@@ -38,8 +38,11 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public byte[] PartialData { get; internal set; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
 
-		//Serializer ctor
-		private CharacterDataParametersChunkResponsePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterDataParametersChunkResponsePayload()
+			: base(GameNetworkOperationCode.BB_PARAM_CHUNK_TYPE)
 		{
 			
 		}

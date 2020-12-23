@@ -23,14 +23,18 @@ namespace Booma.Proxy
 		public string Message { get; internal set; }
 
 		public PatchingMessagePayload([NotNull] string message)
+			: this()
 		{
 			if(message == null) throw new ArgumentNullException(nameof(message));
 
 			Message = message;
 		}
 
-		//serializer ctor
-		private PatchingMessagePayload()
+		/// <summary>
+		/// Serializer ctor
+		/// </summary>
+		public PatchingMessagePayload()
+			: base(PatchNetworkOperationCode.PATCH_MESSAGE_TYPE)
 		{
 
 		}

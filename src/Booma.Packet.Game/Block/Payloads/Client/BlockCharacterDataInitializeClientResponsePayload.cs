@@ -21,7 +21,11 @@ namespace Booma.Proxy
 		[KnownSize(2096 - 8)]
 		public byte[] Bytes { get; internal set; } = new byte[2096 - 8];
 
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public BlockCharacterDataInitializeClientResponsePayload()
+			: base(GameNetworkOperationCode.BLOCK_SET_CHAR_DATA_TYPE)
 		{
 			//TODO: We should figure out what thisi s all about.
 			//Client sends some data, not sure what it is

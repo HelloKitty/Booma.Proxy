@@ -18,7 +18,9 @@ namespace Booma.Proxy
 		public int Padding { get; internal set; }
 
 		public PatchingFileDonePayload()
+			: base(PatchNetworkOperationCode.PATCH_FILE_DONE)
 		{
+
 		}
 	}
 }

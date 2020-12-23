@@ -40,7 +40,8 @@ namespace Booma.Proxy
 		[WireMember(5)]
 		public string ChatMessage { get; internal set; }
 
-		private BlockTextChatMessageEventPayload()
+		public BlockTextChatMessageEventPayload()
+			: base(GameNetworkOperationCode.CHAT_TYPE)
 		{
 			
 		}

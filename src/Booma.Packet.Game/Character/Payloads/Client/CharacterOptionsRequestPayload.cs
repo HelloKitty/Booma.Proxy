@@ -17,8 +17,8 @@ namespace Booma.Proxy
 	public sealed class CharacterOptionsRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Empty, just a payload that alerts the server to the desire of options
-
 		public CharacterOptionsRequestPayload()
+			: base(GameNetworkOperationCode.BB_OPTION_REQUEST_TYPE)
 		{
 			
 		}

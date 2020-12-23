@@ -68,7 +68,8 @@ namespace Booma.Proxy
 		[WireMember(10)]
 		public CharacterJoinData[] LobbyCharacterData { get; internal set; }
 
-		private BlockLobbyJoinEventPayload()
+		public BlockLobbyJoinEventPayload()
+			: base(GameNetworkOperationCode.LOBBY_JOIN_TYPE)
 		{
 			
 		}

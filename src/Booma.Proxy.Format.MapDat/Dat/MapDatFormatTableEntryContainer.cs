@@ -6,7 +6,7 @@ namespace Booma
 	/// dat_table_t : http://sharnoth.com/psodevwiki/format/dat
 	/// </summary>
 	[WireDataContractBaseType(1, typeof(MapDataFormatObjectEntryContainer))]
-	[WireDataContract(WireDataContractAttribute.KeyType.Int32)]
+	[WireDataContract(PrimitiveSizeType.Int32)]
 	public abstract class MapDatFormatTableEntryContainer
 	{
 		/// <summary>
@@ -33,7 +33,7 @@ namespace Booma
 		//Think of like sizeof(T) where T is  the entry type.
 		//We need to allow inheritors to indicate the actual size
 		//so we know the actual count of the entries.
-		protected abstract int EntrySize { get; internal set; }
+		protected abstract int EntrySize { get; }
 
 		//Serializer ctor
 		protected MapDatFormatTableEntryContainer()

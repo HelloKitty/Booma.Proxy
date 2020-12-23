@@ -31,12 +31,14 @@ namespace Booma.Proxy
 		public uint ChunkNumber { get; internal set; }
 
 		public CharacterDataParametersChunkRequestPayload(uint chunkNumber)
+			: this()
 		{
 			ChunkNumber = chunkNumber;
 		}
 
 		//Serializer ctor
 		private CharacterDataParametersChunkRequestPayload()
+			: base(GameNetworkOperationCode.BB_PARAM_CHUNK_REQ_TYPE)
 		{
 			
 		}

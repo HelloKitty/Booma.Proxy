@@ -21,7 +21,11 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte[] UnknownBytes { get; internal set; } = new byte[0]; //readtoend requires at least an empty array init
 
-		private UnknownSubCommand6DCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public UnknownSubCommand6DCommand()
+			: base(SubCommand6DOperationCode.Unknown)
 		{
 			
 		}

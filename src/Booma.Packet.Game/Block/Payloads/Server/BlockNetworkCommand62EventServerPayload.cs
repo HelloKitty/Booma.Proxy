@@ -30,7 +30,14 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public BaseSubCommand62 Command { get; internal set; }
 
-		protected BlockNetworkCommand62EventServerPayload()
+		public BlockNetworkCommand62EventServerPayload([NotNull] BaseSubCommand62 command) 
+			: this()
+		{
+			Command = command ?? throw new ArgumentNullException(nameof(command));
+		}
+
+		public BlockNetworkCommand62EventServerPayload()
+			: base(GameNetworkOperationCode.GAME_COMMAND2_TYPE)
 		{
 			
 		}

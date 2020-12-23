@@ -30,8 +30,11 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public string Message { get; internal set; }
 
-		//Serializer ctor
-		private SharedMarqueeScrollChangeEventPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedMarqueeScrollChangeEventPayload()
+			: base(GameNetworkOperationCode.BB_SCROLL_MSG_TYPE)
 		{
 			
 		}

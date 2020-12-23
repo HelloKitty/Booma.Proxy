@@ -21,18 +21,20 @@ namespace Booma.Proxy
 		/// request.
 		/// </summary>
 		[WireMember(1)]
-		public MenuItemIdentifier Selecion { get; internal set; }
+		public MenuItemIdentifier Selection { get; internal set; }
 
 		/// <inheritdoc />
-		public BlockLobbyChangeRequestPayload([NotNull] MenuItemIdentifier selecion)
+		public BlockLobbyChangeRequestPayload([NotNull] MenuItemIdentifier selection)
+			: this()
 		{
-			if(selecion == null) throw new ArgumentNullException(nameof(selecion));
-
-			Selecion = selecion;
+			Selection = selection ?? throw new ArgumentNullException(nameof(selection));
 		}
 
-		//Serializer ctor
-		private BlockLobbyChangeRequestPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockLobbyChangeRequestPayload()
+			: base(GameNetworkOperationCode.LOBBY_CHANGE_TYPE)
 		{
 			
 		}

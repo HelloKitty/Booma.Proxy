@@ -31,8 +31,11 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		internal short unk { get; set; }
 
-		//Serializer ctor
-		private Sub60PlayerLeftGameEventCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60PlayerLeftGameEventCommand()
+			: base(SubCommand60OperationCode.GAME_LEAVE_TYPE)
 		{
 			
 		}

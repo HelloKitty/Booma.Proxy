@@ -28,9 +28,11 @@ namespace Booma.Proxy
 		public byte PromotedLeaderIdentifier { get; internal set; }
 
 		//TODO: Ctor for serverside
-
-		//Serializer ctor
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public BlockOtherPlayerLeaveGameEventPayload()
+			: base(GameNetworkOperationCode.GAME_LEAVE_TYPE)
 		{
 			
 		}

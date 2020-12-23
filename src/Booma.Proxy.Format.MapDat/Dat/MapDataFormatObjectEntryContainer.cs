@@ -6,7 +6,7 @@ namespace Booma
 	/// <summary>
 	/// dat_table_object_t: http://sharnoth.com/psodevwiki/format/dat
 	/// </summary>
-	[SeperatedCollectionSize(nameof(MapDataFormatObjectEntryContainer._Entries), nameof(MapDatFormatTableEntryContainer.EntryCount))]
+	//[SeperatedCollectionSize(nameof(MapDataFormatObjectEntryContainer._Entries), nameof(MapDatFormatTableEntryContainer.EntryCount))]
 	[WireDataContract]
 	public sealed class MapDataFormatObjectEntryContainer : MapDatFormatTableEntryContainer
 	{
@@ -14,6 +14,7 @@ namespace Booma
 		/// <inheritdoc />
 		public override MapDatFormatEntityType EntityType { get; } = MapDatFormatEntityType.Object;
 
+#warning This was never fixed for 4.x Serializer. We must update this model.
 		/// <inheritdoc />
 		protected override int EntrySize { get; } = 68;
 

@@ -22,12 +22,11 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//arrange
 			//Find the attribute that should be annoting these payloads
-			WireDataContractBaseLinkAttribute linkAttri = typeof(GameClientPacketPayloadAttribute)
-				.Assembly
-				.GetTypes()
-				.Where(t => t.BaseType == typeof(WireDataContractBaseLinkAttribute))
+			WireDataContractBaseLinkAttribute linkAttri = GetPayloadAssemblyTypes()
+				.Where(t => typeof(WireDataContractBaseLinkAttribute).IsAssignableFrom(t) && !t.IsAbstract)
+				.Where(t => typeof(IPayloadAttribute).IsAssignableFrom(t))
 				.Select(t => Activator.CreateInstance(t, BindingFlags.CreateInstance | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] { 5 }, null) as WireDataContractBaseLinkAttribute)
-				.FirstOrDefault(c => c.BaseType == typeof(TPayloadBaseType));
+				.FirstOrDefault(c => ((IPayloadAttribute)c).BaseType == typeof(TPayloadBaseType));
 
 			if(linkAttri == null)
 				Assert.Fail($"Failed to get link attribute for {typeof(TPayloadBaseType).Name}.");
@@ -39,7 +38,7 @@ namespace Booma.Proxy.Packets.Tests
 			{
 				try
 				{
-					Assert.True(typeof(TPayloadBaseType).IsAssignableFrom(t), $"Type: {t.Name} is marked with Attribute: {linkAttri.GetType().Name} but doesn't derive from Type: {linkAttri.BaseType.Name}. In derives from incorrect Type: {t.BaseType}");
+					Assert.True(typeof(TPayloadBaseType).IsAssignableFrom(t), $"Type: {t.Name} is marked with Attribute: {linkAttri.GetType().Name} but doesn't derive from Type: {((IPayloadAttribute)linkAttri).BaseType.Name}. In derives from incorrect Type: {t.BaseType}");
 				}
 				catch(Exception e)
 				{
@@ -47,6 +46,15 @@ namespace Booma.Proxy.Packets.Tests
 				}
 			}
 			
+		}
+
+		private static Type[] GetPayloadAssemblyTypes()
+		{
+			return typeof(PatchClientPacketPayloadAttribute)
+				.Assembly
+				.GetTypes()
+				.Concat(typeof(GameClientPacketPayloadAttribute).Assembly.GetTypes())
+				.ToArray();
 		}
 
 		[Test]

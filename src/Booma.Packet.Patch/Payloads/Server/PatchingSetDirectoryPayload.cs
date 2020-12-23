@@ -22,6 +22,7 @@ namespace Booma.Proxy
 		public string PatchDirectoryname { get; internal set; }
 
 		public PatchingSetDirectoryPayload(string patchDirectoryName)
+			: this()
 		{
 			if (string.IsNullOrWhiteSpace(patchDirectoryName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(patchDirectoryName));
 			if (patchDirectoryName.Length > 64) throw new ArgumentException("Directory name cannot be longer than 64 characters", nameof(patchDirectoryName));
@@ -29,8 +30,11 @@ namespace Booma.Proxy
 			PatchDirectoryname = patchDirectoryName;
 		}
 
-		//Serializer ctor
-		private PatchingSetDirectoryPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PatchingSetDirectoryPayload()
+			: base(PatchNetworkOperationCode.PATCH_SET_DIRECTORY)
 		{
 
 		}

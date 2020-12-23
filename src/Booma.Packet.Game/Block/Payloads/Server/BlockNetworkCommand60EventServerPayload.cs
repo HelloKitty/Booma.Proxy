@@ -32,11 +32,16 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public BlockNetworkCommand60EventServerPayload([JetBrains.Annotations.NotNull] BaseSubCommand60 command)
+			: this()
 		{
 			Command = command ?? throw new ArgumentNullException(nameof(command));
 		}
 
-		protected BlockNetworkCommand60EventServerPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockNetworkCommand60EventServerPayload()
+			: base(GameNetworkOperationCode.GAME_COMMAND0_TYPE)
 		{
 			
 		}

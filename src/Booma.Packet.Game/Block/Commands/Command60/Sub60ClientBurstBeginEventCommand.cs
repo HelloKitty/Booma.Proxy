@@ -21,8 +21,11 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		internal byte[] QuestData { get; set; } = new byte[0];
 
-		//Serializer ctor
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		private Sub60ClientBurstBeginEventCommand()
+			: base(SubCommand60OperationCode.BurstType5)
 		{
 			
 		}

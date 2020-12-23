@@ -59,6 +59,7 @@ namespace Booma.Proxy
 		//serializer ctor
 
 		public PatchingLoginRequestPayload([NotNull] string userName, [NotNull] string password)
+			: this()
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
 			if(string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(password));
@@ -69,8 +70,11 @@ namespace Booma.Proxy
 			Password = password;
 		}
 
-		//serializer ctor
-		private PatchingLoginRequestPayload()
+		/// <summary>
+		/// Serializer ctor
+		/// </summary>
+		public PatchingLoginRequestPayload()
+			: base(PatchNetworkOperationCode.PATCH_LOGIN_TYPE)
 		{
 			
 		}

@@ -68,8 +68,11 @@ namespace Booma.Proxy
 			RawRotation = rotation.ToNetworkRotation();
 		}
 
-		//Serializer ctor
-		private Sub60LobbySoccerBallMoveEventPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60LobbySoccerBallMoveEventPayload()
+			: base(SubCommand60OperationCode.LobbyBallMove)
 		{
 			CommandSize = 24 / 4;
 		}

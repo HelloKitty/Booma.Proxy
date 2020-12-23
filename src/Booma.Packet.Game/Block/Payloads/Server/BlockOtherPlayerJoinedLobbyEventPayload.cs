@@ -75,8 +75,11 @@ namespace Booma.Proxy
 		[WireMember(8)]
 		public CharacterJoinData JoinData { get; internal set; }
 
-		//Serializer ctor
-		private BlockOtherPlayerJoinedLobbyEventPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockOtherPlayerJoinedLobbyEventPayload()
+			: base(GameNetworkOperationCode.LOBBY_ADD_PLAYER_TYPE)
 		{
 			
 		}	

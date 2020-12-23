@@ -13,14 +13,13 @@ namespace Booma.Proxy
 	/// The base type for the subcommand sent in the 0x6D packets.
 	/// </summary>
 	[DefaultChild(typeof(UnknownSubCommand6DCommand))]
-	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
+	[WireDataContract(PrimitiveSizeType.Byte)]
 	public abstract class BaseSubCommand6D : ISubCommand6D
 	{
 		/// <summary>
 		/// The operation code for the subcommand.
 		/// This is only read for logging of unknown subcommands.
 		/// </summary>
-		[DontWrite]
 		[WireMember(1)]
 		public SubCommand6DOperationCode CommandOperationCode { get; internal set; }
 
@@ -44,22 +43,25 @@ namespace Booma.Proxy
 		/// The size of the subcommand (subpayload).
 		/// </summary>
 		[WireMember(5)]
-		public int CommandSize { get; internal set; }
+		public int CommandSize { get; protected internal set; }
 
 		/// <summary>
 		/// One of the sub6D commands actually sends the sender
 		/// in the above byte.
 		/// </summary>
+		/// <param name="commandOperationCode"></param>
 		/// <param name="optionalIdentifier"></param>
-		protected BaseSubCommand6D(byte optionalIdentifier)
+		protected BaseSubCommand6D(SubCommand6DOperationCode commandOperationCode, byte optionalIdentifier)
+			: this(commandOperationCode)
 		{
 			OptionalIdentifier = optionalIdentifier;
 		}
 
-		//Serializer ctor
-		protected BaseSubCommand6D()
+		protected BaseSubCommand6D(SubCommand6DOperationCode commandOperationCode)
 		{
-
+			//This is in a serialization hotpath so we don't verify the enum with
+			//and throw because it depends on slow reflection.
+			CommandOperationCode = commandOperationCode;
 		}
 
 		/// <inheritdoc />

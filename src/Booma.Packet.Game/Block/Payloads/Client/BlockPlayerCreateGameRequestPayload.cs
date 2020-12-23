@@ -64,6 +64,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public BlockPlayerCreateGameRequestPayload(string gameName, string password, DifficultyType partyDifficulty, bool isBattleModeEnabled, bool isChallengeModeEnabled, EpisodeType partyEpisode, bool isSinglePlayerModeEnabled)
+			: this()
 		{
 			this.unk1 = unk1;
 			GameName = gameName;
@@ -76,9 +77,10 @@ namespace Booma.Proxy
 		}
 
 		/// <summary>
-		/// Serializer ctor
+		/// Serializer ctor.
 		/// </summary>
-		private BlockPlayerCreateGameRequestPayload()
+		public BlockPlayerCreateGameRequestPayload()
+			: base(GameNetworkOperationCode.GAME_CREATE_TYPE)
 		{
 			
 		}

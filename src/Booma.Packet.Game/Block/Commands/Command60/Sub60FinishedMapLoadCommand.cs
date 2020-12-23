@@ -15,7 +15,6 @@ namespace Booma.Proxy
 	public sealed class Sub60FinishedMapLoadCommand : BaseSubCommand60, IMessageContextIdentifiable
 	{
 		//Empty command that just notifies other players of finished loading map
-
 		/// <inheritdoc />
 		[WireMember(1)]
 		public byte Identifier { get; internal set; }
@@ -36,8 +35,11 @@ namespace Booma.Proxy
 
 		}
 
-		//Serialzier ctor
-		private Sub60FinishedMapLoadCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60FinishedMapLoadCommand()
+			: base(SubCommand60OperationCode.SUBCMD_LOAD_3B)
 		{
 			CommandSize = 4 / 4;
 		}

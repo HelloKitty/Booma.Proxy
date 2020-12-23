@@ -66,7 +66,11 @@ namespace Booma.Proxy
 
 		}
 
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public Sub60TeleportToPositionCommand()
+			: base(SubCommand60OperationCode.TeleportToPosition)
 		{
 			//Calc static 32bit size
 			CommandSize = 24 / 4;

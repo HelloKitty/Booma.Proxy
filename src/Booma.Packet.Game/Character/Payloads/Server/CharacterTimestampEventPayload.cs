@@ -31,6 +31,7 @@ namespace Booma.Proxy
 
 		//Serializer ctor
 		private CharacterTimestampEventPayload()
+			: base(GameNetworkOperationCode.TIMESTAMP_TYPE)
 		{
 			
 		}

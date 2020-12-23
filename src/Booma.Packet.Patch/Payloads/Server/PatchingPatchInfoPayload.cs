@@ -32,6 +32,7 @@ namespace Booma.Proxy
 		public int PatchFileCount { get; internal set; }
 
 		public PatchingPatchInfoPayload(int patchingByteLength, int patchFileCount)
+			: this()
 		{
 			if (patchingByteLength < 0) throw new ArgumentOutOfRangeException(nameof(patchingByteLength));
 			if (patchFileCount < 0) throw new ArgumentOutOfRangeException(nameof(patchFileCount));
@@ -40,8 +41,11 @@ namespace Booma.Proxy
 			PatchFileCount = patchFileCount;
 		}
 
-		//Serializer ctor
-		private PatchingPatchInfoPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PatchingPatchInfoPayload()
+			: base(PatchNetworkOperationCode.PATCH_SEND_INFO)
 		{
 
 		}

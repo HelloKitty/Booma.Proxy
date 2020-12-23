@@ -37,12 +37,14 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public CharacterGuildCardChunkRequestPayload(uint chunkNumber, bool shouldContinue)
+			: this()
 		{
 			ChunkNumber = chunkNumber;
 			ShouldContinue = shouldContinue;
 		}
 
-		private CharacterGuildCardChunkRequestPayload()
+		public CharacterGuildCardChunkRequestPayload()
+			: base(GameNetworkOperationCode.BB_GUILDCARD_CHUNK_REQ_TYPE)
 		{
 			
 		}

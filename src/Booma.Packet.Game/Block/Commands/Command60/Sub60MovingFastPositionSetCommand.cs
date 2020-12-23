@@ -50,6 +50,7 @@ namespace Booma.Proxy
 
 		//Serializer ctor
 		private Sub60MovingFastPositionSetCommand()
+			: base(SubCommand60OperationCode.MovingFastPositionChanged)
 		{
 			CommandSize = 12 / 4;
 		}

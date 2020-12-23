@@ -107,7 +107,8 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private Sub60ObjectDamageRecievedCommand()
+		public Sub60ObjectDamageRecievedCommand()
+			: base(SubCommand60OperationCode.ObjectDamageHit)
 		{
 			CommandSize = 0x0C / 4;
 		}

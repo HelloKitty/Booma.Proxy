@@ -15,8 +15,11 @@ namespace Booma.Proxy
 	[GameClientPacketPayload(GameNetworkOperationCode.PING_TYPE)]
 	public sealed class BlockClientPingResponsePayload : PSOBBGamePacketPayloadClient
 	{
-		//Just empty response to the ping
+		/// <summary>
+		/// Just empty response to the ping.
+		/// </summary>
 		public BlockClientPingResponsePayload()
+			: base(GameNetworkOperationCode.PING_TYPE)
 		{
 			
 		}

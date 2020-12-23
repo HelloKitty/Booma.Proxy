@@ -44,10 +44,14 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(6)]
 		public uint ItemId { get; internal set; }
-		//TODO: Ctor
 
-		/// <inheritdoc />
+		//TODO: Real Ctor
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public Sub60PickupItemFromGroundCommand()
+			: base(SubCommand60OperationCode.PickupItem)
 		{
 			//TODO: Command size
 		}

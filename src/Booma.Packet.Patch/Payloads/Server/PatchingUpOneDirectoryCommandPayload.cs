@@ -20,8 +20,8 @@ namespace Booma.Proxy
 		//Empty command packet that:
 		//Syl: "If t1 is non-NULL, we need to go up the tree as many times as we have
 		//path components left to be parsed."
-
 		public PatchingUpOneDirectoryCommandPayload()
+			: base(PatchNetworkOperationCode.PATCH_ONE_DIR_UP)
 		{
 
 		}

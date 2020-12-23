@@ -16,6 +16,7 @@ namespace Booma.Proxy
 	public sealed class PatchingStartPatchPayload : PSOBBPatchPacketPayloadServer
 	{
 		public PatchingStartPatchPayload()
+			: base(PatchNetworkOperationCode.PATCH_START_LIST)
 		{
 			
 		}

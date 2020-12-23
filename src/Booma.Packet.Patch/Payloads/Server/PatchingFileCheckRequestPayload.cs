@@ -28,6 +28,7 @@ namespace Booma.Proxy
 		public string PatchFileName { get; internal set; }
 
 		public PatchingFileCheckRequestPayload(int patchFileIndex, string patchFileName)
+			: this()
 		{
 			if (patchFileIndex < 0) throw new ArgumentOutOfRangeException(nameof(patchFileIndex));
 			if (string.IsNullOrWhiteSpace(patchFileName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(patchFileName));
@@ -37,8 +38,11 @@ namespace Booma.Proxy
 			PatchFileName = patchFileName;
 		}
 
-		//Serializer ctor
-		private PatchingFileCheckRequestPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PatchingFileCheckRequestPayload()
+			: base(PatchNetworkOperationCode.PATCH_FILE_INFO)
 		{
 
 		}

@@ -15,7 +15,7 @@ namespace Booma.Proxy
 	{
 		//We don't know what the packet is so we can't put any information here
 		/// <inheritdoc />
-		public new short OperationCode => base.OperationCode;
+		public new short OperationCode => (short) base.OperationCode;
 
 		/// <summary>
 		/// The entire unknown deserialized bytes for login packets.
@@ -24,8 +24,11 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte[] UnknownBytes { get; internal set; }
 
-		//Serializer ctor
-		private UnknownPatchPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public UnknownPatchPayload()
+			: base(PatchNetworkOperationCode.PATCH_UNKNOWN)
 		{
 			
 		}

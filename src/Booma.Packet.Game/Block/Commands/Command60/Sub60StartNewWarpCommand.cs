@@ -34,12 +34,17 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60StartNewWarpCommand(byte identifier, short zoneId)
+			: this()
 		{
 			Identifier = identifier;
 			ZoneId = zoneId;
 		}
 
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public Sub60StartNewWarpCommand()
+			: base(SubCommand60OperationCode.GameStartWarpToArea)
 		{
 			//Calc static 32bit size
 			CommandSize = 8 / 4;

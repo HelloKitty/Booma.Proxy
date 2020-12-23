@@ -13,6 +13,7 @@ namespace Booma.Proxy
 	public sealed class PatchingFileInformationDoneAckPayload : PSOBBPatchPacketPayloadClient
 	{
 		public PatchingFileInformationDoneAckPayload()
+			: base(PatchNetworkOperationCode.PATCH_FILE_LIST_DONE)
 		{
 		}
 	}

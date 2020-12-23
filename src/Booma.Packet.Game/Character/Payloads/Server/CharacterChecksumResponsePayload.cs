@@ -18,8 +18,11 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public LoginChecksumResult ResponseCode { get; internal set; }
 
-		//Serializer ctor
-		private CharacterChecksumResponsePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterChecksumResponsePayload()
+			: base(GameNetworkOperationCode.BB_CHECKSUM_ACK_TYPE)
 		{
 			
 		}

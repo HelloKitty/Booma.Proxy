@@ -62,8 +62,11 @@ namespace Booma.Proxy
 		[WireMember(7)]
 		public GameSettings Settings { get; internal set; }
 
-		//Serializer ctor
-		private BlockGameJoinEventPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockGameJoinEventPayload()
+			: base(GameNetworkOperationCode.GAME_JOIN_TYPE)
 		{
 			
 		}

@@ -21,6 +21,7 @@ namespace Booma.Proxy
 		/// Creates a new patching welcome acknowledgement message.
 		/// </summary>
 		public PatchingWelcomeAckPayload()
+			: base(PatchNetworkOperationCode.PATCH_WELCOME_TYPE)
 		{
 			
 		}

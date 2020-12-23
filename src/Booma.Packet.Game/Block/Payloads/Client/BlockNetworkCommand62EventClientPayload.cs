@@ -33,14 +33,14 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public BlockNetworkCommand62EventClientPayload([NotNull] BaseSubCommand62 command)
+			: this()
 		{
-			if(command == null) throw new ArgumentNullException(nameof(command));
-
-			Command = command;
+			Command = command ?? throw new ArgumentNullException(nameof(command));
 		}
 
 		//Serializer ctor
 		protected BlockNetworkCommand62EventClientPayload()
+			: base(GameNetworkOperationCode.GAME_COMMAND2_TYPE)
 		{
 			
 		}

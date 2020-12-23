@@ -12,6 +12,7 @@ namespace Booma.Proxy
 	public sealed class PatchingInfoRequestDonePayload : PSOBBPatchPacketPayloadServer
 	{
 		public PatchingInfoRequestDonePayload()
+			: base(PatchNetworkOperationCode.PATCH_INFO_FINISHED)
 		{
 
 		}

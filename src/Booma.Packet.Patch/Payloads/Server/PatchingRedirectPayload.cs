@@ -29,6 +29,7 @@ namespace Booma.Proxy
 		public ushort Port { get; internal set; }
 
 		public PatchingRedirectPayload(byte[] ipAddress, ushort port)
+			: this()
 		{
 			if (ipAddress == null) throw new ArgumentNullException(nameof(ipAddress));
 			if (ipAddress.Length != 4) throw new ArgumentException("IP Address must be 4 bytes long", nameof(ipAddress));
@@ -38,12 +39,16 @@ namespace Booma.Proxy
 			Port = port;
 		}
 
-		public PatchingRedirectPayload(byte[] ipAddress, int port) : this(ipAddress, (ushort)port)
+		public PatchingRedirectPayload(byte[] ipAddress, int port) 
+			: this(ipAddress, (ushort)port)
 		{
 		}
 
-		//Serializer ctor
-		private PatchingRedirectPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PatchingRedirectPayload()
+			: base(PatchNetworkOperationCode.PATCH_REDIRECT_TYPE)
 		{
 
 		}

@@ -92,18 +92,19 @@ namespace Booma.Proxy
 		[TestCaseSource(nameof(ClientPacketCapturesSource))]
 		public void Can_Deserialize_ClientCaptures_To_ClientPayloads(PacketCaptureTestEntry entry)
 		{
-			Generic_CanDeserialize_CaptureTest<PSOBBGamePacketPayloadClient>(entry);
+			Generic_CanDeserialize_CaptureTest<PSOBBGamePacketPayloadClient, GameNetworkOperationCode>(entry);
 		}
 
 		[Test]
 		[TestCaseSource(nameof(ServerPacketCapturesSource))]
 		public void Can_Deserialize_ClientCaptures_To_ServerPayloads(PacketCaptureTestEntry entry)
 		{
-			Generic_CanDeserialize_CaptureTest<PSOBBGamePacketPayloadServer>(entry);
+			Generic_CanDeserialize_CaptureTest<PSOBBGamePacketPayloadServer, GameNetworkOperationCode>(entry);
 		}
 
-		private void Generic_CanDeserialize_CaptureTest<TBasePayloadType>(PacketCaptureTestEntry entry)
-			where TBasePayloadType : IPacketPayload, IOperationCodeable
+		private void Generic_CanDeserialize_CaptureTest<TBasePayloadType, TOperationType>(PacketCaptureTestEntry entry)
+			where TBasePayloadType : IPacketPayload, IOperationCodeable<TOperationType> 
+			where TOperationType : Enum
 		{
 			//arrange
 			SerializerService serializer = Serializer;
@@ -136,8 +137,9 @@ namespace Booma.Proxy
 			Assert.AreEqual(entry.OpCode, payload.OperationCode, $"Mismatched {nameof(payload.OperationCode)} on packet capture File: {entry.FileName}. Expected: {entry.OpCode} Was: {payload.OperationCode}");
 		}
 
-		public void Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<TBasePayloadType>(PacketCaptureTestEntry entry)
-			where TBasePayloadType : IPacketPayload, IOperationCodeable
+		public void Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<TBasePayloadType, TOperationCodeType>(PacketCaptureTestEntry entry)
+			where TBasePayloadType : IPacketPayload, IOperationCodeable<TOperationCodeType> 
+			where TOperationCodeType : Enum
 		{
 			//arrange
 			Console.WriteLine($"Entry Size: {entry.BinaryData.Length} OpCode: {entry.OpCode}");
@@ -146,7 +148,7 @@ namespace Booma.Proxy
 
 			if(payload is IUnknownPayloadType)
 			{
-				Assert.Warn($"Encountered unimplemented OpCode: 0x{payload.OperationCode:X} - {(GameNetworkOperationCode)payload.OperationCode}.");
+				Assert.Warn($"Encountered unimplemented OpCode: 0x{payload.OperationCode:X} - {payload.OperationCode.ToString()}.");
 				return;
 			}
 
@@ -248,14 +250,14 @@ namespace Booma.Proxy
 		[TestCaseSource(nameof(ClientPacketCapturesSource))]
 		public void Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation(PacketCaptureTestEntry entry)
 		{
-			Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<PSOBBGamePacketPayloadClient>(entry);
+			Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<PSOBBGamePacketPayloadClient, GameNetworkOperationCode>(entry);
 		}
 
 		[Test]
 		[TestCaseSource(nameof(ServerPacketCapturesSource))]
 		public void Can_Serialize_DeserializedServerDTO_To_Same_Binary_Representation(PacketCaptureTestEntry entry)
 		{
-			Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<PSOBBGamePacketPayloadServer>(entry);
+			Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<PSOBBGamePacketPayloadServer, GameNetworkOperationCode>(entry);
 		}
 
 		public static string PrintFailureBytes(byte[] original, byte[] result)

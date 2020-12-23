@@ -47,8 +47,11 @@ namespace Booma.Proxy
 			RawNetworkRotation = yAxisRotation.ToNetworkRotation();
 		}
 
-		//Serializer ctor
-		private Sub60PlayerAttackStepOneCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60PlayerAttackStepOneCommand()
+			: base(SubCommand60OperationCode.AttackStepOne)
 		{
 			CommandSize = 8 / 4;
 		}

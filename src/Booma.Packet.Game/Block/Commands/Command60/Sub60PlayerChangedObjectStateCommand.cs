@@ -54,8 +54,11 @@ namespace Booma.Proxy
 			this.isActive = isActive;
 		}
 
-		//Serializer ctor
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		private Sub60PlayerChangedObjectStateCommand()
+			: base(SubCommand60OperationCode.ChangeObjectState)
 		{
 			CommandSize = 12 / 4;
 		}

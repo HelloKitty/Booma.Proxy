@@ -17,6 +17,9 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override bool isFlagsSerialized { get; } = false;
 
+		//TODO: This is hacky, from IUnknownPayloadType. We should fix this design.
+		public new short OperationCode => (short) base.OperationCode;
+
 		//We don't know what the packet is so we can't put any information here
 		/// <summary>
 		/// The entire unknown deserialized bytes for game packets.
@@ -25,8 +28,11 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte[] UnknownBytes { get; internal set; }
 
-		//Serializer ctor
-		private UnknownClientGamePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public UnknownClientGamePayload()
+			: base(GameNetworkOperationCode.UNKNOWN)
 		{
 			
 		}

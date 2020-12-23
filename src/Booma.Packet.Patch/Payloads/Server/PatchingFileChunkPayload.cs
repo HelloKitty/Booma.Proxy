@@ -28,11 +28,12 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Patch file chunk data
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(3)]
 		public byte[] PatchFileChunkData { get; internal set; }
 
 		public PatchingFileChunkPayload(int patchFileChunkIndex, uint patchFileChunkChecksum, byte[] patchFileChunkData)
+			: this()
 		{
 			if (patchFileChunkIndex < 0) throw new ArgumentOutOfRangeException(nameof(patchFileChunkIndex));
 			if (patchFileChunkData == null) throw new ArgumentNullException(nameof(patchFileChunkData));
@@ -43,8 +44,11 @@ namespace Booma.Proxy
 			PatchFileChunkData = patchFileChunkData;
 		}
 
-		//Serializer ctor
-		private PatchingFileChunkPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public PatchingFileChunkPayload()
+			: base(PatchNetworkOperationCode.PATCH_DATA_SEND)
 		{
 
 		}

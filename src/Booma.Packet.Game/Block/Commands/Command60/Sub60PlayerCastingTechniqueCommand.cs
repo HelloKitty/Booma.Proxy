@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		/// </summary>
 		public bool HasTargets => HitIdentifiers != null && HitIdentifiers.Length != 0;
 
-		[SendSize(SendSizeAttribute.SizeType.Byte)]
+		[SendSize(PrimitiveSizeType.Byte)]
 		[WireMember(5)]
 		internal TechniqueHitResult[] HitIdentifiers { get; set; } = new TechniqueHitResult[0];
 
@@ -57,8 +57,11 @@ namespace Booma.Proxy
 			HitIdentifiers = hits;
 		}
 
-		//Serializer ctor
-		private Sub60PlayerCastingTechniqueCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60PlayerCastingTechniqueCommand()
+			: base(SubCommand60OperationCode.CastingTechiqueCast)
 		{
 			//TODO: If this is dynamically sized then change this.
 			CommandSize = (byte)(HasTargets ? ((8 + 4 * HitIdentifiers.Length) / 4) : (8 / 4));

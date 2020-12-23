@@ -16,9 +16,11 @@ namespace Booma.Proxy
 	[GameServerPacketPayload(GameNetworkOperationCode.PING_TYPE)]
 	public sealed class BlockClientPingEventPayload : PSOBBGamePacketPayloadServer
 	{
-		//Empty payload that tells the client to send a ping response.
-
+		/// <summary>
+		/// Empty payload that tells the client to send a ping response.
+		/// </summary>
 		public BlockClientPingEventPayload()
+			: base(GameNetworkOperationCode.PING_TYPE)
 		{
 			
 		}

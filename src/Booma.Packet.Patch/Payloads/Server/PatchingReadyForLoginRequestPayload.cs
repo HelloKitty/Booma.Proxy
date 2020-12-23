@@ -15,9 +15,11 @@ namespace Booma.Proxy
 	[PatchServerPacketPayload(PatchNetworkOperationCode.PATCH_LOGIN_TYPE)]
 	public sealed class PatchingReadyForLoginRequestPayload : PSOBBPatchPacketPayloadServer
 	{
-		//This is empty, just the server telling the client it's ready for the login
-
+		/// <summary>
+		/// This is empty, just the server telling the client it's ready for the login.
+		/// </summary>
 		public PatchingReadyForLoginRequestPayload()
+			: base(PatchNetworkOperationCode.PATCH_LOGIN_TYPE)
 		{
 			
 		}

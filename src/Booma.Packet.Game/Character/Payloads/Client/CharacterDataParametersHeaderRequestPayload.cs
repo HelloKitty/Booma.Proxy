@@ -16,8 +16,8 @@ namespace Booma.Proxy
 	public sealed class CharacterDataParametersHeaderRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Just a command payload. Nothing to implement
-
 		public CharacterDataParametersHeaderRequestPayload()
+			: base(GameNetworkOperationCode.BB_PARAM_HEADER_REQ_TYPE)
 		{
 			
 		}

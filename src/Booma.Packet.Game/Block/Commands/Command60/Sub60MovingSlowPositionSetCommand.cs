@@ -32,7 +32,8 @@ namespace Booma.Proxy
 		//Sylverant will pad 4 bytes here, it's possible they aren't 0 and are used for some thing. but for now we leave them off.
 
 		//Serializer ctor
-		private Sub60MovingSlowPositionSetCommand()
+		public Sub60MovingSlowPositionSetCommand()
+			: base(SubCommand60OperationCode.MovingSlowPositionChanged)
 		{
 			
 		}

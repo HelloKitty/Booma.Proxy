@@ -41,10 +41,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The file headers for the parameter files.
 		/// </summary>
-		public IEnumerable<DataParameterFileHeader> Headers => _Headers; 
+		public IEnumerable<DataParameterFileHeader> Headers => _Headers;
 
-		//Serializer ctor
-		private CharacterDataParametersHeaderResponsePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterDataParametersHeaderResponsePayload()
+			: base(GameNetworkOperationCode.BB_PARAM_HEADER_TYPE)
 		{
 			
 		}

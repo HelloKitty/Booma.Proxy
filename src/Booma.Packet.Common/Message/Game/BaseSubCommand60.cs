@@ -11,14 +11,13 @@ namespace Booma.Proxy
 	/// The base type for the subcommand sent in the 0x60 packets.
 	/// </summary>
 	[DefaultChild(typeof(UnknownSubCommand60Command))]
-	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead, true)]
+	[WireDataContract(PrimitiveSizeType.Byte)]
 	public abstract class BaseSubCommand60 : ISubCommand60
 	{
 		/// <summary>
 		/// The operation code for the subcommand.
 		/// This is only read for logging of unknown subcommands.
 		/// </summary>
-		[DontWrite]
 		[WireMember(1)]
 		public SubCommand60OperationCode CommandOperationCode { get; internal set; }
 
@@ -37,12 +36,14 @@ namespace Booma.Proxy
 		/// </summary>
 		[Optional(nameof(isSizeSerialized))]
 		[WireMember(2)]
-		public byte CommandSize { get; internal set; }
+		public byte CommandSize { get; protected internal set; }
 
 		//Serializer ctor
-		protected BaseSubCommand60()
+		protected BaseSubCommand60(SubCommand60OperationCode commandOperationCode)
 		{
-
+			//This is in a serialization hotpath so we don't verify the enum with
+			//and throw because it depends on slow reflection.
+			CommandOperationCode = commandOperationCode;
 		}
 
 		/// <inheritdoc />

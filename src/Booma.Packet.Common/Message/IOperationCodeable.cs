@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Booma.Proxy;
 
 namespace Booma
 {
-	public interface IOperationCodeable
+	public interface IOperationCodeable<TOperationCodeType>
+		where TOperationCodeType : Enum
 	{
-		short OperationCode { get; }
+		TOperationCodeType OperationCode { get; }
 	}
 }

@@ -37,8 +37,11 @@ namespace Booma.Proxy
 			Technique = technique;
 		}
 
-		//Serializer ctor
-		private Sub60PlayFinishedTechniqueCastCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60PlayFinishedTechniqueCastCommand()
+			: base(SubCommand60OperationCode.FinishedTechniqueCast)
 		{
 			//TODO: If this is dynamically sized then change this.
 			CommandSize = 8 / 4;

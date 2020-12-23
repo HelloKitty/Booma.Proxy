@@ -66,8 +66,11 @@ namespace Booma.Proxy
 
 		}
 
-		//Serializer ctor
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public Sub60FinishedWarpAckCommand()
+			: base(SubCommand60OperationCode.AlertFreshlyWarpedClients)
 		{
 			//Calc static 32bit size
 			CommandSize = 24 / 4;

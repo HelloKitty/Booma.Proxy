@@ -23,6 +23,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public SharedMenuSelectionRequestPayload([NotNull] MenuItemIdentifier selection)
+			: this()
 		{
 			if(selection == null) throw new ArgumentNullException(nameof(selection));
 
@@ -30,6 +31,7 @@ namespace Booma.Proxy
 		}
 
 		public SharedMenuSelectionRequestPayload()
+			: base(GameNetworkOperationCode.MENU_SELECT_TYPE)
 		{
 			
 		}

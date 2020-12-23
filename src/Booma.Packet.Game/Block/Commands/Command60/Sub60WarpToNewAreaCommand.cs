@@ -46,7 +46,11 @@ namespace Booma.Proxy
 
 		}
 
-		private Sub60WarpToNewAreaCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60WarpToNewAreaCommand()
+			: base(SubCommand60OperationCode.WrapToNewArea)
 		{
 			//Calc static 32bit size
 			CommandSize = 8 / 4;

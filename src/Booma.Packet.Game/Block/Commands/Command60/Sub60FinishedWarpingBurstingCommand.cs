@@ -32,7 +32,11 @@ namespace Booma.Proxy
 			Identifier = identifier;
 		}
 
-		protected Sub60FinishedWarpingBurstingCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60FinishedWarpingBurstingCommand()
+			: base(SubCommand60OperationCode.EnterFreshlyWrappedZoneCommand)
 		{
 			//Calc static 32bit size
 			CommandSize = 4 / 4;

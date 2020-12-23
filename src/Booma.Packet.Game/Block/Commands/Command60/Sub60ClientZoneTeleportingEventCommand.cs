@@ -21,11 +21,16 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public Sub60ClientZoneTeleportingEventCommand(byte identifier)
+			: this()
 		{
 			Identifier = identifier;
 		}
 
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public Sub60ClientZoneTeleportingEventCommand()
+			: base(SubCommand60OperationCode.BeginZoneTeleporting)
 		{
 			
 		}

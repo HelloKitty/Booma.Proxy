@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		public byte[] UnknownBytes { get; internal set; } = new byte[0x4C0 - 8];
 
 		public Sub6DFakePlayerJoinDataNeededCommand(byte identifier)
-			: base(identifier)
+			: base(SubCommand6DOperationCode.PlayerJoinedData, identifier)
 		{
 			CommandSize = 0x4C0;
 
@@ -47,11 +47,13 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected Sub6DFakePlayerJoinDataNeededCommand()
+		public Sub6DFakePlayerJoinDataNeededCommand()
+			: base(SubCommand6DOperationCode.PlayerJoinedData)
 		{
 
 		}
 
+		//TODO: What the hell did I add this?? Is it test code?
 		static Sub6DFakePlayerJoinDataNeededCommand()
 		{
 			binaryDump = System.Convert.FromBase64String(dumped0x60_0x70);

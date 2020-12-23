@@ -12,6 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	public enum GameNetworkOperationCode : short
 	{
+		UNKNOWN = 0x0000,
 		//TODO: Format
 		BB_SECURITY_TYPE = 0x00E6,
 		BB_WELCOME_TYPE = 0x0003,

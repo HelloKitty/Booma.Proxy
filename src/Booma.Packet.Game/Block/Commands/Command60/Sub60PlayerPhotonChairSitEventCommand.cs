@@ -22,14 +22,16 @@ namespace Booma
 
 		/// <inheritdoc />
 		public Sub60PlayerPhotonChairSitEventCommand(byte identifier)
+			: this()
 		{
 			Identifier = identifier;
 		}
 		
 		/// <summary>
-		/// Serializer ctor
+		/// Serializer ctor.
 		/// </summary>
-		private Sub60PlayerPhotonChairSitEventCommand()
+		public Sub60PlayerPhotonChairSitEventCommand()
+			: base(SubCommand60OperationCode.PhotonChairSit)
 		{
 
 		}

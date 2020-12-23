@@ -15,9 +15,8 @@ namespace Booma.Proxy
 	public sealed class SharedDisconnectionRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Empty command payload. Doesn't send any data.
-
-
 		public SharedDisconnectionRequestPayload()
+			: base(GameNetworkOperationCode.TYPE_05)
 		{
 			
 		}

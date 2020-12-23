@@ -19,6 +19,7 @@ namespace Booma.Proxy
 		public byte[] UnknownBytes { get; internal set; } = new byte[14];
 
 		public Sub62PhotonChairCommand()
+			: base(SubCommand62OperationCode.PhotonChairCommand)
 		{
 			//Calc static 32bit size
 			CommandSize = 16 / 4;

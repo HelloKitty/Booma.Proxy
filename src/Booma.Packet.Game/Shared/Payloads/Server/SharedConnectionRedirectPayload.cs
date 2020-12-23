@@ -89,7 +89,11 @@ namespace Booma.Proxy
 			EndpointerPort = port;
 		}
 
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public SharedConnectionRedirectPayload()
+			: base(GameNetworkOperationCode.REDIRECT_TYPE)
 		{
 			_EndpointAddress = new Lazy<IPAddress>(() => new IPAddress(IpAddressBytes), true);
 		}

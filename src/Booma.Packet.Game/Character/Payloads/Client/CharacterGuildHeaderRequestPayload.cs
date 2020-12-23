@@ -13,8 +13,8 @@ namespace Booma.Proxy
 	public class CharacterGuildHeaderRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		//Empty payload that requests guild stuff? Idk
-
 		public CharacterGuildHeaderRequestPayload()
+			: base(GameNetworkOperationCode.BB_GUILD_REQUEST_TYPE)
 		{
 			
 		}

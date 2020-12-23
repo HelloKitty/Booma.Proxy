@@ -46,8 +46,11 @@ namespace Booma.Proxy
 			Identifier2_unk2 = objectIdentifier.ObjectIndex; //don't include object type for some reason
 		}
 
-		//Serializer ctor
-		private Sub60ClientBoxHitEventCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60ClientBoxHitEventCommand()
+			: base(SubCommand60OperationCode.GameBoxHit)
 		{
 			CommandSize = 12 / 4;
 		}

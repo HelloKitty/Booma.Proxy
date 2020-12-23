@@ -48,9 +48,11 @@ namespace Booma.Proxy
 		[WireMember(6)]
 		public Vector3<float> Position { get; internal set; }
 
-		//Serializer ctor
-
-		private Sub60DropInventoryItemCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60DropInventoryItemCommand()
+			: base(SubCommand60OperationCode.DropInventoryItem)
 		{
 			
 		}

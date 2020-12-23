@@ -12,6 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	public enum PatchNetworkOperationCode : short
 	{
+		PATCH_UNKNOWN                   = 0x0000,
 		//TODO: Adjust formatting
 		PATCH_WELCOME_TYPE              = 0x0002,
 		PATCH_LOGIN_TYPE                = 0x0004,

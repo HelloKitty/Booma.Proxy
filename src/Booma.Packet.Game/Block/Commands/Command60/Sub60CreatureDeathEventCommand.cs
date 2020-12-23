@@ -32,8 +32,11 @@ namespace Booma.Proxy
 			ObjectIdentifier = objectIdentifier ?? throw new ArgumentNullException(nameof(objectIdentifier));
 		}
 
-		//Serializer ctor
-		private Sub60CreatureDeathEventCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60CreatureDeathEventCommand()
+			: base(SubCommand60OperationCode.CreatureDeathEvent)
 		{
 			CommandSize = 8 / 4;
 		}

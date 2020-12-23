@@ -31,6 +31,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public CharacterCharacterSelectionRequestPayload(byte slotSelected, CharacterSelectionType selectionType)
+			: this()
 		{
 			if(!Enum.IsDefined(typeof(CharacterSelectionType), selectionType)) throw new InvalidEnumArgumentException(nameof(selectionType), (int)selectionType, typeof(CharacterSelectionType));
 
@@ -39,8 +40,11 @@ namespace Booma.Proxy
 			SelectionType = selectionType;
 		}
 
-		//serializer ctor
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		private CharacterCharacterSelectionRequestPayload()
+			: base(GameNetworkOperationCode.BB_CHARACTER_SELECT_TYPE)
 		{
 			
 		}

@@ -18,8 +18,17 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public string Message { get; internal set; }
 
-		//serializer ctor
-		private SharedCreateMessageBoxEventPayload()
+		public SharedCreateMessageBoxEventPayload([NotNull] string message) 
+			: this()
+		{
+			Message = message ?? throw new ArgumentNullException(nameof(message));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedCreateMessageBoxEventPayload()
+			: base(GameNetworkOperationCode.MESSAGE_BOX_TYPE)
 		{
 			
 		}

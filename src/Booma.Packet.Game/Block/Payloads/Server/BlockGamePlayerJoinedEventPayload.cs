@@ -21,6 +21,7 @@ namespace Booma.Proxy
 
 		/// <inheritdoc />
 		public BlockGamePlayerJoinedEventPayload(byte identifier)
+			: this()
 		{
 			Identifier = identifier;
 		}
@@ -28,7 +29,8 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected BlockGamePlayerJoinedEventPayload()
+		public BlockGamePlayerJoinedEventPayload()
+			: base(GameNetworkOperationCode.GAME_ADD_PLAYER_TYPE)
 		{
 			
 		}

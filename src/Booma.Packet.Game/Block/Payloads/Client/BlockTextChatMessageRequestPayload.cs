@@ -29,13 +29,18 @@ namespace Booma.Proxy
 		public string ChatMessage { get; internal set; }
 
 		public BlockTextChatMessageRequestPayload([NotNull] string chatMessage)
+			: this()
 		{
 			if(string.IsNullOrWhiteSpace(chatMessage)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(chatMessage));
 
 			ChatMessage = chatMessage;
 		}
 
-		private BlockTextChatMessageRequestPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockTextChatMessageRequestPayload()
+			: base(GameNetworkOperationCode.CHAT_TYPE)
 		{
 
 		}

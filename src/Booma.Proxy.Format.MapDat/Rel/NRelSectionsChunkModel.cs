@@ -15,7 +15,7 @@ namespace Booma
 	[WireDataContract]
 	public sealed class NRelSectionsChunkModel
 	{
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(1)]
 		internal NRelSectionModel[] _Sections { get; set; }
 

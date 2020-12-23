@@ -40,8 +40,11 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public PlayerCharacterDataModel CharacterData { get; internal set; }
 
-		//serializer ctor
-		private CharacterCharacterUpdateResponsePayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterCharacterUpdateResponsePayload()
+			: base(GameNetworkOperationCode.BB_CHARACTER_UPDATE_TYPE)
 		{
 			
 		}

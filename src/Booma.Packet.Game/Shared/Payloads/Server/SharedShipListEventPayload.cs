@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		public override bool isFlagsSerialized { get; } = false;
 
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
-		[SendSize(SendSizeAttribute.SizeType.Int32)] //for some reason they send 1 less than the actual size 
+		[SendSize(PrimitiveSizeType.Int32)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
 		internal MenuListing[] _MenuListings { get; set; } //settable for removing the garbage entry
 
@@ -46,8 +46,11 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		internal MenuListing LastMenuListing { get; set; }
 
-		//Serializer ctor
-		private SharedShipListEventPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedShipListEventPayload()
+			: base(GameNetworkOperationCode.SHIP_LIST_TYPE)
 		{
 			
 		}

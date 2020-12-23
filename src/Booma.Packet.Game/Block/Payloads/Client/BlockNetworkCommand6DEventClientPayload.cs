@@ -43,13 +43,18 @@ namespace Booma.Proxy
 		public BaseSubCommand6D Command { get; internal set; }
 
 		/// <inheritdoc />
-		public BlockNetworkCommand6DEventClientPayload(byte targetRemotePlayer, [JetBrains.Annotations.NotNull] BaseSubCommand6D command)
+		public BlockNetworkCommand6DEventClientPayload(byte targetRemotePlayer, [NotNull] BaseSubCommand6D command)
+			: this()
 		{
 			Command = command ?? throw new ArgumentNullException(nameof(command));
 			TargetClientIndex = targetRemotePlayer;
 		}
 
-		protected BlockNetworkCommand6DEventClientPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public BlockNetworkCommand6DEventClientPayload()
+			: base(GameNetworkOperationCode.GAME_COMMANDD_TYPE)
 		{
 			
 		}

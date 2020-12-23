@@ -12,6 +12,8 @@ namespace Booma.Proxy
 	/// </summary>
 	public enum SubCommand60OperationCode : byte //it's sent as byte from server
 	{
+		Unknown = 0x00,
+
 		//TODO: Is this right?
 		//Syl: https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x1F
 		/// <summary>

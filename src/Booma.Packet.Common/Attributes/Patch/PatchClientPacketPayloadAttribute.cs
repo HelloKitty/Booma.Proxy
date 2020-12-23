@@ -13,15 +13,18 @@ namespace Booma.Proxy
 	/// associate with in a typesafe fashion with their network operationcode enumeration value.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public sealed class PatchClientPacketPayloadAttribute : WireDataContractBaseLinkAttribute
+	public sealed class PatchClientPacketPayloadAttribute : WireDataContractBaseLinkAttribute, IPayloadAttribute
 	{
+		/// <inheritdoc />
+		public Type BaseType { get; } = typeof(PSOBBPatchPacketPayloadClient);
+
 		/// <summary>
 		/// Annotates a Type with the metadata required to link its child with a base type
 		/// based on the provided <see cref="opCode"/> value.
 		/// </summary>
 		/// <param name="opCode">The operationcode.</param>
 		public PatchClientPacketPayloadAttribute(PatchNetworkOperationCode opCode) 
-			: base((int)opCode, typeof(PSOBBPatchPacketPayloadClient))
+			: base((int)opCode)
 		{
 
 		}
@@ -33,7 +36,7 @@ namespace Booma.Proxy
 		/// </summary>
 		/// <param name="opCode">The operationcode.</param>
 		internal PatchClientPacketPayloadAttribute(int opCode)
-			: base(opCode, typeof(PSOBBPatchPacketPayloadClient))
+			: base(opCode)
 		{
 
 		}

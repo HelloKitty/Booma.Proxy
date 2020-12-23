@@ -43,7 +43,11 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public AccountTeamInformation TeamInfo { get; internal set; }
 
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
 		public CharacterOptionsResponsePayload()
+			: base(GameNetworkOperationCode.BB_OPTION_CONFIG_TYPE)
 		{
 			
 		}

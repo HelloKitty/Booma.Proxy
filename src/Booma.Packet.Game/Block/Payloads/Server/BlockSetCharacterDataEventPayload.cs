@@ -12,11 +12,11 @@ namespace Booma.Proxy
 	public sealed class BlockSetCharacterDataEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: This is a lot of stuff in here. But can't RE it right now. Limited time.
-
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
 		public BlockSetCharacterDataEventPayload()
+			: base(GameNetworkOperationCode.SERVER_CHARACTER_DATA_TYPE)
 		{
 			
 		}

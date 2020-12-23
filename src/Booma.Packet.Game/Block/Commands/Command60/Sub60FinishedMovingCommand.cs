@@ -66,11 +66,8 @@ namespace Booma.Proxy
 		public Sub60FinishedMovingCommand(byte clientId, float yAxisRotation, [NotNull] Vector3<float> position, short roomId, short zoneId)
 			: this()
 		{
-			if(position == null) throw new ArgumentNullException(nameof(position));
-			if(clientId < 0) throw new ArgumentOutOfRangeException(nameof(clientId));
-
 			Identifier = clientId;
-			Position = position;
+			Position = position ?? throw new ArgumentNullException(nameof(position));
 			RoomId = roomId;
 			ZoneId = zoneId;
 
@@ -84,7 +81,11 @@ namespace Booma.Proxy
 
 		}
 
-		private Sub60FinishedMovingCommand()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60FinishedMovingCommand()
+			: base(SubCommand60OperationCode.SetFinalMovingPosition)
 		{
 			CommandSize = 24 / 4;
 		}

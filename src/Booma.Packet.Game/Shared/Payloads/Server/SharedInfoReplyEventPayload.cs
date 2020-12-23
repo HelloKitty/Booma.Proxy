@@ -26,8 +26,11 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public string Message { get; internal set; }
 
-		//Serializer ctor
-		private SharedInfoReplyEventPayload()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SharedInfoReplyEventPayload()
+			: base(GameNetworkOperationCode.INFO_REPLY_TYPE)
 		{
 			
 		}

@@ -21,8 +21,17 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public byte ExperienceRate { get; internal set; }
 
-		//Serializer ctor
-		private Sub60SetExperienceRateCommand()
+		public Sub60SetExperienceRateCommand(byte experienceRate) 
+			: this()
+		{
+			ExperienceRate = experienceRate;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public Sub60SetExperienceRateCommand()
+			: base(SubCommand60OperationCode.SetExperienceRate)
 		{
 			
 		}
