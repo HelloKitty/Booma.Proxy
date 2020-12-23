@@ -134,7 +134,14 @@ namespace Booma.Proxy
 			//assert
 			Assert.NotNull(payload, $"Resulting capture capture deserialization attempt null for File: {entry.FileName}");
 			//We should have deserialized it. We want to make sure the opcode matches
-			Assert.AreEqual(entry.OpCode, payload.OperationCode, $"Mismatched {nameof(payload.OperationCode)} on packet capture File: {entry.FileName}. Expected: {entry.OpCode} Was: {payload.OperationCode}");
+			Assert.AreEqual(entry.OpCode, ConvertPayloadOperationCode<TBasePayloadType, TOperationType>(payload), $"Mismatched {nameof(payload.OperationCode)} on packet capture File: {entry.FileName}. Expected: {entry.OpCode} Was: {payload.OperationCode}");
+		}
+
+		private static short ConvertPayloadOperationCode<TBasePayloadType, TOperationType>(TBasePayloadType payload) 
+			where TBasePayloadType : IPacketPayload, IOperationCodeable<TOperationType>, ITypeSerializerReadingStrategy<TBasePayloadType> 
+			where TOperationType : Enum
+		{
+			return GenericMath.Convert<TOperationType, short>(payload.OperationCode);
 		}
 
 		public void Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<TBasePayloadType, TOperationCodeType>(PacketCaptureTestEntry entry)
