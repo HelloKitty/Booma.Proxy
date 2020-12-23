@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,7 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.42" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Booma.Packet.Common\Booma.Packet.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="SerializerDebug\**" />
+    <None Include="SerializerDebug\**" />
   </ItemGroup>
 
 </Project>
