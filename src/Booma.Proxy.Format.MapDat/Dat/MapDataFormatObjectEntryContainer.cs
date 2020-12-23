@@ -8,7 +8,7 @@ namespace Booma
 	/// </summary>
 	//[SeperatedCollectionSize(nameof(MapDataFormatObjectEntryContainer._Entries), nameof(MapDatFormatTableEntryContainer.EntryCount))]
 	[WireDataContract]
-	public sealed class MapDataFormatObjectEntryContainer : MapDatFormatTableEntryContainer
+	public sealed partial class MapDataFormatObjectEntryContainer : MapDatFormatTableEntryContainer
 	{
 		//Do not serialize
 		/// <inheritdoc />
@@ -28,8 +28,10 @@ namespace Booma
 		/// </summary>
 		public IEnumerable<MapDataFormatObjectEntry> Entries => _Entries;
 
-		//Serializer ctor
-		protected MapDataFormatObjectEntryContainer()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MapDataFormatObjectEntryContainer()
 		{
 			
 		}

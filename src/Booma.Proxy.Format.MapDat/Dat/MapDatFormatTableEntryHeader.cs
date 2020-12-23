@@ -25,8 +25,10 @@ namespace Booma
 		[WireMember(3)]
 		public uint EntryBodySize { get; internal set; }
 
-		//Serializer ctor
-		protected MapDatFormatTableEntryHeader()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MapDatFormatTableEntryHeader()
 		{
 			
 		}

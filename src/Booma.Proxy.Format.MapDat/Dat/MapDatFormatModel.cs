@@ -20,8 +20,10 @@ namespace Booma
 
 		public IEnumerable<MapDatFormatTableEntryContainer> Entries => _Entries;
 
-		//Serializer ctor
-		protected MapDatFormatModel()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MapDatFormatModel()
 		{
 			
 		}

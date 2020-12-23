@@ -85,7 +85,10 @@ namespace Booma
 		[WireMember(13)]
 		internal byte[] unk4 { get; set; }
 
-		protected MapDataFormatObjectEntry()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MapDataFormatObjectEntry()
 		{
 			
 		}

@@ -7,7 +7,7 @@ namespace Booma
 	/// </summary>
 	[WireDataContractBaseType(1, typeof(MapDataFormatObjectEntryContainer))]
 	[WireDataContract(PrimitiveSizeType.Int32)]
-	public abstract class MapDatFormatTableEntryContainer
+	public abstract partial class MapDatFormatTableEntryContainer
 	{
 		/// <summary>
 		/// Header for the entry.
