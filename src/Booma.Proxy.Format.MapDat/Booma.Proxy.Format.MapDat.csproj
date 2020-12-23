@@ -8,4 +8,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Booma.API.Common\Booma.API.Common.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="SerializerDebug\**" />
+    <None Include="SerializerDebug\**" />
+  </ItemGroup>
+
 </Project>
