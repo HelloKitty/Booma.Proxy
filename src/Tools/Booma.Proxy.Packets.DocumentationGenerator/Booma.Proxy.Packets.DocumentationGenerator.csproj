@@ -2,17 +2,20 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Booma.DocumentationGenerator</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.45" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.45" />
     <PackageReference Include="Generic.Math" Version="1.0.2" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Booma.API.Common\Booma.API.Common.csproj" />
+    <ProjectReference Include="..\..\Booma.Crypto.Common\Booma.Crypto.Common.csproj" />
     <ProjectReference Include="..\..\Booma.Packet.Common\Booma.Packet.Common.csproj" />
     <ProjectReference Include="..\..\Booma.Packet.Game\Booma.Packet.Game.csproj" />
     <ProjectReference Include="..\..\Booma.Packet.Patch\Booma.Packet.Patch.csproj" />
