@@ -22,7 +22,7 @@ Booma.Proxy's relies on the extendable and flexible metadata-based serializer th
 
 [Booma.Packet.Patch](https://www.nuget.org/packages/Booma.Packet.Patch/)
 
-[Booma.Patch.Game](https://www.nuget.org/packages/Booma.Patch.Game/)
+[Booma.Packet.Game](https://www.nuget.org/packages/Booma.Packet.Game/)
 
 ## License
 
