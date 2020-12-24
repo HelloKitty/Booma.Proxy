@@ -186,6 +186,10 @@ namespace Booma.Proxy
 			//act
 			byte[] rentedBuffer = ArrayPool<byte>.Shared.Rent(36000 * 2);
 
+			//Must zero out for cleanest tests.
+			for (int i = 0; i < rentedBuffer.Length; i++)
+				rentedBuffer[i] = default(byte);
+
 			try
 			{
 				
