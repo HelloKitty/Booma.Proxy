@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -24,7 +25,7 @@ namespace Booma.Proxy
 
 		private static List<PacketCaptureTestEntry> BuildCaptureEntries(bool isSearchingForClient)
 		{
-			List<PacketCaptureTestEntry> testSource = new List<PacketCaptureTestEntry>(500);
+			List<PacketCaptureTestEntry> testSource = new List<PacketCaptureTestEntry>(5000);
 
 			//Do file loading first because it could fail
 			//Then we need to populate the input source for the tests.
@@ -183,78 +184,99 @@ namespace Booma.Proxy
 			}
 
 			//act
-			Span<byte> buffer = new Span<byte>(new byte[36000]);
-			int offset = 0;
-			serializer.Write(payload, buffer, ref offset);
-			buffer = buffer.Slice(0, offset);
+			byte[] rentedBuffer = ArrayPool<byte>.Shared.Rent(36000 * 2);
 
-			//The plus 2 is from the packet size which is included as calculation in whether it is appropriate for the block
-			//size of 8.
-			//+2 is also added to the original binary length since it's missing the packet size too.
-			int serializedBytesWithBlockSize = ConvertToBlocksizeCount(buffer.Length + 2, 8);
-			int entryBytesWithBlockSize = ConvertToBlocksizeCount(entry.BinaryData.Length + 2, 8);
-			//assert
 			try
 			{
-				if(!isSub60 && !isSub62)
-					//convert the serialized bytes to block size since Sylverant and the packet captures will include that in the data
-					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
-				else if(isSub60)
-				{
-					var command = (payload as ISub60CommandContainer).Command;
-					//Similar to the above but we include information about the sub60 command
-					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+				
+				Span<byte> buffer = new Span<byte>(rentedBuffer);
 
-					//Command 60s should also check the command size
-					Assert.AreEqual(entry.BinaryData[7], buffer[7], $"Mismatched Sub60 {nameof(BaseSubCommand60.CommandSize)} on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
-				}
-				else if(isSub62)
-				{
-					var command = (payload as ISub62CommandContainer).Command;
-					//Similar to the above but we include information about the sub60 command
-					Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
-				}
-			}
-			catch(AssertionException e)
-			{
-				Assert.Fail($"Failed: {e.Message} {PrintFailureBytes(entry.BinaryData, buffer)}");
-			}
+				int offset = 0;
+				serializer.Write(payload, buffer, ref offset);
+				buffer = buffer.Slice(0, offset);
 
-			//check both lengths since we accept that some packet models won't include the padding.
-			for(int i = 0; i < entry.BinaryData.Length && i < buffer.Length; i++)
-			{
-				if(!isSub60 && !isSub62)
-					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
-				else if(isSub60)
+				//The plus 2 is from the packet size which is included as calculation in whether it is appropriate for the block
+				//size of 8.
+				//+2 is also added to the original binary length since it's missing the packet size too.
+				int serializedBytesWithBlockSize = ConvertToBlocksizeCount(buffer.Length + 2, 8);
+				int entryBytesWithBlockSize = ConvertToBlocksizeCount(entry.BinaryData.Length + 2, 8);
+				//assert
+				try
 				{
-					var command = (payload as ISub60CommandContainer).Command;
-					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
-				}
-				else if(isSub62)
-				{
-					var command = (payload as ISub62CommandContainer).Command;
-					Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
-				}
-			}
-
-			//Special check for when we have a packet that hasn't failed but has differently lenghts (assumed to be blocksize)
-			//we check and make sure that the ending bytes are actually 0. If they aren't it likely NOT padding and additional unhandled data
-			if(entry.BinaryData.Length > buffer.Length)
-				for(int i = buffer.Length; i < entry.BinaryData.Length; i++)
 					if(!isSub60 && !isSub62)
-					{
-						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X}");
-					}
+						//convert the serialized bytes to block size since Sylverant and the packet captures will include that in the data
+						Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name}");
 					else if(isSub60)
 					{
 						var command = (payload as ISub60CommandContainer).Command;
-						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+						//Similar to the above but we include information about the sub60 command
+						Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+
+						//Command 60s should also check the command size
+						Assert.AreEqual(entry.BinaryData[7], buffer[7], $"Mismatched Sub60 {nameof(BaseSubCommand60.CommandSize)} on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 					}
 					else if(isSub62)
 					{
 						var command = (payload as ISub62CommandContainer).Command;
-						Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+						//Similar to the above but we include information about the sub60 command
+						Assert.AreEqual(entryBytesWithBlockSize, serializedBytesWithBlockSize, $"Mismatched length on OpCode: {(GameNetworkOperationCode)entry.OpCode} - 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
 					}
+				}
+				catch(AssertionException e)
+				{
+					Assert.Fail($"Failed: {e.Message} {PrintFailureBytes(entry.BinaryData, buffer)}");
+				}
+
+				//check both lengths since we accept that some packet models won't include the padding.
+				for(int i = 0; i < entry.BinaryData.Length && i < buffer.Length; i++)
+				{
+					if (!isSub60 && !isSub62)
+					{
+						//This is an optimization to avoid pointless string allocations/building.
+						if(entry.BinaryData[i] != buffer[i])
+							Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
+					}
+					else if(isSub60)
+					{
+						var command = (payload as ISub60CommandContainer).Command;
+
+						//This is an optimization to avoid pointless string allocations/building.
+						if(entry.BinaryData[i] != buffer[i])
+							Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
+					}
+					else if(isSub62)
+					{
+						var command = (payload as ISub62CommandContainer).Command;
+
+						//This is an optimization to avoid pointless string allocations/building.
+						if(entry.BinaryData[i] != buffer[i])
+							Assert.AreEqual(entry.BinaryData[i], buffer[i], $"Mismatched byte value at Index: {i} on OpCode: 0x{entry.OpCode:X} Type: {payload.GetType().Name} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name} {PrintFailureBytes(entry.BinaryData, buffer)}");
+					}
+				}
+
+				//Special check for when we have a packet that hasn't failed but has differently lenghts (assumed to be blocksize)
+				//we check and make sure that the ending bytes are actually 0. If they aren't it likely NOT padding and additional unhandled data
+				if(entry.BinaryData.Length > buffer.Length)
+					for(int i = buffer.Length; i < entry.BinaryData.Length; i++)
+						if(!isSub60 && !isSub62)
+						{
+							Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X}");
+						}
+						else if(isSub60)
+						{
+							var command = (payload as ISub60CommandContainer).Command;
+							Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub60 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+						}
+						else if(isSub62)
+						{
+							var command = (payload as ISub62CommandContainer).Command;
+							Assert.AreEqual(0, entry.BinaryData[i], $"Encountered assumed padding byte at Index: {i} on OpCode: 0x{entry.OpCode} Type: {payload.GetType().Name} but value was: 0x{entry.BinaryData[i]:X} Sub62 OpCode: 0x{entry.BinaryData[6]:X} Type: {command.GetType().Name}");
+						}
+			}
+			finally
+			{
+				ArrayPool<byte>.Shared.Return(rentedBuffer);
+			}
 		}
 
 		[Test]
@@ -275,8 +297,18 @@ namespace Booma.Proxy
 		{
 			//if(original.Length > 300)
 			//	return $"Original bytes too long to log. Size: {original.Length}";
+			StringBuilder builder = new StringBuilder(original.Length * 3 + result.Length * 3 + 500);
+			builder.Append($"Original bytes: \n");
 
-			return $"Original bytes: \n{original.Aggregate("", (s, b) => $"{s} {b:X2}")}\n\n Result: \n{result.ToArray().Aggregate("", (s, b) => $"{s} {b:X2}")}";
+			for (int i = 0; i < original.Length; i++)
+				builder.Append($" {original[i]:X2}");
+
+			builder.Append($"\n\n Result: \n");
+
+			for(int i = 0; i < result.Length; i++)
+				builder.Append($" {result[i]:X2}");
+
+			return builder.ToString();
 		}
 
 		//From GladNet block cipher implementation, will compute the blocksize of something.
