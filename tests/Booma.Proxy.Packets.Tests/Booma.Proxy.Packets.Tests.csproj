@@ -38,20 +38,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetZip, Version=1.11.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DotNetZip.1.11.0\lib\net20\DotNetZip.dll</HintPath>
+    <Reference Include="DotNetZip, Version=1.14.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetZip.1.14.0\lib\net40\DotNetZip.dll</HintPath>
     </Reference>
-    <Reference Include="FreecraftCore.Serializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.3.0.38\lib\net46\FreecraftCore.Serializer.dll</HintPath>
+    <Reference Include="FreecraftCore.Serializer, Version=4.0.47.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.4.0.47\lib\netstandard2.0\FreecraftCore.Serializer.dll</HintPath>
     </Reference>
-    <Reference Include="FreecraftCore.Serializer.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.API.3.0.38\lib\net46\FreecraftCore.Serializer.API.dll</HintPath>
-    </Reference>
-    <Reference Include="FreecraftCore.Serializer.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.3.0.38\lib\net46\FreecraftCore.Serializer.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="FreecraftCore.Serializer.Stream, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Stream.3.0.38\lib\net46\FreecraftCore.Serializer.Stream.dll</HintPath>
+    <Reference Include="FreecraftCore.Serializer.Metadata, Version=4.0.47.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.4.0.47\lib\netstandard2.0\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
@@ -59,9 +53,10 @@
     <Reference Include="GladNet3.Common.API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\GladNet3.Common.API.3.0.48\lib\netstandard2.0\GladNet3.Common.API.dll</HintPath>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=10.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JetBrains.Annotations.10.2.1\lib\net\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=2020.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2020.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Nito.AsyncEx.Coordination, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Nito.AsyncEx.Coordination.5.0.0\lib\netstandard2.0\Nito.AsyncEx.Coordination.dll</HintPath>
     </Reference>
@@ -84,19 +79,19 @@
       <HintPath>..\..\packages\Reinterpret.Net.2.0.7\lib\net46\Reinterpret.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Memory.4.5.0\lib\netstandard2.0\System.Memory.dll</HintPath>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -123,40 +118,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Common\Booma.Proxy.Common.csproj">
-      <Project>{8DE127FD-5C20-4FC7-B5EB-29FEC45F9780}</Project>
-      <Name>Booma.Proxy.Common</Name>
+    <ProjectReference Include="..\..\src\Booma.API.Common\Booma.API.Common.csproj">
+      <Project>{5A92CA37-FE74-467F-88C1-757AA6F5BAFB}</Project>
+      <Name>Booma.API.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.BlockServer\Booma.Proxy.Packets.BlockServer.csproj">
-      <Project>{467024d6-4ce5-458f-8bd5-2e811930a154}</Project>
-      <Name>Booma.Proxy.Packets.BlockServer</Name>
+    <ProjectReference Include="..\..\src\Booma.Packet.Common\Booma.Packet.Common.csproj">
+      <Project>{1341C0C5-C1D1-46F6-8CF6-001F5D47D126}</Project>
+      <Name>Booma.Packet.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.CharacterServer\Booma.Proxy.Packets.CharacterServer.csproj">
-      <Project>{9459d6e6-9795-4449-9c5e-31af348f51e6}</Project>
-      <Name>Booma.Proxy.Packets.CharacterServer</Name>
+    <ProjectReference Include="..\..\src\Booma.Packet.Game\Booma.Packet.Game.csproj">
+      <Project>{0E8B2C00-C2B6-4A98-B695-425ACDF09D02}</Project>
+      <Name>Booma.Packet.Game</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.Common\Booma.Proxy.Packets.Common.csproj">
-      <Project>{1a775854-1484-45fb-b465-1967a971646c}</Project>
-      <Name>Booma.Proxy.Packets.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.LoginServer\Booma.Proxy.Packets.LoginServer.csproj">
-      <Project>{2ad7eeab-87bc-473b-aef2-0d5a045b7a6b}</Project>
-      <Name>Booma.Proxy.Packets.LoginServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.PatchServer\Booma.Proxy.Packets.PatchServer.csproj">
-      <Project>{fe98aa4a-c2b6-43a6-8cb9-04a7515f3e4a}</Project>
-      <Name>Booma.Proxy.Packets.PatchServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.SharedServer\Booma.Proxy.Packets.SharedServer.csproj">
-      <Project>{a29319a3-6771-42a4-a910-39e69603a867}</Project>
-      <Name>Booma.Proxy.Packets.SharedServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Proxy.Packets.ShipServer\Booma.Proxy.Packets.ShipServer.csproj">
-      <Project>{7b08404b-8aea-450f-a886-047e5e16bf4b}</Project>
-      <Name>Booma.Proxy.Packets.ShipServer</Name>
+    <ProjectReference Include="..\..\src\Booma.Packet.Patch\Booma.Packet.Patch.csproj">
+      <Project>{650B8221-FAD2-4DAC-A503-BD8F3E62F664}</Project>
+      <Name>Booma.Packet.Patch</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

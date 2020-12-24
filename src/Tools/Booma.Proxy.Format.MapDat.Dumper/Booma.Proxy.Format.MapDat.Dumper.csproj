@@ -22,7 +22,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer" Version="3.0.38" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.42" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Booma.Proxy.Format.MapDat\Booma.Proxy.Format.MapDat.csproj" />

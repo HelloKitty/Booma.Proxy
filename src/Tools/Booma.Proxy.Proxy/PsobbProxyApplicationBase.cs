@@ -102,14 +102,14 @@ namespace Booma.Proxy
 			{
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
 				encryptionService.Initialize(val.ToArray());
-				return encryptionService;
+				return new LegacyGladNetCryptoServiceProviderAdapter(encryptionService);
 			}, 8);
 
 			ClientDecryptionService = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
 				decryptionService.Initialize(val.ToArray());
-				return decryptionService;
+				return new LegacyGladNetCryptoServiceProviderAdapter(decryptionService);
 			}, 8);
 
 			//Server crypto
@@ -117,14 +117,14 @@ namespace Booma.Proxy
 			{
 				BlowfishEncryptionService encryptionService = new BlowfishEncryptionService();
 				encryptionService.Initialize(val.ToArray());
-				return encryptionService;
+				return new LegacyGladNetCryptoServiceProviderAdapter(encryptionService);
 			}, 8);
 
 			ServerDecryptionService = new EncryptionLazyWithoutKeyDecorator<byte[]>(val =>
 			{
 				BlowfishDecryptionService decryptionService = new BlowfishDecryptionService();
 				decryptionService.Initialize(val.ToArray()); //for PROXY PURPOSES ONLY we have to copy so we don't modify the key used by the other end
-				return decryptionService;
+				return new LegacyGladNetCryptoServiceProviderAdapter(decryptionService);
 			}, 8);
 
 			//Register all the crypto providers as crypto initializers
@@ -135,9 +135,9 @@ namespace Booma.Proxy
 
 
 			builder
-				.Register<IFullCryptoInitializationService<byte[]>>(context =>
+				.Register<GladNet.IFullCryptoInitializationService<byte[]>>(context =>
 				{
-					return new ProxiedFullCryptoInitializable(new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Encryption)), new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<ICryptoKeyInitializable<byte[]>>>(CryptoType.Decryption)));
+					return new ProxiedFullCryptoInitializable(new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<GladNet.ICryptoKeyInitializable<byte[]>>>(CryptoType.Encryption)), new AggergateCryptoInitializer(context.ResolveKeyed<IEnumerable<GladNet.ICryptoKeyInitializable<byte[]>>>(CryptoType.Decryption)));
 				});
 
 			builder.RegisterInstance(new BinaryPacketWriter("Packets"))
@@ -148,14 +148,14 @@ namespace Booma.Proxy
 			return builder;
 		}
 
-		private ContainerBuilder RegisterCryptoInitializable([NotNull] ContainerBuilder builder, [NotNull] ICryptoKeyInitializable<byte[]> initializable, CryptoType cryptoType)
+		private ContainerBuilder RegisterCryptoInitializable([NotNull] ContainerBuilder builder, [NotNull] GladNet.ICryptoKeyInitializable<byte[]> initializable, CryptoType cryptoType)
 		{
 			if(builder == null) throw new ArgumentNullException(nameof(builder));
 			if(initializable == null) throw new ArgumentNullException(nameof(initializable));
 
 			builder
 				.RegisterInstance(initializable)
-				.Keyed<ICryptoKeyInitializable<byte[]>>(cryptoType)
+				.Keyed<GladNet.ICryptoKeyInitializable<byte[]>>(cryptoType)
 				.SingleInstance()
 				.ExternallyOwned();
 

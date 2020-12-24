@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +16,9 @@ namespace Booma
 	public sealed class MapDatFormatGenericBodyModel<TBodyType> : IEnumerable<TBodyType>
 		where TBodyType : IBodySizable
 	{
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(1)]
-		private TBodyType[] _Entries { get; }
+		internal TBodyType[] _Entries { get; set; }
 
 		/// <summary>
 		/// Body entries.

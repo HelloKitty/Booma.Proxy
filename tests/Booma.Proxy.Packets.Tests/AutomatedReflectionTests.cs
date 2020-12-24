@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using FreecraftCore;
 using FreecraftCore.Serializer;
 using NUnit.Framework;
 using Reflect.Extent;
@@ -22,12 +24,11 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//arrange
 			//Find the attribute that should be annoting these payloads
-			WireDataContractBaseLinkAttribute linkAttri = typeof(GameClientPacketPayloadAttribute)
-				.Assembly
-				.GetTypes()
-				.Where(t => t.BaseType == typeof(WireDataContractBaseLinkAttribute))
+			WireDataContractBaseLinkAttribute linkAttri = GetPayloadAssemblyTypes()
+				.Where(t => typeof(WireDataContractBaseLinkAttribute).IsAssignableFrom(t) && !t.IsAbstract)
+				.Where(t => typeof(IPayloadAttribute).IsAssignableFrom(t))
 				.Select(t => Activator.CreateInstance(t, BindingFlags.CreateInstance | BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null, new object[] { 5 }, null) as WireDataContractBaseLinkAttribute)
-				.FirstOrDefault(c => c.BaseType == typeof(TPayloadBaseType));
+				.FirstOrDefault(c => ((IPayloadAttribute)c).BaseType == typeof(TPayloadBaseType));
 
 			if(linkAttri == null)
 				Assert.Fail($"Failed to get link attribute for {typeof(TPayloadBaseType).Name}.");
@@ -39,7 +40,7 @@ namespace Booma.Proxy.Packets.Tests
 			{
 				try
 				{
-					Assert.True(typeof(TPayloadBaseType).IsAssignableFrom(t), $"Type: {t.Name} is marked with Attribute: {linkAttri.GetType().Name} but doesn't derive from Type: {linkAttri.BaseType.Name}. In derives from incorrect Type: {t.BaseType}");
+					Assert.True(typeof(TPayloadBaseType).IsAssignableFrom(t), $"Type: {t.Name} is marked with Attribute: {linkAttri.GetType().Name} but doesn't derive from Type: {((IPayloadAttribute)linkAttri).BaseType.Name}. In derives from incorrect Type: {t.BaseType}");
 				}
 				catch(Exception e)
 				{
@@ -47,6 +48,15 @@ namespace Booma.Proxy.Packets.Tests
 				}
 			}
 			
+		}
+
+		private static Type[] GetPayloadAssemblyTypes()
+		{
+			return typeof(PatchClientPacketPayloadAttribute)
+				.Assembly
+				.GetTypes()
+				.Concat(typeof(GameClientPacketPayloadAttribute).Assembly.GetTypes())
+				.ToArray();
 		}
 
 		[Test]
@@ -62,28 +72,13 @@ namespace Booma.Proxy.Packets.Tests
 
 		[Test]
 		[TestCaseSource(nameof(PayloadTypes))]
-		public void Test_Can_Register_All_Concrete_Payloads(Type t)
-		{
-			//arrange
-			SerializerService serializer = new SerializerService();
-
-			//assert
-			Assert.DoesNotThrow(() => serializer.RegisterType(t));
-			serializer.Compile();
-
-			Assert.True(serializer.isTypeRegistered(t), $"Failed to register Type: {t.Name}");
-			Assert.True(serializer.isTypeRegistered(typeof(TPayloadBaseType)), $"Base packet type wasn't registered.");
-		}
-
-		[Test]
-		[TestCaseSource(nameof(PayloadTypes))]
 		public void Test_Payload_With_Link_Has_Correct_BaseType(Type t)
 		{
 			//assert
 			if(t.HasAttribute<WireDataContractBaseLinkAttribute>())
 			{
-				Assert.NotNull(t.GetCustomAttribute<WireDataContractBaseLinkAttribute>().BaseType, $"Type: {t.Name} did not have a statically linked base type.");
-				Assert.True(t.GetCustomAttribute<WireDataContractBaseLinkAttribute>().BaseType.IsAssignableFrom(t), $"Type: {t.Name} linked to Type: {t.GetCustomAttribute<WireDataContractBaseLinkAttribute>().BaseType} but was not a basetype of Type: {t.Name}.");
+				Assert.NotNull(((IPayloadAttribute)t.GetCustomAttribute<WireDataContractBaseLinkAttribute>()).BaseType, $"Type: {t.Name} did not have a statically linked base type.");
+				Assert.True(((IPayloadAttribute)t.GetCustomAttribute<WireDataContractBaseLinkAttribute>()).BaseType.IsAssignableFrom(t), $"Type: {t.Name} linked to Type: {((IPayloadAttribute)t.GetCustomAttribute<WireDataContractBaseLinkAttribute>()).BaseType} but was not a basetype of Type: {t.Name}.");
 			}
 		}
 
@@ -93,8 +88,9 @@ namespace Booma.Proxy.Packets.Tests
 		{
 			//arrange
 			SerializerService serializer = new SerializerService();
-			serializer.RegisterType(t);
-			serializer.Compile();
+
+			serializer.RegisterGamePacketSerializers()
+				.RegisterPatchPacketSerializers();
 
 			//Abstracts can't be created
 			if(t.IsAbstract || typeof(IUnknownPayloadType).IsAssignableFrom(t)) //if it's unknown then it's probably default and thus unwritable
@@ -103,26 +99,38 @@ namespace Booma.Proxy.Packets.Tests
 			object payload = Activator.CreateInstance(t, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.CreateInstance, null, new object[0], null);
 
 			//act
-			byte[] bytes = null;
+			byte[] rentedBuffer = ArrayPool<byte>.Shared.Rent(36000);
 			
 			//We have to suppress these exceptions because some payloads have complex object graphs and
 			//need more than default initialization to be serializable
 			try
 			{
-				bytes = serializer.Serialize(payload);
+				int offset = WritePayload(rentedBuffer, serializer, (dynamic)payload);
 
 				//assert
-				Assert.NotNull(bytes);
-				Assert.True(bytes.Length != 0);
+				Assert.True(offset != 0);
 			}
-			catch(ArgumentNullException e)
+			catch (ArgumentNullException e)
 			{
 
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				Assert.Warn($"Type: {t.Name} may not be serializable. It's not determinable. This can happen if it has class/complex fields and should be ignored. \n\nException: {e.Message}");
 			}
+			finally
+			{
+				ArrayPool<byte>.Shared.Return(rentedBuffer);
+			}
+		}
+
+		private static int WritePayload<T>(byte[] rentedBuffer, SerializerService serializer, T payload) 
+			where T : ITypeSerializerWritingStrategy<T>
+		{
+			Span<byte> buffer = new Span<byte>(rentedBuffer);
+			int offset = 0;
+			serializer.Write(payload, buffer, ref offset);
+			return offset;
 		}
 	}
 }

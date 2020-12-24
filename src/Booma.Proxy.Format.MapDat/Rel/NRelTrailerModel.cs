@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace Booma
 		/// The pointer/offset to the main block of data.
 		/// </summary>
 		[WireMember(1)]
-		public uint MainBlockPointer { get; }
+		public uint MainBlockPointer { get; internal set; }
 
 		//A bunch of unknown data after this.
 		//See: https://docs.google.com/document/d/1B8bQsCJ9gU005INzePoK8fekj0O3Vootsq1FEpa8m6Y/edit#

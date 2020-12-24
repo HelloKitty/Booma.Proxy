@@ -1,4 +1,4 @@
-﻿using FreecraftCore.Serializer;
+using FreecraftCore.Serializer;
 
 namespace Booma
 {
@@ -6,14 +6,14 @@ namespace Booma
 	/// dat_table_t : http://sharnoth.com/psodevwiki/format/dat
 	/// </summary>
 	[WireDataContractBaseType(1, typeof(MapDataFormatObjectEntryContainer))]
-	[WireDataContract(WireDataContractAttribute.KeyType.Int32)]
-	public abstract class MapDatFormatTableEntryContainer
+	[WireDataContract(PrimitiveSizeType.Int32)]
+	public abstract partial class MapDatFormatTableEntryContainer
 	{
 		/// <summary>
 		/// Header for the entry.
 		/// </summary>
 		[WireMember(1)]
-		public MapDatFormatTableEntryHeader Header { get; }
+		public MapDatFormatTableEntryHeader Header { get; internal set; }
 
 		//We don't prevent int32 consumption on child type polymorphism
 		//Which means we'll need to not make this serializable and must have child type

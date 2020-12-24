@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +16,14 @@ namespace Booma
 	public sealed class MapDatFormatModel
 	{
 		[WireMember(1)]
-		private MapDatFormatTableEntryContainer[] _Entries { get; }
+		internal MapDatFormatTableEntryContainer[] _Entries { get; set; }
 
 		public IEnumerable<MapDatFormatTableEntryContainer> Entries => _Entries;
 
-		//Serializer ctor
-		protected MapDatFormatModel()
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public MapDatFormatModel()
 		{
 			
 		}

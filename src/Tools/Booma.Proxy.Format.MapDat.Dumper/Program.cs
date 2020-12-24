@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,15 +59,15 @@ namespace Booma
 	[WireDataContract]
 	public class Test
 	{
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[DontTerminate]
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(1)]
-		public string TestString { get; }
+		public string TestString { get; internal set; }
 
-		[SendSize(SendSizeAttribute.SizeType.Byte)]
+		[SendSize(PrimitiveSizeType.Byte)]
 		[WireMember(2)]
-		public short[] Shorts { get; }
+		public short[] Shorts { get; internal set; }
 
 		/// <inheritdoc />
 		public Test(string testString, short[] shorts)

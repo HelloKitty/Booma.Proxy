@@ -31,8 +31,7 @@ namespace FreecraftCore
 		{
 			SerializerService serializer = new SerializerService();
 
-			foreach(Type t in PacketGameStubMetadataMarker.SerializableTypes)
-					serializer.RegisterType(t);
+			//TODO: May have issues with the proxy since we removed the stubs project.
 
 			//Also register the welcome, since it is critical to setting up the connection
 			//Also we need redirection so we can redirect the connections
