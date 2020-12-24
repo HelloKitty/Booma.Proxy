@@ -22,16 +22,18 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The name of the party attempted to be created.
 		/// </summary>
-		[KnownSize(16)]
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate]
+		[KnownSize(16)]
 		[WireMember(2)]
 		public string GameName { get; internal set; }
 
 		/// <summary>
 		/// The name of the party attempted to be created.
 		/// </summary>
-		[KnownSize(16)]
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate]
+		[KnownSize(16)]
 		[WireMember(3)]
 		public string Password { get; internal set; }
 

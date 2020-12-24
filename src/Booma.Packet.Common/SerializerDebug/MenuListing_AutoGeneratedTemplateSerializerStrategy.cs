@@ -29,7 +29,7 @@ namespace FreecraftCore.Serializer
             //Type: MenuListing Field: 2 Name: Flags Type: UInt16;
             value.Flags = GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Read(buffer, ref offset);
             //Type: MenuListing Field: 3 Name: ItemName Type: String;
-            value.ItemName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_17, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.ItemName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_17>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace FreecraftCore.Serializer
             //Type: MenuListing Field: 2 Name: Flags Type: UInt16;
             GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Write(value.Flags, buffer, ref offset);
             //Type: MenuListing Field: 3 Name: ItemName Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_17, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.ItemName, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_17>.Instance.Write(value.ItemName, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_17 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 17; }
     }

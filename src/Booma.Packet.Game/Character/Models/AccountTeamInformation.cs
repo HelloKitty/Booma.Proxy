@@ -40,6 +40,7 @@ namespace Booma.Proxy
 		/// The name of the team.
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate]
 		[KnownSize(16)]
 		[WireMember(5)]
 		public string TeamName { get; internal set; }

@@ -60,10 +60,11 @@ namespace Booma.Proxy
 		[WireMember(5)]
 		internal int TeamId { get; set; }
 
+		//This is really 16 characters. 15 char + 1 terminator.
 		/// <summary>
 		/// The username to authenticate with.
 		/// </summary>
-		[KnownSize(16)] //username can be 15 char ASCII string with a null terminator
+		[KnownSize(15)] //username can be 15 char ASCII string with a null terminator
 		[WireMember(6)]
 		public string UserName { get; internal set; }
 
@@ -74,10 +75,11 @@ namespace Booma.Proxy
 		[WireMember(7)]
 		internal byte[] unused1 { get; set; } = new byte[32];
 
+		//This is really 16 characters. 15 char + 1 terminator.
 		/// <summary>
 		/// The password to authenticate with.
 		/// </summary>
-		[KnownSize(16)] //password can be 15 char ASCII string with a null terminator
+		[KnownSize(15)] //password can be 15 char ASCII string with a null terminator
 		[WireMember(8)]
 		public string Password { get; internal set; }
 

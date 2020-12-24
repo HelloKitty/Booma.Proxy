@@ -31,7 +31,7 @@ namespace FreecraftCore.Serializer
             //Type: DataParameterFileHeader Field: 3 Name: Offset Type: UInt32;
             value.Offset = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
             //Type: DataParameterFileHeader Field: 4 Name: FileName Type: String;
-            value.FileName = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_64, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.FileName = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_64>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace FreecraftCore.Serializer
             //Type: DataParameterFileHeader Field: 3 Name: Offset Type: UInt32;
             GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.Offset, buffer, ref offset);
             //Type: DataParameterFileHeader Field: 4 Name: FileName Type: String;
-            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_64, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Write(value.FileName, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_64>.Instance.Write(value.FileName, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_64 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 64; }
     }

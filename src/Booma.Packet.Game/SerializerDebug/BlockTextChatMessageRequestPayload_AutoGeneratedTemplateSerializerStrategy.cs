@@ -50,7 +50,7 @@ namespace FreecraftCore.Serializer
             //Type: BlockTextChatMessageRequestPayload Field: 2 Name: GuildCardNumber Type: UInt32;
             value.GuildCardNumber = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
             //Type: BlockTextChatMessageRequestPayload Field: 3 Name: Encoding Type: String;
-            value.Encoding = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_2, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.Encoding = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_2>.Instance.Read(buffer, ref offset);
             //Type: BlockTextChatMessageRequestPayload Field: 4 Name: ChatMessage Type: String;
             value.ChatMessage = TerminatedStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
         }
@@ -73,7 +73,7 @@ namespace FreecraftCore.Serializer
             //Type: BlockTextChatMessageRequestPayload Field: 2 Name: GuildCardNumber Type: UInt32;
             GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.GuildCardNumber, buffer, ref offset);
             //Type: BlockTextChatMessageRequestPayload Field: 3 Name: Encoding Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_2, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.Encoding, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_2>.Instance.Write(value.Encoding, buffer, ref offset);
             //Type: BlockTextChatMessageRequestPayload Field: 4 Name: ChatMessage Type: String;
             TerminatedStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.ChatMessage, buffer, ref offset);
         }

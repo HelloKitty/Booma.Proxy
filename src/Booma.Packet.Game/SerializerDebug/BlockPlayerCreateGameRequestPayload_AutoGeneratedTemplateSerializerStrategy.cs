@@ -48,9 +48,9 @@ namespace FreecraftCore.Serializer
             //Type: BlockPlayerCreateGameRequestPayload Field: 1 Name: unk1 Type: Int64;
             value.unk1 = GenericTypePrimitiveSerializerStrategy<Int64>.Instance.Read(buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 2 Name: GameName Type: String;
-            value.GameName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.GameName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 3 Name: Password Type: String;
-            value.Password = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.Password = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 4 Name: PartyDifficulty Type: DifficultyType;
             value.PartyDifficulty = GenericPrimitiveEnumTypeSerializerStrategy<DifficultyType, Byte>.Instance.Read(buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 5 Name: isBattleModeEnabled Type: Boolean;
@@ -79,9 +79,9 @@ namespace FreecraftCore.Serializer
             //Type: BlockPlayerCreateGameRequestPayload Field: 1 Name: unk1 Type: Int64;
             GenericTypePrimitiveSerializerStrategy<Int64>.Instance.Write(value.unk1, buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 2 Name: GameName Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.GameName, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.GameName, buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 3 Name: Password Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.Password, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.Password, buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 4 Name: PartyDifficulty Type: DifficultyType;
             GenericPrimitiveEnumTypeSerializerStrategy<DifficultyType, Byte>.Instance.Write(value.PartyDifficulty, buffer, ref offset);
             //Type: BlockPlayerCreateGameRequestPayload Field: 5 Name: isBattleModeEnabled Type: Boolean;

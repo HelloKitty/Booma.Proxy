@@ -31,7 +31,7 @@ namespace FreecraftCore.Serializer
             //Type: GameListEntry Field: 3 Name: PlayerCount Type: Byte;
             value.PlayerCount = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
             //Type: GameListEntry Field: 4 Name: Name Type: String;
-            value.Name = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.Name = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
             //Type: GameListEntry Field: 5 Name: Episode Type: EpisodeType;
             value.Episode = GenericPrimitiveEnumTypeSerializerStrategy<EpisodeType, Byte>.Instance.Read(buffer, ref offset);
             //Type: GameListEntry Field: 6 Name: flags Type: Byte;
@@ -54,7 +54,7 @@ namespace FreecraftCore.Serializer
             //Type: GameListEntry Field: 3 Name: PlayerCount Type: Byte;
             BytePrimitiveSerializerStrategy.Instance.Write(value.PlayerCount, buffer, ref offset);
             //Type: GameListEntry Field: 4 Name: Name Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.Name, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.Name, buffer, ref offset);
             //Type: GameListEntry Field: 5 Name: Episode Type: EpisodeType;
             GenericPrimitiveEnumTypeSerializerStrategy<EpisodeType, Byte>.Instance.Write(value.Episode, buffer, ref offset);
             //Type: GameListEntry Field: 6 Name: flags Type: Byte;

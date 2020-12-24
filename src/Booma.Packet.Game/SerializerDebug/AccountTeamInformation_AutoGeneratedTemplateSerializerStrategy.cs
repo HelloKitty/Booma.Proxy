@@ -33,7 +33,7 @@ namespace FreecraftCore.Serializer
             //Type: AccountTeamInformation Field: 4 Name: reserved Type: UInt16;
             value.reserved = GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Read(buffer, ref offset);
             //Type: AccountTeamInformation Field: 5 Name: TeamName Type: String;
-            value.TeamName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.TeamName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
             //Type: AccountTeamInformation Field: 6 Name: TeamFlagByteRepresentation Type: Byte[];
             value.TeamFlagByteRepresentation = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_2048>.Instance.Read(buffer, ref offset);
             //Type: AccountTeamInformation Field: 7 Name: TeamRewardsFlags Type: UInt32[];
@@ -58,7 +58,7 @@ namespace FreecraftCore.Serializer
             //Type: AccountTeamInformation Field: 4 Name: reserved Type: UInt16;
             GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Write(value.reserved, buffer, ref offset);
             //Type: AccountTeamInformation Field: 5 Name: TeamName Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.TeamName, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.TeamName, buffer, ref offset);
             //Type: AccountTeamInformation Field: 6 Name: TeamFlagByteRepresentation Type: Byte[];
             FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_2048>.Instance.Write(value.TeamFlagByteRepresentation, buffer, ref offset);
             //Type: AccountTeamInformation Field: 7 Name: TeamRewardsFlags Type: UInt32[];

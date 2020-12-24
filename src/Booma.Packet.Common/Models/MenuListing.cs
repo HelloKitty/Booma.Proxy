@@ -31,6 +31,7 @@ namespace Booma.Proxy
 		/// The ship name.
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate]
 		[KnownSize(17)]
 		[WireMember(3)]
 		public string ItemName { get; internal set; }

@@ -99,7 +99,7 @@ namespace FreecraftCore.Serializer
                 case (int)Booma.Proxy.GameNetworkOperationCode.BLOCK_LIST_TYPE:
                     return new ShipBlockListEventPayload();
                 default:
-                    throw new NotImplementedException($"Encountered unimplemented sub-type for Type: {nameof(PSOBBGamePacketPayloadServer)} with Key: {key}");
+                    return new UnknownServerGamePayload();
             }
         }
     }

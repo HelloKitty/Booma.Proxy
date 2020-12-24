@@ -33,7 +33,7 @@ namespace FreecraftCore.Serializer
             //Type: PlayerInformationHeader Field: 7 Name: ClientId Type: Int32;
             value.ClientId = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
             //Type: PlayerInformationHeader Field: 9 Name: CharacterName Type: String;
-            value.CharacterName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.CharacterName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
             //Type: PlayerInformationHeader Field: 10 Name: unk3 Type: UInt32;
             value.unk3 = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
         }
@@ -56,7 +56,7 @@ namespace FreecraftCore.Serializer
             //Type: PlayerInformationHeader Field: 7 Name: ClientId Type: Int32;
             GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.ClientId, buffer, ref offset);
             //Type: PlayerInformationHeader Field: 9 Name: CharacterName Type: String;
-            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.CharacterName, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.CharacterName, buffer, ref offset);
             //Type: PlayerInformationHeader Field: 10 Name: unk3 Type: UInt32;
             GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.unk3, buffer, ref offset);
         }

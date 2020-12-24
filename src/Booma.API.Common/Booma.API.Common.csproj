@@ -7,9 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="C5" Version="2.5.3" />
-    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.43" />
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.43" />
-    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.43" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.45" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.45" />
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.45" />
     <PackageReference Include="Reinterpret.Net" Version="2.0.7" />
   </ItemGroup>
 

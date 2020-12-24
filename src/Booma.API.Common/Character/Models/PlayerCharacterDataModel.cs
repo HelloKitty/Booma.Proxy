@@ -24,6 +24,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The guild card.
 		/// </summary>
+		[DontTerminate]
 		[KnownSize(16)]
 		[WireMember(2)]
 		public string GuildCard { get; internal set; }
@@ -70,6 +71,7 @@ namespace Booma.Proxy
 		/// The name of the character.
 		/// </summary>
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate] //don't terminate, knownsize sends all zero bytes up to the length. (so 15 char)
 		[KnownSize(16)] //TODO: Destiny only sends 15 char for char name. Other servers use 16.
 		[WireMember(9)]
 		public string CharacterName { get; internal set; }

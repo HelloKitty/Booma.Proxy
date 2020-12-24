@@ -20,6 +20,7 @@ namespace Booma.Proxy
 		internal uint GuildCardNumber { get; set; }
 
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate]
 		[KnownSize(2)]
 		[WireMember(3)]
 		internal string Encoding { get; set; } = "\tE";

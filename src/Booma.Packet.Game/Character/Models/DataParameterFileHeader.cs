@@ -43,6 +43,7 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Filename (Maximum of 64 characters.
 		/// </summary>
+		[DontTerminate] //KnownSize writes 0 bytes all the way to the end.
 		[KnownSize(64)] //0x40
 		[WireMember(4)]
 		public string FileName { get; internal set; }

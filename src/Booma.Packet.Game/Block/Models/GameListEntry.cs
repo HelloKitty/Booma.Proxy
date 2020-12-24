@@ -45,8 +45,9 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The name of the game.
 		/// </summary>
-		[KnownSize(16)]
 		[Encoding(EncodingType.UTF16)]
+		[DontTerminate]
+		[KnownSize(16)]
 		[WireMember(4)]
 		public string Name { get; internal set; }
 

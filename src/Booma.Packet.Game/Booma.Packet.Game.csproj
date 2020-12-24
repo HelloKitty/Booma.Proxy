@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.43" />
-    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.43" />
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.45" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.45" />
   </ItemGroup>
 
   <ItemGroup>

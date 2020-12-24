@@ -77,7 +77,7 @@ namespace FreecraftCore.Serializer
                 case (int)Booma.Proxy.GameNetworkOperationCode.MENU_SELECT_TYPE:
                     return new SharedMenuSelectionRequestPayload();
                 default:
-                    throw new NotImplementedException($"Encountered unimplemented sub-type for Type: {nameof(PSOBBGamePacketPayloadClient)} with Key: {key}");
+                    return new UnknownClientGamePayload();
             }
         }
     }

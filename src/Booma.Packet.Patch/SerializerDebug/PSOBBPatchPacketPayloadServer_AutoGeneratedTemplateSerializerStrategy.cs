@@ -65,7 +65,7 @@ namespace FreecraftCore.Serializer
                 case (int)Booma.Proxy.PatchNetworkOperationCode.PATCH_WELCOME_TYPE:
                     return new PatchingWelcomePayload();
                 default:
-                    throw new NotImplementedException($"Encountered unimplemented sub-type for Type: {nameof(PSOBBPatchPacketPayloadServer)} with Key: {key}");
+                    return new UnknownPatchPayload();
             }
         }
     }
