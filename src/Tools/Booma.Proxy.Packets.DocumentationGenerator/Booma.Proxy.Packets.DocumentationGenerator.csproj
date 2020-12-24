@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.45" />
-    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.45" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.47" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.47" />
     <PackageReference Include="Generic.Math" Version="1.0.2" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>

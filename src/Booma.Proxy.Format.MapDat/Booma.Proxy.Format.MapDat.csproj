@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.45" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.47" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Booma.API.Common\Booma.API.Common.csproj" />
