@@ -33,6 +33,7 @@ namespace Booma.Proxy
 		/// Copyright message sent down from the patch server.
 		/// Always the same message.
 		/// </summary>
+		[DontTerminate]
 		[KnownSize(44)]
 		[WireMember(1)]
 		public string PatchCopyrightMessage { get; internal set; } //I don't think this is null terminated?
@@ -40,7 +41,7 @@ namespace Booma.Proxy
 		//TODO: Why?
 		[KnownSize(20)]
 		[WireMember(2)]
-		internal byte[] Padding { get; set; }
+		internal byte[] Padding { get; set; } = new byte[20];
 
 		//TODO: What is this?
 		/// <summary>
