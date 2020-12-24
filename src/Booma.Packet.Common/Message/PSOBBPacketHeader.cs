@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GladNet;
 
 namespace Booma.Proxy
 {
@@ -14,7 +13,7 @@ namespace Booma.Proxy
 	/// write 
 	/// </summary>
 	[WireDataContract]
-	public class PSOBBPacketHeader : IPacketHeader
+	public class PSOBBPacketHeader
 	{
 		/// <summary>
 		/// The size of the packet.

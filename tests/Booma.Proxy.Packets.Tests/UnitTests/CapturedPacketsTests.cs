@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using Generic.Math;
-using GladNet;
 using NUnit.Framework;
 using Reinterpret.Net;
 
@@ -101,7 +100,7 @@ namespace Booma.Proxy
 		}
 
 		private void Generic_CanDeserialize_CaptureTest<TBasePayloadType, TOperationType>(PacketCaptureTestEntry entry)
-			where TBasePayloadType : IPacketPayload, IOperationCodeable<TOperationType>, ITypeSerializerReadingStrategy<TBasePayloadType>
+			where TBasePayloadType : IOperationCodeable<TOperationType>, ITypeSerializerReadingStrategy<TBasePayloadType>
 			where TOperationType : Enum
 		{
 			//arrange
@@ -136,14 +135,14 @@ namespace Booma.Proxy
 		}
 
 		private static short ConvertPayloadOperationCode<TBasePayloadType, TOperationType>(TBasePayloadType payload) 
-			where TBasePayloadType : IPacketPayload, IOperationCodeable<TOperationType>, ITypeSerializerReadingStrategy<TBasePayloadType> 
+			where TBasePayloadType : IOperationCodeable<TOperationType>, ITypeSerializerReadingStrategy<TBasePayloadType> 
 			where TOperationType : Enum
 		{
 			return GenericMath.Convert<TOperationType, short>(payload.OperationCode);
 		}
 
 		public void Generic_Can_Serialize_DeserializedClientDTO_To_Same_Binary_Representation<TBasePayloadType, TOperationCodeType>(PacketCaptureTestEntry entry)
-			where TBasePayloadType : IPacketPayload, IOperationCodeable<TOperationCodeType>, ITypeSerializerReadingStrategy<TBasePayloadType>, ITypeSerializerWritingStrategy<TBasePayloadType>
+			where TBasePayloadType : IOperationCodeable<TOperationCodeType>, ITypeSerializerReadingStrategy<TBasePayloadType>, ITypeSerializerWritingStrategy<TBasePayloadType>
 			where TOperationCodeType : Enum
 		{
 			//arrange

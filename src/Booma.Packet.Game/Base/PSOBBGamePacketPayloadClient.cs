@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
-using GladNet;
 using JetBrains.Annotations;
 
 namespace Booma.Proxy
@@ -17,7 +16,7 @@ namespace Booma.Proxy
 	[WireMessageType]
 	[DefaultChild(typeof(UnknownClientGamePayload))]
 	[WireDataContract(PrimitiveSizeType.UInt16)]
-	public abstract partial class PSOBBGamePacketPayloadClient : IPacketPayload, IOperationCodeable<GameNetworkOperationCode>
+	public abstract partial class PSOBBGamePacketPayloadClient : IOperationCodeable<GameNetworkOperationCode>
 	{
 		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
 		/// <summary>

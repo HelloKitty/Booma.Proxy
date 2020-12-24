@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
-using GladNet;
 
 namespace Booma.Proxy
 {
@@ -13,7 +12,7 @@ namespace Booma.Proxy
 	/// type based on a 2 byte opcode <see cref="ushort"/> that comes over the network.
 	/// </summary>
 	[WireDataContract(PrimitiveSizeType.UInt16)]
-	public abstract partial class PSOBBPatchPacketPayloadClient : IPacketPayload, IOperationCodeable<PatchNetworkOperationCode>
+	public abstract partial class PSOBBPatchPacketPayloadClient : IOperationCodeable<PatchNetworkOperationCode>
 	{
 		//Nothing, only the 2 byte Type is relevant for this base packet.
 		/// <inheritdoc />

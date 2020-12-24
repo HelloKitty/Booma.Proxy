@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
-using GladNet;
 
 namespace Booma.Proxy
 {
@@ -14,7 +13,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[DefaultChild(typeof(UnknownPatchPayload))] //this will be the default deserialized packet when we don't know what it is.
 	[WireDataContract(PrimitiveSizeType.UInt16)]
-	public abstract partial class PSOBBPatchPacketPayloadServer : IPacketPayload, IOperationCodeable<PatchNetworkOperationCode>
+	public abstract partial class PSOBBPatchPacketPayloadServer : IOperationCodeable<PatchNetworkOperationCode>
 	{
 		//We really only add this because sometimes we'll get a packet we don't know about and we'll want to log about it.
 		/// <summary>
