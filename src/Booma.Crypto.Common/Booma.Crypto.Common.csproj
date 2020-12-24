@@ -3,6 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Booma</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <Version>0.0.2</Version>
+    <Authors>Glader, Soly</Authors>
+    <Company>Glader, Soly</Company>
+    <Description>Booma is a collection of libraries that provide an API for Phantasy Star Online emulation.</Description>
+    <Copyright>Andrew Blakely</Copyright>
+    <PackageProjectUrl>https://github.com/HelloKitty/Booma.Proxy</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/HelloKitty/Booma.Proxy</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Phantasy Star Online Emulation Booma PSO PSOBB Blue Burst</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
