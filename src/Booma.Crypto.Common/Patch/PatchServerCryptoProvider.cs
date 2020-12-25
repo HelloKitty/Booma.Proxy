@@ -36,7 +36,7 @@ namespace Booma.Proxy
 			}
 		}
 
-		public void Crypt(Span<byte> bytes, int offset, int count)
+		public bool Crypt(Span<byte> bytes, int offset, int count)
 		{
 			if(count % 4 != 0)
 				throw new InvalidOperationException($"{GetType().Name} cannot crypt N % 4 != 0 bytes. Bytes or count must be a multiple of 4.");
@@ -45,6 +45,7 @@ namespace Booma.Proxy
 			if(count < 0) throw new ArgumentOutOfRangeException(nameof(count));
 
 			CRYPT_PC_CryptData(Key, bytes, offset, count);
+			return true;
 		}
 	}
 }
