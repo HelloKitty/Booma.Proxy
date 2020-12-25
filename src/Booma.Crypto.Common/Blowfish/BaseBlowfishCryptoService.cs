@@ -46,10 +46,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public abstract byte[] Crypt(byte[] bytes);
-
-		/// <inheritdoc />
-		public abstract byte[] Crypt(byte[] bytes, int offset, int count);
+		public abstract void Crypt(Span<byte> bytes, int offset, int count);
 
 		/// <summary>
 		/// Blowfish F
@@ -66,23 +63,26 @@ namespace Booma.Proxy
 			return e;
 		}
 
+		//TODO: Rewrite this as Reinterpret.
 		/// <summary>
 		/// Get uint bytes from byte array
 		/// </summary>
 		/// <param name="data"></param>
 		/// <param name="offset"></param>
 		/// <returns></returns>
-		protected uint UInt32(byte[] data, int offset)
+		protected uint UInt32(Span<byte> data, int offset)
 		{
 			return (uint)(data[offset + 0] + (data[offset + 1] << 8) + (data[offset + 2] << 16) + (data[offset + 3] << 24));
 		}
+
+		//TODO: Rewrite this as Reinterpret.
 		/// <summary>
 		/// Put uint bytes into byte array
 		/// </summary>
 		/// <param name="data"></param>
 		/// <param name="offset"></param>
 		/// <param name="value"></param>
-		protected void UInt32(byte[] data, int offset, uint value)
+		protected void UInt32(Span<byte> data, int offset, uint value)
 		{
 			data[offset + 0] = (byte)(value);
 			data[offset + 1] = (byte)(value >> 8);

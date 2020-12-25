@@ -14,7 +14,7 @@ namespace Booma.Proxy
 		/// <param name="data">Data to encrypt</param>
 		/// <param name="offset">Position where the encryption will start</param>
 		/// <param name="length">Number of bytes to encrypt</param>
-		public void Encrypt(byte[] data, int offset, int length)
+		public void Encrypt(Span<byte> data, int offset, int length)
 		{
 			if(!isInitialized)
 				throw new InvalidOperationException($"Cannot use the {nameof(BlowfishEncryptionService)} if it has not yet been initialized.");
@@ -48,17 +48,12 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public override byte[] Crypt(byte[] bytes)
+		public override void Crypt(Span<byte> bytes, int offset, int count)
 		{
-			Encrypt(bytes, 0, bytes.Length);
-			return bytes;
-		}
+			if(bytes.Length - offset < count || count % 8 != 0)
+				throw new InvalidOperationException("Cannot handle blocks of length % 8 != 0.");
 
-		/// <inheritdoc />
-		public override byte[] Crypt(byte[] bytes, int offset, int count)
-		{
 			Encrypt(bytes, offset, count);
-			return bytes;
 		}
 	}
 }
