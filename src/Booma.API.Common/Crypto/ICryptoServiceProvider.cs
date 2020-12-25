@@ -24,6 +24,7 @@ namespace Booma
 		/// <param name="bytes">The bytes to crypt.</param>
 		/// <param name="offset"></param>
 		/// <param name="count"></param>
-		void Crypt(Span<byte> bytes, int offset, int count);
+		/// <returns>Indicates if the buffer has been crypted.</returns>
+		bool Crypt(Span<byte> bytes, int offset, int count);
 	}
 }

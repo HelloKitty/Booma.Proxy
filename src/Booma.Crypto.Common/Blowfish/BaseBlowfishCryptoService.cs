@@ -46,7 +46,7 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public abstract void Crypt(Span<byte> bytes, int offset, int count);
+		public abstract bool Crypt(Span<byte> bytes, int offset, int count);
 
 		/// <summary>
 		/// Blowfish F

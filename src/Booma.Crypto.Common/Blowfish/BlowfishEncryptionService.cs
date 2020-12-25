@@ -48,12 +48,16 @@ namespace Booma.Proxy
 		}
 
 		/// <inheritdoc />
-		public override void Crypt(Span<byte> bytes, int offset, int count)
+		public override bool Crypt(Span<byte> bytes, int offset, int count)
 		{
+			if(!isInitialized)
+				return false;
+
 			if(bytes.Length - offset < count || count % 8 != 0)
 				throw new InvalidOperationException("Cannot handle blocks of length % 8 != 0.");
 
 			Encrypt(bytes, offset, count);
+			return true;
 		}
 	}
 }
