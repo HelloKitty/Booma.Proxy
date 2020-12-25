@@ -8,6 +8,7 @@ using Booma.Proxy;
 namespace Booma
 {
 	public interface IOperationCodeable<TOperationCodeType>
+	public interface IOperationCodeable<out TOperationCodeType>
 		where TOperationCodeType : Enum
 	{
 		TOperationCodeType OperationCode { get; }
