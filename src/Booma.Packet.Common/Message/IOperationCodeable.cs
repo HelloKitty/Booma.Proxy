@@ -7,10 +7,16 @@ using Booma.Proxy;
 
 namespace Booma
 {
-	public interface IOperationCodeable<TOperationCodeType>
+	/// <summary>
+	/// Contract for types/objects that are operation-coded.
+	/// </summary>
+	/// <typeparam name="TOperationCodeType">The operation code type.</typeparam>
 	public interface IOperationCodeable<out TOperationCodeType>
 		where TOperationCodeType : Enum
 	{
+		/// <summary>
+		/// Operation code for the object.
+		/// </summary>
 		TOperationCodeType OperationCode { get; }
 	}
 }
