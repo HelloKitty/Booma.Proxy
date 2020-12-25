@@ -28,6 +28,7 @@ namespace Booma.Proxy
 		/// Copyright message that the server sends to
 		/// the client which it verifies.
 		/// </summary>
+		[DontTerminate] //exact length, terminator or not.
 		[KnownSize(96)]
 		[WireMember(2)]
 		public string CopyrightMessage { get; internal set; }

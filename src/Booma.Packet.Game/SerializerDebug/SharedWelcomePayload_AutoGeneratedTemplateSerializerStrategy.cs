@@ -47,7 +47,7 @@ namespace FreecraftCore.Serializer
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)value.Flags = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
             //Type: SharedWelcomePayload Field: 2 Name: CopyrightMessage Type: String;
-            value.CopyrightMessage = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_96, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.CopyrightMessage = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_96>.Instance.Read(buffer, ref offset);
             //Type: SharedWelcomePayload Field: 3 Name: ServerVector Type: Byte[];
             value.ServerVector = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_48>.Instance.Read(buffer, ref offset);
             //Type: SharedWelcomePayload Field: 4 Name: ClientVector Type: Byte[];
@@ -68,7 +68,7 @@ namespace FreecraftCore.Serializer
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.Flags, buffer, ref offset);
             //Type: SharedWelcomePayload Field: 2 Name: CopyrightMessage Type: String;
-            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_96, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Write(value.CopyrightMessage, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_96>.Instance.Write(value.CopyrightMessage, buffer, ref offset);
             //Type: SharedWelcomePayload Field: 3 Name: ServerVector Type: Byte[];
             FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_48>.Instance.Write(value.ServerVector, buffer, ref offset);
             //Type: SharedWelcomePayload Field: 4 Name: ClientVector Type: Byte[];
