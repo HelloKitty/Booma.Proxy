@@ -45,7 +45,7 @@ namespace FreecraftCore.Serializer
             //Type: PSOBBPatchPacketPayloadServer Field: 1 Name: OperationCode Type: PatchNetworkOperationCode;
             value.OperationCode = GenericPrimitiveEnumTypeSerializerStrategy<PatchNetworkOperationCode, Int16>.Instance.Read(buffer, ref offset);
             //Type: PatchingWelcomePayload Field: 1 Name: PatchCopyrightMessage Type: String;
-            value.PatchCopyrightMessage = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_44, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.PatchCopyrightMessage = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_44>.Instance.Read(buffer, ref offset);
             //Type: PatchingWelcomePayload Field: 2 Name: Padding Type: Byte[];
             value.Padding = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_20>.Instance.Read(buffer, ref offset);
             //Type: PatchingWelcomePayload Field: 3 Name: ServerVector Type: UInt32;
@@ -66,7 +66,7 @@ namespace FreecraftCore.Serializer
             //Type: PSOBBPatchPacketPayloadServer Field: 1 Name: OperationCode Type: PatchNetworkOperationCode;
             GenericPrimitiveEnumTypeSerializerStrategy<PatchNetworkOperationCode, Int16>.Instance.Write(value.OperationCode, buffer, ref offset);
             //Type: PatchingWelcomePayload Field: 1 Name: PatchCopyrightMessage Type: String;
-            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_44, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Write(value.PatchCopyrightMessage, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_44>.Instance.Write(value.PatchCopyrightMessage, buffer, ref offset);
             //Type: PatchingWelcomePayload Field: 2 Name: Padding Type: Byte[];
             FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_20>.Instance.Write(value.Padding, buffer, ref offset);
             //Type: PatchingWelcomePayload Field: 3 Name: ServerVector Type: UInt32;

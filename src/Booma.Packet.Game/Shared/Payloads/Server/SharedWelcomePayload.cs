@@ -24,6 +24,12 @@ namespace Booma.Proxy
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_WELCOME_TYPE)]
 	public sealed partial class SharedWelcomePayload : PSOBBGamePacketPayloadServer
 	{
+		//TODO: Move this to crypto constants
+		/// <summary>
+		/// Represents the required size of the initialization vectors.
+		/// </summary>
+		public const int ENCRYPTION_VECTOR_SIZE = 48;
+
 		/// <summary>
 		/// Copyright message that the server sends to
 		/// the client which it verifies.
@@ -37,7 +43,7 @@ namespace Booma.Proxy
 		/// Encryption initialization vector
 		/// for the server crypto.
 		/// </summary>
-		[KnownSize(48)]
+		[KnownSize(ENCRYPTION_VECTOR_SIZE)]
 		[WireMember(3)]
 		public byte[] ServerVector { get; internal set; }
 
@@ -45,9 +51,22 @@ namespace Booma.Proxy
 		/// Decryption initialization vector
 		/// for the server crypto.
 		/// </summary>
-		[KnownSize(48)]
+		[KnownSize(ENCRYPTION_VECTOR_SIZE)]
 		[WireMember(4)]
 		public byte[] ClientVector { get; internal set; }
+
+		public SharedWelcomePayload([NotNull] string copyrightMessage, 
+			[NotNull] byte[] serverVector, 
+			[NotNull] byte[] clientVector) 
+			: this()
+		{
+			CopyrightMessage = copyrightMessage ?? throw new ArgumentNullException(nameof(copyrightMessage));
+			ServerVector = serverVector ?? throw new ArgumentNullException(nameof(serverVector));
+			ClientVector = clientVector ?? throw new ArgumentNullException(nameof(clientVector));
+
+			ClientVector.AssertLengthExact(ENCRYPTION_VECTOR_SIZE);
+			ServerVector.AssertLengthExact(ENCRYPTION_VECTOR_SIZE);
+		}
 
 		/// <summary>
 		/// Serializer ctor.
