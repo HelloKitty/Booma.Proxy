@@ -27,6 +27,18 @@ namespace Booma.Proxy
 		public byte[] UnknownBytes { get; internal set; }
 
 		/// <summary>
+		/// Creates a new unknown payload with the provided <see cref="operationCode"/>.
+		/// and the binary buffer <see cref="bytes"/>
+		/// </summary>
+		/// <param name="operationCode"></param>
+		/// <param name="bytes"></param>
+		public UnknownClientGamePayload(GameNetworkOperationCode operationCode, byte[] bytes)
+			: base(operationCode)
+		{
+			UnknownBytes = bytes;
+		}
+
+		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
 		public UnknownClientGamePayload()
