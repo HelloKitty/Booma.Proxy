@@ -43,6 +43,15 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public AccountTeamInformation TeamInfo { get; internal set; }
 
+		public CharacterOptionsResponsePayload(BindingsConfig bindings, uint guildCard, AccountTeamInformation teamInfo) 
+			: this()
+		{
+			unk = new byte[276];
+			Bindings = bindings;
+			GuildCard = guildCard;
+			TeamInfo = teamInfo;
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>

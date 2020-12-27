@@ -36,6 +36,12 @@ namespace Booma.Proxy
 			JoystickConfiguration = joystickConfiguration ?? throw new ArgumentNullException(nameof(joystickConfiguration));
 		}
 
+		public static BindingsConfig CreateDefault()
+		{
+			//TODO: Serialize null array for fixed size!
+			return new BindingsConfig(new byte[364], new byte[56]);
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>

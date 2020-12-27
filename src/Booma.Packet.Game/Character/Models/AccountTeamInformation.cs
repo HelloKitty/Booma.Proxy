@@ -53,10 +53,21 @@ namespace Booma.Proxy
 		[WireMember(6)]
 		public byte[] TeamFlagByteRepresentation { get; internal set; }
 
-		//TODO: Can this be an long enum flags?
-		[KnownSize(2)]
 		[WireMember(7)]
-		public uint[] TeamRewardsFlags { get; internal set; }
+		public ulong TeamRewardsFlags { get; internal set; }
+
+		public AccountTeamInformation(uint teamId, uint[] teamInformation, ushort teamPrivilege, ushort reserved, string teamName, ulong teamRewardsFlags)
+		{
+			TeamId = teamId;
+			TeamInformation = teamInformation;
+			TeamPrivilege = teamPrivilege;
+			this.reserved = reserved;
+			TeamName = teamName;
+
+			//TODO: Support null array serialization in FreecraftCore.
+			TeamFlagByteRepresentation = new byte[2048];
+			TeamRewardsFlags = teamRewardsFlags;
+		}
 
 		public AccountTeamInformation()
 		{
