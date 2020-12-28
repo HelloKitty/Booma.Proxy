@@ -18,9 +18,9 @@
 
   <ItemGroup>
     <PackageReference Include="C5" Version="2.5.3" />
-    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.47" />
-    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.47" />
-    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.47">
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.48" />
+    <PackageReference Include="FreecraftCore.Serializer.Metadata" Version="4.0.48" />
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.48">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

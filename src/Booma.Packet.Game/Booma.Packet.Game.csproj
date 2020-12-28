@@ -21,11 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.47">
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.48">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.47" />
+    <PackageReference Include="FreecraftCore.Serializer" Version="4.0.48" />
   </ItemGroup>
 
   <ItemGroup>

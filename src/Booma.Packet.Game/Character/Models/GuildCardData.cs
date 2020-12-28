@@ -168,7 +168,7 @@ namespace Booma.Proxy
 		//uint8_t unk1[0x0114];
 		[KnownSize(0x0114)]
 		[WireMember(1)]
-		internal byte[] unk1 { get; set; }
+		internal byte[] unk1 { get; set; } = Array.Empty<byte>();
 
 		[KnownSize(29)]
 		[WireMember(2)]
@@ -177,7 +177,7 @@ namespace Booma.Proxy
 		//uint8_t unk2[0x78];
 		[KnownSize(0x78)]
 		[WireMember(3)]
-		internal byte[] unk2 { get; set; }
+		internal byte[] unk2 { get; set; } = Array.Empty<byte>();
 
 		[KnownSize(104)]
 		[WireMember(4)]
@@ -186,7 +186,7 @@ namespace Booma.Proxy
 		//uint8_t unk3[0x01BC];
 		[KnownSize(0x01BC)]
 		[WireMember(5)]
-		internal byte[] unk3 { get; set; }
+		internal byte[] unk3 { get; set; } = Array.Empty<byte>();
 
 		public GuildCardData([NotNull] GuildCardEntry[] blocked, [NotNull] GuildCardFriend[] friends)
 		{
