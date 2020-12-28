@@ -18,6 +18,14 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public LoginChecksumResult ResponseCode { get; internal set; }
 
+		public CharacterChecksumResponsePayload(LoginChecksumResult responseCode) 
+			: this()
+		{
+			if(!Enum.IsDefined(typeof(LoginChecksumResult), responseCode)) throw new ArgumentOutOfRangeException(nameof(responseCode), "Value should be defined in the LoginChecksumResult enum.");
+
+			ResponseCode = responseCode;
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
