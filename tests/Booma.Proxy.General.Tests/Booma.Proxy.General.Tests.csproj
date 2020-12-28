@@ -40,33 +40,8 @@
     <Reference Include="Moq">
       <HintPath>..\..\..\..\..\.nuget\packages\moq\4.10.0\lib\net45\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.OdinInspector.Attributes, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Nido\Sirenix.OdinInspector.Attributes.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Nido\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Sirenix.Serialization.Config">
-      <HintPath>..\..\lib\Nido\Sirenix.Serialization.Config.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="UnityEditor, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Unity\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\lib\Unity\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Timeline">
-      <HintPath>..\..\lib\Unity\UnityEngine.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Unity\UnityEngine.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +59,28 @@
     <PackageReference Include="SceneJect.Metadata">
       <Version>3.0.31</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Booma.API.Common\Booma.API.Common.csproj">
+      <Project>{ec055ef4-a271-4ea0-8510-b97934ecc807}</Project>
+      <Name>Booma.API.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Crypto.Common\Booma.Crypto.Common.csproj">
+      <Project>{aa551fa0-0c99-4561-8f9d-6b494589f37e}</Project>
+      <Name>Booma.Crypto.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Packet.Common\Booma.Packet.Common.csproj">
+      <Project>{ee9fd7cd-74c5-4d4e-9c63-94dd3b5676a9}</Project>
+      <Name>Booma.Packet.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Packet.Game\Booma.Packet.Game.csproj">
+      <Project>{a5f46b13-0636-4b98-b50c-dd9262aac534}</Project>
+      <Name>Booma.Packet.Game</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Booma.Packet.Patch\Booma.Packet.Patch.csproj">
+      <Project>{f4e5cc4f-30c6-43e8-81c1-068157e1c6ec}</Project>
+      <Name>Booma.Packet.Patch</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
