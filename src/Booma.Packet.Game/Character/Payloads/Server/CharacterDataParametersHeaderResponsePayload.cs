@@ -54,7 +54,7 @@ namespace Booma.Proxy
 			_Headers = headers ?? throw new ArgumentNullException(nameof(headers));
 
 			if (headers.Length != PARAMETER_FILE_COUNT)
-				throw new InvalidOperationException($"Provided Parameter Headers incorrect size. Expected: {PARAMETER_FILE_COUNT} Actual: {headers.Length}")
+				throw new InvalidOperationException($"Provided Parameter Headers incorrect size. Expected: {PARAMETER_FILE_COUNT} Actual: {headers.Length}");
 		}
 
 		/// <summary>
