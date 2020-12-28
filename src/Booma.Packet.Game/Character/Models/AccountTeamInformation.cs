@@ -51,7 +51,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(2048)]
 		[WireMember(6)]
-		public byte[] TeamFlagByteRepresentation { get; internal set; }
+		public byte[] TeamFlagByteRepresentation { get; internal set; } = Array.Empty<byte>();
 
 		[WireMember(7)]
 		public ulong TeamRewardsFlags { get; internal set; }
@@ -63,9 +63,6 @@ namespace Booma.Proxy
 			TeamPrivilege = teamPrivilege;
 			this.reserved = reserved;
 			TeamName = teamName;
-
-			//TODO: Support null array serialization in FreecraftCore.
-			TeamFlagByteRepresentation = new byte[2048];
 			TeamRewardsFlags = teamRewardsFlags;
 		}
 

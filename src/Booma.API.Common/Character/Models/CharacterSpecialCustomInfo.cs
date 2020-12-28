@@ -28,7 +28,7 @@ namespace Booma.Proxy
 		//TODO: Why? What?
 		[KnownSize(15)]
 		[WireMember(3)]
-		internal byte[] unused { get; set; } = new byte[15];
+		internal byte[] unused { get; set; } = Array.Empty<byte>();
 
 		//TODO: How does this work?
 		/// <summary>

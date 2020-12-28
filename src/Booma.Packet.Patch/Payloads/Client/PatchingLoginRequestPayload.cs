@@ -33,7 +33,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(12)]
 		[WireMember(1)]
-		internal byte[] Padding { get; set; } = new byte[12];
+		internal byte[] Padding { get; set; } = Array.Empty<byte>();
 
 		/// <summary>
 		/// Username to authenticate with the patchserver.
@@ -54,7 +54,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(64)]
 		[WireMember(4)]
-		internal byte[] Padding2 { get; set; } = new byte[64];
+		internal byte[] Padding2 { get; set; } = Array.Empty<byte>();
 
 		//serializer ctor
 

@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		//TODO: This are about 518 bytes here for quest data
 		[ReadToEnd]
 		[WireMember(1)]
-		public byte[] QuestData { get; internal set; } = new byte[0];
+		public byte[] QuestData { get; internal set; } = Array.Empty<byte>();
 
 		public Sub60ClientBurstBeginEventCommand([NotNull] byte[] questData)
 			: this()

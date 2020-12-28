@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(14)]
 		[WireMember(2)]
-		public byte[] UnknownBytes { get; internal set; } = new byte[14];
+		public byte[] UnknownBytes { get; internal set; } = Array.Empty<byte>();
 
 		public Sub62PhotonChairCommand()
 			: base(SubCommand62OperationCode.PhotonChairCommand)

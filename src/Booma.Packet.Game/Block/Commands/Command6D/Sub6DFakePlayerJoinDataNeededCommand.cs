@@ -16,7 +16,7 @@ namespace Booma.Proxy
 		//the issue is, I don't know how long it's actually suppose to be.
 		[KnownSize(0x4C0 - 8)]
 		[WireMember(2)]
-		public byte[] UnknownBytes { get; internal set; } = new byte[0x4C0 - 8];
+		public byte[] UnknownBytes { get; internal set; } = Array.Empty<byte>();
 
 		public Sub6DFakePlayerJoinDataNeededCommand(byte identifier)
 			: base(SubCommand6DOperationCode.PlayerJoinedData, identifier)

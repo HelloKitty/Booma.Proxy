@@ -68,7 +68,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(40)]
 		[WireMember(5)]
-		public byte[] SecurityData { get; internal set; }
+		public byte[] SecurityData { get; internal set; } = Array.Empty<byte>();
 
 		//TODO: What is this?
 		[WireMember(6)]
@@ -102,8 +102,6 @@ namespace Booma.Proxy
 			if(!Enum.IsDefined(typeof(AuthenticationResponseCode), responseCode)) throw new InvalidEnumArgumentException(nameof(responseCode), (int)responseCode, typeof(AuthenticationResponseCode));
 			if(responseCode == AuthenticationResponseCode.LOGIN_93BB_OK) throw new ArgumentException($"Cannot create failure response with Code: {responseCode}", nameof(responseCode));
 
-			//Must be non-null
-			SecurityData = new byte[40];
 			ResponseCode = responseCode;
 		}
 

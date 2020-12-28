@@ -35,7 +35,7 @@ namespace Booma.Proxy
 
 		[KnownSize(3)]
 		[WireMember(2)]
-		internal byte[] unused { get; set; }
+		internal byte[] unused { get; set; } = Array.Empty<byte>();
 
 		/// <summary>
 		/// The character data for <see cref="SlotSelected"/>.
@@ -47,9 +47,6 @@ namespace Booma.Proxy
 			: this()
 		{
 			SlotSelected = slotSelected;
-
-			//TODO: Support sending null array for fixed size.
-			this.unused = new byte[3];
 			CharacterData = characterData;
 		}
 

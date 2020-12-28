@@ -45,7 +45,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(2)]
 		[WireMember(3)]
-		internal byte[] padding { get; set; } = new byte[2];
+		internal byte[] padding { get; set; } = Array.Empty<byte>();
 
 		//Lazy cache of the computed ipaddr
 		private Lazy<IPAddress> _EndpointAddress { get; }

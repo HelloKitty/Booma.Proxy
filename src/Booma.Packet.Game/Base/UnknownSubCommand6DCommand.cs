@@ -19,7 +19,7 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		[ReadToEnd]
 		[WireMember(1)]
-		public byte[] UnknownBytes { get; internal set; } = new byte[0]; //readtoend requires at least an empty array init
+		public byte[] UnknownBytes { get; internal set; } = Array.Empty<byte>(); //readtoend requires at least an empty array init
 
 		/// <summary>
 		/// Serializer ctor.

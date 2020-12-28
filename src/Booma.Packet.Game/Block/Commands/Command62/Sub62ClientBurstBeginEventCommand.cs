@@ -20,7 +20,7 @@ namespace Booma.Proxy
 		//TODO: This are about 518 bytes here for quest data
 		[ReadToEnd]
 		[WireMember(1)]
-		internal byte[] QuestData { get; set; } = new byte[0];
+		internal byte[] QuestData { get; set; } = Array.Empty<byte>();
 
 		/// <summary>
 		/// Serializer ctor.

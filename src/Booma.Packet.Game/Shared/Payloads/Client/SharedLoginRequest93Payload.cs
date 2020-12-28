@@ -73,7 +73,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(32)]
 		[WireMember(7)]
-		internal byte[] unused1 { get; set; } = new byte[32];
+		internal byte[] unused1 { get; set; } = Array.Empty<byte>();
 
 		//This is really 16 characters. 15 char + 1 terminator.
 		/// <summary>
@@ -88,7 +88,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(40)]
 		[WireMember(9)]
-		internal byte[] unused2 { get; set; } = new byte[40];
+		internal byte[] unused2 { get; set; } = Array.Empty<byte>();
 
 		/// <summary>
 		/// Verification/security information the client is using for the session.

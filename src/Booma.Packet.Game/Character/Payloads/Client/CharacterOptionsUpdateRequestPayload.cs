@@ -23,7 +23,7 @@ namespace Booma.Proxy
 		/// </summary>
 		[KnownSize(276)]
 		[WireMember(1)]
-		internal byte[] unk { get; set; }
+		internal byte[] unk { get; set; } = Array.Empty<byte>();
 
 		/// <summary>
 		/// Binding configuration.
@@ -46,7 +46,6 @@ namespace Booma.Proxy
 		public CharacterOptionsUpdateRequestPayload(BindingsConfig bindings, uint guildCard, AccountTeamInformation teamInfo) 
 			: this()
 		{
-			unk = new byte[276];
 			Bindings = bindings;
 			GuildCard = guildCard;
 			TeamInfo = teamInfo;

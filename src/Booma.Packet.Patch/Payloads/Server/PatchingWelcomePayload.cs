@@ -41,7 +41,7 @@ namespace Booma.Proxy
 		//TODO: Why?
 		[KnownSize(20)]
 		[WireMember(2)]
-		internal byte[] Padding { get; set; } = new byte[20];
+		internal byte[] Padding { get; set; } = Array.Empty<byte>();
 
 		//TODO: What is this?
 		/// <summary>

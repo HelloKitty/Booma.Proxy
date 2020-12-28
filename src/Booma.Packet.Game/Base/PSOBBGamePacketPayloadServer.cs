@@ -40,7 +40,7 @@ namespace Booma.Proxy
 		[Optional(nameof(isFlagsSerialized))] //Makes this flags optional; some subpayloads may want to consume the 4 bytes instead
 		[KnownSize(4)] //always 4 bytes
 		[WireMember(2)]
-		internal byte[] Flags { get; set; } = new byte[4]; //we can initialize new flags every payload since they're always there
+		internal byte[] Flags { get; set; } = Array.Empty<byte>(); //we can initialize new flags every payload since they're always there
 
 		protected PSOBBGamePacketPayloadServer(GameNetworkOperationCode operationCode)
 		{
