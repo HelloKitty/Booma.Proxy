@@ -16,8 +16,18 @@ namespace Booma.Proxy
 	{
 		//TODO: This may not be serverType. It may have to do with the current operation
 		[Serializable]
-		public enum ServerType : byte
+		public enum SessionStage : byte
 		{
+			/// <summary>
+			/// Session for pre-character selection.
+			/// </summary>
+			BeforeCharacterSelection = 0,
+
+			/// <summary>
+			/// Session for being at the character selection screen.
+			/// </summary>
+			CharacterSelection = 1,
+
 			/// <summary>
 			/// The ID for the pre-ship auth for <see cref="SharedLoginRequest93Payload.unk2"/>.
 			/// </summary>
@@ -52,6 +62,11 @@ namespace Booma.Proxy
 		[KnownSize(6)]
 		[WireMember(4)]
 		internal byte[] unk2 { get; set; } //Tethella will expect a 4 at 0x16 during Character and 5 during Ship.
+
+		/// <summary>
+		/// Indicates the stage the session trying to login in is at.
+		/// </summary>
+		public SessionStage Stage => (SessionStage)unk2[4];
 
 		//easier to work with this as an int in .NET/Unity3D
 		/// <summary>
@@ -96,19 +111,19 @@ namespace Booma.Proxy
 		[WireMember(10)]
 		public ClientVerificationData ClientData { get; internal set; }
 
-		public SharedLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
-			: this(clientVersion, 0, userName, password, clientData, serverType)
+		public SharedLoginRequest93Payload(ushort clientVersion, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, SessionStage stage = SessionStage.PreShip)
+			: this(clientVersion, 0, userName, password, clientData, stage)
 		{
 
 		}
 
-		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
-			: this(clientVersion, teamId, 0, userName, password, clientData, serverType)
+		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, SessionStage stage = SessionStage.PreShip)
+			: this(clientVersion, teamId, 0, userName, password, clientData, stage)
 		{
 
 		}
 
-		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, uint guildCard, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, ServerType serverType = ServerType.PreShip)
+		public SharedLoginRequest93Payload(ushort clientVersion, int teamId, uint guildCard, [NotNull] string userName, [NotNull] string password, [NotNull] ClientVerificationData clientData, SessionStage stage = SessionStage.PreShip)
 			: this()
 		{
 			if(string.IsNullOrWhiteSpace(userName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(userName));
@@ -126,7 +141,7 @@ namespace Booma.Proxy
 			GuildCardId = guildCard;
 
 			//This is odd, not sure what this is or why we have to do it but Teth checks this sometimes
-			unk2 = Enumerable.Repeat((byte)serverType, 6).ToArray();
+			unk2 = Enumerable.Repeat((byte)stage, 6).ToArray();
 		}
 
 		/// <summary>
