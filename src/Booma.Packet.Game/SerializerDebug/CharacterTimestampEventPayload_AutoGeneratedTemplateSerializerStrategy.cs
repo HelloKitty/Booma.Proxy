@@ -47,7 +47,7 @@ namespace FreecraftCore.Serializer
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)value.Flags = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
             //Type: CharacterTimestampEventPayload Field: 1 Name: Timestamp Type: String;
-            value.Timestamp = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_28, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
+            value.Timestamp = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_28>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FreecraftCore.Serializer
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.Flags, buffer, ref offset);
             //Type: CharacterTimestampEventPayload Field: 1 Name: Timestamp Type: String;
-            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_28, ASCIIStringTerminatorTypeSerializerStrategy>.Instance.Write(value.Timestamp, buffer, ref offset);
+            FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_28>.Instance.Write(value.Timestamp, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_28 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 28; }
         private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }

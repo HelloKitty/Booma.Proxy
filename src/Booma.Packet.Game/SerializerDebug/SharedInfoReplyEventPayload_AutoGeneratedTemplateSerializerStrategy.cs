@@ -46,8 +46,8 @@ namespace FreecraftCore.Serializer
             value.OperationCode = GenericPrimitiveEnumTypeSerializerStrategy<GameNetworkOperationCode, Int16>.Instance.Read(buffer, ref offset);
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)value.Flags = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
-            //Type: SharedInfoReplyEventPayload Field: 1 Name: unused Type: UInt32[];
-            value.unused = FixedSizePrimitiveArrayTypeSerializerStrategy<uint, StaticTypedNumeric_Int32_2>.Instance.Read(buffer, ref offset);
+            //Type: SharedInfoReplyEventPayload Field: 1 Name: unused Type: UInt64;
+            value.unused = GenericTypePrimitiveSerializerStrategy<UInt64>.Instance.Read(buffer, ref offset);
             //Type: SharedInfoReplyEventPayload Field: 2 Name: Message Type: String;
             value.Message = TerminatedStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Read(buffer, ref offset);
         }
@@ -65,12 +65,11 @@ namespace FreecraftCore.Serializer
             GenericPrimitiveEnumTypeSerializerStrategy<GameNetworkOperationCode, Int16>.Instance.Write(value.OperationCode, buffer, ref offset);
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.Flags, buffer, ref offset);
-            //Type: SharedInfoReplyEventPayload Field: 1 Name: unused Type: UInt32[];
-            FixedSizePrimitiveArrayTypeSerializerStrategy<uint, StaticTypedNumeric_Int32_2>.Instance.Write(value.unused, buffer, ref offset);
+            //Type: SharedInfoReplyEventPayload Field: 1 Name: unused Type: UInt64;
+            GenericTypePrimitiveSerializerStrategy<UInt64>.Instance.Write(value.unused, buffer, ref offset);
             //Type: SharedInfoReplyEventPayload Field: 2 Name: Message Type: String;
             TerminatedStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, UTF16StringTerminatorTypeSerializerStrategy>.Instance.Write(value.Message, buffer, ref offset);
         }
-        private sealed class StaticTypedNumeric_Int32_2 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 2; }
         private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
     }
 }
