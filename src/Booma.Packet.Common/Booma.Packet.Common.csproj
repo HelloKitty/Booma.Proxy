@@ -32,7 +32,6 @@
 
   <ItemGroup>
     <Compile Remove="SerializerDebug\**" />
-    <None Include="SerializerDebug\**" />
   </ItemGroup>
 
 </Project>
