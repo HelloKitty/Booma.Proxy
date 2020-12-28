@@ -12,7 +12,7 @@ namespace Booma.Proxy
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.SHIP_LIST_TYPE)]
-	public sealed partial class SharedShipListEventPayload : PSOBBGamePacketPayloadServer, ISerializationEventListener
+	public sealed partial class SharedShipListEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//Disable flags serialization so that the ship can get the 4 byte length and
 		//handle writing the 4 bytes length
@@ -47,25 +47,25 @@ namespace Booma.Proxy
 		internal MenuListing LastMenuListing { get; set; }
 
 		/// <summary>
+		/// Creates a new ship list packet with the provided ships <see cref="shipList"/>.
+		/// With a button at the bottom <see cref="button"/>.
+		/// </summary>
+		/// <param name="shipList">The list of ships.</param>
+		/// <param name="button">The button.</param>
+		public SharedShipListEventPayload([NotNull] MenuListing[] shipList, [NotNull] MenuListing button) 
+			: this()
+		{
+			_MenuListings = shipList ?? throw new ArgumentNullException(nameof(shipList));
+			LastMenuListing = button ?? throw new ArgumentNullException(nameof(button));
+		}
+
+		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
 		public SharedShipListEventPayload()
 			: base(GameNetworkOperationCode.SHIP_LIST_TYPE)
 		{
 			
-		}
-
-		/// <inheritdoc />
-		public void OnBeforeSerialization()
-		{
-			//TODO: Deal with the bullshit the server adds for some reason
-		}
-
-		/// <inheritdoc />
-		public void OnAfterDeserialization()
-		{
-			//We no longer remove the the garbage entry
-			//It is up to the consumer of the DTO to decide what they want.
 		}
 	}
 }

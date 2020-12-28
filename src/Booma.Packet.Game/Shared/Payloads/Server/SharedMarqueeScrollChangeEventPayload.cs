@@ -30,7 +30,7 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public string Message { get; internal set; }
 
-		public SharedMarqueeScrollChangeEventPayload([JetBrains.Annotations.NotNull] string message) 
+		public SharedMarqueeScrollChangeEventPayload([NotNull] string message) 
 			: this()
 		{
 			Message = message ?? throw new ArgumentNullException(nameof(message));
