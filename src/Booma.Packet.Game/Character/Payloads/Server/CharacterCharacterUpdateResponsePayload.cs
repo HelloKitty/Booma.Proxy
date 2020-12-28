@@ -37,8 +37,21 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		internal byte[] unused { get; set; }
 
+		/// <summary>
+		/// The character data for <see cref="SlotSelected"/>.
+		/// </summary>
 		[WireMember(3)]
 		public PlayerCharacterDataModel CharacterData { get; internal set; }
+
+		public CharacterCharacterUpdateResponsePayload(byte slotSelected, PlayerCharacterDataModel characterData) 
+			: this()
+		{
+			SlotSelected = slotSelected;
+
+			//TODO: Support sending null array for fixed size.
+			this.unused = new byte[3];
+			CharacterData = characterData;
+		}
 
 		/// <summary>
 		/// Serializer ctor.
