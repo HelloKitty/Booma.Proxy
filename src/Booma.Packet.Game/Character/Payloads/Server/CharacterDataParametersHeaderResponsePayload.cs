@@ -36,10 +36,13 @@ namespace Booma.Proxy
 		/// </summary>
 		public const int PARAMETER_FILE_COUNT = 9;
 
+		//Sylverant shows that the parameter file count is sent in the flags.
+		public override bool isFlagsSerialized { get; } = false;
+
 		/// <summary>
 		/// Serialized file headers.
 		/// </summary>
-		[KnownSize(PARAMETER_FILE_COUNT)] //Soly said there are only 9 files
+		[SendSize(PrimitiveSizeType.Int32)] //Soly said there are only 9 files for PSOBB2
 		[WireMember(1)]
 		internal DataParameterFileHeader[] _Headers { get; set; }
 
@@ -52,9 +55,6 @@ namespace Booma.Proxy
 			: this()
 		{
 			_Headers = headers ?? throw new ArgumentNullException(nameof(headers));
-
-			if (headers.Length != PARAMETER_FILE_COUNT)
-				throw new InvalidOperationException($"Provided Parameter Headers incorrect size. Expected: {PARAMETER_FILE_COUNT} Actual: {headers.Length}");
 		}
 
 		/// <summary>
