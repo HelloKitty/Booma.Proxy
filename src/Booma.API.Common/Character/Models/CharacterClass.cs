@@ -4,7 +4,7 @@
 	/// PSO doesn't have races and classes. Just a combination of both.
 	/// Unlike WoW where you can have a Dwarf Warlock there is only something akin to a DWLock.
 	/// </summary>
-	public enum CharacterClassRace : byte
+	public enum CharacterClass : byte
 	{
 		HUmar,
 		HUnewearl,

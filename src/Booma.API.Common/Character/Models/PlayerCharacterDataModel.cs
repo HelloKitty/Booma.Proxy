@@ -50,7 +50,7 @@ namespace Booma.Proxy
 		/// The class/race for the character.
 		/// </summary>
 		[WireMember(6)]
-		public CharacterClassRace ClassRace { get; internal set; }
+		public CharacterClass ClassRace { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>
@@ -82,12 +82,12 @@ namespace Booma.Proxy
 		public uint PlayedTime { get; internal set; }
 
 		public PlayerCharacterDataModel(CharacterProgress progress, string guildCard, CharacterSpecialCustomInfo special, 
-			SectionId sectionId, CharacterClassRace classRace, 
+			SectionId sectionId, CharacterClass classRace, 
 			CharacterVersionData versionData, CharacterCustomizationInfo customizationInfo, 
 			string characterName, uint playedTime)
 		{
 			if (!Enum.IsDefined(typeof(SectionId), sectionId)) throw new InvalidEnumArgumentException(nameof(sectionId), (int) sectionId, typeof(SectionId));
-			if (!Enum.IsDefined(typeof(CharacterClassRace), classRace)) throw new InvalidEnumArgumentException(nameof(classRace), (int) classRace, typeof(CharacterClassRace));
+			if (!Enum.IsDefined(typeof(CharacterClass), classRace)) throw new InvalidEnumArgumentException(nameof(classRace), (int) classRace, typeof(CharacterClass));
 
 			Progress = progress ?? throw new ArgumentNullException(nameof(progress));
 			GuildCard = guildCard ?? throw new ArgumentNullException(nameof(guildCard));

@@ -60,7 +60,7 @@ namespace Booma.Proxy
 		/// The class/race for the character.
 		/// </summary>
 		[WireMember(10)]
-		public CharacterClassRace ClassRace { get; internal set; }
+		public CharacterClass ClassRace { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>

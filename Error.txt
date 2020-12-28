@@ -1,0 +1,23 @@
+System.InvalidOperationException: Type: SharedMarqueeScrollChangeEventPayload encountered compilation failure. Reason: System.NotImplementedException: TODO: Cannot handle Type: GameNetworkOperationCode ContainingType: Booma.Proxy.PSOBBGamePacketPayloadServer MetadataType: NonErrorNamedTypeSymbol Generic: False UnboundGeneric: False
+   at FreecraftCore.Serializer.FlatComplexTypeSerializationMethodBlockEmitter.EmitTypesMemberSerialization(ITypeSymbol currentType, SyntaxList`1 statements)
+   at FreecraftCore.Serializer.FlatComplexTypeSerializationMethodBlockEmitter.CreateBlock()
+   at FreecraftCore.Serializer.RootSerializationMethodBlockEmitter.CreateBlock()
+   at FreecraftCore.Serializer.RegularSerializerImplementationCompilationUnitEmitter.CreateReadBlock()
+   at FreecraftCore.Serializer.RegularSerializerImplementationCompilationUnitEmitter.BuildClassDefinition()
+   at FreecraftCore.Serializer.RegularSerializerImplementationCompilationUnitEmitter.CreateSerializerImplementationNamespaceMember()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateMembers()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateUnit()
+   at FreecraftCore.Serializer.SerializerSourceEmitter.WriteSerializerStrategyClass(INamedTypeSymbol typeSymbol) ---> System.NotImplementedException: TODO: Cannot handle Type: GameNetworkOperationCode ContainingType: Booma.Proxy.PSOBBGamePacketPayloadServer MetadataType: NonErrorNamedTypeSymbol Generic: False UnboundGeneric: False
+   at FreecraftCore.Serializer.FlatComplexTypeSerializationMethodBlockEmitter.EmitTypesMemberSerialization(ITypeSymbol currentType, SyntaxList`1 statements)
+   at FreecraftCore.Serializer.FlatComplexTypeSerializationMethodBlockEmitter.CreateBlock()
+   at FreecraftCore.Serializer.RootSerializationMethodBlockEmitter.CreateBlock()
+   at FreecraftCore.Serializer.RegularSerializerImplementationCompilationUnitEmitter.CreateReadBlock()
+   at FreecraftCore.Serializer.RegularSerializerImplementationCompilationUnitEmitter.BuildClassDefinition()
+   at FreecraftCore.Serializer.RegularSerializerImplementationCompilationUnitEmitter.CreateSerializerImplementationNamespaceMember()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateMembers()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateUnit()
+   at FreecraftCore.Serializer.SerializerSourceEmitter.WriteSerializerStrategyClass(INamedTypeSymbol typeSymbol)
+   --- End of inner exception stack trace ---
+   at FreecraftCore.Serializer.SerializerSourceEmitter.WriteSerializerStrategyClass(INamedTypeSymbol typeSymbol)
+   at FreecraftCore.Serializer.SerializerSourceEmitter.Generate()
+   at FreecraftCore.Serializer.WireTypeSerializationSourceGenerator.Execute(GeneratorExecutionContext context)

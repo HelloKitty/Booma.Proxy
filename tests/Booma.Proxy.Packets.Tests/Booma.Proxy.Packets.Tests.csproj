@@ -114,24 +114,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Booma.API.Common\Booma.API.Common.csproj">
-      <Project>{5A92CA37-FE74-467F-88C1-757AA6F5BAFB}</Project>
-      <Name>Booma.API.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Packet.Common\Booma.Packet.Common.csproj">
-      <Project>{1341C0C5-C1D1-46F6-8CF6-001F5D47D126}</Project>
-      <Name>Booma.Packet.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Packet.Game\Booma.Packet.Game.csproj">
-      <Project>{0E8B2C00-C2B6-4A98-B695-425ACDF09D02}</Project>
-      <Name>Booma.Packet.Game</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Booma.Packet.Patch\Booma.Packet.Patch.csproj">
-      <Project>{650B8221-FAD2-4DAC-A503-BD8F3E62F664}</Project>
-      <Name>Booma.Packet.Patch</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
