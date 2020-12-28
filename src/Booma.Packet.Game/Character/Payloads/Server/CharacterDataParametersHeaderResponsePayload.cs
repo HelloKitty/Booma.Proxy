@@ -32,9 +32,14 @@ namespace Booma.Proxy
 	public sealed partial class CharacterDataParametersHeaderResponsePayload : PSOBBGamePacketPayloadServer
 	{
 		/// <summary>
+		/// Indicates the parameter file count expected by PSOBB.
+		/// </summary>
+		public const int PARAMETER_FILE_COUNT = 9;
+
+		/// <summary>
 		/// Serialized file headers.
 		/// </summary>
-		[KnownSize(9)] //Soly said there are only 9 files
+		[KnownSize(PARAMETER_FILE_COUNT)] //Soly said there are only 9 files
 		[WireMember(1)]
 		internal DataParameterFileHeader[] _Headers { get; set; }
 
@@ -42,6 +47,15 @@ namespace Booma.Proxy
 		/// The file headers for the parameter files.
 		/// </summary>
 		public IEnumerable<DataParameterFileHeader> Headers => _Headers;
+
+		public CharacterDataParametersHeaderResponsePayload([NotNull] DataParameterFileHeader[] headers) 
+			: this()
+		{
+			_Headers = headers ?? throw new ArgumentNullException(nameof(headers));
+
+			if (headers.Length != PARAMETER_FILE_COUNT)
+				throw new InvalidOperationException($"Provided Parameter Headers incorrect size. Expected: {PARAMETER_FILE_COUNT} Actual: {headers.Length}")
+		}
 
 		/// <summary>
 		/// Serializer ctor.
