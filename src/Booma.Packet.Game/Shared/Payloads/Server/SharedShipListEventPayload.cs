@@ -19,6 +19,12 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override bool isFlagsSerialized { get; } = false;
 
+		/// <summary>
+		/// Ship list sends with a hidden entry at the top for some reason.
+		/// This is a default entry that can be used.
+		/// </summary>
+		private static MenuListing DefaultHiddenEntry { get; } = new MenuListing(new MenuItemIdentifier(uint.MaxValue, uint.MaxValue), 0, "Booma");
+
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(PrimitiveSizeType.Int32)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
@@ -40,7 +46,14 @@ namespace Booma.Proxy
 		/// <summary>
 		/// Only the ship menu listings sent in the packet.
 		/// </summary>
-		public IEnumerable<MenuListing> Ships => MenuListings.Skip(1);
+		public IEnumerable<MenuListing> Ships => EnumerateShips();
+
+		private IEnumerable<MenuListing> EnumerateShips()
+		{
+			//First hidden entry is skipped.
+			return EnumerateListings()
+				.Skip(1);
+		}
 
 		//TODO: Failing test cases for mismatch size. The reason it is happening is public Teth sends 8 extra padding bytes that it doesn't need.
 		[WireMember(2)]
@@ -48,15 +61,41 @@ namespace Booma.Proxy
 
 		/// <summary>
 		/// Creates a new ship list packet with the provided ships <see cref="shipList"/>.
-		/// With a button at the bottom <see cref="button"/>.
 		/// </summary>
 		/// <param name="shipList">The list of ships.</param>
-		/// <param name="button">The button.</param>
-		public SharedShipListEventPayload([NotNull] MenuListing[] shipList, [NotNull] MenuListing button) 
+		/// <param name="hiddenMenuHeader">Sets the hidden menu header/option.</param>
+		public SharedShipListEventPayload([NotNull] MenuListing[] shipList, [NotNull] MenuListing hiddenMenuHeader) 
 			: this()
 		{
-			_MenuListings = shipList ?? throw new ArgumentNullException(nameof(shipList));
-			LastMenuListing = button ?? throw new ArgumentNullException(nameof(button));
+			if (shipList == null) throw new ArgumentNullException(nameof(shipList));
+
+			//Special cast for ship list entry of 1
+			if (shipList.Length == 0)
+			{
+				_MenuListings = Array.Empty<MenuListing>();
+				LastMenuListing = hiddenMenuHeader;
+			}
+			else
+			{
+				//Hidden member is first in the array, then we append ship list
+				//and finally the last element is stripped via Take
+				_MenuListings = new MenuListing[] { hiddenMenuHeader }
+					.Concat(shipList)
+					.Take(shipList.Length - 1)
+					.ToArray();
+
+				LastMenuListing = shipList[shipList.Length - 1];
+			}
+		}
+
+		/// <summary>
+		/// Creates a new ship list packet with the provided ships <see cref="shipList"/>.
+		/// </summary>
+		/// <param name="shipList">The list of ships.</param>
+		public SharedShipListEventPayload([NotNull] MenuListing[] shipList)
+			: this(shipList, DefaultHiddenEntry)
+		{
+
 		}
 
 		/// <summary>
