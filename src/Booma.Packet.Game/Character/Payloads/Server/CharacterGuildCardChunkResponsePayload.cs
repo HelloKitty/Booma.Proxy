@@ -29,7 +29,19 @@ namespace Booma.Proxy
 		/// </summary>
 		[ReadToEnd]
 		[WireMember(3)]
-		public byte[] PartialData { get; internal set; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
+		public byte[] PartialData { get; internal set; }
+
+		public CharacterGuildCardChunkResponsePayload(uint chunkNumber, [NotNull] byte[] partialData)
+			: this()
+		{
+			ChunkNumber = chunkNumber;
+			PartialData = partialData ?? throw new ArgumentNullException(nameof(partialData));
+
+			//Sylverant has a check here for size:
+			//https://github.com/Sylverant/login_server/blob/4974a8891e7f273e8b0317932912d6f788c505c8/src/login_packets.c#L1982
+			if (partialData.Length > 0x6800)
+				throw new ArgumentException($"Provided data chunk too large. Length: {partialData.Length} Max: {0x6800}", nameof(partialData));
+		}
 
 		/// <summary>
 		/// Serializer ctor.
