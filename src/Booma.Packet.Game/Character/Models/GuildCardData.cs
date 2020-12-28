@@ -165,12 +165,22 @@ namespace Booma.Proxy
 	[WireDataContract]
 	public sealed class GuildCardData
 	{
+		/// <summary>
+		/// Represents the max size of the blocked users.
+		/// </summary>
+		public const int BLOCKED_SIZE = 29;
+
+		/// <summary>
+		/// Represents the max size of the friend users.
+		/// </summary>
+		public const int FRIENDS_SIZE = 104;
+
 		//uint8_t unk1[0x0114];
 		[KnownSize(0x0114)]
 		[WireMember(1)]
 		internal byte[] unk1 { get; set; } = Array.Empty<byte>();
 
-		[KnownSize(29)]
+		[KnownSize(BLOCKED_SIZE)]
 		[WireMember(2)]
 		public GuildCardEntry[] Blocked { get; internal set; }
 
@@ -179,7 +189,7 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		internal byte[] unk2 { get; set; } = Array.Empty<byte>();
 
-		[KnownSize(104)]
+		[KnownSize(FRIENDS_SIZE)]
 		[WireMember(4)]
 		public GuildCardFriend[] Friends { get; internal set; }
 
@@ -188,15 +198,56 @@ namespace Booma.Proxy
 		[WireMember(5)]
 		internal byte[] unk3 { get; set; } = Array.Empty<byte>();
 
+		/// <summary>
+		/// Represents an empty instance of the <see cref="GuildCardData"/>
+		/// </summary>
+		public static GuildCardData Empty { get; } = CreateEmpty();
+
+		//Do not remove
+		static GuildCardData()
+		{
+			
+		}
+
+		/// <summary>
+		/// Creates a new guild card data with the following <see cref="Blocked"/> users and
+		/// <see cref="Friends"/>.
+		/// </summary>
+		/// <param name="blocked">The blocked users.</param>
+		/// <param name="friends">The friends.</param>
 		public GuildCardData([NotNull] GuildCardEntry[] blocked, [NotNull] GuildCardFriend[] friends)
 		{
 			Blocked = blocked ?? throw new ArgumentNullException(nameof(blocked));
 			Friends = friends ?? throw new ArgumentNullException(nameof(friends));
+
+			if (Blocked.Length > BLOCKED_SIZE)
+				throw new ArgumentException($"{nameof(blocked)} exceeds max size of: {BLOCKED_SIZE}", nameof(blocked));
+
+			if (Friends.Length > FRIENDS_SIZE)
+				throw new ArgumentException($"{nameof(friends)} exceeds max size of: {FRIENDS_SIZE}", nameof(friends));
+
+			if (Blocked.Length != BLOCKED_SIZE)
+				Blocked = Blocked
+					.Concat(Enumerable.Repeat(GuildCardEntry.CreateEmpty(), Blocked.Length - BLOCKED_SIZE))
+					.ToArray();
+
+			if(Friends.Length != FRIENDS_SIZE)
+				Friends = Friends
+					.Concat(Enumerable.Repeat(GuildCardFriend.CreateEmpty(), Blocked.Length - FRIENDS_SIZE))
+					.ToArray();
 		}
 
 		public static GuildCardData CreateEmpty()
 		{
 			return new GuildCardData(Enumerable.Repeat(GuildCardEntry.CreateEmpty(), 29).ToArray(), Enumerable.Repeat(GuildCardFriend.CreateEmpty(), 104).ToArray());
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public GuildCardData()
+		{
+			
 		}
 	}
 }
