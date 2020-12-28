@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,10 +30,8 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		public string GuildCard { get; internal set; }
 
-		//TODO: What is this?
-		[KnownSize(2)]
 		[WireMember(3)]
-		internal uint[] unk3 { get; set; }
+		internal ulong unk3 { get; set; }
 
 		/// <summary>
 		/// The special character data such as name color
@@ -81,6 +80,29 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(10)]
 		public uint PlayedTime { get; internal set; }
+
+		public PlayerCharacterDataModel(CharacterProgress progress, string guildCard, CharacterSpecialCustomInfo special, 
+			SectionId sectionId, CharacterClassRace classRace, 
+			CharacterVersionData versionData, CharacterCustomizationInfo customizationInfo, 
+			string characterName, uint playedTime)
+		{
+			if (!Enum.IsDefined(typeof(SectionId), sectionId)) throw new InvalidEnumArgumentException(nameof(sectionId), (int) sectionId, typeof(SectionId));
+			if (!Enum.IsDefined(typeof(CharacterClassRace), classRace)) throw new InvalidEnumArgumentException(nameof(classRace), (int) classRace, typeof(CharacterClassRace));
+
+			Progress = progress ?? throw new ArgumentNullException(nameof(progress));
+			GuildCard = guildCard ?? throw new ArgumentNullException(nameof(guildCard));
+
+			//TODO: What is this?
+			this.unk3 = 0;
+
+			Special = special;
+			SectionId = sectionId;
+			ClassRace = classRace;
+			VersionData = versionData ?? throw new ArgumentNullException(nameof(versionData));
+			CustomizationInfo = customizationInfo ?? throw new ArgumentNullException(nameof(customizationInfo));
+			CharacterName = characterName ?? throw new ArgumentNullException(nameof(characterName));
+			PlayedTime = playedTime;
+		}
 
 		//Serializer ctor
 		public PlayerCharacterDataModel()
