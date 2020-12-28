@@ -29,7 +29,7 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public string Timestamp { get; internal set; }
 
-		public CharacterTimestampEventPayload([JetBrains.Annotations.NotNull] string timestamp) 
+		public CharacterTimestampEventPayload([NotNull] string timestamp) 
 			: this()
 		{
 			Timestamp = timestamp ?? throw new ArgumentNullException(nameof(timestamp));

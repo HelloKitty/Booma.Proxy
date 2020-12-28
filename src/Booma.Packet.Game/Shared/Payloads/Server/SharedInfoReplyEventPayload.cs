@@ -15,9 +15,8 @@ namespace Booma.Proxy
 	public sealed partial class SharedInfoReplyEventPayload : PSOBBGamePacketPayloadServer
 	{
 		//TODO: What is this?
-		[KnownSize(2)]
 		[WireMember(1)]
-		internal uint[] unused { get; set; }
+		internal ulong unused { get; set; }
 
 		/// <summary>
 		/// The info message.
@@ -25,6 +24,12 @@ namespace Booma.Proxy
 		[Encoding(EncodingType.UTF16)]
 		[WireMember(2)]
 		public string Message { get; internal set; }
+
+		public SharedInfoReplyEventPayload([NotNull] string message) 
+			: this()
+		{
+			Message = message ?? throw new ArgumentNullException(nameof(message));
+		}
 
 		/// <summary>
 		/// Serializer ctor.
