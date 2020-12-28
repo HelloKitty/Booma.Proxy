@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,18 @@ namespace Booma.Proxy
 		/// <summary>
 		/// The type of ack.
 		/// </summary>
+		[EnumSize(PrimitiveSizeType.Int32)]
 		[WireMember(2)]
 		public CharacterSelectionAckType AckType { get; internal set; }
+
+		public CharacterCharacterSelectionAckPayload(int slot, CharacterSelectionAckType type) 
+			: this()
+		{
+			if(!Enum.IsDefined(typeof(CharacterSelectionAckType), type)) throw new InvalidEnumArgumentException(nameof(type), (int)type, typeof(CharacterSelectionAckType));
+
+			Slot = slot;
+			AckType = type;
+		}
 
 		/// <summary>
 		/// Serializer ctor.
