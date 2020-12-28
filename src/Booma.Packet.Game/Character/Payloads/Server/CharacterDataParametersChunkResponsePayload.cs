@@ -36,7 +36,14 @@ namespace Booma.Proxy
 		/// </summary>
 		[ReadToEnd]
 		[WireMember(2)]
-		public byte[] PartialData { get; internal set; } = new byte[0]; //TODO: Idk why but for ReadToEnd we have to give it a default
+		public byte[] PartialData { get; internal set; } = Array.Empty<byte>();
+
+		public CharacterDataParametersChunkResponsePayload(uint chunkNumber, [NotNull] byte[] partialData) 
+			: this()
+		{
+			ChunkNumber = chunkNumber;
+			PartialData = partialData ?? throw new ArgumentNullException(nameof(partialData));
+		}
 
 		/// <summary>
 		/// Serializer ctor.
