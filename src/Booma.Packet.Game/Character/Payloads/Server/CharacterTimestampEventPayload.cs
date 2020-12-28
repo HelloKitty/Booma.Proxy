@@ -25,6 +25,7 @@ namespace Booma.Proxy
 		/// The time stamp.
 		/// See Syl for format.
 		/// </summary>
+		[DontTerminate]
 		[KnownSize(28)]
 		[WireMember(1)]
 		public string Timestamp { get; internal set; }
