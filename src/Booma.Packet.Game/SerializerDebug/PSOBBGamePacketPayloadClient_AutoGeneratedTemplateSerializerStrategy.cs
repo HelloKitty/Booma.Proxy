@@ -71,6 +71,8 @@ namespace FreecraftCore.Serializer
                     return new CharacterGuildHeaderRequestPayload();
                 case (int)Booma.Proxy.GameNetworkOperationCode.BB_OPTION_REQUEST_TYPE:
                     return new CharacterOptionsRequestPayload();
+                case (int)Booma.Proxy.GameNetworkOperationCode.BB_OPTION_CONFIG_TYPE:
+                    return new CharacterOptionsUpdateRequestPayload();
                 case (int)Booma.Proxy.GameNetworkOperationCode.TYPE_05:
                     return new SharedDisconnectionRequestPayload();
                 case (int)Booma.Proxy.GameNetworkOperationCode.LOGIN_93_TYPE:
