@@ -81,7 +81,7 @@ namespace Booma.Proxy
 				//and finally the last element is stripped via Take
 				_MenuListings = new MenuListing[] { hiddenMenuHeader }
 					.Concat(shipList)
-					.Take(shipList.Length - 1)
+					.Take(shipList.Length) //this trims off the last element (length - 1 trims off 2)
 					.ToArray();
 
 				LastMenuListing = shipList[shipList.Length - 1];
