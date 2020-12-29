@@ -16,14 +16,21 @@ namespace Booma.Proxy
 
 		/// <summary>
 		/// Level of the character.
+		/// (0 is Level 1.)
 		/// </summary>
 		[WireMember(2)]
-		public uint Level { get; internal set; }
+		public uint RawLevel { get; internal set; }
 
-		public CharacterProgress(uint experience, uint level)
+		/// <summary>
+		/// Represents the real actual level of the player.
+		/// This value is never zero.
+		/// </summary>
+		public int RealLevel => (int) (RawLevel + 1);
+
+		public CharacterProgress(uint experience, uint rawLevel)
 		{
 			Experience = experience;
-			Level = level;
+			RawLevel = rawLevel;
 		}
 
 		/// <summary>
