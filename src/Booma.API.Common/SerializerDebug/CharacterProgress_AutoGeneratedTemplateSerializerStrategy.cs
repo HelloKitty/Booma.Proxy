@@ -27,8 +27,8 @@ namespace FreecraftCore.Serializer
         {
             //Type: CharacterProgress Field: 1 Name: Experience Type: UInt32;
             value.Experience = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
-            //Type: CharacterProgress Field: 2 Name: Level Type: UInt32;
-            value.Level = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
+            //Type: CharacterProgress Field: 2 Name: RawLevel Type: UInt32;
+            value.RawLevel = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace FreecraftCore.Serializer
         {
             //Type: CharacterProgress Field: 1 Name: Experience Type: UInt32;
             GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.Experience, buffer, ref offset);
-            //Type: CharacterProgress Field: 2 Name: Level Type: UInt32;
-            GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.Level, buffer, ref offset);
+            //Type: CharacterProgress Field: 2 Name: RawLevel Type: UInt32;
+            GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.RawLevel, buffer, ref offset);
         }
     }
 }
