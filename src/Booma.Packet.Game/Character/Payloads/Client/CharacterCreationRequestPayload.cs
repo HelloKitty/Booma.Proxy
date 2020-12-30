@@ -23,7 +23,7 @@ namespace Booma.Proxy
 	/// (Possibly also sent when they want to save character data? Haven't checked yet).
 	/// </summary>
 	[WireDataContract]
-	[GameServerPacketPayload(GameNetworkOperationCode.BB_CHARACTER_UPDATE_TYPE)]
+	[GameClientPacketPayload(GameNetworkOperationCode.BB_CHARACTER_UPDATE_TYPE)]
 	public sealed partial class CharacterCreationRequestPayload : PSOBBGamePacketPayloadClient
 	{
 		/// <summary>
@@ -41,6 +41,9 @@ namespace Booma.Proxy
 		/// </summary>
 		[WireMember(3)]
 		public PlayerCharacterDataModel CharacterData { get; internal set; }
+
+		[WireMember(4)]
+		public int Derp { get; internal set; }
 
 		public CharacterCreationRequestPayload(byte slotSelected, PlayerCharacterDataModel characterData) 
 			: this()

@@ -14,10 +14,25 @@
     <RepositoryUrl>https://github.com/HelloKitty/Booma.Proxy</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Phantasy Star Online Emulation Booma PSO PSOBB Blue Burst</PackageTags>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>SerializerDebug</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.48">
+    <Compile Remove="SerializerDebug\**" />
+    <None Include="SerializerDebug\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreecraftCore.Serializer.Compiler" Version="4.0.55">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.9.0-2.final">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -25,10 +40,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Booma.Packet.Common\Booma.Packet.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="SerializerDebug\**" />
   </ItemGroup>
 
 </Project>
