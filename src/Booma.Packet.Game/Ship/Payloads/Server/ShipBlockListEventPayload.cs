@@ -56,7 +56,7 @@ namespace Booma.Proxy
 		[WireMember(2)]
 		internal MenuListing LastMenuListing { get; set; }
 
-		public ShipBlockListEventPayload([JetBrains.Annotations.NotNull] MenuListing[] menuListings, [JetBrains.Annotations.NotNull] MenuListing lastMenuListing) 
+		public ShipBlockListEventPayload(MenuListing[] menuListings, MenuListing lastMenuListing) 
 			: this()
 		{
 			_MenuListings = menuListings ?? throw new ArgumentNullException(nameof(menuListings));

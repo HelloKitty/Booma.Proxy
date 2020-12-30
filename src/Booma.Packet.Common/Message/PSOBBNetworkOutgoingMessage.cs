@@ -33,7 +33,7 @@ namespace Booma.Proxy
 		/// logical packet including the header and the payload byte representation.
 		/// </summary>
 		/// <param name="payload">The payload.</param>
-		public PSOBBNetworkOutgoingMessage([NotNull] byte[] payload)
+		public PSOBBNetworkOutgoingMessage(byte[] payload)
 		{
 			if(payload == null) throw new ArgumentNullException(nameof(payload));
 

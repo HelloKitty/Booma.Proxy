@@ -5,7 +5,7 @@
     <RootNamespace>Booma</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
-    <Version>0.0.21</Version>
+    <Version>0.0.22</Version>
     <Authors>Glader, Soly</Authors>
     <Company>Glader, Soly</Company>
     <Description>Booma is a collection of libraries that provide an API for Phantasy Star Online emulation.</Description>

@@ -36,7 +36,7 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public string ItemName { get; internal set; }
 
-		public MenuListing([NotNull] MenuItemIdentifier selection, ushort flags, [NotNull] string itemName)
+		public MenuListing(MenuItemIdentifier selection, ushort flags, string itemName)
 			: this()
 		{
 			Selection = selection ?? throw new ArgumentNullException(nameof(selection));

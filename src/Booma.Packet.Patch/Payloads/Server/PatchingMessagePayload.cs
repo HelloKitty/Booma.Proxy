@@ -22,7 +22,7 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		public string Message { get; internal set; }
 
-		public PatchingMessagePayload([NotNull] string message)
+		public PatchingMessagePayload(string message)
 			: this()
 		{
 			if(message == null) throw new ArgumentNullException(nameof(message));

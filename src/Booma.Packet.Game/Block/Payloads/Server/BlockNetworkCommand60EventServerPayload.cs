@@ -31,7 +31,7 @@ namespace Booma.Proxy
 		public BaseSubCommand60 Command { get; internal set; }
 
 		/// <inheritdoc />
-		public BlockNetworkCommand60EventServerPayload([JetBrains.Annotations.NotNull] BaseSubCommand60 command)
+		public BlockNetworkCommand60EventServerPayload(BaseSubCommand60 command)
 			: this()
 		{
 			Command = command ?? throw new ArgumentNullException(nameof(command));

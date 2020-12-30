@@ -56,7 +56,7 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		public uint ClientVector { get; internal set; }
 
-		public PatchingWelcomePayload([NotNull] string patchCopyrightMessage, uint serverVector, uint clientVector)
+		public PatchingWelcomePayload(string patchCopyrightMessage, uint serverVector, uint clientVector)
 			: this()
 		{
 			if(string.IsNullOrWhiteSpace(patchCopyrightMessage)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(patchCopyrightMessage));
