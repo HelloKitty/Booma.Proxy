@@ -61,6 +61,8 @@ namespace FreecraftCore.Serializer
                     return new CharacterCharacterSelectionRequestPayload();
                 case (int)Booma.Proxy.GameNetworkOperationCode.BB_CHECKSUM_TYPE:
                     return new CharacterChecksumRequestPayload();
+                case (int)Booma.Proxy.GameNetworkOperationCode.BB_CHARACTER_UPDATE_TYPE:
+                    return new CharacterCreationRequestPayload();
                 case (int)Booma.Proxy.GameNetworkOperationCode.BB_PARAM_CHUNK_REQ_TYPE:
                     return new CharacterDataParametersChunkRequestPayload();
                 case (int)Booma.Proxy.GameNetworkOperationCode.BB_PARAM_HEADER_REQ_TYPE:
