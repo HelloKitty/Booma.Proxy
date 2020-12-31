@@ -20,7 +20,12 @@ namespace Booma.Proxy
 		/// <inheritdoc />
 		public override bool isFlagsSerialized { get; } = false;
 
-		//They include ShipSelect and Ship name in this listing
+		/// <summary>
+		/// Ship list sends with a hidden entry at the top for some reason.
+		/// This is a default entry that can be used.
+		/// </summary>
+		private static MenuListing DefaultHiddenEntry { get; } = new MenuListing(new MenuItemIdentifier(uint.MaxValue, uint.MaxValue), 0, "Booma");
+
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(PrimitiveSizeType.Int32)] //for some reason they send 1 less than the actual size 
 		[WireMember(1)]
@@ -29,9 +34,9 @@ namespace Booma.Proxy
 		/// <summary>
 		/// All the menu listings sent in the packet.
 		/// </summary>
-		public IEnumerable<MenuListing> MenuListings => EnumerateMenuListings();
+		public IEnumerable<MenuListing> MenuListings => EnumerateListings();
 
-		private IEnumerable<MenuListing> EnumerateMenuListings()
+		private IEnumerable<MenuListing> EnumerateListings()
 		{
 			foreach(var entry in _MenuListings)
 				yield return entry;
@@ -40,27 +45,59 @@ namespace Booma.Proxy
 		}
 
 		/// <summary>
-		/// Only the block menu listings sent in the packet.
+		/// Only the ship menu listings sent in the packet.
 		/// </summary>
-		public IEnumerable<MenuListing> Blocks => EnumerateBlocks(); 
+		public IEnumerable<MenuListing> Blocks => EnumerateShips();
 
-		private IEnumerable<MenuListing> EnumerateBlocks()
+		private IEnumerable<MenuListing> EnumerateShips()
 		{
-			//skip first, and last.
-			//Last now being LastMenuListing
-			foreach(var entry in _MenuListings.Skip(1))
-				yield return entry;
+			//First hidden entry is skipped.
+			return EnumerateListings()
+				.Skip(1);
 		}
 
 		//TODO: Failing test cases for mismatch size. The reason it is happening is public Teth sends 8 extra padding bytes that it doesn't need.
 		[WireMember(2)]
 		internal MenuListing LastMenuListing { get; set; }
 
-		public ShipBlockListEventPayload(MenuListing[] menuListings, MenuListing lastMenuListing) 
+		/// <summary>
+		/// Creates a new block list packet with the provided ships <see cref="shipList"/>.
+		/// </summary>
+		/// <param name="shipList">The list of ships.</param>
+		/// <param name="blockList"></param>
+		/// <param name="hiddenMenuHeader">Sets the hidden menu header/option.</param>
+		public ShipBlockListEventPayload([NotNull] MenuListing[] blockList, [NotNull] MenuListing hiddenMenuHeader)
 			: this()
 		{
-			_MenuListings = menuListings ?? throw new ArgumentNullException(nameof(menuListings));
-			LastMenuListing = lastMenuListing ?? throw new ArgumentNullException(nameof(lastMenuListing));
+			if(blockList == null) throw new ArgumentNullException(nameof(blockList));
+
+			//Special cast for ship list entry of 1
+			if(blockList.Length == 0)
+			{
+				_MenuListings = Array.Empty<MenuListing>();
+				LastMenuListing = hiddenMenuHeader;
+			}
+			else
+			{
+				//Hidden member is first in the array, then we append ship list
+				//and finally the last element is stripped via Take
+				_MenuListings = new MenuListing[] { hiddenMenuHeader }
+					.Concat(blockList)
+					.Take(blockList.Length) //this trims off the last element (length - 1 trims off 2)
+					.ToArray();
+
+				LastMenuListing = blockList[blockList.Length - 1];
+			}
+		}
+
+		/// <summary>
+		/// Creates a new ship list packet with the provided ships <see cref="shipList"/>.
+		/// </summary>
+		/// <param name="shipList">The list of ships.</param>
+		public ShipBlockListEventPayload([NotNull] MenuListing[] shipList)
+			: this(shipList, DefaultHiddenEntry)
+		{
+
 		}
 
 		/// <summary>
