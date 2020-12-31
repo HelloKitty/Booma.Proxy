@@ -42,9 +42,6 @@ namespace Booma.Proxy
 		[WireMember(3)]
 		public PlayerCharacterDataModel CharacterData { get; internal set; }
 
-		[WireMember(4)]
-		public int Derp { get; internal set; }
-
 		public CharacterCreationRequestPayload(byte slotSelected, PlayerCharacterDataModel characterData) 
 			: this()
 		{

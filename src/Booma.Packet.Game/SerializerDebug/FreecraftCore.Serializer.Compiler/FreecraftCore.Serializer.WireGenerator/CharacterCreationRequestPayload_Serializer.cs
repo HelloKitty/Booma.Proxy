@@ -52,8 +52,6 @@ namespace FreecraftCore.Serializer
             value.unused = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_3>.Instance.Read(buffer, ref offset);
             //Type: CharacterCreationRequestPayload Field: 3 Name: CharacterData Type: PlayerCharacterDataModel;
             value.CharacterData = PlayerCharacterDataModel_Serializer.Instance.Read(buffer, ref offset);
-            //Type: CharacterCreationRequestPayload Field: 4 Name: Derp Type: Int32;
-            value.Derp = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -75,8 +73,6 @@ namespace FreecraftCore.Serializer
             FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_3>.Instance.Write(value.unused, buffer, ref offset);
             //Type: CharacterCreationRequestPayload Field: 3 Name: CharacterData Type: PlayerCharacterDataModel;
             PlayerCharacterDataModel_Serializer.Instance.Write(value.CharacterData, buffer, ref offset);
-            //Type: CharacterCreationRequestPayload Field: 4 Name: Derp Type: Int32;
-            GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.Derp, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_3 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 3; }
         private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
