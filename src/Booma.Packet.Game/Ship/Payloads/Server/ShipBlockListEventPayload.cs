@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Booma.UI;
 using FreecraftCore.Serializer;
 
 namespace Booma
@@ -21,10 +22,10 @@ namespace Booma
 		public override bool isFlagsSerialized { get; } = false;
 
 		/// <summary>
-		/// Ship list sends with a hidden entry at the top for some reason.
+		/// Block list sends with a hidden entry at the top for some reason.
 		/// This is a default entry that can be used.
 		/// </summary>
-		private static MenuListing DefaultHiddenEntry { get; } = new MenuListing(new MenuItemIdentifier(uint.MaxValue, uint.MaxValue), 0, "Booma");
+		private static MenuListing DefaultHiddenEntry { get; } = new MenuListing(new MenuItemIdentifier((int)KnownMenuIdentifier.BLOCK, uint.MaxValue), 0, "Booma");
 
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(PrimitiveSizeType.Int32)] //for some reason they send 1 less than the actual size 
@@ -45,7 +46,7 @@ namespace Booma
 		}
 
 		/// <summary>
-		/// Only the ship menu listings sent in the packet.
+		/// Only the block menu listings sent in the packet.
 		/// </summary>
 		public IEnumerable<MenuListing> Blocks => EnumerateShips();
 
@@ -61,10 +62,9 @@ namespace Booma
 		internal MenuListing LastMenuListing { get; set; }
 
 		/// <summary>
-		/// Creates a new block list packet with the provided ships <see cref="shipList"/>.
+		/// Creates a new block list packet with the provided blocks <see cref="blockList"/>.
 		/// </summary>
-		/// <param name="shipList">The list of ships.</param>
-		/// <param name="blockList"></param>
+		/// <param name="blockList">The list of blocks.</param>
 		/// <param name="hiddenMenuHeader">Sets the hidden menu header/option.</param>
 		public ShipBlockListEventPayload([NotNull] MenuListing[] blockList, [NotNull] MenuListing hiddenMenuHeader)
 			: this()

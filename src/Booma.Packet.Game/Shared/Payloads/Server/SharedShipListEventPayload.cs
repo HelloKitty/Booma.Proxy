@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Booma.UI;
 using FreecraftCore.Serializer;
 
 namespace Booma
@@ -23,7 +24,7 @@ namespace Booma
 		/// Ship list sends with a hidden entry at the top for some reason.
 		/// This is a default entry that can be used.
 		/// </summary>
-		private static MenuListing DefaultHiddenEntry { get; } = new MenuListing(new MenuItemIdentifier(uint.MaxValue, uint.MaxValue), 0, "Booma");
+		private static MenuListing DefaultHiddenEntry { get; } = new MenuListing(new MenuItemIdentifier((uint) KnownMenuIdentifier.SHIP, uint.MaxValue), 0, "Booma");
 
 		//PSOBB sends 4 byte Flags with the entry count. We disable Flags though to steal the 4 bytes
 		[SendSize(PrimitiveSizeType.Int32)] //for some reason they send 1 less than the actual size 
