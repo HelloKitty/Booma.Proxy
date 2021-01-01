@@ -11,7 +11,7 @@ namespace Booma.Proxy
 	/// Model for a menu selection.
 	/// </summary>
 	[WireDataContract]
-	public sealed class MenuItemIdentifier : IMenuItemIdentifiable
+	public class MenuItemIdentifier : IMenuItemIdentifiable
 	{
 		/// <summary>
 		/// The id of the menu selecting from.
