@@ -22,9 +22,12 @@ namespace Booma.Proxy
 		/// Model type.
 		/// (Ex. Regular, Rico, Sonic, Tails)
 		/// </summary>
+		[EnumSize(PrimitiveSizeType.Byte)]
 		[WireMember(2)]
 		public CharacterModelType ModelType { get; internal set; }
 
+		//TODO: For lobby character data Sylverant sends playtime here?
+		//Claims: /* Placed here, like newserv */
 		//TODO: Why? What?
 		[KnownSize(15)]
 		[WireMember(3)]
