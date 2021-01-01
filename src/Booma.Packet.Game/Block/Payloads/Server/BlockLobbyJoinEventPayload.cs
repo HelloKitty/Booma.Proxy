@@ -34,7 +34,7 @@ namespace Booma
 		/// 0x0A
 		/// </summary>
 		[WireMember(3)]
-		internal byte One { get; set; }
+		internal byte One { get; set; } = 1;
 
 		//Why is this sent? Shouldn't we be in the same lobby?
 		/// <summary>
