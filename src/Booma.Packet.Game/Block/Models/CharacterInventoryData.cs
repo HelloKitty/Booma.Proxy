@@ -33,6 +33,24 @@ namespace Booma.Proxy
 		[KnownSize(30)]
 		public InventoryItem[] Items { get; internal set; }
 
+		public CharacterInventoryData(byte itemCount, byte hpMaterialsUsed, byte tpMaterialsUsed, byte language, InventoryItem[] items)
+		{
+			ItemCount = itemCount;
+			HpMaterialsUsed = hpMaterialsUsed;
+			TpMaterialsUsed = tpMaterialsUsed;
+			Language = language;
+			Items = items;
+		}
+
+		public CharacterInventoryData(byte itemCount, byte hpMaterialsUsed, byte tpMaterialsUsed, byte language)
+		{
+			ItemCount = itemCount;
+			HpMaterialsUsed = hpMaterialsUsed;
+			TpMaterialsUsed = tpMaterialsUsed;
+			Language = language;
+			Items = new InventoryItem[30];
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
