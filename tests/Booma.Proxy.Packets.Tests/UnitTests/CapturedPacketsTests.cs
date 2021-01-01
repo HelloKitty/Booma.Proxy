@@ -148,7 +148,23 @@ namespace Booma
 			//arrange
 			Console.WriteLine($"Entry Size: {entry.BinaryData.Length} OpCode: {entry.OpCode}");
 			SerializerService serializer = Serializer;
-			TBasePayloadType payload = serializer.Deserialize<TBasePayloadType>(entry.BinaryData);
+			TBasePayloadType payload = default;
+			int readOffset = 0;
+
+			try
+			{
+				payload = serializer.Read<TBasePayloadType>(entry.BinaryData, ref readOffset);
+			}
+			catch (IndexOutOfRangeException e)
+			{
+				Console.WriteLine($"Offset: {readOffset} BinarySize: {entry.BinaryData.Length}");
+				throw;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"Error: {e}");
+				throw;
+			}
 
 			if(payload is IUnknownPayloadType)
 			{

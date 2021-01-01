@@ -14,26 +14,38 @@ namespace Booma
 	[GameServerPacketPayload(GameNetworkOperationCode.LOBBY_JOIN_TYPE)]
 	public sealed partial class BlockLobbyJoinEventPayload : PSOBBGamePacketPayloadServer
 	{
+		/// <summary>
+		/// Flags for this packet contains the count of players in the lobby.
+		/// </summary>
+		public override bool isFlagsSerialized { get; } = false;
+
+		/// <summary>
+		/// Represents how many players are in the lobby.
+		/// (Flags 4 byte chunk) read because <see cref="isFlagsSerialized"/> is false.
+		/// </summary>
+		[WireMember(1)]
+		public int PlayerCount { get; internal set; }
+
 		//TODO: We can't currently handle this packet. It does something odd the serializer can't handle
 		/// <summary>
 		/// The ID granted to the client that is joining the lobby.
 		/// 0x08
 		/// </summary>
-		[WireMember(1)]
+		[WireMember(2)]
 		public byte ClientId { get; internal set; }
 
 		//TODO: What is this?
 		/// <summary>
 		/// 0x09
 		/// </summary>
-		[WireMember(2)]
+		[WireMember(3)]
 		public byte LeaderId { get; internal set; }
 
 		//Why is this in some of the packets?
 		/// <summary>
 		/// 0x0A
 		/// </summary>
-		[WireMember(3)]
+		[WireMember(4)]
 		internal byte One { get; set; } = 1;
 
 		//Why is this sent? Shouldn't we be in the same lobby?
@@ -41,7 +53,7 @@ namespace Booma
 		/// The number of the lobby being joined.
 		/// 0x0B
 		/// </summary>
-		[WireMember(4)]
+		[WireMember(5)]
 		public byte LobbyNumber { get; internal set; }
 
 		//Once again, why is this sent? Shouldn't we know what block we're in?
@@ -49,18 +61,18 @@ namespace Booma
 		/// The number of the block.
 		/// 0x0C
 		/// </summary>
-		[WireMember(5)]
+		[WireMember(6)]
 		public short BlockNumber { get; internal set; }
 
 		//TODO: What is this for?
 		/// <summary>
 		/// 0x0E
 		/// </summary>
-		[WireMember(6)]
+		[WireMember(7)]
 		public short EventId { get; internal set; }
 
 		//Sylverant lists this as padding.
-		[WireMember(7)]
+		[WireMember(8)]
 		internal int Padding { get; set; }
 
 		//TODO: There is more to the packet here: https://github.com/Sylverant/ship_server/blob/b3bffc84b558821ca2002775ab2c3af5c6dde528/src/packets.h#L517
@@ -77,6 +89,8 @@ namespace Booma
 			BlockNumber = blockNumber;
 			EventId = eventId;
 			LobbyCharacterData = lobbyCharacterData ?? throw new ArgumentNullException(nameof(lobbyCharacterData));
+
+			PlayerCount = lobbyCharacterData.Length;
 		}
 
 		public BlockLobbyJoinEventPayload()

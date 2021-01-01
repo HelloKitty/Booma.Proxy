@@ -47,7 +47,7 @@ namespace FreecraftCore.Serializer
             //Type: BaseSubCommand60 Field: 2 Name: CommandSize Type: Byte;
             if (value.isSizeSerialized)value.CommandSize = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
             //Type: Sub60ClientBurstBeginEventCommand Field: 1 Name: QuestData Type: Byte[];
-            value.QuestData = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_522>.Instance.Read(buffer, ref offset);
+            value.QuestData = PrimitiveArrayTypeSerializerStrategy<byte>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -64,8 +64,7 @@ namespace FreecraftCore.Serializer
             //Type: BaseSubCommand60 Field: 2 Name: CommandSize Type: Byte;
             if (value.isSizeSerialized)BytePrimitiveSerializerStrategy.Instance.Write(value.CommandSize, buffer, ref offset);
             //Type: Sub60ClientBurstBeginEventCommand Field: 1 Name: QuestData Type: Byte[];
-            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_522>.Instance.Write(value.QuestData, buffer, ref offset);
+            PrimitiveArrayTypeSerializerStrategy<byte>.Instance.Write(value.QuestData, buffer, ref offset);
         }
-        private sealed class StaticTypedNumeric_Int32_522 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 522; }
     }
 }
