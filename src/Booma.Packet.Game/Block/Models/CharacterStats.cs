@@ -5,6 +5,9 @@ using FreecraftCore.Serializer;
 
 namespace Booma.Proxy
 {
+	/// <summary>
+	/// Structure that represents a character's stats.
+	/// </summary>
 	[WireDataContract]
 	public sealed class CharacterStats
 	{
@@ -16,10 +19,33 @@ namespace Booma.Proxy
 		    uint16_t ata;
 		    uint16_t lck;*/
 
-		//TODO: Provide a better API for accessing the stats data.
+		/// <summary>
+		/// Internal stats storage array.
+		/// </summary>
 		[KnownSize(7)]
 		[WireMember(1)]
-		public ushort[] Stats { get; internal set; }
+		public ushort[] Stats { get; internal set; } = Array.Empty<ushort>();
+
+		/// <summary>
+		/// Gets the specified <see cref="stat"/> value.
+		/// </summary>
+		/// <param name="stat"></param>
+		/// <returns></returns>
+		public ushort this[CharacterStatType stat] => Stats[(int) stat];
+
+		public CharacterStats(ushort[] stats)
+		{
+			Stats = stats ?? throw new ArgumentNullException(nameof(stats));
+		}
+
+		public CharacterStats(IEnumerable<KeyValuePair<CharacterStatType, ushort>> stats)
+		{
+			//TODO: Constant
+			Stats = new ushort[7];
+
+			foreach (var kvp in stats)
+				Stats[(int) kvp.Key] = kvp.Value;
+		}
 
 		/// <summary>
 		/// Serializer ctor.
