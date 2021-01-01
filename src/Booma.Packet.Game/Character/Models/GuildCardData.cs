@@ -73,7 +73,7 @@ namespace Booma.Proxy
 
 		//TODO: Enumerate language types
 		[WireMember(6)]
-		public byte Language { get; internal set; }
+		public byte Language { get; internal set; } = 1;
 
 		[EnumSize(PrimitiveSizeType.Byte)]
 		[WireMember(7)]
