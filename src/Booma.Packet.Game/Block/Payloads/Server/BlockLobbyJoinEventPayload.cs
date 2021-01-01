@@ -68,6 +68,17 @@ namespace Booma
 		[WireMember(10)]
 		public CharacterJoinData[] LobbyCharacterData { get; internal set; }
 
+		public BlockLobbyJoinEventPayload(byte clientId, byte leaderId, byte lobbyNumber, short blockNumber, short eventId, CharacterJoinData[] lobbyCharacterData)
+			: this()
+		{
+			ClientId = clientId;
+			LeaderId = leaderId;
+			LobbyNumber = lobbyNumber;
+			BlockNumber = blockNumber;
+			EventId = eventId;
+			LobbyCharacterData = lobbyCharacterData ?? throw new ArgumentNullException(nameof(lobbyCharacterData));
+		}
+
 		public BlockLobbyJoinEventPayload()
 			: base(GameNetworkOperationCode.LOBBY_JOIN_TYPE)
 		{
