@@ -6,9 +6,10 @@ using FreecraftCore.Serializer;
 
 namespace Booma
 {
+	//Note: Unit tests fail due to slight difference in few bytes at end as well as PlayTime (from newserv) sent in the middle of the packet.
 	//TODO: Document and finish implementing this packet.
 	/// <summary>
-	/// Packet sent by a block initially that contains all the menu information for a lobbies.
+	/// Packet sent by a block that contains all character data.
 	/// </summary>
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_FULL_CHARACTER_TYPE)]
