@@ -63,10 +63,16 @@ namespace Booma.Proxy
 		[WireMember(4)]
 		internal byte[] unk2 { get; set; } //Tethella will expect a 4 at 0x16 during Character and 5 during Ship.
 
+		//TODO: Some work needs to be done to create a proper representative structure for unk2.
 		/// <summary>
 		/// Indicates the stage the session trying to login in is at.
 		/// </summary>
 		public SessionStage Stage => (SessionStage)unk2[4];
+
+		/// <summary>
+		/// Indicates the stage the session trying to login in is at.
+		/// </summary>
+		public byte SelectedSlot => unk2[3];
 
 		//easier to work with this as an int in .NET/Unity3D
 		/// <summary>
