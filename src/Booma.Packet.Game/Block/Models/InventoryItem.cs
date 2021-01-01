@@ -34,6 +34,11 @@ namespace Booma.Proxy
 		[WireMember(1)]
 		internal byte[] ItemData { get; set; }
 
+		public InventoryItem(byte[] itemData)
+		{
+			ItemData = itemData ?? throw new ArgumentNullException(nameof(itemData));
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
