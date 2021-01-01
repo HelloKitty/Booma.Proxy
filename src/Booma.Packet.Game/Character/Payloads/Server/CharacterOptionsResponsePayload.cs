@@ -18,37 +18,13 @@ namespace Booma.Proxy
 	[GameServerPacketPayload(GameNetworkOperationCode.BB_OPTION_CONFIG_TYPE)]
 	public sealed partial class CharacterOptionsResponsePayload : PSOBBGamePacketPayloadServer
 	{
-		/// <summary>
-		/// Unknown bytes.
-		/// </summary>
-		[KnownSize(276)]
 		[WireMember(1)]
-		internal byte[] unk { get; set; } = Array.Empty<byte>();
+		public CharacterOptionsConfiguration Config { get; internal set; }
 
-		/// <summary>
-		/// Binding configuration.
-		/// </summary>
-		[WireMember(2)]
-		public BindingsConfig Bindings { get; internal set; }
-
-		/// <summary>
-		/// The guild card for the account.
-		/// </summary>
-		[WireMember(3)]
-		public uint GuildCard { get; internal set; }
-
-		/// <summary>
-		/// The team information.
-		/// </summary>
-		[WireMember(4)]
-		public AccountTeamInformation TeamInfo { get; internal set; }
-
-		public CharacterOptionsResponsePayload(BindingsConfig bindings, uint guildCard, AccountTeamInformation teamInfo) 
+		public CharacterOptionsResponsePayload(CharacterOptionsConfiguration config) 
 			: this()
 		{
-			Bindings = bindings;
-			GuildCard = guildCard;
-			TeamInfo = teamInfo;
+			Config = config ?? throw new ArgumentNullException(nameof(config));
 		}
 
 		/// <summary>
