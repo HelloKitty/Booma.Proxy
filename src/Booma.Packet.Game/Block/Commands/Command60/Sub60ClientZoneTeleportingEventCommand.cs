@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.BeginZoneTeleporting)]

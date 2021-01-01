@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//Based on: https://github.com/Sylverant/libsylverant/blob/e1a01d5586ed12d41b99c5cf1ba955e32b173950/include/sylverant/encryption.h#L28
 	public class PatchEncryptionKey

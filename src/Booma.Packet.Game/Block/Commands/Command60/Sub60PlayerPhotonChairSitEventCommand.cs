@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Booma.Proxy;
+using Booma;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Subcommand 60 packet sent when a player sits down in a photon chair.

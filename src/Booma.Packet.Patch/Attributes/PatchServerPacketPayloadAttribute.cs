@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Metadata attributes that implement <see cref="WireDataContractBaseLinkAttribute"/> making

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Sets the file we are going to update

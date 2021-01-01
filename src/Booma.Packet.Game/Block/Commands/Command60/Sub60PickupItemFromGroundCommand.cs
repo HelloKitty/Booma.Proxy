@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//Link Syl and Teth
 	//Sylverant: https://github.com/Sylverant/ship_server/blob/da29a8e0ffbb394bd7cad462024e68df3909d528/src/subcmd.h#L360

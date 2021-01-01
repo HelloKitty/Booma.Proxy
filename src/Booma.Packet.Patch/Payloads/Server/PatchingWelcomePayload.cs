@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/* The Welcome packet for setting up encryption keys.
 	typedef struct patch_welcome

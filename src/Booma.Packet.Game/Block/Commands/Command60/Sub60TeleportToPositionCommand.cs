@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/*  uint8_t client_id;
 		uint8_t unused;

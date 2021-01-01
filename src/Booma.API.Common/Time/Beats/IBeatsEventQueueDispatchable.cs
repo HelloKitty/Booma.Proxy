@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Contract for a type that contains dispatchables for

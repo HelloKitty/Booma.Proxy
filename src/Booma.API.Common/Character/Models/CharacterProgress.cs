@@ -1,6 +1,6 @@
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// The model for progress of a character.

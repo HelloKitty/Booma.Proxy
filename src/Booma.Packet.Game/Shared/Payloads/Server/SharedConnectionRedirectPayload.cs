@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/*typedef struct bb_redirect
 	{

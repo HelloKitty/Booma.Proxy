@@ -1,4 +1,4 @@
-﻿namespace Booma.Proxy
+﻿namespace Booma
 {
 	/// <summary>
 	/// Enumeration of all section IDs.

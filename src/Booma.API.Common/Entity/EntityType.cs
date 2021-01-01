@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//TODO: Figure out how we should implement this
 	/// <summary>

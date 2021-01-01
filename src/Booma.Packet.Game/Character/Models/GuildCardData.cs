@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/*typedef struct bb_guildcard_data {
 	uint8_t unk1[0x0114];

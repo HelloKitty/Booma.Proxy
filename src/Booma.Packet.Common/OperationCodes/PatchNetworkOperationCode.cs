@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//Based on Syl: https://github.com/Sylverant/patch_server/blob/master/src/patch_packets.h#L136
 	/// <summary>

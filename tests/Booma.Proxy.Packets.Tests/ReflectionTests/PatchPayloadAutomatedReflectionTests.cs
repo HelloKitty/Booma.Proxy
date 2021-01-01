@@ -4,9 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Booma.Proxy.Packets.Tests;
+using Booma.Packets.Tests;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public class PatchPayloadAutomatedReflectionTestsServer : AutomatedReflectionTests<PSOBBPatchPacketPayloadServer, PatchingDoneCommandPayload>
 	{

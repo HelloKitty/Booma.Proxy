@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	[WireDataContract]
 	[GameServerPacketPayload(GameNetworkOperationCode.SERVER_CHARACTER_DATA_TYPE)]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//This is the simpliest implementation however there are extension methods. You do not need to use the method directly.
 	/// <summary>

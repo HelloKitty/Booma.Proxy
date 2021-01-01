@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Contract for collections that can have entries

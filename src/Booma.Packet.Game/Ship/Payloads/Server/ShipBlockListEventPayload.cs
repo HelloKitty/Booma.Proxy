@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//TODO: Sometimes A0 is used and sometimes 07 is used. We should create a DTO for both.
 	/// <summary>

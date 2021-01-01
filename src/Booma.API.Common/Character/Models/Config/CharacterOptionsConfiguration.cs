@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Booma.Proxy;
+using Booma;
 using FreecraftCore.Serializer;
 
 namespace Booma

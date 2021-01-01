@@ -12,7 +12,7 @@ using Generic.Math;
 using NUnit.Framework;
 using Reinterpret.Net;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public sealed partial class CapturedPacketsTests
 	{

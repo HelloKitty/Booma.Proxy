@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Full message for a PSOBB 

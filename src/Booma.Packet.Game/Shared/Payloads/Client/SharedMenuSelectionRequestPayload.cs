@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Payload for selecting a menu option.

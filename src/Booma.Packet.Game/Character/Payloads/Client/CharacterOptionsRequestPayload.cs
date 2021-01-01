@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Empty payload the client sends to get character specific options data

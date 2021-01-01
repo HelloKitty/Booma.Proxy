@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using Reinterpret.Net;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Command packet that tells the

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Represents the information about a character for special configuration

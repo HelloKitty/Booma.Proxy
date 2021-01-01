@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/*typedef struct sylverant_inventory {
 		uint8_t item_count;

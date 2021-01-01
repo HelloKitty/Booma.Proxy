@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public static class SubCommand60Extensions
 	{

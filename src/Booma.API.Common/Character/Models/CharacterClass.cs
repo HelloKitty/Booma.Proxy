@@ -1,4 +1,4 @@
-﻿namespace Booma.Proxy
+﻿namespace Booma
 {
 	/// <summary>
 	/// PSO doesn't have races and classes. Just a combination of both.

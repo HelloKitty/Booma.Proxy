@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// The base type for PSOBB game payloads that the client sends. This isn't for patch server.

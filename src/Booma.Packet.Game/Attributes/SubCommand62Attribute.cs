@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Marks the 0x62 command message with the associated operation code.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//Right now things are build the scale of 0.2f, 0.2f, -0.2f
 	//PSOBB appears to have an inverted z compared to PSOBB

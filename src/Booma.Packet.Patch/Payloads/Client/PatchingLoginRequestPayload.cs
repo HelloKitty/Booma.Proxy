@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/* The Login packet which contains the user's username/password.
 	typedef struct patch_login

@@ -2,7 +2,7 @@ using System;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	[WireDataContract]
 	public sealed class AttackHitResult

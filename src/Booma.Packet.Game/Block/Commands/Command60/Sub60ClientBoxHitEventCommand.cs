@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x0B
 	[WireDataContract]

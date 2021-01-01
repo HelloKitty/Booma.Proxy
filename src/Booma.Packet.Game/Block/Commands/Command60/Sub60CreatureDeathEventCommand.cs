@@ -7,7 +7,7 @@ using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 using Reinterpret.Net;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//https://sylverant.net/wiki/index.php/Packet_0x60#Subcommand_0x76
 	[WireDataContract]

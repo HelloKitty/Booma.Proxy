@@ -1,6 +1,6 @@
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Currently unknown version data for the character.

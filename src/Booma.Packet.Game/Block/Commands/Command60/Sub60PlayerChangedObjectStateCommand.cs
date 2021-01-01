@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	[WireDataContract]
 	[SubCommand60(SubCommand60OperationCode.ChangeObjectState)]

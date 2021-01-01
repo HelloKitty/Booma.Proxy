@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Structure that represents a character's stats.

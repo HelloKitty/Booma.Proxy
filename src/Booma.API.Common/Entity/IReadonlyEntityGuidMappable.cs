@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public interface IReadonlyEntityGuidMappable<TValue> : IReadOnlyDictionary<int, TValue>
 	{

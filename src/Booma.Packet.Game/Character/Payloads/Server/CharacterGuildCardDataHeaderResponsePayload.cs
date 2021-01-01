@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/* Blue Burst packet that acts as a header for the client's guildcard data.
 	typedef struct bb_guildcard_hdr

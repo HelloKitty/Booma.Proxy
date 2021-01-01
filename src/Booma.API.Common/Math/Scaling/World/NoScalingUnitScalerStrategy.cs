@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Strategy that doesn't scale or unscale the provided components at all.

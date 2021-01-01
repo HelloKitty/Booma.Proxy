@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public sealed partial class CapturedPacketsTests
 	{

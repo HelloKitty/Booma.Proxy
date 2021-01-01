@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using C5;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Contract for a Beat-based event.

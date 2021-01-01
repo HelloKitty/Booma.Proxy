@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// An unimplemented or unknown subcommand for the <see cref="BlockNetworkCommand62EventClientPayload"/>.

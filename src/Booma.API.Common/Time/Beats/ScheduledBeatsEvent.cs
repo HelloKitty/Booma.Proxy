@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using C5;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//TODO: For efficiency we could make these reusbale for repeating
 	/// <summary>

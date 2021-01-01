@@ -2,7 +2,7 @@ using System;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Similar to <see cref="AttackHitResult"/> but the unknown 2 byte short

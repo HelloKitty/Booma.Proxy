@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/*typedef struct bb_subcmd_pkt {
 		bb_pkt_hdr_t hdr;

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/* Blue Burst packet that's a header for the parameter files.
 	typedef struct bb_param_hdr

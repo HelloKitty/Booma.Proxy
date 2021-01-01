@@ -7,7 +7,7 @@ using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 using Reinterpret.Net;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//TODO: We should implement this. Sylverant does something with it. Current Tethella doesn't. Honestly, it's a dumb packet that shouldn't exist
 	//This is dumb. But the client sends the character data to the server. Why doesn't the server load it itself? Because Sega...

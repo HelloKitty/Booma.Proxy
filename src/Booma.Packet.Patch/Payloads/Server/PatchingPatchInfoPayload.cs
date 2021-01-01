@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//0x0C 0x00 0x11 0x00
 	//PatchingByteLength{4} PatchFileCount{4}

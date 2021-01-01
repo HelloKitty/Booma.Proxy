@@ -7,7 +7,7 @@ using FreecraftCore.Serializer;
 using JetBrains.Annotations;
 using Reinterpret.Net;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// Verification/Security information for a client.

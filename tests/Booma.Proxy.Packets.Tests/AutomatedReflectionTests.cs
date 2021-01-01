@@ -10,7 +10,7 @@ using FreecraftCore.Serializer;
 using NUnit.Framework;
 using Reflect.Extent;
 
-namespace Booma.Proxy.Packets.Tests
+namespace Booma.Packets.Tests
 {
 	[TestFixture]
 	public abstract class AutomatedReflectionTests<TPayloadBaseType, TTypeToReflectForAssembly>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//6D also sends the target play in the Flags
 	//Example: 6D 00 02 00 00 00 targets player index 02.

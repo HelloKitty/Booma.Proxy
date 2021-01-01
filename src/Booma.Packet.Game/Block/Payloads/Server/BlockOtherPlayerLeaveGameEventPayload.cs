@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	//https://github.com/Sylverant/ship_server/blob/da29a8e0ffbb394bd7cad462024e68df3909d528/src/packets.h#L537
 	/// <summary>

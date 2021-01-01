@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 using NUnit.Framework;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	[TestFixture]
 	public class Subcommand60Tests

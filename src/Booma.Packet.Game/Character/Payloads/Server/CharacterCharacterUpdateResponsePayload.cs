@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/* Blue Burst packet for creating/updating a character as well as for the
    previews sent for the character select screen. 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/* Blue Burst packet for sending a chunk of the parameter files.
 	typedef struct bb_param_chunk

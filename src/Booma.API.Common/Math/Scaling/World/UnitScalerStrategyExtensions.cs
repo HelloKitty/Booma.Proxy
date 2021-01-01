@@ -1,6 +1,6 @@
 using System;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public static class UnitScalerStrategyExtensions
 	{

@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using C5;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	/// <summary>
 	/// An event queue based on Beats timing for scheduling

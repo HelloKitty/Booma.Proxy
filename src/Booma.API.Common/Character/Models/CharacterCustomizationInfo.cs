@@ -1,7 +1,7 @@
 using System;
 using FreecraftCore.Serializer;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	[WireDataContract]
 	public sealed class CharacterCustomizationInfo

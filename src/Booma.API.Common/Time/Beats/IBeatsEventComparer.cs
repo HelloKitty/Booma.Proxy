@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Booma.Proxy
+namespace Booma
 {
 	public sealed class IBeatsEventComparer : IComparer<IBeatEvent>
 	{
