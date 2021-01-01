@@ -15,6 +15,12 @@ namespace Booma
 	[WireDataContract(PrimitiveSizeType.Byte)]
 	public abstract partial class BaseSubCommand60 : ISubCommand60
 	{
+		//TODO: Technicallt only 1 byte sometimes, as size is optionally serialized.
+		/// <summary>
+		/// Binary size of the <see cref="BaseSubCommand60"/> header.
+		/// </summary>
+		public const int COMMAND_HEADER_SIZE = sizeof(byte) + sizeof(byte);
+
 		/// <summary>
 		/// The operation code for the subcommand.
 		/// This is only read for logging of unknown subcommands.
