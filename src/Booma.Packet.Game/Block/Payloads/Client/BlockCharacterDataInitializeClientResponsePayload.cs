@@ -27,6 +27,12 @@ namespace Booma
 		public BlockCharacterDataInitializeClientResponsePayload()
 			: base(GameNetworkOperationCode.BLOCK_SET_CHAR_DATA_TYPE)
 		{
+			
+		}
+
+		[Obsolete]
+		public void ApplyClientDataHack()
+		{
 			//TODO: We should figure out what thisi s all about.
 			//Client sends some data, not sure what it is
 			0x418851ec.Reinterpret(Bytes, 0x364 - 8);
