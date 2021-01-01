@@ -31,8 +31,8 @@ namespace Booma
 			if (items.Length == 200)
 				Items = items;
 			else
-				Items = Items
-					.Concat(Enumerable.Repeat(new BankItem(), 200 - Items.Length))
+				Items = items
+					.Concat(Enumerable.Repeat(new BankItem(), 200 - items.Length))
 					.ToArray();
 		}
 
