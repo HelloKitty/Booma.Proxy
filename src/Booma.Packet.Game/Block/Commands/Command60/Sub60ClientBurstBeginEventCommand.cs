@@ -17,7 +17,7 @@ namespace Booma
 	public sealed partial class Sub60ClientBurstBeginEventCommand : BaseSubCommand60
 	{
 		//TODO: This are about 518 bytes here for quest data
-		[ReadToEnd]
+		[KnownSize(522)] //I Now think this is 522?? But really hard to tell honestly.
 		[WireMember(1)]
 		public byte[] QuestData { get; internal set; } = Array.Empty<byte>();
 
@@ -25,6 +25,7 @@ namespace Booma
 			: this()
 		{
 			QuestData = questData ?? throw new ArgumentNullException(nameof(questData));
+			CommandSize = (byte) ((COMMAND_HEADER_SIZE + QuestData.Length) / 4);
 		}
 
 		/// <summary>
