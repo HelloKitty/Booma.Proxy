@@ -32,7 +32,7 @@ namespace Booma.Proxy
 		//TODO: Implement structure.
 		[KnownSize(28)]
 		[WireMember(1)]
-		internal byte[] ItemData { get; set; }
+		internal byte[] ItemData { get; set; } = Array.Empty<byte>();
 
 		public InventoryItem(byte[] itemData)
 		{
