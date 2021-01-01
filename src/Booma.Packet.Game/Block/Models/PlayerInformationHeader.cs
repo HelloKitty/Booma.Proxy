@@ -1,3 +1,4 @@
+using System;
 using FreecraftCore.Serializer;
 
 namespace Booma
@@ -28,6 +29,7 @@ namespace Booma
 		public bool isSlotFilled { get; internal set; }
 
 		//Sylverant doesn't have this, Teth does and Soly uses it too.
+		//Value from: https://github.com/Sylverant/ship_server/blob/4b94e90d9857fb88f45537f25fa589f1b5d90bda/src/ship_packets.c#L1584
 		[WireMember(4)]
 		internal int unk4 { get; set; } = 0x00010000;
 
@@ -40,7 +42,7 @@ namespace Booma
 		//TODO: What is this?
 		[KnownSize(5)] //Syl says there are 3 of these but Soda's Teth skips x10 from the begining of GCN meaning he considers there is only 4
 		[WireMember(6)]
-		internal uint[] unk1 { get; set; }
+		internal uint[] unk1 { get; set; } = Array.Empty<uint>();
 
 		/// <summary>
 		/// The ID of the client.
@@ -57,6 +59,13 @@ namespace Booma
 		//TODO: What is this?
 		[WireMember(10)]
 		internal uint unk3 { get; set; }
+
+		public PlayerInformationHeader(uint guildCardNumber, int clientId, string characterName)
+		{
+			GuildCardNumber = guildCardNumber;
+			ClientId = clientId;
+			CharacterName = characterName;
+		}
 
 		/// <summary>
 		/// Serializer ctor.
