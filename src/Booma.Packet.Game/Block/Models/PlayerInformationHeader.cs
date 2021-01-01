@@ -29,7 +29,7 @@ namespace Booma
 
 		//Sylverant doesn't have this, Teth does and Soly uses it too.
 		[WireMember(4)]
-		internal int unk4 { get; set; }
+		internal int unk4 { get; set; } = 0x00010000;
 
 		/// <summary>
 		/// The guild card number of the player.
