@@ -65,10 +65,14 @@ namespace FreecraftCore.Serializer
                     return new BlockSetCharacterDataEventPayload();
                 case (int)Booma.GameNetworkOperationCode.CHAT_TYPE:
                     return new BlockTextChatMessageEventPayload();
+                case (int)Booma.GameNetworkOperationCode.C_RANK_TYPE:
+                    return new ChallengeModeRankDataEventPayload();
                 case (int)Booma.GameNetworkOperationCode.BB_FULL_CHARACTER_TYPE:
                     return new InitializeCharacterDataEventPayload();
                 case (int)Booma.GameNetworkOperationCode.LOBBY_LIST_TYPE:
                     return new LobbyListEventPayload();
+                case (int)Booma.GameNetworkOperationCode.LOBBY_ARROW_LIST_TYPE:
+                    return new SetLobbyArrowsEventPayload();
                 case (int)Booma.GameNetworkOperationCode.BB_CHARACTER_ACK_TYPE:
                     return new CharacterCharacterSelectionAckPayload();
                 case (int)Booma.GameNetworkOperationCode.BB_CHARACTER_UPDATE_TYPE:
