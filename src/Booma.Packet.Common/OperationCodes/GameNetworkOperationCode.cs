@@ -112,5 +112,10 @@ namespace Booma
 		//Can't find this on on Sylverant
 		//It's related to character data I think
 		SERVER_CHARACTER_DATA_TYPE = 0x15EA,
+
+		/// <summary>
+		/// Opcode sent when player joins the lobby about challenge mode rank.
+		/// </summary>
+		C_RANK_TYPE = 0x00C5,
 	}
 }
