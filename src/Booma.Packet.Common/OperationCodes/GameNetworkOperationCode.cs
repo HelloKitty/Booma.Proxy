@@ -117,5 +117,10 @@ namespace Booma
 		/// Opcode sent when player joins the lobby about challenge mode rank.
 		/// </summary>
 		C_RANK_TYPE = 0x00C5,
+
+		/// <summary>
+		/// Opcode sent to set player lobby arrows.
+		/// </summary>
+		LOBBY_ARROW_LIST_TYPE = 0x0088
 	}
 }
