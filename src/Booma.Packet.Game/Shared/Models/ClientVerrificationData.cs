@@ -15,12 +15,6 @@ namespace Booma
 	[WireDataContract]
 	public sealed class ClientVerificationData
 	{
-		public static ClientVerificationData FromVersionString(string versionString)
-		{
-			byte[] bytes = versionString.Reinterpret(Encoding.ASCII);
-			return new ClientVerificationData(0x41, bytes.Concat(Enumerable.Repeat((byte)0, 40 - bytes.Length)).ToArray());
-		}
-
 		//TODO: How is this determined
 		/// <summary>
 		/// Hardware information (?)
@@ -34,16 +28,13 @@ namespace Booma
 		/// </summary>
 		[KnownSize(40)]
 		[WireMember(10)]
-		public byte[] SecurityData { get; internal set; }
+		public SecurityData SecurityData { get; internal set; }
 
-		public ClientVerificationData(long hardwareInformation, [NotNull] byte[] securityData)
+		public ClientVerificationData(long hardwareInformation, SecurityData securityData)
 			: this()
 		{
-			if(securityData == null) throw new ArgumentNullException(nameof(securityData));
-			if(securityData.Length > 40) throw new ArgumentException($"The {nameof(securityData)} was greater than the KnownSize attribute.");
-
 			HardwareInformation = hardwareInformation;
-			SecurityData = securityData;
+			SecurityData = securityData ?? throw new ArgumentNullException(nameof(securityData));
 		}
 
 		/// <summary>

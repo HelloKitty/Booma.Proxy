@@ -60,8 +60,8 @@ namespace FreecraftCore.Serializer
             value.BankData = CharacterBankData_Serializer.Instance.Read(buffer, ref offset);
             //Type: InitializeCharacterDataEventPayload Field: 7 Name: GuildCard Type: GuildCardEntry;
             value.GuildCard = GuildCardEntry_Serializer.Instance.Read(buffer, ref offset);
-            //Type: InitializeCharacterDataEventPayload Field: 8 Name: unk2 Type: UInt16;
-            value.unk2 = GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Read(buffer, ref offset);
+            //Type: InitializeCharacterDataEventPayload Field: 8 Name: unk2 Type: Int32;
+            value.unk2 = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
             //Type: InitializeCharacterDataEventPayload Field: 10 Name: SymbolChat Type: Byte[];
             value.SymbolChat = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_1248>.Instance.Read(buffer, ref offset);
             //Type: InitializeCharacterDataEventPayload Field: 11 Name: Shortcuts Type: Byte[];
@@ -111,8 +111,8 @@ namespace FreecraftCore.Serializer
             CharacterBankData_Serializer.Instance.Write(value.BankData, buffer, ref offset);
             //Type: InitializeCharacterDataEventPayload Field: 7 Name: GuildCard Type: GuildCardEntry;
             GuildCardEntry_Serializer.Instance.Write(value.GuildCard, buffer, ref offset);
-            //Type: InitializeCharacterDataEventPayload Field: 8 Name: unk2 Type: UInt16;
-            GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Write(value.unk2, buffer, ref offset);
+            //Type: InitializeCharacterDataEventPayload Field: 8 Name: unk2 Type: Int32;
+            GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.unk2, buffer, ref offset);
             //Type: InitializeCharacterDataEventPayload Field: 10 Name: SymbolChat Type: Byte[];
             FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_1248>.Instance.Write(value.SymbolChat, buffer, ref offset);
             //Type: InitializeCharacterDataEventPayload Field: 11 Name: Shortcuts Type: Byte[];

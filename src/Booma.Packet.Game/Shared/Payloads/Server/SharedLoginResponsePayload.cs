@@ -22,6 +22,45 @@ namespace Booma
 	}
 	PACKED bb_security_pkt;*/
 
+	[WireDataContract]
+	public sealed class SecurityData
+	{
+		//This doesn't seem to be anything special?
+		[WireMember(1)]
+		public uint Magic { get; internal set; } = 0x69;
+
+		[WireMember(2)]
+		public byte Slot { get; internal set; }
+
+		[WireMember(3)]
+		public bool SelectedCharacter { get; internal set; }
+
+		[KnownSize(34)]
+		[WireMember(3)]
+		public byte[] Unknown { get; internal set; } = Array.Empty<byte>();
+
+		public SecurityData(byte slot, bool selectedCharacter)
+		{
+			Slot = slot;
+			SelectedCharacter = selectedCharacter;
+		}
+
+		public SecurityData(byte slot, bool selectedCharacter, byte[] unknown)
+		{
+			Slot = slot;
+			SelectedCharacter = selectedCharacter;
+			Unknown = unknown ?? throw new ArgumentNullException(nameof(unknown));
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public SecurityData()
+		{
+
+		}
+	}
+
 	/* Fill in the information
 	pkt->err_code = LE32(err);
 	pkt->tag = LE32(0x00010000);
@@ -66,9 +105,8 @@ namespace Booma
 		/// <summary>
 		/// Client security information (?)
 		/// </summary>
-		[KnownSize(40)]
 		[WireMember(5)]
-		public byte[] SecurityData { get; internal set; } = Array.Empty<byte>();
+		public SecurityData SecurityData { get; internal set; }
 
 		//TODO: What is this?
 		[WireMember(6)]
@@ -80,15 +118,12 @@ namespace Booma
 		/// <param name="guildCard">The guild card of the account.</param>
 		/// <param name="teamId">The team id the account is asscoiated with.</param>
 		/// <param name="securityData">The security data (?)</param>
-		public SharedLoginResponsePayload(uint guildCard, int teamId, byte[] securityData)
+		public SharedLoginResponsePayload(uint guildCard, int teamId, SecurityData securityData)
 			: this()
 		{
-			if(securityData == null) throw new ArgumentNullException(nameof(securityData));
-			if(securityData.Length != 40) throw new ArgumentException("Security data must be 40 bytes. Use fail ctor if you want to not provide the data.", nameof(securityData));
-
 			GuildCard = guildCard;
 			TeamId = teamId;
-			SecurityData = securityData;
+			SecurityData = securityData ?? throw new ArgumentNullException(nameof(securityData));
 			ResponseCode = AuthenticationResponseCode.LOGIN_93BB_OK;
 		}
 

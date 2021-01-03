@@ -54,8 +54,8 @@ namespace FreecraftCore.Serializer
             value.GuildCard = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
             //Type: SharedLoginResponsePayload Field: 4 Name: TeamId Type: Int32;
             value.TeamId = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
-            //Type: SharedLoginResponsePayload Field: 5 Name: SecurityData Type: Byte[];
-            value.SecurityData = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_40>.Instance.Read(buffer, ref offset);
+            //Type: SharedLoginResponsePayload Field: 5 Name: SecurityData Type: SecurityData;
+            value.SecurityData = SecurityData_Serializer.Instance.Read(buffer, ref offset);
             //Type: SharedLoginResponsePayload Field: 6 Name: Caps Type: Int32;
             value.Caps = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
         }
@@ -81,12 +81,11 @@ namespace FreecraftCore.Serializer
             GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.GuildCard, buffer, ref offset);
             //Type: SharedLoginResponsePayload Field: 4 Name: TeamId Type: Int32;
             GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.TeamId, buffer, ref offset);
-            //Type: SharedLoginResponsePayload Field: 5 Name: SecurityData Type: Byte[];
-            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_40>.Instance.Write(value.SecurityData, buffer, ref offset);
+            //Type: SharedLoginResponsePayload Field: 5 Name: SecurityData Type: SecurityData;
+            SecurityData_Serializer.Instance.Write(value.SecurityData, buffer, ref offset);
             //Type: SharedLoginResponsePayload Field: 6 Name: Caps Type: Int32;
             GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.Caps, buffer, ref offset);
         }
-        private sealed class StaticTypedNumeric_Int32_40 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 40; }
         private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
     }
 }

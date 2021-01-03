@@ -41,8 +41,11 @@ namespace Booma
 		[WireMember(7)]
 		public GuildCardEntry GuildCard { get; internal set; }
 
+		//Originally this was a Short, but it was WRONG. It totally shifted
+		//the Keybind config which ate an entire day of work
+		//NEVER CHANGE THIS FROM 4 BYTES EVER!
 		[WireMember(8)]
-		internal ushort unk2 { get; set; }
+		internal int unk2 { get; set; }
 
 		[KnownSize(1248)]
 		[WireMember(10)]
@@ -58,6 +61,7 @@ namespace Booma
 		[WireMember(12)]
 		public string AutoReply { get; internal set; } = String.Empty;
 
+		//TODO: This might actually not be UTF16 according to Teth.
 		[DontTerminate]
 		[Encoding(EncodingType.UTF16)]
 		[KnownSize(172)]

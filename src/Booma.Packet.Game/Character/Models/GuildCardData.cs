@@ -69,11 +69,11 @@ namespace Booma
 		public string Description { get; internal set; }
 
 		[WireMember(5)]
-		internal byte unk1 { get; set; }
+		internal byte unk1 { get; set; } = 0x01; //Has value 0x01 on Schthack's
 
 		//TODO: Enumerate language types
 		[WireMember(6)]
-		public byte Language { get; internal set; } = 1;
+		public byte Language { get; internal set; } = 1; //Has value 0x01 on Schthack's
 
 		[EnumSize(PrimitiveSizeType.Byte)]
 		[WireMember(7)]

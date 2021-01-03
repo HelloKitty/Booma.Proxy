@@ -27,8 +27,8 @@ namespace FreecraftCore.Serializer
         {
             //Type: ClientVerificationData Field: 9 Name: HardwareInformation Type: Int64;
             value.HardwareInformation = GenericTypePrimitiveSerializerStrategy<Int64>.Instance.Read(buffer, ref offset);
-            //Type: ClientVerificationData Field: 10 Name: SecurityData Type: Byte[];
-            value.SecurityData = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_40>.Instance.Read(buffer, ref offset);
+            //Type: ClientVerificationData Field: 10 Name: SecurityData Type: SecurityData;
+            value.SecurityData = SecurityData_Serializer.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace FreecraftCore.Serializer
         {
             //Type: ClientVerificationData Field: 9 Name: HardwareInformation Type: Int64;
             GenericTypePrimitiveSerializerStrategy<Int64>.Instance.Write(value.HardwareInformation, buffer, ref offset);
-            //Type: ClientVerificationData Field: 10 Name: SecurityData Type: Byte[];
-            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_40>.Instance.Write(value.SecurityData, buffer, ref offset);
+            //Type: ClientVerificationData Field: 10 Name: SecurityData Type: SecurityData;
+            SecurityData_Serializer.Instance.Write(value.SecurityData, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_40 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 40; }
     }

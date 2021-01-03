@@ -58,7 +58,7 @@ namespace Booma
 
 		//TODO: What is this?
 		[WireMember(10)]
-		internal uint unk3 { get; set; }
+		internal uint unk3 { get; set; } = 0x02;
 
 		public PlayerInformationHeader(uint guildCardNumber, int clientId, string characterName)
 		{

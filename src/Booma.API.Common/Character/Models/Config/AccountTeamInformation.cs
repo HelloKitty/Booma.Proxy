@@ -53,8 +53,10 @@ namespace Booma
 		[WireMember(6)]
 		public byte[] TeamFlagByteRepresentation { get; internal set; } = Array.Empty<byte>();
 
+		//TODO: Sylverant sends 8 bytes here, but this mismatches length in some cases with Teth.
+		[KnownSize(4)]
 		[WireMember(7)]
-		public ulong TeamRewardsFlags { get; internal set; }
+		public byte[] TeamRewardsFlags { get; internal set; } = Array.Empty<byte>();
 
 		public AccountTeamInformation(uint teamId, uint[] teamInformation, ushort teamPrivilege, ushort reserved, string teamName, ulong teamRewardsFlags)
 		{
@@ -63,7 +65,7 @@ namespace Booma
 			TeamPrivilege = teamPrivilege;
 			this.reserved = reserved;
 			TeamName = teamName;
-			TeamRewardsFlags = teamRewardsFlags;
+			//TeamRewardsFlags = teamRewardsFlags;
 		}
 
 		public AccountTeamInformation()

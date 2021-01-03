@@ -37,8 +37,8 @@ namespace FreecraftCore.Serializer
             value.TeamName = FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
             //Type: AccountTeamInformation Field: 6 Name: TeamFlagByteRepresentation Type: Byte[];
             value.TeamFlagByteRepresentation = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_2048>.Instance.Read(buffer, ref offset);
-            //Type: AccountTeamInformation Field: 7 Name: TeamRewardsFlags Type: UInt64;
-            value.TeamRewardsFlags = GenericTypePrimitiveSerializerStrategy<UInt64>.Instance.Read(buffer, ref offset);
+            //Type: AccountTeamInformation Field: 7 Name: TeamRewardsFlags Type: Byte[];
+            value.TeamRewardsFlags = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -62,11 +62,12 @@ namespace FreecraftCore.Serializer
             FixedSizeStringTypeSerializerStrategy<UTF16StringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.TeamName, buffer, ref offset);
             //Type: AccountTeamInformation Field: 6 Name: TeamFlagByteRepresentation Type: Byte[];
             FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_2048>.Instance.Write(value.TeamFlagByteRepresentation, buffer, ref offset);
-            //Type: AccountTeamInformation Field: 7 Name: TeamRewardsFlags Type: UInt64;
-            GenericTypePrimitiveSerializerStrategy<UInt64>.Instance.Write(value.TeamRewardsFlags, buffer, ref offset);
+            //Type: AccountTeamInformation Field: 7 Name: TeamRewardsFlags Type: Byte[];
+            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.TeamRewardsFlags, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_2 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 2; }
         private sealed class StaticTypedNumeric_Int32_16 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 16; }
         private sealed class StaticTypedNumeric_Int32_2048 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 2048; }
+        private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
     }
 }
