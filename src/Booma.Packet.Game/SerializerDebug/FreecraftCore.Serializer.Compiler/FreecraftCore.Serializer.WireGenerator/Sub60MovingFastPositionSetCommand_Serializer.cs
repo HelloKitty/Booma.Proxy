@@ -48,8 +48,8 @@ namespace FreecraftCore.Serializer
             if (value.isSizeSerialized)value.CommandSize = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
             //Type: Sub60MovingFastPositionSetCommand Field: 1 Name: Identifier Type: Byte;
             value.Identifier = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
-            //Type: Sub60MovingFastPositionSetCommand Field: 2 Name: unused Type: Byte;
-            value.unused = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
+            //Type: Sub60MovingFastPositionSetCommand Field: 2 Name: unk1 Type: Byte;
+            value.unk1 = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
             //Type: Sub60MovingFastPositionSetCommand Field: 3 Name: Position Type: Vector2;
             value.Position = Vector2_Single_Serializer.Instance.Read(buffer, ref offset);
         }
@@ -69,8 +69,8 @@ namespace FreecraftCore.Serializer
             if (value.isSizeSerialized)BytePrimitiveSerializerStrategy.Instance.Write(value.CommandSize, buffer, ref offset);
             //Type: Sub60MovingFastPositionSetCommand Field: 1 Name: Identifier Type: Byte;
             BytePrimitiveSerializerStrategy.Instance.Write(value.Identifier, buffer, ref offset);
-            //Type: Sub60MovingFastPositionSetCommand Field: 2 Name: unused Type: Byte;
-            BytePrimitiveSerializerStrategy.Instance.Write(value.unused, buffer, ref offset);
+            //Type: Sub60MovingFastPositionSetCommand Field: 2 Name: unk1 Type: Byte;
+            BytePrimitiveSerializerStrategy.Instance.Write(value.unk1, buffer, ref offset);
             //Type: Sub60MovingFastPositionSetCommand Field: 3 Name: Position Type: Vector2;
             Vector2_Single_Serializer.Instance.Write(value.Position, buffer, ref offset);
         }

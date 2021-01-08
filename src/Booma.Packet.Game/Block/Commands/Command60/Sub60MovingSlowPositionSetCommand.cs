@@ -30,6 +30,8 @@ namespace Booma
 		public Vector2<float> Position { get; internal set; }
 
 		//Sylverant will pad 4 bytes here, it's possible they aren't 0 and are used for some thing. but for now we leave them off.
+		[WireMember(4)]
+		internal int unk2 { get; set; }
 
 		//Serializer ctor
 		public Sub60MovingSlowPositionSetCommand()

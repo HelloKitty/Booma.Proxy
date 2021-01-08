@@ -36,43 +36,51 @@ namespace Booma
 	[GameServerPacketPayload(GameNetworkOperationCode.LOBBY_ADD_PLAYER_TYPE)]
 	public sealed partial class BlockOtherPlayerJoinedLobbyEventPayload : PSOBBGamePacketPayloadServer
 	{
+		//Sylverant sends 1 in flags (likely size of end array, maybe this supports arrays??)
+		public override bool isFlagsSerialized { get; } = false;
+
+		//Possibly Sega used the same structure as the full lobby broadcast, so this is SIZE
+		//Sylverant sets this value to 1. But it's not used for anything.
+		[WireMember(1)]
+		internal int One1 { get; set; } = 1;
+
 		/// <summary>
 		/// The ID granted to the client that is joining the lobby.
 		/// </summary>
-		[WireMember(1)]
+		[WireMember(2)]
 		public byte ClientId { get; internal set; }
 
 		//TODO: What is this?
-		[WireMember(2)]
+		[WireMember(3)]
 		public byte LeaderId { get; internal set; }
 
 		//Why is this in some of the packets?
-		[WireMember(3)]
-		internal byte One { get; set; }
+		[WireMember(4)]
+		internal byte One2 { get; set; }
 
 		//Why is this sent? Shouldn't we be in the same lobby?
 		/// <summary>
 		/// The number of the lobby.
 		/// </summary>
-		[WireMember(4)]
+		[WireMember(5)]
 		public byte LobbyNumber { get; internal set; }
 
 		//Once again, why is this sent? Shouldn't we know what block we're in?
 		/// <summary>
 		/// The number of the block.
 		/// </summary>
-		[WireMember(5)]
+		[WireMember(6)]
 		public short BlockNumber { get; internal set; }
 
 		//TODO: What is this for?
-		[WireMember(6)]
+		[WireMember(7)]
 		public short EventId { get; internal set; }
 
 		//Sylverant lists this as padding.
-		[WireMember(7)]
+		[WireMember(8)]
 		internal int Padding { get; set; }
 
-		[WireMember(8)]
+		[WireMember(9)]
 		public CharacterJoinData JoinData { get; internal set; }
 
 		public BlockOtherPlayerJoinedLobbyEventPayload(byte clientId, byte leaderId, byte lobbyNumber, short blockNumber, short eventId, CharacterJoinData joinData) 
@@ -92,8 +100,7 @@ namespace Booma
 		public BlockOtherPlayerJoinedLobbyEventPayload()
 			: base(GameNetworkOperationCode.LOBBY_ADD_PLAYER_TYPE)
 		{
-			//Sylverant sets this value to 1. But it's not used for anything.
-			Flags[0] = 1;
+
 		}	
 	}
 }

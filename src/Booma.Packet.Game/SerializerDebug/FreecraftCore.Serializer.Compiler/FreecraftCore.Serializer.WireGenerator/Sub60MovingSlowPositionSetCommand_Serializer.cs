@@ -52,6 +52,8 @@ namespace FreecraftCore.Serializer
             value.unk1 = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
             //Type: Sub60MovingSlowPositionSetCommand Field: 3 Name: Position Type: Vector2;
             value.Position = Vector2_Single_Serializer.Instance.Read(buffer, ref offset);
+            //Type: Sub60MovingSlowPositionSetCommand Field: 4 Name: unk2 Type: Int32;
+            value.unk2 = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -73,6 +75,8 @@ namespace FreecraftCore.Serializer
             BytePrimitiveSerializerStrategy.Instance.Write(value.unk1, buffer, ref offset);
             //Type: Sub60MovingSlowPositionSetCommand Field: 3 Name: Position Type: Vector2;
             Vector2_Single_Serializer.Instance.Write(value.Position, buffer, ref offset);
+            //Type: Sub60MovingSlowPositionSetCommand Field: 4 Name: unk2 Type: Int32;
+            GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.unk2, buffer, ref offset);
         }
     }
 }

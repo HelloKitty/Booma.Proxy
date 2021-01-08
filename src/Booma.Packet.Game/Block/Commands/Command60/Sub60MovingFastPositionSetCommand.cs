@@ -22,7 +22,7 @@ namespace Booma
 		public byte Identifier { get; internal set; }
 
 		[WireMember(2)]
-		internal byte unused { get; set; }
+		internal byte unk1 { get; set; }
 
 		/// <summary>
 		/// The position the client has moved to.
@@ -30,7 +30,7 @@ namespace Booma
 		[WireMember(3)]
 		public Vector2<float> Position { get; internal set; }
 
-		//TODO: This is a 3rd unknown int
+		//There is no more data here. Old comment was wrong.
 
 		/// <inheritdoc />
 		public Sub60MovingFastPositionSetCommand(byte clientId, [NotNull] Vector2<float> position)
