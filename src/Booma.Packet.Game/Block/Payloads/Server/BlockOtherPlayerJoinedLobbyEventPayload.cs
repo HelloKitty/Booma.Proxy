@@ -75,13 +75,25 @@ namespace Booma
 		[WireMember(8)]
 		public CharacterJoinData JoinData { get; internal set; }
 
+		public BlockOtherPlayerJoinedLobbyEventPayload(byte clientId, byte leaderId, byte lobbyNumber, short blockNumber, short eventId, CharacterJoinData joinData) 
+			: this()
+		{
+			ClientId = clientId;
+			LeaderId = leaderId;
+			LobbyNumber = lobbyNumber;
+			BlockNumber = blockNumber;
+			EventId = eventId;
+			JoinData = joinData ?? throw new ArgumentNullException(nameof(joinData));
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
 		public BlockOtherPlayerJoinedLobbyEventPayload()
 			: base(GameNetworkOperationCode.LOBBY_ADD_PLAYER_TYPE)
 		{
-			
+			//Sylverant sets this value to 1. But it's not used for anything.
+			Flags[0] = 1;
 		}	
 	}
 }
