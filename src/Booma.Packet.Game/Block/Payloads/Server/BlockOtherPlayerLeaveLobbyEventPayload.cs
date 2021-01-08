@@ -26,6 +26,13 @@ namespace Booma
 		//TODO: What is this?
 		//uint16_t padding;
 
+		public BlockOtherPlayerLeaveLobbyEventPayload(byte clientId, byte leaderId) 
+			: this()
+		{
+			ClientId = clientId;
+			LeaderId = leaderId;
+		}
+
 		/// <summary>
 		/// Serializer ctor
 		/// </summary>
