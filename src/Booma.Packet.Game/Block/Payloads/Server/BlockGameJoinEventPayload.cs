@@ -28,12 +28,12 @@ namespace Booma
 		//TODO: What is this?
 		[KnownSize(0x20)]
 		[WireMember(2)]
-		public uint[] Maps { get; internal set; }
+		public uint[] Maps { get; internal set; } = Array.Empty<uint>();
 
 		//It will always send 4 slots but some may be uninitialized
 		[KnownSize(4)]
 		[WireMember(3)]
-		internal PlayerInformationHeader[] _Players { get; set; }
+		internal PlayerInformationHeader[] _Players { get; set; } = Array.Empty<PlayerInformationHeader>();
 
 		/// <summary>
 		/// The players currently in the game/room.
@@ -61,6 +61,22 @@ namespace Booma
 		/// </summary>
 		[WireMember(7)]
 		public GameSettings Settings { get; internal set; }
+
+		public BlockGameJoinEventPayload(byte identifier, byte leaderId, GameSettings settings, PlayerInformationHeader[] players) 
+			: this()
+		{
+			Identifier = identifier;
+			LeaderId = leaderId;
+			Settings = settings;
+			_Players = players;
+			PlayerCount = players.Length;
+
+			//Make sure _Players is expected size
+			if (_Players.Length != 4)
+				_Players = _Players
+					.Concat(Enumerable.Repeat(new PlayerInformationHeader(), 4 - _Players.Length))
+					.ToArray();
+		}
 
 		/// <summary>
 		/// Serializer ctor.
