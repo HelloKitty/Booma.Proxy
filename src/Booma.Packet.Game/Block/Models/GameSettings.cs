@@ -58,6 +58,24 @@ namespace Booma
 		[WireMember(10)]
 		internal byte unused { get; set; }
 
+		public GameSettings(DifficultyType difficulty, 
+			bool isBattle, 
+			byte @event, 
+			SectionId section, 
+			bool isChallengeMode, 
+			uint randomSeed, 
+			EpisodeType episode, bool isSinglePlayer)
+		{
+			Difficulty = difficulty;
+			this.isBattle = isBattle;
+			Event = @event;
+			Section = section;
+			this.isChallengeMode = isChallengeMode;
+			RandomSeed = randomSeed;
+			Episode = episode;
+			this.isSinglePlayer = isSinglePlayer;
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
