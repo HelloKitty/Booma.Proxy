@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Booma</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <Version>0.0.41</Version>
     <Authors>Glader, Soly</Authors>
@@ -16,6 +17,10 @@
     <PackageTags>Phantasy Star Online Emulation Booma PSO PSOBB Blue Burst</PackageTags>
     <Features>IOperation</Features>
     <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
