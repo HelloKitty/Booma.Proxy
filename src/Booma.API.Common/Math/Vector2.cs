@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
@@ -12,18 +13,21 @@ namespace Booma
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	[Serializable]
+	[DataContract]
 	[WireDataContract]
 	public class Vector2<T>
 	{
 		/// <summary>
 		/// X value.
 		/// </summary>
+		[DataMember(Order = 1)]
 		[WireMember(1)]
 		public T X { get; internal set; }
 
 		/// <summary>
 		/// Y value.
 		/// </summary>
+		[DataMember(Order = 2)]
 		[WireMember(2)]
 		public T Y { get; internal set; }
 

@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using FreecraftCore.Serializer;
 
 namespace Booma
 {
+	[DataContract]
 	[WireDataContract]
 	public sealed class Vector4<T> : Vector3<T>
 	{
 		/// <summary>
 		/// X value.
 		/// </summary>
+		[DataMember(Order = 4)]
 		[WireMember(1)]
 		public T W { get; internal set; }
 
