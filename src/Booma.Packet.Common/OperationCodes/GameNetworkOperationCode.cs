@@ -121,6 +121,12 @@ namespace Booma
 		/// <summary>
 		/// Opcode sent to set player lobby arrows.
 		/// </summary>
-		LOBBY_ARROW_LIST_TYPE = 0x0088
+		LOBBY_ARROW_LIST_TYPE = 0x0088,
+
+		/// <summary>
+		/// Opcode sent when a player leaves a game.
+		/// Same structure as CHAR_DATA_TYPE.
+		/// </summary>
+		LEAVE_GAME_PL_DATA_TYPE = 0x0098
 	}
 }
