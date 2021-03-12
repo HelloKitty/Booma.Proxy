@@ -57,6 +57,8 @@ namespace FreecraftCore.Serializer
                     return new BlockPlayerCreateGameRequestPayload();
                 case (int)Booma.GameNetworkOperationCode.CHAT_TYPE:
                     return new BlockTextChatMessageRequestPayload();
+                case (int)Booma.GameNetworkOperationCode.LEAVE_GAME_PL_DATA_TYPE:
+                    return new GameCharacterDataInitializeClientResponsePayload();
                 case (int)Booma.GameNetworkOperationCode.BB_CHARACTER_SELECT_TYPE:
                     return new CharacterCharacterSelectionRequestPayload();
                 case (int)Booma.GameNetworkOperationCode.BB_CHECKSUM_TYPE:
