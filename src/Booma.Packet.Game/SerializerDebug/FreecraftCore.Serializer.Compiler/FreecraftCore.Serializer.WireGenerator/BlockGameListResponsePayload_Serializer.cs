@@ -46,8 +46,10 @@ namespace FreecraftCore.Serializer
             value.OperationCode = GenericPrimitiveEnumTypeSerializerStrategy<GameNetworkOperationCode, Int16>.Instance.Read(buffer, ref offset);
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)value.Flags = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
-            //Type: BlockGameListResponsePayload Field: 1 Name: _GameEntries Type: GameListEntry[];
-            value._GameEntries = SendSizeComplexArrayTypeSerializerStrategy<GameListEntry_Serializer, GameListEntry, Int32>.Instance.Read(buffer, ref offset);
+            //Type: BlockGameListResponsePayload Field: 1 Name: _MenuListings Type: GameListEntry[];
+            value._MenuListings = SendSizeComplexArrayTypeSerializerStrategy<GameListEntry_Serializer, GameListEntry, Int32>.Instance.Read(buffer, ref offset);
+            //Type: BlockGameListResponsePayload Field: 2 Name: LastGameEntry Type: GameListEntry;
+            value.LastGameEntry = GameListEntry_Serializer.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -63,8 +65,10 @@ namespace FreecraftCore.Serializer
             GenericPrimitiveEnumTypeSerializerStrategy<GameNetworkOperationCode, Int16>.Instance.Write(value.OperationCode, buffer, ref offset);
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.Flags, buffer, ref offset);
-            //Type: BlockGameListResponsePayload Field: 1 Name: _GameEntries Type: GameListEntry[];
-            SendSizeComplexArrayTypeSerializerStrategy<GameListEntry_Serializer, GameListEntry, Int32>.Instance.Write(value._GameEntries, buffer, ref offset);
+            //Type: BlockGameListResponsePayload Field: 1 Name: _MenuListings Type: GameListEntry[];
+            SendSizeComplexArrayTypeSerializerStrategy<GameListEntry_Serializer, GameListEntry, Int32>.Instance.Write(value._MenuListings, buffer, ref offset);
+            //Type: BlockGameListResponsePayload Field: 2 Name: LastGameEntry Type: GameListEntry;
+            GameListEntry_Serializer.Instance.Write(value.LastGameEntry, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
     }
