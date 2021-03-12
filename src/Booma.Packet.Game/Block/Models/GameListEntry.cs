@@ -18,6 +18,7 @@ namespace Booma
 		uint8_t flags;
 	 */
 
+	//TODO: Sylverant does some weird stuff with game list Episode and Difficulty
 	/// <summary>
 	/// Data model for a game list entry.
 	/// </summary>
@@ -69,8 +70,6 @@ namespace Booma
 			byte flags)
 		: this()
 		{
-			if (!Enum.IsDefined(typeof(DifficultyType), difficulty)) throw new InvalidEnumArgumentException(nameof(difficulty), (int) difficulty, typeof(DifficultyType));
-			if (!Enum.IsDefined(typeof(EpisodeType), episode)) throw new InvalidEnumArgumentException(nameof(episode), (int) episode, typeof(EpisodeType));
 			Listing = listing ?? throw new ArgumentNullException(nameof(listing));
 			Difficulty = difficulty;
 			PlayerCount = playerCount;
