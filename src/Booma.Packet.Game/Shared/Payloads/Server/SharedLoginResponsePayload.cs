@@ -138,6 +138,7 @@ namespace Booma
 			if(responseCode == AuthenticationResponseCode.LOGIN_93BB_OK) throw new ArgumentException($"Cannot create failure response with Code: {responseCode}", nameof(responseCode));
 
 			ResponseCode = responseCode;
+			SecurityData = new SecurityData();
 		}
 
 		/// <summary>
