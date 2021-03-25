@@ -27,6 +27,13 @@ namespace Booma
 		[WireMember(2)]
 		public byte PromotedLeaderIdentifier { get; internal set; }
 
+		public BlockOtherPlayerLeaveGameEventPayload(byte identifier, byte promotedLeaderIdentifier) 
+			: this()
+		{
+			Identifier = identifier;
+			PromotedLeaderIdentifier = promotedLeaderIdentifier;
+		}
+
 		//TODO: Ctor for serverside
 		/// <summary>
 		/// Serializer ctor.
