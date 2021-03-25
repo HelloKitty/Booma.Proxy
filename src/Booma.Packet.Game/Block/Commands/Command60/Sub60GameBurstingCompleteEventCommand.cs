@@ -50,7 +50,8 @@ namespace Booma
 		public Sub60GameBurstingCompleteEventCommand()
 			: base(SubCommand60OperationCode.GameBurstingComplete)
 		{
-			
+			//Sylverant sets 0x03 for some reason
+			CommandSize = 0x03;
 		}
 	}
 }
