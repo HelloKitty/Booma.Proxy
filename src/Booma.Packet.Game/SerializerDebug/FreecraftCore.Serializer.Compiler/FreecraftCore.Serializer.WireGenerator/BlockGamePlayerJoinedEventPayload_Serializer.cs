@@ -46,8 +46,24 @@ namespace FreecraftCore.Serializer
             value.OperationCode = GenericPrimitiveEnumTypeSerializerStrategy<GameNetworkOperationCode, Int16>.Instance.Read(buffer, ref offset);
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)value.Flags = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
-            //Type: BlockGamePlayerJoinedEventPayload Field: 1 Name: Identifier Type: Byte;
-            value.Identifier = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 1 Name: One1 Type: Int32;
+            value.One1 = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 2 Name: ClientId Type: Byte;
+            value.ClientId = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 3 Name: LeaderId Type: Byte;
+            value.LeaderId = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 4 Name: One2 Type: Byte;
+            value.One2 = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 5 Name: LobbyNumber Type: Byte;
+            value.LobbyNumber = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 6 Name: BlockNumber Type: Int16;
+            value.BlockNumber = GenericTypePrimitiveSerializerStrategy<Int16>.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 7 Name: EventId Type: Int16;
+            value.EventId = GenericTypePrimitiveSerializerStrategy<Int16>.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 8 Name: Padding Type: Int32;
+            value.Padding = GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Read(buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 9 Name: JoinData Type: CharacterJoinData;
+            value.JoinData = CharacterJoinData_Serializer.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -63,8 +79,24 @@ namespace FreecraftCore.Serializer
             GenericPrimitiveEnumTypeSerializerStrategy<GameNetworkOperationCode, Int16>.Instance.Write(value.OperationCode, buffer, ref offset);
             //Type: PSOBBGamePacketPayloadServer Field: 2 Name: Flags Type: Byte[];
             if (value.isFlagsSerialized)FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.Flags, buffer, ref offset);
-            //Type: BlockGamePlayerJoinedEventPayload Field: 1 Name: Identifier Type: Byte;
-            BytePrimitiveSerializerStrategy.Instance.Write(value.Identifier, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 1 Name: One1 Type: Int32;
+            GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.One1, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 2 Name: ClientId Type: Byte;
+            BytePrimitiveSerializerStrategy.Instance.Write(value.ClientId, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 3 Name: LeaderId Type: Byte;
+            BytePrimitiveSerializerStrategy.Instance.Write(value.LeaderId, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 4 Name: One2 Type: Byte;
+            BytePrimitiveSerializerStrategy.Instance.Write(value.One2, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 5 Name: LobbyNumber Type: Byte;
+            BytePrimitiveSerializerStrategy.Instance.Write(value.LobbyNumber, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 6 Name: BlockNumber Type: Int16;
+            GenericTypePrimitiveSerializerStrategy<Int16>.Instance.Write(value.BlockNumber, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 7 Name: EventId Type: Int16;
+            GenericTypePrimitiveSerializerStrategy<Int16>.Instance.Write(value.EventId, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 8 Name: Padding Type: Int32;
+            GenericTypePrimitiveSerializerStrategy<Int32>.Instance.Write(value.Padding, buffer, ref offset);
+            //Type: BlockGamePlayerJoinedEventPayload Field: 9 Name: JoinData Type: CharacterJoinData;
+            CharacterJoinData_Serializer.Instance.Write(value.JoinData, buffer, ref offset);
         }
         private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
     }
