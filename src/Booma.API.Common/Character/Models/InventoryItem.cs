@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 using FreecraftCore.Serializer;
 
@@ -29,14 +30,38 @@ namespace Booma
 	[WireDataContract]
 	public sealed class InventoryItem
 	{
-		//TODO: Implement structure.
-		[KnownSize(28)]
-		[WireMember(1)]
-		internal byte[] ItemData { get; set; } = Array.Empty<byte>();
+		//TODO: This may not be correct.
+		[IgnoreDataMember]
+		public bool IsEquipped => EquippedSlot > 0;
 
-		public InventoryItem(byte[] itemData)
+		//Maybe this is the slot its equipped in?
+		[WireMember(1)]
+		public ushort EquippedSlot { get; internal set; }
+
+		//Don't know what this is
+		[WireMember(2)]
+		public ushort Technique { get; internal set; }
+
+		[WireMember(3)]
+		public uint Flags { get; internal set; }
+
+		[KnownSize(12)]
+		[WireMember(4)]
+		internal byte[] ItemData1 { get; set; } = Array.Empty<byte>();
+
+		[WireMember(5)]
+		public uint ItemId { get; internal set; }
+
+		[KnownSize(4)]
+		[WireMember(6)]
+		internal byte[] ItemData2 { get; set; } = Array.Empty<byte>();
+
+		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, uint flags)
 		{
-			ItemData = itemData ?? throw new ArgumentNullException(nameof(itemData));
+			EquippedSlot = equippedSlot;
+			Technique = technique;
+			Flags = flags;
+			ItemId = itemId;
 		}
 
 		/// <summary>

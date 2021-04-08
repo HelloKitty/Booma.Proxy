@@ -25,8 +25,18 @@ namespace FreecraftCore.Serializer
         /// <param name="offset">See external doc.</param>
         public override void InternalRead(InventoryItem value, Span<byte> buffer, ref int offset)
         {
-            //Type: InventoryItem Field: 1 Name: ItemData Type: Byte[];
-            value.ItemData = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_28>.Instance.Read(buffer, ref offset);
+            //Type: InventoryItem Field: 1 Name: EquippedSlot Type: UInt16;
+            value.EquippedSlot = GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Read(buffer, ref offset);
+            //Type: InventoryItem Field: 2 Name: Technique Type: UInt16;
+            value.Technique = GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Read(buffer, ref offset);
+            //Type: InventoryItem Field: 3 Name: Flags Type: UInt32;
+            value.Flags = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
+            //Type: InventoryItem Field: 4 Name: ItemData1 Type: Byte[];
+            value.ItemData1 = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_12>.Instance.Read(buffer, ref offset);
+            //Type: InventoryItem Field: 5 Name: ItemId Type: UInt32;
+            value.ItemId = GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Read(buffer, ref offset);
+            //Type: InventoryItem Field: 6 Name: ItemData2 Type: Byte[];
+            value.ItemData2 = FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Read(buffer, ref offset);
         }
 
         /// <summary>
@@ -38,9 +48,20 @@ namespace FreecraftCore.Serializer
         /// <param name="offset">See external doc.</param>
         public override void InternalWrite(InventoryItem value, Span<byte> buffer, ref int offset)
         {
-            //Type: InventoryItem Field: 1 Name: ItemData Type: Byte[];
-            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_28>.Instance.Write(value.ItemData, buffer, ref offset);
+            //Type: InventoryItem Field: 1 Name: EquippedSlot Type: UInt16;
+            GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Write(value.EquippedSlot, buffer, ref offset);
+            //Type: InventoryItem Field: 2 Name: Technique Type: UInt16;
+            GenericTypePrimitiveSerializerStrategy<UInt16>.Instance.Write(value.Technique, buffer, ref offset);
+            //Type: InventoryItem Field: 3 Name: Flags Type: UInt32;
+            GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.Flags, buffer, ref offset);
+            //Type: InventoryItem Field: 4 Name: ItemData1 Type: Byte[];
+            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_12>.Instance.Write(value.ItemData1, buffer, ref offset);
+            //Type: InventoryItem Field: 5 Name: ItemId Type: UInt32;
+            GenericTypePrimitiveSerializerStrategy<UInt32>.Instance.Write(value.ItemId, buffer, ref offset);
+            //Type: InventoryItem Field: 6 Name: ItemData2 Type: Byte[];
+            FixedSizePrimitiveArrayTypeSerializerStrategy<byte, StaticTypedNumeric_Int32_4>.Instance.Write(value.ItemData2, buffer, ref offset);
         }
-        private sealed class StaticTypedNumeric_Int32_28 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 28; }
+        private sealed class StaticTypedNumeric_Int32_12 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 12; }
+        private sealed class StaticTypedNumeric_Int32_4 : StaticTypedNumeric<Int32> { public sealed override Int32 Value => 4; }
     }
 }
