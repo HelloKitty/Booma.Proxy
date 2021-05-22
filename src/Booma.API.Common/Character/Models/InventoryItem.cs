@@ -26,6 +26,11 @@ namespace Booma
 	    };
 	} PACKED sylverant_iitem_t;*/
 
+	//Tethealla
+	//unsigned char data[12]; // the standard $setitem1 - $setitem3 fare
+	//unsigned itemid; // player item id
+	//unsigned char data2[4]; // $setitem4 (mag use only)
+
 	//Based on: https://github.com/Sylverant/libsylverant/blob/7f7e31d90da1b02c8d89d055628540ee3ad59417/include/sylverant/characters.h#L48
 	[WireDataContract]
 	public sealed class InventoryItem
@@ -45,16 +50,28 @@ namespace Booma
 		[WireMember(3)]
 		public uint Flags { get; internal set; }
 
+		//We don't use EMPTY here so it's easier to interact with these chunks.
 		[KnownSize(12)]
 		[WireMember(4)]
-		internal byte[] ItemData1 { get; set; } = Array.Empty<byte>();
+		public byte[] ItemData1 { get; set; } = new byte[12];
 
 		[WireMember(5)]
 		public uint ItemId { get; internal set; }
 
+		//We don't use EMPTY here so it's easier to interact with these chunks.
 		[KnownSize(4)]
 		[WireMember(6)]
-		internal byte[] ItemData2 { get; set; } = Array.Empty<byte>();
+		public byte[] ItemData2 { get; set; } = new byte[4];
+
+		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, uint flags, byte[] itemData1, byte[] itemData2)
+		{
+			EquippedSlot = equippedSlot;
+			Technique = technique;
+			Flags = flags;
+			ItemData1 = itemData1 ?? throw new ArgumentNullException(nameof(itemData1));
+			ItemData2 = itemData2 ?? throw new ArgumentNullException(nameof(itemData2));
+			ItemId = itemId;
+		}
 
 		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, uint flags)
 		{
@@ -64,12 +81,24 @@ namespace Booma
 			ItemId = itemId;
 		}
 
+		public void SetWeaponType(byte type)
+		{
+			ItemData1[1] = type;
+		}
+
+		public void SetEmpty()
+		{
+			SetWeaponType(0xFF);
+			ItemId = 0xFFFFFFFF;
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
 		public InventoryItem()
 		{
-			
+			//TODO: Serializer will call this pointlessly.
+			SetEmpty();
 		}
 	}
 }
