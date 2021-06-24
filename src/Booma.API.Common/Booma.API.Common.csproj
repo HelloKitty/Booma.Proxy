@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
-    <Version>0.0.57</Version>
+    <Version>0.0.58</Version>
     <Authors>Glader, Soly</Authors>
     <Company>Glader, Soly</Company>
     <Description>Booma is a collection of libraries that provide an API for Phantasy Star Online emulation.</Description>
