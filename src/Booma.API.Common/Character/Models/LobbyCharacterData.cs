@@ -115,6 +115,24 @@ namespace Booma
 			CharacterName = characterName ?? throw new ArgumentNullException(nameof(characterName));
 		}
 
+		public LobbyCharacterData(CharacterStats stats, ushort unk1, ulong unk2, CharacterProgress progress, uint money, string guildCard, ulong unk3, CharacterSpecialCustomInfo special, SectionId sectionId, CharacterClass classRace, CharacterVersionData versionData, CharacterCustomizationInfo customizationInfo, string characterName, byte[] actionBarSettings)
+		{
+			Stats = stats ?? throw new ArgumentNullException(nameof(stats));
+			this.unk1 = unk1;
+			this.unk2 = unk2;
+			Progress = progress ?? throw new ArgumentNullException(nameof(progress));
+			Money = money;
+			GuildCard = guildCard ?? throw new ArgumentNullException(nameof(guildCard));
+			this.unk3 = unk3;
+			Special = special ?? throw new ArgumentNullException(nameof(special));
+			SectionId = sectionId;
+			ClassRace = classRace;
+			VersionData = versionData ?? throw new ArgumentNullException(nameof(versionData));
+			CustomizationInfo = customizationInfo ?? throw new ArgumentNullException(nameof(customizationInfo));
+			CharacterName = characterName ?? throw new ArgumentNullException(nameof(characterName));
+			ActionBarSettings = actionBarSettings ?? throw new ArgumentNullException(nameof(actionBarSettings));
+		}
+
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
