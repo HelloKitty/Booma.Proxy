@@ -127,6 +127,11 @@ namespace Booma
 		/// Opcode sent when a player leaves a game.
 		/// Same structure as CHAR_DATA_TYPE.
 		/// </summary>
-		LEAVE_GAME_PL_DATA_TYPE = 0x0098
+		LEAVE_GAME_PL_DATA_TYPE = 0x0098,
+
+		/// <summary>
+		/// Opcode sent by the client to the Ship when it updates its config/customization/keybinds.
+		/// </summary>
+		BB_UPDATE_CONFIG = 0x07ED,
 	}
 }
