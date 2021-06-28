@@ -42,11 +42,11 @@
     <Reference Include="DotNetZip, Version=1.14.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetZip.1.14.0\lib\net40\DotNetZip.dll</HintPath>
     </Reference>
-    <Reference Include="FreecraftCore.Serializer, Version=4.0.56.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.4.0.56\lib\netstandard2.0\FreecraftCore.Serializer.dll</HintPath>
+    <Reference Include="FreecraftCore.Serializer, Version=4.1.57.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.4.1.57\lib\netstandard2.0\FreecraftCore.Serializer.dll</HintPath>
     </Reference>
-    <Reference Include="FreecraftCore.Serializer.Metadata, Version=4.0.56.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.4.0.56\lib\netstandard2.0\FreecraftCore.Serializer.Metadata.dll</HintPath>
+    <Reference Include="FreecraftCore.Serializer.Metadata, Version=4.1.57.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FreecraftCore.Serializer.Metadata.4.1.57\lib\netstandard2.0\FreecraftCore.Serializer.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Generic.Math, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Generic.Math.1.0.2\lib\net46\Generic.Math.dll</HintPath>
