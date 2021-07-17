@@ -172,6 +172,8 @@ namespace Booma
 		/// Opcode sent when a creature dies on a client, broadcasted
 		/// to everyone else that it has died.
 		/// </summary>
-		CreatureDeathEvent = 0x76
+		CreatureDeathEvent = 0x76,
+
+		CreateInventoryItem = 0xBE
 	}
 }
