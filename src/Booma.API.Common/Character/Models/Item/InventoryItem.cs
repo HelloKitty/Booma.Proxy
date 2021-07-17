@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using FreecraftCore.Serializer;
+using Reinterpret.Net;
 
 namespace Booma
 {
@@ -39,6 +40,18 @@ namespace Booma
 		[IgnoreDataMember]
 		public bool IsEquipped => EquippedSlot > 0;
 
+		[IgnoreDataMember]
+		public ItemClassType @Class => (ItemClassType) ItemData1[0];
+
+		[IgnoreDataMember]
+		public byte SubClass => ItemData1[1];
+
+		/// <summary>
+		/// Unique identifier that comtains the <see cref="ItemId"/> and the <see cref="@Class"/> and <see cref="SubClass"/>.
+		/// </summary>
+		[IgnoreDataMember]
+		public ulong FullItemId => (ulong)ItemId << 32 | (ulong)ItemData1.Reinterpret<ushort>();
+
 		//Maybe this is the slot its equipped in?
 		[WireMember(1)]
 		public ushort EquippedSlot { get; internal set; }
@@ -47,8 +60,9 @@ namespace Booma
 		[WireMember(2)]
 		public ushort Technique { get; internal set; }
 
+		[EnumSize(PrimitiveSizeType.UInt32)]
 		[WireMember(3)]
-		public uint Flags { get; internal set; }
+		public InventoryItemFlags Flags { get; internal set; }
 
 		//We don't use EMPTY here so it's easier to interact with these chunks.
 		[KnownSize(12)]
@@ -63,7 +77,7 @@ namespace Booma
 		[WireMember(6)]
 		public byte[] ItemData2 { get; set; } = new byte[4];
 
-		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, uint flags, byte[] itemData1, byte[] itemData2)
+		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, InventoryItemFlags flags, byte[] itemData1, byte[] itemData2)
 		{
 			EquippedSlot = equippedSlot;
 			Technique = technique;
@@ -73,7 +87,7 @@ namespace Booma
 			ItemId = itemId;
 		}
 
-		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, uint flags)
+		public InventoryItem(uint itemId, ushort equippedSlot, ushort technique, InventoryItemFlags flags)
 		{
 			EquippedSlot = equippedSlot;
 			Technique = technique;
@@ -86,10 +100,25 @@ namespace Booma
 			ItemData1[1] = type;
 		}
 
+		public void SetWeaponTemplateId(byte id)
+		{
+			ItemData1[2] = id;
+		}
+
 		public void SetEmpty()
 		{
 			SetWeaponType(0xFF);
 			ItemId = 0xFFFFFFFF;
+		}
+
+		public void Equip()
+		{
+			Flags |= InventoryItemFlags.Equipped;
+		}
+
+		public void UnEquip()
+		{
+			Flags &= ~InventoryItemFlags.Equipped;
 		}
 
 		/// <summary>
