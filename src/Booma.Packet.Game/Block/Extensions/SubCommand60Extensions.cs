@@ -24,6 +24,20 @@ namespace Booma
 		}
 
 		/// <summary>
+		/// Creates a new <see cref="BlockNetworkCommand60EventServerPayload"/> with the provided <see cref="command"/> 0x60
+		/// command.
+		/// </summary>
+		/// <param name="command">The command to initialize the payload with.</param>
+		/// <returns>A new <see cref="BlockNetworkCommand60EventServerPayload"/> with the <see cref="command"/></returns>
+		public static BlockNetworkCommand60EventServerPayload ToServerPayload([NotNull] this BaseSubCommand60 command)
+		{
+			if(command == null) throw new ArgumentNullException(nameof(command));
+
+			//Just create a new command container (the 0x60 payload) around the command.
+			return new BlockNetworkCommand60EventServerPayload(command);
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="BlockNetworkCommand62EventClientPayload"/> with the provided <see cref="command"/> 0x60
 		/// command.
 		/// </summary>
@@ -35,6 +49,20 @@ namespace Booma
 
 			//Just create a new command container (the 0x60 payload) around the command.
 			return new BlockNetworkCommand62EventClientPayload(command);
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="BlockNetworkCommand62EventServerPayload"/> with the provided <see cref="command"/> 0x60
+		/// command.
+		/// </summary>
+		/// <param name="command">The command to initialize the payload with.</param>
+		/// <returns>A new <see cref="BlockNetworkCommand62EventServerPayload"/> with the <see cref="command"/></returns>
+		public static BlockNetworkCommand62EventServerPayload ToServerPayload([NotNull] this BaseSubCommand62 command)
+		{
+			if(command == null) throw new ArgumentNullException(nameof(command));
+
+			//Just create a new command container (the 0x60 payload) around the command.
+			return new BlockNetworkCommand62EventServerPayload(command);
 		}
 
 		//TODO: We can probably cache this string for performance in the future

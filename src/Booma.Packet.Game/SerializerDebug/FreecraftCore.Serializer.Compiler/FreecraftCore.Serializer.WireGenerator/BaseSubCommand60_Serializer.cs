@@ -44,6 +44,8 @@ namespace FreecraftCore.Serializer
 					return new Sub60ClientBurstBeginEventCommand();
 				case (int)Booma.SubCommand60OperationCode.BeginZoneTeleporting:
 					return new Sub60ClientZoneTeleportingEventCommand();
+				case (int)Booma.SubCommand60OperationCode.CreateInventoryItem:
+					return new Sub60CreateInventoryItemCommand();
 				case (int)Booma.SubCommand60OperationCode.CreatureDeathEvent:
 					return new Sub60CreatureDeathEventCommand();
 				case (int)Booma.SubCommand60OperationCode.DropInventoryItem:
