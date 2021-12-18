@@ -24,9 +24,9 @@ namespace FreecraftCore.Serializer
 		/// <param name = "offset">See external doc.</param>
 		public override void InternalRead(PlayerCharacterDataModel value, Span<byte> buffer, ref int offset)
 		{
-			//Type: PlayerCharacterDataModel Field: 1 Name: Progress Type: CharacterProgress
+			//Type: PlayerCharacterDataModel Field: 1 Name: Progress Type: CharacterProgressReversed
 			;
-			value.Progress = CharacterProgress_Serializer.Instance.Read(buffer, ref offset);
+			value.Progress = CharacterProgressReversed_Serializer.Instance.Read(buffer, ref offset);
 			//Type: PlayerCharacterDataModel Field: 2 Name: GuildCard Type: String
 			;
 			value.GuildCard = FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Read(buffer, ref offset);
@@ -65,9 +65,9 @@ namespace FreecraftCore.Serializer
 		/// <param name = "offset">See external doc.</param>
 		public override void InternalWrite(PlayerCharacterDataModel value, Span<byte> buffer, ref int offset)
 		{
-			//Type: PlayerCharacterDataModel Field: 1 Name: Progress Type: CharacterProgress
+			//Type: PlayerCharacterDataModel Field: 1 Name: Progress Type: CharacterProgressReversed
 			;
-			CharacterProgress_Serializer.Instance.Write(value.Progress, buffer, ref offset);
+			CharacterProgressReversed_Serializer.Instance.Write(value.Progress, buffer, ref offset);
 			//Type: PlayerCharacterDataModel Field: 2 Name: GuildCard Type: String
 			;
 			FixedSizeStringTypeSerializerStrategy<ASCIIStringTypeSerializerStrategy, StaticTypedNumeric_Int32_16>.Instance.Write(value.GuildCard, buffer, ref offset);

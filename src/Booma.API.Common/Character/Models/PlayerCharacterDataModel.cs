@@ -8,6 +8,53 @@ using FreecraftCore.Serializer;
 
 namespace Booma
 {
+	/// <summary>
+	/// The model for progress of a character.
+	/// Similar to <see cref="CharacterProgress"/> but with the field order reversed.
+	/// </summary>
+	[WireDataContract]
+	public sealed class CharacterProgressReversed
+	{
+		/// <summary>
+		/// Experience earned by the character.
+		/// </summary>
+		[WireMember(1)]
+		public uint Experience { get; internal set; }
+
+		/// <summary>
+		/// Level of the character.
+		/// (0 is Level 1.)
+		/// </summary>
+		[WireMember(2)]
+		public uint RawLevel { get; internal set; }
+
+		/// <summary>
+		/// Represents the real actual level of the player.
+		/// This value is never zero.
+		/// </summary>
+		public int RealLevel => (int)(RawLevel + 1);
+
+		public CharacterProgressReversed(uint experience, uint rawLevel)
+		{
+			Experience = experience;
+			RawLevel = rawLevel;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public CharacterProgressReversed()
+		{
+
+		}
+
+		//Hack added to convert back.
+		public CharacterProgress ToProgress()
+		{
+			return new CharacterProgress(Experience, RawLevel);
+		}
+	}
+
 	//Based on Syl: https://github.com/Sylverant/libsylverant/blob/e1a01d5586ed12d41b99c5cf1ba955e32b173950/include/sylverant/characters.h#L126
 	/// <summary>
 	/// Character data model.
@@ -19,7 +66,7 @@ namespace Booma
 		/// The progress for the character.
 		/// </summary>
 		[WireMember(1)]
-		public CharacterProgress Progress { get; internal set; }
+		public CharacterProgressReversed Progress { get; internal set; }
 
 		//TODO: Is this just the guild card as a string?
 		/// <summary>
@@ -89,7 +136,7 @@ namespace Booma
 			if (!Enum.IsDefined(typeof(SectionId), sectionId)) throw new InvalidEnumArgumentException(nameof(sectionId), (int) sectionId, typeof(SectionId));
 			if (!Enum.IsDefined(typeof(CharacterClass), classRace)) throw new InvalidEnumArgumentException(nameof(classRace), (int) classRace, typeof(CharacterClass));
 
-			Progress = progress ?? throw new ArgumentNullException(nameof(progress));
+			Progress = new CharacterProgressReversed(progress.Experience, progress.RawLevel);
 			GuildCard = guildCard ?? throw new ArgumentNullException(nameof(guildCard));
 
 			//TODO: What is this?

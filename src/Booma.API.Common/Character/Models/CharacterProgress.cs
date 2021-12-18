@@ -8,18 +8,19 @@ namespace Booma
 	[WireDataContract]
 	public sealed class CharacterProgress
 	{
-		/// <summary>
-		/// Experience earned by the character.
-		/// </summary>
-		[WireMember(1)]
-		public uint Experience { get; internal set; }
-
+		//Originally I fucked this up, Level is first... but I had it second initially.
 		/// <summary>
 		/// Level of the character.
 		/// (0 is Level 1.)
 		/// </summary>
-		[WireMember(2)]
+		[WireMember(1)]
 		public uint RawLevel { get; internal set; }
+
+		/// <summary>
+		/// Experience earned by the character.
+		/// </summary>
+		[WireMember(2)]
+		public uint Experience { get; internal set; }
 
 		/// <summary>
 		/// Represents the real actual level of the player.
